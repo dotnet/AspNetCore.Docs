@@ -244,16 +244,16 @@ public partial class ConstructorInjection(NavigationManager navigation)
 
 :::moniker-end
 
-After services are added to the service collection, inject one or more services into components with the [`@inject`](xref:mvc/views/razor#inject) Razor directive, which has two parameters:
+After services are added to the service collection, inject one or more services into components with the [`@inject`](../../mvc/views/razor.md#inject) Razor directive, which has two parameters:
 
 * Type: The type of the service to inject.
 * Property: The name of the property receiving the injected app service. The property doesn't require manual creation. The compiler creates the property.
 
-For more information, see <xref:mvc/views/dependency-injection>.
+For more information, see [Dependency injection into views in ASP.NET Core](../../mvc/views/dependency-injection.md).
 
-Use multiple [`@inject`](xref:mvc/views/razor#inject) statements to inject different services.
+Use multiple [`@inject`](../../mvc/views/razor.md#inject) statements to inject different services.
 
-The following example demonstrates shows how to use the [`@inject`](xref:mvc/views/razor#inject) directive. The service implementing `Services.NavigationManager` is injected into the component's property `Navigation`. Note how the code is only using the `NavigationManager` abstraction.
+The following example demonstrates shows how to use the [`@inject`](../../mvc/views/razor.md#inject) directive. The service implementing `Services.NavigationManager` is injected into the component's property `Navigation`. Note how the code is only using the `NavigationManager` abstraction.
 
 `PropertyInjection.razor`:
 
@@ -283,7 +283,7 @@ public class ComponentBase : IComponent
 > [!NOTE]
 > Since injected services are expected to be available, the default literal with the null-forgiving operator (`default!`) is assigned in .NET 6 or later. For more information, see [Nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
-In components derived from a base class, the [`@inject`](xref:mvc/views/razor#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient. The component only requires the [`@inherits`](xref:mvc/views/razor#inherits) directive. In the following example, any injected services of `CustomComponentBase` are available to the `Demo` component:
+In components derived from a base class, the [`@inject`](../../mvc/views/razor.md#inject) directive isn't required. The <xref:Microsoft.AspNetCore.Components.InjectAttribute> of the base class is sufficient. The component only requires the [`@inherits`](../../mvc/views/razor.md#inherits) directive. In the following example, any injected services of `CustomComponentBase` are available to the `Demo` component:
 
 ```razor
 @page "/demo"
@@ -304,7 +304,7 @@ To address this scenario, inject the service in a new imports file placed in the
 
 ## Use DI in services
 
-Complex services might require additional services. In the following example, `DataAccess` requires the <xref:System.Net.Http.HttpClient> default service. [`@inject`](xref:mvc/views/razor#inject) (or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute)) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
+Complex services might require additional services. In the following example, `DataAccess` requires the <xref:System.Net.Http.HttpClient> default service. [`@inject`](../../mvc/views/razor.md#inject) (or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute)) isn't available for use in services. *Constructor injection* must be used instead. Required services are added by adding parameters to the service's constructor. When DI creates the service, it recognizes the services it requires in the constructor and provides them accordingly. In the following example, the constructor receives an <xref:System.Net.Http.HttpClient> via DI. <xref:System.Net.Http.HttpClient> is a default service.
 
 ```csharp
 using System.Net.Http;
@@ -369,7 +369,7 @@ Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type 
 
 <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
-DI services injected into the component using [`@inject`](xref:mvc/views/razor#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> or <xref:System.IServiceProvider.GetService*>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
+DI services injected into the component using [`@inject`](../../mvc/views/razor.md#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> or <xref:System.IServiceProvider.GetService*>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
   
 The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> on the server. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implementation calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
   
@@ -793,17 +793,29 @@ services.AddScoped<BlazorServiceAccessor>();
 
 :::moniker range=">= aspnetcore-8.0"
 
+<<<<<<< Updated upstream
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
+=======
+* [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
+* [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
+* [Dependency injection into views in ASP.NET Core](../../mvc/views/dependency-injection.md)
+>>>>>>> Stashed changes
 * [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
+<<<<<<< Updated upstream
 * <xref:fundamentals/dependency-injection>
 * [`IDisposable` guidance for Transient and shared instances](xref:fundamentals/dependency-injection#idisposable-guidance-for-transient-and-shared-instances)
 * <xref:mvc/views/dependency-injection>
+=======
+* [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md)
+* [`IDisposable` guidance for Transient and shared instances](../../fundamentals/dependency-injection.md#idisposable-guidance-for-transient-and-shared-instances)
+* [Dependency injection into views in ASP.NET Core](../../mvc/views/dependency-injection.md)
+>>>>>>> Stashed changes
 
 :::moniker-end

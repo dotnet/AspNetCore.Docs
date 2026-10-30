@@ -74,7 +74,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 > [!WARNING]
 > Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method.
 >
-> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
+> For web APIs that use [Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
 >
 > ```csharp
 > [ApiExplorerSettings(IgnoreApi = true)]

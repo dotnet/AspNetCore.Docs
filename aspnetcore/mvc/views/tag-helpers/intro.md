@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn what Tag Helpers are and how to use them in ASP.NET Core.
 ms.custom: sfi-image-nochange
 ms.date: 05/04/2026
-uid: mvc/views/tag-helpers/intro
 ---
 # Tag Helpers in ASP.NET Core
 
@@ -56,7 +55,7 @@ Generates the following HTML:
 <label for="Movie_Title">Title</label>
 ```
 
-The `asp-for` attribute is made available by the `For` property in the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>. See [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring) for more information.
+The `asp-for` attribute is made available by the `For` property in the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.LabelTagHelper>. See [Author Tag Helpers](authoring.md) for more information.
 
 ## Managing Tag Helper scope
 
@@ -133,7 +132,7 @@ The same hierarchy rules that apply to `@addTagHelper` also apply to `@tagHelper
 
 ## Self-closing Tag Helpers
 
-Many Tag Helpers can't be used as self-closing tags. Some Tag Helpers are designed to be self-closing tags. Using a Tag Helper that wasn't designed to be self-closing suppresses the rendered output. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](xref:mvc/views/tag-helpers/authoring#self-closing) in [Authoring Tag Helpers](xref:mvc/views/tag-helpers/authoring).
+Many Tag Helpers can't be used as self-closing tags. Some Tag Helpers are designed to be self-closing tags. Using a Tag Helper that wasn't designed to be self-closing suppresses the rendered output. Self-closing a Tag Helper results in a self-closing tag in the rendered output. For more information, see [this note](authoring.md#self-closing) in [Authoring Tag Helpers](authoring.md).
 
 ## C# in Tag Helpers attribute/declaration
 
@@ -278,7 +277,7 @@ The Visual Studio editor helps you write **all** of the markup in the Tag Helper
 
 * Web Server controls include automatic browser detection. Tag Helpers have no knowledge of the browser.
 
-* Multiple Tag Helpers can act on the same element (see [Avoiding Tag Helper conflicts](xref:mvc/views/tag-helpers/authoring#avoid-tag-helper-conflicts)) while you typically can't compose Web Server controls.
+* Multiple Tag Helpers can act on the same element (see [Avoiding Tag Helper conflicts](authoring.md#avoid-tag-helper-conflicts)) while you typically can't compose Web Server controls.
 
 * Tag Helpers can modify the tag and content of HTML elements that they're scoped to, but don't directly modify anything else on a page. Web Server controls have a less specific scope and can perform actions that affect other parts of your page; enabling unintended side effects.
 
@@ -296,6 +295,6 @@ You can customize the font and colorization from **Tools** > **Options** > **Env
 
 ## Related content
 
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
-* [Working with Forms](xref:mvc/views/working-with-forms)
+* [Author Tag Helpers](authoring.md)
+* [Working with Forms](../working-with-forms.md)
 * [TagHelperSamples on GitHub](https://github.com/dpaquette/TagHelperSamples) contains Tag Helper samples for working with [Bootstrap](https://getbootstrap.com/).

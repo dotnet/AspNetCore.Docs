@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Part 3 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/adding-view
 ---
 
 # Part 3, add a view to an ASP.NET Core MVC app
@@ -13,7 +12,7 @@ uid: tutorials/first-mvc-app/adding-view
 
 :::moniker range=">= aspnetcore-10.0"
 
-In this section, you modify the `HelloWorldController` class to use [Razor](xref:mvc/views/razor) view files. This cleanly encapsulates the process of generating HTML responses to a client.
+In this section, you modify the `HelloWorldController` class to use [Razor](../../mvc/views/razor.md) view files. This cleanly encapsulates the process of generating HTML responses to a client.
 
 View templates are created using Razor. Razor-based view templates:
 
@@ -80,7 +79,7 @@ Select the menu links **MvcMovie**, **Home**, and **Privacy**. Each page shows t
 
 Open the `Views/Shared/_Layout.cshtml` file.
 
-[Layout](xref:mvc/views/layout) templates allow:
+[Layout](../../mvc/views/layout.md) templates allow:
 
 * Specifying the HTML container layout of a site in one place.
 * Applying the HTML container layout across multiple pages in the site.
@@ -98,7 +97,7 @@ The preceding markup made the following changes:
 * Three occurrences of `MvcMovie` to `Movie App`.
 * The anchor element `<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MvcMovie</a>` to `<a class="navbar-brand" asp-area="" asp-controller="Movies" asp-action="Index">Movie App</a>`.
 
-In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) and attribute value was omitted because this app isn't using [Areas](xref:mvc/controllers/areas).
+In the preceding markup, the `asp-area=""` [anchor Tag Helper attribute](../../mvc/views/tag-helpers/built-in/anchor-tag-helper.md) and attribute value was omitted because this app isn't using [Areas](../../mvc/controllers/areas.md).
 
 Save the changes and select the **Privacy** link. Notice how the title on the browser tab displays **Privacy Policy - Movie App** instead of **Privacy Policy - MvcMovie**
 
@@ -142,7 +141,7 @@ Notice that the following have changed:
 
 If there are no changes in the browser, it could be cached content that is being viewed. Press Ctrl+F5 in the browser to force the response from the server to be loaded. The browser title is created with `ViewData["Title"]` we set in the `Index.cshtml` view template and the additional "- Movie App" added in the layout file.
 
-The content in the `Index.cshtml` view template is merged with the `Views/Shared/_Layout.cshtml` view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](xref:mvc/views/layout).
+The content in the `Index.cshtml` view template is merged with the `Views/Shared/_Layout.cshtml` view template. A single HTML response is sent to the browser. Layout templates make it easy to make changes that apply across all of the pages in an app. To learn more, see [Layout](../../mvc/views/layout.md).
 
 :::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/movie-list-view.png" alt-text="Movie List view.":::
 
@@ -171,7 +170,7 @@ Rather than have the controller render this response as a string, change the con
 
 In `HelloWorldController.cs`, change the `Welcome` method to add a `Message` and `NumTimes` value to the `ViewData` dictionary.
 
-The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](xref:mvc/models/model-binding) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
+The `ViewData` dictionary is a dynamic object, which means any type can be used. The `ViewData` object has no defined properties until something is added. The [MVC model binding system](../../mvc/models/model-binding.md) automatically maps the named parameters `name` and `numTimes` from the query string to parameters in the method. The complete `HelloWorldController`:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/HelloWorldController.cs?name=snippet_ViewData&highlight=12-17)]
 
@@ -187,7 +186,7 @@ Save your changes and browse to the following URL:
 
 `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`
 
-Data is taken from the URL and passed to the controller using the [MVC model binder](xref:mvc/models/model-binding). The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
+Data is taken from the URL and passed to the controller using the [MVC model binder](../../mvc/models/model-binding.md). The controller packages the data into a `ViewData` dictionary and passes that object to the view. The view then renders the data as HTML to the browser.
 
 :::image type="content" source="~/tutorials/first-mvc-app/adding-view/media/hello-rick.png" alt-text="Privacy view showing a Welcome label and the phrase Hello Rick shown four times.":::
 

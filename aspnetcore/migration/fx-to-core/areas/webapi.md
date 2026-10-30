@@ -161,7 +161,7 @@ The migrated `ProductsController` contains the following highlighted attributes:
 * The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern.
 * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-* [Attribute routing supports tokens](xref:mvc/controllers/routing#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
+* [Attribute routing supports tokens](../../../mvc/controllers/routing.md#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
 
   * Reduces or eliminates the need to use hard coded strings for the route.
   * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
@@ -179,7 +179,7 @@ Run the migrated project, and browse to `/api/products`.  For example: https://l
 
 * [Create web APIs with ASP.NET Core](../../../web-api/index.md)
 * [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
-* <xref:mvc/compatibility-version>
+* [Compatibility version for ASP.NET Core MVC](../../../mvc/compatibility-version.md)
 
 :::moniker-end
 
@@ -303,6 +303,6 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 
 * [Create web APIs with ASP.NET Core](../../../web-api/index.md)
 * [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
-* <xref:mvc/compatibility-version>
+* [Compatibility version for ASP.NET Core MVC](../../../mvc/compatibility-version.md)
 :::moniker-end
 

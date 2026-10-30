@@ -30,12 +30,12 @@ ASP.NET Core apps created from the framework's project templates contain startup
 The following app startup code supports two app types:
 
 * [Blazor Web Apps](xref:blazor/index)
-* [Minimal APIs](xref:tutorials/min-web-api)
+* [Minimal APIs](../tutorials/min-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program11.cs)]
 
 > [!NOTE]
-> With additional configuration in the `Program` file, ASP.NET Core apps can support [Razor Pages](xref:tutorials/razor-pages/razor-pages-start), [MVC](xref:tutorials/first-mvc-app/start-mvc), and [web API with controllers](xref:tutorials/first-web-api).
+> With additional configuration in the `Program` file, ASP.NET Core apps can support [Razor Pages](../tutorials/razor-pages/razor-pages-start.md), [MVC](../tutorials/first-mvc-app/start-mvc.md), and [web API with controllers](../tutorials/first-web-api.md).
 
 :::moniker-end
 
@@ -44,12 +44,12 @@ The following app startup code supports two app types:
 The following app startup code supports two app types:
 
 * [Blazor Web Apps](xref:blazor/index)
-* [Minimal APIs](xref:tutorials/min-web-api)
+* [Minimal APIs](../tutorials/min-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program10.cs)]
 
 > [!NOTE]
-> With additional configuration in the `Program` file, ASP.NET Core apps can support [Razor Pages](xref:tutorials/razor-pages/razor-pages-start), [MVC](xref:tutorials/first-mvc-app/start-mvc), and [web API with controllers](xref:tutorials/first-web-api).
+> With additional configuration in the `Program` file, ASP.NET Core apps can support [Razor Pages](../tutorials/razor-pages/razor-pages-start.md), [MVC](../tutorials/first-mvc-app/start-mvc.md), and [web API with controllers](../tutorials/first-web-api.md).
 
 :::moniker-end
 
@@ -58,10 +58,10 @@ The following app startup code supports two app types:
 The following app startup code supports several app types:
 
 * [Blazor Web Apps](xref:blazor/index)
-* [Razor Pages](xref:tutorials/razor-pages/index)
-* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
-* [Minimal APIs](xref:tutorials/min-web-api)
-* [Web API with controllers](xref:tutorials/first-web-api)
+* [Razor Pages](../tutorials/razor-pages/index.md)
+* [MVC controllers with views](../tutorials/first-mvc-app/start-mvc.md)
+* [Minimal APIs](../tutorials/min-web-api.md)
+* [Web API with controllers](../tutorials/first-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program8.cs)]
 
@@ -71,10 +71,10 @@ The following app startup code supports several app types:
 
 The following app startup code supports:
 
-* [Razor Pages](xref:tutorials/razor-pages/index)
-* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
-* [Minimal APIs](xref:tutorials/min-web-api)
-* [Web API with controllers](xref:tutorials/first-web-api)
+* [Razor Pages](../tutorials/razor-pages/index.md)
+* [MVC controllers with views](../tutorials/first-mvc-app/start-mvc.md)
+* [Minimal APIs](../tutorials/min-web-api.md)
+* [Web API with controllers](../tutorials/first-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program6.cs)]
 
@@ -91,9 +91,9 @@ The `Startup` class (`Startup.cs`) is where:
 
 The following app startup code supports:
 
-* [Razor Pages](xref:tutorials/razor-pages/index)
-* [MVC controllers with views](xref:tutorials/first-mvc-app/start-mvc)
-* [Web API with controllers](xref:tutorials/first-web-api)
+* [Razor Pages](../tutorials/razor-pages/index.md)
+* [MVC controllers with views](../tutorials/first-mvc-app/start-mvc.md)
+* [Web API with controllers](../tutorials/first-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Startup3.cs?highlight=3,12)]
 
@@ -136,7 +136,7 @@ builder.Services.AddServerSideBlazor();
 
 :::moniker range=">= aspnetcore-6.0"
 
-The DI framework provides instances of requested services at run time. In Blazor apps, services are often resolved from DI at run time using the [`@inject`](xref:mvc/views/razor#inject) directive in a [Razor component](xref:blazor/components/index) file (`.razor`). In the following example, the component uses the <xref:Microsoft.AspNetCore.Components.NavigationManager> abstraction to get an instance of the navigation manager, which is used for querying and managing URI navigation, to navigate the user to a page of products at `/products` when the button is selected:
+The DI framework provides instances of requested services at run time. In Blazor apps, services are often resolved from DI at run time using the [`@inject`](../mvc/views/razor.md#inject) directive in a [Razor component](xref:blazor/components/index) file (`.razor`). In the following example, the component uses the <xref:Microsoft.AspNetCore.Components.NavigationManager> abstraction to get an instance of the navigation manager, which is used for querying and managing URI navigation, to navigate the user to a page of products at `/products` when the button is selected:
 
 ```razor
 @inject NavigationManager Navigation
@@ -175,7 +175,7 @@ public class OrderProcessor(AppDbContext context, ILogger<OrderProcessor> logger
 }
 ```
 
-You can also inject dependencies directly into the lambda parameters of [Minimal API](xref:tutorials/min-web-api) endpoints. In the following example, a list of todo items is returned from the `/todos` endpoint. A logger instance for `ILogger<Program>` logs information, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to include in the response:
+You can also inject dependencies directly into the lambda parameters of [Minimal API](../tutorials/min-web-api.md) endpoints. In the following example, a list of todo items is returned from the `/todos` endpoint. A logger instance for `ILogger<Program>` logs information, and the database instance for `AppDbContext` is used to obtain the list of todo items from the database to include in the response:
 
 ```csharp
 app.MapGet("/todos", async (AppDbContext context, ILogger<Program> logger) =>
@@ -631,7 +631,7 @@ For problems with Visual Studio Code, ask for support on community support forum
 * Tutorials
   * <xref:blazor/tutorials/build-a-blazor-app>
   * <xref:blazor/tutorials/movie-database-app/index>
-  * <xref:tutorials/min-web-api>
+  * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * <xref:blazor/fundamentals/index>
 
 :::moniker-end
@@ -640,7 +640,7 @@ For problems with Visual Studio Code, ask for support on community support forum
 
 * Tutorials
   * <xref:blazor/tutorials/build-a-blazor-app>
-  * <xref:tutorials/min-web-api>
+  * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * <xref:blazor/fundamentals/index>
 
 :::moniker-end
@@ -649,9 +649,9 @@ For problems with Visual Studio Code, ask for support on community support forum
 
 * Tutorials
   * <xref:blazor/tutorials/build-a-blazor-app>
-  * <xref:tutorials/razor-pages/index>
-  * <xref:tutorials/first-mvc-app/start-mvc>
-  * <xref:tutorials/first-web-api>
+  * [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md)
+  * [Get started with ASP.NET Core MVC](../tutorials/first-mvc-app/start-mvc.md)
+  * [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md)
 * <xref:blazor/fundamentals/index>
 
 :::moniker-end

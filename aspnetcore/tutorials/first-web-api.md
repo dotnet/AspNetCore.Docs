@@ -3,7 +3,6 @@ title: "Tutorial: Create a controller-based web API with ASP.NET Core"
 ai-usage: ai-assisted
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.date: 08/24/2026
-uid: tutorials/first-web-api
 ---
 
 # Tutorial: Create a controller-based web API with ASP.NET Core
@@ -14,7 +13,11 @@ By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
+<<<<<<< Updated upstream
 This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
+=======
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating a Minimal API, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md).
+>>>>>>> Stashed changes
 
 ## Overview
 
@@ -239,7 +242,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -405,7 +408,7 @@ The ASP.NET Core templates for:
 * Controllers with views include `[action]` in the route template.
 * API controllers don't include `[action]` in the route template.
 
-When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
+When the `[action]` token isn't in the route template, the [action](../mvc/controllers/routing.md#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
 
 Open the generated `Controllers/TodoItemsController.cs` file to review the scaffolded code. Scaffolding generates a complete, working controller with action methods that create, read, update, and delete `TodoItem` data:
 
@@ -425,7 +428,7 @@ Examine the scaffolded `PostTodoItem` method. The generated code already works. 
 
 The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
-For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
+For more information, see [Attribute routing with Http[Verb] attributes](../mvc/controllers/routing.md#verb).
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
@@ -650,8 +653,8 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
   :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs" id="snippet_Route" highlight="1":::
 
-* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
-* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](../mvc/controllers/routing.md) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](../mvc/controllers/routing.md#verb).
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
@@ -820,7 +823,7 @@ Verify you can't post or get the secret field.
 
 ## Call the web API with JavaScript
 
-See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
+See [Tutorial: Call an ASP.NET Core web API with JavaScript](web-api-javascript.md).
 
 ## Web API video series
 
@@ -845,11 +848,19 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 For more information, see the following resources:
 
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
+<<<<<<< Updated upstream
 * <xref:tutorials/min-web-api>
 * <xref:fundamentals/openapi/using-openapi-documents>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
+=======
+* [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md)
+* [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md)
+* [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../data/ef-rp/intro.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
+>>>>>>> Stashed changes
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Deploy ASP.NET Core apps to Azure App Service](../host-and-deploy/azure-apps/index.md)
 * [Host and deploy ASP.NET Core](../host-and-deploy/index.md)

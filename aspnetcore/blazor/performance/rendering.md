@@ -228,7 +228,7 @@ Also, consider that it might be an improvement not to have a table cell componen
 
 For more information on generic type parameters (`@typeparam`), see the following resources:
 
-* <xref:mvc/views/razor#typeparam>
+* [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam)
 * <xref:blazor/components/index#generic-type-parameter-support>
 * <xref:blazor/components/templated-components>
 

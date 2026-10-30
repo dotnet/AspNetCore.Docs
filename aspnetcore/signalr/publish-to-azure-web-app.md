@@ -77,6 +77,6 @@ WebSockets and other transports are limited based on the App Service Plan select
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Overview of ASP.NET Core SignalR](introduction.md)
 * [Host and deploy ASP.NET Core](../host-and-deploy/index.md)
-* <xref:tutorials/publish-to-azure-webapp-using-vs>
+* [Publish an ASP.NET Core app to Azure with Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md)
 * [Publish an ASP.NET Core app to Azure with command line tools](/azure/app-service/app-service-web-get-started-dotnet)
 * [Host and deploy ASP.NET Core Preview apps on Azure](../host-and-deploy/azure-apps/index.md#deploy-aspnet-core-preview-release-to-azure-app-service)

@@ -96,7 +96,7 @@ In 2.0 projects, the `Main` method of `Program.cs` has been simplified:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program.cs?highlight=8-11)]
 
-The adoption of this new 2.0 pattern is highly recommended and is required for product features like [Entity Framework (EF) Core Migrations](xref:data/ef-mvc/migrations) to work. For example, running `Update-Database` from the Package Manager Console window or `dotnet ef database update` from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:
+The adoption of this new 2.0 pattern is highly recommended and is required for product features like [Entity Framework (EF) Core Migrations](../../data/ef-mvc/migrations.md) to work. For example, running `Update-Database` from the Package Manager Console window or `dotnet ef database update` from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:
 
 ```
 Unable to create an object of type '<Context>'. Add an implementation of 'IDesignTimeDbContextFactory<Context>' to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
@@ -150,7 +150,7 @@ As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and c
 
 ## Review Razor view compilation setting
 
-Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0.
+Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](../../mvc/views/view-compilation.md) is enabled by default in ASP.NET Core 2.0.
 
 Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the `.csproj` file.
 

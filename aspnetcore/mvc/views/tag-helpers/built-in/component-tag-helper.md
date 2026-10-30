@@ -3,7 +3,6 @@ title: Component Tag Helper in ASP.NET Core
 description: Learn how to use the ASP.NET Core Component Tag Helper to render Razor components in pages and views.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/25/2023
-uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
 ---
 # Component Tag Helper in ASP.NET Core
 
@@ -215,7 +214,7 @@ The following HTML is rendered in the page or view:
 </label>
 ```
 
-Passing a quoted string requires an [explicit Razor expression](xref:mvc/views/razor#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.
+Passing a quoted string requires an [explicit Razor expression](../../razor.md#explicit-razor-expressions), as shown for `param-Color` in the preceding example. The Razor parsing behavior for a `string` type value doesn't apply to a `param-*` attribute because the attribute is an `object` type.
 
 All types of parameters are supported, except:
 
@@ -329,20 +328,20 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>
+* [Persist Component State Tag Helper in ASP.NET Core](persist-component-state.md)
 * <xref:blazor/components/prerender>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../intro.md)
 * <xref:blazor/components/index>
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-* <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>
+* [Persist Component State Tag Helper in ASP.NET Core](persist-component-state.md)
 * <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../intro.md)
 * <xref:blazor/components/index>
 
 :::moniker-end
@@ -351,7 +350,7 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 
 * <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../intro.md)
 * <xref:blazor/components/index>
 
 :::moniker-end

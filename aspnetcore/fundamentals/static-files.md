@@ -301,7 +301,7 @@ Consider the following markup that displays a company logo:
 <img src="~/logo.png" asp-append-version="true" alt="Company logo">
 ```
 
-The developer intends to use the [Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) to append a version and serve the file from a custom location, a folder named `ExtraStaticFiles`.
+The developer intends to use the [Image Tag Helper](../mvc/views/tag-helpers/built-in/image-tag-helper.md) to append a version and serve the file from a custom location, a folder named `ExtraStaticFiles`.
 
 :::moniker-end
 
@@ -339,7 +339,7 @@ app.UseStaticFiles(new StaticFileOptions
 
 :::moniker range=">= aspnetcore-6.0"
 
-Using the preceding code, the `ExtraStaticFiles/logo.png` file is displayed. However, the [Image Tag Helper](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper) (<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion>) isn't applied because the Tag Helper depends on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which hasn't been updated to include the `ExtraStaticFiles` folder.
+Using the preceding code, the `ExtraStaticFiles/logo.png` file is displayed. However, the [Image Tag Helper](../mvc/views/tag-helpers/built-in/image-tag-helper.md) (<xref:Microsoft.AspNetCore.Mvc.TagHelpers.ImageTagHelper.AppendVersion>) isn't applied because the Tag Helper depends on <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider>, which hasn't been updated to include the `ExtraStaticFiles` folder.
 
 The following code updates the <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment.WebRootFileProvider> to include the `ExtraStaticFiles` folder by using a <xref:Microsoft.Extensions.FileProviders.CompositeFileProvider>. This enables the Image Tag Helper to apply a version to images in the `ExtraStaticFiles` folder.
 
@@ -560,7 +560,7 @@ Both endpoints validate stored file names with the following helper:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/static-files/9.0/StaticFileAuth/Program.cs" range="3,180-184":::
 
-The upload endpoint uses buffered model binding. For large files, use streaming instead. For more information, see <xref:mvc/models/file-uploads#upload-large-files-with-streaming>.
+The upload endpoint uses buffered model binding. For large files, use streaming instead. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#upload-large-files-with-streaming).
 
 ## Directory browsing
 

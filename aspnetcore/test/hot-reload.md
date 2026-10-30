@@ -88,7 +88,7 @@ The following code changes aren't supported for Blazor WebAssembly apps:
 
 ## .NET CLI
 
-Hot Reload is activated using the [`dotnet watch`](xref:tutorials/dotnet-watch) command:
+Hot Reload is activated using the [`dotnet watch`](../tutorials/dotnet-watch.md) command:
 
 ```dotnetcli
 dotnet watch

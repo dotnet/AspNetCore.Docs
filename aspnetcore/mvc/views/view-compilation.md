@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how compilation of Razor files occurs in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 02/06/2026
-uid: mvc/views/view-compilation
 ---
 # Razor file compilation in ASP.NET Core
 
@@ -81,7 +80,7 @@ Consider a scenario in which a Razor Pages project references a [Razor class lib
 
 * [RazorCompileOnBuild and RazorCompileOnPublish](../../razor-pages/sdk.md#properties) properties
 * [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md)
-* <xref:mvc/views/overview>
+* [Views in ASP.NET Core MVC](overview.md)
 * [ASP.NET Core Razor SDK](../../razor-pages/sdk.md)
 
 :::moniker-end
@@ -167,7 +166,7 @@ Consider a scenario in which a Razor Pages project references a [Razor class lib
 
 * [RazorCompileOnBuild and RazorCompileOnPublish](../../razor-pages/sdk.md#properties) properties
 * [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md)
-* <xref:mvc/views/overview>
+* [Views in ASP.NET Core MVC](overview.md)
 * [ASP.NET Core Razor SDK](../../razor-pages/sdk.md)
 
 :::moniker-end

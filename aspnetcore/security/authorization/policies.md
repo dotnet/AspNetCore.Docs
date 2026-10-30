@@ -25,7 +25,7 @@ A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, 
 This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
 
 * [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
-* <xref:mvc/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/policies.md)
 
 Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
@@ -219,7 +219,7 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 For guidance on applying policies in Razor Pages and MVC apps, see the following resources:
 
 * [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
-* <xref:mvc/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/policies.md)
 
 ## Authorization service interface (`IAuthorizationService`)
 

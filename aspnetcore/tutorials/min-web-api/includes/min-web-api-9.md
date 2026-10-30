@@ -2,7 +2,11 @@
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
+<<<<<<< Updated upstream
 This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+=======
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](../../first-web-api.md).
+>>>>>>> Stashed changes
 
 ## Overview
 
@@ -174,7 +178,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -195,7 +199,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see [Get started with NSwag and ASP.NET Core](../../getting-started-with-NSwag.md#customize-api-documentation)
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 

@@ -3,7 +3,6 @@ title: Custom Model Binding in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
 ms.date: 02/23/2026
-uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
 
@@ -24,7 +23,7 @@ The default model binders support most of the common .NET Core data types and sh
 
 Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string using <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend creating a type converter or using `TryParse` for a `string` to `SomeType` conversion that doesn't require external resources or multiple inputs.
 
-See [Simple types](xref:mvc/models/model-binding#simp7) for a list of types that the model binder can convert from strings.
+See [Simple types](../models/model-binding.md#simp7) for a list of types that the model binder can convert from strings.
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
@@ -127,7 +126,7 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](../controllers/filters.md) or logic within the action method itself should handle the failure.
 * Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 * Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
@@ -248,7 +247,7 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](../controllers/filters.md) or logic within the action method itself should handle the failure.
 * Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 * Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 

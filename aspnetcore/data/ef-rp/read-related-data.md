@@ -3,7 +3,6 @@ title: Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
 ai-usage: ai-assisted
 description: Part 6 of Razor Pages and Entity Framework tutorial series.
 ms.date: 10/08/2026
-uid: data/ef-rp/read-related-data
 ---
 
 # Part 6, Razor Pages with EF Core in ASP.NET Core - Read Related Data
@@ -64,7 +63,7 @@ To display the name of the assigned department for a course:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold Student pages](intro.md#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Courses* folder.
   * Use `Course` for the model class.
@@ -171,7 +170,7 @@ Create `Models/SchoolViewModels/InstructorIndexData.cs` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold the student pages](intro.md#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Instructors* folder.
   * Use `Instructor` for the model class.
@@ -253,7 +252,7 @@ The preceding code makes the following changes:
     }
     ```
 
-  * Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
+  * Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](../../mvc/views/razor.md#explicit-line-transition) for more about this razor syntax.
   * Adds code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
     ```html
@@ -287,8 +286,8 @@ Select a course to see the list of enrolled students and their grades.
 The next tutorial shows how to update related data.
 
 >[!div class="step-by-step"]
->[Previous tutorial](xref:data/ef-rp/complex-data-model)
->[Next tutorial](xref:data/ef-rp/update-related-data)
+>[Previous tutorial](complex-data-model.md)
+>[Next tutorial](update-related-data.md)
 
 :::moniker-end
 
@@ -344,7 +343,7 @@ To display the name of the assigned department for a course:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold Student pages](intro.md#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Courses* folder.
   * Use `Course` for the model class.
@@ -446,7 +445,7 @@ Create `SchoolViewModels/InstructorIndexData.cs` with the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold the student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold the student pages](intro.md#scaffold-student-pages) with the following exceptions:
 
   * Create a *Pages/Instructors* folder.
   * Use `Instructor` for the model class.
@@ -536,7 +535,7 @@ The preceding code makes the following changes:
   }
   ```
 
-* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
+* Adds a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](../../mvc/views/razor.md#explicit-line-transition) for more about this razor syntax.
 
 * Adds code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor and course. This sets a background color for the selected row using a Bootstrap class.
 
@@ -601,8 +600,8 @@ Test the app. From a user's perspective, the app behaves identically to the prev
 The next tutorial shows how to update related data.
 
 >[!div class="step-by-step"]
->[Previous tutorial](xref:data/ef-rp/complex-data-model)
->[Next tutorial](xref:data/ef-rp/update-related-data)
+>[Previous tutorial](complex-data-model.md)
+>[Next tutorial](update-related-data.md)
 
 :::moniker-end
 
@@ -662,7 +661,7 @@ To display the name of the assigned department in a list of courses:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Course` for the model class.
+Follow the instructions in [Scaffold the student model](intro.md#scaffold-the-student-model) and use `Course` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -749,7 +748,7 @@ In the *SchoolViewModels* folder, create `InstructorIndexData.cs` with the follo
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-the-student-model) and use `Instructor` for the model class.
+Follow the instructions in [Scaffold the student model](intro.md#scaffold-the-student-model) and use `Instructor` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -805,7 +804,7 @@ The preceding markup makes the following changes:
   }
   ```
 
-* Added a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) for more about this razor syntax.
+* Added a **Courses** column that displays courses taught by each instructor. See [Explicit line transition](../../mvc/views/razor.md#explicit-line-transition) for more about this razor syntax.
 
 * Added code that dynamically adds `class="table-success"` to the `tr` element of the selected instructor. This sets a background color for the selected row using a Bootstrap class.
 
@@ -924,7 +923,7 @@ The next tutorial shows how to update related data.
 * [YouTube version of this tutorial (part2)](https://www.youtube.com/watch?v=xvDDrIHv5ko)
 
 >[!div class="step-by-step"]
->[Previous](xref:data/ef-rp/complex-data-model)
->[Next](xref:data/ef-rp/update-related-data)
+>[Previous](complex-data-model.md)
+>[Next](update-related-data.md)
 
 :::moniker-end

@@ -10,7 +10,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range="> aspnetcore-6.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 For information on how to integrate npm and webpack into the build process for a RCL, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 

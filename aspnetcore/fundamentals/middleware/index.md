@@ -1157,8 +1157,13 @@ All |
 [HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | All | Before middleware that consume the updated method.
 [HTTPS Redirection](../../security/enforcing-ssl.md#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
 [HTTP Strict Transport Security (HSTS)](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
+<<<<<<< Updated upstream
 [MVC](xref:mvc/overview) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route.
 [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
+=======
+[MVC](../../mvc/overview.md) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route.
+[OWIN](../owin.md) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
+>>>>>>> Stashed changes
 [Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>.
 [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. This middleware requires client participation to work. Use output caching for complete server control. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output) benefits UI apps.
 [Request Decompression](xref:fundamentals/middleware/request-decompression) | Provides support for decompressing requests. | All | Before middleware that read the request body.

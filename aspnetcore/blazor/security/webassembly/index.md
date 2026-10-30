@@ -175,7 +175,7 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The [server-side fallback policy](../../../security/authorization/policies.md#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
 
-* In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+* In the app's imports file, add an [`@using`](../../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 
   `_Imports.razor`:
 
@@ -184,7 +184,7 @@ Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an
   @attribute [Authorize]
   ```
   
-  Allow anonymous access to the `Authentication` component to permit redirection to the identity provider. Add the following Razor code to the `Authentication` component under its [`@page`](xref:mvc/views/razor#page) directive.
+  Allow anonymous access to the `Authentication` component to permit redirection to the identity provider. Add the following Razor code to the `Authentication` component under its [`@page`](../../../mvc/views/razor.md#page) directive.
   
   `Authentication.razor`:
   
@@ -193,7 +193,7 @@ Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an
   @attribute [AllowAnonymous]
   ```
 
-* Add the attribute to each Razor component under the [`@page`](xref:mvc/views/razor#page) directive:
+* Add the attribute to each Razor component under the [`@page`](../../../mvc/views/razor.md#page) directive:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization

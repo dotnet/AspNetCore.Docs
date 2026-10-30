@@ -107,7 +107,7 @@ The following examples:
 * Create an <xref:Microsoft.Extensions.Logging.ILogger> that specifies a log *category* based on the fully qualified name of the type. The log category is a string that is associated with each log, which is useful for identifying, sorting, and filtering log messages. More information on [log categories](#log-category) is provided later in this article.
 * Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The log *level* indicates the severity of the logged event. More information on [log levels](#log-level) is provided later in this article.
 
-In the following counter page (`Counter` Razor component) in a Blazor app, an `ILogger<Counter>` is injected with the [`@inject` directive](xref:mvc/views/razor#inject). The logger instance (`Logger`) is used to log information when the `IncrementCount` method is called.
+In the following counter page (`Counter` Razor component) in a Blazor app, an `ILogger<Counter>` is injected with the [`@inject` directive](../../mvc/views/razor.md#inject). The logger instance (`Logger`) is used to log information when the `IncrementCount` method is called.
 
 `Pages/Counter.razor`:
 
@@ -136,7 +136,7 @@ In the following counter page (`Counter` Razor component) in a Blazor app, an `I
 :::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> In .NET 5 or earlier, an [`@using` directive](xref:mvc/views/razor#using) for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) logging API completions in Razor components.
+> In .NET 5 or earlier, an [`@using` directive](../../mvc/views/razor.md#using) for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) logging API completions in Razor components.
 
 :::moniker-end
 

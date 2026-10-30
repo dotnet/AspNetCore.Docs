@@ -3,7 +3,6 @@ title: Routing to controller actions in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how ASP.NET Core MVC uses routing middleware to match URLs of incoming requests and map them to actions.
 ms.date: 02/25/2026
-uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
@@ -52,7 +51,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](xref:mvc/models/model-binding).
+* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](../models/model-binding.md).
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
 * The `?` character in `{id?}` defines `id` as optional.
@@ -224,7 +223,7 @@ To resolve the correct route:
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to routing so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr6), actions often use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr6), actions often use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](../../tutorials/first-mvc-app/controller-methods-views.md#get-post).
 
 If routing can't choose the best candidate, it throws an <xref:System.Reflection.AmbiguousMatchException> and lists the multiple matched endpoints.
 
@@ -755,7 +754,7 @@ The following Razor file generates an HTML link to the `Destination_Route`:
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> provides the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> methods [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) and [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) to generate `<form>` and `<a>` elements respectively. These methods use the [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
 
-TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](xref:mvc/views/working-with-forms).
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](../views/working-with-forms.md).
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the preceding methods.
 
@@ -787,12 +786,12 @@ Using the preceding route definitions, `Url.Action("Index", "Home")` generates t
 
 ## Areas
 
-[Areas](xref:mvc/controllers/areas) are an MVC feature used to organize related functionality into a group as a separate:
+[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate:
 
 * Routing namespace for controller actions.
 * Folder structure for views.
 
-Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
+Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](areas.md) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 
@@ -870,8 +869,13 @@ This document:
   * Covers both:
     * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
+<<<<<<< Updated upstream
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
 * Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
+=======
+  * See [Routing](../../fundamentals/routing.md) for advanced routing details.
+* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](routing.md?view=aspnetcore-2.2) for reference material on the legacy routing system.
+>>>>>>> Stashed changes
 
 <a name="cr"></a>
 
@@ -892,7 +896,7 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](xref:mvc/models/model-binding).
+* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](../models/model-binding.md).
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
 *  The `?` character in `{id?}` defines `id` as optional.
@@ -1066,7 +1070,7 @@ To resolve the correct route:
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to routing so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](../../tutorials/first-mvc-app/controller-methods-views.md#get-post).
 
 If routing can't choose the best candidate, it throws an <xref:System.Reflection.AmbiguousMatchException> and lists the multiple matched endpoints.
 
@@ -1595,7 +1599,7 @@ The following Razor file generates an HTML link to the `Destination_Route`:
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> provides the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> methods [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) and [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) to generate `<form>` and `<a>` elements respectively. These methods use the [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
 
-TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](xref:mvc/views/working-with-forms).
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](../views/working-with-forms.md).
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the preceding methods.
 
@@ -1627,12 +1631,12 @@ Using the preceding route definitions, `Url.Action("Index", "Home")` generates t
 
 ## Areas
 
-[Areas](xref:mvc/controllers/areas) are an MVC feature used to organize related functionality into a group as a separate:
+[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate:
 
 * Routing namespace for controller actions.
 * Folder structure for views.
 
-Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
+Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](areas.md) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 

@@ -3,7 +3,6 @@ title: Share controllers, views, Razor Pages and more with Application Parts in 
 ai-usage: ai-assisted
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.date: 11/11/2019
-uid: mvc/extensibility/app-parts
 ---
 
 # Share controllers, views, Razor Pages and more with Application Parts

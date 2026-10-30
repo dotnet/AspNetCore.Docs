@@ -109,7 +109,7 @@ This section doesn't discuss multi-targeting to support multiple versions of MVC
 
 ### Razor views or Razor Pages
 
-A project that includes [Razor views](xref:mvc/views/overview) or [Razor Pages](../razor-pages/index.md) must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
+A project that includes [Razor views](../mvc/views/overview.md) or [Razor Pages](../razor-pages/index.md) must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
 
 If the project targets .NET Core 3.x, it requires:
 
@@ -142,7 +142,7 @@ If the project targets .NET Standard instead, a [Microsoft.AspNetCore.Mvc](https
 
 ### Tag Helpers
 
-A project that includes [Tag Helpers](xref:mvc/views/tag-helpers/intro) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
+A project that includes [Tag Helpers](../mvc/views/tag-helpers/intro.md) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-basic-library.csproj)]
 
@@ -152,7 +152,7 @@ If targeting .NET Standard (to support versions earlier than ASP.NET Core 3.x), 
 
 ### View components
 
-A project that includes [View components](xref:mvc/views/view-components) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
+A project that includes [View components](../mvc/views/view-components.md) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-basic-library.csproj)]
 

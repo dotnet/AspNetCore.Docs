@@ -98,7 +98,7 @@ The template generated code won't accidentally expose the API's description when
 
 #### Azure API Management Import
 
-When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
+When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](../tutorials/publish-to-azure-api-management-using-vs.md) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
@@ -178,7 +178,7 @@ Blazor Server apps can now use built-in support for storing app state in the bro
 
 ### Blazor WebAssembly prerendering
 
-Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
+Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and [Component Tag Helper in ASP.NET Core](../mvc/views/tag-helpers/built-in/component-tag-helper.md). -->
 
 ### Trimming/linking improvements
 
@@ -429,7 +429,7 @@ public class Program
 
 ### Auto refresh with dotnet watch
 
-In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
+In .NET 5, running [dotnet watch](../tutorials/dotnet-watch.md) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
 
 * Open an ASP.NET Core project in a text editor.
 * Run `dotnet watch`.

@@ -3,7 +3,6 @@ title: Areas in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how Areas are an ASP.NET MVC feature used to organize related functionality into a group as a separate namespace (for routing) and folder structure (for views).
 ms.date: 3/21/2022
-uid: mvc/controllers/areas
 ---
 # Areas in ASP.NET Core
 
@@ -82,7 +81,7 @@ Area controllers are designated with the [`[Area]`](xref:Microsoft.AspNetCore.Mv
 
 ### Add Area route
 
-Area routes typically use  [conventional routing](xref:mvc/controllers/routing#cr) rather than [attribute routing](xref:mvc/controllers/routing#ar). Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
+Area routes typically use  [conventional routing](routing.md#cr) rather than [attribute routing](routing.md#ar). Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
@@ -97,7 +96,7 @@ The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRou
 
 [!code-csharp[](areas/samples/6.0/MVCareas/Program.cs?name=snippet_2named&highlight=20-28)]
 
-For more information, see [Area routing](xref:mvc/controllers/routing#areas).
+For more information, see [Area routing](routing.md#areas).
 
 ### Link generation with MVC areas
 
@@ -105,20 +104,20 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/samples/6.0/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains:
+The sample download includes a [partial view](../views/partial.md) that contains:
 
 * The preceding links.
 * Links similar to the preceding except `area` is not specified.
 
-The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-When the area or controller is not specified, routing depends on the [ambient](xref:mvc/controllers/routing#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links with the markup that doesn't specify the area.
+When the area or controller is not specified, routing depends on the [ambient](routing.md#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links with the markup that doesn't specify the area.
 
-For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
+For more information, see [Routing to controller actions](routing.md).
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
-To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
+To share a common layout for the entire app, keep the *_ViewStart.cshtml* in the [application root folder](#arf). For more information, see [Layout in ASP.NET Core](../views/layout.md)
 
 <a name="arf"></a>
 
@@ -135,7 +134,7 @@ The application root folder is the folder containing the `Program.cs` file in a 
   * */Areas/Identity/Pages/_ViewImports.cshtml*
   * */Pages/_ViewImports.cshtml*
 
-The *_ViewImports.cshtml* file typically contains [Tag Helpers](xref:mvc/views/tag-helpers/intro) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+The *_ViewImports.cshtml* file typically contains [Tag Helpers](../views/tag-helpers/intro.md) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -170,7 +169,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/samples/6.0/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
+The sample download includes a [partial view](../views/partial.md) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
@@ -193,7 +192,7 @@ Consider the *Services* area of the sample code, which doesn't contain a *_ViewI
 In the preceding markup:
 
 * The fully qualified class name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Tag Helpers](../views/tag-helpers/intro.md) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 In the sample download, the Products area contains the following *_ViewImports.cshtml* file:
 
@@ -205,7 +204,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the *Areas/Products/Pages/_ViewImports.cshtml* file.
 
-For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
@@ -301,7 +300,7 @@ Area controllers are designated with the [&lbrack;Area&rbrack;](xref:Microsoft.A
 
 ### Add Area route
 
-Area routes typically use  [conventional routing](xref:mvc/controllers/routing#cr) rather than [attribute routing](xref:mvc/controllers/routing#ar). Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
+Area routes typically use  [conventional routing](routing.md#cr) rather than [attribute routing](routing.md#ar). Conventional routing is order-dependent. In general, routes with areas should be placed earlier in the route table as they're more specific than routes without an area.
 
 `{area:...}` can be used as a token in route templates if url space is uniform across all areas:
 
@@ -316,7 +315,7 @@ The following code uses <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRou
 
 [!code-csharp[](areas/samples/3.1/MVCareas/StartupMapAreaRoute.cs?name=snippet&highlight=21-29)]
 
-For more information, see [Area routing](xref:mvc/controllers/routing#areas).
+For more information, see [Area routing](routing.md#areas).
 
 ### Link generation with MVC areas
 
@@ -324,20 +323,20 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/samples/3.1/MVCareas/Views/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains:
+The sample download includes a [partial view](../views/partial.md) that contains:
 
 * The preceding links.
 * Links similar to the preceding except `area` is not specified.
 
-The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
-When the area or controller is not specified, routing depends on the [ambient](xref:mvc/controllers/routing#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links with the markup that doesn't specify the area.
+When the area or controller is not specified, routing depends on the [ambient](routing.md#ambient) values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links with the markup that doesn't specify the area.
 
-For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
+For more information, see [Routing to controller actions](routing.md).
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
-To share a common layout for the entire app, keep the `_ViewStart.cshtml` in the [application root folder](#arf). For more information, see <xref:mvc/views/layout>
+To share a common layout for the entire app, keep the `_ViewStart.cshtml` in the [application root folder](#arf). For more information, see [Layout in ASP.NET Core](../views/layout.md)
 
 <a name="arf"></a>
 
@@ -352,7 +351,7 @@ The application root folder is the folder containing `Startup.cs` in web app cre
 * Add `_ViewImports.cshtml` to the [application root folder](#arf). A `_ViewImports.cshtml` in the application root folder will apply to all views in the app.
 * Copy the `_ViewImports.cshtml` file to the appropriate view folder under areas.
 
-The `_ViewImports.cshtml` file typically contains [Tag Helpers](xref:mvc/views/tag-helpers/intro) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+The `_ViewImports.cshtml` file typically contains [Tag Helpers](../views/tag-helpers/intro.md) imports, `@using`, and `@inject` statements. For more information, see [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 <a name="rename"></a>
 
@@ -387,7 +386,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 [!code-cshtml[](areas/samples/3.1/RPareas/Pages/Shared/_testLinksPartial.cshtml?name=snippet)]
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
+The sample download includes a [partial view](../views/partial.md) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
@@ -410,7 +409,7 @@ Consider the *Services* area of the sample code, which doesn't contain a `_ViewI
 In the preceding markup:
 
 * The fully qualified class name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Tag Helpers](../views/tag-helpers/intro.md) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 In the sample download, the Products area contains the following `_ViewImports.cshtml` file:
 
@@ -422,7 +421,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
-For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 
@@ -522,7 +521,7 @@ The following code uses <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderEx
 
 When using `MapAreaRoute` with ASP.NET Core 2.2, see [this GitHub issue](https://github.com/dotnet/AspNetCore/issues/7772).
 
-For more information, see [Area routing](xref:mvc/controllers/routing#areas).
+For more information, see [Area routing](routing.md#areas).
 
 ### Link generation with MVC areas
 
@@ -532,11 +531,11 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
+The sample download includes a [partial view](../views/partial.md) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area and controller.
 
 When the area or controller is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links.
 
-For more information, see [Routing to controller actions](xref:mvc/controllers/routing).
+For more information, see [Routing to controller actions](routing.md).
 
 ### Shared layout for Areas using the _ViewStart.cshtml file
 
@@ -544,7 +543,7 @@ To share a common layout for the entire app, move the `_ViewStart.cshtml` to the
 
 ### _ViewImports.cshtml
 
-In its standard location, `/Views/_ViewImports.cshtml` doesn't apply to areas. To use common [Tag Helpers](xref:mvc/views/tag-helpers/intro), `@using`, or `@inject` in your area, ensure a proper `_ViewImports.cshtml` file [applies to your area views](xref:mvc/views/layout#importing-shared-directives). If you want the same behavior in all your views, move `/Views/_ViewImports.cshtml` to the application root.
+In its standard location, `/Views/_ViewImports.cshtml` doesn't apply to areas. To use common [Tag Helpers](../views/tag-helpers/intro.md), `@using`, or `@inject` in your area, ensure a proper `_ViewImports.cshtml` file [applies to your area views](../views/layout.md#importing-shared-directives). If you want the same behavior in all your views, move `/Views/_ViewImports.cshtml` to the application root.
 
 <a name="rename"></a>
 
@@ -581,7 +580,7 @@ The following code from the [sample download](https://github.com/dotnet/AspNetCo
 
 The links generated with the preceding code are valid anywhere in the app.
 
-The sample download includes a [partial view](xref:mvc/views/partial) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](xref:mvc/views/layout), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
+The sample download includes a [partial view](../views/partial.md) that contains the preceding links and the same links without specifying the area. The partial view is referenced in the [layout file](../views/layout.md), so every page in the app displays the generated links. The links generated without specifying the area are only valid when referenced from a page in the same area.
 
 When the area is not specified, routing depends on the *ambient* values. The current route values of the current request are considered ambient values for link generation. In many cases for the sample app, using the ambient values generates incorrect links. For example, consider the links generated from the following code:
 
@@ -604,7 +603,7 @@ Consider the *Services* area of the sample code, which doesn't contain a `_ViewI
 In the preceding markup:
 
 * The fully qualified domain name must be used to specify the model (`@model RPareas.Areas.Services.Pages.Manage.AboutModel`).
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
+* [Tag Helpers](../views/tag-helpers/intro.md) are enabled by `@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers`
 
 In the sample download, the Products area contains the following `_ViewImports.cshtml` file:
 
@@ -616,7 +615,7 @@ The following markup shows the */Products/About* Razor Page:
 
 In the preceding file, the namespace and `@addTagHelper` directive is imported to the file by the `Areas/Products/Pages/_ViewImports.cshtml` file.
 
-For more information, see [Managing Tag Helper scope](xref:mvc/views/tag-helpers/intro?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives).
+For more information, see [Managing Tag Helper scope](../views/tag-helpers/intro.md?view=aspnetcore-2.2#managing-tag-helper-scope) and [Importing Shared Directives](../views/layout.md#importing-shared-directives).
 
 ### Shared layout for Razor Pages Areas
 

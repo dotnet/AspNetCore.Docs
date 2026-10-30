@@ -3,7 +3,6 @@ title: Filters in ASP.NET Core
 description: Learn how filters work and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/27/2026
-uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
 
@@ -453,7 +452,7 @@ Exception filters:
 
 * Don't have before and after events.
 * Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
-* Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
+* Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](../models/model-binding.md), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
 To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
@@ -480,7 +479,7 @@ The following code shows a sample result filter:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/8.x/FiltersSample/Snippets/Filters/SampleResultFilter.cs" id="snippet_Class":::
 
-The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions).
+The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](actions.md).
 
 Result filters are only executed when an action or action filter produces an action result. Result filters aren't executed when:
 

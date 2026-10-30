@@ -3,7 +3,6 @@ title: Views in ASP.NET Core MVC
 description: Learn how views handle the app's data presentation and user interaction in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/29/2026
-uid: mvc/views/overview
 ---
 # Views in ASP.NET Core MVC
 
@@ -11,19 +10,19 @@ By [Steve Smith](https://ardalis.com/) and [Dave Brock](https://twitter.com/dave
 
 This document explains views used in ASP.NET Core MVC applications. For information on Razor Pages, see [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md).
 
-In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](xref:mvc/views/razor). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
+In the Model-View-Controller (MVC) pattern, the *view* handles the app's data presentation and user interaction. A view is an HTML template with embedded [Razor markup](razor.md). Razor markup is code that interacts with HTML markup to produce a webpage that's sent to the client.
 
-In ASP.NET Core MVC, views are `.cshtml` files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](xref:mvc/controllers/actions). The folders are stored in a `Views` folder at the root of the app:
+In ASP.NET Core MVC, views are `.cshtml` files that use the [C# programming language](/dotnet/csharp/) in Razor markup. Usually, view files are grouped into folders named for each of the app's [controllers](../controllers/actions.md). The folders are stored in a `Views` folder at the root of the app:
 
 ![Views folder in Solution Explorer of Visual Studio is open with the Home folder open to show About.cshtml, Contact.cshtml, and Index.cshtml files](overview/_static/views_solution_explorer.png)
 
 A `Home` folder inside the `Views` folder represents the `Home` controller. The `Home` folder contains the views for the `About`, `Contact`, and `Index` (homepage) webpages. When a user requests one of these three webpages, controller actions in the `Home` controller determine which of the three views is used to build and return a webpage to the user.
 
-Use [layouts](xref:mvc/views/layout) to provide consistent webpage sections and reduce code repetition. Layouts often contain the header, navigation and menu elements, and the footer. The header and footer usually contain boilerplate markup for many metadata elements and links to script and style assets. Layouts help you avoid this boilerplate markup in your views.
+Use [layouts](layout.md) to provide consistent webpage sections and reduce code repetition. Layouts often contain the header, navigation and menu elements, and the footer. The header and footer usually contain boilerplate markup for many metadata elements and links to script and style assets. Layouts help you avoid this boilerplate markup in your views.
 
-[Partial views](xref:mvc/views/partial) reduce code duplication by managing reusable parts of views. For example, a partial view is useful for an author biography on a blog website that appears in several views. An author biography is ordinary view content and doesn't require code to execute in order to produce the content for the webpage. Author biography content is available to the view by model binding alone, so using a partial view for this type of content is ideal.
+[Partial views](partial.md) reduce code duplication by managing reusable parts of views. For example, a partial view is useful for an author biography on a blog website that appears in several views. An author biography is ordinary view content and doesn't require code to execute in order to produce the content for the webpage. Author biography content is available to the view by model binding alone, so using a partial view for this type of content is ideal.
 
-[View components](xref:mvc/views/view-components) are similar to partial views in that they allow you to reduce repetitive code, but they're appropriate for view content that requires code to run on the server in order to render the webpage. View components are useful when the rendered content requires database interaction, such as for a website shopping cart. View components aren't limited to model binding in order to produce webpage output.
+[View components](view-components.md) are similar to partial views in that they allow you to reduce repetitive code, but they're appropriate for view content that requires code to run on the server in order to render the webpage. View components are useful when the rendered content requires database interaction, such as for a website shopping cart. View components aren't limited to model binding in order to produce webpage output.
 
 ## Benefits of using views
 
@@ -40,9 +39,9 @@ Views that are specific to a controller are created in the `Views/[ControllerNam
 
 [!code-cshtml[](../../common/samples/WebApplication1/Views/Home/About.cshtml)]
 
-[Razor markup](xref:mvc/views/razor) starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](xref:mvc/views/razor#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown previously. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements previously.
+[Razor markup](razor.md) starts with the `@` symbol. Run C# statements by placing C# code within [Razor code blocks](razor.md#razor-code-blocks) set off by curly braces (`{ ... }`). For example, see the assignment of "About" to `ViewData["Title"]` shown previously. You can display values within HTML by simply referencing the value with the `@` symbol. See the contents of the `<h2>` and `<h3>` elements previously.
 
-The view content shown previously is only part of the entire webpage that's rendered to the user. The rest of the page's layout and other common aspects of the view are specified in other view files. To learn more, see the [Layout topic](xref:mvc/views/layout).
+The view content shown previously is only part of the entire webpage that's rendered to the user. The rest of the page's layout and other common aspects of the view are specified in other view files. To learn more, see the [Layout topic](layout.md).
 
 ## How controllers specify views
 
@@ -64,7 +63,7 @@ The `View` helper method has several overloads. You can optionally specify:
   return View("Orders");
   ```
 
-* A [model](xref:mvc/models/model-binding) to pass to the view:
+* A [model](../models/model-binding.md) to pass to the view:
 
   ```csharp
   return View(Orders);
@@ -105,7 +104,7 @@ Similarly, you can indicate the current controller-specific directory with the "
 return View("./About");
 ```
 
-[Partial views](xref:mvc/views/partial) and [view components](xref:mvc/views/view-components) use similar (but not identical) discovery mechanisms.
+[Partial views](partial.md) and [view components](view-components.md) use similar (but not identical) discovery mechanisms.
 
 You can customize the default convention for how views are located within the app by using a custom <xref:Microsoft.AspNetCore.Mvc.Razor.IViewLocationExpander>.
 
@@ -124,7 +123,7 @@ Pass data to views using several approaches:
 
 ### Strongly-typed data (viewmodel)
 
-The most robust approach is to specify a [model](xref:mvc/models/model-binding) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
+The most robust approach is to specify a [model](../models/model-binding.md) type in the view. This model is commonly referred to as a *viewmodel*. You pass an instance of the viewmodel type to the view from the action.
 
 Using a viewmodel to pass data to a view allows the view to take advantage of *strong* type checking. *Strong typing* (or *strongly typed*) means that every variable and constant has an explicitly defined type (for example, `string`, `int`, or `DateTime`). The validity of types used in a view is checked at compile time.
 
@@ -179,7 +178,7 @@ namespace WebApplication1.ViewModels
 }
 ```
 
-Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](xref:mvc/models/model-binding) and [validation](xref:mvc/models/validation) for data sent to the app by the user.
+Nothing prevents you from using the same classes for both your viewmodel types and your business model types. However, using separate models allows your views to vary independently from the business logic and data access parts of your app. Separation of models and viewmodels also offers security benefits when models use [model binding](../models/model-binding.md) and [validation](../models/validation.md) for data sent to the app by the user.
 
 <a name="VD_VB"></a>
 
@@ -192,8 +191,8 @@ In addition to strongly typed views, views have access to a *weakly typed* (also
 | Passing data between a ...                        | Example                                                                     |
 | ------------------------------------------------- | --------------------------------------------------------------------------- |
 | Controller and a view                             | Populating a dropdown list with data.                                       |
-| View and a [layout view](xref:mvc/views/layout)   | Setting the `<title>` element content in the layout view from a view file.  |
-| [Partial view](xref:mvc/views/partial) and a view | A widget that displays data based on the webpage that the user requested.   |
+| View and a [layout view](layout.md)   | Setting the `<title>` element content in the layout view from a view file.  |
+| [Partial view](partial.md) and a view | A widget that displays data based on the webpage that the user requested.   |
 
 This collection can be referenced through either the `ViewData` or `ViewBag` properties on controllers and views. The `ViewData` property is a dictionary of weakly typed objects. The `ViewBag` property is a wrapper around `ViewData` that provides dynamic properties for the underlying `ViewData` collection. Note: Key lookups are case-insensitive for both `ViewData` and `ViewBag`.
 
@@ -203,7 +202,7 @@ This collection can be referenced through either the `ViewData` or `ViewBag` pro
 
 #### `ViewData`
 
-`ViewData` is a <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary> object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](xref:mvc/views/partial) and [layouts](xref:mvc/views/layout).
+`ViewData` is a <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.ViewDataDictionary> object accessed through `string` keys. String data can be stored and used directly without the need for a cast, but you must cast other `ViewData` object values to specific types when you extract them. You can use `ViewData` to pass data from controllers to views and within views, including [partial views](partial.md) and [layouts](layout.md).
 
 The following is an example that sets values for a greeting and an address using `ViewData` in an action:
 
@@ -378,11 +377,15 @@ This feature offers flexibility but doesn't offer compilation protection or Inte
 
 ## More view features
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
+[Tag Helpers](tag-helpers/intro.md) make it easy to add server-side behavior to existing HTML tags. Using Tag Helpers avoids the need to write custom code or helpers within your views. Tag helpers are applied as attributes to HTML elements and are ignored by editors that can't process them. This allows you to edit and render view markup in a variety of tools.
 
-Generating custom HTML markup can be achieved with many built-in HTML Helpers. [View Components](xref:mvc/views/view-components) can handle more complex user interface logic. View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
+Generating custom HTML markup can be achieved with many built-in HTML Helpers. [View Components](view-components.md) can handle more complex user interface logic. View components provide the same SoC that controllers and views offer. They can eliminate the need for actions and views that deal with data used by common user interface elements.
 
+<<<<<<< Updated upstream
 Like many other aspects of ASP.NET Core, views support [dependency injection](xref:fundamentals/dependency-injection), allowing services to be [injected into views](xref:mvc/views/dependency-injection).
+=======
+Like many other aspects of ASP.NET Core, views support [dependency injection](../../fundamentals/dependency-injection.md), allowing services to be [injected into views](dependency-injection.md).
+>>>>>>> Stashed changes
 
 :::moniker range=">= aspnetcore-6.0"
 

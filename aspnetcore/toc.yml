@@ -319,51 +319,51 @@ items:
       - name: Web apps
         items:
           - name: Choose an ASP.NET Core UI
-            uid: tutorials/choose-web-ui
+            href: tutorials/choose-web-ui.md
           - name: Razor Pages
             displayName: tutorial
             items:
               - name: Overview
-                uid: tutorials/razor-pages/index
+                href: tutorials/razor-pages/index.md
               - name: Get started
-                uid: tutorials/razor-pages/razor-pages-start
+                href: tutorials/razor-pages/razor-pages-start.md
               - name: Add a model
-                uid: tutorials/razor-pages/model
+                href: tutorials/razor-pages/model.md
               - name: Scaffolding
-                uid: tutorials/razor-pages/page
+                href: tutorials/razor-pages/page.md
               - name: Work with a database
-                uid: tutorials/razor-pages/sql
+                href: tutorials/razor-pages/sql.md
               - name: Update the pages
-                uid: tutorials/razor-pages/da1
+                href: tutorials/razor-pages/da1.md
               - name: Add search
-                uid: tutorials/razor-pages/search
+                href: tutorials/razor-pages/search.md
               - name: Add a new field
-                uid: tutorials/razor-pages/new-field
+                href: tutorials/razor-pages/new-field.md
               - name: Add validation
-                uid: tutorials/razor-pages/validation
+                href: tutorials/razor-pages/validation.md
           - name: MVC
             displayName: tutorial
             items:
               - name: Get started
-                uid: tutorials/first-mvc-app/start-mvc
+                href: tutorials/first-mvc-app/start-mvc.md
               - name: Add a controller
-                uid: tutorials/first-mvc-app/adding-controller
+                href: tutorials/first-mvc-app/adding-controller.md
               - name: Add a view
-                uid: tutorials/first-mvc-app/adding-view
+                href: tutorials/first-mvc-app/adding-view.md
               - name: Add a model
-                uid: tutorials/first-mvc-app/adding-model
+                href: tutorials/first-mvc-app/adding-model.md
               - name: Work with a database
-                uid: tutorials/first-mvc-app/working-with-sql
+                href: tutorials/first-mvc-app/working-with-sql.md
               - name: Controller actions and views
-                uid: tutorials/first-mvc-app/controller-methods-views
+                href: tutorials/first-mvc-app/controller-methods-views.md
               - name: Add search
-                uid: tutorials/first-mvc-app/search
+                href: tutorials/first-mvc-app/search.md
               - name: Add a new field
-                uid: tutorials/first-mvc-app/new-field
+                href: tutorials/first-mvc-app/new-field.md
               - name: Add validation
-                uid: tutorials/first-mvc-app/validation
+                href: tutorials/first-mvc-app/validation.md
               - name: Examine Details and Delete
-                uid: tutorials/first-mvc-app/details
+                href: tutorials/first-mvc-app/details.md
           - name: Blazor
             uid: blazor/tutorials/index
       - name: APIs
@@ -372,85 +372,85 @@ items:
           items:
           - name: Create a minimal web API
             displayName: API tutorial
-            uid: tutorials/min-web-api
+            href: tutorials/min-web-api.md
         - name: Controller-based APIs
           items:
           - name: Create a controller-based web API
             displayName: API tutorial
-            uid: tutorials/first-web-api
+            href: tutorials/first-web-api.md
           - name: Web API with MongoDB
             displayName: API tutorial
-            uid: tutorials/first-mongo-app
+            href: tutorials/first-mongo-app.md
           - name: Web API with JavaScript
             displayName: tutorial
-            uid: tutorials/web-api-javascript
+            href: tutorials/web-api-javascript.md
           - name: Backend for mobile
             displayName: tutorial
             uid: mobile/native-mobile-backend
           - name: Publish to Azure API Management
             displayName: tutorial
-            uid: tutorials/publish-to-azure-api-management-using-vs
+            href: tutorials/publish-to-azure-api-management-using-vs.md
       - name: Real-time web apps
         items:
           - name: SignalR with JavaScript
             displayName: tutorial
-            uid: tutorials/signalr
+            href: tutorials/signalr.md
           - name: SignalR with TypeScript
             displayName: tutorial
-            uid: tutorials/signalr-typescript-webpack
+            href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
             displayName: tutorial
             uid: blazor/tutorials/signalr-blazor
       - name: Remote Procedure Call apps
         items:
           - name: Get started with a gRPC service
-            uid: tutorials/grpc/grpc-start
+            href: tutorials/grpc/grpc-start.md
       - name: Data access
         items:
           - name: EF Core with Razor Pages
             displayName: tutorial
             items:
               - name: Get started
-                uid: data/ef-rp/intro
+                href: data/ef-rp/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-rp/crud
+                href: data/ef-rp/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-rp/sort-filter-page
+                href: data/ef-rp/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-rp/migrations
+                href: data/ef-rp/migrations.md
               - name: Create a complex data model
-                uid: data/ef-rp/complex-data-model
+                href: data/ef-rp/complex-data-model.md
               - name: Read related data
-                uid: data/ef-rp/read-related-data
+                href: data/ef-rp/read-related-data.md
               - name: Update related data
-                uid: data/ef-rp/update-related-data
+                href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-rp/concurrency
+                href: data/ef-rp/concurrency.md
           - name: EF Core with MVC
             displayName: tutorial
             items:
               - name: Overview
-                uid: data/ef-mvc/index
+                href: data/ef-mvc/index.md
               - name: Get started
-                uid: data/ef-mvc/intro
+                href: data/ef-mvc/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-mvc/crud
+                href: data/ef-mvc/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-mvc/sort-filter-page
+                href: data/ef-mvc/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-mvc/migrations
+                href: data/ef-mvc/migrations.md
               - name: Create a complex data model
-                uid: data/ef-mvc/complex-data-model
+                href: data/ef-mvc/complex-data-model.md
               - name: Read related data
-                uid: data/ef-mvc/read-related-data
+                href: data/ef-mvc/read-related-data.md
               - name: Update related data
-                uid: data/ef-mvc/update-related-data
+                href: data/ef-mvc/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-mvc/concurrency
+                href: data/ef-mvc/concurrency.md
               - name: Inheritance
-                uid: data/ef-mvc/inheritance
+                href: data/ef-mvc/inheritance.md
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
+                href: data/ef-mvc/advanced.md
       - name: Learn modules
         items:
           - name: Web apps >>
@@ -571,7 +571,7 @@ items:
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
-        uid: tutorials/choose-web-ui
+        href: tutorials/choose-web-ui.md
       - name: Razor Pages
         items:
           - name: Architecture and concepts
@@ -579,23 +579,23 @@ items:
           - name: Tutorial
             items:
               - name: Overview
-                uid: tutorials/razor-pages/index
+                href: tutorials/razor-pages/index.md
               - name: Get started
-                uid: tutorials/razor-pages/razor-pages-start
+                href: tutorials/razor-pages/razor-pages-start.md
               - name: Add a model
-                uid: tutorials/razor-pages/model
+                href: tutorials/razor-pages/model.md
               - name: Scaffolding
-                uid: tutorials/razor-pages/page
+                href: tutorials/razor-pages/page.md
               - name: Work with a database
-                uid: tutorials/razor-pages/sql
+                href: tutorials/razor-pages/sql.md
               - name: Update the pages
-                uid: tutorials/razor-pages/da1
+                href: tutorials/razor-pages/da1.md
               - name: Add search
-                uid: tutorials/razor-pages/search
+                href: tutorials/razor-pages/search.md
               - name: Add a new field
-                uid: tutorials/razor-pages/new-field
+                href: tutorials/razor-pages/new-field.md
               - name: Add validation
-                uid: tutorials/razor-pages/validation
+                href: tutorials/razor-pages/validation.md
           - name: Filters
             href: razor-pages/filter.md
           - name: Route and app conventions
@@ -619,61 +619,61 @@ items:
       - name: MVC
         items:
           - name: Overview
-            uid: mvc/overview
+            href: mvc/overview.md
           - name: Tutorial
             items:
               - name: Get started
-                uid: tutorials/first-mvc-app/start-mvc
+                href: tutorials/first-mvc-app/start-mvc.md
               - name: Add a controller
-                uid: tutorials/first-mvc-app/adding-controller
+                href: tutorials/first-mvc-app/adding-controller.md
               - name: Add a view
-                uid: tutorials/first-mvc-app/adding-view
+                href: tutorials/first-mvc-app/adding-view.md
               - name: Add a model
-                uid: tutorials/first-mvc-app/adding-model
+                href: tutorials/first-mvc-app/adding-model.md
               - name: Work with a database
-                uid: tutorials/first-mvc-app/working-with-sql
+                href: tutorials/first-mvc-app/working-with-sql.md
               - name: Controller actions and views
-                uid: tutorials/first-mvc-app/controller-methods-views
+                href: tutorials/first-mvc-app/controller-methods-views.md
               - name: Add search
-                uid: tutorials/first-mvc-app/search
+                href: tutorials/first-mvc-app/search.md
               - name: Add a new field
-                uid: tutorials/first-mvc-app/new-field
+                href: tutorials/first-mvc-app/new-field.md
               - name: Add validation
-                uid: tutorials/first-mvc-app/validation
+                href: tutorials/first-mvc-app/validation.md
               - name: Examine the Details and Delete methods
-                uid: tutorials/first-mvc-app/details
+                href: tutorials/first-mvc-app/details.md
           - name: Views
-            uid: mvc/views/overview
+            href: mvc/views/overview.md
           - name: Partial views
-            uid: mvc/views/partial
+            href: mvc/views/partial.md
           - name: Controllers
-            uid: mvc/controllers/actions
+            href: mvc/controllers/actions.md
           - name: Routing
-            uid: mvc/controllers/routing
+            href: mvc/controllers/routing.md
           - name: Dependency injection - controllers
-            uid: mvc/controllers/dependency-injection
+            href: mvc/controllers/dependency-injection.md
           - name: Dependency injection - views
-            uid: mvc/views/dependency-injection
+            href: mvc/views/dependency-injection.md
           - name: Unit test
-            uid: mvc/controllers/testing
+            href: mvc/controllers/testing.md
           - name: Security and Identity
             items:
               - name: Authorization
                 items:
                   - name: Simple authorization
-                    uid: mvc/security/authorization/simple
+                    href: mvc/security/authorization/simple.md
                   - name: Custom authorization with IAuthorizationRequirementData
-                    uid: mvc/security/authorization/iard
+                    href: mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md
                   - name: Role-based authorization
-                    uid: mvc/security/authorization/roles
+                    href: mvc/security/authorization/roles.md
                   - name: Claim-based authorization
-                    uid: mvc/security/authorization/claims
+                    href: mvc/security/authorization/claims.md
                   - name: Policy-based authorization
-                    uid: mvc/security/authorization/policies
+                    href: mvc/security/authorization/policies.md
                   - name: Resource-based authorization
-                    uid: mvc/security/authorization/resource-based
+                    href: mvc/security/authorization/resource-based.md
                   - name: View-based authorization
-                    uid: mvc/security/authorization/views
+                    href: mvc/security/authorization/views.md
       - name: Blazor
         items:
           - name: Overview
@@ -1083,52 +1083,52 @@ items:
       - name: Session and state management
         uid: fundamentals/app-state
       - name: Layout
-        uid: mvc/views/layout
+        href: mvc/views/layout.md
       - name: Razor syntax
-        uid: mvc/views/razor
+        href: mvc/views/razor.md
       - name: Razor class libraries
         href: razor-pages/ui-class.md
       - name: Tag Helpers
-        uid: mvc/views/tag-helpers/builtin-th/Index
+        href: mvc/views/tag-helpers/built-in/index.md
         items:
           - name: Overview
-            uid: mvc/views/tag-helpers/intro
+            href: mvc/views/tag-helpers/intro.md
           - name: Create Tag Helpers
-            uid: mvc/views/tag-helpers/authoring
+            href: mvc/views/tag-helpers/authoring.md
           - name: Use Tag Helpers in forms
-            uid: mvc/views/working-with-forms
+            href: mvc/views/working-with-forms.md
           - name: Tag Helper Components
-            uid: mvc/views/tag-helpers/th-components
+            href: mvc/views/tag-helpers/th-components.md
           - name: Built-in Tag Helpers
             items:
               - name: Anchor
-                uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+                href: mvc/views/tag-helpers/built-in/anchor-tag-helper.md
               - name: Cache
-                uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+                href: mvc/views/tag-helpers/built-in/cache-tag-helper.md
               - name: Component
-                uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
+                href: mvc/views/tag-helpers/built-in/component-tag-helper.md
               - name: Distributed Cache
-                uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
+                href: mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md
               - name: Environment
-                uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
+                href: mvc/views/tag-helpers/built-in/environment-tag-helper.md
               - name: Form
                 href: mvc/views/working-with-forms.md#the-form-tag-helper
               - name: Form Action
                 href: mvc/views/working-with-forms.md#the-form-action-tag-helper
               - name: Image
-                uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
+                href: mvc/views/tag-helpers/built-in/image-tag-helper.md
               - name: Input
                 href: mvc/views/working-with-forms.md#the-input-tag-helper
               - name: Label
                 href: mvc/views/working-with-forms.md#the-label-tag-helper
               - name: Link
-                uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
+                href: mvc/views/tag-helpers/built-in/link-tag-helper.md
               - name: Partial
-                uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
+                href: mvc/views/tag-helpers/built-in/partial-tag-helper.md
               - name: Persist Component State
-                uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
+                href: mvc/views/tag-helpers/built-in/persist-component-state.md
               - name: Script
-                uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
+                href: mvc/views/tag-helpers/built-in/script-tag-helper.md
               - name: Select
                 href: mvc/views/working-with-forms.md#the-select-tag-helper
               - name: Textarea
@@ -1140,13 +1140,13 @@ items:
       - name: Advanced
         items:
           - name: Application parts
-            uid: mvc/extensibility/app-parts
+            href: mvc/advanced/app-parts.md
           - name: Application model
-            uid: mvc/controllers/application-model
+            href: mvc/controllers/application-model.md
           - name: Areas
-            uid: mvc/controllers/areas
+            href: mvc/controllers/areas.md
           - name: Filters
-            uid: mvc/controllers/filters
+            href: mvc/controllers/filters.md
           - name: Razor SDK
             href: razor-pages/sdk.md
           - name: Razor breaking changes since .NET 8
@@ -1154,13 +1154,13 @@ items:
           - name: Razor breaking changes since .NET 9
             href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%209.md
           - name: View components
-            uid: mvc/views/view-components
+            href: mvc/views/view-components.md
           - name: View compilation
-            uid: mvc/views/view-compilation
+            href: mvc/views/view-compilation.md
           - name: Display and Editor Templates
-            uid: mvc/views/display-templates
+            href: mvc/views/display-templates.md
           - name: Upload files
-            uid: mvc/models/file-uploads
+            href: mvc/models/file-uploads.md
           - name: Web SDK
             href: razor-pages/web-sdk.md
           - name: Code generator tool (scaffolding)
@@ -1171,7 +1171,7 @@ items:
       - name: Overview
         uid: fundamentals/apis
       - name: "Tutorial: Create a Minimal API"
-        uid: tutorials/min-web-api
+        href: tutorials/min-web-api.md
       - name: Minimal APIs quick reference
         uid: fundamentals/minimal-apis
       - name: WebApplication and WebApplicationBuilder
@@ -1211,11 +1211,11 @@ items:
           - name: Swagger / NSwag
             items:
               - name: Overview
-                uid: tutorials/web-api-help-pages-using-swagger
+                href: tutorials/web-api-help-pages-using-swagger.md
               - name: Get started with Swashbuckle
-                uid: tutorials/get-started-with-swashbuckle
+                href: tutorials/getting-started-with-swashbuckle.md
               - name: Get started with NSwag
-                uid: tutorials/get-started-with-nswag
+                href: tutorials/getting-started-with-NSwag.md
       - name: Controller-based APIs
         items:
         - name: Overview
@@ -1223,9 +1223,9 @@ items:
         - name: Tutorials
           items:
             - name: Create a web API with controllers
-              uid: tutorials/first-web-api
+              href: tutorials/first-web-api.md
             - name: Web API with MongoDB
-              uid: tutorials/first-mongo-app
+              href: tutorials/first-mongo-app.md
         - name: Action return types
           href: web-api/action-return-types.md
         - name: Format response data
@@ -1253,16 +1253,16 @@ items:
       - name: Tutorials
         items:
           - name: SignalR with JavaScript
-            uid: tutorials/signalr
+            href: tutorials/signalr.md
           - name: SignalR with TypeScript
-            uid: tutorials/signalr-typescript-webpack
+            href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
             uid: blazor/tutorials/signalr-blazor
       - name: Samples
         displayName: signalr
         items:
           - name: AI-powered group chat
-            uid: tutorials/ai-powered-group-chat
+            href: tutorials/ai-powered-group-chat/ai-powered-group-chat.md
             displayName: signalr
           - name: SignalR samples repository
             href: https://github.com/aspnet/SignalR-samples
@@ -1370,7 +1370,7 @@ items:
       - name: Tutorials
         items:
           - name: Get started with a gRPC service
-            uid: tutorials/grpc/grpc-start
+            href: tutorials/grpc/grpc-start.md
       - name: gRPC services with C#
         items:
           - name: Overview
@@ -1713,7 +1713,7 @@ items:
       - name: Razor Pages unit tests
         uid: test/razor-pages-tests
       - name: MVC controllers unit tests
-        uid: mvc/controllers/testing
+        href: mvc/controllers/testing.md
       - name: Integration tests
         uid: test/integration-tests
       - name: Load and stress testing
@@ -1886,49 +1886,49 @@ items:
           - name: EF Core with Razor Pages
             items:
               - name: Get started
-                uid: data/ef-rp/intro
+                href: data/ef-rp/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-rp/crud
+                href: data/ef-rp/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-rp/sort-filter-page
+                href: data/ef-rp/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-rp/migrations
+                href: data/ef-rp/migrations.md
               - name: Create a complex data model
-                uid: data/ef-rp/complex-data-model
+                href: data/ef-rp/complex-data-model.md
               - name: Read related data
-                uid: data/ef-rp/read-related-data
+                href: data/ef-rp/read-related-data.md
               - name: Update related data
-                uid: data/ef-rp/update-related-data
+                href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-rp/concurrency
+                href: data/ef-rp/concurrency.md
           - name: EF Core with MVC
             items:
               - name: Overview
-                uid: data/ef-mvc/index
+                href: data/ef-mvc/index.md
               - name: Get started
-                uid: data/ef-mvc/intro
+                href: data/ef-mvc/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-mvc/crud
+                href: data/ef-mvc/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-mvc/sort-filter-page
+                href: data/ef-mvc/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-mvc/migrations
+                href: data/ef-mvc/migrations.md
               - name: Create a complex data model
-                uid: data/ef-mvc/complex-data-model
+                href: data/ef-mvc/complex-data-model.md
               - name: Read related data
-                uid: data/ef-mvc/read-related-data
+                href: data/ef-mvc/read-related-data.md
               - name: Update related data
-                uid: data/ef-mvc/update-related-data
+                href: data/ef-mvc/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-mvc/concurrency
+                href: data/ef-mvc/concurrency.md
               - name: Inheritance
-                uid: data/ef-mvc/inheritance
+                href: data/ef-mvc/inheritance.md
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
+                href: data/ef-mvc/advanced.md
       - name: Scaffold a data model with dotnet scaffold in RP
-        uid: data/dotnet-scaffold-rp
+        href: data/scaffold_RP.md
       - name: EF 6 with ASP.NET Core
-        uid: data/entity-framework-6
+        href: data/entity-framework-6.md
       - name: Azure SQL Database with Azure App Service
         href: /azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore
       - name: Azure Storage with Visual Studio
@@ -1955,7 +1955,7 @@ items:
             href: host-and-deploy/azure-apps/index.md
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
-            uid: tutorials/publish-to-azure-webapp-using-vs
+            href: tutorials/publish-to-azure-webapp-using-vs.md
           - name: Publish with Visual Studio for Mac
             displayName: azure, deploy, publish
             href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
@@ -1996,7 +1996,7 @@ items:
             href: /dotnet/architecture/devops-for-aspnet-developers/next-steps
       - name: Publish to IIS tutorial
         displayName: deploy
-        uid: tutorials/publish-to-iis
+        href: tutorials/publish-to-iis.md
       - name: Windows service
         displayName: deploy, publish
         href: host-and-deploy/windows-service.md
@@ -2369,13 +2369,13 @@ items:
   - name: Advanced
     items:
       - name: Model binding
-        uid: mvc/models/model-binding
+        href: mvc/models/model-binding.md
       - name: Custom model binding
-        uid: mvc/advanced/custom-model-binding
+        href: mvc/advanced/custom-model-binding.md
       - name: Model validation
-        uid: mvc/models/validation
+        href: mvc/models/validation.md
       - name: Compatibility version
-        uid: mvc/compatibility-version
+        href: mvc/compatibility-version.md
       - name: Write middleware
         uid: fundamentals/middleware/write
       - name: Request and response operations
@@ -2411,7 +2411,7 @@ items:
         displayName: loggermessage
         href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Use a file watcher
-        uid: tutorials/dotnet-watch
+        href: tutorials/dotnet-watch.md
       - name: Factory-based middleware
         uid: fundamentals/middleware/extensibility
       - name: Factory-based middleware with third-party container

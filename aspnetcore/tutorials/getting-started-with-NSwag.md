@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 07/06/2026
-uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
 
@@ -13,9 +12,15 @@ uid: tutorials/get-started-with-nswag
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. NSwag isn't included by default, but you can add it manually as a community package to ASP.NET Core projects targeting .NET 9 or later.
 >
+<<<<<<< Updated upstream
 > • To understand the built-in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
 > • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.  
 > • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see <xref:tutorials/min-web-api>. It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
+=======
+> • To understand the built-in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).  
+> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).  
+> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md). It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
+>>>>>>> Stashed changes
 >
 > The following instructions apply when using NSwag with .NET versions earlier than 9.
 

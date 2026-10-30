@@ -3,7 +3,6 @@ title: Tag Helper Components in ASP.NET Core
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.date: 06/12/2019
-uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
 
@@ -149,6 +148,12 @@ For example, the `if` statement evaluates to true when processing the following 
 
 ## Related content
 
+<<<<<<< Updated upstream
 * <xref:fundamentals/dependency-injection>
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/views/tag-helpers/builtin-th/Index>
+=======
+* [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
+* [Dependency injection into views in ASP.NET Core](../dependency-injection.md)
+* [ASP.NET Core built-in Tag Helpers](built-in/index.md)
+>>>>>>> Stashed changes

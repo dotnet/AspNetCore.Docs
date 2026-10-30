@@ -34,7 +34,7 @@ Model binding goes through the following steps after the routing system selects 
 
 The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
 
-In the preceding example, the model binding targets are method parameters that are [simple](#simp-comp7) types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+In the preceding example, the model binding targets are method parameters that are [simple](#simp-comp7) types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](../../validation.md) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
 
 ## Targets
 
@@ -332,7 +332,7 @@ public IActionResult OnPost(
     [Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](../../../../data/ef-mvc/crud.md#security-note-about-overposting).
 
 ### [ModelBinder] attribute
 
@@ -362,7 +362,7 @@ Causes model binding to add a model state error if binding cannot occur for a mo
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
 
-See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+See also the discussion of the `[Required]` attribute in [Model validation](../../validation.md#required-attribute).
 
 ### [BindNever] attribute
 
@@ -668,7 +668,7 @@ To disable validation on properties of a specified type, add a <xref:Microsoft.A
 
 ## Custom model binders
 
-You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
+You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](../../../advanced/custom-model-binding.md).
 
 ## Manual model binding
 
@@ -681,7 +681,7 @@ Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mv
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
 
-For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
+For more information, see [TryUpdateModelAsync](../../../../data/ef-rp/crud.md#TryUpdateModelAsync).
 
 ## [FromServices] attribute
 
@@ -696,9 +696,15 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
+<<<<<<< Updated upstream
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
+=======
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
+* [Model validation in ASP.NET Core MVC](../../validation.md)
+* [Custom Model Binding in ASP.NET Core](../../../advanced/custom-model-binding.md)
+>>>>>>> Stashed changes
 
 :::moniker-end
 
@@ -738,7 +744,7 @@ Model binding goes through the following steps after the routing system selects 
 
 The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
 
-In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](../../validation.md) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
 
 ## Targets
 
@@ -967,7 +973,7 @@ public IActionResult OnPost(
     [Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](../../../../data/ef-mvc/crud.md#security-note-about-overposting).
 
 ### [ModelBinder] attribute
 
@@ -997,7 +1003,7 @@ Causes model binding to add a model state error if binding cannot occur for a mo
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/6.x/ModelBindingSample/Snippets/InstructorBindRequired.cs" id="snippet_Class" highlight="5":::
 
-See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+See also the discussion of the `[Required]` attribute in [Model validation](../../validation.md#required-attribute).
 
 ### [BindNever] attribute
 
@@ -1303,7 +1309,7 @@ To disable validation on properties of a specified type, add a <xref:Microsoft.A
 
 ## Custom model binders
 
-You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
+You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](../../../advanced/custom-model-binding.md).
 
 ## Manual model binding
 
@@ -1316,7 +1322,7 @@ Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mv
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
 
-For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
+For more information, see [TryUpdateModelAsync](../../../../data/ef-rp/crud.md#TryUpdateModelAsync).
 
 ## [FromServices] attribute
 
@@ -1331,9 +1337,15 @@ For nullable parameters, ensure that the parameter isn't `null` before accessing
 
 ## Additional resources
 
+<<<<<<< Updated upstream
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * <xref:mvc/models/validation>
 * <xref:mvc/advanced/custom-model-binding>
+=======
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/model-binding/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
+* [Model validation in ASP.NET Core MVC](../../validation.md)
+* [Custom Model Binding in ASP.NET Core](../../../advanced/custom-model-binding.md)
+>>>>>>> Stashed changes
 
 :::moniker-end
 
@@ -1375,7 +1387,7 @@ Model binding goes through the following steps after the routing system selects 
 
 The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
 
-In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](xref:mvc/models/validation) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+In the preceding example, the model binding targets are method parameters that are simple types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](../../validation.md) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
 
 ## Targets
 
@@ -1610,7 +1622,7 @@ In the following example, only the specified properties of the `Instructor` mode
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](xref:data/ef-mvc/crud#security-note-about-overposting).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Security note about overposting](../../../../data/ef-mvc/crud.md#security-note-about-overposting).
 
 ### [ModelBinder] attribute
 
@@ -1639,7 +1651,7 @@ Can only be applied to model properties, not to method parameters. Causes model 
 
 :::code language="csharp" source="~/mvc/models/model-binding/samples/3.x/ModelBindingSample/Models/InstructorWithCollection.cs" id="snippet_BindRequired" highlight="8-9":::
 
-See also the discussion of the `[Required]` attribute in [Model validation](xref:mvc/models/validation#required-attribute).
+See also the discussion of the `[Required]` attribute in [Model validation](../../validation.md#required-attribute).
 
 ### [BindNever] attribute
 
@@ -1952,7 +1964,7 @@ To disable validation on properties of a specified type, add a <xref:Microsoft.A
 
 ## Custom model binders
 
-You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](xref:mvc/advanced/custom-model-binding).
+You can extend model binding by writing a custom model binder and using the `[ModelBinder]` attribute to select it for a given target. Learn more about [custom model binding](../../../advanced/custom-model-binding.md).
 
 ## Manual model binding	
 
@@ -1965,7 +1977,7 @@ Model binding can be invoked manually by using the <xref:Microsoft.AspNetCore.Mv
 * Used with Razor Pages and MVC apps using controllers and views to prevent over-posting.
 * Not used with a web API unless consumed from form data, query strings, and route data. Web API endpoints that consume JSON use [Input formatters](#input-formatters) to deserialize the request body into an object.
 
-For more information, see [TryUpdateModelAsync](xref:data/ef-rp/crud#TryUpdateModelAsync).
+For more information, see [TryUpdateModelAsync](../../../../data/ef-rp/crud.md#TryUpdateModelAsync).
 
 ## [FromServices] attribute
 
@@ -1973,7 +1985,7 @@ This attribute's name follows the pattern of model binding attributes that speci
 
 ## Additional resources
 
-* <xref:mvc/models/validation>
-* <xref:mvc/advanced/custom-model-binding>
+* [Model validation in ASP.NET Core MVC](../../validation.md)
+* [Custom Model Binding in ASP.NET Core](../../../advanced/custom-model-binding.md)
 
 :::moniker-end

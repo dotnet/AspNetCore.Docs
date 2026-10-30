@@ -448,7 +448,7 @@ public class HomeController : Controller
 ```
 
 > [!NOTE]
-> The preceding `Index` view is a minimal example purely for demonstration purposes. If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see <xref:tutorials/first-mvc-app/start-mvc>.
+> The preceding `Index` view is a minimal example purely for demonstration purposes. If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see [Get started with ASP.NET Core MVC](../../../tutorials/first-mvc-app/start-mvc.md).
 
 For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/integration-hosted-webassembly>.
 
@@ -506,7 +506,7 @@ For each hosted Blazor WebAssembly client app, create a project reference for th
 
 Use components from the RCL in the client apps with either of the following approaches:
 
-* Place an [`@using`](xref:mvc/views/razor#using) directive at the top of the component for the RCL's namespace and add Razor syntax for the component. The following example is for an RCL with the assembly name `ComponentLibrary`:
+* Place an [`@using`](../../../mvc/views/razor.md#using) directive at the top of the component for the RCL's namespace and add Razor syntax for the component. The following example is for an RCL with the assembly name `ComponentLibrary`:
 
   ```razor
   @using ComponentLibrary
@@ -516,14 +516,14 @@ Use components from the RCL in the client apps with either of the following appr
   <Component1 />
   ```
 
-* Provide the RCL's namespace along with the Razor syntax for the component. This approach doesn't require an [`@using`](xref:mvc/views/razor#using) directive at the top of the component file. The following example is for an RCL with the assembly name `ComponentLibrary`:
+* Provide the RCL's namespace along with the Razor syntax for the component. This approach doesn't require an [`@using`](../../../mvc/views/razor.md#using) directive at the top of the component file. The following example is for an RCL with the assembly name `ComponentLibrary`:
 
   ```razor
   <ComponentLibrary.Component1 />
   ```
 
 > [!NOTE]
-> An [`@using`](xref:mvc/views/razor#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
+> An [`@using`](../../../mvc/views/razor.md#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
 
 When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in [Reusable Razor UI in class libraries with ASP.NET Core](../../../razor-pages/ui-class.md#consume-content-from-a-referenced-rcl):
 

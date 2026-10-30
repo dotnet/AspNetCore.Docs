@@ -46,7 +46,7 @@ Support for enabling additional client features is tracked in [our issue tracker
 
 ## Related content
 
-* [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
+* [Get started with SignalR for ASP.NET Core](../tutorials/signalr.md)
 * [Supported platforms](supported-platforms.md)
 * [Hubs](hubs.md)
 * [JavaScript client](javascript-client.md)

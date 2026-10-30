@@ -320,9 +320,15 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 * [Azure Database for PostgreSQL](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
 * [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
+<<<<<<< Updated upstream
 * <xref:fundamentals/change-tokens>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+=======
+* [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
+>>>>>>> Stashed changes
 * [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end

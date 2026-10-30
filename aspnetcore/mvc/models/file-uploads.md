@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/03/2026
-uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
@@ -218,7 +217,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple />
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename"></a>
 
@@ -736,7 +735,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xref:mvc/views/razor#attribute) Razor directive:
+The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../views/razor.md#attribute) Razor directive:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -1034,7 +1033,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple>
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename"></a>
 
@@ -1509,7 +1508,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xref:mvc/views/razor#attribute) Razor directive:
+The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../views/razor.md#attribute) Razor directive:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -1769,7 +1768,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple>
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename2"></a>
 

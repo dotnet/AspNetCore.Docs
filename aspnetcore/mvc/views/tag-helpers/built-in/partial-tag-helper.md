@@ -3,22 +3,21 @@ title: Partial Tag Helper in ASP.NET Core
 description: Discover the ASP.NET Core Partial Tag Helper and the role each of its attributes play in rendering a partial view.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/08/2026
-uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
 ---
 # Partial Tag Helper in ASP.NET Core
 
 By [Scott Addie](https://github.com/scottaddie)
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
 ## Overview
 
-The Partial Tag Helper is used for rendering a [partial view](xref:mvc/views/partial) in Razor Pages and MVC apps. Consider that it:
+The Partial Tag Helper is used for rendering a [partial view](../../partial.md) in Razor Pages and MVC apps. Consider that it:
 
 * Requires ASP.NET Core 2.1 or later.
-* Is an alternative to [HTML Helper syntax](xref:mvc/views/partial#reference-a-partial-view).
+* Is an alternative to [HTML Helper syntax](../../partial.md#reference-a-partial-view).
 * Renders the partial view asynchronously.
 
 The HTML Helper options for rendering a partial view include:
@@ -36,7 +35,7 @@ An inventory of the Partial Tag Helper attributes follows.
 
 ## name
 
-The `name` attribute is required. It indicates the name or the path of the partial view to be rendered. When a partial view name is provided, the [view discovery](xref:mvc/views/overview#view-discovery) process is initiated. That process is bypassed when an explicit path is provided. For all acceptable `name` values, see [Partial view discovery](xref:mvc/views/partial#partial-view-discovery).
+The `name` attribute is required. It indicates the name or the path of the partial view to be rendered. When a partial view name is provided, the [view discovery](../../overview.md#view-discovery) process is initiated. That process is bypassed when an explicit path is provided. For all acceptable `name` values, see [Partial view discovery](../../partial.md#partial-view-discovery).
 
 The following markup uses an explicit path, indicating that `_ProductPartial.cshtml` is to be loaded from the *Shared* folder. Using the [for](#for) attribute, a model is passed to the partial view for binding.
 
@@ -88,5 +87,5 @@ The following Partial Tag Helper achieves the same asynchronous rendering behavi
 
 ## Related content
 
-* <xref:mvc/views/partial>
-* <xref:mvc/views/overview#weakly-typed-data-viewdata-viewdata-attribute-and-viewbag>
+* [Partial views in ASP.NET Core](../../partial.md)
+* [Views in ASP.NET Core MVC](../../overview.md#weakly-typed-data-viewdata-viewdata-attribute-and-viewbag)

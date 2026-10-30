@@ -176,7 +176,7 @@ When using IIS, enable:
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
 * [Session affinity with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
-For more information, see the guidance and external IIS resource cross-links in <xref:tutorials/publish-to-iis>.
+For more information, see the guidance and external IIS resource cross-links in [Publish an ASP.NET Core app to IIS](../../../tutorials/publish-to-iis.md).
 
 ## Kubernetes
 

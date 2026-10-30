@@ -3,7 +3,6 @@ title: Part 8, add validation
 ai-usage: ai-assisted
 description: Part 8 of tutorial series on Razor Pages.
 ms.date: 10/06/2026
-uid: tutorials/razor-pages/validation
 ---
 # Part 8 of tutorial series on Razor Pages
 
@@ -120,7 +119,7 @@ To test server-side validation:
     }
    ```
   
-Alternatively, [disable client-side validation on the server](xref:mvc/models/validation#disable-client-side-validation).
+Alternatively, [disable client-side validation on the server](../../mvc/models/validation.md#disable-client-side-validation).
 
 The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. The Create and Edit pages use this code to:
 
@@ -129,7 +128,7 @@ The following code shows a portion of the `Create.cshtml` page scaffolded earlie
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Pages/MoviePages/Create.cshtml?range=14-20)]
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. For more information, see [Validation](xref:mvc/models/validation).
+The [Input Tag Helper](../../mvc/views/working-with-forms.md) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client. The [Validation Tag Helper](../../mvc/views/working-with-forms.md#the-validation-tag-helpers) displays validation errors. For more information, see [Validation](../../mvc/models/validation.md).
 
 The Create and Edit pages don't contain validation rules. The validation rules and the error strings are specified only in the `Movie` class. These validation rules automatically apply to Razor Pages that edit the `Movie` model.
 
@@ -188,7 +187,7 @@ The following code shows combining attributes on one line:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Models/MovieDateRatingDAmult.cs?name=snippet1)]
 
-[Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) shows advanced EF Core operations with Razor Pages.
+[Get started with Razor Pages and EF Core](../../data/ef-rp/intro.md) shows advanced EF Core operations with Razor Pages.
 
 ### Apply migrations
 
@@ -265,19 +264,26 @@ CREATE TABLE [dbo].[Movie] (
 
 For information on deploying to Azure, see [Tutorial: Build an ASP.NET Core app in Azure with SQL Database](/azure/app-service/tutorial-dotnetcore-sqldb-app).
 
-Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](xref:data/ef-rp/intro) is an excellent follow up to this tutorial.
+Thanks for completing this introduction to Razor Pages. [Get started with Razor Pages and EF Core](../../data/ef-rp/intro.md) is an excellent follow up to this tutorial.
 
 ## Related content
 
+<<<<<<< Updated upstream
 * <xref:mvc/views/working-with-forms>
 * <xref:fundamentals/localization>
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/views/tag-helpers/authoring>
+=======
+* [Tag Helpers in forms in ASP.NET Core](../../mvc/views/working-with-forms.md)
+* [Globalization and localization in ASP.NET Core](../../fundamentals/localization.md)
+* [Tag Helpers in ASP.NET Core](../../mvc/views/tag-helpers/intro.md)
+* [Author Tag Helpers in ASP.NET Core](../../mvc/views/tag-helpers/authoring.md)
+>>>>>>> Stashed changes
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add a new field](xref:tutorials/razor-pages/new-field)
+> [Previous: Add a new field](new-field.md)
 :::moniker-end
 
 [!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation9.md)]

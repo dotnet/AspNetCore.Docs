@@ -3,7 +3,6 @@ title: Add Sort, Filter, Paging - ASP.NET MVC with EF Core
 description: Add sorting, filtering, and paging functionality to the Students Index page, and create a page for simple grouping. This article is part of a tutorial series.
 ms.date: 04/20/2026
 ms.topic: tutorial
-uid: data/ef-mvc/sort-filter-page
 
 # customer intent: As an ASP.NET developer, I want to add sorting, filtering, and paging functionality in ASP.NET MVC with EF Core, so I can customize my site pages and behavior.
 ---
@@ -98,7 +97,7 @@ In the _Views/Student/Index.cshtml_ file, add the highlighted code immediately b
 
 [!code-cshtml[](intro/samples/cu/Views/Students/Index3.cshtml?range=9-23&highlight=5-13)]
 
-This code uses the `<form>` [tag helper](xref:mvc/views/tag-helpers/intro) to add the search text box and button. By default, the `<form>` tag helper submits form data with a `POST`, which means the parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP `GET`, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend using `GET` when the action doesn't result in an update.
+This code uses the `<form>` [tag helper](../../mvc/views/tag-helpers/intro.md) to add the search text box and button. By default, the `<form>` tag helper submits form data with a `POST`, which means the parameters are passed in the HTTP message body and not in the URL as query strings. When you specify HTTP `GET`, the form data is passed in the URL as query strings, which enables users to bookmark the URL. The W3C guidelines recommend using `GET` when the action doesn't result in an update.
 
 Run the app, select the **Students** tab, enter a search string, and select **Search** to verify filtering is working.
 

@@ -411,5 +411,5 @@ var compositeChangeToken =
 * <xref:performance/caching/distributed>
 * <xref:performance/caching/response>
 * <xref:performance/caching/middleware>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)

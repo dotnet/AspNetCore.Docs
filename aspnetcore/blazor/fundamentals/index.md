@@ -48,7 +48,7 @@ The term *rendering* means to produce the HTML markup that browsers display.
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
-*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
+*Razor* refers to how components are usually written in the form of a [Razor](../../mvc/views/razor.md) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
 
 Although some Blazor developers and online resources use the term "Blazor components," the documentation avoids that term and universally uses "Razor components" or "components."
 
@@ -62,9 +62,9 @@ Blazor documentation adopts several conventions for showing and discussing compo
 * Usually, a component's C# class name is the same as its file name.
 * Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in <xref:blazor/fundamentals/routing>.
 * When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component is reached at `/file-upload-3`.
-* [Razor directives](xref:mvc/views/razor#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order.
+* [Razor directives](../../mvc/views/razor.md#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order.
 * Although not required for `private` members, access modifiers are used in article examples and sample apps. For example, `private` is stated for declaring a field named `maxAllowedFiles` as `private int maxAllowedFiles = 3;`.
-* [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
+* [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](../../mvc/views/razor.md#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
 * C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
 * In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
 In article examples, code lines are split to reduce horizontal scrolling. These breaks don't affect execution but can be removed when pasting into your project.

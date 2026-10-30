@@ -43,7 +43,7 @@ To avoid introducing XSS into the application, developers should implement the f
 
 ## Explore HTML encoding with Razor
 
-The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro) also encode input you use in tag parameters.
+The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](../mvc/views/tag-helpers/intro.md) also encode input you use in tag parameters.
 
 Consider the following Razor view:
 
@@ -299,4 +299,4 @@ Never rely on validation alone. Always encode untrusted input before output, no 
 
 - <xref:fundamentals/dependency-injection>
 - [Unicode 17.0 Character Code Charts](https://www.unicode.org/charts/index.html)
-- [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro)
+- [Razor Tag Helpers](../mvc/views/tag-helpers/intro.md)

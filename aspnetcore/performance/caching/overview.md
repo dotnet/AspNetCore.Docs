@@ -69,13 +69,13 @@ For more information, see [Output caching middleware in ASP.NET Core](xref:perfo
 
 Cache the content from an MVC view or Razor Page with the Cache Tag Helper. The Cache Tag Helper uses in-memory caching to store data.
 
-For more information, see [Cache Tag Helper in ASP.NET Core MVC](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
+For more information, see [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md).
 
 ## Distributed Cache Tag Helper
 
 Cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper. The Distributed Cache Tag Helper uses SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), or [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) to store data.
 
-For more information, see [Distributed Cache Tag Helper in ASP.NET Core](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper).
+For more information, see [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md).
 
 :::moniker-end
 

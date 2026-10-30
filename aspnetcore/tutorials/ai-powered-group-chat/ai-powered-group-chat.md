@@ -3,7 +3,6 @@ title: Sample AI-Powered Group Chat with SignalR and OpenAI
 description: A tutorial explaining how SignalR and OpenAI are used together to build an AI-powered group chat
 ms.collection: ce-skilling-ai-copilot
 ms.date: 12/11/2025
-uid: tutorials/ai-powered-group-chat
 ---
 
 # AI-Powered Group Chat sample with SignalR and OpenAI

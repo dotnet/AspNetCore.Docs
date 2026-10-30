@@ -17,7 +17,7 @@ The example code in this article is only available for the latest .NET release i
 
 ## Generic type parameter support
 
-The [`@typeparam`](xref:mvc/views/razor#typeparam) directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
+The [`@typeparam`](../../mvc/views/razor.md#typeparam) directive declares a [generic type parameter](/dotnet/csharp/programming-guide/generics/generic-type-parameters) for the generated component class:
 
 ```razor
 @typeparam TItem
@@ -66,7 +66,7 @@ The following component renders two `ListItems1` components:
 
 :::moniker-end
 
-For more information, see <xref:mvc/views/razor#typeparam>. For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
+For more information, see [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam). For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -77,7 +77,7 @@ An ancestor component can cascade a type parameter by name to descendants using 
 By adding `@attribute [CascadingTypeParameter(...)]` to a component, the specified generic type argument is automatically used by descendants that:
 
 * Are nested as child content for the component in the same `.razor` document.
-* Also declare a [`@typeparam`](xref:mvc/views/razor#typeparam) with the exact same name.
+* Also declare a [`@typeparam`](../../mvc/views/razor.md#typeparam) with the exact same name.
 * Don't have another value explicitly supplied or implicitly inferred for the type parameter. If another value is supplied or inferred, it takes precedence over the cascaded generic type.
 
 When receiving a cascaded type parameter, components obtain the parameter value from the closest ancestor that has a [`[CascadingTypeParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingTypeParameterAttribute) with a matching name. Cascaded generic type parameters are overridden within a particular subtree.

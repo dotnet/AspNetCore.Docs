@@ -3,7 +3,6 @@ title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 description: Shows how to create a Razor Pages app using Entity Framework Core
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/23/2025
-uid: data/ef-rp/intro
 ---
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
@@ -19,7 +18,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -371,7 +370,7 @@ Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCor
 
 [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
 
 ---
 
@@ -536,10 +535,10 @@ For more information, see [Performance considerations (EF)](/ef/core/performance
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end
 
@@ -551,7 +550,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -885,7 +884,7 @@ Verify the code added by the scaffolder calls `UseSqlite`.
 
 [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
@@ -1050,10 +1049,10 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end
 
@@ -1065,7 +1064,7 @@ This is the first in a series of tutorials that show how to use Entity Framework
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -1488,6 +1487,6 @@ For more information about asynchronous programming in .NET, see [Async Overview
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end

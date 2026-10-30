@@ -47,9 +47,15 @@ Minimal APIs support the configuration and customization needed to scale to mult
 
 ### Getting started with Minimal APIs
 
+<<<<<<< Updated upstream
 * **Tutorial**: <xref:tutorials/min-web-api>
 * **Quick reference**: <xref:fundamentals/minimal-apis>
 * **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>
+=======
+* **Tutorial**: [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* **Quick reference**: [Minimal APIs quick reference](minimal-apis.md)
+* **Examples**: For a full list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md)
+>>>>>>> Stashed changes
 
 ## Controller-based APIs - Alternative approach
 
@@ -86,17 +92,22 @@ Both API projects refer to the following class:
 
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
-* [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
+* [Application parts](../mvc/advanced/app-parts.md) or the [application model](../mvc/controllers/application-model.md)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
 Most of these features can be implemented in Minimal APIs with custom solutions, but controllers provide them out of the box.
 
 ## See also
 
+<<<<<<< Updated upstream
 * <xref:tutorials/min-web-api> - Minimal API tutorial
 * <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
+=======
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md) - Minimal API tutorial
+* [Minimal APIs quick reference](minimal-apis.md) - Minimal APIs quick reference
+>>>>>>> Stashed changes
 * [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
-* <xref:tutorials/first-web-api> - Controller-based API tutorial
+* [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md) - Controller-based API tutorial
 
 :::moniker-end
 
@@ -120,8 +131,13 @@ app.Run();
 
 ### Getting started with Minimal APIs
 
+<<<<<<< Updated upstream
 * **Tutorial**: <xref:tutorials/min-web-api>
 * **Quick reference**: <xref:fundamentals/minimal-apis>
+=======
+* **Tutorial**: [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* **Quick reference**: [Minimal APIs quick reference](minimal-apis.md)
+>>>>>>> Stashed changes
 
 ## Controller-based APIs - Alternative approach
 
@@ -148,14 +164,19 @@ Both API projects refer to the following class:
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Form binding support, including <xref:Microsoft.AspNetCore.Http.IFormFile>
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
-* [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
+* [Application parts](../mvc/advanced/app-parts.md) or the [application model](../mvc/controllers/application-model.md)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
 ## See also
 
+<<<<<<< Updated upstream
 * <xref:tutorials/min-web-api> - Minimal API tutorial
 * <xref:fundamentals/minimal-apis> - Minimal APIs quick reference
+=======
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md) - Minimal API tutorial
+* [Minimal APIs quick reference](minimal-apis.md) - Minimal APIs quick reference
+>>>>>>> Stashed changes
 * [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
-* <xref:tutorials/first-web-api> - Controller-based API tutorial
+* [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md) - Controller-based API tutorial
 
 :::moniker-end

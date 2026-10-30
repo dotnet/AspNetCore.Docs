@@ -103,8 +103,8 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
 ## Troubleshooting
 
@@ -148,8 +148,8 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
 * <xref:performance/caching/response>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
 :::moniker-end
 
@@ -256,8 +256,8 @@ For more control over caching behavior, explore other caching features of ASP.NE
 
 * <xref:performance/caching/memory>
 * <xref:performance/caching/distributed>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
 ## Troubleshooting
 
@@ -294,7 +294,7 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
 * <xref:performance/caching/response>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
 :::moniker-end

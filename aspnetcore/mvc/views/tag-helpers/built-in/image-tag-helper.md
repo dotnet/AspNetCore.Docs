@@ -2,7 +2,6 @@
 title: Image Tag Helper in ASP.NET Core
 description: Shows how to work with Image Tag Helper.
 ms.date: 04/06/2019
-uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
 ---
 # Image Tag Helper in ASP.NET Core
 
@@ -17,7 +16,7 @@ If the image source (`src`) is a static file on the host web server:
 * A unique cache-busting string is appended as a query parameter to the image source.
 * If the file on the host web server changes, a unique request URL is generated that includes the updated request parameter.
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
 ## Image Tag Helper Attributes
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: How to use DisplayTemplates and EditorTemplates in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/22/2022
-uid: mvc/views/display-templates
 ---
 
 # Display and Editor templates in ASP.NET Core
@@ -15,7 +14,7 @@ Display and Editor templates specify the user interface layout of custom types. 
 
 [!code-csharp[](display-templates/samples/Address.cs)]
 
-A project that [scaffolds](xref:tutorials/razor-pages/model#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
+A project that [scaffolds](../../tutorials/razor-pages/model.md#scaffold-the-movie-model) the `Address` model displays the `Address` in the following form:
 
 ![view of default scaffolding layout of model](display-templates/_static/addr.png)
 
@@ -25,13 +24,13 @@ A web site could use a Display Template to show the `Address` in standard format
 
 Display and Editor templates can also reduce code duplication and maintenance costs. Consider a web site that displays the `Address` model on 20 different pages. If the `Address` model changes, the 20 pages will all need to be updated. If a Display Template is used for the `Address` model, only the Display Template needs to be updated. For example, the `Address` model might be updated to include the country or region.
 
-[Tag Helpers](xref:mvc/views/tag-helpers/intro) provide an alternative way that enables server-side code to participate in creating and rendering HTML elements in Razor files. For more information, see [Tag Helpers compared to HTML Helpers](xref:mvc/views/tag-helpers/intro#tag-helpers-compared-to-html-helpers).
+[Tag Helpers](tag-helpers/intro.md) provide an alternative way that enables server-side code to participate in creating and rendering HTML elements in Razor files. For more information, see [Tag Helpers compared to HTML Helpers](tag-helpers/intro.md#tag-helpers-compared-to-html-helpers).
 
 ## Display templates
 
 `DisplayTemplates` customize the display of model fields or create a layer of abstraction between the model values and their display.
 
-A `DisplayTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`DisplayTemplates`folder:
+A `DisplayTemplate` is a [Razor](razor.md) file placed in the`DisplayTemplates`folder:
 
 * For Razor Pages apps, in the `Pages/Shared/DisplayTemplates` folder.
 * For MVC apps, in the `Views/Shared/DisplayTemplates` folder or the `Views/ControllerName/DisplayTemplates` folder. Display templates in the `Views/Shared/DisplayTemplates` are used by all controllers in the app. Display templates in the `Views/ControllerName/DisplayTemplates` folder are resolved only by the `ControllerName` controller.
@@ -54,13 +53,13 @@ To reference a template whose name doesn't match the type name, use the `templat
 
 [!code-cshtml[](display-templates/samples/Pages/Adr2/DetailsCC.cshtml?highlight=15)]
 
-Use one of the available [DisplayFor overloads](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor*#overloads) that expose the `additionalViewData` parameter to pass additional view data that is merged into the [View Data Dictionary](xref:mvc/views/overview#viewdata) instance created for the template.
+Use one of the available [DisplayFor overloads](xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperDisplayExtensions.DisplayFor*#overloads) that expose the `additionalViewData` parameter to pass additional view data that is merged into the [View Data Dictionary](overview.md#viewdata) instance created for the template.
 
 ## Editor templates
 
 Editor templates are used in form controls when the model is edited or updated.
 
-An `EditorTemplate` is a [Razor](xref:mvc/views/razor) file placed in the`EditorTemplates` folder:
+An `EditorTemplate` is a [Razor](razor.md) file placed in the`EditorTemplates` folder:
 
 * For Razor Pages apps, in the `Pages/Shared/EditorTemplates` folder.
 * For MVC apps, in the `Views/Shared/EditorTemplates` folder or the `Views/ControllerName/EditorTemplates` folder.
@@ -75,6 +74,12 @@ The following markup shows the *Edit.cshtml* page which uses the `Pages/Shared/E
 
 ## Related content
 
+<<<<<<< Updated upstream
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 * [Tag Helpers](xref:mvc/views/tag-helpers/intro)
 * [Tag Helpers compared to HTML Helpers](xref:mvc/views/tag-helpers/intro#tag-helpers-compared-to-html-helpers)
+=======
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/display-templates/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
+* [Tag Helpers](tag-helpers/intro.md)
+* [Tag Helpers compared to HTML Helpers](tag-helpers/intro.md#tag-helpers-compared-to-html-helpers)
+>>>>>>> Stashed changes

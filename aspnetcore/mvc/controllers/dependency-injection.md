@@ -3,7 +3,6 @@ title: Dependency injection into controllers in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.date: 10/23/2026
-uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
 
@@ -115,11 +114,11 @@ Registering controllers as services enables:
 * Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
 
 > [!NOTE]
-> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See [Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core](../advanced/app-parts.md#prevent-loading-resources) for details.
 
 ## Related content
 
-* See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
+* See [Test controller logic in ASP.NET Core](testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
 * [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
 

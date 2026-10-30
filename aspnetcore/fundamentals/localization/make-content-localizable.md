@@ -58,7 +58,7 @@ In the following sample, the `InfoController` and the `SharedResource` localizer
 
 ## View localization
 
-The <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
+The <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> service provides localized strings for a [view](../../mvc/views/overview.md). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
 [!code-cshtml[](~/fundamentals/localization/samples/8.x/Localization/Views/Home/About.cshtml)]
 
@@ -126,7 +126,7 @@ builder.Services.AddValidation();
 
 For the message lookup key conventions, shared resource files, custom message formatting, and the full set of options, see <xref:fundamentals/validation#localize-validation-messages>.
 
-The integration doesn't apply to MVC and Razor Pages apps. For those frameworks, see <xref:mvc/models/validation>.
+The integration doesn't apply to MVC and Razor Pages apps. For those frameworks, see [Model validation in ASP.NET Core MVC](../../mvc/models/validation.md).
 
 :::moniker-end
 

@@ -179,7 +179,7 @@ You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this pr
 
 ## Model binding route data and query strings
 
-See [Globalization behavior of model binding route data and query strings](xref:mvc/models/model-binding#glob).
+See [Globalization behavior of model binding route data and query strings](../../mvc/models/model-binding.md#glob).
 
 ## Next steps
 

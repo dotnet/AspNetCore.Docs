@@ -22,7 +22,7 @@ The UI for this error handling experience is part of the [Blazor project templat
 
 :::moniker range=">= aspnetcore-8.0"
 
-In a Blazor Web App, customize the experience in the `MainLayout` component. Because the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
+In a Blazor Web App, customize the experience in the `MainLayout` component. Because the [Environment Tag Helper](../../mvc/views/tag-helpers/built-in/environment-tag-helper.md) (for example, `<environment include="Production">...</environment>`) isn't supported in Razor components, the following example injects <xref:Microsoft.Extensions.Hosting.IHostEnvironment> to configure error messages for different environments.
 
 At the top of `MainLayout.razor`:
 
@@ -51,19 +51,19 @@ Create or modify the Blazor error UI markup:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](../../mvc/views/tag-helpers/built-in/environment-tag-helper.md) to configure error messages for different environments.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+In a Blazor Server app, customize the experience in the `Pages/_Layout.cshtml` file. The following example uses the [Environment Tag Helper](../../mvc/views/tag-helpers/built-in/environment-tag-helper.md) to configure error messages for different environments.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper) to configure error messages for different environments.
+In a Blazor Server app, customize the experience in the `Pages/_Host.cshtml` file. The following example uses the [Environment Tag Helper](../../mvc/views/tag-helpers/built-in/environment-tag-helper.md) to configure error messages for different environments.
 
 :::moniker-end
 
@@ -401,7 +401,7 @@ If the error boundary is defined in the app's layout, the error UI is seen regar
 
 In `MainLayout.razor`:
 
-* Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](xref:mvc/views/razor#ref) attribute directive.
+* Add a field for the <xref:Microsoft.AspNetCore.Components.Web.ErrorBoundary> to [capture a reference](xref:blazor/components/index#capture-references-to-components) to it with the [`@ref`](../../mvc/views/razor.md#ref) attribute directive.
 * In the [`OnParameterSet` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), you can trigger a recovery on the error boundary with <xref:Microsoft.AspNetCore.Components.ErrorBoundaryBase.Recover*> to clear the error when the user navigates to a different component.
 
 ```razor
@@ -589,7 +589,7 @@ In `App.razor`:
 
 To process errors in a component:
 
-* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `ProcessError` property:
+* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](../../mvc/views/razor.md#code) block. In an example `Counter` component in an app based on a Blazor project template, add the following `ProcessError` property:
 
   ```csharp
   [CascadingParameter]
@@ -682,7 +682,7 @@ In the `App` component, wrap the <xref:Microsoft.AspNetCore.Components.Routing.R
 
 To process errors in a component:
 
-* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](xref:mvc/views/razor#code) block:
+* Designate the `ProcessError` component as a [`CascadingParameter`](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) in the [`@code`](../../mvc/views/razor.md#code) block:
 
   ```razor
   [CascadingParameter]
@@ -787,7 +787,7 @@ Framework and app code may trigger unhandled exceptions in any of the following 
 When Blazor creates an instance of a component:
 
 * The component's constructor is invoked.
-* The constructors of DI services supplied to the component's constructor via the [`@inject`](xref:mvc/views/razor#inject) directive or the [`[Inject]` attribute](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) are invoked.
+* The constructors of DI services supplied to the component's constructor via the [`@inject`](../../mvc/views/razor.md#inject) directive or the [`[Inject]` attribute](xref:blazor/fundamentals/dependency-injection#request-a-service-in-a-component) are invoked.
 
 An error in an executed constructor or a setter for any `[Inject]` property results in an unhandled exception and stops the framework from instantiating the component. If the app is operating over a circuit, the circuit fails. If constructor logic may throw exceptions, the app should trap the exceptions using a [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statement with error handling and logging.
 
