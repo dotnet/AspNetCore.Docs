@@ -27,13 +27,13 @@ ASP.NET Core apps should be designed to process many requests simultaneously. As
 
 A common performance problem in ASP.NET Core apps is blocking calls that could be asynchronous. Many synchronous blocking calls lead to [Thread Pool starvation](/dotnet/core/diagnostics/debug-threadpool-starvation) and degraded response times.
 
-**Do not** block asynchronous execution by calling <xref:System.Threading.Tasks.Task.Wait%2A?displayProperty=nameWithType> or <xref:System.Threading.Tasks.Task%601.Result%2A?displayProperty=nameWithType>.
+**Do not** block asynchronous execution by calling <xref:System.Threading.Tasks.Task.Wait*?displayProperty=nameWithType> or <xref:System.Threading.Tasks.Task`1.Result?displayProperty=nameWithType>.
 **Do not** acquire locks in common code paths. ASP.NET Core apps perform best when architected to run code in parallel.
-**Do not** call <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling `Task.Run` only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, `Task.Run` does not prevent that.
+**Do not** call <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType> and immediately await it. ASP.NET Core already runs app code on normal Thread Pool threads, so calling `Task.Run` only results in extra unnecessary Thread Pool scheduling. Even if the scheduled code would block a thread, `Task.Run` does not prevent that.
 
 * **Do** make [hot code paths](#understand-hot-code-paths) asynchronous.
 * **Do** call data access, I/O, and long-running operations APIs asynchronously if an asynchronous API is available.
-* **Do not** use <xref:System.Threading.Tasks.Task.Run%2A?displayProperty=nameWithType> to make a synchronous API asynchronous.
+* **Do not** use <xref:System.Threading.Tasks.Task.Run*?displayProperty=nameWithType> to make a synchronous API asynchronous.
 * **Do** make controller/Razor Page actions asynchronous. The entire call stack is asynchronous in order to benefit from [async/await](/dotnet/csharp/programming-guide/concepts/async/) patterns.
 * **Consider** using message brokers like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview) to offload long-running calls
 
@@ -44,7 +44,7 @@ A profiler, such as [PerfView](https://github.com/Microsoft/perfview), can be us
 A webpage shouldn't load large amounts of data all at once. When returning a collection of objects, consider whether it could lead to performance issues. Determine if the design could produce the following poor outcomes:
 
 * <xref:System.OutOfMemoryException> or high memory consumption
-* Thread pool starvation (see the following remarks on <xref:System.Collections.Generic.IAsyncEnumerable%601>)
+* Thread pool starvation (see the following remarks on <xref:System.Collections.Generic.IAsyncEnumerable`1>)
 * Slow response times
 * Frequent garbage collection
 
@@ -59,7 +59,7 @@ For more information on paging and limiting the number of returned records, see:
 
 Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
 
-Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
+Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types](../web-api/action-return-types.md#return-ienumerablet-or-iasyncenumerablet).
 
 ## Minimize large object allocations
 
@@ -68,7 +68,7 @@ The [.NET garbage collector](/dotnet/standard/garbage-collection/) manages alloc
 Recommendations:
 
 * **Do** consider caching large objects that are frequently used. Caching large objects prevents expensive allocations.
-* **Do** pool buffers by using an <xref:System.Buffers.ArrayPool%601> to store large arrays.
+* **Do** pool buffers by using an <xref:System.Buffers.ArrayPool`1> to store large arrays.
 * **Do not** allocate many, short-lived large objects on [hot code paths](#understand-hot-code-paths).
 
 Memory issues, such as the preceding, can be diagnosed by reviewing garbage collection (GC) stats in [PerfView](https://github.com/Microsoft/perfview) and examining:
@@ -170,14 +170,14 @@ App diagnostic tools, such as Application Insights, can help to identify common 
 
 All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interface, which has both synchronous and asynchronous overloads. The asynchronous ones should be preferred to avoid blocking thread pool threads. Blocking threads can lead to thread pool starvation.
 
-**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd%2A>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
+**Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
 [!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
 
 In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
 
-**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync%2A> and does not block the thread while reading.
+**Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
 [!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
 

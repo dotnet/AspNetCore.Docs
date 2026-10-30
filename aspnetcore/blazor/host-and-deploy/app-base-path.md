@@ -77,13 +77,13 @@ The remainder of this article focuses on implementing a consistent base path.
 
 ## Server-side Blazor
 
-Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file. The default Blazor hub path is `/_blazor`, and the following example sets the base path of the default hub to `base/path`:
+Map the SignalR hub of a server-side Blazor app by passing the path to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in the `Program` file. The default Blazor hub path is `/_blazor`, and the following example sets the base path of the default hub to `base/path`:
 
 ```csharp
 app.MapBlazorHub("base/path/_blazor");
 ```
 
-The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
+The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
 
 You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
@@ -113,8 +113,8 @@ Configure the `<base>` tag, per the guidance in the [Configure the app base path
 If the app is a hosted Blazor WebAssembly app:
 
 * In the in the **:::no-loc text="Server":::** project (`Program.cs`):
-  * Adjust the path of <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles%2A> (for example, `app.UseBlazorFrameworkFiles("/base/path");`).
-  * Configure calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> (for example, `app.UseStaticFiles("/base/path");`).
+  * Adjust the path of <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles*> (for example, `app.UseBlazorFrameworkFiles("/base/path");`).
+  * Configure calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> (for example, `app.UseStaticFiles("/base/path");`).
 * In the **:::no-loc text="Client":::** project:
   * Configure [`<StaticWebAssetBasePath>`](xref:blazor/fundamentals/static-files#static-web-asset-base-path) in the project file to match the path for serving static web assets (for example, `<StaticWebAssetBasePath>base/path</StaticWebAssetBasePath>
 `).
@@ -186,13 +186,13 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
 :::moniker-end
 
-  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
+  * Option 2: Call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
     ```csharp
     app.UsePathBase("/CoolApp");
     ```
 
-    Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
+    Calling <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> is recommended when you also wish to run the Blazor Server app locally. For example, supply the launch URL in `Properties/launchSettings.json`:
   
     ```xml
     "launchUrl": "https://localhost:{PORT}/CoolApp",
@@ -234,7 +234,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
   **The trailing slash is required.**
 
-  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
+  In the **:::no-loc text="Server":::** project, call <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`) to configure the base path for any following middleware that interacts with the request path:
 
   ```csharp
   app.UsePathBase("/CoolApp");
@@ -243,7 +243,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -325,7 +325,7 @@ In a server-side Blazor app, load the base path from configuration in [`<head>` 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Alternatively, a server-side app can obtain the value from configuration for <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase%2A>. Place the following code ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`). The following example uses the configuration key `AppBasePath`:
+Alternatively, a server-side app can obtain the value from configuration for <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*>. Place the following code ***first*** in the app's request processing pipeline (`Program.cs`) immediately after the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is built (`builder.Build()`). The following example uses the configuration key `AppBasePath`:
 
 ```csharp
 app.UsePathBase($"/{app.Configuration.GetValue<string>("AppBasePath")}");

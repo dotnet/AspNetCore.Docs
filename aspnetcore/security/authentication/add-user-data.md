@@ -3,14 +3,13 @@ title: Add, download, and delete user data to Identity in an ASP.NET Core projec
 ai-usage: ai-assisted
 description: Learn how to add custom user data to Identity in an ASP.NET Core project. Delete data per GDPR.
 ms.date: 07/05/2026
-uid: security/authentication/add-user-data
 ---
 # Add, download, and delete custom user data to Identity in an ASP.NET Core project
 
 This article shows how to:
 
 * Add custom user data to an ASP.NET Core web app.
-* Mark the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](xref:security/gdpr) requirements.
+* Mark the custom user data model with the <xref:Microsoft.AspNetCore.Identity.PersonalDataAttribute> attribute so it's automatically available for download and deletion. Making the data able to be downloaded and deleted helps meet [GDPR](../gdpr.md) requirements.
 
 The project sample is created from a Razor Pages web app, but the instructions are similar for an ASP.NET Core MVC web app.
 
@@ -43,7 +42,7 @@ You can create either a Razor Pages or MVC web app. Both use the same Identity R
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project/Solution...**. 
+* From the Visual Studio **File** menu, select **New** > **Project/Solution...**.
 * Select **ASP.NET Core Web App (Razor Pages)** > **Next**
 * Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code. Select **Next**.
 * Select **Authentication type** > **Individual Accounts** > **Create**
@@ -61,7 +60,7 @@ dotnet new webapp -au Individual -o WebApp1
 
 # [Visual Studio](#tab/visual-studio)
 
-* From the Visual Studio **File** menu, select **New** > **Project/Solution...**. 
+* From the Visual Studio **File** menu, select **New** > **Project/Solution...**.
 * Select **ASP.NET Core Web App (Model-View-Controller)** > **Next**
 * Name the project **WebApp1** if you want it to match the namespace of the [download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/add-user-data) code. Select **Next**.
 * Select **Authentication type** > **Individual Accounts** > **Create**
@@ -126,7 +125,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/10.x/SampleApp/Program.cs#L24)
@@ -173,7 +172,7 @@ Build the project.
 
 ### Update the layout
 
-See [Layout changes](xref:security/authentication/scaffold-identity#layout-changes) for instructions to add sign-in and sign-out links to every page.
+See [Layout changes](scaffold-identity.md#layout-changes) for instructions to add sign-in and sign-out links to every page.
 
 ### Add a migration for the custom user data
 
@@ -325,7 +324,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/10.x/SampleApp/Program.cs#L24)
@@ -372,7 +371,7 @@ Build the project.
 
 ### Update the layout
 
-See [Layout changes](xref:security/authentication/scaffold-identity#layout-changes) for instructions to add sign-in and sign-out links to every page.
+See [Layout changes](scaffold-identity.md#layout-changes) for instructions to add sign-in and sign-out links to every page.
 
 ### Add a migration for the custom user data
 
@@ -524,7 +523,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/10.x/SampleApp/Program.cs#L24)
@@ -571,7 +570,7 @@ Build the project.
 
 ### Update the layout
 
-See [Layout changes](xref:security/authentication/scaffold-identity#layout-changes) for instructions to add sign-in and sign-out links to every page.
+See [Layout changes](scaffold-identity.md#layout-changes) for instructions to add sign-in and sign-out links to every page.
 
 ### Add a migration for the custom user data
 
@@ -683,7 +682,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to [`Program.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/security/authentication/add-user-data/samples/6.x/SampleApp/Program.cs#L24)
@@ -730,7 +729,7 @@ Build the project.
 
 ### Update the layout
 
-See [Layout changes](xref:security/authentication/scaffold-identity#layout-changes) for instructions to add sign-in and sign-out links to every page.
+See [Layout changes](scaffold-identity.md#layout-changes) for instructions to add sign-in and sign-out links to every page.
 
 ### Add a migration for the custom user data
 
@@ -830,7 +829,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.
@@ -917,7 +916,7 @@ public void ConfigureServices(IServiceCollection services)
         .AddEntityFrameworkStores<ApplicationDbContext>()
         .AddDefaultTokenProviders();
 
-    services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, 
+    services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>,
         AdditionalUserClaimsPrincipalFactory>();
 ```
 
@@ -933,13 +932,13 @@ public class ApplicationUser : IdentityUser
 The `AdditionalUserClaimsPrincipalFactory` implements the `UserClaimsPrincipalFactory` interface. A new role claim is added to the `ClaimsPrincipal`.
 
 ```csharp
-public class AdditionalUserClaimsPrincipalFactory 
+public class AdditionalUserClaimsPrincipalFactory
         : UserClaimsPrincipalFactory<ApplicationUser, IdentityRole>
 {
-    public AdditionalUserClaimsPrincipalFactory( 
+    public AdditionalUserClaimsPrincipalFactory(
         UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole> roleManager, 
-        IOptions<IdentityOptions> optionsAccessor) 
+        RoleManager<IdentityRole> roleManager,
+        IOptions<IdentityOptions> optionsAccessor)
         : base(userManager, roleManager, optionsAccessor)
     {}
 
@@ -1052,7 +1051,7 @@ PowerShell uses semicolon as a command separator. When using PowerShell, escape 
 
 ---
 
-Follow the instructions in [Migrations, UseAuthentication, and layout](xref:security/authentication/scaffold-identity#efm) to perform the following steps:
+Follow the instructions in [Migrations, UseAuthentication, and layout](scaffold-identity.md#migrations-useauthentication-and-layout) to perform the following steps:
 
 * Create a migration and update the database.
 * Add `UseAuthentication` to `Startup.Configure`.

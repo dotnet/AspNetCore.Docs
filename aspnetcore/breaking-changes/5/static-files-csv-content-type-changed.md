@@ -28,7 +28,7 @@ Compliance with the [RFC 7111](https://tools.ietf.org/html/rfc7111#section-5.1) 
 
 ## Recommended action
 
-If this change impacts your app, you can customize the file extension-to-MIME type mapping. To revert to the `application/octet-stream` MIME type, modify the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A> method call in `Startup.Configure`. For example:
+If this change impacts your app, you can customize the file extension-to-MIME type mapping. To revert to the `application/octet-stream` MIME type, modify the <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> method call in `Startup.Configure`. For example:
 
 ```csharp
 var provider = new FileExtensionContentTypeProvider();

@@ -106,13 +106,13 @@ Because requests are forwarded by reverse proxy, use the [forwarded headers midd
 
 Forwarded headers middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
 
-Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders%2A> method before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
+Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
 :::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_1":::
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
-Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies%2A> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks%2A> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address `10.0.0.100` to the forwarded headers middleware `KnownProxies`:
+Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address `10.0.0.100` to the forwarded headers middleware `KnownProxies`:
 
 :::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_all":::
 
@@ -339,18 +339,18 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection to persist and encrypt the key ring, see:
 
-* <xref:security/data-protection/implementation/key-storage-providers>
-* <xref:security/data-protection/implementation/key-encryption-at-rest>
+* [Key storage providers in ASP.NET Core](../security/data-protection/implementation/key-storage-providers.md)
+* [Key encryption at rest in Windows and Azure using ASP.NET Core](../security/data-protection/implementation/key-encryption-at-rest.md)
 
 ## Long request header fields
 
@@ -465,12 +465,12 @@ Configure the app to use a certificate in development for the `dotnet run` comma
 
 * Harden the security by employing some of the practices depicted in the following */etc/nginx/nginx.conf* file.
 
-* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see <xref:security/enforcing-ssl>.
+* The following example doesn't configure the server to redirect insecure requests. We recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md).
 
   > [!NOTE]
   > For development environments where the server configuration handles secure redirection instead of HTTPS redirection middleware, we recommend using temporary redirects (302) rather than permanent redirects (301). Link caching can cause unstable behavior in development environments.
 
-* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see <xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol>.
+* Adding a `Strict-Transport-Security` (HSTS) header ensures all subsequent requests made by the client are over HTTPS. For guidance on setting the `Strict-Transport-Security` header, see [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol).
 
 * If HTTPS will be disabled in the future, use one of the following approaches:
 

@@ -58,7 +58,7 @@ Submitting the form validates every tracked field. If any field is invalid, the 
 
 ## Validation messages, localization, and accessibility
 
-Client-side validation uses <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage%601> to display messages for individual fields and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> to display messages for the whole form, which is the same way that interactive validation reports messages to users.
+Client-side validation uses <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> to display messages for individual fields and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> to display messages for the whole form, which is the same way that interactive validation reports messages to users.
 
 When validation localization is configured, error messages are localized on the server as the page is rendered, so client-side validation displays the same localized strings as the server-side experience. Localization requires <xref:Microsoft.Extensions.Validation?displayProperty=fullName>. For more information, see <xref:fundamentals/validation#localize-validation-messages>.
 
@@ -193,7 +193,7 @@ Method | Description
 
 ## Limitations
 
-* Client-side rules are emitted only for fields included in server-side validation as well. Without <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, only top-level model properties are validated. Validating nested objects and collections requires the app to call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A> and the model to be discovered. For more information, see <xref:fundamentals/validation#nested-objects-and-collections>. Note that this limitation is an intentional feature to help prevent bugs where the authoritative server validation would be missing due to misconfiguration.
+* Client-side rules are emitted only for fields included in server-side validation as well. Without <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, only top-level model properties are validated. Validating nested objects and collections requires the app to call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> and the model to be discovered. For more information, see <xref:fundamentals/validation#nested-objects-and-collections>. Note that this limitation is an intentional feature to help prevent bugs where the authoritative server validation would be missing due to misconfiguration.
 * Inputs added to an existing form by a later [streaming rendering](xref:blazor/components/rendering#streaming-rendering) update don't receive client-side validation. A form delivered in a single streamed batch is covered normally.
 * Only the attributes listed in [Supported validation attributes](#supported-validation-attributes) have built-in client-side implementations. For example, a <xref:System.ComponentModel.DataAnnotations.RangeAttribute> with a non-numeric operand type is only enforced on the server. Other attributes require a [custom client-side validation rule](#custom-client-side-validation-rules).
 * Custom JavaScript validators are synchronous. Rules that require a network call or other asynchronous work must run on the server or use asynchronous validation with an interactive render mode. For more information, see <xref:blazor/forms/validation-advanced>.

@@ -67,7 +67,7 @@ app.UseAuthorization();
 app.MapReverseProxy();
 ```
 
-See <xref:security/authentication/index> for setting up your preferred type of authentication.
+See [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md) for setting up your preferred type of authentication.
 
 ### Special values
 
@@ -75,7 +75,7 @@ In addition to custom policy names, YARP supports two special values for a route
 
 #### `default`
 
-The `default` value uses the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>. By default, this policy requires an authenticated user.
+The `default` value uses the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType>. By default, this policy requires an authenticated user.
 
 #### `anonymous`
 
@@ -83,7 +83,7 @@ The `anonymous` value allows anonymous access to the route regardless of the con
 
 #### Fallback policy
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used for a route that doesn't specify an authorization parameter. By default, the fallback policy is `null`, so such a route doesn't require authorization. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> is used for a route that doesn't specify an authorization parameter. By default, the fallback policy is `null`, so such a route doesn't require authorization. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#default-and-fallback-policies).
 
 ## Flowing Credentials
 

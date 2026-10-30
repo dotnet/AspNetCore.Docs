@@ -18,7 +18,7 @@ Blazor provides its own JS interop mechanism based on the <xref:Microsoft.JSInte
 * <xref:blazor/js-interop/call-javascript-from-dotnet>
 * <xref:blazor/js-interop/call-dotnet-from-javascript>
 
-This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking during code execution if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
+This article describes an alternative JS interop approach specific to client-side components executed on WebAssembly. These approaches are appropriate when you only expect to run on client-side WebAssembly. Library authors can use these approaches to optimize JS interop by checking during code execution if the app is running on WebAssembly in a browser (<xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType>). The approaches described in this article should be used to replace the obsolete unmarshalled JS interop API when migrating to .NET 7 or later.
 
 > [!NOTE]
 > This article focuses on JS interop in client-side components. For guidance on calling .NET in JavaScript apps, see <xref:client-side/dotnet-interop/wasm-browser-app>.
@@ -43,7 +43,7 @@ For more information, see <xref:client-side/dotnet-interop/wasm-browser-app#expe
 
 ## Namespace
 
-The JS interop API (<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>) described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
+The JS interop API (<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType>) described in this article is controlled by attributes in the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> namespace.
 
 ## Enable unsafe blocks
 
@@ -81,7 +81,7 @@ This section explains how to call JS functions from .NET.
 
 In the following `CallJavaScript1` component:
 
-* The `CallJavaScript1` module is imported asynchronously from the [collocated JS file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>.
+* The `CallJavaScript1` module is imported asynchronously from the [collocated JS file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType>.
 * The imported `getMessage` JS function is called by `GetWelcomeMessage`.
 * The returned welcome message string is displayed in the UI via the `message` field.
 
@@ -145,7 +145,7 @@ In the following `CallJavaScript1` component:
 :::moniker-end
 
 > [!NOTE]
-> Include a conditional check in code with <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to ensure that the JS interop is only called by a component rendered on the client. This is important for libraries/NuGet packages that target server-side components, which can't execute the code provided by this JS interop API.
+> Include a conditional check in code with <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType> to ensure that the JS interop is only called by a component rendered on the client. This is important for libraries/NuGet packages that target server-side components, which can't execute the code provided by this JS interop API.
 
 To import a JS function to call it from C#, use the [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute) on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](xref:blazor/js-interop/index#javascript-isolation-in-javascript-modules).
 
@@ -193,11 +193,11 @@ The app's namespace for the preceding `CallJavaScript1` partial class is `Blazor
 
 :::moniker-end
 
-In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
+In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func`1> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods, which are covered in the [Call .NET from JavaScript](#call-net-from-javascript) section later in this article.
 
 For additional type mapping information and examples, see <xref:client-side/dotnet-interop/index#type-mappings>.
 
-The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
+The module name in the `[JSImport]` attribute and the call to load the module in the component with <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> must match and be unique in the app. When authoring a library for deployment in a NuGet package, we recommend using the NuGet package namespace as a prefix in module names. In the following example, the module name reflects the `Contoso.InteropServices.JavaScript` package and a folder of user message interop classes (`UserMessages`):
 
 ```csharp
 [JSImport("getMessage", 
@@ -401,10 +401,10 @@ export async function setMessage() {
 
 ## Multiple module import calls
 
-After a JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or tab without the user manually reloading the app. <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can be called multiple times on the same module without a significant performance penalty when:
+After a JS module is loaded, the module's JS functions are available to the app's components and classes as long as the app is running in the browser window or tab without the user manually reloading the app. <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can be called multiple times on the same module without a significant performance penalty when:
 
-* The user visits a component that calls <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> to import a module, navigates away from the component, and then returns to the component where <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> is called again for the same module import.
-* The same module is used by different components and loaded by <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> in each of the components.
+* The user visits a component that calls <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> to import a module, navigates away from the component, and then returns to the component where <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> is called again for the same module import.
+* The same module is used by different components and loaded by <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> in each of the components.
 
 ## Use of a single JavaScript module across components
 
@@ -421,7 +421,7 @@ The following components, classes, C# methods, and JS functions are used:
 * `wwwroot/js/interop.js` file: Contains the JS functions.
   * `getMessage`: Returns a welcome message when called by C# code in a component.
   * `setMessage`: Calls the `GetMessageFromDotnet` C# method and assigns the returned welcome message to a DOM `<span>` element.
-* `Program.cs` calls <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> to load the module from `wwwroot/js/interop.js`.
+* `Program.cs` calls <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> to load the module from `wwwroot/js/interop.js`.
 * `CallJavaScript2` component (`CallJavaScript2.razor`): Calls `GetWelcomeMessage` and displays the returned welcome message in the component's UI.
 * `CallDotNet2` component (`CallDotNet2.razor`): Calls `SetWelcomeMessage`.
 
@@ -471,7 +471,7 @@ Make the <xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullNam
 using System.Runtime.InteropServices.JavaScript;
 ```
 
-Load the module in `Program.cs` before <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost.RunAsync%2A?displayProperty=nameWithType> is called:
+Load the module in `Program.cs` before <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.WebAssemblyHost.RunAsync*?displayProperty=nameWithType> is called:
 
 ```csharp
 if (OperatingSystem.IsBrowser())

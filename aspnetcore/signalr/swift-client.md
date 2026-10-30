@@ -72,7 +72,7 @@ await connection.on("ReceiveMessage") { (user: String, message: String) in
 }
 ```
 
-The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 
@@ -242,6 +242,6 @@ let connection = HubConnectionBuilder()
 * [.NET client](xref:signalr/dotnet-client)
 * [JavaScript client](xref:signalr/javascript-client)
 * [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Cross-Origin Requests (CORS)](xref:security/cors)
+* [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Troubleshoot connection errors](xref:signalr/troubleshoot)

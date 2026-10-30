@@ -35,9 +35,9 @@ This is text from a static text file resource.
 
 The following Razor component:
 
-* Calls <xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A> to obtain a <xref:System.IO.Stream> for the resource.
+* Calls <xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync*> to obtain a <xref:System.IO.Stream> for the resource.
 * Reads the <xref:System.IO.Stream> with a <xref:System.IO.StreamReader>.
-* Calls <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType> to read the file.
+* Calls <xref:System.IO.StreamReader.ReadToEndAsync*?displayProperty=nameWithType> to read the file.
 
 `Pages/StaticAssetExample.razor`:
 
@@ -98,7 +98,7 @@ Select **Strings** > **Files** from the dropdown list.
 
 Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to confirm editing the file, select **Yes**. Navigate to the `Resources` folder, select the `Data.txt` file, and select **Open**.
 
-In the following example component, <xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType> obtains the string resource's text for display.
+In the following example component, <xref:System.Resources.ResourceManager.GetString*?displayProperty=nameWithType> obtains the string resource's text for display.
 
 > [!WARNING]
 > Never use <xref:System.Resources.ResourceManager> methods with untrusted data.
@@ -147,7 +147,7 @@ Select **Add Resource** > **Add Existing File**. If prompted by Visual Studio to
 In the following example component:
 
 * The app's assembly name is `WinFormsBlazor`. The <xref:System.Resources.ResourceManager>'s base name is set to the assembly name of `Form1` ( `WinFormsBlazor.Form1`).
-* <xref:System.Resources.ResourceManager.GetString%2A?displayProperty=nameWithType> obtains the string resource's text for display.
+* <xref:System.Resources.ResourceManager.GetString*?displayProperty=nameWithType> obtains the string resource's text for display.
 
 > [!WARNING]
 > Never use <xref:System.Resources.ResourceManager> methods with untrusted data.
@@ -214,8 +214,8 @@ The following Jeep&reg; image is also used in this section's example. You can ri
 In a Razor component:
 
 * The static text file contents can be read using the following techniques:
-  * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync%2A>)
-  * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync%2A?displayProperty=nameWithType>
+  * .NET MAUI: [:::no-loc text=".NET MAUI file system helpers":::](/dotnet/maui/platform-integration/storage/file-system-helpers) (<xref:Microsoft.Maui.Storage.FileSystem.OpenAppPackageFileAsync*>)
+  * WPF and Windows Forms: <xref:System.IO.StreamReader.ReadToEndAsync*?displayProperty=nameWithType>
 * JavaScript files are available at logical subpaths of `wwwroot` using `./` paths.
 * The image can be the source attribute (`src`) of an image tag (`<img>`).
 

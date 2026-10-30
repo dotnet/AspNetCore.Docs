@@ -24,7 +24,7 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 :::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/Program.cs" id="snippet_first" highlight="8-21":::
 
-The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use%2A?displayProperty=fullName>. The preceding `Use` extension method adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
+The preceding highlighted inline middleware is used to demonstrate creating a middleware component by calling <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*?displayProperty=fullName>. The preceding `Use` extension method adds a middleware [delegate](/dotnet/csharp/programming-guide/delegates/) defined in-line to the application's request pipeline.
 
 There are two overloads available for the `Use` extension:
 
@@ -64,7 +64,7 @@ The following code calls the middleware from `Program.cs`:
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*.
 
-Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware%2A> can also accept additional parameters directly.
+Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
 
 ## Per-request middleware dependencies
 
@@ -121,7 +121,7 @@ Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populat
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request middleware dependencies](#per-request-middleware-dependencies) section if you need to share services with middleware within a request.
 
-Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware%2A> can also accept additional parameters directly.
+Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
 
 ## Per-request middleware dependencies
 
@@ -164,7 +164,7 @@ The following code calls the middleware from `Startup.Configure`:
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/6sample)
+* [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/samples/6/WebMiddleware)
 * [UseExtensions source on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/Extensions/UseExtensions.cs)
 * [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
