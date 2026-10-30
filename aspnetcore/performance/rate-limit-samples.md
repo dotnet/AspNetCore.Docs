@@ -2,7 +2,7 @@
 title: Rate limiting middleware samples
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
-ms.date: 03/05/2025
+ms.date: 10/30/2026
 uid: performance/rate-limit-sample
 ---
 
@@ -58,7 +58,7 @@ See [the samples repository for the complete `Program.cs`](https://github.com/do
 
 ## Chained limiters in a named policy
 
-To combine multiple limiters within a named policy (rather than globally), use <xref:System.Threading.RateLimiting.RateLimiter.CreateChained%2A> inside the policy's partition factory:
+To combine multiple limiters within a named policy (rather than globally), use <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*> inside the policy's partition factory:
 
 ```csharp
 builder.Services.AddRateLimiter(options =>
