@@ -658,7 +658,7 @@ Although the scaffolder generates most of the necessary code, you need to update
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
-Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](accconfirm.md#require-email-confirmation).
+Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](accconfirm.md).
 
 When scaffolding Identity with a new data context into a project with existing individual accounts, open `Startup.ConfigureServices` and remove the calls to:
 
