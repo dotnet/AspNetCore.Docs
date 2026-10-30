@@ -51,7 +51,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](../../../../razor-pages/ui-class.md). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -196,7 +196,7 @@ The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](../../../../migration/fx-to-core/examples/identity.md).
 
 ## Setting password strength
 
@@ -240,10 +240,10 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Create an ASP.NET Core app with user data protected by authorization](../../../authorization/secure-data.md)
 * [Add, download, and delete user data to Identity in an ASP.NET Core project](../../add-user-data.md)
 * [Enable QR code generation for TOTP authentication](../../identity-enable-qrcodes.md)
-* <xref:migration/fx-to-core/examples/identity>
+* [Migrate Authentication and Identity to ASP.NET Core](../../../../migration/fx-to-core/examples/identity.md)
 * [Account confirmation and password recovery](../../accconfirm.md)
 * [Two-factor authentication with SMS in ASP.NET Core](../../2fa.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -302,7 +302,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](../../../../razor-pages/ui-class.md). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -464,7 +464,7 @@ The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](../../../../migration/fx-to-core/examples/identity.md).
 
 ## Setting password strength
 
@@ -497,9 +497,9 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Create an ASP.NET Core app with user data protected by authorization](../../../authorization/secure-data.md)
 * [Add, download, and delete user data to Identity in an ASP.NET Core project](../../add-user-data.md)
 * [Enable QR code generation for TOTP authentication](../../identity-enable-qrcodes.md)
-* <xref:migration/fx-to-core/examples/identity>
+* [Migrate Authentication and Identity to ASP.NET Core](../../../../migration/fx-to-core/examples/identity.md)
 * [Account confirmation and password recovery](../../accconfirm.md)
 * [Two-factor authentication with SMS in ASP.NET Core](../../2fa.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

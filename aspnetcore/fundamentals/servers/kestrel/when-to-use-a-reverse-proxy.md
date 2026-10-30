@@ -43,5 +43,5 @@ A reverse proxy:
 
 ## Related content
 
-<xref:host-and-deploy/proxy-load-balancer>
+[Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
 

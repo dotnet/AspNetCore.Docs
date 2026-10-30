@@ -112,4 +112,4 @@ dbug: ClientIpSafelistComponents.Filters.ClientIpCheckPageFilter[0]
 
 * <xref:fundamentals/middleware/index>
 * [Action filters](xref:mvc/controllers/filters#action-filters)
-* <xref:razor-pages/filter>
+* [Filter methods for Razor Pages in ASP.NET Core](../razor-pages/filter.md)

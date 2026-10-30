@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to restrict ASP.NET Core Razor Pages page access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/24/2026
-uid: razor-pages/security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core Razor Pages
 
@@ -17,7 +16,7 @@ This article uses Razor Pages examples and focuses on Razor Pages authorization 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 * <xref:mvc/security/authorization/roles>
 
-Examples throughout this article apply role-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, role-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
+Examples throughout this article apply role-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, role-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
 ## Add Role services to Identity
 

@@ -723,7 +723,7 @@ If the `EvenMorePages` folder in the preceding example has an imports file with 
 
 The `@page` directive has different effects depending on the type of the file where it appears. The directive:
 
-* In a `.cshtml` file indicates that the file is a Razor Page. For more information, see [Custom routes](xref:razor-pages/index#custom-routes) and <xref:razor-pages/index>.
+* In a `.cshtml` file indicates that the file is a Razor Page. For more information, see [Custom routes](../../razor-pages/index.md#custom-routes) and [Razor Pages architecture and concepts in ASP.NET Core](../../razor-pages/index.md).
 * Specifies that a Razor component should handle requests directly. For more information, see <xref:blazor/fundamentals/routing>.
 
 :::moniker range=">= aspnetcore-5.0"
@@ -1041,7 +1041,7 @@ C# Razor keywords must be double-escaped with `@(@C# Razor Keyword)` (for exampl
 
 ::: moniker range=">= aspnetcore-5.0"
 
-The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. By default, the generated code files aren't emitted. To enable emitting the code files, set the `EmitCompilerGeneratedFiles` directive in the project file (`.csproj`) to `true`:
+The [Razor SDK](../../razor-pages/sdk.md) handles compilation of Razor files. By default, the generated code files aren't emitted. To enable emitting the code files, set the `EmitCompilerGeneratedFiles` directive in the project file (`.csproj`) to `true`:
 
 ```xml
 <PropertyGroup>
@@ -1055,7 +1055,7 @@ When building a 6.0 project (`net6.0`) in the `Debug` build configuration, the R
 
 ::: moniker range="< aspnetcore-5.0"
 
-The [Razor SDK](xref:razor-pages/sdk) handles compilation of Razor files. When building a project, the Razor SDK generates an `obj/{BUILD CONFIGURATION}/{TARGET FRAMEWORK MONIKER}/Razor` directory in the project root. The directory structure within the `Razor` directory mirrors the project's directory structure.
+The [Razor SDK](../../razor-pages/sdk.md) handles compilation of Razor files. When building a project, the Razor SDK generates an `obj/{BUILD CONFIGURATION}/{TARGET FRAMEWORK MONIKER}/Razor` directory in the project root. The directory structure within the `Razor` directory mirrors the project's directory structure.
 
 Consider the following directory structure in an ASP.NET Core Razor Pages 2.1 project:
 

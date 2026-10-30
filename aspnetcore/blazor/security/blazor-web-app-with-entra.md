@@ -1107,7 +1107,7 @@ For more information on using a shared Data Protection key ring and key storage 
 * [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage)
 * [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault)
 * [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
+* [Host ASP.NET Core in a web farm: Data Protection](../../host-and-deploy/web-farm.md#data-protection)
 * [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
 * [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
 * [Azure Key Vault documentation](/azure/key-vault/general/)

@@ -3,7 +3,6 @@ title: Log creation and redirection with the ASP.NET Core Module
 description: Configure IIS and the ASP.NET Core Module to capture logs and diagnostic information.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 02/07/2020
-uid: host-and-deploy/iis/logging-and-diagnostics
 ---
 # IIS log creation and redirection
 
@@ -13,7 +12,7 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
 Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
 
@@ -80,4 +79,4 @@ The handler settings can also be provided via environment variables:
 > [!WARNING]
 > Do **not** leave debug logging enabled in the deployment for longer than required to troubleshoot an issue. The size of the log isn't limited. Leaving the debug log enabled can exhaust the available disk space and crash the server or app service.
 
-See [Configuration of ASP.NET Core Module with `web.config`](xref:host-and-deploy/iis/web-config#configuration-of-aspnet-core-module-with-webconfig) for an example of the `aspNetCore` element in the `web.config` file.
+See [Configuration of ASP.NET Core Module with `web.config`](web-config.md#configuration-of-aspnet-core-module-with-webconfig) for an example of the `aspNetCore` element in the `web.config` file.

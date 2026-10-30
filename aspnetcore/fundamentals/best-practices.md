@@ -132,7 +132,7 @@ Recommendations:
 
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
 * **Do** consider handling long-running requests with [background services](xref:fundamentals/host/hosted-services) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
-* **Do** use real-time communication options, such as [SignalR](xref:signalr/introduction), to communicate with clients asynchronously.
+* **Do** use real-time communication options, such as [SignalR](../signalr/introduction.md), to communicate with clients asynchronously.
 
 ## Minify client assets
 
@@ -362,7 +362,7 @@ Using in-process hosting, an ASP.NET Core app runs in the same process as its II
 
 Projects default to the in-process hosting model in ASP.NET Core 3.0 or later.
 
-For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
+For more information, see [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Don't assume that HttpRequest.ContentLength is not null
 

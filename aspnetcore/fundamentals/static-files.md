@@ -56,7 +56,7 @@ Static file middleware enables static file serving and is used by an app when <x
 
 :::moniker-end
 
-You can also serve static web assets from [referenced projects and packages](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl).
+You can also serve static web assets from [referenced projects and packages](../razor-pages/ui-class.md#consume-content-from-a-referenced-rcl).
 
 ## Change the web root directory
 
@@ -198,7 +198,7 @@ To ensure assets from `wwwroot-custom` are always returned, use ***one*** of the
 
 * Set `ASPNETCORE_ENVIRONMENT` in `Properties/launchSettings.json` to any value other than `Development`.
 
-* Disable static web assets by setting `<StaticWebAssetsEnabled>` to `false` in the app's project file. ***WARNING:*** Disabling static web assets disables [Razor class libraries](xref:razor-pages/ui-class).
+* Disable static web assets by setting `<StaticWebAssetsEnabled>` to `false` in the app's project file. ***WARNING:*** Disabling static web assets disables [Razor class libraries](../razor-pages/ui-class.md).
 
 * Add the following XML to the project file:
 
@@ -976,7 +976,7 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 
 * The URLs for content exposed through <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> follow the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 
-* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and doesn't handle requests.
+* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](../host-and-deploy/aspnet-core-module.md) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and doesn't handle requests.
 
 * Complete the following steps in IIS Manager to remove the IIS static file handler at the server or website level:
 

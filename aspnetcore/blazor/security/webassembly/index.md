@@ -100,7 +100,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 :::moniker-end
 
 > [!IMPORTANT]
-> For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
+> For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../../migration/50-to-60.md#project-templates-use-duende-identity-server).
 
 ## Authentication process with OIDC
 
@@ -373,7 +373,7 @@ For more information, see the following resources:
 * Microsoft identity platform documentation
   * [General documentation](/entra/identity-platform/)
   * [Access tokens](/entra/identity-platform/access-tokens)
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
   * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)

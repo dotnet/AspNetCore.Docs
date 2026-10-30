@@ -19,7 +19,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Configure request delegates by using the <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension methods. You can specify an individual request delegate inline as an anonymous method (called inline middleware) or define it in a reusable class. These inline anonymous methods or reusable classes are called *middleware* or *middleware components*. Each middleware in the request pipeline is responsible for invoking the next middleware in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-For more information about the difference between request pipelines in ASP.NET Core and ASP.NET 4.x with additional middleware samples, see <xref:migration/fx-to-core/areas/http-modules>.
+For more information about the difference between request pipelines in ASP.NET Core and ASP.NET 4.x with additional middleware samples, see [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md).
 
 ## Role of middleware by app type
 
@@ -1124,7 +1124,7 @@ For more information on ordering <xref:Microsoft.AspNetCore.Builder.CorsMiddlewa
 
 ## Forwarded headers middleware order
 
-Run forwarded headers middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
+Run forwarded headers middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers-middleware-order).
 
 ## Built-in middleware
 
@@ -1149,8 +1149,8 @@ Middleware | Description | UI stack | Order
 [CORS](../../security/cors.md) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
 [Developer Exception Page](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that's intended for use only in the `Development` environment. | All | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
 [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
-[Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
-[Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
+[Forwarded Headers](../../host-and-deploy/proxy-load-balancer.md) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
+[Health Check](../../host-and-deploy/health-checks.md) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
 [Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |
 All |
 [HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
@@ -1180,7 +1180,7 @@ All |
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
 * [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#grpc-web)
-* <xref:migration/fx-to-core/areas/http-modules>
+* [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>

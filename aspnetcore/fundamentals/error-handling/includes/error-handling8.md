@@ -277,7 +277,7 @@ The hosting layer can show an error page for a captured startup error only if th
 * The dotnet process crashes.
 * No error page is displayed when the HTTP server is [Kestrel](xref:fundamentals/servers/kestrel).
 
-When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) if the process can't start. For more information, see <xref:test/troubleshoot-azure-iis>.
+When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) if the process can't start. For more information, see <xref:test/troubleshoot-azure-iis>.
 
 ## Database error page
 

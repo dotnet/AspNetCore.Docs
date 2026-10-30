@@ -2,7 +2,6 @@
 title: Migrate from ASP.NET Core 1.x to 2.0
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
 ms.date: 12/05/2019
-uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0
 
@@ -185,7 +184,7 @@ If you are using the Application Insights SDK directly, continue to do so. The 2
 
 ## Adopt authentication/Identity improvements
 
-ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrate Authentication and Identity to ASP.NET Core 2.0](identity-2x.md).
 
 ## Related content
 

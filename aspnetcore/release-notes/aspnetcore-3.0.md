@@ -70,7 +70,7 @@ For more information, see [Overview for gRPC on .NET](../grpc/index.md).
 
 ## SignalR
 
-See [Update SignalR code](xref:migration/22-to-30#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
+See [Update SignalR code](../migration/22-to-30.md#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
 
 In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
@@ -356,7 +356,7 @@ Options for certificate authentication include the ability to:
 
 A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md).
 
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HTTP.sys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](../host-and-deploy/iis/index.md) and [HTTP.sys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -395,7 +395,7 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
@@ -419,7 +419,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
 * Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
-For more information, see <xref:migration/22-to-30#kestrel>.
+For more information, see [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#kestrel).
 
 ## HTTP/2 enabled by default
 
@@ -464,8 +464,8 @@ Health Checks endpoints can:
 
 For more information, see the following articles:
 
-* <xref:migration/22-to-30#health-checks>
-* <xref:host-and-deploy/health-checks>
+* [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#health-checks)
+* [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md)
 
 ## Pipes on HttpContext
 
@@ -485,13 +485,13 @@ For more information, see:
 
 * [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
 * <xref:fundamentals/host/hosted-services>
-* <xref:host-and-deploy/windows-service>
+* [Host ASP.NET Core in a Windows Service](../host-and-deploy/windows-service.md)
 
 ## Forwarded headers middleware improvements
 
-In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
+In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](../host-and-deploy/proxy-load-balancer.md#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-This scenario is fixed in ASP.NET Core 3.0. The host enables the [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
+This scenario is fixed in ASP.NET Core 3.0. The host enables the [forwarded headers middleware](../host-and-deploy/proxy-load-balancer.md#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
 ## Performance improvements
 

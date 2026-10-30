@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to host an ASP.NET Core app in a Windows Service.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/27/2026
-uid: host-and-deploy/windows-service
 ---
 # Host ASP.NET Core in a Windows Service
 
@@ -54,7 +53,7 @@ The following sample apps accompany this article:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
+For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -208,7 +207,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ## Proxy server and load balancer scenarios
 
-Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
 ## Configure endpoints
 
@@ -378,7 +377,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
+For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -532,7 +531,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ## Proxy server and load balancer scenarios
 
-Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
 ## Configure endpoints
 
@@ -702,7 +701,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
+For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -855,7 +854,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ## Proxy server and load balancer scenarios
 
-Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
 ## Configure endpoints
 
@@ -1025,7 +1024,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and <xref:migration/22-to-30>.
+For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -1178,7 +1177,7 @@ Remove-Service -Name {SERVICE NAME}
 
 ## Proxy server and load balancer scenarios
 
-Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+Services that interact with requests from the Internet or a corporate network and are behind a proxy or load balancer might require additional configuration. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
 ## Configure endpoints
 

@@ -5,7 +5,6 @@ description: Learn how to create and use authorization policy handlers for enfor
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: mvc
 ms.date: 07/21/2026
-uid: razor-pages/security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core Razor Pages
 
@@ -29,4 +28,4 @@ Apply policies to Razor Pages using the `[Authorize]` attribute with the policy 
 
 Policies can't be applied at the page handler level, they must be applied to the <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> class.
 
-Policies can also be applied to pages using an [authorization convention](xref:razor-pages/security/authorization/conventions).
+Policies can also be applied to pages using an [authorization convention](conventions.md).

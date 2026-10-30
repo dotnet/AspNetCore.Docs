@@ -5,7 +5,6 @@ description: Work with the ASP.NET Core SignalR JavaScript client, including pac
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-js
 ms.date: 09/20/2026
-uid: signalr/javascript-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR JavaScript client, so I can connect to a SignalR hub and use hub and client methods in JavaScript.
 ---
@@ -366,9 +365,9 @@ For the refresh options, the success and failure handlers, and the server config
 
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
+* [Hubs](hubs.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)
 
 :::moniker-end
 
@@ -671,11 +670,11 @@ For the preceding code example:
 * [JavaScript API reference](/javascript/api/@microsoft/signalr)
 * [JavaScript tutorial](xref:tutorials/signalr)
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
-* [.NET client](xref:signalr/dotnet-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Hubs](hubs.md)
+* [.NET client](dotnet-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
 * [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)
 
 :::moniker-end

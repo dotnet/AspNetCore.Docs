@@ -12,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Kirk Larkin](https://tw
 
 :::moniker range=">= aspnetcore-6.0"
 
-Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](xref:host-and-deploy/iis/index), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
+Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. Windows Authentication is used for servers that run on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
@@ -124,18 +124,18 @@ Update the `iisSettings` node of the `launchSettings.json` file:
 
 ### IIS
 
-IIS uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to host ASP.NET Core apps. Windows Authentication is configured for IIS via the *web.config* file. The following sections show how to:
+IIS uses the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) to host ASP.NET Core apps. Windows Authentication is configured for IIS via the *web.config* file. The following sections show how to:
 
 * Provide a local *web.config* file that activates Windows Authentication on the server when the app is deployed.
 * Use the IIS Manager to configure the *web.config* file of an ASP.NET Core app that has already been deployed to the server.
 
-If you haven't already done so, enable IIS to host ASP.NET Core apps. For more information, see <xref:host-and-deploy/iis/index>.
+If you haven't already done so, enable IIS to host ASP.NET Core apps. For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md).
 
-Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](xref:host-and-deploy/iis/advanced#iis-configuration).
+Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](../../host-and-deploy/iis/advanced.md#iis-configuration).
 
-[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
+[IIS integration middleware](../../host-and-deploy/iis/index.md#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](../../host-and-deploy/iis/index.md#iis-options).
 
-The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](../../host-and-deploy/aspnet-core-module.md#attributes-of-the-aspnetcore-element).
 
 Use **either** of the following approaches:
 
@@ -143,7 +143,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/samples/snapshot/web_2.config)]
 
-  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/web-config>.
+  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see [web.config file](../../host-and-deploy/iis/web-config.md).
 
 * **After publishing and deploying the project,** perform server-side configuration with the IIS Manager:
 
@@ -156,7 +156,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/samples/snapshot/web_1.config?highlight=4-5)]
 
-  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
+  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](../../host-and-deploy/iis/index.md#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
 
   When IIS Manager is used to add the IIS configuration, it only affects the app's *web.config* file on the server. A subsequent deployment of the app may overwrite the settings on the server if the server's copy of *web.config* is replaced by the project's *web.config* file. Use **either** of the following approaches to manage the settings:
 
@@ -313,20 +313,20 @@ While the [`Microsoft.AspNetCore.Authentication.Negotiate` package](https://www.
 
 ## Claims transformations
 
-When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](xref:host-and-deploy/iis/in-process-hosting#differences-between-in-process-and-out-of-process-hosting).
+When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](../../host-and-deploy/iis/in-process-hosting.md#differences-between-in-process-and-out-of-process-hosting).
 
 ## Additional resources
 
 * [dotnet publish](/dotnet/core/tools/dotnet-publish)
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/visual-studio-publish-profiles>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
+* [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../../host-and-deploy/visual-studio-publish-profiles.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](xref:host-and-deploy/iis/index), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
+Windows Authentication (also known as Negotiate, Kerberos, or NTLM authentication) can be configured for ASP.NET Core apps hosted with [IIS](../../host-and-deploy/iis/index.md), [Kestrel](xref:fundamentals/servers/kestrel), or [HTTP.sys](xref:fundamentals/servers/httpsys).
 
 Windows Authentication relies on the operating system to authenticate users of ASP.NET Core apps. You can use Windows Authentication when your server runs on a corporate network using Active Directory domain identities or Windows accounts to identify users. Windows Authentication is best suited to intranet environments where users, client apps, and web servers belong to the same Windows domain.
 
@@ -447,18 +447,18 @@ When modifying an existing project, confirm that the project file includes a pac
 
 ### IIS
 
-IIS uses the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to host ASP.NET Core apps. Windows Authentication is configured for IIS via the *web.config* file. The following sections show how to:
+IIS uses the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) to host ASP.NET Core apps. Windows Authentication is configured for IIS via the *web.config* file. The following sections show how to:
 
 * Provide a local *web.config* file that activates Windows Authentication on the server when the app is deployed.
 * Use the IIS Manager to configure the *web.config* file of an ASP.NET Core app that has already been deployed to the server.
 
-If you haven't already done so, enable IIS to host ASP.NET Core apps. For more information, see <xref:host-and-deploy/iis/index>.
+If you haven't already done so, enable IIS to host ASP.NET Core apps. For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md).
 
-Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](xref:host-and-deploy/iis/index#iis-configuration).
+Enable the IIS Role Service for Windows Authentication. For more information, see [Enable Windows Authentication in IIS Role Services (see Step 2)](../../host-and-deploy/iis/index.md#iis-configuration).
 
-[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](xref:host-and-deploy/iis/index#iis-options).
+[IIS integration middleware](../../host-and-deploy/iis/index.md#enable-the-iisintegration-components) is configured to automatically authenticate requests by default. For more information, see [Host ASP.NET Core on Windows with IIS: IIS options (AutomaticAuthentication)](../../host-and-deploy/iis/index.md#iis-options).
 
-The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+The ASP.NET Core Module is configured to forward the Windows Authentication token to the app by default. For more information, see [ASP.NET Core Module configuration reference: Attributes of the aspNetCore element](../../host-and-deploy/aspnet-core-module.md#attributes-of-the-aspnetcore-element).
 
 Use **either** of the following approaches:
 
@@ -466,7 +466,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/samples/snapshot/web_2.config)]
 
-  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see <xref:host-and-deploy/iis/index#webconfig-file>.
+  When the project is published by the .NET SDK (without the `<IsTransformWebConfigDisabled>` property set to `true` in the project file), the published *web.config* file includes the `<location><system.webServer><security><authentication>` section. For more information on the `<IsTransformWebConfigDisabled>` property, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#webconfig-file).
 
 * **After publishing and deploying the project,** perform server-side configuration with the IIS Manager:
 
@@ -479,7 +479,7 @@ Use **either** of the following approaches:
 
   [!code-xml[](windowsauth/samples/snapshot/web_1.config?highlight=4-5)]
 
-  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](xref:host-and-deploy/iis/index#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
+  The `<system.webServer>` section added to the *web.config* file by IIS Manager is outside of the app's `<location>` section added by the .NET SDK when the app is published. Because the section is added outside of the `<location>` node, the settings are inherited by any [sub-apps](../../host-and-deploy/iis/index.md#sub-applications) to the current app. To prevent inheritance, move the added `<security>` section inside of the `<location><system.webServer>` section that the .NET SDK provided.
 
   When IIS Manager is used to add the IIS configuration, it only affects the app's *web.config* file on the server. A subsequent deployment of the app may overwrite the settings on the server if the server's copy of *web.config* is replaced by the project's *web.config* file. Use **either** of the following approaches to manage the settings:
 
@@ -622,13 +622,13 @@ While the [`Microsoft.AspNetCore.Authentication.Negotiate` package](https://www.
 
 ## Claims transformations
 
-When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](xref:host-and-deploy/iis/in-process-hosting#differences-between-in-process-and-out-of-process-hosting).
+When hosting with IIS, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. For more information and a code example that activates claims transformations, see [Differences between in-process and out-of-process hosting](../../host-and-deploy/iis/in-process-hosting.md#differences-between-in-process-and-out-of-process-hosting).
 
 ## Additional resources
 
 * [dotnet publish](/dotnet/core/tools/dotnet-publish)
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/visual-studio-publish-profiles>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
+* [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../../host-and-deploy/visual-studio-publish-profiles.md)
 
 :::moniker-end

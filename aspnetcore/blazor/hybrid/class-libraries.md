@@ -14,7 +14,7 @@ Use a Razor class library (RCL) to share Razor components, C# code, and static a
 This article builds on the general concepts found in the following articles:
 
 * <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 The examples in this article share assets between a server-side Blazor app and a .NET MAUI Blazor Hybrid app in the same solution:
 
@@ -23,7 +23,7 @@ The examples in this article share assets between a server-side Blazor app and a
 * The RCL is added as a project to the solution, but any RCL can be published as a NuGet package. A NuGet package can supply shared assets to web and native client projects.
 * The order that the projects are created isn't important. However, projects that rely on an RCL for assets must create a project reference to the RCL *after* the RCL is created.
 
-For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. Optionally, access the additional guidance on RCLs that apply broadly to ASP.NET Core apps in <xref:razor-pages/ui-class>.
+For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. Optionally, access the additional guidance on RCLs that apply broadly to ASP.NET Core apps in [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md).
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -91,7 +91,7 @@ For an RCL named `SharedLibrary` and using the minified Bootstrap stylesheet as 
 For additional information on how to share static assets across projects, see the following articles:
 
 * <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 The root `index.html` file is usually specific to the app and should remain in the Blazor Hybrid app or the Blazor WebAssembly app. The `index.html` file typically isn't shared.
 
@@ -460,5 +460,5 @@ var message = customService.GetMessage();
 ## Related content
 
 * <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 * [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)

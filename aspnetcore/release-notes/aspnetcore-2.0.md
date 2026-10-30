@@ -15,7 +15,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 For more information, see the introduction and tutorial:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
+* [Introduction to Razor Pages](../razor-pages/index.md)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 
 ## ASP.NET Core metapackage
@@ -64,7 +64,7 @@ For more information on authentication changes in 2.0, see the following resourc
 
 * [Account confirmation and password recovery in ASP.NET Core](../security/authentication/accconfirm.md)
 * [Enable QR Code generation for authenticator apps in ASP.NET Core](../security/authentication/identity-enable-qrcodes.md)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
 
 ## SPA templates
 
@@ -132,7 +132,7 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 ## Other documentation updates for 2.0
 
-* [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
+* [Visual Studio publish profiles for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
 * [Key Management](../security/data-protection/implementation/key-management.md)
 * [Configure Facebook authentication](../security/authentication/social/facebook-logins.md)
 * [Configure Twitter authentication](../security/authentication/social/twitter-logins.md)
@@ -143,8 +143,8 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:
 
-* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](../migration/1x-to-2x/index.md)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
 
 ## Breaking changes
 

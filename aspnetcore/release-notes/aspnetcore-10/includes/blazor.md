@@ -434,7 +434,7 @@ With the MSBuild property set, calling <xref:Microsoft.AspNetCore.Components.Nav
 
 The .NET 10 Blazor Web App project template sets the MSBuild property to `true` by default. We recommend that apps updating to .NET 10 use the new MSBuild property and avoid the prior behavior.
 
-If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. In the default Blazor Identity UI of the Blazor Web App project template before the release of .NET 10, the `IdentityRedirectManager` throws an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure that the method wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed when the MSBuild property is used. For more information, see <xref:migration/90-to-100#when-navigation-errors-are-disabled-in-a-blazor-web-app-with-individual-accounts>.
+If the MSBuild property is used, code that relied on <xref:Microsoft.AspNetCore.Components.NavigationException> being thrown should be updated. In the default Blazor Identity UI of the Blazor Web App project template before the release of .NET 10, the `IdentityRedirectManager` throws an <xref:System.InvalidOperationException> after calling `RedirectTo` to ensure that the method wasn't invoked during interactive rendering. This exception and the [`[DoesNotReturn]` attributes](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute) should now be removed when the MSBuild property is used. For more information, see [Migrate from ASP.NET Core in .NET 9 to ASP.NET Core in .NET 10](../../../migration/90-to-100.md#when-navigation-errors-are-disabled-in-a-blazor-web-app-with-individual-accounts).
 
 ### Blazor router has a `NotFoundPage` parameter
 
@@ -821,4 +821,4 @@ Call `PersistentComponentState.RegisterOnRestoring` to register a callback for i
 
 ### Blazor WebAssembly respects the current UI culture setting
 
-In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](../../../migration/index.md).

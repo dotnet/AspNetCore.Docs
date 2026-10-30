@@ -239,5 +239,5 @@ app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () =>
 
 * [Complete custom 'IAuthorizationPolicyProvider' sample (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
 * [Policy-based authorization in ASP.NET Core](policies.md)
-* <xref:razor-pages/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
 * <xref:mvc/security/authorization/policies>

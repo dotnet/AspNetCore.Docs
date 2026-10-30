@@ -15,7 +15,7 @@ This article explains how to create a [hosted Blazor WebAssembly solution](xref:
 :::moniker range=">= aspnetcore-6.0"
 
 > [!IMPORTANT]
-> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see <xref:migration/50-to-60#project-templates-use-duende-identity-server>.
+> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../../migration/50-to-60.md#project-templates-use-duende-identity-server).
 
 :::moniker-end
 
@@ -691,7 +691,7 @@ To configure an app, Azure App Service, and Azure Key Vault to host with a custo
    },
    ```
 
-1. In Visual Studio, create an Azure App Service [publish profile](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) for the *Server* project. From the menu bar, select: **Build** > **Publish** > **New** > **Azure** > **Azure App Service** (Windows or Linux). When Visual Studio is connected to an Azure subscription, you can set the **View** of Azure resources by **Resource type**. Navigate within the **Web App** list to find the App Service for the app and select it. Select **Finish**.
+1. In Visual Studio, create an Azure App Service [publish profile](../../../host-and-deploy/visual-studio-publish-profiles.md#publish-profiles) for the *Server* project. From the menu bar, select: **Build** > **Publish** > **New** > **Azure** > **Azure App Service** (Windows or Linux). When Visual Studio is connected to an Azure subscription, you can set the **View** of Azure resources by **Resource type**. Navigate within the **Web App** list to find the App Service for the app and select it. Select **Finish**.
 1. When Visual Studio returns to the **Publish** window, the key vault and SQL Server database service dependencies are automatically detected.
 
    No configuration changes to the default settings are required for the key vault service.
@@ -731,7 +731,7 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 * [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
 * <xref:blazor/security/webassembly/additional-scenarios>
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md): Includes guidance on:
   * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
 * [Duende Identity Server](https://docs.duendesoftware.com)

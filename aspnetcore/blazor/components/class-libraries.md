@@ -10,7 +10,7 @@ uid: blazor/components/class-libraries
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Components can be shared in a [Razor class library (RCL)](xref:razor-pages/ui-class) across projects. Include components and static assets in an app from:
+Components can be shared in a [Razor class library (RCL)](../../razor-pages/ui-class.md) across projects. Include components and static assets in an app from:
 
 * Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
 * A referenced .NET library.
@@ -338,7 +338,7 @@ Rendered `Jeep` component:
 
 ![Jeep component](~/blazor/components/class-libraries/_static/jeep-component.png)
 
-For more information, see <xref:razor-pages/ui-class#create-an-rcl-with-static-assets>.
+For more information, see [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md#create-an-rcl-with-static-assets).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -427,7 +427,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 :::moniker range=">= aspnetcore-5.0"
 
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 * <xref:fundamentals/target-aspnetcore>
 * [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
 * [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
@@ -436,7 +436,7 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 :::moniker range="< aspnetcore-5.0"
 
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 * <xref:fundamentals/target-aspnetcore>
 * [Add an XML Intermediate Language (IL) Linker configuration file to a library](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
 

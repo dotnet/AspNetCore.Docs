@@ -14,7 +14,7 @@ uid: fundamentals/host/generic-host
 
 :::moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
+The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -146,9 +146,9 @@ The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWeb
 
 * Adds [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
 
-* Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
+* Adds [Forwarded Headers middleware](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
 
-* Enables IIS integration. For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
+* Enables IIS integration. For the IIS default options, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 For information on how to override default builder settings, see [Configure settings for all app types](#configure-settings-for-all-app-types) and [Configure settings for web apps](#configure-settings-for-web-apps) later in this article.
 

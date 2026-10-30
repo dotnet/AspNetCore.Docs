@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core Razor Pages app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: razor-pages/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core Razor Pages
 
@@ -15,7 +14,7 @@ This article uses Razor Pages examples and focuses on Razor Pages authorization 
 * [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
 * <xref:mvc/security/authorization/claims>
 
-Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
+Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
 ## Sample app
 

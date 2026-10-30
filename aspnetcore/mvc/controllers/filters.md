@@ -78,7 +78,7 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Run only when the action method executes successfully.
   * Are useful for logic that must surround view or formatter execution.
 
-Razor Pages also support [Razor Page filters](xref:razor-pages/filter), which run before and after a Razor Page handler.
+Razor Pages also support [Razor Page filters](../../razor-pages/filter.md), which run before and after a Razor Page handler.
 
 ## Implementation
 
@@ -236,7 +236,7 @@ Navigating to `https://localhost:<port>/ControllerFilters` runs the following co
 
 Controller level filters set the [Order](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue`. Controller level filters can **not** be set to run after filters applied to methods. Order is explained in the next section.
 
-For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
+For Razor Pages, see [Implement Razor Page filters by overriding filter methods](../../razor-pages/filter.md#implement-razor-page-filters-by-overriding-filter-methods).
 
 ### Override the default order
 
@@ -378,7 +378,7 @@ Resource filter examples:
 
 ## Action filters
 
-Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](../../razor-pages/filter.md).
 
 Action filters:
 
@@ -578,7 +578,7 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 ## Related content
 
 * [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:razor-pages/filter>
+* [Filter methods for Razor Pages in ASP.NET Core](../../razor-pages/filter.md)
 
 :::moniker-end
 [!INCLUDE[](~/mvc/controllers/filters/includes/filters7.md)]

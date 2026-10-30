@@ -37,7 +37,7 @@ var connection = new HubConnectionBuilder()
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. See [MessagePack in SignalR](xref:signalr/messagepackhubprotocol) for more details.
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. See [MessagePack in SignalR](../../messagepackhubprotocol.md) for more details.
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -156,7 +156,7 @@ let connection = new signalR.HubConnectionBuilder()
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
+For more information on logging, see the [SignalR Diagnostics documentation](../../diagnostics.md).
 
 The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
@@ -342,10 +342,10 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 ## Related content
 
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
-* <xref:signalr/messagepackhubprotocol>
-* <xref:signalr/supported-platforms>
+* [Use hubs in ASP.NET Core SignalR](../../hubs.md)
+* [ASP.NET Core SignalR JavaScript client](../../javascript-client.md)
+* [ASP.NET Core SignalR .NET client](../../dotnet-client.md)
+* [Use MessagePack Hub Protocol in SignalR for ASP.NET Core](../../messagepackhubprotocol.md)
+* [ASP.NET Core SignalR supported platforms](../../supported-platforms.md)
 
 :::moniker-end

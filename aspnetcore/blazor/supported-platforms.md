@@ -65,4 +65,4 @@ For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the l
 ## Related content
 
 * <xref:blazor/hosting-models>
-* <xref:signalr/supported-platforms>
+* [ASP.NET Core SignalR supported platforms](../signalr/supported-platforms.md)

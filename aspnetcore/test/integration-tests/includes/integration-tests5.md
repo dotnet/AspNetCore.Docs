@@ -6,7 +6,7 @@ This topic assumes a basic understanding of unit tests. If unfamiliar with test 
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
+* [Introduction to Razor Pages](../../../razor-pages/index.md)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
@@ -208,7 +208,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's Login page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](../../../razor-pages/security/authorization/conventions.md#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 

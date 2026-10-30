@@ -2,7 +2,7 @@
 
 This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](../../../../razor-pages/index.md).
 
 [!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 

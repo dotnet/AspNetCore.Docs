@@ -21,7 +21,7 @@ ASP.NET Core SignalR includes a number of improvements:
 * A new streaming response model.
 * Support for clients based on bare WebSockets.
 
-For more information, see [ASP.NET Core SignalR](xref:signalr/introduction).
+For more information, see [ASP.NET Core SignalR](../signalr/introduction.md).
 
 ## Razor class libraries
 
@@ -30,11 +30,11 @@ ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a librar
 * The app startup time is significantly faster.
 * Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
-For more information, see <xref:razor-pages/ui-class>.
+For more information, see [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md).
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 provides [ASP.NET Core Identity](../security/authentication/identity.md) as a [Razor class library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](../security/authentication/identity.md) as a [Razor class library](../razor-pages/ui-class.md). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -163,7 +163,7 @@ For more information, see <xref:mvc/compatibility-version>.
 
 ## Migrate from 2.0 to 2.1
 
-See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
+See [Migrate from ASP.NET Core 2.0 to 2.1](../migration/20-to-21.md).
 
 ## Breaking changes
 

@@ -26,9 +26,9 @@ For additional Blazor configuration guidance, which adds to or supersedes the gu
 This article primarily pertains to app configuration. Other types of configuration, such as launch settings files and the `web.config` file, are mentioned here, but their primary documentation is elsewhere:
 
 * Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
-* `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
+* `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md) and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md).
 
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
+For more information on migrating app configuration from earlier versions of ASP.NET, see [Migrate configuration to ASP.NET Core](../../migration/fx-to-core/examples/configuration.md).
 
 [!INCLUDE[](~/includes/managed-identities-conn-strings.md)]
 
@@ -120,7 +120,7 @@ Default host configuration sources from highest to lowest priority applied to ei
 
 For more information on host configuration, see the following resources:
 
-* [Generic Host](xref:fundamentals/host/generic-host): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](xref:migration/50-to-60#new-hosting-model).
+* [Generic Host](xref:fundamentals/host/generic-host): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](../../migration/50-to-60.md#new-hosting-model).
 * [Web Host](xref:fundamentals/host/web-host): Required for ASP.NET Core apps that target releases prior to .NET 6 and only maintained by the framework for backward compatibility in .NET 6 or later.
 
 :::moniker-end
@@ -135,7 +135,7 @@ Default host configuration sources from highest to lowest priority for the [Web 
 * Web Host default configuration (<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>)
   * Kestrel is used as the web server and configured using the app's configuration providers.
   * Add [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
-  * Add [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
+  * Add [forwarded headers middleware](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
   * Enable IIS integration.
 
 :::moniker-end
@@ -155,7 +155,7 @@ Other host settings are read from app configuration instead of host configuratio
 
 `URLS` is one of the many common host settings that isn't bootstrapped by host configuration. `URLS` is read later from app configuration. Host configuration is a fallback for app configuration, so host configuration can be used to set `URLS`, but the value is overridden by any configuration source that sets `URLS` in app configuration, such as app settings files (`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the environment name, or `appsettings.json`).
 
-For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
+For more information, see [Change the content root, app name, and environment](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
 
 ## Security and user secrets
 

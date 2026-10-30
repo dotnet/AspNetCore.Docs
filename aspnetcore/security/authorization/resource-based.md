@@ -14,7 +14,7 @@ Resource-based authorization requires special attention in ASP.NET Core apps. At
 
 This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
 
-* <xref:razor-pages/security/authorization/resource-based>
+* [Resource-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/resource-based.md)
 * <xref:mvc/security/authorization/resource-based>
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).

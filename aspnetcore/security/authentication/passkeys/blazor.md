@@ -119,7 +119,7 @@ The following guidance relies upon an app that was created with **Individual Acc
 * An existing Blazor Web App (.NET 10 or later) with ASP.NET Core Identity
 * [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
 
-For migration guidance, see <xref:migration/index>.
+For migration guidance, see [Migrate an ASP.NET Core app](../../../migration/index.md).
 
 ## Reference source guidance
 

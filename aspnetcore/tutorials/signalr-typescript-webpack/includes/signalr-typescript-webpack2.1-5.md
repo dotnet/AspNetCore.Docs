@@ -270,8 +270,8 @@ Confirm that the app works with the following steps.
 
 ## Additional resources
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../../../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../../../signalr/hubs.md)
 
 :::moniker-end
 
@@ -523,7 +523,7 @@ Confirm that the app works with the following steps.
 
 ## Additional resources
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../../../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../../../signalr/hubs.md)
 
 :::moniker-end

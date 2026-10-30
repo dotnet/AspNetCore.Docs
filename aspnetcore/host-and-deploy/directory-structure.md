@@ -3,7 +3,6 @@ title: ASP.NET Core directory structure
 description: Learn about the directory structure of published ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 04/09/2020
-uid: host-and-deploy/directory-structure
 ---
 # ASP.NET Core directory structure
 
@@ -90,7 +89,7 @@ The *publish* directory represents the *content root path*, also called the *app
 
 The *wwwroot* directory, if present, only contains static assets.
 
-Creating a *Logs* folder is useful for [ASP.NET Core Module enhanced debug logging](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs). Folders in the path provided to the `<handlerSetting>` value aren't created by the module automatically and should pre-exist in the deployment to allow the module to write the debug log.
+Creating a *Logs* folder is useful for [ASP.NET Core Module enhanced debug logging](iis/logging-and-diagnostics.md#enhanced-diagnostic-logs). Folders in the path provided to the `<handlerSetting>` value aren't created by the module automatically and should pre-exist in the deployment to allow the module to write the debug log.
 
 A *Logs* directory can be created for the deployment using one of the following two approaches:
 

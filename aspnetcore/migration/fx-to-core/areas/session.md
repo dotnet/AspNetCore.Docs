@@ -4,7 +4,6 @@ description: ASP.NET to ASP.NET Core session state migration
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/17/2025
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/session
 zone_pivot_groups: migration-remote-app-setup
 ---
 
@@ -175,7 +174,7 @@ Remote app session enables communication between applications to retrieve and se
 
 ### Prerequisites
 
-Complete the [remote app setup](xref:migration/fx-to-core/inc/remote-app-setup) instructions to connect your ASP.NET Core and ASP.NET Framework applications.
+Complete the [remote app setup](../inc/remote-app-setup.md) instructions to connect your ASP.NET Core and ASP.NET Framework applications.
 
 ### Application configuration
 

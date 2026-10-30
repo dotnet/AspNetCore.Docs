@@ -29,7 +29,7 @@ Services are required when using [two-factor authentication (2FA)](xref:blazor/s
 
 ## Razor Pages and MVC Identity scaffolding
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to generate.
 
@@ -381,7 +381,7 @@ To prevent publishing static Identity assets to the web root, see [Introduction 
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -650,7 +650,7 @@ To prevent publishing static Identity assets to the web root, see [Introduction 
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 

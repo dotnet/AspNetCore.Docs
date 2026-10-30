@@ -4,27 +4,26 @@ description: Discover what is inside of the web.config file and how to configure
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 04/22/2026
-uid: host-and-deploy/iis/web-config
 ---
 # `web.config` file
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The `web.config` is a file that's read by IIS and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to configure an app hosted with IIS.
+The `web.config` is a file that's read by IIS and the [ASP.NET Core Module](../aspnet-core-module.md) to configure an app hosted with IIS.
 
 ## `web.config` file location
 
-In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the `web.config` file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](../aspnet-core-module.md) correctly, the `web.config` file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as `{ASSEMBLY}.runtimeconfig.json`, `{ASSEMBLY}.xml` (XML Documentation comments), and `{ASSEMBLY}.deps.json`, where the placeholder `{ASSEMBLY}` is the assembly name. When the `web.config` file is present and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the `web.config` file is missing, incorrectly named, or unable to configure the site for normal startup, IIS might serve sensitive files publicly.
 
 **The `web.config` file must be present in the deployment at all times, correctly named, and able to configure the site for normal start up. Never remove the `web.config` file from a production deployment.**
 
-If a `web.config` file isn't present in the project, the file is created with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to [published output](xref:host-and-deploy/directory-structure).
+If a `web.config` file isn't present in the project, the file is created with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to [published output](../directory-structure.md).
 
 If a `web.config` file is present in the project, the file is transformed with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to published output. The transformation doesn't modify IIS configuration settings in the file.
 
-The `web.config` file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](xref:host-and-deploy/iis/modules) article.
+The `web.config` file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](modules.md) article.
 
 An MSBuild target (`_TransformWebConfig`) handles creating, transforming, and publishing the `web.config` file when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
 
@@ -40,7 +39,7 @@ To prevent the Web SDK from transforming the `web.config` file, use the `<IsTran
 </PropertyGroup>
 ```
 
-When disabling the Web SDK from transforming the file, the developer should manually set `processPath` and `arguments`. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+When disabling the Web SDK from transforming the file, the developer should manually set `processPath` and `arguments`. For more information, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ## Configuration of ASP.NET Core Module with `web.config`
 
@@ -89,7 +88,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications> pr
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/advanced#sub-applications>.
+For information on IIS sub-application configuration, see [Advanced configuration](advanced.md#sub-applications).
 
 ### Attributes of the `aspNetCore` element
 
@@ -128,7 +127,7 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 ```
 
 > [!NOTE]
-> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. This approach sets the environment in `web.config` when the project is published:
+> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](../visual-studio-publish-profiles.md) or project file. This approach sets the environment in `web.config` when the project is published:
 >
 > ```xml
 > <PropertyGroup>
@@ -146,8 +145,8 @@ IIS configuration is influenced by the `<system.webServer>` section of `web.conf
 For more information, see the following articles:
 
 * [Configuration reference for `<system.webServer>`](/iis/configuration/system.webServer/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [IIS modules with ASP.NET Core](modules.md)
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *`AppCmd.exe` command* section of the [Environment Variables `<environmentVariables>`](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) article in the IIS reference documentation.
 
@@ -164,10 +163,10 @@ ASP.NET Core apps are configured using other configuration providers. For more i
 
 ## Transform web.config
 
-If you need to transform `web.config` on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
+If you need to transform `web.config` on publish, see [Transform web.config](transform-webconfig.md). You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
 
 ## Related content
 
 * [IIS \<system.webServer>](/iis/configuration/system.webServer/)
-* <xref:host-and-deploy/iis/modules>
-* <xref:host-and-deploy/iis/transform-webconfig>
+* [IIS modules with ASP.NET Core](modules.md)
+* [Transform web.config](transform-webconfig.md)

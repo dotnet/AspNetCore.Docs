@@ -276,7 +276,7 @@ Disable CSS isolation for a project by setting the `<ScopedCssEnabled>` property
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled:
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](../../razor-pages/ui-class.md) are automatically bundled:
 
 * The app uses CSS imports to reference the RCL's bundled styles. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet:
   
@@ -289,13 +289,13 @@ Isolated styles for components in a NuGet package or [Razor class library (RCL)]
 For more information on RCLs, see the following articles:
 
 * <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Related content
 
-* [Razor Pages CSS isolation](xref:razor-pages/index#css-isolation)
+* [Razor Pages CSS isolation](../../razor-pages/index.md#css-isolation)
 * [MVC CSS isolation](xref:mvc/views/overview#css-isolation)
 
 :::moniker-end

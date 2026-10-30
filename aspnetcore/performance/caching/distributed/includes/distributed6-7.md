@@ -241,6 +241,6 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:performance/caching/middleware>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

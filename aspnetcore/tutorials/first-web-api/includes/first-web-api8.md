@@ -488,8 +488,8 @@ For more information, see the following resources:
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
 * [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
-* <xref:host-and-deploy/azure-apps/index>
-* <xref:host-and-deploy/index>
+* [Deploy ASP.NET Core apps to Azure App Service](../../../host-and-deploy/azure-apps/index.md)
+* [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end

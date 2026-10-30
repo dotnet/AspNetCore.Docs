@@ -429,7 +429,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 
@@ -979,7 +979,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 
@@ -1668,7 +1668,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 

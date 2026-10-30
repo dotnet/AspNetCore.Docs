@@ -60,7 +60,7 @@ Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/ass
 * Define flexible UI rendering logic.
 * Handle user events.
 * Can be nested and reused.
-* Can be shared and distributed as [Razor class libraries](xref:razor-pages/ui-class) or [NuGet packages](/nuget/what-is-nuget).
+* Can be shared and distributed as [Razor class libraries](../razor-pages/ui-class.md) or [NuGet packages](/nuget/what-is-nuget).
 
 The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
 
@@ -113,7 +113,7 @@ The Blazor Hybrid supports [Windows Presentation Foundation (WPF)](/dotnet/deskt
 
 ## Blazor Server
 
-Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](xref:signalr/introduction) connection.
+Blazor Server provides support for hosting Razor components on the server in an ASP.NET Core app. UI updates are handled over a [SignalR](../signalr/introduction.md) connection.
 
 The runtime stays on the server and handles:
 

@@ -395,7 +395,7 @@ The behavior depends on which middleware ran:
 * Apps that call `app.UseAntiforgery()` are unchanged. The token-based middleware validates each request, and antiforgery tokens are generated for rendered forms as before.
 * Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation because no token middleware is present to validate a token on a later request.
 
-This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/100-to-110>. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
+This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md). For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
 
 ### Troubleshooting
 
@@ -439,7 +439,7 @@ curl -i -X POST https://localhost:{PORT}/widgets \
 
 Replace `{PORT}` with the app's local HTTPS port. The `400 - Bad Request` is observed because the endpoint binds the form, which enforces the recorded verdict. A non-form endpoint returns its normal response because nothing reads the verdict. Without the `Origin` header, the same request is allowed because `curl` doesn't send `Sec-Fetch-Site` either and a request with neither header is treated as a non-browser client.
 
-The token-based antiforgery system described in the rest of this article predates this middleware and remains available. For most apps, the automatic protection is enough on its own. For guidance on when to keep the token-based system and how to migrate, see <xref:migration/100-to-110>.
+The token-based antiforgery system described in the rest of this article predates this middleware and remains available. For most apps, the automatic protection is enough on its own. For guidance on when to keep the token-based system and how to migrate, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md).
 
 :::moniker-end
 
@@ -504,7 +504,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to protecting against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -779,7 +779,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -893,7 +893,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1070,7 +1070,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -1180,7 +1180,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1337,7 +1337,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -1461,7 +1461,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrf).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1790,6 +1790,6 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end

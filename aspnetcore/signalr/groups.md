@@ -51,5 +51,5 @@ To protect access to resources while using groups, use [authentication and autho
 ## Related content
 
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/publish-to-azure-web-app>
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

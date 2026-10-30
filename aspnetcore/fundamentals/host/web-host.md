@@ -12,7 +12,7 @@ uid: fundamentals/host/web-host
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
 
 ## Set up a host
 
@@ -53,7 +53,7 @@ The `CreateDefaultBuilder` method performs the following tasks:
 
 * Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an _appsettings.json_ or _appsettings.{Environment}.json_ file.
 
-* When the application runs behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
+* When the application runs behind IIS with the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md), `CreateDefaultBuilder` enables [IIS Integration](../../host-and-deploy/iis/index.md), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 * Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
 
@@ -780,6 +780,6 @@ WebHost.CreateDefaultBuilder(args)
 
 ## Related content
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/windows-service>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [Host ASP.NET Core on Linux with Nginx](../../host-and-deploy/linux-nginx.md)
+* [Host ASP.NET Core in a Windows Service](../../host-and-deploy/windows-service.md)

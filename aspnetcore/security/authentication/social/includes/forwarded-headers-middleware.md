@@ -6,4 +6,4 @@ The scheme is used in link generation that affects the authentication flow with 
 
 Use forwarded headers middleware to make the original request information available to the app for request processing.
 
-For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md).

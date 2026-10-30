@@ -242,7 +242,7 @@ The `CreateSlimBuilder` method **doesn't** provide the following features, which
     * [EventSource](/aspnet/core/fundamentals/logging#eventsource)
 * Web hosting features:
     * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*) method
-    * [IIS integration](xref:host-and-deploy/iis/index)
+    * [IIS integration](../host-and-deploy/iis/index.md)
 * Kestrel configuration:
     * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)
     * [QUIC (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)

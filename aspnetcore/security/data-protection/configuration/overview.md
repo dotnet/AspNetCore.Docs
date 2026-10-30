@@ -342,7 +342,7 @@ For more information on logging, see <xref:fundamentals/logging/index>.
 
 * [Non-DI aware scenarios for Data Protection in ASP.NET Core](non-di-scenarios.md)
 * [Data Protection machine-wide policy support in ASP.NET Core](machine-wide-policy.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../host-and-deploy/web-farm.md)
 * [Key storage providers in ASP.NET Core](../implementation/key-storage-providers.md)
 
 :::moniker-end
@@ -745,7 +745,7 @@ For more information on logging, see <xref:fundamentals/logging/index>.
 
 * [Non-DI aware scenarios for Data Protection in ASP.NET Core](non-di-scenarios.md)
 * [Data Protection machine-wide policy support in ASP.NET Core](machine-wide-policy.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../host-and-deploy/web-farm.md)
 * [Key storage providers in ASP.NET Core](../implementation/key-storage-providers.md)
 
 :::moniker-end

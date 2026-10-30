@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to create filter methods for Razor Pages in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 2/18/2020
-uid: razor-pages/filter
 ---
 # Filter methods for Razor Pages in ASP.NET Core
 

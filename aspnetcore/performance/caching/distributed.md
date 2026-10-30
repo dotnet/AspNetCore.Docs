@@ -323,7 +323,7 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 * <xref:fundamentals/change-tokens>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 

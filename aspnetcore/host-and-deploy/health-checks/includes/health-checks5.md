@@ -68,7 +68,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
@@ -840,7 +840,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit

@@ -260,14 +260,14 @@ Confirm that the app works with the following steps:
 
 ## Next steps
 
-* [Strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs)
+* [Strongly typed hubs](../signalr/hubs.md#use-strongly-typed-hubs)
 * [Authentication and authorization in ASP.NET Core SignalR](../signalr/authn-and-authz.md)
-* [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
+* [MessagePack Hub Protocol in SignalR for ASP.NET Core](../signalr/messagepackhubprotocol.md)
 
 ## Related content
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../signalr/hubs.md)
 
 :::moniker-end
 

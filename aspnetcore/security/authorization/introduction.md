@@ -28,7 +28,7 @@ For more information, see [Simple authorization in ASP.NET Core](simple.md).
 
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>
-* <xref:razor-pages/security/authorization/conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](../../razor-pages/security/authorization/conventions.md)
 * Blazor app authorization patterns
   * [Server-side Blazor (Blazor Web Apps, Blazor Server apps)](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Blazor WebAssembly](xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns)

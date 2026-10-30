@@ -51,7 +51,7 @@ In the `Index` page where the CSS style is applied from the bundled file, the sc
 
 The identifier is unique to an app. At build time, a project bundle is created with the convention `{STATIC WEB ASSETS BASE PATH}/Project.lib.scp.css`, where the placeholder `{STATIC WEB ASSETS BASE PATH}` is the static web assets base path.
 
-If other projects are utilized, such as NuGet packages or [Razor class libraries](xref:razor-pages/ui-class), the bundled file:
+If other projects are utilized, such as NuGet packages or [Razor class libraries](../razor-pages/ui-class.md), the bundled file:
 
 * References the styles using CSS imports.
 * Isn't published as a static web asset of the app that consumes the styles.
@@ -119,7 +119,7 @@ To opt out of how framework publishes and loads scoped files at runtime, use the
 
 ## Razor class library (RCL) support
 
-When a [Razor class library (RCL)](xref:razor-pages/ui-class) provides isolated styles, the `<link>` tag's `href` attribute points to `{STATIC WEB ASSET BASE PATH}/{PACKAGE ID}.bundle.scp.css`, where the placeholders are:
+When a [Razor class library (RCL)](../razor-pages/ui-class.md) provides isolated styles, the `<link>` tag's `href` attribute points to `{STATIC WEB ASSET BASE PATH}/{PACKAGE ID}.bundle.scp.css`, where the placeholders are:
 
 * `{STATIC WEB ASSET BASE PATH}`: The static web asset base path.
 * `{PACKAGE ID}`: The library's [package identifier](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package identifier defaults to the project's assembly name if the package identifier isn't specified in the project file.
@@ -137,7 +137,7 @@ In the following example:
 
 For more information on RCLs, see the following articles:
 
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md)
 * <xref:blazor/components/class-libraries>
 
 For information on Blazor CSS isolation, see <xref:blazor/components/css-isolation>.

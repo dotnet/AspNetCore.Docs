@@ -48,7 +48,7 @@ For more information about the different servers and their configuration options
 
 * <xref:fundamentals/servers/kestrel>
 * <xref:fundamentals/servers/httpsys>
-* <xref:host-and-deploy/iis/index>
+* [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Configure client options
 

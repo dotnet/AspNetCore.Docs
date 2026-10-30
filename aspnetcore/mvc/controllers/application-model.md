@@ -76,7 +76,7 @@ The following conventions are available:
 Conventions are applied by adding them to MVC options or by implementing attributes and applying them to controllers, actions, or action parameters (similar to [filters](xref:mvc/controllers/filters)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
 > [!NOTE]
-> For information on Razor Pages route and application model provider conventions, see <xref:razor-pages/razor-pages-conventions>.
+> For information on Razor Pages route and application model provider conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages/razor-pages-conventions.md).
 
 ## Modify the `ApplicationModel`
 
@@ -171,7 +171,7 @@ The following example applies a convention to routes that aren't using attribute
 ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a web API app. Microsoft ships the [`WebApiCompatShim` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) specifically for this purpose.
 
 > [!NOTE]
-> For more information on migration from ASP.NET Web API, see <xref:migration/fx-to-core/areas/webapi>.
+> For more information on migration from ASP.NET Web API, see [Migrate from ASP.NET Web API to ASP.NET Core](../../migration/fx-to-core/areas/webapi.md).
 
 To use the Web API Compatibility Shim:
 

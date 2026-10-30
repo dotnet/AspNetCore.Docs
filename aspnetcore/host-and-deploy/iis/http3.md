@@ -4,7 +4,6 @@ description: Learn how to use HTTP/3 features with IIS.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 09/09/2021
 ms.reviewer: chrross
-uid: host-and-deploy/iis/http3
 ---
 
 # Use ASP.NET Core with HTTP/3 on IIS
@@ -18,9 +17,9 @@ By [Chris Ross](https://github.com/tratcher)
 [HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is fully supported with ASP.NET Core in the following IIS scenarios:
 
 * In-process
-* [Out-of-Process](xref:host-and-deploy/iis/index#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+* [Out-of-Process](index.md#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 The following requirements also need to be met:
 
@@ -54,9 +53,9 @@ IIS also supports sending an AltSvc HTTP/2 protocol message rather than a respon
 [HTTP/3](https://datatracker.ietf.org/doc/rfc9114/) is supported with ASP.NET Core in the following IIS deployment scenarios:
 
 * In-process
-* [Out-of-Process](xref:host-and-deploy/iis/index#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+* [Out-of-Process](index.md#out-of-process-hosting-model). In Out-of-Process, IIS responds to the client using HTTP/3, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 The following requirements also need to be met: 
 

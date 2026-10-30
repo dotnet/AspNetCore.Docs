@@ -2,7 +2,6 @@
 title: ASP.NET Core SignalR clients
 description: Learn which features are supported by the various ASP.NET Core SignalR clients.
 ms.date: 08/25/2026
-uid: signalr/client-features
 ---
 # ASP.NET Core SignalR clients
 
@@ -29,9 +28,9 @@ The table below shows the features and support for the clients that offer real-t
 | Feature | Server | .NET client | JavaScript client | Java client | Swift client |
 | ---- | :-: | :-: | :-: | :-: | :-: |
 | Azure SignalR Service Support |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
-| [Server-to-client Streaming](xref:signalr/streaming)          |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
-| [Client-to-server Streaming](xref:signalr/streaming)          |3.0.0|3.0.0|3.0.0|3.0.0|❌|
-| Automatic Reconnection ([.NET](xref:signalr/dotnet-client#handle-lost-connection), [JavaScript](xref:signalr/javascript-client#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|1.0.0-preview.1|
+| [Server-to-client Streaming](streaming.md)          |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
+| [Client-to-server Streaming](streaming.md)          |3.0.0|3.0.0|3.0.0|3.0.0|❌|
+| Automatic Reconnection ([.NET](dotnet-client.md#handle-lost-connection), [JavaScript](javascript-client.md#reconnect-clients))          |3.0.0|3.0.0|3.0.0|❌|1.0.0-preview.1|
 | WebSockets Transport |2.1.0|1.0.0|1.0.0|1.0.0|1.0.0-preview.1|
 | Server-Sent Events Transport |2.1.0|1.0.0|1.0.0|❌|1.0.0-preview.1|
 | Long Polling Transport |2.1.0|1.0.0|1.0.0|3.0.0|1.0.0-preview.1|
@@ -39,7 +38,7 @@ The table below shows the features and support for the clients that offer real-t
 | MessagePack Hub Protocol |2.1.0|1.0.0|1.0.0|5.0.0|1.0.0-preview.1|
 | Client Results |7.0.0|7.0.0|7.0.0|7.0.0|1.0.0-preview.1|
 | [Authentication Refresh](authn-and-authz.md#authentication-refresh) |11.0.0|11.0.0|11.0.0|❌|❌|
-| [Cancel a non-streaming invocation](xref:signalr/dotnet-client#cancel-a-hub-method-invocation) |11.0.0|11.0.0|❌|❌|❌|
+| [Cancel a non-streaming invocation](dotnet-client.md#cancel-a-hub-method-invocation) |11.0.0|11.0.0|❌|❌|❌|
 
 Support for enabling additional client features is tracked in [our issue tracker](https://github.com/dotnet/AspNetCore/issues).
 
@@ -48,6 +47,6 @@ Support for enabling additional client features is tracked in [our issue tracker
 ## Related content
 
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
-* [Supported platforms](xref:signalr/supported-platforms)
-* [Hubs](xref:signalr/hubs)
-* [JavaScript client](xref:signalr/javascript-client)
+* [Supported platforms](supported-platforms.md)
+* [Hubs](hubs.md)
+* [JavaScript client](javascript-client.md)

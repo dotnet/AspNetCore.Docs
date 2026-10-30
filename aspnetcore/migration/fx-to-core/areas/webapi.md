@@ -3,7 +3,6 @@ title: Migrate from ASP.NET Web API to ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.date: 07/17/2025
-uid: migration/fx-to-core/areas/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
@@ -60,7 +59,7 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ## The configuration for ASP.NET Core Web API
 
-ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see <xref:host-and-deploy/iis/web-config>.
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see [web.config file](../../../host-and-deploy/iis/web-config.md).
 
 The `Program.cs` file:
 

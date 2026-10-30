@@ -8,13 +8,13 @@ Apps can configure routing using:
 * Razor Pages
 * SignalR
 * gRPC Services
-* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
+* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](../../../host-and-deploy/health-checks.md).
 * Delegates and lambdas registered with routing.
 
 This article covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
 * For controllers, see <xref:mvc/controllers/routing>.
-* For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
+* For Razor Pages conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../../razor-pages/razor-pages-conventions.md).
 
 ## Routing basics
 
@@ -76,7 +76,7 @@ The second segment of the URL path, `{name:alpha}`:
 * Is bound to the `name` parameter.
 * Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>.
 
-The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
+The following example shows routing with [health checks](../../../host-and-deploy/health-checks.md) and authorization:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
 
@@ -241,7 +241,7 @@ Existing terminal middleware that integrates with [Map](xref:fundamentals/middle
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
-The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
+The following code shows use of [MapHealthChecks](../../../host-and-deploy/health-checks.md):
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Program.cs" id="snippet_MapHealthChecks" highlight="4":::
 
@@ -621,7 +621,7 @@ With the preceding route template, the action `SubscriptionManagementController.
 ASP.NET Core provides API conventions for using parameter transformers with generated routes:
 
 * The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> MVC convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](../../../razor-pages/razor-pages-conventions.md#use-a-parameter-transformer-to-customize-page-routes).
 
 <a name="ugr"></a>
 
@@ -1037,13 +1037,13 @@ Apps can configure routing using:
 * Razor Pages
 * SignalR
 * gRPC Services
-* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
+* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](../../../host-and-deploy/health-checks.md).
 * Delegates and lambdas registered with routing.
 
 This article covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
 * For controllers, see <xref:mvc/controllers/routing>.
-* For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
+* For Razor Pages conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../../razor-pages/razor-pages-conventions.md).
 
 ## Routing basics
 
@@ -1105,7 +1105,7 @@ The second segment of the URL path, `{name:alpha}`:
 * Is bound to the `name` parameter.
 * Is captured and stored in <xref:Microsoft.AspNetCore.Http.HttpRequest.RouteValues?displayProperty=nameWithType>.
 
-The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
+The following example shows routing with [health checks](../../../host-and-deploy/health-checks.md) and authorization:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
 
@@ -1270,7 +1270,7 @@ Existing terminal middleware that integrates with [Map](xref:fundamentals/middle
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
-The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
+The following code shows use of [MapHealthChecks](../../../host-and-deploy/health-checks.md):
 
 :::code language="csharp" source="~/fundamentals/routing/samples/6.x/RoutingSample/Snippets/Program.cs" id="snippet_MapHealthChecks" highlight="4":::
 
@@ -1650,7 +1650,7 @@ With the preceding route template, the action `SubscriptionManagementController.
 ASP.NET Core provides API conventions for using parameter transformers with generated routes:
 
 * The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> MVC convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](../../../razor-pages/razor-pages-conventions.md#use-a-parameter-transformer-to-customize-page-routes).
 
 <a name="ugr"></a>
 
@@ -2054,13 +2054,13 @@ Apps can configure routing using:
 * Razor Pages
 * SignalR
 * gRPC Services
-* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](xref:host-and-deploy/health-checks).
+* Endpoint-enabled [middleware](xref:fundamentals/middleware/index) such as [Health Checks](../../../host-and-deploy/health-checks.md).
 * Delegates and lambdas registered with routing.
 
 This document covers low-level details of ASP.NET Core routing. For information on configuring routing:
 
 * For controllers, see <xref:mvc/controllers/routing>.
-* For Razor Pages conventions, see <xref:razor-pages/razor-pages-conventions>.
+* For Razor Pages conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../../razor-pages/razor-pages-conventions.md).
 
 The endpoint routing system described in this document applies to ASP.NET Core 3.0 or later. For information on the previous routing system based on <xref:Microsoft.AspNetCore.Routing.IRouter>, select the ASP.NET Core 2.1 version using one of the following approaches:
 
@@ -2123,7 +2123,7 @@ The second segment of the URL path, `{name:alpha}`:
 
 The endpoint routing system described in this document is new as of ASP.NET Core 3.0. However, all versions of ASP.NET Core support the same set of route template features and route constraints.
 
-The following example shows routing with [health checks](xref:host-and-deploy/health-checks) and authorization:
+The following example shows routing with [health checks](../../../host-and-deploy/health-checks.md) and authorization:
 
 :::code language="csharp" source="~/fundamentals/routing/samples/3.x/RoutingSample/AuthorizationStartup.cs" id="snippet":::
 
@@ -2283,7 +2283,7 @@ Existing terminal middleware that integrates with [Map](xref:fundamentals/middle
 * Call `Map` and provide the new middleware pipeline.
 * Return the builder object provided by `Map` from the extension method.
 
-The following code shows use of [MapHealthChecks](xref:host-and-deploy/health-checks):
+The following code shows use of [MapHealthChecks](../../../host-and-deploy/health-checks.md):
 
 :::code language="csharp" source="~/fundamentals/routing/samples/3.x/RoutingSample/AuthorizationStartup.cs" id="snippet":::
 
@@ -2665,7 +2665,7 @@ With the preceding route template, the action `SubscriptionManagementController.
 ASP.NET Core provides API conventions for using parameter transformers with generated routes:
 
 * The <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.RouteTokenTransformerConvention?displayProperty=fullName> MVC convention applies a specified parameter transformer to all attribute routes in the app. The parameter transformer transforms attribute route tokens as they are replaced. For more information, see [Use a parameter transformer to customize token replacement](xref:mvc/controllers/routing#use-a-parameter-transformer-to-customize-token-replacement).
-* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](xref:razor-pages/razor-pages-conventions#use-a-parameter-transformer-to-customize-page-routes).
+* Razor Pages uses the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageRouteTransformerConvention> API convention. This convention applies a specified parameter transformer to all automatically discovered Razor Pages. The parameter transformer transforms the folder and file name segments of Razor Pages routes. For more information, see [Use a parameter transformer to customize page routes](../../../razor-pages/razor-pages-conventions.md#use-a-parameter-transformer-to-customize-page-routes).
 
 <a name="ugr"></a>
 

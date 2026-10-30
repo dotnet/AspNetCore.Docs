@@ -4,7 +4,6 @@ description: Advanced configuration with the ASP.NET Core Module and Internet In
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-image-nochange
 ms.date: 10/06/2026
-uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
@@ -213,7 +212,7 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ## Application Pools
 
@@ -274,7 +273,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 
@@ -288,8 +287,8 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 When hosted in IIS by the ASP.NET Core Module version 2:
 
-* [**Application Initialization Module**](#application-initialization-module): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) or [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) can be configured to start automatically on a worker process restart or server restart.
-* [**Idle Timeout**](#idle-timeout): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) can be configured not to time out during periods of inactivity.
+* [**Application Initialization Module**](#application-initialization-module): App's hosted [in-process](in-process-hosting.md) or [out-of-process](out-of-process-hosting.md) can be configured to start automatically on a worker process restart or server restart.
+* [**Idle Timeout**](#idle-timeout): App's hosted [in-process](in-process-hosting.md) can be configured not to time out during periods of inactivity.
 
 ### Application Initialization Module
 
@@ -346,10 +345,10 @@ To prevent the app from idling, set the app pool's idle timeout using IIS Manage
 1. The default **Idle Time-out (minutes)** is `20` minutes. Set the **Idle Time-out (minutes)** to `0` (zero). Select **OK**.
 1. Recycle the worker process.
 
-To prevent apps hosted [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) from timing out, use either of the following approaches:
+To prevent apps hosted [out-of-process](out-of-process-hosting.md) from timing out, use either of the following approaches:
 
 * Ping the app from an external service in order to keep it running.
-* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](xref:host-and-deploy/windows-service).
+* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](../windows-service.md).
 
 ### Application Initialization Module and Idle Timeout additional resources
 
@@ -415,7 +414,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 ## Create the IIS site
 
-1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
+1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see [ASP.NET Core directory structure](../directory-structure.md).
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -451,7 +450,7 @@ For more information, see [Configure Windows authentication](../../security/auth
 
 ## Shadow copy
 
-Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
+Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](../aspnet-core-module.md) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](../app-offline.md).
 
 When an ASP.NET Core app is running on Windows, the binaries are locked so that they can't be modified or replaced. Shadow copying enables the app assemblies to be updated while the app is running by making a copy of the assemblies.
 

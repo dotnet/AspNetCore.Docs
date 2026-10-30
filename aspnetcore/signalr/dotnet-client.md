@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Work with the ASP.NET Core SignalR .NET client, including package installation, connecting to a hub, calling hub and client methods, and error handling.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/27/2026
-uid: signalr/dotnet-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR .NET client, so I can connect to a SignalR hub and use hub and client methods.
 ---
@@ -278,7 +277,7 @@ Note the following about cancellation:
 
 Before ASP.NET Core 11.0, a `CancellationToken` passed to a non-streaming `InvokeAsync` only canceled the wait on the client. The hub method ran to completion on the server. Only streaming invocations could be canceled. This is also the behavior against a server running an earlier version of ASP.NET Core.
 
-Canceling a non-streaming invocation is supported by the .NET client only. The JavaScript, Java, and Swift clients can cancel streaming invocations, but their `invoke` equivalents don't accept a cancellation argument. See <xref:signalr/client-features>.
+Canceling a non-streaming invocation is supported by the .NET client only. The JavaScript, Java, and Swift clients can cancel streaming invocations, but their `invoke` equivalents don't accept a cancellation argument. See [ASP.NET Core SignalR clients](client-features.md).
 
 :::moniker-end
 
@@ -315,7 +314,7 @@ To unregister a handler:
   ```
 
 > [!NOTE]
-> While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On*?displayProperty=nameWithType> with the method name. For an example, see <xref:signalr/background-services#call-a-signalr-hub-from-a-background-service>.
+> While the hub side of the connection supports strongly typed messaging, the client must register by using the generic method <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.On*?displayProperty=nameWithType> with the method name. For an example, see [Host ASP.NET Core SignalR in background services](background-services.md#call-a-signalr-hub-from-a-background-service).
 
 ## Error handling and logging
 
@@ -333,7 +332,7 @@ When the server enables authentication refresh, the .NET client can replace the 
 
 ## Related content
 
-* [Hubs](xref:signalr/hubs)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
+* [Hubs](hubs.md)
+* [JavaScript client](javascript-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
 * [Azure Functions development and configuration with Azure SignalR Service](/azure/azure-signalr/signalr-concept-serverless-development-config)

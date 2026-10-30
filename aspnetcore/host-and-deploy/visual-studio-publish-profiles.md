@@ -3,7 +3,6 @@ title: Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment
 description: Learn how to create publish profiles in Visual Studio and use them for managing ASP.NET Core app deployments to various targets.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/27/2026
-uid: host-and-deploy/visual-studio-publish-profiles
 ---
 # Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment
 
@@ -29,7 +28,7 @@ The `dotnet new mvc` command produces a project file containing the following ro
 
 The preceding `<Project>` element's `Sdk` attribute imports the MSBuild [properties](/visualstudio/msbuild/msbuild-properties) and [targets](/visualstudio/msbuild/msbuild-targets) from *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.props* and *$(MSBuildSDKsPath)\Microsoft.NET.Sdk.Web\Sdk\Sdk.targets*, respectively. The default location for `$(MSBuildSDKsPath)` (with Visual Studio 2022) is the *%programfiles%\Microsoft Visual Studio\2022\Preview\MSBuild\Sdks* folder.
 
-`Microsoft.NET.Sdk.Web` ([Web SDK](xref:razor-pages/web-sdk)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](xref:razor-pages/sdk)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
+`Microsoft.NET.Sdk.Web` ([Web SDK](../razor-pages/web-sdk.md)) depends on other SDKs, including `Microsoft.NET.Sdk` ([.NET SDK](/dotnet/core/project-sdk/msbuild-props)) and `Microsoft.NET.Sdk.Razor` ([Razor SDK](../razor-pages/sdk.md)). The MSBuild properties and targets associated with each dependent SDK are imported. Publish targets import the appropriate set of targets based on the publish method used.
 
 When MSBuild or Visual Studio loads a project, the following high-level actions occur:
 
@@ -45,13 +44,13 @@ The `Content` item list contains files that are published in addition to the bui
 
 :::moniker range=">= aspnetcore-3.0"
 
-The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.
+The [Web SDK](../razor-pages/web-sdk.md) imports the [Razor SDK](../razor-pages/sdk.md). As a result, files matching the patterns `**\*.cshtml` and `**\*.razor` are also included in the `Content` item list.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-The [Web SDK](xref:razor-pages/web-sdk) imports the [Razor SDK](xref:razor-pages/sdk). As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.
+The [Web SDK](../razor-pages/web-sdk.md) imports the [Razor SDK](../razor-pages/sdk.md). As a result, files matching the `**\*.cshtml` pattern are also included in the `Content` item list.
 
 :::moniker-end
 
@@ -65,7 +64,7 @@ When selecting the **Publish** button in Visual Studio, or when publishing from 
 * The publish items are computed (the files that are needed to publish).
 * The project is published (the computed files are copied to the publish destination).
 
-When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project file, an `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+When an ASP.NET Core project references `Microsoft.NET.Sdk.Web` in the project file, an `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](aspnet-core-module.md#app_offlinehtm).
 
 ## Basic command-line publishing
 
@@ -150,7 +149,7 @@ When publishing to an Azure target, the *.pubxml* file:
 
 Sensitive information, for example, the publish password, is encrypted on a per user/machine level. The `Properties/PublishProfiles/{PROFILE NAME}.pubxml.user` file contains the information needed by MSBuild to retrieve the user name and password.
 
-For an overview of how to publish an ASP.NET Core web app, see <xref:host-and-deploy/index>. The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [dotnet/websdk repository](https://github.com/dotnet/sdk/tree/main/src/WebSdk).
+For an overview of how to publish an ASP.NET Core web app, see [Host and deploy ASP.NET Core](index.md). The MSBuild tasks and targets necessary to publish an ASP.NET Core web app are open-source in the [dotnet/websdk repository](https://github.com/dotnet/sdk/tree/main/src/WebSdk).
 
 `dotnet publish` and `dotnet build`:
 
@@ -231,7 +230,7 @@ Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or p
 </PropertyGroup>
 ```
 
-If you require *web.config* transformations (for example, setting environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you require *web.config* transformations (for example, setting environment variables based on the configuration, profile, or environment), see [Transform web.config](iis/transform-webconfig.md).
 
 ## Exclude files
 
@@ -322,7 +321,7 @@ Done Building Project "C:\Webs\Web1\Web1.csproj" (default targets).
 
 ## Include files
 
-The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the [Web SDK](xref:razor-pages/web-sdk). The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the [.NET SDK](/dotnet/core/project-sdk/msbuild-props). Because the Web SDK depends on the .NET SDK, either item can be used in an ASP.NET Core project.
+The following sections outline different approaches for file inclusion at publish time. The [General file inclusion](#general-file-inclusion) section uses the `DotNetPublishFiles` item, which is provided by a publish targets file in the [Web SDK](../razor-pages/web-sdk.md). The [Selective file inclusion](#selective-file-inclusion) section uses the `ResolvedFileToPublish` item, which is provided by a publish targets file in the [.NET SDK](/dotnet/core/project-sdk/msbuild-props). Because the Web SDK depends on the .NET SDK, either item can be used in an ASP.NET Core project.
 
 ### General file inclusion
 
@@ -396,4 +395,4 @@ Select the [Debug Console](https://github.com/projectkudu/kudu/wiki/Kudu-console
 * [Web SDK README file](https://github.com/dotnet/sdk/tree/main/src/WebSdk)
 * [Web SDK GitHub repository](https://github.com/dotnet/websdk/issues): File issues and request features for deployment.
 * [Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) (MSDeploy) simplifies deployment of web apps and websites to IIS servers.
-* <xref:host-and-deploy/iis/transform-webconfig>
+* [Transform web.config](iis/transform-webconfig.md)

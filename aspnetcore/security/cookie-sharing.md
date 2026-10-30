@@ -79,9 +79,9 @@ When the Identity schema is different among apps, usually because apps are using
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
-ASP.NET 4.x apps that use Microsoft.Owin cookie authentication middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core cookie authentication middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/fx-to-core/index) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
+ASP.NET 4.x apps that use Microsoft.Owin cookie authentication middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core cookie authentication middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](../migration/fx-to-core/index.md) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
 
-* Using the System.Web adapters' [remote authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) feature, which uses the ASP.NET app to sign users in.
+* Using the System.Web adapters' [remote authentication](../migration/fx-to-core/areas/authentication.md#remote-authentication) feature, which uses the ASP.NET app to sign users in.
 * Configuring the ASP.NET app to use Microsoft.Owin cookie authentication middleware so that authentication cookies are shared with the ASP.NET Core app.
 
 To configure ASP.NET Microsoft.Owin cookie authentication middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md) for more information on persisting data protection keys.
@@ -110,7 +110,7 @@ Note that because there are differences between ASP.NET Identity and ASP.NET Cor
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 * [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/) by [Brock Allen](https://brockallen.com/)
 * [OWIN authentication middleware Architecture](https://brockallen.com/2013/08/07/owin-authentication-middleware-architecture/) by [Brock Allen](https://brockallen.com/)
 * [Posts from the 'OWIN / Katana' Category](https://brockallen.com/category/owin-katana/) by [Brock Allen](https://brockallen.com/)
@@ -219,6 +219,6 @@ When the Identity schema is different among apps, usually because apps are using
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 * [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/)
 :::moniker-end
