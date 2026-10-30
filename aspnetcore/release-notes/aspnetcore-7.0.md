@@ -252,7 +252,7 @@ For more information, see [Configure a bearer token with the gRPC client factory
 
 The server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
 
-For more information, see [Client results](../signalr/hubs.md?view=aspnetcore-7.0#client-results)
+For more information, see [Client results](../signalr/hubs.md?view=aspnetcore-7.0&preserve-view=true#request-client-results)
 
 ### Dependency injection for SignalR hub methods
 
@@ -619,7 +619,7 @@ The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/H
 
 Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](../host-and-deploy/aspnet-core-module.md) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](../host-and-deploy/app-offline.md).
 
-For more information, see [Shadow copying in IIS](../host-and-deploy/iis/advanced.md?view=aspnetcore-7.0#shadow-copy).
+For more information, see [Shadow copying in IIS](../host-and-deploy/iis/advanced.md?view=aspnetcore-7.0&preserve-view=true#shadow-copy).
 
 ## Miscellaneous
 

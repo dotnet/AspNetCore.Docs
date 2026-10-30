@@ -140,7 +140,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -557,7 +557,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -874,7 +874,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle).
 
 ## Configuration with web.config
 

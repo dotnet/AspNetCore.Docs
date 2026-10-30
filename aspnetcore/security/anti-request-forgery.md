@@ -504,7 +504,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to protecting against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -893,7 +893,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1180,7 +1180,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
