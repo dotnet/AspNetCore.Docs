@@ -1236,7 +1236,7 @@ The following `SlotExample` component uses the preceding `SlotContent` type and 
 
 <h1>Plain text</h1>
 
-<Slot Content="@("Simple plain text slot")" />
+<Slot Content="Simple plain text slot" />
 
 <h1><code>MarkupString</code></h1>
 
@@ -1266,10 +1266,6 @@ The following `SlotExample` component uses the preceding `SlotContent` type and 
     private void Increment() => currentCount++;
 }
 ```
-
-<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
-
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot")"` in the preceding example.
 
 <!-- UPDATE 11.0 - Track on https://github.com/dotnet/razor/issues/13200 for 
                    the following feature. -->
