@@ -196,5 +196,5 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)
-* <xref:host-and-deploy/visual-studio-publish-profiles>
+* [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
 * <xref:test/troubleshoot-azure-iis>

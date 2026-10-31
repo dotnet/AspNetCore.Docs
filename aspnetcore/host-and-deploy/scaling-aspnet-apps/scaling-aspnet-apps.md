@@ -1,7 +1,6 @@
 ---
 title: Scaling ASP.NET Core Apps on Azure
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
-uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
 ms.date: 10/26/2026
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
@@ -21,7 +20,7 @@ This article uses Razor Pages, but most of it applies to other ASP.NET Core apps
 
 In some cases, basic ASP.NET Core apps are able to scale without special considerations. However, apps that utilize certain framework features or architectural patterns require extra configurations, including the following:
 
-* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use [cross site forgery tokens](xref:security/anti-request-forgery) and internal data protection services to secure requests. When deployed to the cloud, these apps must be configured to manage data protection service concerns in a secure, centralized location.
+* **Secure form submissions**: Razor Pages, MVC and Web API apps often rely on form submissions. By default these apps use [cross site forgery tokens](../../security/anti-request-forgery.md) and internal data protection services to secure requests. When deployed to the cloud, these apps must be configured to manage data protection service concerns in a secure, centralized location.
 
 * **SignalR circuits**: Blazor Server apps require the use of a centralized [Azure SignalR service](/azure/azure-signalr/signalr-overview) in order to securely scale. These services also utilize the data protection services mentioned previously.
 

@@ -29,7 +29,7 @@ This document:
     * [Conventional routing](#cr6) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar6) section.
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
-* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions.
+* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions.
 
 <a name="cr6"></a>
 
@@ -384,11 +384,11 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](../../web-api/index.md#consumes).
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](../../web-api/index.md#apicontroller-attribute).
 
 ## Route name
 
@@ -473,7 +473,7 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 * The preceding code is an example of poor routing design. It illustrates the `Order` property.
 * The `Order` property only resolves the ambiguity. That template cannot be matched. It's better to remove the `[Route("Home")]` template.
 
-For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](../../razor-pages/razor-pages-conventions.md#route-order).
 
 In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the `AmbiguousMatchException`.
 
@@ -871,7 +871,7 @@ This document:
     * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
   * See [Routing](xref:fundamentals/routing) for advanced routing details.
-* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
+* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
 
 <a name="cr"></a>
 
@@ -1226,11 +1226,11 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](../../web-api/index.md#consumes).
 
  See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](../../web-api/index.md#apicontroller-attribute).
 
 ## Route name
 
@@ -1315,7 +1315,7 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 * The preceding code is an example of poor routing design. It illustrates the `Order` property.
 * The `Order` property only resolves the ambiguity. That template cannot be matched. It's better to remove the `[Route("Home")]` template.
 
-For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](../../razor-pages/razor-pages-conventions.md#route-order).
 
 In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the `AmbiguousMatchException`.
 

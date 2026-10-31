@@ -46,7 +46,7 @@ For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-cachin
 
 ### Adopt passkey user authentication in an existing Blazor Web App
 
-For guidance, see <xref:security/authentication/passkeys/blazor?pivots=existing-app>.
+For guidance, see [Implement passkeys in ASP.NET Core Blazor Web Apps](../../../security/authentication/passkeys/blazor.md?pivots=existing-app).
 
 ### When navigation errors are disabled in a Blazor Web App with Individual Accounts
 

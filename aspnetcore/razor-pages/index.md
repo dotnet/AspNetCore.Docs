@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn the architecture, concepts, and patterns of Razor Pages in ASP.NET Core for building page-focused web applications.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/27/2025
-uid: razor-pages/index
 ---
 
 # Razor Pages architecture and concepts in ASP.NET Core
@@ -336,7 +335,7 @@ Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is 
 
 ## XSRF/CSRF and Razor Pages
 
-Razor Pages are protected by [Antiforgery validation](xref:security/anti-request-forgery). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
+Razor Pages are protected by [Antiforgery validation](../security/anti-request-forgery.md). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
 
 <a name="layout"></a>
 
@@ -470,7 +469,7 @@ To redirect to a page in a different [Area](xref:mvc/controllers/areas), specify
 RedirectToPage("/Index", new { area = "Services" });
 ```
 
-For more information, see <xref:mvc/controllers/areas> and <xref:razor-pages/razor-pages-conventions>.
+For more information, see <xref:mvc/controllers/areas> and [Razor Pages route and app conventions in ASP.NET Core](razor-pages-conventions.md).
 
 ## ViewData attribute
 
@@ -578,7 +577,7 @@ The configuration and settings in following sections is not required by most app
 To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>:
 [!code-csharp[](~/razor-pages/index/samples/6.0/RazorPagesContacts/Program.cs?name=snippet_ac&highlight=5-9)]
 
-Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions).
+Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](security/authorization/conventions.md).
 
 To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).
 
@@ -597,14 +596,14 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 ## Related content
 
 * See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
-* [`[Authorize]` attribute in Razor Pages apps](xref:razor-pages/security/authorization/simple#authorize-attribute-in-razor-pages-apps)
+* [`[Authorize]` attribute in Razor Pages apps](security/authorization/simple.md#authorize-attribute-in-razor-pages-apps)
 * [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/samples/6.0)
 * <xref:index>
 * <xref:mvc/views/razor>
 * <xref:mvc/controllers/areas>
 * <xref:tutorials/razor-pages/razor-pages-start>
-* <xref:razor-pages/security/authorization/conventions>
-* <xref:razor-pages/razor-pages-conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
+* [Razor Pages route and app conventions in ASP.NET Core](razor-pages-conventions.md)
 * <xref:test/razor-pages-tests>
 * <xref:mvc/views/partial>
 

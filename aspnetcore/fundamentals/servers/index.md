@@ -29,7 +29,7 @@ When using [IIS](/iis/get-started/introduction-to-iis/introduction-to-iis-archit
 * In the same process as the IIS worker process (the [in-process hosting model](#hosting-models)) with the IIS HTTP Server. *In-process* is the recommended configuration.
 * In a process separate from the IIS worker process (the [out-of-process hosting model](#hosting-models)) with the [Kestrel server](#kestrel).
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+The [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) is a native IIS module that handles native IIS requests between IIS and the in-process IIS HTTP Server or Kestrel. For more information, see [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md).
 
 ## Kestrel vs. HTTP.sys
 
@@ -44,7 +44,7 @@ Kestrel has the following advantages over HTTP.sys:
 Http.Sys operates as a shared kernel mode component with the following features that kestrel does not have:
 
   * Port sharing
-  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](xref:security/authentication/windowsauth#kestrel).
+  * Kernel mode windows authentication. [Kestrel supports only user-mode authentication](../../security/authentication/windowsauth.md#kestrel).
   * Fast proxying via queue transfers
   * Direct file transmission
   * Response caching
@@ -64,8 +64,8 @@ Several hosting models are available:
 For more information, see the following:
 
 * [Kestrel vs. HTTP.sys](#kestrel-vs-httpsys)
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
 
 # [macOS](#tab/macos)
 
@@ -119,14 +119,14 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+The module specifies the port via an environment variable at startup, and the [IIS integration middleware](../../host-and-deploy/iis/index.md#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
 For IIS and ASP.NET Core Module configuration guidance, see the following topics:
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
 
 # [macOS](#tab/macos)
 
@@ -145,7 +145,7 @@ ASP.NET Core ships with [Kestrel server](xref:fundamentals/servers/kestrel), whi
 
 ### Nginx with Kestrel
 
-For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see <xref:host-and-deploy/linux-nginx>.
+For information on how to use Nginx on Linux as a reverse proxy server for Kestrel, see [Host ASP.NET Core on Linux with Nginx](../../host-and-deploy/linux-nginx.md).
 
 ## HTTP.sys
 
@@ -173,7 +173,7 @@ If the built-in servers don't meet the app's requirements, a custom server imple
 
 The server is launched when the Integrated Development Environment (IDE) or editor starts the app:
 
-* [Visual Studio](https://visualstudio.microsoft.com): Launch profiles can be used to start the app and server with either [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) or the console.
+* [Visual Studio](https://visualstudio.microsoft.com): Launch profiles can be used to start the app and server with either [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview)/[ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) or the console.
 * [Visual Studio Code](https://code.visualstudio.com/): The app and server are started by [Omnisharp](https://github.com/OmniSharp/omnisharp-vscode), which activates the CoreCLR debugger.
 
 When launching the app from a command prompt in the project's folder, [dotnet run](/dotnet/core/tools/dotnet-run) launches the app and server (Kestrel and HTTP.sys only). The configuration is specified by the `-c|--configuration` option, which is set to either `Debug` (default) or `Release`.
@@ -195,10 +195,10 @@ A `launchSettings.json` file provides configuration when launching an app with `
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
-* [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Target framework: .NET Core 2.2 or later
-* [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (out-of-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
@@ -218,10 +218,10 @@ A `launchSettings.json` file provides configuration when launching an app with `
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
-* [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Target framework: .NET Core 2.2 or later
-* [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (out-of-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
@@ -241,10 +241,10 @@ A `launchSettings.json` file provides configuration when launching an app with `
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
-* [IIS (in-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (in-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Target framework: .NET Core 2.2 or later
-* [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (out-of-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
@@ -258,7 +258,7 @@ A `launchSettings.json` file provides configuration when launching an app with `
 * [HTTP.sys](xref:fundamentals/servers/httpsys#http2-support)
   * Windows Server 2016/Windows 10 or later
   * Target framework: Not applicable to HTTP.sys deployments.
-* [IIS (out-of-process)](xref:host-and-deploy/iis/index#http2-support)
+* [IIS (out-of-process)](../../host-and-deploy/iis/index.md#http2-support)
   * Windows Server 2016/Windows 10 or later; IIS 10 or later
   * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to Kestrel uses HTTP/1.1.
   * Target framework: Not applicable to IIS out-of-process deployments.
@@ -272,8 +272,8 @@ An HTTP/2 connection must use [Application-Layer Protocol Negotiation (ALPN)](ht
 ## Related content
 
 * <xref:fundamentals/servers/kestrel>
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/azure-apps/index>
-* <xref:host-and-deploy/linux-nginx>
+* [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md)
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [Deploy ASP.NET Core apps to Azure App Service](../../host-and-deploy/azure-apps/index.md)
+* [Host ASP.NET Core on Linux with Nginx](../../host-and-deploy/linux-nginx.md)
 * <xref:fundamentals/servers/httpsys>

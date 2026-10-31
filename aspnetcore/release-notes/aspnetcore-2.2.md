@@ -14,8 +14,8 @@ OpenAPI (formerly known as Swagger) is a language-agnostic specification for des
 
 For more information, see the following resources:
 
-* <xref:web-api/advanced/analyzers>
-* <xref:web-api/advanced/conventions>
+* [Use web API analyzers](../web-api/advanced/analyzers.md)
+* [Use web API conventions](../web-api/advanced/conventions.md)
 * [ASP.NET Core 2.2.0-preview1: OpenAPI Analyzers & Conventions](https://blogs.msdn.microsoft.com/webdev/2018/08/23/asp-net-core-2-20-preview1-open-api-analyzers-conventions/)
 
 ## Problem details support
@@ -40,7 +40,7 @@ Health checks are used by a container orchestrator or load balancer to quickly d
 
 Health checks are exposed by an application as an HTTP endpoint used by monitoring systems. Health checks can be configured for a variety of real-time monitoring scenarios and monitoring systems. The health checks service integrates with the [BeatPulse project](https://github.com/Xabaril/BeatPulse). which makes it easier to add checks for dozens of popular systems and dependencies.
 
-For more information, see [Health checks in ASP.NET Core](xref:host-and-deploy/health-checks).
+For more information, see [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md).
 
 ## HTTP/2 in Kestrel
 
@@ -68,7 +68,7 @@ In earlier versions of ASP.NET Core, Kestrel options are configured by calling `
 
 In earlier versions of ASP.NET Core, IIS serves as a reverse proxy. In 2.2, the ASP.NET Core Module can boot the CoreCLR and host an app inside the IIS worker process (*w3wp.exe*). In-process hosting provides performance and diagnostic gains when running with IIS.
 
-For more information, see [in-process hosting for IIS](xref:host-and-deploy/aspnet-core-module?view=aspnetcore-2.2#in-process-hosting-model).
+For more information, see [in-process hosting for IIS](../host-and-deploy/aspnet-core-module.md?view=aspnetcore-2.2&preserve-view=true#in-process-hosting-model).
 
 ## SignalR Java client
 
@@ -80,7 +80,7 @@ For more information, see [ASP.NET Core SignalR Java client](../signalr/java-cli
 
 In earlier versions of ASP.NET Core, CORS middleware allows `Accept`, `Accept-Language`, `Content-Language`, and `Origin` headers to be sent regardless of the values configured in `CorsPolicy.Headers`. In 2.2, a CORS middleware policy match is only possible when the headers sent in `Access-Control-Request-Headers` exactly match the headers stated in `WithHeaders`.
 
-For more information, see [CORS middleware](xref:security/cors?view=aspnetcore-2.2#set-the-allowed-request-headers).
+For more information, see [CORS middleware](../security/cors.md?view=aspnetcore-2.2&preserve-view=true#set-the-allowed-request-headers).
 
 ## Response compression
 

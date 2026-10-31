@@ -16,9 +16,9 @@ Network bandwidth is a limited resource. Reducing the size of the response usual
 
 ## Explore compression with HTTPS
 
-Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can expose the app to [CRIME](https://wikipedia.org/wiki/CRIME) and [BREACH](https://wikipedia.org/wiki/BREACH) attacks. CRIME and BREACH attacks can be mitigated in ASP.NET Core with antiforgery tokens. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](xref:security/anti-request-forgery). For information on mitigating BREACH attacks, see [Mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/.
+Compressed responses over secure connections can be controlled with the <xref:Microsoft.AspNetCore.ResponseCompression.ResponseCompressionOptions.EnableForHttps> option, which is disabled by default because of the security risk. Using compression with dynamically generated pages can expose the app to [CRIME](https://wikipedia.org/wiki/CRIME) and [BREACH](https://wikipedia.org/wiki/BREACH) attacks. CRIME and BREACH attacks can be mitigated in ASP.NET Core with antiforgery tokens. For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md). For information on mitigating BREACH attacks, see [Mitigations](http://www.breachattack.com/#mitigations) at http://www.breachattack.com/.
 
-Even when the app disables the `EnableForHttps` property (`false`), Internet Information Services (IIS), IIS Express, and [Azure App Service](xref:host-and-deploy/azure-iis-errors-reference) can apply [Gzip](https://www.gnu.org/software/gzip/) at the IIS web server. When you review response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Server) header value. An unexpected `content-encoding` response header value might be the result of the web server and not the ASP.NET Core app configuration.
+Even when the app disables the `EnableForHttps` property (`false`), Internet Information Services (IIS), IIS Express, and [Azure App Service](../host-and-deploy/azure-iis-errors-reference.md) can apply [Gzip](https://www.gnu.org/software/gzip/) at the IIS web server. When you review response headers, take note of the [Server](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Server) header value. An unexpected `content-encoding` response header value might be the result of the web server and not the ASP.NET Core app configuration.
 
 ## Determine when to use response compression middleware
 
@@ -274,7 +274,7 @@ When Nginx proxies the request, the `Accept-Encoding` header is removed. Removal
 
 ## Disable IIS dynamic compression
 
-To disable IIS Dynamic Compression Module configured at the server level, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+To disable IIS Dynamic Compression Module configured at the server level, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 ## Troubleshoot response compression
 
@@ -544,7 +544,7 @@ When a request is proxied by Nginx, the `Accept-Encoding` header is removed. Rem
 
 ## Working with IIS dynamic compression
 
-If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, disable the module with an addition to the *web.config* file. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+If you have an active IIS Dynamic Compression Module configured at the server level that you would like to disable for an app, disable the module with an addition to the *web.config* file. For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 ## Troubleshooting
 

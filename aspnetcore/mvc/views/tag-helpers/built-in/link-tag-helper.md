@@ -53,5 +53,5 @@ The CSS property value to use for the fallback test. For more information, see <
 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/controllers/areas>
-* <xref:razor-pages/index>
+* [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
 * <xref:mvc/compatibility-version>

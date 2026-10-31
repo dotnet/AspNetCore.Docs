@@ -3,7 +3,6 @@ title: Out-of-process hosting with IIS and ASP.NET Core
 description: Learn about out-of-process Hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 02/07/2020
-uid: host-and-deploy/iis/out-of-process-hosting
 ---
 # Out-of-process hosting with IIS and ASP.NET Core 
 
@@ -24,7 +23,7 @@ The ASP.NET Core Module specifies the port via an environment variable at startu
 
 After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
-For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
+For ASP.NET Core Module configuration guidance, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
 
@@ -56,7 +55,7 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) topic. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) topic. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
@@ -70,7 +69,7 @@ The [IIS integration middleware](#enable-the-iisintegration-components) and the 
 
 The [IIS integration middleware](#enable-the-iisintegration-components) configures forwarded headers middleware.
 
-Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md).
 
 
 ### Out-of-process hosting model
@@ -98,7 +97,7 @@ For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host
 
 `Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](modules.md).
 
 The ASP.NET Core Module can also:
 

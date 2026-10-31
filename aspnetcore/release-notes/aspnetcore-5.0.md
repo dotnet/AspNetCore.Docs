@@ -200,7 +200,7 @@ Globalization support is available for Blazor WebAssembly based on International
 
 Many performance improvements have been made in [gRPC](https://grpc.io/). For more information, see [gRPC performance improvements in .NET 5](https://devblogs.microsoft.com/aspnet/grpc-performance-improvements-in-net-5/).
 
-For more gRPC information, see <xref:grpc/index>.
+For more gRPC information, see [Overview for gRPC on .NET](../grpc/index.md).
 
 ## SignalR
 
@@ -208,7 +208,7 @@ For more gRPC information, see <xref:grpc/index>.
 
 SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
 
-For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).
+For more information, see [Use hub filters in ASP.NET Core SignalR](../signalr/hub-filters.md).
 
 ### SignalR parallel hub invocations
 
@@ -228,7 +228,7 @@ HubConnection hubConnection = HubConnectionBuilder.create(
 ```
 
 <!--
-See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instructions.
+See [Update SignalR code](../migration/31-to-50.md#signalr) for migration instructions.
 -->
 
 ## Kestrel
@@ -365,7 +365,7 @@ Authorization when using endpoint routing now receives the `HttpContext` rather 
 
 ### Role-based access control with Kerberos authentication and LDAP on Linux
 
-See [Kerberos authentication and role-based access control (RBAC)](xref:security/authentication/windowsauth#rbac)
+See [Kerberos authentication and role-based access control (RBAC)](../security/authentication/windowsauth.md#rbac)
 
 ## API improvements
 

@@ -185,11 +185,11 @@ For more information, refer to [Nginx Docker guide](https://hub.docker.com/_/ngi
 
 ## Hosted deployment on Linux (Nginx)
 
-Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in <xref:host-and-deploy/proxy-load-balancer>.
+Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
 
 For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
 
-Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
+Follow the guidance for an [ASP.NET Core SignalR app](../../../signalr/scale.md#linux-with-nginx) with the following changes:
 
 * Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to [Server-Sent Events (SSE)](https://developer.mozilla.org/docs/Web/API/Server-sent_events), which aren't relevant to Blazor app client-server interactions.
 * Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the sub-app path `/{PATH}` (`location /{PATH} { ... }`), where the `{PATH}` placeholder is the sub-app path.
@@ -224,7 +224,7 @@ Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-w
 
 ## Related content
 
-* <xref:host-and-deploy/linux-nginx>
+* [Host ASP.NET Core on Linux with Nginx](../../../host-and-deploy/linux-nginx.md)
 * Nginx documentation:
   * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
   * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)

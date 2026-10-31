@@ -2,11 +2,10 @@
 title: Key management extensibility in ASP.NET Core
 description: Learn about ASP.NET Core Data Protection key management extensibility.
 ms.date: 10/24/2018
-uid: security/data-protection/extensibility/key-management
 ---
 # Key management extensibility in ASP.NET Core
 
-Read the [key management](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
+Read the [key management](../implementation/key-management.md#data-protection-implementation-key-management) section before reading this section, as it explains some of the fundamental concepts behind these APIs.
 
 **Warning**: Types that implement any of the following interfaces should be thread-safe for multiple callers.
 
@@ -22,13 +21,13 @@ The `IKey` interface is the basic representation of a key in cryptosystem. The t
 
 :::moniker range=">= aspnetcore-2.0"
 
-Additionally, `IKey` exposes a `CreateEncryptor` method which can be used to create an [IAuthenticatedEncryptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance tied to this key.
+Additionally, `IKey` exposes a `CreateEncryptor` method which can be used to create an [IAuthenticatedEncryptor](core-crypto.md#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance tied to this key.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-2.0"
 
-Additionally, `IKey` exposes a `CreateEncryptorInstance` method which can be used to create an [IAuthenticatedEncryptor](xref:security/data-protection/extensibility/core-crypto#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance tied to this key.
+Additionally, `IKey` exposes a `CreateEncryptorInstance` method which can be used to create an [IAuthenticatedEncryptor](core-crypto.md#data-protection-extensibility-core-crypto-iauthenticatedencryptor) instance tied to this key.
 
 :::moniker-end
 
@@ -106,7 +105,7 @@ In the implementation of `CreateNewKey`, the `IAuthenticatedEncryptorConfigurati
 
 In the implementation of `GetAllKeys`, the XML documents representing keys and revocations are read from the underlying `IXmlRepository`. If these documents are encrypted, the system will automatically decrypt them. `XmlKeyManager` creates the appropriate `IAuthenticatedEncryptorDescriptorDeserializer` instances to deserialize the documents back into `IAuthenticatedEncryptorDescriptor` instances, which are then wrapped in individual `IKey` instances. This collection of `IKey` instances is returned to the caller.
 
-Further information on the particular XML elements can be found in the [key storage format document](xref:security/data-protection/implementation/key-storage-format#data-protection-implementation-key-storage-format).
+Further information on the particular XML elements can be found in the [key storage format document](../implementation/key-storage-format.md#data-protection-implementation-key-storage-format).
 
 ## IXmlRepository
 
@@ -138,7 +137,7 @@ There are four built-in concrete types which implement `IXmlRepository`:
 
 :::moniker-end
 
-See the [key storage providers document](xref:security/data-protection/implementation/key-storage-providers) for more information.
+See the [key storage providers document](../implementation/key-storage-providers.md) for more information.
 
 Registering a custom `IXmlRepository` is appropriate when using a different backing store (for example, Azure Table Storage).
 
@@ -175,7 +174,7 @@ There are four built-in concrete types which implement `IXmlEncryptor`:
 * <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.DpapiXmlEncryptor>
 * <xref:Microsoft.AspNetCore.DataProtection.XmlEncryption.NullXmlEncryptor>
 
-See the [key encryption at rest document](xref:security/data-protection/implementation/key-encryption-at-rest) for more information.
+See the [key encryption at rest document](../implementation/key-encryption-at-rest.md) for more information.
 
 To change the default key-encryption-at-rest mechanism application-wide, register a custom `IXmlEncryptor` instance:
 
@@ -221,7 +220,7 @@ The escrow interface provides an emergency escape hatch, allowing access to the 
 
 It's up to the `IKeyEscrowSink` implementation to handle the provided element in a secure manner consistent with business policy. One possible implementation could be for the escrow sink to encrypt the XML element using a known corporate X.509 certificate where the certificate's private key has been escrowed; the `CertificateXmlEncryptor` type can assist with this. The `IKeyEscrowSink` implementation is also responsible for persisting the provided element appropriately.
 
-By default no escrow mechanism is enabled, though server administrators can [configure this globally](xref:security/data-protection/configuration/machine-wide-policy). It can also be configured programmatically via the `IDataProtectionBuilder.AddKeyEscrowSink` method as shown in the sample below. The `AddKeyEscrowSink` method overloads mirror the `IServiceCollection.AddSingleton` and `IServiceCollection.AddInstance` overloads, as `IKeyEscrowSink` instances are intended to be singletons. If multiple `IKeyEscrowSink` instances are registered, each one will be called during key generation, so keys can be escrowed to multiple mechanisms simultaneously.
+By default no escrow mechanism is enabled, though server administrators can [configure this globally](../configuration/machine-wide-policy.md). It can also be configured programmatically via the `IDataProtectionBuilder.AddKeyEscrowSink` method as shown in the sample below. The `AddKeyEscrowSink` method overloads mirror the `IServiceCollection.AddSingleton` and `IServiceCollection.AddInstance` overloads, as `IKeyEscrowSink` instances are intended to be singletons. If multiple `IKeyEscrowSink` instances are registered, each one will be called during key generation, so keys can be escrowed to multiple mechanisms simultaneously.
 
 There's no API to read material from an `IKeyEscrowSink` instance. This is consistent with the design theory of the escrow mechanism: it's intended to make the key material accessible to a trusted authority, and since the application is itself not a trusted authority, it shouldn't have access to its own escrowed material.
 

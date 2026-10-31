@@ -61,8 +61,8 @@ The examples shown in this article require additional configuration for:
 
 The preceding configurations are beyond the scope of this article. For more information, see the following resources:
 
-* <xref:host-and-deploy/index>
-* <xref:security/enforcing-ssl>
+* [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
+* [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md)
 * <xref:blazor/components/integration-hosted-webassembly>
 
 Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
@@ -403,7 +403,7 @@ namespace MultipleBlazorApps.Server.Pages
 :::moniker-end
 
 > [!NOTE]
-> The preceding `Index` page is a minimal example purely for demonstration purposes. If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see <xref:razor-pages/index>.
+> The preceding `Index` page is a minimal example purely for demonstration purposes. If the app requires additional Razor Pages assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the Razor Pages project template. For more information, see [Razor Pages architecture and concepts in ASP.NET Core](../../../razor-pages/index.md).
 
 If you plan to serve MVC views from the server app, add an `Index` view and a `Home` controller:
 
@@ -525,7 +525,7 @@ Use components from the RCL in the client apps with either of the following appr
 > [!NOTE]
 > An [`@using`](xref:mvc/views/razor#using) directive can also be placed into each client app's `_Import.razor` file, which makes the RCL's namespace globally available to components in that project.
 
-When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in <xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl>:
+When any other static asset is in the `wwwroot` folder of an RCL, reference the static asset in a client app per the guidance in [Reusable Razor UI in class libraries with ASP.NET Core](../../../razor-pages/ui-class.md#consume-content-from-a-referenced-rcl):
 
 ```razor
 <img alt="..." src="_content/{PACKAGE ID}/{PATH AND FILE NAME}" />
@@ -542,5 +542,5 @@ The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `
 ## Related content
 
 * <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../../razor-pages/ui-class.md)
 * <xref:blazor/components/css-isolation>

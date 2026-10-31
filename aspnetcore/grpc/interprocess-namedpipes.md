@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use gRPC for inter-process communication with Named pipes.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/24/2026
-uid: grpc/interprocess-namedpipes
 ---
 # Inter-process communication with gRPC and Named pipes
 
@@ -16,7 +15,7 @@ uid: grpc/interprocess-namedpipes
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-.NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](xref:grpc/interprocess).
+.NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](interprocess.md).
 
 [Named pipes](https://wikipedia.org/wiki/Named_pipe) is an IPC transport that is supported on all versions of Windows. Named pipes integrate well with [Windows security](/windows/win32/ipc/named-pipe-security-and-access-rights) to control client access to the pipe. This article discusses how to configure gRPC communication over named pipes.
 
@@ -104,7 +103,7 @@ The preceding example:
 * Grants the client security group read/write access only, where the `{CLIENT GROUP}` placeholder is a group containing the accounts allowed to call the service. Additional security rules can be added as needed for the scenario.
 
 > [!IMPORTANT]
-> Unless the app also configures authentication and authorization, the pipe's security descriptor is the only thing that prevents other accounts from calling the server. Grant access to the narrowest principal the scenario requires. Avoid broad groups such as `Users`, which resolves to `BUILTIN\Users` and includes every authenticated and interactive account on the machine, plus `Domain Users` on a domain-joined machine. For information about authenticating callers, see <xref:grpc/authn-and-authz>.
+> Unless the app also configures authentication and authorization, the pipe's security descriptor is the only thing that prevents other accounts from calling the server. Grant access to the narrowest principal the scenario requires. Avoid broad groups such as `Users`, which resolves to `BUILTIN\Users` and includes every authenticated and interactive account on the machine, plus `Domain Users` on a domain-joined machine. For information about authenticating callers, see [Authentication and authorization in gRPC for ASP.NET Core](authn-and-authz.md).
 
 > [!WARNING]
 > Don't grant `PipeAccessRights.CreateNewInstance` to client accounts or to groups that contain untrusted users. `CreateNewInstance` corresponds to the Windows `FILE_CREATE_PIPE_INSTANCE` right, which authorizes a grantee to create *additional server instances* under the same pipe name. Windows distributes incoming client connections across all instances of a pipe, so a process holding that right can accept genuine client connections and impersonate the service. Grant `CreateNewInstance` only to the account the server runs as.
@@ -178,7 +177,7 @@ static PipeSecurity CreatePipeSecurity(string pipeName)
 The preceding example applies the same principle per endpoint: only the server's own account is granted `CreateNewInstance`, and each pipe grants read/write access to a different set of callers. `CurrentUserOnly` is set to `false` because `context.PipeOptions` is passed to <xref:System.IO.Pipes.NamedPipeServerStreamAcl.Create*> along with a `PipeSecurity` object.
 
 > [!WARNING]
-> A pipe's security descriptor controls which accounts can *connect* to that pipe. It doesn't control which services a connected caller can invoke. Every endpoint mapped in the app is served on every named pipe endpoint, so a caller that connects to any pipe can call every mapped service. Don't rely on per-pipe access control to restrict access to individual services. Use authentication and authorization instead, or host the restricted services in a separate process with its own pipe. For more information, see <xref:grpc/authn-and-authz>.
+> A pipe's security descriptor controls which accounts can *connect* to that pipe. It doesn't control which services a connected caller can invoke. Every endpoint mapped in the app is served on every named pipe endpoint, so a caller that connects to any pipe can call every mapped service. Don't rely on per-pipe access control to restrict access to individual services. Use authentication and authorization instead, or host the restricted services in a separate process with its own pipe. For more information, see [Authentication and authorization in gRPC for ASP.NET Core](authn-and-authz.md).
 
 ## Client configuration
 

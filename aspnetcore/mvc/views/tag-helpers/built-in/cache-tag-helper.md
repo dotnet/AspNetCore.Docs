@@ -250,4 +250,4 @@ Using this attribute maintains the contents in cache through a sign-in and sign-
 ## Related content
 
 * <xref:performance/caching/memory>
-* <xref:security/authentication/identity>
+* [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

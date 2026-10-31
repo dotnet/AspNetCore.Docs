@@ -249,7 +249,7 @@ Check the connection string. If you have manually deleted the database file, cha
 
 For more information about EF Core, see the [Entity Framework Core documentation](/ef/core). A book is also available: [Entity Framework Core in Action](https://www.manning.com/books/entity-framework-core-in-action).
 
-For information on how to deploy a web app, see <xref:host-and-deploy/index>.
+For information on how to deploy a web app, see [Host and deploy ASP.NET Core](../../host-and-deploy/index.md).
 
 For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see <xref:index>.
 

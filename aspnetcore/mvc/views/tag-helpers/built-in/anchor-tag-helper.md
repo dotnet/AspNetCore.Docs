@@ -312,5 +312,5 @@ The generated HTML:
 ## Related content
 
 * <xref:mvc/controllers/areas>
-* <xref:razor-pages/index>
+* [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
 * <xref:mvc/compatibility-version>

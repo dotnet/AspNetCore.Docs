@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/02/2026
-uid: signalr/messagepackhubprotocol
 ---
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 
@@ -182,8 +181,8 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
@@ -377,8 +376,8 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
@@ -560,8 +559,8 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
@@ -743,7 +742,7 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end

@@ -16,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](xref:fundamentals/minimal-apis), [Web API with controllers](xref:web-api/index), [MVC](xref:mvc/overview), and [Razor Pages](xref:razor-pages/index). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](xref:fundamentals/minimal-apis), [Web API with controllers](../../web-api/index.md), [MVC](xref:mvc/overview), and [Razor Pages](../../razor-pages/index.md). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
 The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample) and [Preprocessor directives](/dotnet/csharp/fundamentals/program-structure/preprocessor-directives).
 
@@ -33,9 +33,9 @@ Add the middleware to the request processing pipeline by calling the <xref:Micro
 Calling the `AddOutputCache`and `UseOutputCache` methods doesn't start caching behavior, it makes caching available. To make the app cache responses, caching must be configured as described in the following sections.
 
 > [!NOTE]
-> * In apps that use [Cross-Origin Requests (CORS) middleware](xref:security/cors), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method.
+> * In apps that use [Cross-Origin Requests (CORS) middleware](../../security/cors.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method.
 > * In Razor Pages apps and apps with controllers, the `UseOutputCache` method must be called after the `UseRouting` method.
-> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
+> * In apps that use [authentication](../../security/authentication/index.md) or [authorization](../../security/authorization/introduction.md), the `UseOutputCache` method must be called after the <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> methods. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 
 ## Configure one endpoint or page
 

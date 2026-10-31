@@ -122,7 +122,7 @@ The ASP.NET Core SPA templates can be updated in a patch release to a new SPA fr
 
 ## Related content
 
-* <xref:security/authentication/identity/spa>
+* [Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md)
 * <xref:spa/angular>
 * <xref:spa/react>
 * [Hosting Startup Assemblies](xref:fundamentals/host/web-host#hosting-startup-assemblies)

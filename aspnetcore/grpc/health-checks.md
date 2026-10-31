@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use gRPC health checks in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/27/2024
-uid: grpc/health-checks
 ---
 # gRPC health checks in ASP.NET Core
 
@@ -24,7 +23,7 @@ Health checks are exposed by an app as a gRPC service. They're typically used wi
 
 ## Set up gRPC health checks
 
-gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](../host-and-deploy/health-checks.md) are reported to callers.
 
 To set up gRPC health checks in an app:
 
@@ -115,11 +114,11 @@ builder.Services
 ```
 In the previous example, a client factory for `Health.HealthClient` instances is registered with the dependency injection system. Then, these instances are injected into services for executing health check calls.
 
-For more information, see <xref:grpc/clientfactory>.
+For more information, see [gRPC client factory integration in .NET](clientfactory.md).
 
 ## Additional resources
 
-* <xref:host-and-deploy/health-checks>
+* [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md)
 * [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md)
 * [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks)
 * [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck)
@@ -140,7 +139,7 @@ Health checks are exposed by an app as a gRPC service. They are typically used w
 
 ## Set up gRPC health checks
 
-gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+gRPC ASP.NET Core has built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](../host-and-deploy/health-checks.md) are reported to callers.
 
 To set up gRPC health checks in an app:
 
@@ -222,7 +221,7 @@ There are two methods on the `Health` service:
 
 ## Additional resources
 
-* <xref:host-and-deploy/health-checks>
+* [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md)
 * [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md)
 * [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks)
 * [`Grpc.HealthCheck`](https://www.nuget.org/packages/Grpc.HealthCheck)

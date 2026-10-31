@@ -77,5 +77,5 @@ Boolean value that determines if an integrity hash will be compared with the asp
 
 * <xref:mvc/views/tag-helpers/intro>
 * <xref:mvc/controllers/areas>
-* <xref:razor-pages/index>
+* [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
 * <xref:mvc/compatibility-version>

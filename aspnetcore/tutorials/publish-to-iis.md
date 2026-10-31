@@ -20,22 +20,22 @@ This tutorial covers the following subjects:
 ## Prerequisites
 
 * [.NET SDK](/dotnet/core/sdk) installed on the development machine.
-* Windows Server configured with the **Web Server (IIS)** server role. If your server isn't configured to host websites with IIS, follow the guidance in the *IIS configuration* section of the <xref:host-and-deploy/iis/index#iis-configuration> article and then return to this tutorial.
+* Windows Server configured with the **Web Server (IIS)** server role. If your server isn't configured to host websites with IIS, follow the guidance in the *IIS configuration* section of the [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md#iis-configuration) article and then return to this tutorial.
 
 > [!WARNING]
-> **IIS configuration and website security involve concepts that aren't covered by this tutorial.** Consult the IIS guidance in the [Microsoft IIS documentation](https://www.iis.net/) and the [ASP.NET Core article on hosting with IIS](xref:host-and-deploy/iis/index) before hosting production apps on IIS.
+> **IIS configuration and website security involve concepts that aren't covered by this tutorial.** Consult the IIS guidance in the [Microsoft IIS documentation](https://www.iis.net/) and the [ASP.NET Core article on hosting with IIS](../host-and-deploy/iis/index.md) before hosting production apps on IIS.
 >
 > Important scenarios for IIS hosting not covered by this tutorial include:
 >
-> * [Creation of a registry hive for ASP.NET Core Data Protection](xref:host-and-deploy/iis/advanced#data-protection)
-> * [Configuration of the app pool's Access Control List (ACL)](xref:host-and-deploy/iis/advanced#application-pool-identity)
-> * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Related content](#related-content) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the <xref:host-and-deploy/iis/index> article.
+> * [Creation of a registry hive for ASP.NET Core Data Protection](../host-and-deploy/iis/advanced.md#data-protection)
+> * [Configuration of the app pool's Access Control List (ACL)](../host-and-deploy/iis/advanced.md#application-pool-identity)
+> * To focus on IIS deployment concepts, this tutorial deploys an app without HTTPS security configured in IIS. For more information on hosting an app enabled for HTTPS protocol, see the security topics in the [Related content](#related-content) section of this article. Further guidance for hosting ASP.NET Core apps is provided in the [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md) article.
 
 ## Install the .NET Hosting Bundle
 
-Install the *.NET Hosting Bundle* on the IIS server. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
+Install the *.NET Hosting Bundle* on the IIS server. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](../host-and-deploy/aspnet-core-module.md). The module allows ASP.NET Core apps to run behind IIS.
 
-ASP.NET Core apps hosted in IIS use the *in-process hosting model* by default (since ASP.NET Core 3.0). In-process hosting runs the app in the same process as the IIS worker process (`w3wp.exe`), which provides better performance than out-of-process hosting. For more information, see <xref:host-and-deploy/iis/index>.
+ASP.NET Core apps hosted in IIS use the *in-process hosting model* by default (since ASP.NET Core 3.0). In-process hosting runs the app in the same process as the IIS worker process (`w3wp.exe`), which provides better performance than out-of-process hosting. For more information, see [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md).
 
 Download the installer using the following link:
 
@@ -47,7 +47,7 @@ Download the installer using the following link:
 
 ## Create the IIS site
 
-1. On the IIS server, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
+1. On the IIS server, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see [ASP.NET Core directory structure](../host-and-deploy/directory-structure.md).
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -115,23 +115,23 @@ In this tutorial, you learned how to:
 To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview article:
 
 > [!div class="nextstepaction"]
-> <xref:host-and-deploy/iis/index>
+> [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Related content
 
 ### Articles in the ASP.NET Core documentation set
 
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/directory-structure>
+* [ASP.NET Core Module (ANCM) for IIS](../host-and-deploy/aspnet-core-module.md)
+* [ASP.NET Core directory structure](../host-and-deploy/directory-structure.md)
 * <xref:test/troubleshoot-azure-iis>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis)
 
 ### Articles pertaining to ASP.NET Core app deployment
 
 * <xref:tutorials/publish-to-azure-webapp-using-vs>
 * <xref:tutorials/publish-to-azure-webapp-using-vscode>
-* <xref:host-and-deploy/visual-studio-publish-profiles>
+* [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
 
 ### Articles on IIS HTTPS configuration
 
@@ -148,6 +148,6 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 * [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [.NET application deployment](/dotnet/core/deploying/)
-* <xref:host-and-deploy/iis/modules>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [IIS modules with ASP.NET Core](../host-and-deploy/iis/modules.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../host-and-deploy/azure-iis-errors-reference.md)
 * [Sticky sessions with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing)

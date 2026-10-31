@@ -124,7 +124,7 @@ The `Layout` property is set in the `Pages/_ViewStart.cshtml` file:
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10/Pages/_ViewStart.cshtml)]
 
-The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](xref:razor-pages/index#layout) for more information.
+The preceding markup sets the layout file to `Pages/Shared/_Layout.cshtml` for all Razor files under the *Pages* folder. See [Layout](../../razor-pages/index.md#layout) for more information.
 
 ### The Create page model
 
@@ -167,7 +167,7 @@ Visual Studio displays the following tags in a distinctive bold font used for Ta
 
 ---
 
-The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](xref:security/anti-request-forgery).
+The `<form method="post">` element is a [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). The Form Tag Helper automatically includes an [antiforgery token](../../security/anti-request-forgery.md).
 
 The scaffolding engine creates Razor markup for each field in the model, except the ID, similar to the following code:
 

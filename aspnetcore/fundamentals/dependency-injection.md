@@ -546,7 +546,7 @@ public class MyHub2 : Hub
 }
 ```
 
-For more information on DI with SignalR hubs, see <xref:signalr/hubs#inject-services-into-a-hub>.
+For more information on DI with SignalR hubs, see [Use hubs in ASP.NET Core SignalR](../signalr/hubs.md#inject-services-into-a-hub).
 
 Middleware supports keyed services in both the middleware's constructor and its `Invoke`/`InvokeAsync` method:
 
@@ -1114,10 +1114,10 @@ Service type | Lifetime
 ## Related content
 
 * <xref:blazor/fundamentals/dependency-injection>
-* [Inject services into a SignalR hub](xref:signalr/hubs#inject-services-into-a-hub)
+* [Inject services into a SignalR hub](../signalr/hubs.md#inject-services-into-a-hub)
 * <xref:mvc/views/dependency-injection>
 * <xref:mvc/controllers/dependency-injection>
-* <xref:security/authorization/dependencyinjection>
+* [Dependency injection in requirement handlers in ASP.NET Core](../security/authorization/dependencyinjection.md)
 * [NDC Conference Patterns for DI app development](https://www.youtube.com/watch?v=x-C-CNBVTaY)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/middleware/extensibility>

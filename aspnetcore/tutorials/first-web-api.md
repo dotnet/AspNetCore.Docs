@@ -397,7 +397,7 @@ The preceding command scaffolds the `TodoItemsController`.
 
 The generated code:
 
-* Marks the class with the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see <xref:web-api/index>.
+* Marks the class with the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute. This attribute indicates that the controller responds to web API requests. For information about specific behaviors that the attribute enables, see [Create web APIs with ASP.NET Core](../web-api/index.md).
 * Uses DI to inject the database context (`TodoContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 The ASP.NET Core templates for:
@@ -659,7 +659,7 @@ In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for th
 
 ## Return values
 
-The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](xref:web-api/action-return-types#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
+The return type of the `GetTodoItems` and `GetTodoItem` methods is [ActionResult\<T> type](../web-api/action-return-types.md#actionresultt-type). ASP.NET Core automatically serializes the object to [JSON](https://www.json.org/) and writes the JSON into the body of the response message. The response code for this return type is [200 OK](https://developer.mozilla.org/docs/Web/HTTP/Status/200), assuming there are no unhandled exceptions. Unhandled exceptions are translated into 5xx errors.
 
 `ActionResult` return types can represent a wide range of HTTP status codes. For example, `GetTodoItem` can return two different status values:
 
@@ -781,7 +781,7 @@ Use Swagger to send a DELETE request:
 
 There are many other tools that can be used to test web APIs, for example:
 
-* [http-repl](xref:web-api/http-repl)
+* [http-repl](../web-api/http-repl/index.md)
 * [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
 * [Fiddler](https://www.telerik.com/fiddler)
 
@@ -844,15 +844,15 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 For more information, see the following resources:
 
-* <xref:web-api/index>
+* [Create web APIs with ASP.NET Core](../web-api/index.md)
 * <xref:tutorials/min-web-api>
 * <xref:fundamentals/openapi/using-openapi-documents>
 * <xref:tutorials/web-api-help-pages-using-swagger>
 * <xref:data/ef-rp/intro>
 * <xref:mvc/controllers/routing>
-* <xref:web-api/action-return-types>
-* <xref:host-and-deploy/azure-apps/index>
-* <xref:host-and-deploy/index>
+* [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
+* [Deploy ASP.NET Core apps to Azure App Service](../host-and-deploy/azure-apps/index.md)
+* [Host and deploy ASP.NET Core](../host-and-deploy/index.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end

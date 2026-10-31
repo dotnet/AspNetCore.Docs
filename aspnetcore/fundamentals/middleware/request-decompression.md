@@ -100,7 +100,7 @@ In order of precedence, the maximum request size for an endpoint is set by:
 | Web server implementation | `MaxRequestBodySize` configuration |
 | --------- | --------- |
 | [HTTP.sys](xref:fundamentals/servers/httpsys) | <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize?displayProperty=nameWithType> |
-| [IIS](xref:host-and-deploy/iis/index) | <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> |
+| [IIS](../../host-and-deploy/iis/index.md) | <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> |
 | [Kestrel](xref:fundamentals/servers/kestrel) | <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize?displayProperty=nameWithType> |
 
 

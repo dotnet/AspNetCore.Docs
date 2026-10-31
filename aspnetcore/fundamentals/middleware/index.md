@@ -19,7 +19,7 @@ Request delegates are used to build the request pipeline. The request delegates 
 
 Configure request delegates by using the <xref:Microsoft.AspNetCore.Builder.RunExtensions.Run*>, <xref:Microsoft.AspNetCore.Builder.MapExtensions.Map*>, and <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension methods. You can specify an individual request delegate inline as an anonymous method (called inline middleware) or define it in a reusable class. These inline anonymous methods or reusable classes are called *middleware* or *middleware components*. Each middleware in the request pipeline is responsible for invoking the next middleware in the pipeline or short-circuiting the pipeline. When a middleware short-circuits, it's called a *terminal middleware* because it prevents further middleware from processing the request.
 
-For more information about the difference between request pipelines in ASP.NET Core and ASP.NET 4.x with additional middleware samples, see <xref:migration/fx-to-core/areas/http-modules>.
+For more information about the difference between request pipelines in ASP.NET Core and ASP.NET 4.x with additional middleware samples, see [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md).
 
 ## Role of middleware by app type
 
@@ -29,7 +29,7 @@ Standalone Blazor WebAssembly apps run entirely on the client and don't process 
 
 ## Middleware code analysis
 
-For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see <xref:diagnostics/code-analysis>.
+For more information about ASP.NET Core's compiler platform analyzers that inspect app code for quality, see [Diagnostic Code Analysis in ASP.NET Core Apps](../../diagnostics/code-analysis.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -116,9 +116,9 @@ In the app's console window when the app is run:
 <!-- DOC AUTHOR NOTE: Two spaces at the ends of the first three lines
                       for newlines in the rendered article. -->
 
-> :::no-loc text="Work that can write to the response. (1)":::  
-> :::no-loc text="Work that can write to the response. (2)":::  
-> :::no-loc text="Work that doesn't write to the response. (2)":::  
+> :::no-loc text="Work that can write to the response. (1)":::
+> :::no-loc text="Work that can write to the response. (2)":::
+> :::no-loc text="Work that doesn't write to the response. (2)":::
 > :::no-loc text="Work that doesn't write to the response. (1)":::
 
 *Short-circuiting* the request pipeline is often desirable because it avoids unnecessary work. For example, [static file middleware](xref:fundamentals/static-files) can act as a *terminal middleware* by processing a request for a static file and short-circuiting the rest of the pipeline. Middleware added to the pipeline before the terminal middleware still processes code after their `next.Invoke` statements. If you don't plan to call `next.Invoke` because your goal is to terminate the pipeline, use a [`Run` delegate](#run-delegate) instead of calling the <xref:Microsoft.AspNetCore.Builder.UseExtensions.Use*> extension method.
@@ -304,7 +304,7 @@ app.Run();
 
 void HandleBranchAndRejoin(IApplicationBuilder app)
 {
-    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>(); 
+    var logger = app.ApplicationServices.GetRequiredService<ILogger<Program>>();
 
     app.Use(async (context, next) =>
     {
@@ -718,7 +718,7 @@ app.Run();
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching`. This requirement is explained in [GitHub issue dotnet/aspnetcore #23218](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -873,7 +873,7 @@ app.Run();
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching`. This requirement is explained in [GitHub issue dotnet/aspnetcore #23218](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -1010,7 +1010,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 In the preceding code:
 
-* Commented out middleware isn't added when you create a new web app with [individual users accounts](xref:security/authentication/identity).
+* Commented out middleware isn't added when you create a new web app with [individual users accounts](../../security/authentication/identity.md).
 * Not every middleware appears in this exact order, but many do. For example:
   * `UseCors`, `UseAuthentication`, and `UseAuthorization` must appear in the order shown.
   * `UseCors` currently must appear before `UseResponseCaching` due to [this bug](https://github.com/dotnet/aspnetcore/issues/23218).
@@ -1120,18 +1120,18 @@ For information about Single Page Applications, see the guides for the [React](x
 
 ## `UseCors` and `UseStaticFiles` order
 
-For more information on ordering <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see <xref:security/cors#usecors-and-usestaticfiles-order>.
+For more information on ordering <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../security/cors.md#usecors-and-usestaticfiles-order).
 
 ## Forwarded headers middleware order
 
-Run forwarded headers middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
+Run forwarded headers middleware before other middleware to ensure that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers-middleware-order).
 
 ## Built-in middleware
 
 The latest release of ASP.NET Core includes the following middleware. The *UI stack* column shows the typical UI stack where the middleware is used: [All, Blazor Web App (BWA), Razor Pages and MVC (RP/MVC)]. The *Order* column provides notes on middleware placement in the request processing pipeline and under what conditions the middleware might stop request processing. When a middleware short-circuits the request processing pipeline and prevents further downstream middleware from processing a request, it's called a *terminal middleware*. For more information about short-circuiting, see the [Create a middleware pipeline with `WebApplication`](#create-a-middleware-pipeline-with-webapplication) section.
 
 <!-- REVIEWER NOTE: I have "All" for the *UI stack* entries except:
-                    
+
                     MVC: RP/MVC
                     OWIN: RP/MVC
                     Output Caching: RP/MVC
@@ -1142,21 +1142,21 @@ The latest release of ASP.NET Core includes the following middleware. The *UI st
 
 Middleware | Description | UI stack | Order
 --- | --- | --- | ---
-[Antiforgery](xref:security/anti-request-forgery) | Provides anti-request-forgery support. | All | After authentication and authorization, before endpoints.
-[Authentication](xref:security/authentication/identity) | Provides authentication support. | All | Before `HttpContext.User` is required. Terminal for OAuth callbacks.
+[Antiforgery](../../security/anti-request-forgery.md) | Provides anti-request-forgery support. | All | After authentication and authorization, before endpoints.
+[Authentication](../../security/authentication/identity.md) | Provides authentication support. | All | Before `HttpContext.User` is required. Terminal for OAuth callbacks.
 [Authorization](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*) | Provides authorization support. | All | Immediately after the authentication middleware.
-[Cookie Policy](xref:security/gdpr) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | All | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
-[CORS](xref:security/cors) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
+[Cookie Policy](../../security/gdpr.md) | Tracks consent from users for storing personal information and enforces minimum standards for cookie fields, such as `secure` and `SameSite`. | All | Before middleware that issues cookies. Examples: Authentication, Session, MVC (TempData).
+[CORS](../../security/cors.md) | Configures Cross-Origin Resource Sharing. | All | Before middleware that use CORS. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must go before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. For more information, see [It is not clear that UseCORS must come before UseResponseCaching (`dotnet/aspnetcore` #23218](https://github.com/dotnet/aspnetcore/issues/23218).
 [Developer Exception Page](xref:Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware) | Generates a page with error information that's intended for use only in the `Development` environment. | All | Before middleware that generate errors. The project templates automatically register this middleware as the first middleware in the pipeline when the environment is `Development`.
 [Diagnostics](xref:fundamentals/error-handling) | Several separate middlewares that provide a developer exception page, exception handling, status code pages, and the default web page for new apps. | All | Before middleware that generate errors. Terminal for exceptions or serving the default web page for new apps.
-[Forwarded Headers](xref:host-and-deploy/proxy-load-balancer) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
-[Health Check](xref:host-and-deploy/health-checks) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
-[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. | 
-All | 
-[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline. 
+[Forwarded Headers](../../host-and-deploy/proxy-load-balancer.md) | Forwards proxied headers onto the current request. | All | Before middleware that consume the updated fields. Examples: scheme, host, client IP, method.
+[Health Check](../../host-and-deploy/health-checks.md) | Checks the health of an ASP.NET Core app and its dependencies, such as checking database availability. | All | Terminal if a request matches a health check endpoint.
+[Header Propagation](xref:fundamentals/http-requests#header-propagation-middleware) | Propagates HTTP headers from the incoming request to the outgoing HTTP Client requests. |
+All |
+[HTTP Logging](xref:fundamentals/http-logging/index) | Logs HTTP Requests and Responses. | All | At the beginning of the middleware pipeline.
 [HTTP Method Override](xref:Microsoft.AspNetCore.Builder.HttpMethodOverrideExtensions) | Allows an incoming POST request to override the method. | All | Before middleware that consume the updated method.
-[HTTPS Redirection](xref:security/enforcing-ssl#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
-[HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
+[HTTPS Redirection](../../security/enforcing-ssl.md#require-https) | Redirects all HTTP requests to HTTPS. | All | Before middleware that consume the URL.
+[HTTP Strict Transport Security (HSTS)](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting.
 [MVC](xref:mvc/overview) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route.
 [OWIN](xref:fundamentals/owin) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request.
 [Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>.
@@ -1179,8 +1179,8 @@ All |
 * [Lifetime and registration options (includes middleware sample)](xref:fundamentals/dependency-injection#lifetime-and-registration-options)
 * <xref:fundamentals/middleware/write>
 * <xref:test/middleware>
-* [Configure gRPC-Web in ASP.NET Core](xref:grpc/browser#configure-grpc-web-in-aspnet-core)
-* <xref:migration/fx-to-core/areas/http-modules>
+* [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#grpc-web)
+* [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * <xref:fundamentals/startup>
 * <xref:fundamentals/request-features>
 * <xref:fundamentals/middleware/extensibility>

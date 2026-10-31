@@ -84,7 +84,7 @@ The following code in the app's `Program` file:
 
 * Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment.
 * Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, which adds [exception handler middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
-* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>, which adds [HSTS middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
+* Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>, which adds [HSTS middleware](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -263,9 +263,9 @@ When the `ASPNETCORE_ENVIRONMENT` environment variable is set globally, it takes
 
 ### Set the environment for apps deployed to IIS
 
-To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see <xref:host-and-deploy/iis/web-config#set-environment-variables>.
+To set the `ASPNETCORE_ENVIRONMENT` environment variable with the `web.config` file, see [web.config file](../host-and-deploy/iis/web-config.md#set-environment-variables).
 
-To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. The following example sets the environment in `web.config` to the `Staging` environment when the project is published:
+To set the environment variable on deployment to IIS, include the `<EnvironmentName>` property in the [publish profile (.pubxml)](../host-and-deploy/visual-studio-publish-profiles.md) or project file. The following example sets the environment in `web.config` to the `Staging` environment when the project is published:
 
 ```xml
 <PropertyGroup>

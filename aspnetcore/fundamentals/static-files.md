@@ -56,7 +56,7 @@ Static file middleware enables static file serving and is used by an app when <x
 
 :::moniker-end
 
-You can also serve static web assets from [referenced projects and packages](xref:razor-pages/ui-class#consume-content-from-a-referenced-rcl).
+You can also serve static web assets from [referenced projects and packages](../razor-pages/ui-class.md#consume-content-from-a-referenced-rcl).
 
 ## Change the web root directory
 
@@ -198,7 +198,7 @@ To ensure assets from `wwwroot-custom` are always returned, use ***one*** of the
 
 * Set `ASPNETCORE_ENVIRONMENT` in `Properties/launchSettings.json` to any value other than `Development`.
 
-* Disable static web assets by setting `<StaticWebAssetsEnabled>` to `false` in the app's project file. ***WARNING:*** Disabling static web assets disables [Razor class libraries](xref:razor-pages/ui-class).
+* Disable static web assets by setting `<StaticWebAssetsEnabled>` to `false` in the app's project file. ***WARNING:*** Disabling static web assets disables [Razor class libraries](../razor-pages/ui-class.md).
 
 * Add the following XML to the project file:
 
@@ -467,7 +467,7 @@ For a complex JavaScript or TypeScript client build, use a separate JavaScript p
 
 :::moniker range=">= aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), it requires authorization for requests processed by authorization middleware when no policy is produced from authorization metadata. This requirement includes requests for static assets mapped as endpoints. To allow anonymous access to static assets, apply <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the endpoint builder:
 
 ```csharp
 app.MapStaticAssets().Add(endpointBuilder =>
@@ -478,7 +478,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 
 :::moniker range="< aspnetcore-9.0"
 
-When an app adopts a [fallback authorization policy](xref:security/authorization/policies#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
+When an app adopts a [fallback authorization policy](../security/authorization/policies.md#default-and-fallback-policies), authorization is required for requests processed by authorization middleware when no policy is produced from authorization metadata. The ASP.NET Core templates allow anonymous access to static files by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> before calling <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Most apps follow this pattern. When the static file middleware is called before the authorization middleware:
 
 * No authorization checks are performed on the static files.
 * Static files served by the static file middleware, such as those in the web root (typically, `wwwroot`), are publicly accessible.
@@ -523,7 +523,7 @@ In `Startup.Configure` after the call to <xref:Microsoft.AspNetCore.Builder.Auth
 
 :::moniker-end
 
-In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+In the preceding code, the fallback authorization policy requires authenticated users. Endpoints that specify authorization requirements use the policy produced from their authorization metadata instead of the fallback policy. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../security/authorization/policies.md#default-and-fallback-policies).
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
@@ -976,7 +976,7 @@ If [`staticAssetsManifestPath`](xref:Microsoft.AspNetCore.Builder.StaticAssetsEn
 
 * The URLs for content exposed through <xref:Microsoft.AspNetCore.Builder.DirectoryBrowserExtensions.UseDirectoryBrowser*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> follow the case sensitivity and character restrictions of the underlying file system. For example, Windows is case insensitive, but macOS and Linux aren't.
 
-* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and doesn't handle requests.
+* ASP.NET Core apps hosted in IIS use the [ASP.NET Core Module](../host-and-deploy/aspnet-core-module.md) to forward all requests to the app, including static file requests. The IIS static file handler isn't used and doesn't handle requests.
 
 * Complete the following steps in IIS Manager to remove the IIS static file handler at the server or website level:
 

@@ -5,7 +5,6 @@ description: Learn how to build an ASP.NET Core app with email confirmation and 
 ms.custom: sfi-image-nochange
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/11/2026
-uid: security/authentication/accconfirm
 
 # customer intent: As an ASP.NET developer, I want to confirm user accounts and recover passwords, so I can verify user email addresses and allow password resets in my ASP.NET Core app.
 ---
@@ -16,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning article. You should be familiar with:
 
 * [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
+* [Authentication](identity.md)
 * [Entity Framework Core](xref:data/ef-mvc/intro)
 
 :::moniker range=">= aspnetcore-8.0"
@@ -79,7 +78,7 @@ Create a class to fetch the secure email key. For this sample, create the _Servi
 
 #### Configure SendGrid user secrets
 
-Set the `SendGridKey` value with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SendGridKey` value with the [secret-manager tool](../app-secrets.md). For example:
 
 ```dotnetcli
 dotnet user-secrets set SendGridKey <key>
@@ -225,7 +224,7 @@ If the email process isn't working as expected, try these troubleshooting steps:
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. For more information, see <xref:security/authentication/social/index>.
+To complete this section, you must first enable an external authentication provider. For more information, see [Using external login providers with Identity in ASP.NET Core](social/index.md).
 
 In this sequence, the email address `RickAndMSFT@gmail.com` is first created as a local login. However, you can create the account as a social login first, and then add a local login.
 
@@ -297,7 +296,7 @@ Create a class to fetch the secure email key. For this sample, create `Services/
 
 #### Configure SendGrid user secrets
 
-Set the `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
 ```dotnetcli
 dotnet user-secrets set SendGridKey <SG.key>
@@ -360,7 +359,7 @@ Add the following code to the `ConfigureServices` method in the `Startup.cs` fil
 
 ## Scaffold RegisterConfirmation
 
-Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `Account\RegisterConfirmation`.
+Follow the instructions for [Scaffold Identity](scaffold-identity.md) and scaffold `Account\RegisterConfirmation`.
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -434,7 +433,7 @@ If you can't get email working:
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](social/index.md).
 
 You can combine local and social accounts by clicking on your email link. In the following sequence, "RickAndMSFT@gmail.com" is first created as a local login; however, you can create the account as a social login first, then add a local login.
 
@@ -462,5 +461,5 @@ Enabling account confirmation on a site with users locks out all the existing us
 ## Related content
 
 * [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
+* [Authentication](identity.md)
 * [Entity Framework Core](xref:data/ef-mvc/intro)

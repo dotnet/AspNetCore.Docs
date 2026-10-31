@@ -3,7 +3,6 @@ title: Common error troubleshooting for Azure App Service and IIS with ASP.NET C
 description: Provides troubleshooting advice for the most common errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/21/2026
-uid: host-and-deploy/azure-iis-errors-reference
 ---
 
 # Common error troubleshooting for Azure App Service and IIS with ASP.NET Core
@@ -26,7 +25,7 @@ Collect the following information:
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
 * ASP.NET Core Module stdout and debug log entries.
   * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
-  * IIS: Follow the instructions in the [Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection) and [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) sections of the ASP.NET Core Module article.
+  * IIS: Follow the instructions in the [Log creation and redirection](aspnet-core-module.md#log-creation-and-redirection) and [Enhanced diagnostic logs](iis/logging-and-diagnostics.md#enhanced-diagnostic-logs) sections of the ASP.NET Core Module article.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
 
@@ -40,7 +39,7 @@ The list of errors in this article isn't exhaustive. If you encounter an error n
 
 Troubleshooting:
 
-Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle). Select **Repair** when the installer is run.
+Non-OS files in the **C:\Windows\SysWOW64\inetsrv** directory aren't preserved during an OS upgrade. If the ASP.NET Core Module is installed prior to an OS upgrade and then any app pool is run in 32-bit mode after an OS upgrade, this issue is encountered. After an OS upgrade, repair the ASP.NET Core Module. See [Install the .NET Hosting bundle](iis/index.md#install-the-net-hosting-bundle). Select **Repair** when the installer is run.
 
 ## Missing site extension, 32-bit (x86) and 64-bit (x64) site extensions installed, or wrong process bitness set
 
@@ -63,13 +62,13 @@ Troubleshooting:
 
   Restart the app. Wait several seconds for the app to restart.
 
-* If running the app on a preview runtime and both the 32-bit (x86) and 64-bit (x64) [site extensions](xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension) are installed, uninstall the site extension that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the app to restart.
+* If running the app on a preview runtime and both the 32-bit (x86) and 64-bit (x64) [site extensions](azure-apps/index.md#install-the-preview-site-extension) are installed, uninstall the site extension that doesn't match the bitness of the app. After removing the site extension, restart the app. Wait several seconds for the app to restart.
 
 * If running the app on a preview runtime and the site extension's bitness matches that of the app, confirm that the preview site extension's *runtime version* matches the app's runtime version.
 
 * Confirm that the app's **Platform** in **Application Settings** matches the bitness of the app.
 
-For more information, see <xref:host-and-deploy/azure-apps/index#install-the-preview-site-extension>.
+For more information, see [Deploy ASP.NET Core apps to Azure App Service](azure-apps/index.md#install-the-preview-site-extension).
 
 ## An x86 app is deployed but the app pool isn't enabled for 32-bit apps
 
@@ -123,7 +122,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-Confirm that the proper role and features are enabled. See [IIS Configuration](xref:host-and-deploy/iis/index#iis-configuration).
+Confirm that the proper role and features are enabled. See [IIS Configuration](iis/index.md#iis-configuration).
 
 ## Incorrect website physical path or app missing
 
@@ -151,13 +150,13 @@ Check the IIS website **Basic Settings** and the physical app folder. Confirm th
 
 Troubleshooting:
 
-* Confirm that the proper role is enabled. See [IIS Configuration](xref:host-and-deploy/iis/index#iis-configuration).
+* Confirm that the proper role is enabled. See [IIS Configuration](iis/index.md#iis-configuration).
 
 * Open **Programs & Features** or **Apps & features** and confirm that **Windows Server Hosting** is installed. If **Windows Server Hosting** isn't present in the list of installed programs, download and install the .NET Hosting Bundle.
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](iis/index.md#install-the-net-hosting-bundle).
 
 * Make sure that the **Application Pool** > **Process Model** > **Identity** is set to **ApplicationPoolIdentity** or the custom identity has the correct permissions to access the app's deployment folder.
 
@@ -195,7 +194,7 @@ Troubleshooting:
 
   [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-  For more information, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-hosting-bundle).
+  For more information, see [Install the .NET Hosting Bundle](iis/index.md#install-the-net-hosting-bundle).
 
   If a specific runtime is required, download the runtime from the [.NET Downloads](https://dotnet.microsoft.com/download/dotnet) page and install it on the system. Complete the installation by restarting the system or restarting IIS by executing **net stop was /y** followed by **net start w3svc** from a command prompt.
 
@@ -259,7 +258,7 @@ Troubleshooting:
 
 Confirm that the sub-app's *web.config* file doesn't include a `<handlers>` section or that the sub-app doesn't inherit the parent app's handlers.
 
-The parent app's `<system.webServer>` section of *web.config* is placed inside of a `<location>` element. The <xref:System.Configuration.SectionInformation.InheritInChildApplications> property is set to `false` to indicate that the settings specified within the [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the parent app. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+The parent app's `<system.webServer>` section of *web.config* is placed inside of a `<location>` element. The <xref:System.Configuration.SectionInformation.InheritInChildApplications> property is set to `false` to indicate that the settings specified within the [\<location>](/iis/manage/managing-your-configuration-settings/understanding-iis-configuration-delegation#the-concept-of-location) element aren't inherited by apps that reside in a subdirectory of the parent app. For more information, see [ASP.NET Core Module (ANCM) for IIS](aspnet-core-module.md).
 
 ## stdout log path incorrect
 
@@ -273,7 +272,7 @@ The parent app's `<system.webServer>` section of *web.config* is placed inside o
 
 Troubleshooting:
 
-* The `stdoutLogFile` path specified in the `<aspNetCore>` element of *web.config* doesn't exist. For more information, see [ASP.NET Core Module: Log creation and redirection](xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection).
+* The `stdoutLogFile` path specified in the `<aspNetCore>` element of *web.config* doesn't exist. For more information, see [ASP.NET Core Module: Log creation and redirection](aspnet-core-module.md#log-creation-and-redirection).
 
 * The app pool user doesn't have write access to the stdout log path.
 

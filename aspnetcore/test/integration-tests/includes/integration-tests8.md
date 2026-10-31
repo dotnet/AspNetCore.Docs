@@ -9,7 +9,7 @@ This article assumes a basic understanding of unit tests. If unfamiliar with tes
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
+* [Introduction to Razor Pages](../../../razor-pages/index.md)
 * [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
@@ -72,7 +72,7 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
   
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
+By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](../../../security/gdpr.md) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](../../../security/gdpr.md#essential-cookies).
 
 <a name="asap7"></a>
 
@@ -111,7 +111,7 @@ Web host configuration can be created independently of the test classes by inher
 
    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
 
-Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
+Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](../../../security/data-protection/introduction.md). In order to arrange for a test's POST request, the test app must:
 
 1. Make a request for the page.
 1. Parse the antiforgery cookie and request validation token from the response.
@@ -217,7 +217,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's sign in page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](../../../razor-pages/security/authorization/conventions.md#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet1)]
 

@@ -54,8 +54,8 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 
@@ -112,8 +112,8 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket isn't automatically deleted on app shutdown. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 
@@ -160,8 +160,8 @@ For more information on building the host, see the *Set up a host* and *Default 
 <a name="host-filtering"></a>
 * <xref:fundamentals/servers/kestrel/host-filtering>
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 * When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 
@@ -236,7 +236,7 @@ A reverse proxy:
 * Simplify load balancing and secure communication (HTTPS) configuration. Only the reverse proxy server requires an X.509 certificate, and that server can communicate with the app's servers on the internal network using plain HTTP.
 
 > [!WARNING]
-> Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](xref:host-and-deploy/proxy-load-balancer).
+> Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](../../../../host-and-deploy/proxy-load-balancer.md).
 
 ## Kestrel in ASP.NET Core apps
 
@@ -390,7 +390,7 @@ Override the setting on a specific request in middleware:
 
 An exception is thrown if the app configures the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-When an app is run [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled because IIS already sets the limit.
+When an app is run [out-of-process](../../../../host-and-deploy/iis/index.md#out-of-process-hosting-model) behind the [ASP.NET Core Module](../../../../host-and-deploy/aspnet-core-module.md), Kestrel's request body size limit is disabled because IIS already sets the limit.
 
 ### Minimum request body data rate
 
@@ -551,7 +551,7 @@ A development certificate is created:
 
 Some browsers require granting explicit permission to trust the local development certificate.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](../../../../security/enforcing-ssl.md).
 
 Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
 
@@ -859,7 +859,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ### IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) topic.
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see the [ASP.NET Core Module](../../../../host-and-deploy/aspnet-core-module.md) topic.
 
 ### ListenOptions.Protocols
 
@@ -1068,7 +1068,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
-  > Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](xref:host-and-deploy/proxy-load-balancer).
+  > Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](../../../../host-and-deploy/proxy-load-balancer.md).
 
 * Host `localhost` name with port number or loopback IP with port number
 
@@ -1099,9 +1099,9 @@ Host-filtering middleware is disabled by default. To enable the middleware, defi
 ```
 
 > [!NOTE]
-> [Forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded headers middleware and host-filtering middleware have similar functionality for different scenarios. Setting `AllowedHosts` with forwarded headers middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with host-filtering middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
+> [Forwarded headers middleware](../../../../host-and-deploy/proxy-load-balancer.md) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded headers middleware and host-filtering middleware have similar functionality for different scenarios. Setting `AllowedHosts` with forwarded headers middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with host-filtering middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
 >
-> For more information on forwarded headers middleware, see <xref:host-and-deploy/proxy-load-balancer>.
+> For more information on forwarded headers middleware, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md).
 
 ## Libuv transport configuration
 
@@ -1168,8 +1168,8 @@ If possible, it's better for clients to utilize the [Expect: 100-continue](https
 
 * When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
 * <xref:test/troubleshoot>
-* <xref:security/enforcing-ssl>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
 
 :::moniker-end

@@ -85,7 +85,7 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 [!code-csharp[](~/performance/caching/distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control (for example, stored by the [Secret Manager](xref:security/app-secrets) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
+> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control (for example, stored by the [Secret Manager](../../../../security/app-secrets.md) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
 
 ### Distributed Redis Cache
 
@@ -95,7 +95,7 @@ An app configures the cache implementation using a <xref:Microsoft.Extensions.Ca
 
   1. Create an Azure Cache for Redis.
   1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
-     * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
+     * Local development: Save the connection string with [Secret Manager](../../../../security/app-secrets.md#secret-manager).
      * Azure: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview)
 
 The following code enables the Azure Cache for Redis:
@@ -246,6 +246,6 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * <xref:performance/caching/middleware>
 * <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
 * <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

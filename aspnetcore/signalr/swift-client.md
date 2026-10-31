@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Overview of the ASP.NET Core SignalR Swift client library.
 ms.custom: devx-track-swift
 ms.date: 03/20/2025
-uid: signalr/swift-client
 ---
 
 # ASP.NET Core SignalR Swift client
@@ -238,10 +237,10 @@ let connection = HubConnectionBuilder()
 ## Related content
 
 * [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Cross-Origin Requests (CORS)](xref:security/cors)
+* [Hubs](hubs.md)
+* [.NET client](dotnet-client.md)
+* [JavaScript client](javascript-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
+* [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)

@@ -35,11 +35,11 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](../../../migration/22-to-30.md#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. See [MessagePack in SignalR](xref:signalr/messagepackhubprotocol) for more details.
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. See [MessagePack in SignalR](../../messagepackhubprotocol.md) for more details.
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -168,7 +168,7 @@ The following table lists the available log levels. The value you provide to `co
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-For more information on logging, see the [SignalR Diagnostics documentation](xref:signalr/diagnostics).
+For more information on logging, see the [SignalR Diagnostics documentation](../../diagnostics.md).
 
 The SignalR Java client uses the [SLF4J](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
@@ -321,7 +321,7 @@ Additional options can be configured in the `WithUrl` (`withUrl` in JavaScript) 
 | `headers` | `null` | Dictionary of headers sent with every HTTP request. Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType.ServerSentEvents> stream. |
 | `logMessageContent` | `null` | Set to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this to `true` to skip the negotiation step. **Only supported when the WebSockets transport is the only enabled transport**. This setting can't be enabled when using the Azure SignalR Service. |
-| `withCredentials` | `true` | Specifies whether credentials will be sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more info on CORS with SignalR, see <xref:signalr/security#cross-origin-resource-sharing>. |
+| `withCredentials` | `true` | Specifies whether credentials will be sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more info on CORS with SignalR, see [Security considerations in ASP.NET Core SignalR](../../security.md#cross-origin-resource-sharing). |
 | `timeout` | `100,000` | Timeout in milliseconds to apply to HTTP requests. This doesn't apply to Long Polling poll requests, EventSource, or WebSockets. |
 
 # [Java](#tab/java)
@@ -373,10 +373,10 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 ## Related content
 
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
-* <xref:signalr/messagepackhubprotocol>
-* <xref:signalr/supported-platforms>
+* [Use hubs in ASP.NET Core SignalR](../../hubs.md)
+* [ASP.NET Core SignalR JavaScript client](../../javascript-client.md)
+* [ASP.NET Core SignalR .NET client](../../dotnet-client.md)
+* [Use MessagePack Hub Protocol in SignalR for ASP.NET Core](../../messagepackhubprotocol.md)
+* [ASP.NET Core SignalR supported platforms](../../supported-platforms.md)
 
 :::moniker-end

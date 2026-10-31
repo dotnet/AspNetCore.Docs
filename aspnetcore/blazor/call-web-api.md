@@ -218,7 +218,7 @@ In the preceding example for C# 12 or later, an empty array (`[]`) is created fo
      Security > WebAssembly > Overview article under 
      the heading: "Web API requests" -->
 
-To protect .NET/C# code and data, use [ASP.NET Core Data Protection](xref:security/data-protection/introduction) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing.
+To protect .NET/C# code and data, use [ASP.NET Core Data Protection](../security/data-protection/introduction.md) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing.
 
 Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](#cross-origin-resource-sharing-cors). A typical exception looks like the following:
 
@@ -610,7 +610,7 @@ var content = await response.Content.ReadFromJsonAsync<WeatherForecast[]>() ??
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> sends an HTTP PATCH request with JSON-encoded content.
 
 > [!NOTE]
-> For more information, see <xref:web-api/jsonpatch>.
+> For more information, see [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md).
 
 In the following example, <xref:System.Net.Http.Json.HttpClientJsonExtensions.PatchAsJsonAsync*> receives a JSON PATCH document as a plain text string with escaped quotes:
 
@@ -730,7 +730,7 @@ private async Task UpdateItem(long id)
 
 Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=nameWithType> set to `true` if you want to present the JSON payload in a pleasant format for display. Writing indented JSON has no bearing on processing PATCH requests and isn't typically performed in production apps for web API requests.
 
-Follow the guidance in the <xref:web-api/jsonpatch> article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
+Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
 
 :::moniker-end
 
@@ -783,7 +783,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
 ```
 
 > [!WARNING]
-> As with the other examples in the <xref:web-api/jsonpatch> article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
+> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
 
 For a fully working PATCH experience, see the `BlazorWebAppCallWebApi` [sample app](#sample-apps).
 
@@ -824,7 +824,7 @@ using var response = await Http.SendAsync(request);
 Streaming requests:
 
 * Require HTTPS protocol and don't work on HTTP/1.x.
-* Include a body but not a `Content-Length` header. [CORS](xref:security/cors) with a preflight request is required for cross-origin streaming requests.
+* Include a body but not a `Content-Length` header. [CORS](../security/cors.md) with a preflight request is required for cross-origin streaming requests.
 
 For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
 
@@ -999,7 +999,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
 
 Add the following packages to the server project of the Blazor Web App:
 
@@ -1011,9 +1011,9 @@ Add the following packages to the server project of the Blazor Web App:
 > [!NOTE]
 > Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
 
-Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
+Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in [Key storage providers in ASP.NET Core](../security/data-protection/implementation/key-storage-providers.md#azure-storage).
 
-Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault).
 
 Use the following code in the `Program` file where services are registered:
 
@@ -1080,8 +1080,8 @@ This approach is used by the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` samp
 
 For more information, see the following resources:
 
-* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
-* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
+* [Key storage providers in ASP.NET Core](../security/data-protection/implementation/key-storage-providers.md#azure-storage)
+* [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault)
 * [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
 * [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
@@ -1089,7 +1089,7 @@ For more information, see the following resources:
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
   * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
   * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
+* [Host ASP.NET Core in a web farm: Data Protection](../host-and-deploy/web-farm.md#data-protection)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
 * [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
@@ -1288,7 +1288,7 @@ For more information, see <xref:blazor/fundamentals/handle-errors>.
 
 Browser security often restricts a webpage from making requests to a different origin than the one that served the webpage. This restriction is called the *same-origin policy*. The same-origin policy restricts (but doesn't prevent) a malicious site from reading sensitive data from another site. To make requests from the browser to an endpoint with a different origin, the *endpoint* must enable [Cross-Origin Resource Sharing (CORS)](https://www.w3.org/TR/cors/).
 
-For more information on server-side CORS, see <xref:security/cors>. The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
+For more information on server-side CORS, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md). The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 
 For information on client-side CORS requests, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
 
@@ -1412,7 +1412,7 @@ The solution demonstrates calling a secure web API for the following:
 
 * Obtaining an authenticated user's roles.
 * Data processing for all authenticated users.
-* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](xref:security/authorization/policies).
+* Data processing for authorized users (the user must be in the `Manager` role) via an [authorization policy](../security/authorization/policies.md).
 
 ### `BlazorWebAppOidcBffAuto`
 
@@ -1459,7 +1459,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 :::moniker range=">= aspnetcore-8.0"
 
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
-* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md): Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
@@ -1467,7 +1467,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 :::moniker range="< aspnetcore-8.0"
 
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
-* <xref:security/cors>: Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
+* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md): Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
 
 :::moniker-end
 
@@ -1481,7 +1481,7 @@ For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-ap
 
 * <xref:blazor/security/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * <xref:fundamentals/http-requests>
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
 
 ### Client-side

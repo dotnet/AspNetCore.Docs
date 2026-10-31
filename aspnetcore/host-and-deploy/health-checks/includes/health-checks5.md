@@ -68,7 +68,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
@@ -204,7 +204,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 
@@ -840,7 +840,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
@@ -973,7 +973,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 

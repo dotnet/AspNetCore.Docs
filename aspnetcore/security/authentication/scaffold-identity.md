@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to scaffold Identity in an ASP.NET Core project.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/19/2026
-uid: security/authentication/scaffold-identity
 
 # customer intent: As an ASP.NET developer, I want to scaffold Identity in an ASP.NET Core project, so I can customize the components for my app.
 ---
@@ -20,7 +19,7 @@ This article shows how to migrate a database and complete an Identity scaffoldin
 
 ## Blazor Identity scaffolding
 
-ASP.NET Core Identity scaffolding adds [ASP.NET Core Identity](xref:security/authentication/identity) to Blazor Web Apps and Blazor Server apps. After the scaffolder adds the Identity Razor components to the app, you can customize the components to suit your application requirements.
+ASP.NET Core Identity scaffolding adds [ASP.NET Core Identity](identity.md) to Blazor Web Apps and Blazor Server apps. After the scaffolder adds the Identity Razor components to the app, you can customize the components to suit your application requirements.
 
 Although the scaffolder generates the necessary C# code to scaffold Identity into the app, you must update the project database with an Entity Framework Core database migration to complete the process. This article describes the steps for migrating a database.
 
@@ -30,13 +29,13 @@ Services are required when using [two-factor authentication (2FA)](xref:blazor/s
 
 ## Razor Pages and MVC Identity scaffolding
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to generate.
 
 Although the scaffolder generates most of the necessary code, you need to update your project to complete the process. This article shows the steps needed to complete an Identity scaffolding update. After running the Identity scaffolder, inspect the changes. Use a source control system that shows file differences and allows you to back out of changes.
 
-Services are required when using [2FA](xref:security/authentication/identity-enable-qrcodes), [account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Configure an email provider](xref:security/authentication/accconfirm#configure-an-email-provider) so the app can require email confirmation.
+Services are required when using [2FA](identity-enable-qrcodes.md), [account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Configure an email provider](accconfirm.md#configure-an-email-provider) so the app can require email confirmation.
 
 Typically, apps created with individual accounts should ***not*** create a new data context.
 
@@ -130,13 +129,13 @@ The generated Identity database code requires [Entity Framework Core Migrations]
 1. Give the migration a **Migration name**, such as `CreateIdentitySchema`, which is a name that describes the migration.
 
    Wait for the database context to load in the **DbContext class names** field. The action can take a few seconds.
-   
+
 1. Select **Finish** to complete the update. After the operation finishes, select **Close**.
 
 1. Select **More actions** (**...**) > **Update database**.
 
    The **Update database with the latest migration** dialog opens.
-   
+
    Wait for the **DbContext class names** field to update and for prior migrations to load. The action can take a few seconds.
 
 1. Select **Finish** to complete the update. After the operation finishes, select **Close**.
@@ -338,7 +337,7 @@ To disable user registration:
 1. Update the `Areas/Identity/Pages/Account/RegisterConfirmation` page.
 
    * Remove the code and links from the _.cshtml_ file.
-   
+
    * Remove the confirmation code from the `PageModel` implementation:
 
    ```csharp
@@ -346,12 +345,12 @@ To disable user registration:
    public class RegisterConfirmationModel : PageModel
    {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
    }
    ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -376,13 +375,13 @@ A similar approach can be followed for production scenarios.
 
 ## Prevent publish of static Identity assets
 
-To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+To prevent publishing static Identity assets to the web root, see [Introduction to Identity on ASP.NET Core](identity.md#prevent-publish-of-static-identity-assets).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -390,7 +389,7 @@ Although the scaffolder generates most of the necessary code, you need to update
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
-Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
+Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Account confirmation and password recovery](accconfirm.md).
 
 Typically, apps created with individual accounts should ***not*** create a new data context.
 
@@ -615,12 +614,12 @@ To disable user registration:
     public class RegisterConfirmationModel : PageModel
     {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
     }
   ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -645,13 +644,13 @@ A similar approach can be followed for production scenarios.
 
 ## Prevent publish of static Identity assets
 
-To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+To prevent publishing static Identity assets to the web root, see [Introduction to Identity on ASP.NET Core](identity.md#prevent-publish-of-static-identity-assets).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -659,7 +658,7 @@ Although the scaffolder generates most of the necessary code, you need to update
 
 We recommend using a source control system that shows file differences and allows you to back out of changes. Inspect the changes after running the Identity scaffolder.
 
-Services are required when using [Two Factor Authentication](xref:security/authentication/identity-enable-qrcodes), [Account confirmation and password recovery](xref:security/authentication/accconfirm), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](xref:security/authentication/accconfirm#require-email-confirmation).
+Services are required when using [Two Factor Authentication](identity-enable-qrcodes.md), [Account confirmation and password recovery](accconfirm.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually. For example, see [Require Email Confirmation](accconfirm.md).
 
 When scaffolding Identity with a new data context into a project with existing individual accounts, open `Startup.ConfigureServices` and remove the calls to:
 
@@ -915,12 +914,12 @@ To disable user registration:
     public class RegisterConfirmationModel : PageModel
     {
         public IActionResult OnGet()
-        {  
+        {
             return Page();
         }
     }
   ```
-  
+
 ### Use another app to add users
 
 Provide a mechanism to add users outside the web app. Options to add users include:
@@ -945,11 +944,11 @@ A similar approach can be followed for production scenarios.
 
 ## Prevent publish of static Identity assets
 
-To prevent publishing static Identity assets to the web root, see <xref:security/authentication/identity#prevent-publish-of-static-identity-assets>.
+To prevent publishing static Identity assets to the web root, see [Introduction to Identity on ASP.NET Core](identity.md#prevent-publish-of-static-identity-assets).
 
 :::moniker-end
 
 ## Related content
 
-- [ASP.NET Core Identity](xref:security/authentication/identity)
-- [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services) 
+- [ASP.NET Core Identity](identity.md)
+- [Visual Studio Connected Services](/visualstudio/azure/overview-connected-services)

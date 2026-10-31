@@ -17,7 +17,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial is the first in a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](../../razor-pages/index.md). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
 
 [!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 
@@ -167,7 +167,7 @@ The following lines of code in this file create a `WebApplicationBuilder` with p
 
 The developer exception page is enabled by default and provides helpful information on exceptions. Don't run production apps in development mode because the developer exception page can leak sensitive information.
 
-The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) when the app is ***not*** running in development mode:
+The following code sets the exception endpoint to `/Error` and enables [HTTP Strict Transport Security (HSTS) protocol](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) when the app is ***not*** running in development mode:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program1Snip.cs?name=snippet_env)]
 

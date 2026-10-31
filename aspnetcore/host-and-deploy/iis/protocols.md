@@ -3,7 +3,6 @@ title: Use ASP.NET Core with HTTP/2 on IIS
 description: Learn how to use HTTP/2 features with IIS.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/protocols
 ---
 
 # Use ASP.NET Core with HTTP/2 on IIS
@@ -17,11 +16,11 @@ By [Justin Kotalik](https://github.com/jkotalik)
 * Windows Server 2016 or later / Windows 10 or later
 * IIS 10 or later
 * TLS 1.2 or later connection
-* When [hosting out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model): Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+* When [hosting out-of-process](index.md#out-of-process-hosting-model): Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 HTTP/2 is enabled by default for HTTPS/TLS connections. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 

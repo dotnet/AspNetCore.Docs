@@ -33,7 +33,7 @@ Some common assumptions can narrow the scope of requirements:
 
 ## Design philosophy
 
-ASP.NET Core data protection is an [easy to use](xref:security/data-protection/using-data-protection) data protection stack. It's based on the following principles:
+ASP.NET Core data protection is an [easy to use](../using-data-protection.md) data protection stack. It's based on the following principles:
 
 * Ease of configuration. The system strives for zero configuration. In situations where developers need to configure a specific aspect, such as the key repository, those specific configurations aren't difficult.
 * Offer a basic consumer-facing API. The APIs are straight forward to use correctly and difficult to use incorrectly.
@@ -46,11 +46,11 @@ The data protection APIs aren't primarily intended for indefinite persistence of
 
 The data protection system provides APIs that target three main audiences:
 
-1. The [consumer APIs](xref:security/data-protection/consumer-apis/overview) target application and framework developers.
+1. The [consumer APIs](../consumer-apis/overview.md) target application and framework developers.
 
    *I don't want to learn about how the stack operates or about how it's configured. I just want to perform some operation with high probability of using the APIs successfully.*
 
-2. The [configuration APIs](xref:security/data-protection/configuration/overview) target app developers and system administrators.
+2. The [configuration APIs](../configuration/overview.md) target app developers and system administrators.
 
    *I need to tell the data protection system that my environment requires non-default paths or settings.*
 
@@ -85,13 +85,13 @@ The data protection stack consists of five packages:
   * Factory methods to instantiate the data protection system to store keys at a location on the file system without dependency injection. See <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>.
   * Extension methods for limiting the lifetime of protected payloads. See <xref:Microsoft.AspNetCore.DataProtection.ITimeLimitedDataProtector>.
 
-* [Microsoft.AspNetCore.DataProtection.SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) can be installed into an existing ASP.NET 4.x app to redirect its `<machineKey>` operations to use the new ASP.NET Core data protection stack. For more information, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+* [Microsoft.AspNetCore.DataProtection.SystemWeb](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.SystemWeb/) can be installed into an existing ASP.NET 4.x app to redirect its `<machineKey>` operations to use the new ASP.NET Core data protection stack. For more information, see [Replace the ASP.NET machineKey in ASP.NET Core](../compatibility/replacing-machinekey.md).
 
-* [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine and can be used by systems that must handle user passwords securely. For more information, see <xref:security/data-protection/consumer-apis/password-hashing>.
+* [Microsoft.AspNetCore.Cryptography.KeyDerivation](https://www.nuget.org/packages/Microsoft.AspNetCore.Cryptography.KeyDerivation/) provides an implementation of the PBKDF2 password hashing routine and can be used by systems that must handle user passwords securely. For more information, see [Hash passwords in ASP.NET Core](../consumer-apis/password-hashing.md).
 
 ## Related content
 
-* <xref:security/data-protection/using-data-protection>
-* <xref:host-and-deploy/web-farm>
+* [Get started with the Data Protection APIs in ASP.NET Core](../using-data-protection.md)
+* [Host ASP.NET Core in a web farm](../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

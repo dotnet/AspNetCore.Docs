@@ -5,7 +5,6 @@ description: Learn how to configure certificate authentication in ASP.NET Core f
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/07/2026
 ms.reviewer: shalter
-uid: security/authentication/certauth
 
 # customer intent: As an ASP.NET developer, I want to use certificate authentication in ASP.NET Core for IIS and HTTP.sys, so I can control access to my apps by using certificates.
 ---
@@ -153,7 +152,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-For more information on how to configure the certificate forwarding middleware, see the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding).
+For more information on how to configure the certificate forwarding middleware, see the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding).
 
 ### Certificate authentication in Azure Web Apps
 
@@ -364,7 +363,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 
    For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
 
-   For more information, see <xref:security/authorization/introduction>.
+   For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension that's used to include a virtual domain as a part of SSL negotiation. This approach effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -635,7 +634,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+See the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
 ### Use certificate authentication in Azure Web Apps
 
@@ -1030,7 +1029,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * [ListenOptions.UseHttps](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps)
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
     * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Hosting IIS](../../host-and-deploy/iis/index.md#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
@@ -1039,7 +1038,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
-  * For more information, see <xref:security/authorization/introduction>.
+  * For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -1297,7 +1296,7 @@ Complete the following steps in IIS Manager:
 
 ### Azure and custom web proxies
 
-See the [host and deploy documentation](xref:host-and-deploy/proxy-load-balancer#certificate-forwarding) for how to configure the certificate forwarding middleware.
+See the [host and deploy documentation](../../host-and-deploy/proxy-load-balancer.md#certificate-forwarding) for how to configure the certificate forwarding middleware.
 
 ### Use certificate authentication in Azure Web Apps
 
@@ -1688,7 +1687,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
       * <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ClientCertificateMode>
       * Note Kestrel does not currently support multiple TLS configurations on one binding, you'll need two bindings with unique IPs or ports. For more information, see [this GitHub issue](https://github.com/dotnet/runtime/issues/31097).
     * IIS
-      * [Hosting IIS](xref:host-and-deploy/iis/index#create-the-iis-site)
+      * [Hosting IIS](../../host-and-deploy/iis/index.md#create-the-iis-site)
       * [Configure security on IIS](/iis/manage/configuring-security/how-to-set-up-ssl-on-iis#configure-ssl-settings-2)
     * HTTP.sys: [Configure Windows Server](xref:fundamentals/servers/httpsys#configure-windows-server)
 
@@ -1697,7 +1696,7 @@ At the start of the connection, only the Server Name Indication (SNI)&dagger; is
 * For requests to the web app that require a client certificate and don't have one:
   * Redirect to the same page using the client certificate protected subdomain.
   * For example, redirect to `myClient.contoso.com/requestedPage`. Because the request to `myClient.contoso.com/requestedPage` is a different hostname than `contoso.com/requestedPage`, the client establishes a different connection and the client certificate is provided.
-  * For more information, see <xref:security/authorization/introduction>.
+  * For more information, see [Introduction to authorization in ASP.NET Core](../authorization/introduction.md).
 
 &dagger; Server Name Indication (SNI) is a TLS extension to include a virtual domain as a part of SSL negotiation. This effectively means the virtual domain name, or a hostname, can be used to identify the network end point.
 
@@ -1739,7 +1738,7 @@ Leave questions, comments, and other feedback on optional client certificates in
 
 ## Related content
 
-- [Overview of ASP.NET Core authentication](xref:security/authentication/index)
-- [Introduction to authorization in ASP.NET Core](xref:security/authorization/introduction)
+- [Overview of ASP.NET Core authentication](index.md)
+- [Introduction to authorization in ASP.NET Core](../authorization/introduction.md)
 - [Use TLS/SSL certificates in your app code (Azure documentation)](/azure/app-service/configure-ssl-certificate-in-code)
 - [Important changes to App Service managed certificates (Blog, November 2025)](https://techcommunity.microsoft.com/blog/appsonazureblog/follow-up-to-%E2%80%98important-changes-to-app-service-managed-certificates%E2%80%99-november-20/4466120)

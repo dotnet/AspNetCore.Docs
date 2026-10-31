@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about in-Process hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 4/4/2022
-uid: host-and-deploy/iis/in-process-hosting
 ---
 # In-process hosting with IIS and ASP.NET Core
 
@@ -57,7 +56,7 @@ To configure IIS options, include a service configuration for <xref:Microsoft.As
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
-| `AutomaticAuthentication` | `true` | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication` | `true` | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName` | `null` | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO` | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize` | `30000000` | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the `web.config` to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
@@ -72,7 +71,7 @@ The following characteristics apply when hosting in-process:
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
@@ -150,7 +149,7 @@ services.Configure<IISServerOptions>(options =>
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
-| `AutomaticAuthentication` | `true` | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication` | `true` | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName` | `null` | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO` | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize` | `30000000` | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength` which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the `web.config` to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
@@ -165,7 +164,7 @@ The following characteristics apply when hosting in-process:
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 

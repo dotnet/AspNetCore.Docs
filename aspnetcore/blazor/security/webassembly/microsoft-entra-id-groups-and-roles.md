@@ -69,7 +69,7 @@ Assign users to ME-ID security groups and ME-ID Administrator Roles in the Azure
 The examples in this article:
 
 * Assume that a user is assigned to the ME-ID *Billing Administrator* role in the Azure portal ME-ID tenant for authorization to access server API data.
-* Use [authorization policies](xref:security/authorization/policies) to control access within the app.
+* Use [authorization policies](../../../security/authorization/policies.md) to control access within the app.
 
 Extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
@@ -162,7 +162,7 @@ Provide values for the following placeholders from the app's ME-ID registration 
 
 ## Authorization configuration
 
-Create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles) (by role name), ME-ID built-in Administrator Role (by Role Template Id/GUID), or security group (by Object Id/GUID) in the `Program` file. The following example creates a policy for the ME-ID built-in *Billing Administrator* role:
+Create a [policy](../../../security/authorization/policies.md) for each [App Role](#app-roles) (by role name), ME-ID built-in Administrator Role (by Role Template Id/GUID), or security group (by Object Id/GUID) in the `Program` file. The following example creates a policy for the ME-ID built-in *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -173,7 +173,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-For the complete list of IDs (GUIDs) for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the ME-ID documentation. For an Azure security or O365 group ID (GUID), see the **Object Id** for the group in the Azure portal **Groups** pane of the app's registration. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs (GUIDs) for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the ME-ID documentation. For an Azure security or O365 group ID (GUID), see the **Object Id** for the group in the Azure portal **Groups** pane of the app's registration. For more information on authorization policies, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md).
 
 In the following examples, the app uses the preceding policy to authorize the user.
 
@@ -461,7 +461,7 @@ Multiple role tests are supported:
   if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
 
-Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>. By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md#claim-case-sensitivity). By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
 ## Related content
 
@@ -469,6 +469,6 @@ Role matching is typically case-sensitive because role names are stored and comp
 * [`groupMembershipClaims` attribute (ME-ID documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
 * [Add app roles to your application and receive them in the token (ME-ID documentation)](/entra/identity-platform/howto-add-app-roles-in-apps)
 * [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
-* <xref:security/authorization/claims>
-* <xref:security/authorization/roles>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
+* [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 * <xref:blazor/security/index>

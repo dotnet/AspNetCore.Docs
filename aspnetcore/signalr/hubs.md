@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to work with hubs in ASP.NET Core SignalR, create and use hubs, send messages to clients, and handle results from connected clients on the server.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 09/24/2026
-uid: signalr/hubs
 ---
 # Use hubs in ASP.NET Core SignalR
 
@@ -103,7 +102,7 @@ public class ReportHub : Hub
 
 Cancellation is cooperative. The hub method decides whether and how quickly to stop, and SignalR sends a completion message for the invocation either way. Letting an <xref:System.OperationCanceledException> propagate out of the hub method completes the invocation with an error.
 
-A client can cancel any invocation that has an invocation ID. For how a client requests cancellation, see <xref:signalr/dotnet-client#cancel-a-hub-method-invocation>.
+A client can cancel any invocation that has an invocation ID. For how a client requests cancellation, see [ASP.NET Core SignalR .NET client](dotnet-client.md#cancel-a-hub-method-invocation).
 
 :::moniker-end
 
@@ -120,7 +119,7 @@ The <xref:Microsoft.AspNetCore.SignalR.Hub> class includes a <xref:Microsoft.Asp
 | Property | Description |
 |--|--|
 | <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.ConnectionId> | Gets the unique ID for the connection, assigned by SignalR. There's one connection ID for each connection. |
-| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier> | Gets the [user identifier](xref:signalr/groups). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
+| <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.UserIdentifier> | Gets the [user identifier](groups.md). By default, SignalR uses the <xref:System.Security.Claims.ClaimTypes.NameIdentifier?displayProperty=nameWithType> property from the <xref:System.Security.Claims.ClaimsPrincipal> associated with the connection as the user identifier. |
 | <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.User> | Gets the <xref:System.Security.Claims.ClaimsPrincipal> associated with the current user. |
 | <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Items> | Gets a key/value collection that can be used to share data within the scope of this connection. Data can be stored in this collection and it persists for the connection across different hub method invocations. |
 | <xref:Microsoft.AspNetCore.SignalR.HubCallerContext.Features> | Gets the collection of features available on the connection. This collection isn't currently needed in most scenarios, so detailed documentation isn't yet available. |
@@ -161,7 +160,7 @@ Each property or method returns an object with a `SendAsync` method. The `SendAs
 
 :::moniker range=">= aspnetcore-7.0"
 
-The object returned by the `Client` and `Caller` methods also contain an `InvokeAsync` method, which can be used to wait for a [result from the client](xref:signalr/hubs#request-client-results).
+The object returned by the `Client` and `Caller` methods also contain an `InvokeAsync` method, which can be used to wait for a [result from the client](hubs.md#request-client-results).
 
 :::moniker-end
 
@@ -242,7 +241,7 @@ public class ChatHub : Hub
 }
 ```
 
-Or, you can call `Client(...)` on an instance of [IHubContext\<T>](xref:signalr/hubcontext):
+Or, you can call `Client(...)` on an instance of [IHubContext\<T>](hubcontext.md):
 
 ```csharp
 async Task SomeMethod(IHubContext<MyHub> context)
@@ -371,7 +370,7 @@ public class ChatHub : Hub
 
 To explicitly specify which parameters are resolved from DI in hub methods, specify the `[FromServices]` attribute or a custom attribute that implements <xref:Microsoft.AspNetCore.Http.Metadata.IFromServiceMetadata> on the hub method parameters that should be resolved from DI.
 
-Set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> property ([ASP.NET Core documentation](xref:signalr/configuration#configure-server-options)) in case some parameters might come from DI and you instead want them to come from the client.
+Set the <xref:Microsoft.AspNetCore.SignalR.HubOptions.DisableImplicitFromServicesParameters> property ([ASP.NET Core documentation](configuration.md#configure-server-options)) in case some parameters might come from DI and you instead want them to come from the client.
 
 In the app's `Program` file:
 
@@ -524,7 +523,7 @@ public class ChatHub : Hub
 
 Because each hub method call is executed on a new hub instance, don't store state in a property of the hub class.
 
-Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](xref:signalr/hubcontext).
+Don't instantiate a hub directly via DI. To send messages to a client from elsewhere in your app, use an [`IHubContext`](hubcontext.md).
 
 Use the [`await` operator](/dotnet/csharp/language-reference/operators/await) when calling an asynchronous method that depends on the hub staying alive. If you call an asynchronous method without `await`, the call can fail with the hub method completing before the asynchronous method finishes.
 
@@ -693,10 +692,10 @@ The method runs only for hubs that enable authentication refresh. A refresh does
 
 Two behaviors differ from the other connection events:
 
-* [Client results](xref:signalr/hubs#request-client-results) aren't supported from this method, the same as in `OnConnectedAsync`. Send messages with `SendAsync` instead of requesting a result with `InvokeAsync`.
+* [Client results](hubs.md#request-client-results) aren't supported from this method, the same as in `OnConnectedAsync`. Send messages with `SendAsync` instead of requesting a result with `InvokeAsync`.
 * An exception thrown by this method is logged and then discarded. The connection stays open, the client isn't notified, and the refresh isn't rejected.
 
-For the full feature, including how to enable it and how clients request a refresh, see <xref:signalr/authn-and-authz#authentication-refresh>.
+For the full feature, including how to enable it and how clients request a refresh, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 :::moniker-end
 
@@ -722,7 +721,7 @@ If your Hub throws an exception, connections aren't closed. By default, SignalR 
 Microsoft.AspNetCore.SignalR.HubException: An unexpected error occurred invoking 'MethodName' on the server.
 ```
 
-Unexpected exceptions often contain sensitive information, such as the name of a database server in an exception triggered when the database connection fails. SignalR doesn't expose these detailed error messages by default as a security measure. For more information on why exception details are suppressed, see [Security considerations in ASP.NET Core SignalR](xref:signalr/security#exceptions).
+Unexpected exceptions often contain sensitive information, such as the name of a database server in an exception triggered when the database connection fails. SignalR doesn't expose these detailed error messages by default as a security measure. For more information on why exception details are suppressed, see [Security considerations in ASP.NET Core SignalR](security.md#exceptions).
 
 If you have an exceptional condition you *do* want to propagate to the client, you can use the <xref:Microsoft.AspNetCore.SignalR.HubException> class. If you throw a `HubException` from your hub method, SignalR **will** send the entire message to the client, unmodified:
 
@@ -734,6 +733,6 @@ If you have an exceptional condition you *do* want to propagate to the client, y
 ## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/signalr/hubs/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
-* <xref:signalr/introduction>
-* <xref:signalr/javascript-client>
-* <xref:signalr/publish-to-azure-web-app>
+* [Overview of ASP.NET Core SignalR](introduction.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

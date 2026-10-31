@@ -33,7 +33,7 @@ Razor Pages benefits:
   * View specific logic and view models can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
-To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials/razor-pages/razor-pages-start>. For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: <xref:razor-pages/index>.
+To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials/razor-pages/razor-pages-start>. For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Razor Pages architecture and concepts in ASP.NET Core](../../../razor-pages/index.md).
 
 ## ASP.NET Core MVC
 
@@ -87,6 +87,6 @@ For more information, see:
 * <xref:blazor/index>
 * <xref:blazor/hosting-models>
 * <xref:blazor/components/integration>
-* <xref:grpc/comparison>
+* [Compare gRPC services with HTTP APIs](../../../grpc/comparison.md)
 
 :::moniker-end

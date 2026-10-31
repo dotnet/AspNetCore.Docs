@@ -249,10 +249,10 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 
 * [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page)
 * [Exception handler](xref:fundamentals/error-handling#exception-handler-page)
-* [HTTP Strict Transport Security (HSTS)](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol)
-* [HTTPS redirection](xref:security/enforcing-ssl)
+* [HTTP Strict Transport Security (HSTS)](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol)
+* [HTTPS redirection](../security/enforcing-ssl.md)
 * [Static files](xref:fundamentals/static-files)
-* ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](xref:razor-pages/index)
+* ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](../razor-pages/index.md)
 
 The following example demonstrates middleware for a typical Razor Pages app:
 
@@ -288,7 +288,7 @@ public class Startup
 }
 ```
 
-The preceding sample is for [Razor Pages](xref:razor-pages/index); the MVC version is similar.
+The preceding sample is for [Razor Pages](../razor-pages/index.md); the MVC version is similar.
 
 Each `Use` extension method adds one or more middleware components to the request pipeline. For instance, <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> configures [middleware](xref:fundamentals/middleware/index) to serve [static files](xref:fundamentals/static-files).
 
@@ -412,11 +412,11 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## The `Startup` class (`ConfigureServices` and `Configure` methods)
 
-*Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see <xref:migration/50-to-60#new-hosting-model>.*
+*Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model).*
 
 For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> methods with the minimal hosting model, see the following:
 
-* [Use a `Startup` class with the minimal hosting model](xref:migration/50-to-60#use-a-startup-class-with-the-new-minimal-hosting-model)
+* [Use a `Startup` class with the minimal hosting model](../migration/50-to-60.md#use-a-startup-class-with-the-new-minimal-hosting-model)
 * [The `Startup` class (.NET 5 version of this article)](?view=aspnetcore-5.0&preserve-view=true#the-startup-class)
 
 :::moniker-end

@@ -3,7 +3,6 @@ title: Share authentication cookies among ASP.NET apps
 description: Learn how to share authentication cookies among ASP.NET 4.x and ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 6/6/2022
-uid: security/cookie-sharing
 ---
 # Share authentication cookies among ASP.NET apps
 
@@ -19,7 +18,7 @@ In the examples that follow:
 * The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
 * A common app name, `SharedCookieApp`, is used to enable the data protection system to share data protection keys.
 * `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within and across* the shared cookie apps either as the default scheme or by explicitly setting it. The scheme is used when encrypting and decrypting cookies, so a consistent scheme must be used across apps.
-* A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used.
+* A common [data protection key](data-protection/implementation/key-management.md) storage location is used.
   * In ASP.NET Core apps, <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> is used to set the key storage location.
   * In .NET Framework apps, cookie authentication middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action\<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
 * `DataProtectionProvider` requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package:
@@ -30,7 +29,7 @@ In the examples that follow:
 
 When using ASP.NET Core Identity:
 
-* Data protection keys and the app name must be shared among apps. A common key storage location is provided to the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> method in the following examples. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> to configure a common shared app name (`SharedCookieApp` in the following examples). For more information, see <xref:security/data-protection/configuration/overview>.
+* Data protection keys and the app name must be shared among apps. A common key storage location is provided to the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> method in the following examples. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> to configure a common shared app name (`SharedCookieApp` in the following examples). For more information, see [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md).
 * Use the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> extension method to set up the data protection service for cookies.
 * The default authentication type is `Identity.Application`.
 
@@ -66,7 +65,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## Encrypt data protection keys at rest
 
-For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. For more information, see <xref:security/data-protection/implementation/key-encryption-at-rest>. In the following example, a certificate thumbprint is provided to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
+For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. For more information, see [Key encryption at rest in Windows and Azure using ASP.NET Core](data-protection/implementation/key-encryption-at-rest.md). In the following example, a certificate thumbprint is provided to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare/Program.cs?name=snippet_Encrypt&highlight=7-8)]
 
@@ -80,12 +79,12 @@ When the Identity schema is different among apps, usually because apps are using
 
 ## Share authentication cookies between ASP.NET 4.x and ASP.NET Core apps
 
-ASP.NET 4.x apps that use Microsoft.Owin cookie authentication middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core cookie authentication middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](xref:migration/fx-to-core/index) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
+ASP.NET 4.x apps that use Microsoft.Owin cookie authentication middleware can be configured to generate authentication cookies that are compatible with the ASP.NET Core cookie authentication middleware. This can be useful if a web application consists of both ASP.NET 4.x apps and ASP.NET Core apps that must share a single sign-on experience. A specific example of such a scenario is [incrementally migrating](../migration/fx-to-core/index.md) a web app from ASP.NET to ASP.NET Core. In such scenarios, it's common for some parts of an app to be served by the original ASP.NET app while others are served by the new ASP.NET Core app. Users should only have to sign in once, though. This can be accomplished by either of the following approaches:
 
-* Using the System.Web adapters' [remote authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) feature, which uses the ASP.NET app to sign users in.
+* Using the System.Web adapters' [remote authentication](../migration/fx-to-core/areas/authentication.md#remote-authentication) feature, which uses the ASP.NET app to sign users in.
 * Configuring the ASP.NET app to use Microsoft.Owin cookie authentication middleware so that authentication cookies are shared with the ASP.NET Core app.
 
-To configure ASP.NET Microsoft.Owin cookie authentication middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
+To configure ASP.NET Microsoft.Owin cookie authentication middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md) for more information on persisting data protection keys.
 
 In the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
 
@@ -96,7 +95,7 @@ Update the `UseCookieAuthentication` call in Startup.Auth.cs to configure an Asp
 Important items configured here include:
 
 * The cookie name is set to the same name as in the ASP.NET Core app.
-* A data protection provider is created using the same key ring path. Note that in these examples, data protection keys are stored on disk but other data protection providers can be used. For example, Redis or Azure Blob Storage can be used for data protection providers as long as the configuration matches between the apps. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for more information on persisting data protection keys.
+* A data protection provider is created using the same key ring path. Note that in these examples, data protection keys are stored on disk but other data protection providers can be used. For example, Redis or Azure Blob Storage can be used for data protection providers as long as the configuration matches between the apps. See [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md) for more information on persisting data protection keys.
 * The app name is set to be the same as the app name used in the ASP.NET Core app.
 * The authentication type is set to the name of the authentication scheme in the ASP.NET Core app.
 * `System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier` is set to a claim from the ASP.NET Core identity that will be unique to a user.
@@ -111,7 +110,7 @@ Note that because there are differences between ASP.NET Identity and ASP.NET Cor
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 * [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/) by [Brock Allen](https://brockallen.com/)
 * [OWIN authentication middleware Architecture](https://brockallen.com/2013/08/07/owin-authentication-middleware-architecture/) by [Brock Allen](https://brockallen.com/)
 * [Posts from the 'OWIN / Katana' Category](https://brockallen.com/category/owin-katana/) by [Brock Allen](https://brockallen.com/)
@@ -126,7 +125,7 @@ In the examples that follow:
 * The `AuthenticationType` is set to `Identity.Application` either explicitly or by default.
 * A common app name is used to enable the data protection system to share data protection keys (`SharedCookieApp`).
 * `Identity.Application` is used as the authentication scheme. Whatever scheme is used, it must be used consistently *within and across* the shared cookie apps either as the default scheme or by explicitly setting it. The scheme is used when encrypting and decrypting cookies, so a consistent scheme must be used across apps.
-* A common [data protection key](xref:security/data-protection/implementation/key-management) storage location is used.
+* A common [data protection key](data-protection/implementation/key-management.md) storage location is used.
   * In ASP.NET Core apps, <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> is used to set the key storage location.
   * In .NET Framework apps, cookie authentication middleware uses an implementation of <xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider>. `DataProtectionProvider` provides data protection services for the encryption and decryption of authentication cookie payload data. The `DataProtectionProvider` instance is isolated from the data protection system used by other parts of the app. [DataProtectionProvider.Create(System.IO.DirectoryInfo, Action\<IDataProtectionBuilder>)](xref:Microsoft.AspNetCore.DataProtection.DataProtectionProvider.Create*) accepts a <xref:System.IO.DirectoryInfo> to specify the location for data protection key storage.
 * `DataProtectionProvider` requires the [Microsoft.AspNetCore.DataProtection.Extensions](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.Extensions/) NuGet package:
@@ -138,7 +137,7 @@ In the examples that follow:
 
 When using ASP.NET Core Identity:
 
-* Data protection keys and the app name must be shared among apps. A common key storage location is provided to the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> method in the following examples. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> to configure a common shared app name (`SharedCookieApp` in the following examples). For more information, see <xref:security/data-protection/configuration/overview>.
+* Data protection keys and the app name must be shared among apps. A common key storage location is provided to the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*> method in the following examples. Use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> to configure a common shared app name (`SharedCookieApp` in the following examples). For more information, see [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md).
 * Use the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.ConfigureApplicationCookie*> extension method to set up the data protection service for cookies.
 * The default authentication type is `Identity.Application`.
 
@@ -201,7 +200,7 @@ options.Cookie.Domain = ".contoso.com";
 
 ## Encrypt data protection keys at rest
 
-For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. For more information, see <xref:security/data-protection/implementation/key-encryption-at-rest>. In the following example, a certificate thumbprint is provided to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
+For production deployments, configure the `DataProtectionProvider` to encrypt keys at rest with DPAPI or an X509Certificate. For more information, see [Key encryption at rest in Windows and Azure using ASP.NET Core](data-protection/implementation/key-encryption-at-rest.md). In the following example, a certificate thumbprint is provided to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
 services.AddDataProtection()
@@ -220,6 +219,6 @@ When the Identity schema is different among apps, usually because apps are using
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 * [A primer on OWIN cookie authentication middleware for the ASP.NET developer](https://brockallen.com/2013/10/24/a-primer-on-owin-cookie-authentication-middleware-for-the-asp-net-developer/)
 :::moniker-end

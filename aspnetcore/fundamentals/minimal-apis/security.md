@@ -33,9 +33,9 @@ The authentication service uses registered authentication handlers to complete a
 
 In the authorization layer, there are two strategies for determining user access to resources:
 
-* **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information, see <xref:security/authorization/roles>.
+* **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information, see [Role-based authorization in ASP.NET Core](../../security/authorization/roles.md).
 
-* **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information, see <xref:security/authorization/claims>.
+* **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information, see [Claim-based authorization in ASP.NET Core](../../security/authorization/claims.md).
 
 In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service uses authorization handlers to determine whether or not a particular user meets the authorization requirements for a resource. 
 
@@ -154,4 +154,4 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 * [The authentication service (`IAuthenticationService`)](xref:Microsoft.AspNetCore.Authentication.IAuthenticationService)
 * [The authorization service (`IAuthorizationService`)](xref:Microsoft.AspNetCore.Authorization.IAuthorizationService)
 * <xref:fundamentals/middleware/index>
-* <xref:security/authentication/jwt>
+* [Generate tokens with dotnet user-jwts](../../security/authentication/jwt-authn.md)

@@ -20,7 +20,7 @@ A development certificate is created:
 
 The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](../../../../../security/enforcing-ssl.md).
 
 Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
 
@@ -175,7 +175,7 @@ In the following `appsettings.json` example:
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 Schema notes:
 
@@ -298,7 +298,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 HTTPS options that can be overridden by SNI:
 
@@ -343,7 +343,7 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -371,11 +371,11 @@ The default value, `SslProtocols.None`, causes Kestrel to use the operating syst
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md).
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
-For more information, see <xref:security/authentication/certauth>.
+For more information, see [Configure certificate authentication in ASP.NET Core](../../../../../security/authentication/certauth.md).
 
 ## Connection logging
 
@@ -429,7 +429,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 
@@ -577,7 +577,7 @@ A development certificate is created:
 
 The development certificate is available only for the user that generates the certificate. Some browsers require granting explicit permission to trust the local development certificate.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](../../../../../security/enforcing-ssl.md).
 
 Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
 
@@ -730,7 +730,7 @@ In the following `appsettings.json` example:
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 Schema notes:
 
@@ -853,7 +853,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 HTTPS options that can be overridden by SNI:
 
@@ -898,7 +898,7 @@ SSL Protocols are protocols used for encrypting and decrypting traffic between t
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -926,11 +926,11 @@ The default value, `SslProtocols.None`, causes Kestrel to use the operating syst
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration).
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md).
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
-For more information, see <xref:security/authentication/certauth>.
+For more information, see [Configure certificate authentication in ASP.NET Core](../../../../../security/authentication/certauth.md).
 
 ## Connection logging
 
@@ -979,7 +979,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 
@@ -1125,7 +1125,7 @@ A development certificate is created:
 
 Some browsers require granting explicit permission to trust the local development certificate.
 
-Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](xref:security/enforcing-ssl).
+Project templates configure apps to run on HTTPS by default and include [HTTPS redirection and HSTS support](../../../../../security/enforcing-ssl.md).
 
 Call <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> or <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> methods on <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> to configure URL prefixes and ports for Kestrel.
 
@@ -1297,7 +1297,7 @@ In the following `appsettings.json` example:
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 Schema notes:
 
@@ -1511,7 +1511,7 @@ The following configuration adds an endpoint named `MySniEndpoint` that uses SNI
 ```
 
 > [!WARNING]
-> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, certificate passwords are stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for each certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 HTTPS options that can be overridden by SNI:
 
@@ -1565,7 +1565,7 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 The default value, `SslProtocols.None`, causes Kestrel to use the operating system defaults to choose the best protocol. Unless you have a specific reason to select a protocol, use the default.
 
@@ -1601,11 +1601,11 @@ webBuilder.ConfigureKestrel(serverOptions =>
 ```
 
 > [!WARNING]
-> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](xref:security/app-secrets). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](xref:security/key-vault-configuration). Development secrets shouldn't be used for production or test.
+> In the preceding example, the certificate password is stored in plain-text in `appsettings.json`. The `$CREDENTIAL_PLACEHOLDER$` token is used as a placeholder for the certificate's password. To store certificate passwords securely in development environments, see [Protect secrets in development](../../../../../security/app-secrets.md). To store certificate passwords securely in production environments, see [Azure Key Vault configuration provider](../../../../../security/key-vault-configuration.md). Development secrets shouldn't be used for production or test.
 
 The default value is `ClientCertificateMode.NoCertificate` where Kestrel will not request or require a certificate from the client.
 
-For more information, see <xref:security/authentication/certauth>.
+For more information, see [Configure certificate authentication in ASP.NET Core](../../../../../security/authentication/certauth.md).
 
 ## Connection logging
 
@@ -1668,7 +1668,7 @@ These methods are useful for making code work with servers other than Kestrel. H
 
 ## IIS endpoint configuration
 
-When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+When using IIS, the URL bindings for IIS override bindings are set by either `Listen` or `UseUrls`. For more information, see [ASP.NET Core Module](../../../../../host-and-deploy/aspnet-core-module.md).
 
 ## ListenOptions.Protocols
 

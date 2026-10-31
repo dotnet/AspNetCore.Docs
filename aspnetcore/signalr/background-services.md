@@ -3,7 +3,6 @@ title: Host ASP.NET Core SignalR in background services
 description: Learn how to send messages to SignalR clients from .NET BackgroundService classes.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 11/12/2019
-uid: signalr/background-services
 ---
 # Host ASP.NET Core SignalR in background services
 
@@ -27,7 +26,7 @@ Hosting ASP.NET Core SignalR Hubs in the context of a background worker process 
 
 In the preceding example, the `ClockHub` class implements the `Hub<T>` class to create a strongly typed Hub. The `ClockHub` has been configured in `Program.cs` to respond to requests at the endpoint `/hubs/clock`.
 
-For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs#use-strongly-typed-hubs).
+For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](hubs.md#use-strongly-typed-hubs).
 
 > [!NOTE]
 > This functionality isn't limited to the [Hub\<T>](xref:Microsoft.AspNetCore.SignalR.Hub`1) class. Any class that inherits from [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), such as [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), works.
@@ -54,7 +53,7 @@ As the `ExecuteAsync` method is called iteratively in the background service, th
 
 ## React to SignalR events with background services
 
-Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the <xref:signalr/dotnet-client>, a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
+Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the [ASP.NET Core SignalR .NET client](dotnet-client.md), a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
 
 The `ClockHubClient` class implements both the `IClock` interface and the `IHostedService` interface. This way it can be enabled during startup to run continuously and respond to Hub events from the server.
 
@@ -90,7 +89,7 @@ Hosting ASP.NET Core SignalR Hubs in the context of a background worker process 
 
 In the preceding example, the `ClockHub` class implements the `Hub<T>` class to create a strongly typed Hub. The `ClockHub` has been configured in the `Startup` class to respond to requests at the endpoint `/hubs/clock`.
 
-For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs#use-strongly-typed-hubs).
+For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](hubs.md#use-strongly-typed-hubs).
 
 > [!NOTE]
 > This functionality isn't limited to the [Hub\<T>](xref:Microsoft.AspNetCore.SignalR.Hub`1) class. Any class that inherits from [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), such as [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), works.
@@ -117,7 +116,7 @@ As the `ExecuteAsync` method is called iteratively in the background service, th
 
 ## React to SignalR events with background services
 
-Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the <xref:signalr/dotnet-client>, a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
+Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the [ASP.NET Core SignalR .NET client](dotnet-client.md), a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
 
 The `ClockHubClient` class implements both the `IClock` interface and the `IHostedService` interface. This way it can be enabled during `Startup` to run continuously and respond to Hub events from the server.
 
@@ -153,7 +152,7 @@ Hosting ASP.NET Core SignalR Hubs in the context of a background worker process 
 
 In the preceding example, the `ClockHub` class implements the `Hub<T>` class to create a strongly typed Hub. The `ClockHub` has been configured in the `Startup` class to respond to requests at the endpoint `/hubs/clock`.
 
-For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](xref:signalr/hubs#use-strongly-typed-hubs).
+For more information on strongly typed Hubs, see [Use hubs in SignalR for ASP.NET Core](hubs.md#use-strongly-typed-hubs).
 
 > [!NOTE]
 > This functionality isn't limited to the [Hub\<T>](xref:Microsoft.AspNetCore.SignalR.Hub`1) class. Any class that inherits from [Hub](xref:Microsoft.AspNetCore.SignalR.Hub), such as [DynamicHub](xref:Microsoft.AspNetCore.SignalR.DynamicHub), works.
@@ -180,7 +179,7 @@ As the `ExecuteAsync` method is called iteratively in the background service, th
 
 ## React to SignalR events with background services
 
-Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the <xref:signalr/dotnet-client>, a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
+Like a Single Page App using the JavaScript client for SignalR, or a .NET desktop app using the [ASP.NET Core SignalR .NET client](dotnet-client.md), a `BackgroundService` or `IHostedService` implementation can also be used to connect to SignalR Hubs and respond to events.
 
 The `ClockHubClient` class implements both the `IClock` interface and the `IHostedService` interface. This way it can be enabled during `Startup` to run continuously and respond to Hub events from the server.
 
@@ -207,6 +206,6 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 ## Related content
 
 * [Get started](xref:tutorials/signalr)
-* [Hubs](xref:signalr/hubs)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Strongly typed Hubs](xref:signalr/hubs#use-strongly-typed-hubs)
+* [Hubs](hubs.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
+* [Strongly typed Hubs](hubs.md#use-strongly-typed-hubs)

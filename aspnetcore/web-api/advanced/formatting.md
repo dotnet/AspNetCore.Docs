@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to format response data in ASP.NET Core Web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/22/2026
-uid: web-api/advanced/formatting
 ---
 # Format response data in ASP.NET Core Web API
 
@@ -23,13 +22,13 @@ ASP.NET Core MVC supports formatting response data, using specified formats or i
 
 Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return results that always use a specified format, ignoring a client's request for a different format. For example, returning `JsonResult` returns JSON-formatted data and returning `ContentResult` returns plain-text-formatted string data.
 
-An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
+An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see [Controller action return types in ASP.NET Core web API](../action-return-types.md).
 
 By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*?displayProperty=nameWithType> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](../http-repl/index.md) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -105,7 +104,7 @@ To configure an app to respect browser accept headers, set the <xref:Microsoft.A
 
 ### Configure formatters
 
-Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](xref:web-api/advanced/custom-formatters).
+Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -141,7 +140,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 
 * Input and output formatters that read and write JSON
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
-* [JSON Patch](xref:web-api/jsonpatch)
+* [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
 * [TempData](xref:fundamentals/app-state#tempdata)
 
@@ -224,13 +223,13 @@ ASP.NET Core MVC has support for formatting response data. Response data can be 
 
 Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return results that are formatted in a particular format, regardless of client preferences. For example, returning `JsonResult` returns JSON-formatted data. Returning `ContentResult` or a string returns plain-text-formatted string data.
 
-An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
+An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see [Controller action return types in ASP.NET Core web API](../action-return-types.md).
 
 The built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_get":::
 
-The sample download returns the list of authors. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code:
+The sample download returns the list of authors. Using the F12 browser developer tools or [http-repl](../http-repl/index.md) with the previous code:
 
 * The response header containing **content-type:** `application/json; charset=utf-8` is displayed.
 * The request headers are displayed. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -258,7 +257,7 @@ The following action method uses the `Ok` and `NotFound` helper methods:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/AuthorsController.cs" id="snippet_search":::
 
-By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](xref:web-api/http-repl) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+By default, ASP.NET Core supports `application/json`, `text/json`, and `text/plain` media types. Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](../http-repl/index.md) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -303,7 +302,7 @@ To configure an app to honor browser accept headers, set
 
 ### Configure formatters
 
-Apps that need to support additional formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](xref:web-api/advanced/custom-formatters).
+Apps that need to support additional formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -365,7 +364,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 
 * Input and output formatters that read and write JSON
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
-* [JSON Patch](xref:web-api/jsonpatch)
+* [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
 * [TempData](xref:fundamentals/app-state#tempdata)
 
@@ -455,13 +454,13 @@ ASP.NET Core MVC supports formatting response data, using specified formats or i
 
 Some action result types are specific to a particular format, such as <xref:Microsoft.AspNetCore.Mvc.JsonResult> and <xref:Microsoft.AspNetCore.Mvc.ContentResult>. Actions can return results that always use a specified format, ignoring a client's request for a different format. For example, returning `JsonResult` returns JSON-formatted data and returning `ContentResult` returns plain-text-formatted string data.
 
-An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see <xref:web-api/action-return-types>.
+An action isn't required to return any specific type. ASP.NET Core supports any object return value. Results from actions that return objects that aren't <xref:Microsoft.AspNetCore.Mvc.IActionResult> types are serialized using the appropriate <xref:Microsoft.AspNetCore.Mvc.Formatters.IOutputFormatter> implementation. For more information, see [Controller action return types in ASP.NET Core web API](../action-return-types.md).
 
 By default, the built-in helper method <xref:Microsoft.AspNetCore.Mvc.ControllerBase.Ok*?displayProperty=nameWithType> returns JSON-formatted data:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Controllers/TodoItemsController.cs" id="snippet_Get":::
 
-The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](xref:web-api/http-repl) with the previous code displays:
+The sample code returns a list of todo items. Using the F12 browser developer tools or [http-repl](../http-repl/index.md) with the previous code displays:
 
 * The response header containing **content-type:** `application/json; charset=utf-8`.
 * The request headers. For example, the `Accept` header. The `Accept` header is ignored by the preceding code.
@@ -493,7 +492,7 @@ By default, ASP.NET Core supports the following media types:
 * `text/json`
 * `text/plain`
 
-Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](xref:web-api/http-repl) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
+Tools such as [Fiddler](https://www.telerik.com/fiddler) or [http-repl](../http-repl/index.md) can set the `Accept` request header to specify the return format. When the `Accept` header contains a type the server supports, that type is returned. The next section shows how to add additional formatters.
 
 Controller actions can return POCOs (Plain Old CLR Objects). When a POCO is returned, the runtime automatically creates an `ObjectResult` that wraps the object. The client gets the formatted serialized object. If the object being returned is `null`, a `204 No Content` response is returned.
 
@@ -537,7 +536,7 @@ To configure an app to respect browser accept headers, set the <xref:Microsoft.A
 
 ## Configure formatters
 
-Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](xref:web-api/advanced/custom-formatters).
+Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -567,7 +566,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 
 * Input and output formatters that read and write JSON
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
-* [JSON Patch](xref:web-api/jsonpatch)
+* [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
 * [TempData](xref:fundamentals/app-state#tempdata)
 

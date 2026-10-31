@@ -4,7 +4,6 @@ description: Learn how to host ASP.NET Core apps on Windows Server Internet Info
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 04/23/2026
-uid: host-and-deploy/iis/index
 ---
 # Host ASP.NET Core on Windows with IIS
 
@@ -33,7 +32,7 @@ Download the latest installer using the following link:
 
 [Current .NET Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle).
+For more details instructions on how to install the ASP.NET Core Module, or installing different versions, see [Install the .NET Hosting Bundle](hosting-bundle.md).
 
 To download previous versions of the hosting bundle, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/28642).
 
@@ -41,22 +40,22 @@ To download previous versions of the hosting bundle, see [this GitHub issue](htt
 
 For getting started with hosting a website on IIS, see our [getting started guide](xref:tutorials/publish-to-iis).
 
-For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](xref:host-and-deploy/azure-apps/index).
+For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](../azure-apps/index.md).
 
 ## Configuration
 
-For configuration guidance, see <xref:host-and-deploy/iis/advanced>.
+For configuration guidance, see [Advanced configuration](advanced.md).
 
 ## Deployment resources for IIS administrators
 
 * [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [.NET application deployment](/dotnet/core/deploying/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/directory-structure>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [ASP.NET Core directory structure](../directory-structure.md)
+* [IIS modules with ASP.NET Core](modules.md)
 * <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Overlapped recycle
 
@@ -64,7 +63,7 @@ In general, we recommend using a pattern like [blue-green deployments](https://w
 
 ## Optional client certificates
 
-For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](xref:security/authentication/certauth#optional-client-certificates).
+For information on apps that must protect a subset of the app with a certificate, see [Optional client certificates](../../security/authentication/certauth.md#optional-client-certificates).
 
 ## Additional resources
 
@@ -73,7 +72,7 @@ For information on apps that must protect a subset of the app with a certificate
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
-* <xref:host-and-deploy/iis/transform-webconfig>
+* [Transform web.config](transform-webconfig.md)
 
 :::moniker-end
 
@@ -92,7 +91,7 @@ The following operating systems are supported:
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
-For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>.
+For information on hosting in Azure, see [Deploy ASP.NET Core apps to Azure App Service](../azure-apps/index.md).
 
 For troubleshooting guidance, see <xref:test/troubleshoot>.
 
@@ -114,7 +113,7 @@ Use a 64-bit (x64) .NET SDK to publish a 64-bit app. A 64-bit runtime must be pr
 
 Using in-process hosting, an ASP.NET Core app runs in the same process as its IIS worker process. In-process hosting provides improved performance over out-of-process hosting because requests aren't proxied over the loopback adapter, a network interface that returns outgoing network traffic back to the same machine. IIS handles process management with the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module):
+The [ASP.NET Core Module](../aspnet-core-module.md):
 
 * Performs app initialization.
   * Loads the [CoreCLR](/dotnet/standard/glossary#coreclr).
@@ -159,7 +158,7 @@ The ASP.NET Core Module specifies the port via an environment variable at startu
 
 After Kestrel picks up the request from the module, the request is forwarded into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which forwards it back to the HTTP client that initiated the request.
 
-For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
+For ASP.NET Core Module configuration guidance, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
 
@@ -192,7 +191,7 @@ services.Configure<IISServerOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `AllowSynchronousIO`           | `false` | Whether synchronous I/O is allowed for the `HttpContext.Request` and the `HttpContext.Response`. |
 | `MaxRequestBodySize`           | `30000000`  | Gets or sets the max request body size for the `HttpRequest`. Note that IIS itself has the limit `maxAllowedContentLength`, which will be processed before the `MaxRequestBodySize` set in the `IISServerOptions`. Changing the `MaxRequestBodySize` won't affect the `maxAllowedContentLength`. To increase `maxAllowedContentLength`, add an entry in the `web.config` to set `maxAllowedContentLength` to a higher value. For more details, see [Configuration](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/#configuration). |
@@ -210,7 +209,7 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) article. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) article. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
@@ -223,21 +222,21 @@ The [IIS integration middleware](#enable-the-iisintegration-components) and the 
 
 The [IIS integration middleware](#enable-the-iisintegration-components) configures forwarded headers middleware.
 
-Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md).
 
 ### `web.config` file
 
-The `web.config` file configures the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). An MSBuild target (`_TransformWebConfig`) handles creating, transforming, and publishing the `web.config` file when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
+The `web.config` file configures the [ASP.NET Core Module](../aspnet-core-module.md). An MSBuild target (`_TransformWebConfig`) handles creating, transforming, and publishing the `web.config` file when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If a `web.config` file isn't present in the project, the file is created with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to [published output](xref:host-and-deploy/directory-structure).
+If a `web.config` file isn't present in the project, the file is created with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to [published output](../directory-structure.md).
 
 If a `web.config` file is present in the project, the file is transformed with the correct `processPath` and `arguments` to configure the ASP.NET Core Module and moved to published output. The transformation doesn't modify IIS configuration settings in the file.
 
-The `web.config` file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](xref:host-and-deploy/iis/modules) article.
+The `web.config` file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](modules.md) article.
 
 To prevent the Web SDK from transforming the `web.config` file, use the `<IsTransformWebConfigDisabled>` property in the project file:
 
@@ -247,11 +246,11 @@ To prevent the Web SDK from transforming the `web.config` file, use the `<IsTran
 </PropertyGroup>
 ```
 
-When disabling the Web SDK from transforming the file, the developer should manually set the `processPath` and `arguments`. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+When disabling the Web SDK from transforming the file, the developer should manually set the `processPath` and `arguments`. For more information, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ### `web.config` file location
 
-In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the `web.config` file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](../aspnet-core-module.md) correctly, the `web.config` file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as `{ASSEMBLY}.runtimeconfig.json`, `{ASSEMBLY}.xml` (XML Documentation comments), and `{ASSEMBLY}.deps.json`, where the placeholder `{ASSEMBLY}` is the assembly name. When the `web.config` file is present and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the `web.config` file is missing, incorrectly named, or unable to configure the site for normal startup, IIS might serve sensitive files publicly.
 
@@ -259,7 +258,7 @@ Sensitive files exist on the app's physical path, such as `{ASSEMBLY}.runtimecon
 
 ### Transform web.config
 
-If you need to transform `web.config` on publish, see <xref:host-and-deploy/iis/transform-webconfig>. You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
+If you need to transform `web.config` on publish, see [Transform web.config](transform-webconfig.md). You might need to transform `web.config` on publish to set environment variables based on the configuration, profile, or environment.
 
 ## IIS configuration
 
@@ -276,7 +275,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -298,7 +297,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -309,7 +308,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 ## Install the .NET Hosting Bundle
 
-Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
+Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](../aspnet-core-module.md). The module allows ASP.NET Core apps to run behind IIS.
 
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
@@ -342,7 +341,7 @@ To obtain an earlier version of the installer:
    * `OPT_NO_RUNTIME=1`: Skip installing the .NET runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_SHAREDFX=1`: Skip installing the ASP.NET Shared Framework (ASP.NET runtime). Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_X86=1`: Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you'll host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (`applicationHost.config`) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (`applicationHost.config`) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md#aspnet-core-module-with-an-iis-shared-configuration).
 1. Restarting IIS picks up a change to the system PATH, which is an environment variable, made by the installer. To restart the web server, stop the Windows Process Activation Service (WAS) and then restart the World Wide Web Publishing Service (W3SVC). Restart the system **or** execute the following commands in an elevated command shell:
 
    ```console
@@ -358,7 +357,7 @@ net start w3svc
 ```
 
 > [!NOTE]
-> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
+> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](../aspnet-core-module.md#aspnet-core-module-with-an-iis-shared-configuration).
 
 ## Install Web Deploy when publishing with Visual Studio
 
@@ -366,7 +365,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 ## Create the IIS site
 
-1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
+1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see [ASP.NET Core directory structure](../directory-structure.md).
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -398,7 +397,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
 **Windows Authentication configuration (Optional)**  
-For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
+For more information, see [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
 ## Deploy the app
 
@@ -406,7 +405,7 @@ Deploy the app to the IIS **Physical path** folder that was established in the [
 
 ### Web Deploy with Visual Studio
 
-See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) article to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog:
+See the [Visual Studio publish profiles for ASP.NET Core app deployment](../visual-studio-publish-profiles.md#publish-profiles) article to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog:
 
 ![Publish dialog page](index/_static/pub-dialog.png)
 
@@ -432,7 +431,7 @@ In the following example, the site is bound to an IIS **Host name** of `www.mysi
 
 Files in the deployment folder are locked when the app is running. Locked files can't be overwritten during deployment. To release locked files in a deployment, stop the app pool using **one** of the following approaches:
 
-* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](../aspnet-core-module.md#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
 * Use PowerShell to drop `app_offline.htm` (requires PowerShell 5 or later):
 
@@ -450,13 +449,13 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -466,7 +465,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a registry key in the HKLM registry that's accessible only to the worker process account of the app's app pool. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
-  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for details.
+  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md) for details.
 
 * **Configure the IIS Application Pool to load the user profile**
 
@@ -481,16 +480,16 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 * **Use the file system as a key ring store**
 
-  Adjust the app code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
+  Adjust the app code to [use the file system as a key ring store](../../security/data-protection/configuration/overview.md). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
 
   When using IIS in a web farm:
 
   * Use a file share that all machines can access.
-  * Deploy an X509 certificate to each machine. Configure [data protection in code](xref:security/data-protection/configuration/overview).
+  * Deploy an X509 certificate to each machine. Configure [data protection in code](../../security/data-protection/configuration/overview.md).
 
 * **Set a machine-wide policy for data protection**
 
-  The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
+  The data protection system has limited support for setting a default [machine-wide policy](../../security/data-protection/configuration/machine-wide-policy.md) for all apps that consume the Data Protection APIs. For more information, see [ASP.NET Core Data Protection Overview](../../security/data-protection/introduction.md).
 
 ## Virtual Directories
 
@@ -516,7 +515,7 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ## Configuration of IIS with web.config
 
@@ -525,8 +524,8 @@ The `<system.webServer>` section of *web.config* for IIS scenarios that are func
 For more information, see the following articles:
 
 * [Configuration reference for \<system.webServer>](/iis/configuration/system.webServer/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [IIS modules with ASP.NET Core](modules.md)
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) article in the IIS reference documentation.
 
@@ -600,7 +599,7 @@ For more information, see the [icacls](/windows-server/administration/windows-co
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 
@@ -675,7 +674,7 @@ To prevent the app from idling, set the app pool's idle timeout using IIS Manage
 To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timing out, use either of the following approaches:
 
 * Ping the app from an external service in order to keep it running.
-* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](xref:host-and-deploy/windows-service).
+* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](../windows-service.md).
 
 ### Application Initialization Module and Idle Timeout additional resources
 
@@ -688,11 +687,11 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 * [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [.NET application deployment](/dotnet/core/deploying/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/directory-structure>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [ASP.NET Core directory structure](../directory-structure.md)
+* [IIS modules with ASP.NET Core](modules.md)
 * <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Additional resources
 
@@ -701,7 +700,7 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
-* <xref:host-and-deploy/iis/transform-webconfig>
+* [Transform web.config](transform-webconfig.md)
 
 :::moniker-end
 
@@ -720,7 +719,7 @@ The following operating systems are supported:
 
 [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener) doesn't work in a reverse proxy configuration with IIS. Use the [Kestrel server](xref:fundamentals/servers/kestrel).
 
-For information on hosting in Azure, see <xref:host-and-deploy/azure-apps/index>.
+For information on hosting in Azure, see [Deploy ASP.NET Core apps to Azure App Service](../azure-apps/index.md).
 
 For troubleshooting guidance, see <xref:test/troubleshoot>.
 
@@ -746,11 +745,11 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+The module specifies the port via an environment variable at startup, and the [IIS integration middleware](index.md#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
-`CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and enables IIS Integration by configuring the base path and port for the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module).
+`CreateDefaultBuilder` configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and enables IIS Integration by configuring the base path and port for the [ASP.NET Core Module](../aspnet-core-module.md).
 
 The ASP.NET Core Module generates a dynamic port to assign to the backend process. `CreateDefaultBuilder` calls the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> method. `UseIISIntegration` configures Kestrel to listen on the dynamic port at the localhost IP address (`127.0.0.1`). If the dynamic port is 1234, Kestrel listens at `127.0.0.1:1234`. This configuration replaces other URL configurations provided by:
 
@@ -760,7 +759,7 @@ The ASP.NET Core Module generates a dynamic port to assign to the backend proces
 
 Calls to `UseUrls` or Kestrel's `Listen` API aren't required when using the module. If `UseUrls` or `Listen` is called, Kestrel listens on the port specified only when running the app without IIS.
 
-For ASP.NET Core Module configuration guidance, see <xref:host-and-deploy/aspnet-core-module>.
+For ASP.NET Core Module configuration guidance, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
 
@@ -782,7 +781,7 @@ For more information on `CreateDefaultBuilder`, see <xref:fundamentals/host/web-
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](xref:security/authentication/windowsauth). |
+| `AutomaticAuthentication`      | `true`  | If `true`, IIS Server sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the server only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see [Windows Authentication](../../security/authentication/windowsauth.md). |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 
 To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISOptions> in <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>. The following example prevents the app from populating `HttpContext.Connection.ClientCertificate`:
@@ -796,27 +795,27 @@ services.Configure<IISOptions>(options =>
 
 | Option                         | Default | Setting |
 | ------------------------------ | :-----: | ------- |
-| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](xref:security/authentication/windowsauth). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](xref:security/authentication/windowsauth) article. |
+| `AutomaticAuthentication`      | `true`  | If `true`, [IIS integration middleware](#enable-the-iisintegration-components) sets the `HttpContext.User` authenticated by [Windows Authentication](../../security/authentication/windowsauth.md). If `false`, the middleware only provides an identity for `HttpContext.User` and responds to challenges when explicitly requested by the `AuthenticationScheme`. Windows Authentication must be enabled in IIS for `AutomaticAuthentication` to function. For more information, see the [Windows Authentication](../../security/authentication/windowsauth.md) article. |
 | `AuthenticationDisplayName`    | `null`  | Sets the display name shown to users on login pages. |
 | `ForwardClientCertificate`     | `true`  | If `true` and the `MS-ASPNETCORE-CLIENTCERT` request header is present, the `HttpContext.Connection.ClientCertificate` is populated. |
 
 ### Proxy server and load balancer scenarios
 
-The [IIS integration middleware](#enable-the-iisintegration-components), which configures forwarded headers middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The [IIS integration middleware](#enable-the-iisintegration-components), which configures forwarded headers middleware, and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md).
 
 ### web.config file
 
-The *web.config* file configures the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). MSBuild target (`_TransformWebConfig`) handles creating, transforming, and publishing the *web.config* file when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
+The *web.config* file configures the [ASP.NET Core Module](../aspnet-core-module.md). MSBuild target (`_TransformWebConfig`) handles creating, transforming, and publishing the *web.config* file when the project is published. This target is present in the Web SDK targets (`Microsoft.NET.Sdk.Web`). The SDK is set at the top of the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-If a *web.config* file isn't present in the project, the file is created with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to [published output](xref:host-and-deploy/directory-structure).
+If a *web.config* file isn't present in the project, the file is created with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to [published output](../directory-structure.md).
 
 If a *web.config* file is present in the project, the file is transformed with the correct *processPath* and *arguments* to configure the ASP.NET Core Module and moved to published output. The transformation doesn't modify IIS configuration settings in the file.
 
-The *web.config* file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](xref:host-and-deploy/iis/modules) article.
+The *web.config* file might provide additional IIS configuration settings that control active IIS modules. For information on IIS modules that are capable of processing requests with ASP.NET Core apps, see the [IIS modules](modules.md) article.
 
 To prevent the Web SDK from transforming the *web.config* file, use the **\<IsTransformWebConfigDisabled>** property in the project file:
 
@@ -826,11 +825,11 @@ To prevent the Web SDK from transforming the *web.config* file, use the **\<IsTr
 </PropertyGroup>
 ```
 
-When disabling the Web SDK from transforming the file, the developer should manually set the *processPath* and *arguments*. For more information, see <xref:host-and-deploy/aspnet-core-module>.
+When disabling the Web SDK from transforming the file, the developer should manually set the *processPath* and *arguments*. For more information, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ### web.config file location
 
-In order to set up the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) correctly, the *web.config* file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](../aspnet-core-module.md) correctly, the *web.config* file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The *web.config* file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeconfig.json*, *\<assembly>.xml* (XML Documentation comments), and *\<assembly>.deps.json*. When the *web.config* file is present and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the *web.config* file is missing, incorrectly named, or unable to configure the site for normal startup, IIS might serve sensitive files publicly.
 
@@ -838,7 +837,7 @@ Sensitive files exist on the app's physical path, such as *\<assembly>.runtimeco
 
 ### Transform web.config
 
-If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see [Transform web.config](transform-webconfig.md).
 
 ## IIS configuration
 
@@ -855,7 +854,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    ![The default role services are selected in the Select role services step.](index/_static/role-services-ws2016.png)
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -877,7 +876,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 1. Accept the default features for **World Wide Web Services** or customize the IIS features.
 
    **Windows Authentication (Optional)**  
-   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](xref:security/authentication/windowsauth).
+   To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication \<windowsAuthentication>](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
    WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
@@ -888,7 +887,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 ## Install the .NET Hosting Bundle
 
-Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module). The module allows ASP.NET Core apps to run behind IIS.
+Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the .NET Runtime, .NET Library, and the [ASP.NET Core Module](../aspnet-core-module.md). The module allows ASP.NET Core apps to run behind IIS.
 
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
@@ -913,7 +912,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
    * `OPT_NO_RUNTIME=1`: Skip installing the .NET runtime. Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_SHAREDFX=1`: Skip installing the ASP.NET Shared Framework (ASP.NET runtime). Used when the server only hosts [self-contained deployments (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
    * `OPT_NO_X86=1`: Skip installing x86 runtimes. Use this parameter when you know that you won't be hosting 32-bit apps. If there's any chance that you'll host both 32-bit and 64-bit apps in the future, don't use this parameter and install both runtimes.
-   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (*applicationHost.config*) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see <xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration>.
+   * `OPT_NO_SHARED_CONFIG_CHECK=1`: Disable the check for using an IIS Shared Configuration when the shared configuration (*applicationHost.config*) is on the same machine as the IIS installation. *Only available for ASP.NET Core 2.2 or later Hosting Bundler installers.* For more information, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md#aspnet-core-module-with-an-iis-shared-configuration).
 1. Restart the system or execute the following commands in a command shell:
 
    ```console
@@ -927,7 +926,7 @@ It isn't necessary to manually stop individual sites in IIS when installing the 
 ASP.NET Core adopts roll-forward behavior for patch releases of shared framework packages. When apps hosted by IIS restart with IIS, the apps load with the latest patch releases of their referenced packages when they receive their first request. If IIS isn't restarted, apps restart and exhibit roll-forward behavior when their worker processes are recycled and they receive their first request.
 
 > [!NOTE]
-> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](xref:host-and-deploy/aspnet-core-module#aspnet-core-module-with-an-iis-shared-configuration).
+> For information on IIS Shared Configuration, see [ASP.NET Core Module with IIS Shared Configuration](../aspnet-core-module.md#aspnet-core-module-with-an-iis-shared-configuration).
 
 ## Install Web Deploy when publishing with Visual Studio
 
@@ -935,7 +934,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 ## Create the IIS site
 
-1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
+1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see [ASP.NET Core directory structure](../directory-structure.md).
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -958,14 +957,14 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 1. *ASP.NET Core 2.2 or later*: For a 64-bit (x64) [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd) that uses the [in-process hosting model](#in-process-hosting-model), disable the app pool for 32-bit (x86) processes.
 
-   In the **Actions** sidebar of IIS Manager > **Application Pools**, select **Set Application Pool Defaults** or **Advanced Settings**. Locate **Enable 32-Bit Applications** and set the value to `False`. This setting doesn't affect apps deployed for [out-of-process hosting](xref:host-and-deploy/aspnet-core-module#out-of-process-hosting-model).
+   In the **Actions** sidebar of IIS Manager > **Application Pools**, select **Set Application Pool Defaults** or **Advanced Settings**. Locate **Enable 32-Bit Applications** and set the value to `False`. This setting doesn't affect apps deployed for [out-of-process hosting](../aspnet-core-module.md#out-of-process-hosting-model).
 
 1. Confirm the process model identity has the proper permissions.
 
    If the default identity of the app pool (**Process Model** > **Identity**) is changed from **ApplicationPoolIdentity** to another identity, verify that the new identity has the required permissions to access the app's folder, database, and other required resources. For example, the app pool requires read and write access to folders where the app reads and writes files.
 
 **Windows Authentication configuration (Optional)**  
-For more information, see [Configure Windows authentication](xref:security/authentication/windowsauth).
+For more information, see [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
 ## Deploy the app
 
@@ -973,7 +972,7 @@ Deploy the app to the IIS **Physical path** folder that was established in the [
 
 ### Web Deploy with Visual Studio
 
-See the [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles#publish-profiles) article to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog:
+See the [Visual Studio publish profiles for ASP.NET Core app deployment](../visual-studio-publish-profiles.md#publish-profiles) article to learn how to create a publish profile for use with Web Deploy. If the hosting provider provides a Publish Profile or support for creating one, download their profile and import it using the Visual Studio **Publish** dialog:
 
 ![Publish dialog page](index/_static/pub-dialog.png)
 
@@ -999,7 +998,7 @@ In the following example, the site is bound to an IIS **Host name** of `www.mysi
 
 Files in the deployment folder are locked when the app is running. Locked files can't be overwritten during deployment. To release locked files in a deployment, stop the app pool using **one** of the following approaches:
 
-* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](xref:host-and-deploy/aspnet-core-module#app_offlinehtm).
+* Use Web Deploy and reference `Microsoft.NET.Sdk.Web` in the project file. An `app_offline.htm` file is placed at the root of the web app directory. When the file is present, the ASP.NET Core Module gracefully shuts down the app and serves the `app_offline.htm` file during the deployment. For more information, see the [ASP.NET Core Module configuration reference](../aspnet-core-module.md#app_offlinehtm).
 * Manually stop the app pool in the IIS Manager on the server.
 * Use PowerShell to drop `app_offline.htm` (requires PowerShell 5 or later):
 
@@ -1018,13 +1017,13 @@ Files in the deployment folder are locked when the app is running. Locked files 
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](xref:security/data-protection/introduction) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](xref:security/data-protection/implementation/key-management). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](xref:security/anti-request-forgery#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -1034,7 +1033,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
   For standalone, non-webfarm IIS installations, the [Data Protection Provision-AutoGenKeys.ps1 PowerShell script](https://github.com/dotnet/AspNetCore/blob/main/src/DataProtection/Provision-AutoGenKeys.ps1) can be used for each app pool used with an ASP.NET Core app. This script creates a registry key in the HKLM registry that's accessible only to the worker process account of the app's app pool. Keys are encrypted at rest using DPAPI with a machine-wide key.
 
-  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](xref:security/data-protection/configuration/overview) for details.
+  In web farm scenarios, an app can be configured to use a UNC path to store its data protection key ring. By default, the data protection keys aren't encrypted. Ensure that the file permissions for the network share are limited to the Windows account the app runs under. An X509 certificate can be used to protect keys at rest. Consider a mechanism to allow users to upload certificates: Place certificates into the user's trusted certificate store and ensure they're available on all machines where the user's app runs. See [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md) for details.
 
 * **Configure the IIS Application Pool to load the user profile**
 
@@ -1049,16 +1048,16 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 * **Use the file system as a key ring store**
 
-  Adjust the app code to [use the file system as a key ring store](xref:security/data-protection/configuration/overview). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
+  Adjust the app code to [use the file system as a key ring store](../../security/data-protection/configuration/overview.md). Use an X509 certificate to protect the key ring and ensure the certificate is a trusted certificate. If the certificate is self-signed, place the certificate in the Trusted Root store.
 
   When using IIS in a web farm:
 
   * Use a file share that all machines can access.
-  * Deploy an X509 certificate to each machine. Configure [data protection in code](xref:security/data-protection/configuration/overview).
+  * Deploy an X509 certificate to each machine. Configure [data protection in code](../../security/data-protection/configuration/overview.md).
 
 * **Set a machine-wide policy for data protection**
 
-  The data protection system has limited support for setting a default [machine-wide policy](xref:security/data-protection/configuration/machine-wide-policy) for all apps that consume the Data Protection APIs. For more information, see <xref:security/data-protection/introduction>.
+  The data protection system has limited support for setting a default [machine-wide policy](../../security/data-protection/configuration/machine-wide-policy.md) for all apps that consume the Data Protection APIs. For more information, see [ASP.NET Core Data Protection Overview](../../security/data-protection/introduction.md).
 
 ## Virtual Directories
 
@@ -1117,7 +1116,7 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ## Configuration of IIS with web.config
 
@@ -1126,8 +1125,8 @@ The `<system.webServer>` section of *web.config* for IIS scenarios that are func
 For more information, see the following articles:
 
 * [Configuration reference for \<system.webServer>](/iis/configuration/system.webServer/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [IIS modules with ASP.NET Core](modules.md)
 
 To set environment variables for individual apps running in isolated app pools (supported for IIS 10.0 or later), see the *AppCmd.exe command* section of the [Environment Variables \<environmentVariables>](/iis/configuration/system.applicationHost/applicationPools/add/environmentVariables/#appcmdexe) article in the IIS reference documentation.
 
@@ -1206,11 +1205,11 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 * [IIS documentation](/iis)
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
 * [.NET application deployment](/dotnet/core/deploying/)
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/directory-structure>
-* <xref:host-and-deploy/iis/modules>
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [ASP.NET Core directory structure](../directory-structure.md)
+* [IIS modules with ASP.NET Core](modules.md)
 * <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Additional resources
 
@@ -1220,6 +1219,6 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
-* <xref:host-and-deploy/iis/transform-webconfig>
+* [Transform web.config](transform-webconfig.md)
 
 :::moniker-end

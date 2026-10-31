@@ -11,7 +11,7 @@ Good candidates for SignalR:
 * Collaborative apps. Whiteboard apps and team meeting software are examples of collaborative apps.
 * Apps that require notifications. Social networks, email, chat, games, travel alerts, and many other apps use notifications.
 
-SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs invoke functions on clients from server-side .NET code. There are several [supported platforms](xref:signalr/supported-platforms), each with their respective client SDK. Because of this, the programming language being invoked by the RPC call varies.
+SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs invoke functions on clients from server-side .NET code. There are several [supported platforms](../../supported-platforms.md), each with their respective client SDK. Because of this, the programming language being invoked by the RPC call varies.
 
 Here are some features of SignalR for ASP.NET Core:
 
@@ -47,10 +47,10 @@ Hubs call client-side code by sending messages that contain the name and paramet
 
 * [Introduction to ASP.NET Core SignalR](/training/modules/aspnet-core-signalr)
 * [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
-* [Supported Platforms](xref:signalr/supported-platforms)
-* [Hubs](xref:signalr/hubs)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Browsers that don't support ECMAScript 6 (ES6)](xref:signalr/supported-platforms#es6)
+* [Supported Platforms](../../supported-platforms.md)
+* [Hubs](../../hubs.md)
+* [JavaScript client](../../javascript-client.md)
+* [Browsers that don't support ECMAScript 6 (ES6)](../../supported-platforms.md#es6)
 * <xref:blazor/fundamentals/signalr>
 
 :::moniker-end

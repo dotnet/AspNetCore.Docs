@@ -4,7 +4,6 @@ description: Learn how to avoid performance and scaling problems in apps that us
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: linux-related-content
 ms.date: 07/06/2026
-uid: signalr/scale
 
 # customer intent: As an ASP.NET developer, I want to review hosting and scaling considerations when using SignalR, so I can avoid performance and scaling problems in my high-traffic apps. 
 ---
@@ -22,11 +21,11 @@ There are three scenarios where sticky sessions aren't required for an app:
 
 - Hosting on a single server in a single process
 - Using the Azure SignalR Service (sticky sessions are enabled for the service, not the app)
-- All clients are configured to use WebSockets **only** and the client configuration enables [SkipNegotiation](xref:signalr/configuration#configure-other-options)
+- All clients are configured to use WebSockets **only** and the client configuration enables [SkipNegotiation](configuration.md#configure-other-options)
 
 In all other scenarios (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 
-For guidance on configuring Azure App Service for SignalR, see <xref:signalr/publish-to-azure-web-app>. For guidance on configuring sticky sessions for Blazor apps that use the [Azure SignalR Service](#azure-signalr-service), see <xref:blazor/host-and-deploy/server/index#signalr-configuration>.
+For guidance on configuring Azure App Service for SignalR, see [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md). For guidance on configuring sticky sessions for Blazor apps that use the [Azure SignalR Service](#azure-signalr-service), see <xref:blazor/host-and-deploy/server/index#signalr-configuration>.
 
 ## TCP connection resources
 
@@ -86,7 +85,7 @@ The Azure SignalR Service advantages described earlier are disadvantages for the
 
 * Sticky sessions, also known as [client affinity](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing#step-3---configure-client-affinity), is required, except when **both** of the following are true:
   * All clients are configured to **only** use WebSockets.
-  * The [SkipNegotiation setting](xref:signalr/configuration#configure-other-options) is enabled in the client configuration. After a connection is initiated on a server, the connection has to stay on that server.
+  * The [SkipNegotiation setting](configuration.md#configure-other-options) is enabled in the client configuration. After a connection is initiated on a server, the connection has to stay on that server.
 * A SignalR app must scale out based on number of clients, even when sending few messages.
 * A SignalR app uses many more connection resources than a web app without SignalR.
 
@@ -179,7 +178,7 @@ The following code supplements the previous example configuration. In the snippe
 
 * For both configurations, change `proxy_pass http://localhost:5000` in the `server` section to `proxy_pass http://backend`.
 
-You can find more information in <xref:host-and-deploy/linux-nginx>.
+You can find more information in [Host ASP.NET Core on Linux with Nginx](../host-and-deploy/linux-nginx.md).
 - To use WebSockets over Nginx, see [WebSocket proxying with Nginx](https://nginx.org/docs/http/websocket.html).
 - To use load balancing and sticky sessions, see [HTTP load balancing with Nginx](https://docs.nginx.com/nginx/admin-guide/load-balancer/http-load-balancer/).
 
@@ -195,4 +194,4 @@ The following non-Microsoft providers also offer SignalR backplane:
 ## Related content
 
 * [Azure SignalR Service documentation](/azure/azure-signalr/signalr-overview)
-* [Set up a Redis backplane](xref:signalr/redis-backplane)
+* [Set up a Redis backplane](redis-backplane.md)

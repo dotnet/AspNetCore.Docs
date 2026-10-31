@@ -165,7 +165,7 @@ options.AddRedirect("go/(.*)", "https://$1/path");
 
 Use a fixed local prefix when redirecting within the app. For external redirects, use a fixed host or validate the host against an allow list. Imported IIS URL Rewrite and Apache `mod_rewrite` rules also expand back-references and variables. Importing a rule doesn't validate its resulting substitution, so review imported rules by the same criteria.
 
-Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see <xref:security/preventing-open-redirects>.
+Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 ### URL redirect to a secure endpoint
 
@@ -185,7 +185,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 <!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](../security/enforcing-ssl.md#require-https).
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an insecure HTTP request to the app at `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`. When testing HTTP to HTTPS redirection with localhost:
 
@@ -303,7 +303,7 @@ Try the request to `https://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`
 Apps that have an active IIS Rewrite Module with server-level rules configured that impacts the app in undesirable ways:
 
 * Consider disabling the IIS Rewrite Module for the app.
-* For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+* For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 
@@ -552,7 +552,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -666,7 +666,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Browser window with developer tools tracking the request and response: Add IIS URL rewrite](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 
@@ -908,7 +908,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -1022,7 +1022,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Add IIS URL rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 

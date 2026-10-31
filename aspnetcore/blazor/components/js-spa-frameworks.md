@@ -28,9 +28,9 @@ The following sample apps demonstrate rendering a Razor component as a [Blazor c
 
 To migrate either of these .NET 7 samples, see the following resources:
 
-* <xref:migration/70-to-80>
-* <xref:migration/80-to-90>
-* <xref:migration/90-to-100>
+* [Migrate from ASP.NET Core in .NET 7 to .NET 8](../../migration/70-to-80.md)
+* [Migrate from ASP.NET Core in .NET 8 to ASP.NET Core in .NET 9](../../migration/80-to-90.md)
+* [Migrate from ASP.NET Core in .NET 9 to ASP.NET Core in .NET 10](../../migration/90-to-100.md)
 
 The principal updates to make are:
 

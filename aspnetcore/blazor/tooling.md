@@ -503,7 +503,7 @@ For more information, see the following resources:
 > * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
 > * <xref:aspnetcore-8#new-blazor-web-app-template>
 > * <xref:blazor/project-structure#blazor-web-app>
-> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 
@@ -520,7 +520,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 > * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
 > * <xref:aspnetcore-8#new-blazor-web-app-template>
 > * <xref:blazor/project-structure#blazor-web-app>
-> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 

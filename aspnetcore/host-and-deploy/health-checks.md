@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/28/2026
-uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
@@ -38,7 +37,7 @@ The following example creates a health check endpoint at `/healthz`:
 
 ### Docker `HEALTHCHECK`
 
-[Docker](xref:host-and-deploy/docker/index) includes a built-in `HEALTHCHECK` directive that you can use to check the status of an app that uses the basic health check configuration:
+[Docker](docker/index.md) includes a built-in `HEALTHCHECK` directive that you can use to check the status of an app that uses the basic health check configuration:
 
 ```dockerfile
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit 1
@@ -126,7 +125,7 @@ Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderEx
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common scenario, CORS middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common scenario, CORS middleware can be enabled by calling [`RequireCors`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/CORS/src/Infrastructure/CorsEndpointConventionBuilderExtensions.cs#L20-#L40) on the health checks endpoints. The [`RequireCors`](/dotnet/api/microsoft.aspnetcore.builder.corsendpointconventionbuilderextensions.requirecors) overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md).
 
 ## Health check options
 

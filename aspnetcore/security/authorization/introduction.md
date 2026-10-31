@@ -3,7 +3,6 @@ title: Introduction to authorization in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn the basics of authorization and how authorization works in ASP.NET Core apps.
 ms.date: 09/18/2026
-uid: security/authorization/introduction
 ---
 # Introduction to authorization in ASP.NET Core
 
@@ -11,25 +10,25 @@ Authorization refers to the process that determines what a user is able to do. F
 
 Authorization is separate and distinct from authentication. However, authorization relies on an authentication mechanism. Authentication is the process of verifying a user's identity, which might result in the creation of one or more identity objects for the user.
 
-Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy. For information about how authorization metadata selects named, default, and fallback policies, see <xref:security/authorization/policies#default-and-fallback-policies>.
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](policies.md#require-global-user-authentication) in a server-side app, configure a fallback authorization policy. For information about how authorization metadata selects named, default, and fallback policies, see [Policy-based authorization in ASP.NET Core](policies.md#default-and-fallback-policies).
 
-For more information about authentication in ASP.NET Core, see <xref:security/authentication/index>.
+For more information about authentication in ASP.NET Core, see [Overview of ASP.NET Core Authentication](../authentication/index.md).
 
 ## Authorization types
 
-ASP.NET Core authorization provides a simple declarative [role](xref:security/authorization/roles) and a rich [policy-based](xref:security/authorization/policies) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies that evaluate both the user identity and properties of the resource that the user is attempting to access.
+ASP.NET Core authorization provides a simple declarative [role](roles.md) and a rich [policy-based](policies.md) model. Authorization is expressed in requirements, and handlers evaluate a user's claims against requirements. Imperative checks can be based on simple policies or policies that evaluate both the user identity and properties of the resource that the user is attempting to access.
 
 ## Namespaces
 
 Authorization components, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute), are defined in the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace.
 
-For more information, see <xref:security/authorization/simple>.
+For more information, see [Simple authorization in ASP.NET Core](simple.md).
 
 ## Related content
 
 * <xref:fundamentals/minimal-apis/security>
 * <xref:blazor/security/index>
-* <xref:razor-pages/security/authorization/conventions>
+* [Razor Pages authorization conventions in ASP.NET Core](../../razor-pages/security/authorization/conventions.md)
 * Blazor app authorization patterns
   * [Server-side Blazor (Blazor Web Apps, Blazor Server apps)](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns)
   * [Blazor WebAssembly](xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns)

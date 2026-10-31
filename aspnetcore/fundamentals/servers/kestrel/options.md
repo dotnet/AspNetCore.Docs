@@ -58,7 +58,7 @@ The following example configures `MaxRequestBodySize` for a specific request usi
 
 If the app attempts to configure the limit on a request after it starts to read the request, an exception is thrown. Use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly?displayProperty=nameWithType> property to check if it's safe to set the `MaxRequestBodySize` property.
 
-When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), IIS sets the limit and Kestrel's request body size limit is disabled.
+When an app runs [out-of-process](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model) behind the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md), IIS sets the limit and Kestrel's request body size limit is disabled.
 
 ### Minimum request body data rate
 
@@ -273,7 +273,7 @@ Override the setting on a specific request in middleware:
 
 An exception is thrown if the app configures the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled. IIS already sets the limit.
+When an app runs [out-of-process](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model) behind the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md), Kestrel's request body size limit is disabled. IIS already sets the limit.
 
 ### Minimum request body data rate
 

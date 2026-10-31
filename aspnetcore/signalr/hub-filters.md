@@ -3,7 +3,6 @@ title: Use hub filters in ASP.NET Core SignalR
 description: Learn how to use hub filters in ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 05/22/2020
-uid: signalr/hub-filters
 ---
 
 # Use hub filters in ASP.NET Core SignalR
@@ -198,4 +197,4 @@ The `HubLifetimeContext` contains information for the `OnConnectedAsync` and `On
 
 ## Authorization and filters
 
-[Authorize attributes on hub methods](xref:signalr/authn-and-authz#use-authorization-handlers-to-customize-hub-method-authorization) run before hub filters.
+[Authorize attributes on hub methods](authn-and-authz.md#use-authorization-handlers-to-customize-hub-method-authorization) run before hub filters.

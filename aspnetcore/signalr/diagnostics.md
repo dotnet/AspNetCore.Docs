@@ -4,7 +4,6 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: devx-track-csharp, signalr, linux-related-content
 ms.date: 10/07/2026
-uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
 
@@ -287,6 +286,6 @@ Press p to pause, r to resume, q to quit.
 
 ## Related content
 
-* <xref:signalr/configuration>
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
+* [ASP.NET Core SignalR configuration](configuration.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)

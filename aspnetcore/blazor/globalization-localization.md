@@ -57,7 +57,7 @@ In this article, *language* refers to selections made by a user in their browser
 The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessibility tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](xref:blazor/js-interop/index).
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the article's examples.
 
 ## Globalization
 
@@ -471,7 +471,7 @@ CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo("en-US");
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](../migration/index.md).
 
 :::moniker-end
 
@@ -643,7 +643,7 @@ await host.RunAsync();
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](../migration/index.md).
 
 :::moniker-end
 
@@ -911,7 +911,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 
@@ -958,7 +958,7 @@ public class CultureController : Controller
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.LocalRedirect*> action result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 
@@ -1196,7 +1196,7 @@ await host.RunAsync();
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
 > [!NOTE]
-> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](xref:migration/index).
+> In .NET 9 or earlier, standalone Blazor WebAssembly apps load UI globalization resources based on <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType>. If you want to additionally load globalization data for your localization culture defined by <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType>, [upgrade the app to .NET 10 or later](../migration/index.md).
 
 :::moniker-end
 
@@ -1510,7 +1510,7 @@ app.MapGet("/Culture/Set", (string? culture, string redirectUri = "/",
 ```
 
 > [!WARNING]
-> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see <xref:security/preventing-open-redirects>.
+> Use the <xref:Microsoft.AspNetCore.Http.Results.LocalRedirect*> result, as shown in the preceding example, to prevent open redirect attacks. For more information, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 :::moniker-end
 

@@ -3,13 +3,12 @@ title: Simple authorization in ASP.NET Core Razor Pages
 ai-usage: ai-assisted
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core Razor Pages apps.
 ms.date: 09/18/2026
-uid: razor-pages/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core Razor Pages
 
 Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) and its various parameters. In its most basic form, applying the `[Authorize]` attribute to a Razor component, controller, action, or Razor Page, limits access to that component to authenticated users.
 
-This article covers scenarios that pertain to Razor Pages apps. For more information, see <xref:security/authorization/simple>.
+This article covers scenarios that pertain to Razor Pages apps. For more information, see [Simple authorization in ASP.NET Core](../../../security/authorization/simple.md).
 
 ## `[Authorize]` attribute
 
@@ -34,7 +33,7 @@ public class OrderModel : PageModel
 }
 ```
 
-For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](xref:security/authorization/policies):
+For policy-based authorization, use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute.Policy> parameter. In the following example, the user can only access the page if they satisfy the requirements of the `Over21` [authorization policy](../../../security/authorization/policies.md):
 
 ```csharp
 [Authorize(Policy = "Over21")]
@@ -57,7 +56,7 @@ Use the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.A
 [AllowAnonymous]
 ```
 
-For information on how to require authentication for all app users, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
+For information on how to require authentication for all app users, see [Require global user authentication](../../../security/authorization/policies.md#require-global-user-authentication).
 
 ## `[Authorize]` attribute in Razor Pages apps
 
@@ -171,5 +170,5 @@ There are no plans to support the [`[Authorize]` attribute](xref:Microsoft.AspNe
 
 ## Related content
 
-* <xref:security/authorization/simple>
+* [Simple authorization in ASP.NET Core](../../../security/authorization/simple.md)
 * <xref:mvc/security/authorization/simple>

@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: This article explains how to limit identity to a specific scheme when working with multiple authentication methods.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/11/2026
-uid: security/authorization/authorize-with-a-specific-scheme
 ---
 # Authorize with a specific scheme in ASP.NET Core
 
 <!-- DOC AUTHOR NOTE: "Bearer," "Cookie," "Cookies," and "JWT bearer" aren't localized globally per the DocFX file. -->
 
-For an introduction to authentication schemes, see [Overview of ASP.NET Core Authentication: Authentication scheme](xref:security/authentication/index#authentication-scheme).
+For an introduction to authentication schemes, see [Overview of ASP.NET Core Authentication: Authentication scheme](../authentication/index.md#authentication-scheme).
 
 In some scenarios, such as Single Page Applications (SPAs), it's common to use multiple authentication methods. For example, the app may use cookie-based authentication to sign a user into an app and establish their identity and Bearer authentication (often relying on JWTs) for JavaScript-based requests to web API endpoints. In some cases, the app may have multiple instances of an authentication handler. For example, an app has two cookie handlers, where one contains a basic identity and one is created when a multi-factor authentication (MFA) is triggered. MFA may be triggered because the user requested an operation that requires extra security.
 
@@ -136,9 +135,9 @@ By specifying a single scheme, the corresponding handler runs. In the following 
 
 ## Select the scheme with an authorization policy
 
-If you prefer to specify the desired schemes in a [policy](xref:security/authorization/policies), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes> collection when adding the policy.
+If you prefer to specify the desired schemes in a [policy](policies.md), set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.AuthenticationSchemes> collection when adding the policy.
 
-In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see <xref:security/authorization/policies>. The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method enforces user authentication to endpoints where the policy is applied.
+In the following example, the `Over18` policy only runs against the identity created by the JWT bearer handler (<xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme*?displayProperty=nameWithType>). For an example of the `MinimumAgeRequirement` class used in the following example, see [Policy-based authorization in ASP.NET Core](policies.md). The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method enforces user authentication to endpoints where the policy is applied.
 
 > [!NOTE]
 > The following example requires the <xref:Microsoft.AspNetCore.Authentication.JwtBearer?displayProperty=fullName> namespace.
@@ -347,10 +346,10 @@ The result of using the preceding API is that protected endpoints in the app req
 
 ## Select a policy scheme based on the `Authorization` header
 
-For guidance on how to use the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme*> method with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> property to dynamically select an authentication scheme for each request, see <xref:security/authentication/policyschemes>.
+For guidance on how to use the <xref:Microsoft.AspNetCore.Authentication.AuthenticationBuilder.AddPolicyScheme*> method with the <xref:Microsoft.AspNetCore.Authentication.AuthenticationSchemeOptions.ForwardDefaultSelector> property to dynamically select an authentication scheme for each request, see [Policy schemes in ASP.NET Core](../authentication/policyschemes.md).
 
 ## Related content
 
-* <xref:security/authentication/mfa>
+* [Multi-factor authentication in ASP.NET Core](../authentication/mfa.md)
 * [Protect section with MFA (`dotnet/AspNetCore.Docs` #15791)](https://github.com/dotnet/AspNetCore.Docs/issues/15791#issuecomment-580464195)
 * [Multiple jwt authentication schemes can't validate signature key (`dotnet/aspnetcore` #26002)](https://github.com/dotnet/aspnetcore/issues/26002)

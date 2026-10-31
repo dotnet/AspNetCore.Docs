@@ -22,24 +22,24 @@ The app attempts to detect its operational environment and handle key configurat
 
 1. If none of these conditions match, keys aren't persisted outside of the current process. When the process shuts down, all generated keys are lost.
 
-The developer is always in full control and can override how and where keys are stored. The first three options above should provide good defaults for most apps similar to how the ASP.NET **\<machineKey>** auto-generation routines worked in the past. The final, fallback option is the only scenario that requires the developer to specify [configuration](xref:security/data-protection/configuration/overview) upfront if they want key persistence, but this fallback only occurs in rare situations.
+The developer is always in full control and can override how and where keys are stored. The first three options above should provide good defaults for most apps similar to how the ASP.NET **\<machineKey>** auto-generation routines worked in the past. The final, fallback option is the only scenario that requires the developer to specify [configuration](../../overview.md) upfront if they want key persistence, but this fallback only occurs in rare situations.
 
-When hosting in a Docker container, keys should be persisted in a folder that's a Docker volume (a shared volume or a host-mounted volume that persists beyond the container's lifetime) or in an external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/). An external provider is also useful in web farm scenarios if apps can't access a shared network volume (see [PersistKeysToFileSystem](xref:security/data-protection/configuration/overview#persist-keys-to-the-file-system-persistkeystofilesystem) for more information).
+When hosting in a Docker container, keys should be persisted in a folder that's a Docker volume (a shared volume or a host-mounted volume that persists beyond the container's lifetime) or in an external provider, such as [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) or [Redis](https://redis.io/). An external provider is also useful in web farm scenarios if apps can't access a shared network volume (see [PersistKeysToFileSystem](../../overview.md#persist-keys-to-the-file-system-persistkeystofilesystem) for more information).
 
 > [!WARNING]
-> If the developer overrides the rules outlined above and points the Data Protection system at a specific key repository, automatic encryption of keys at rest is disabled. At-rest protection can be re-enabled via [configuration](xref:security/data-protection/configuration/overview).
+> If the developer overrides the rules outlined above and points the Data Protection system at a specific key repository, automatic encryption of keys at rest is disabled. At-rest protection can be re-enabled via [configuration](../../overview.md).
 
 ## Key lifetime
 
-Keys have a 90-day lifetime by default. When a key expires, the app automatically generates a new key and sets the new key as the active key. As long as retired keys remain on the system, your app can decrypt any data protected with them. See [key management](xref:security/data-protection/implementation/key-management#key-expiration-and-rolling) for more information.
+Keys have a 90-day lifetime by default. When a key expires, the app automatically generates a new key and sets the new key as the active key. As long as retired keys remain on the system, your app can decrypt any data protected with them. See [key management](../../../implementation/key-management.md#key-expiration-and-rolling) for more information.
 
 ## Default algorithms
 
-The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, changed every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See [subkey derivation](xref:security/data-protection/implementation/subkeyderivation#additional-authenticated-data-and-subkey-derivation) for more information.
+The default payload protection algorithm used is AES-256-CBC for confidentiality and HMACSHA256 for authenticity. A 512-bit master key, changed every 90 days, is used to derive the two sub-keys used for these algorithms on a per-payload basis. See [subkey derivation](../../../implementation/subkeyderivation.md#additional-authenticated-data-and-subkey-derivation) for more information.
 
 ## Related content
 
-* <xref:security/data-protection/extensibility/key-management>
-* <xref:host-and-deploy/web-farm>
+* [Key management extensibility in ASP.NET Core](../../../extensibility/key-management.md)
+* [Host ASP.NET Core in a web farm](../../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

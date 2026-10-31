@@ -14,7 +14,7 @@ uid: fundamentals/host/generic-host
 
 :::moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
+The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -126,7 +126,7 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method perfor
 * Loads the app configuration in the following order:
   * _appsettings.json_ file
   * _appsettings.{Environment}.json_ file
-  * [User secrets](xref:security/app-secrets) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
+  * [User secrets](../../security/app-secrets.md) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
   * Environment variables
   * Command-line arguments
 
@@ -146,9 +146,9 @@ The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWeb
 
 * Adds [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
 
-* Adds [Forwarded Headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
+* Adds [Forwarded Headers middleware](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
 
-* Enables IIS integration. For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
+* Enables IIS integration. For the IIS default options, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 For information on how to override default builder settings, see [Configure settings for all app types](#configure-settings-for-all-app-types) and [Configure settings for web apps](#configure-settings-for-web-apps) later in this article.
 
@@ -505,7 +505,7 @@ Sets the HTTPS port for redirection if you get a non-HTTPS connection.
 **Set using**: Configuration or `UseSetting`  
 **Environment variable**: `{PREFIX_}HTTPS_PORT`
 
-This setting is used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
+This setting is used in [enforcing HTTPS](../../security/enforcing-ssl.md). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
 
 :::moniker range=">= aspnetcore-6.0"
 

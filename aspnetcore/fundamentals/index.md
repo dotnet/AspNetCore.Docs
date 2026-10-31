@@ -265,7 +265,7 @@ For more information, see <xref:fundamentals/environments> and <xref:blazor/fund
 
 The request handling pipeline is composed as a series of middleware components. Each component performs operations on an [`HttpContext`](xref:fundamentals/httpcontext) and either invokes the next middleware in the pipeline or terminates the request.
 
-By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." In the following example representing part of a request processing pipeline, middleware for exception handling (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>), [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>), and HTTPS redirection (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) are called. Two of the middlewares are only triggered when the app isn't under local development in the `Development` environment, such as when the app is staged for deployment (the `Staging` environment) or in production (the `Production` environment):
+By convention, middleware components are added to the pipeline by invoking an extension method that starts with "`Use`." In the following example representing part of a request processing pipeline, middleware for exception handling (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>), [HTTP Strict Transport Security (HSTS) protocol](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>), and HTTPS redirection (<xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*>) are called. Two of the middlewares are only triggered when the app isn't under local development in the `Development` environment, such as when the app is staged for deployment (the `Staging` environment) or in production (the `Production` environment):
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -315,7 +315,7 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 
 There are three different hosts capable of running an ASP.NET Core app:
 
-* [ASP.NET Core WebApplication](xref:fundamentals/minimal-apis/webapplication) (also known as the [Minimal Host](xref:migration/50-to-60#new-hosting-model))
+* [ASP.NET Core WebApplication](xref:fundamentals/minimal-apis/webapplication) (also known as the [Minimal Host](../migration/50-to-60.md#new-hosting-model))
 * [.NET Generic Host](xref:fundamentals/host/generic-host)
 * [ASP.NET Core WebHost](xref:fundamentals/host/web-host)
 
@@ -408,13 +408,13 @@ By default, ASP.NET Core apps are configured to read from app settings files (fo
 
 When the app's configuration is loaded, values from environment variables override values from app settings files. The [Options API](xref:fundamentals/configuration/options) is available for reading related configuration values.
 
-For managing confidential configuration data such as passwords in the `Development` environment, .NET provides the [Secret Manager](xref:security/app-secrets#secret-manager). For production secrets, we recommend using [Azure Key Vault](https://azure.microsoft.com/products/key-vault). 
+For managing confidential configuration data such as passwords in the `Development` environment, .NET provides the [Secret Manager](../security/app-secrets.md#secret-manager). For production secrets, we recommend using [Azure Key Vault](https://azure.microsoft.com/products/key-vault). 
 
 For more information, see the following resources:
 
 * <xref:fundamentals/configuration/index>
 * <xref:blazor/fundamentals/configuration>
-* [Azure Key Vault (ASP.NET Core documentation)](xref:security/key-vault-configuration)
+* [Azure Key Vault (ASP.NET Core documentation)](../security/key-vault-configuration.md)
 
 ## Logging
 

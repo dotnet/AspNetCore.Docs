@@ -34,7 +34,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
+Use a [Razor class library](../../razor-pages/ui-class.md) to include views in the assembly.
 
 ### Prevent loading resources
 
@@ -124,7 +124,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
+Use a [Razor class library](../../razor-pages/ui-class.md) to include views in the assembly.
 
 ### Prevent loading resources
 

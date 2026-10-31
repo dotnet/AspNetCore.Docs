@@ -19,7 +19,7 @@ ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access l
 
 This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
-* <xref:razor-pages/index>
+* [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
@@ -202,7 +202,7 @@ ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access l
 
 This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
-* <xref:razor-pages/index>
+* [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
 * <xref:tutorials/razor-pages/razor-pages-start>
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 

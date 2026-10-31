@@ -3,7 +3,6 @@ title: IIS modules with ASP.NET Core
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
 
@@ -47,11 +46,11 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](xref:fundamentals/static-files) |
 | **Token Caching**<br>`TokenCacheModule`                                                          | Yes | |
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
-| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | **WebDav**<br>`WebDAV`                                                                           | No  | |
 | **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | |
 
-&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
+&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](../directory-structure.md).
 
 ## Managed modules
 
@@ -62,7 +61,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Cookie authentication middleware](xref:security/authentication/cookie) |
+| FormsAuthentication     | [Cookie authentication middleware](../../security/authentication/cookie.md) |
 | OutputCache             | [Response caching middleware](xref:performance/caching/middleware) |
 | Profile                 | |
 | RoleManager             | |
@@ -70,7 +69,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | Session                 | [Session middleware](xref:fundamentals/app-state) |
 | UrlAuthorization        | |
 | UrlMappingsModule       | [URL rewriting middleware](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | WindowsAuthentication   | |
 
 ## IIS Manager application changes

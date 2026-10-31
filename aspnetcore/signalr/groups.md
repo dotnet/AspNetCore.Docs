@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Overview of ASP.NET Core SignalR User and Group management.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/04/2024
-uid: signalr/groups
 ---
 
 # Manage users and groups in SignalR
@@ -19,7 +18,7 @@ SignalR allows messages to be sent to all connections associated with a specific
 
 A single user in SignalR can have multiple connections to an app. For example, a user could be connected on their desktop as well as their phone. Each device has a separate SignalR connection, but they're all associated with the same user. If a message is sent to the user, all of the connections associated with that user receive the message. The user identifier for a connection can be accessed by the `Context.UserIdentifier` property in the hub.
 
-By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. To customize this behavior, see [Use claims to customize identity handling](xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling).
+By default, SignalR uses the `ClaimTypes.NameIdentifier` from the `ClaimsPrincipal` associated with the connection as the user identifier. To customize this behavior, see [Use claims to customize identity handling](authn-and-authz.md#use-claims-to-customize-identity-handling).
 
 Send a message to a specific user by passing the user identifier to the `User` function in a hub method, as shown in the following example:
 
@@ -44,7 +43,7 @@ Group membership isn't preserved when a connection reconnects. The connection ne
 
 Groups are kept in memory, so they won't persist through a server restart. Consider the Azure SignalR service for scenarios requiring group membership to be persisted. For more information, see [Azure SignalR](/azure/azure-signalr/signalr-overview)
 
-To protect access to resources while using groups, use [authentication and authorization](xref:signalr/authn-and-authz) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups don't, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
+To protect access to resources while using groups, use [authentication and authorization](authn-and-authz.md) functionality in ASP.NET Core. If a user is added to a group only when the credentials are valid for that group, messages sent to that group will only go to authorized users. However, groups are not a security feature. Authentication claims have features that groups don't, such as expiry and revocation. If a user's permission to access the group is revoked, the app must remove the user from the group explicitly.
 
 > [!NOTE]
 > Group names are case-sensitive.
@@ -52,5 +51,5 @@ To protect access to resources while using groups, use [authentication and autho
 ## Related content
 
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/publish-to-azure-web-app>
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

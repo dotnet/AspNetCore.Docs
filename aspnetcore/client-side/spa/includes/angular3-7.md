@@ -70,7 +70,7 @@ In development, the app runs in a mode optimized for developer convenience. For 
 
 In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled server-side rendering (SSR)).
 
-You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
+You can use standard [ASP.NET Core hosting and deployment methods](../../../host-and-deploy/index.md).
 
 ## Run "ng serve" independently
 
@@ -171,7 +171,7 @@ In development, the app runs in a mode optimized for developer convenience. For 
 
 In production, serve a version of your app that's optimized for performance. This is configured to happen automatically. When you publish, the build configuration emits a minified, ahead-of-time (AoT) compiled build of your client-side code. Unlike the development build, the production build doesn't require Node.js to be installed on the server (unless you have enabled server-side rendering (SSR)).
 
-You can use standard [ASP.NET Core hosting and deployment methods](xref:host-and-deploy/index).
+You can use standard [ASP.NET Core hosting and deployment methods](../../../host-and-deploy/index.md).
 
 ## Run "ng serve" independently
 
@@ -235,4 +235,4 @@ if (typeof window !== 'undefined') {
 
 ## Related content
 
-<xref:security/authentication/identity/spa>
+[Use Identity to secure a Web API backend for SPAs](../../../security/authentication/identity-api-authorization.md)

@@ -29,4 +29,4 @@ For more information, see [JavaScript and TypeScript in Visual Studio](/visualst
 
 ## Related content
 
-<xref:security/authentication/identity/spa>
+[Use Identity to secure a Web API backend for SPAs](../../security/authentication/identity-api-authorization.md)

@@ -59,7 +59,7 @@ For more information on paging and limiting the number of returned records, see:
 
 Returning `IEnumerable<T>` from an action results in synchronous collection iteration by the serializer. The result is the blocking of calls and a potential for thread pool starvation. To avoid synchronous enumeration, use `ToListAsync` before returning the enumerable.
 
-Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types](xref:web-api/action-return-types#return-ienumerablet-or-iasyncenumerablet).
+Beginning with ASP.NET Core 3.0, `IAsyncEnumerable<T>` can be used as an alternative to `IEnumerable<T>` that enumerates asynchronously. For more information, see [Controller action return types](../web-api/action-return-types.md#return-ienumerablet-or-iasyncenumerablet).
 
 ## Minimize large object allocations
 
@@ -132,7 +132,7 @@ Recommendations:
 
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
 * **Do** consider handling long-running requests with [background services](xref:fundamentals/host/hosted-services) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
-* **Do** use real-time communication options, such as [SignalR](xref:signalr/introduction), to communicate with clients asynchronously.
+* **Do** use real-time communication options, such as [SignalR](../signalr/introduction.md), to communicate with clients asynchronously.
 
 ## Minify client assets
 
@@ -362,7 +362,7 @@ Using in-process hosting, an ASP.NET Core app runs in the same process as its II
 
 Projects default to the in-process hosting model in ASP.NET Core 3.0 or later.
 
-For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
+For more information, see [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Don't assume that HttpRequest.ContentLength is not null
 

@@ -657,7 +657,7 @@ We strongly recommend that you avoid storing client secrets in project code or c
 
 ### Secret Manager tool
 
-The [Secret Manager tool](xref:security/app-secrets) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
+The [Secret Manager tool](../../security/app-secrets.md) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
 
 The Blazor server app hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>`) in the server app's project file, which is used internally by the tooling to track secrets for the app:
 
@@ -970,7 +970,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
 
 Confirm the presence of the following packages in the server project of the Blazor Web App:
 
@@ -984,9 +984,9 @@ Confirm the presence of the following packages in the server project of the Blaz
 
 The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
 
-Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
+Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage).
 
-Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault).
 
 Use the following code in the `Program` file where services are registered:
 
@@ -1104,12 +1104,12 @@ builder.Services.AddDataProtection()
 
 For more information on using a shared Data Protection key ring and key storage providers, see the following resources:
 
-* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
-* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
+* [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage)
+* [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault)
 * [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
-* <xref:security/data-protection/configuration/overview>
-* <xref:security/data-protection/implementation/key-storage-providers>
+* [Host ASP.NET Core in a web farm: Data Protection](../../host-and-deploy/web-farm.md#data-protection)
+* [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
+* [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
 * [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
@@ -1177,7 +1177,7 @@ For more information on how this app secures its weather data, see [Secure data 
 
 Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
-We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
+We also recommend using a shared [Data Protection](../../security/data-protection/introduction.md) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
 
 ## STS token version
 
@@ -1234,7 +1234,7 @@ For more information, see [Access tokens in the Microsoft identity platform: Tok
 * [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
 * [Service abstractions in Blazor Web Apps](xref:blazor/call-web-api#service-abstractions-for-web-api-calls)
 * Data Protection resources
-  * <xref:security/data-protection/configuration/overview>
-  * <xref:security/data-protection/implementation/key-storage-providers>
-  * <xref:security/data-protection/implementation/key-encryption-at-rest>
+  * [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
+  * [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
+  * [Key encryption at rest in Windows and Azure using ASP.NET Core](../../security/data-protection/implementation/key-encryption-at-rest.md)
 * [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)

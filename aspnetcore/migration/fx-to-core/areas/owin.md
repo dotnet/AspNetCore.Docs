@@ -6,7 +6,6 @@ ms.reviewer: tasou
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/10/2025
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/owin
 ---
 
 # OWIN integration
@@ -160,7 +159,7 @@ builder.Services
     });
 ```
 
-For more information about authentication schemes and how they work in ASP.NET Core, see <xref:security/authentication/index> and <xref:security/authentication/cookie>.
+For more information about authentication schemes and how they work in ASP.NET Core, see [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md) and [Use cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md).
 
 ### Access OWIN authentication
 
@@ -175,7 +174,7 @@ authManager.SignOut();
 
 ### <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>
 
-If code is expecting to use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>, then see <xref:migration/fx-to-core/areas/claimsprincipal-current> for options to enable setting that property.
+If code is expecting to use <xref:System.Security.Claims.ClaimsPrincipal.Current?displayProperty=nameWithType>, then see [Migrate from static ClaimsPrincipal access](claimsprincipal-current.md) for options to enable setting that property.
 
 ## Migrating ASP.NET Framework Identity
 
@@ -363,6 +362,6 @@ When incorporating OWIN middleware into your ASP.NET Core application:
 
 ## Related content
 
-* <xref:migration/fx-to-core/areas/authentication>
+* [ASP.NET Framework to Core Authentication Migration](authentication.md)
 * <xref:fundamentals/middleware/index>
-* <xref:security/authentication/index>
+* [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md)

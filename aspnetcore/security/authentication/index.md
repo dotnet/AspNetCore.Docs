@@ -3,7 +3,6 @@ title: Overview of ASP.NET Core Authentication
 ai-usage: ai-assisted
 description: Learn about authentication in ASP.NET Core.
 ms.date: 10/27/2026
-uid: security/authentication/index
 ---
 # Overview of ASP.NET Core authentication
 
@@ -11,12 +10,12 @@ uid: security/authentication/index
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
 
-Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](../authorization/policies.md#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -37,9 +36,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](../authorization/authorize-with-a-specific-scheme.md) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
-In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](identity.md), `AddAuthentication` is called internally.
 
 ## Multiple calls to `AddAuthentication`
 
@@ -74,7 +73,7 @@ To disable automatically using the single authentication scheme as the `DefaultS
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
+The [authentication scheme](../authorization/authorize-with-a-specific-scheme.md) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](../authorization/authorize-with-a-specific-scheme.md).
 
 An authentication scheme is a name that corresponds to:
 
@@ -84,7 +83,7 @@ An authentication scheme is a name that corresponds to:
 Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can use scheme names to specify which authentication scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
-* Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
+* Combine multiple schemes into one using [policy schemes](policyschemes.md).
 
 ### Authentication handler
 
@@ -107,7 +106,7 @@ Based on the authentication scheme's configuration and the incoming request cont
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> is the class for authentication that requires a remote authentication step. When the remote authentication step is finished, the handler calls back to the `CallbackPath` set by the handler. The handler finishes the authentication step using the information passed to the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterHandler.HandleRemoteAuthenticateAsync*> callback path. [OAuth 2.0](https://oauth.net/2/) and [OIDC](https://openid.net/developers/how-connect-works/) both use this pattern. JWT and cookies don't since they can directly use the bearer header and cookie to authenticate. The remotely hosted provider in this case:
 
 * Is the authentication provider.
-* Examples include [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), [Microsoft](xref:security/authentication/microsoft-logins), and any other OIDC provider that handles authenticating users using the handlers mechanism.
+* Examples include [Facebook](social/facebook-logins.md), [Twitter](social/twitter-logins.md), [Google](social/google-logins.md), [Microsoft](social/microsoft-logins.md), and any other OIDC provider that handles authenticating users using the handlers mechanism.
 
 ### Authenticate
 
@@ -140,8 +139,8 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Resource-based authorization](xref:security/authorization/resource-based).
-* [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
+* [Resource-based authorization](../authorization/resource-based.md).
+* [Differences between challenge and forbid](../authorization/secure-data.md#challenge).
 
 ## Authentication providers per tenant
 
@@ -166,10 +165,10 @@ Finbuckle.MultiTenant:
 
 ## Additional resources
 
-* <xref:security/authorization/authorize-with-a-specific-scheme>
-* <xref:security/authentication/policyschemes>
-* <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
+* [Authorize with a specific scheme in ASP.NET Core](../authorization/authorize-with-a-specific-scheme.md)
+* [Policy schemes in ASP.NET Core](policyschemes.md)
+* [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)
+* [Globally require authenticated users](../authorization/policies.md#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -178,12 +177,12 @@ Finbuckle.MultiTenant:
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
 
-Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](../authorization/policies.md#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -204,9 +203,9 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](../authorization/authorize-with-a-specific-scheme.md) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
-In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](identity.md), `AddAuthentication` is called internally.
 
 The Authentication middleware is added in `Program.cs` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated.
 
@@ -224,7 +223,7 @@ There's no automatic probing of schemes. If the default scheme isn't specified, 
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
+The [authentication scheme](../authorization/authorize-with-a-specific-scheme.md) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](../authorization/authorize-with-a-specific-scheme.md).
 
 An authentication scheme is a name that corresponds to:
 
@@ -234,7 +233,7 @@ An authentication scheme is a name that corresponds to:
 Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can use scheme names to specify which authentication scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
-* Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
+* Combine multiple schemes into one using [policy schemes](policyschemes.md).
 
 ### Authentication handler
 
@@ -257,7 +256,7 @@ Based on the authentication scheme's configuration and the incoming request cont
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> is the class for authentication that requires a remote authentication step. When the remote authentication step is finished, the handler calls back to the `CallbackPath` set by the handler. The handler finishes the authentication step using the information passed to the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterHandler.HandleRemoteAuthenticateAsync*> callback path. [OAuth 2.0](https://oauth.net/2/) and [OIDC](https://openid.net/developers/how-connect-works/) both use this pattern. JWT and cookies don't since they can directly use the bearer header and cookie to authenticate. The remotely hosted provider in this case:
 
 * Is the authentication provider.
-* Examples include [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), [Microsoft](xref:security/authentication/microsoft-logins), and any other OIDC provider that handles authenticating users using the handlers mechanism.
+* Examples include [Facebook](social/facebook-logins.md), [Twitter](social/twitter-logins.md), [Google](social/google-logins.md), [Microsoft](social/microsoft-logins.md), and any other OIDC provider that handles authenticating users using the handlers mechanism.
 
 ### Authenticate
 
@@ -290,8 +289,8 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Challenge and forbid with an operational resource handler](xref:razor-pages/security/authorization/resource-based#challenge-and-forbid-with-an-operational-resource-handler).
-* [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
+* [Challenge and forbid with an operational resource handler](../../razor-pages/security/authorization/resource-based.md#challenge-and-forbid-with-an-operational-resource-handler).
+* [Differences between challenge and forbid](../authorization/secure-data.md#challenge).
 
 ## Authentication providers per tenant
 
@@ -308,10 +307,10 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 
 ## Additional resources
 
-* <xref:security/authorization/authorize-with-a-specific-scheme>
-* <xref:security/authentication/policyschemes>
-* <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
+* [Authorize with a specific scheme in ASP.NET Core](../authorization/authorize-with-a-specific-scheme.md)
+* [Policy schemes in ASP.NET Core](policyschemes.md)
+* [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)
+* [Globally require authenticated users](../authorization/policies.md#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end
@@ -320,12 +319,12 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](xref:security/authorization/introduction) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
 
-Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](xref:security/authorization/policies#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
+Configuring authentication doesn't automatically restrict access to endpoints. To [require authenticated users by default](../authorization/policies.md#require-global-user-authentication) in a server-side app, configure a fallback authorization policy.
 
 The registered authentication handlers and their configuration options are called "schemes".
 
@@ -346,9 +345,9 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 The `AddAuthentication` parameter <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerDefaults.AuthenticationScheme?displayProperty=nameWithType> is the name of the scheme to use by default when a specific scheme isn't requested.
 
-If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](xref:security/authorization/authorize-with-a-specific-scheme) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
+If multiple schemes are used, authorization policies (or authorization attributes) can [specify the authentication scheme (or schemes)](../authorization/authorize-with-a-specific-scheme.md) they depend on to authenticate the user. In the example above, the cookie authentication scheme could be used by specifying its name (<xref:Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme?displayProperty=nameWithType> by default, though a different name could be provided when calling `AddCookie`).
 
-In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](xref:security/authentication/identity), `AddAuthentication` is called internally.
+In some cases, the call to `AddAuthentication` is automatically made by other extension methods. For example, when using [ASP.NET Core Identity](identity.md), `AddAuthentication` is called internally.
 
 The Authentication middleware is added in `Startup.Configure` by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. Calling `UseAuthentication` registers the middleware that uses the previously registered authentication schemes. Call `UseAuthentication` before any middleware that depends on users being authenticated. When using endpoint routing, the call to `UseAuthentication` must go:
 
@@ -369,7 +368,7 @@ There's no automatic probing of schemes. If the default scheme isn't specified, 
 
 ### Authentication scheme
 
-The [authentication scheme](xref:security/authorization/authorize-with-a-specific-scheme) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](xref:security/authorization/authorize-with-a-specific-scheme).
+The [authentication scheme](../authorization/authorize-with-a-specific-scheme.md) can select which authentication handler is responsible for generating the correct set of claims. For more information, see [Authorize with a specific scheme](../authorization/authorize-with-a-specific-scheme.md).
 
 An authentication scheme is a name that corresponds to:
 
@@ -379,7 +378,7 @@ An authentication scheme is a name that corresponds to:
 Schemes are useful as a mechanism for referring to the authentication, challenge, and forbid behaviors of the associated handler. For example, an authorization policy can use scheme names to specify which authentication scheme (or schemes) should be used to authenticate the user. When configuring authentication, it's common to specify the default authentication scheme. The default scheme is used unless a resource requests a specific scheme. It's also possible to:
 
 * Specify different default schemes to use for authenticate, challenge, and forbid actions.
-* Combine multiple schemes into one using [policy schemes](xref:security/authentication/policyschemes).
+* Combine multiple schemes into one using [policy schemes](policyschemes.md).
 
 ### Authentication handler
 
@@ -402,7 +401,7 @@ Based on the authentication scheme's configuration and the incoming request cont
 <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationHandler`1> is the class for authentication that requires a remote authentication step. When the remote authentication step is finished, the handler calls back to the `CallbackPath` set by the handler. The handler finishes the authentication step using the information passed to the <xref:Microsoft.AspNetCore.Authentication.Twitter.TwitterHandler.HandleRemoteAuthenticateAsync*> callback path. [OAuth 2.0](https://oauth.net/2/) and [OIDC](https://openid.net/developers/how-connect-works/) both use this pattern. JWT and cookies don't since they can directly use the bearer header and cookie to authenticate. The remotely hosted provider in this case:
 
 * Is the authentication provider.
-* Examples include [Facebook](xref:security/authentication/facebook-logins), [Twitter](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), [Microsoft](xref:security/authentication/microsoft-logins), and any other OIDC provider that handles authenticating users using the handlers mechanism.
+* Examples include [Facebook](social/facebook-logins.md), [Twitter](social/twitter-logins.md), [Google](social/google-logins.md), [Microsoft](social/microsoft-logins.md), and any other OIDC provider that handles authenticating users using the handlers mechanism.
 
 ### Authenticate
 
@@ -435,8 +434,8 @@ A forbid action can let the user know:
 
 See the following links for differences between challenge and forbid:
 
-* [Resource-based authorization](xref:security/authorization/resource-based).
-* [Differences between challenge and forbid](xref:security/authorization/secure-data#challenge).
+* [Resource-based authorization](../authorization/resource-based.md).
+* [Differences between challenge and forbid](../authorization/secure-data.md#challenge).
 
 ## Authentication providers per tenant
 
@@ -448,10 +447,10 @@ ASP.NET Core framework doesn't have a built-in solution for multi-tenant authent
 
 ## Additional resources
 
-* <xref:security/authorization/authorize-with-a-specific-scheme>
-* <xref:security/authentication/policyschemes>
-* <xref:security/authorization/secure-data>
-* [Globally require authenticated users](xref:security/authorization/policies#require-global-user-authentication)
+* [Authorize with a specific scheme in ASP.NET Core](../authorization/authorize-with-a-specific-scheme.md)
+* [Policy schemes in ASP.NET Core](policyschemes.md)
+* [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)
+* [Globally require authenticated users](../authorization/policies.md#require-global-user-authentication)
 * [GitHub issue on using multiple authentication schemes](https://github.com/dotnet/aspnetcore/issues/26002)
 
 :::moniker-end

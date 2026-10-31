@@ -103,7 +103,7 @@ Native AOT analysis includes all of the application code and the libraries the a
 In .NET 8 and later, the following ASP.NET Core app types support Native AOT:
 
 * **Minimal APIs** - For more information, see [Review the Web API (Native AOT) template](#review-the-web-api-native-aot-template) later in this article.
-* **gRPC** - For more information, see [gRPC and Native AOT](xref:grpc/native-aot).
+* **gRPC** - For more information, see [gRPC and Native AOT](../grpc/native-aot.md).
 * **Worker services** - For more information, see [Background tasks with hosted services in ASP.NET Core > Native AOT](xref:fundamentals/host/hosted-services#native-aot).
 
 ## Review the Web API (Native AOT) template
@@ -242,7 +242,7 @@ The `CreateSlimBuilder` method **doesn't** provide the following features, which
     * [EventSource](/aspnet/core/fundamentals/logging#eventsource)
 * Web hosting features:
     * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*) method
-    * [IIS integration](xref:host-and-deploy/iis/index)
+    * [IIS integration](../host-and-deploy/iis/index.md)
 * Kestrel configuration:
     * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)
     * [QUIC (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)

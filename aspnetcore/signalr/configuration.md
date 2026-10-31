@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure ASP.NET Core SignalR apps, including allowed transports, logging levels, timeout intervals, and serialization.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 09/02/2026
-uid: signalr/configuration
 
 # customer intent: As an ASP.NET developer, I want to configure ASP.NET Core SignalR, so I can specify my preferences for client and server options.
 ---
@@ -53,11 +52,11 @@ var connection = new HubConnectionBuilder()
 
 #### Switch to Newtonsoft.Json
 
-If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](messagepackhubprotocol.md).
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -75,7 +74,7 @@ The following table describes options for configuring SignalR hubs.
 | `EnableDetailedErrors` | `false` | When this option is enabled (`true`), detailed exception messages are returned to clients when an exception is thrown in a hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | 10 | The maximum number of items that can be buffered for client upload streams. When this limit is reached, the processing of invocations is blocked until the server processes stream items. |
 | `MaximumReceiveMessageSize` | 32 KB | The maximum size of a single incoming hub message. Increasing the value might increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/Denial_of_Service). |
-| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. Note that this limit doesn't apply to streaming hub invocations. For more information, see <xref:signalr/hubs#limit-per-connection-streaming-invocations>.|
+| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. Note that this limit doesn't apply to streaming hub invocations. For more information, see [Use hubs in ASP.NET Core SignalR](hubs.md#limit-per-connection-streaming-invocations).|
 | `DisableImplicitFromServicesParameters` | `false` | Hub method arguments are resolved from dependency injection, if possible. |
 | `StatefulReconnectBufferSize` | 100,000 bytes | The maximum number of bytes buffered per connection when stateful reconnect is enabled. This option has no effect unless `AllowStatefulReconnects` is enabled on the hub endpoint. For more information, see [Configure stateful reconnect](#configure-stateful-reconnect). |
 
@@ -134,7 +133,7 @@ The following table describes options for configuring ASP.NET Core SignalR's adv
 
 :::moniker range=">= aspnetcore-11.0"
 
-The following advanced HTTP options configure SignalR *authentication refresh*, introduced in .NET 11. Authentication refresh lets a connected client update its authentication credentials without reconnecting. For more information, see <xref:signalr/authn-and-authz#authentication-refresh>.
+The following advanced HTTP options configure SignalR *authentication refresh*, introduced in .NET 11. Authentication refresh lets a connected client update its authentication credentials without reconnecting. For more information, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 | Option | Default value | Description |
 | ------ | ------------- | ----------- |
@@ -219,7 +218,7 @@ The following table lists the available log levels. The value you provide to `co
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-For more information on logging, see <xref:signalr/diagnostics>.
+For more information on logging, see [Logging and diagnostics in ASP.NET Core SignalR](diagnostics.md).
 
 The SignalR Java client uses the [Simple Logging Facade for Java (SLF4J)](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
@@ -475,7 +474,7 @@ var connection = new HubConnectionBuilder()
 | `headers` | `null` | A dictionary of headers sent with every HTTP request. <br><br>**Note**: Sending headers in the browser doesn't work for WebSockets or the <xref:Microsoft.AspNetCore.Http.Connections.HttpTransportType#microsoft-aspnetcore-http-connections-httptransporttype-serversenteventsstream> stream. |
 | `logMessageContent` | `null` | Set this option to `true` to log the bytes/chars of messages sent and received by the client. |
 | `skipNegotiation` | `false` | Set this option to `true` to skip the negotiation step. <br><br>**Note**: This option is available only when the WebSockets transport is the only enabled transport. The setting can't be enabled when using the Azure SignalR Service. |
-| `withCredentials` | `true` | Specifies whether credentials are sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more information on CORS with SignalR, see <xref:signalr/security#cross-origin-resource-sharing>. |
+| `withCredentials` | `true` | Specifies whether credentials are sent with the CORS request. Azure App Service uses cookies for sticky sessions and needs this option enabled to work correctly. For more information on CORS with SignalR, see [Security considerations in ASP.NET Core SignalR](security.md#cross-origin-resource-sharing). |
 | `timeout` | `100,000` | The timeout value in milliseconds to apply to HTTP requests. <br><br>**Note**: This option doesn't apply to Long Polling poll requests, EventSource, or WebSockets. |
 | `httpClient` | `null` | An `HttpClient` used to make HTTP requests. Provide a custom implementation to inspect or customize the requests made during negotiation and by the Long Polling and Server-Sent Events transports. <br><br>**Note**: This setting isn't used for WebSocket connections. |
 
@@ -515,11 +514,11 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 ## Related content
 
 * <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
-* <xref:signalr/messagepackhubprotocol>
-* <xref:signalr/supported-platforms>
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [Use MessagePack Hub Protocol in SignalR for ASP.NET Core](messagepackhubprotocol.md)
+* [ASP.NET Core SignalR supported platforms](supported-platforms.md)
 
 :::moniker-end
 

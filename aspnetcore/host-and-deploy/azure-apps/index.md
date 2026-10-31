@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/27/2025
-uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
 
@@ -44,7 +43,7 @@ Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 
 ### Platform
 
-The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](../visual-studio-publish-profiles.md)) match the setting in the app's service configuration in the Azure portal.
 
 :::moniker range=">= aspnetcore-2.2"
 
@@ -79,7 +78,7 @@ App settings in the Azure portal permit you to set environment variables for the
 
 ## Proxy server and load balancer scenarios
 
-The [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components), which configures forwarded headers middleware when hosting [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model), and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The [IIS integration middleware](../iis/index.md#enable-the-iisintegration-components), which configures forwarded headers middleware when hosting [out-of-process](../iis/index.md#out-of-process-hosting-model), and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md).
 
 ## Monitoring and logging
 
@@ -109,12 +108,12 @@ Understand common approaches to handling errors in ASP.NET Core apps.
 <xref:test/troubleshoot-azure-iis>  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
-<xref:host-and-deploy/azure-iis-errors-reference>  
+[Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)  
 See the common deployment configuration errors for apps hosted by Azure App Service/IIS with troubleshooting advice.
 
 ## Data Protection key ring and deployment slots
 
-[ASP.NET Core Data Protection keys](xref:security/data-protection/implementation/key-management#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
+[ASP.NET Core Data Protection keys](../../security/data-protection/implementation/key-management.md#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
 
 When swapping between deployment slots, any system using data protection won't be able to decrypt stored data using the key ring inside the previous slot. ASP.NET cookie middleware uses data protection to protect its cookies. This leads to users being signed out of an app that uses the standard ASP.NET cookie middleware. For a slot-independent key ring solution, use an external key ring provider, such as:
 
@@ -123,7 +122,7 @@ When swapping between deployment slots, any system using data protection won't b
 * SQL store
 * Redis cache
 
-For more information, see <xref:security/data-protection/implementation/key-storage-providers>.
+For more information, see [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md).
 <a name="deploy-aspnet-core-preview-release-to-azure-app-service"></a>
 
 ## Deploy an ASP.NET Core app that uses a .NET Core preview
@@ -207,7 +206,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](../visual-studio-publish-profiles.md)) match the setting in the app's service configuration in the Azure portal.
 >
 > If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension using the Azure portal.
 >
@@ -322,19 +321,19 @@ Secure protocol bindings allow specifying a certificate to use when responding t
 
 ## Transform web.config
 
-If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see [Transform web.config](../iis/transform-webconfig.md).
 
 ## Related content
 
 * [App Service overview](/azure/app-service/app-service-web-overview)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../web-farm.md)
 * [Tutorial: Connect to SQL Database from .NET App Service without secrets using a managed identity](/azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore)
 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). [Kestrel and YARP](https://devblogs.microsoft.com/dotnet/bringing-kestrel-and-yarp-to-azure-app-services/) on the front end provides the load balancer. The following topics pertain to the underlying IIS technology:
 <!-- Kestrel can't replace IIS because it's needed for ASP.NET Framework ,FX 3.5 and 4.8 -->
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
+* [Host ASP.NET Core on Windows with IIS](../iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [IIS modules with ASP.NET Core](../iis/modules.md)
 * [Windows Server - IT administrator content for current and previous releases](/windows-server/windows-server-versions)

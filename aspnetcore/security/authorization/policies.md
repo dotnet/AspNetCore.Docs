@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to require authenticated users by default and create, select, and use authorization policies in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/18/2026
-uid: security/authorization/policies
 ---
 # Policy-based authorization in ASP.NET Core
 
@@ -19,13 +18,13 @@ This article explains:
 * Authorization handlers for single and multiple requirement evaluation.
 * How multiple requirements in a single policy are evaluated.
 
-A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> (<xref:security/authorization/custom-authorization-policy-providers> documentation) generates policies dynamically instead of registering them at app startup.
+A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, pages, and controllers) or `RequireAuthorization(...)` (endpoints), and the framework uses handlers to evaluate the requirements behind a policy. <xref:Microsoft.AspNetCore.Authorization.IAuthorizationPolicyProvider> ([Custom authorization policy providers in ASP.NET Core](custom-authorization-policy-providers.md) documentation) generates policies dynamically instead of registering them at app startup.
 
-[Role-based authorization](xref:security/authorization/roles) and [claims-based authorization](xref:security/authorization/claims) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
+[Role-based authorization](roles.md) and [claims-based authorization](claims.md) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
 This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
 
-* <xref:razor-pages/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
 * <xref:mvc/security/authorization/policies>
 
 Some examples in this article (ASP.NET Core 8.0 or later) use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
@@ -112,7 +111,7 @@ Requirements supplied as endpoint metadata through <xref:Microsoft.AspNetCore.Au
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-In ASP.NET Core 8.0 through 10.0, attributes that implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are only enforced on Minimal API and routed endpoints. For version and hosting model support, see <xref:security/authorization/iard>.
+In ASP.NET Core 8.0 through 10.0, attributes that implement <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> are only enforced on Minimal API and routed endpoints. For version and hosting model support, see [Custom authorization policies with \`IAuthorizationRequirementData\`](custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 :::moniker-end
 
@@ -219,7 +218,7 @@ Apply policies to endpoints by using <xref:Microsoft.AspNetCore.Builder.Authoriz
 
 For guidance on applying policies in Razor Pages and MVC apps, see the following resources:
 
-* <xref:razor-pages/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
 * <xref:mvc/security/authorization/policies>
 
 ## Authorization service interface (`IAuthorizationService`)
@@ -369,7 +368,7 @@ In the following example implementations:
 
 :::moniker-end
 
-Ensure that both handlers are [registered](xref:security/authorization/policies#handler-registration). If either of the handlers succeed when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
+Ensure that both handlers are [registered](policies.md#handler-registration). If either of the handlers succeed when a policy evaluates the `BuildingEntryRequirement`, the policy evaluation succeeds.
 
 ## Use a `Func` to fulfill a policy
 
@@ -401,7 +400,7 @@ In the `Contoso.Security.API` project, set the `AllowedClients` placeholder (`{C
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthorizationExternalService/Contoso.Security.API/appsettings.json":::
 
-In a command shell opened to the `Contoso.API` project, use [`dotnet user-jwts`](xref:security/authentication/jwt) to generate an access token with an `appid` claim for the client app's ID, which was created in the preceding step (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
+In a command shell opened to the `Contoso.API` project, use [`dotnet user-jwts`](../authentication/jwt-authn.md) to generate an access token with an `appid` claim for the client app's ID, which was created in the preceding step (for example, `00001111-aaaa-2222-bbbb-3333cccc4444`).
 
 ```dotnetcli
 dotnet user-jwts create --claim appid={GUID}
