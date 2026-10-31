@@ -8,8 +8,6 @@ description: >
   What's New article, or when checking for incremental updates to
   already-processed release notes.
 ai-usage: ai-assisted
-author: tdykstra
-ms.author: wpickett
 ms.date: 03/11/2026
 ---
 
