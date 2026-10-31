@@ -43,7 +43,7 @@ For synchronous disposal tasks, use <xref:System.IDisposable.Dispose*?displayPro
 
 The following component:
 
-* Implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Implements <xref:System.IDisposable> with the [`@implements`](../../mvc/views/razor.md#implements) Razor directive.
 * Disposes of `obj`, which is a type that implements <xref:System.IDisposable>.
 * A null check is performed because `obj` is created in a lifecycle method (not shown).
 
@@ -176,7 +176,7 @@ For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync*
 
 The following component:
 
-* Implements <xref:System.IAsyncDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Implements <xref:System.IAsyncDisposable> with the [`@implements`](../../mvc/views/razor.md#implements) Razor directive.
 * Disposes of `obj`, which is an unmanaged type that implements <xref:System.IAsyncDisposable>.
 * A null check is performed because `obj` is created in a lifecycle method (not shown).
 

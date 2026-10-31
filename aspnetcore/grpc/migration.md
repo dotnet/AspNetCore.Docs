@@ -139,4 +139,4 @@ For more information, see [Host gRPC in non-ASP.NET Core projects](aspnetcore.md
 * [Overview for gRPC on .NET](index.md)
 * [gRPC Services with C#](basics.md)
 * [gRPC services with ASP.NET Core](aspnetcore.md)
-* <xref:tutorials/grpc/grpc-start>
+* [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)

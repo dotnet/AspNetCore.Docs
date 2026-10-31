@@ -34,7 +34,7 @@ Download the installer using the following link:
 
 For more information, including installing an earlier version of the module, see [Hosting Bundle](iis/hosting-bundle.md).
 
-For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
+For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see [Publish an ASP.NET Core app to IIS](../tutorials/publish-to-iis.md).
 
 :::moniker-end
 

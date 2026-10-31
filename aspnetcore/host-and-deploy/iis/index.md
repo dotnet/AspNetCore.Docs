@@ -38,7 +38,7 @@ To download previous versions of the hosting bundle, see [this GitHub issue](htt
 
 ## Get started
 
-For getting started with hosting a website on IIS, see our [getting started guide](xref:tutorials/publish-to-iis).
+For getting started with hosting a website on IIS, see our [getting started guide](../../tutorials/publish-to-iis.md).
 
 For getting started with hosting a website on Azure App Services, see our [deploying to Azure App Service guide](../azure-apps/index.md).
 
@@ -78,7 +78,7 @@ For information on apps that must protect a subset of the app with a certificate
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
+For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md).
 
 [Install the .NET Hosting Bundle](#install-the-net-hosting-bundle)
 
@@ -499,7 +499,7 @@ To configure data protection under IIS to persist the key ring, use **one** of t
 
 An ASP.NET Core app can be hosted as an [IIS sub-application (sub-app)](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#applications). The sub-app's path becomes part of the root app's URL.
 
-Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
+Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](../../mvc/views/tag-helpers/intro.md) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
 
 If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
@@ -706,7 +706,7 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 
 :::moniker range="< aspnetcore-2.2"
 
-For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
+For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md).
 
 [Install the .NET Hosting Bundle](#install-the-net-hosting-bundle)
 
@@ -1100,7 +1100,7 @@ When hosting a non-ASP.NET Core sub-app underneath an ASP.NET Core app, explicit
 </configuration>
 ```
 
-Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
+Static asset links within the sub-app should use tilde-slash (`~/`) notation. Tilde-slash notation triggers a [Tag Helper](../../mvc/views/tag-helpers/intro.md) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
 
 If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
@@ -1213,7 +1213,7 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 ## Additional resources
 
-* <xref:tutorials/publish-to-iis>
+* [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md)
 * <xref:test/troubleshoot>
 * <xref:index>
 * [The Official Microsoft IIS Site](https://www.iis.net/)

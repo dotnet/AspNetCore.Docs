@@ -52,8 +52,8 @@ A webpage shouldn't load large amounts of data all at once. When returning a col
 
 For more information on paging and limiting the number of returned records, see:
 
-* [Performance considerations](xref:data/ef-rp/intro#performance-considerations)
-* [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
+* [Performance considerations](../data/ef-rp/intro.md#performance-considerations)
+* [Add paging to an ASP.NET Core app](../data/ef-rp/sort-filter-page.md#add-paging)
 
 ### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 

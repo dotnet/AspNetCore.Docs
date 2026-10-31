@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/27/2026
-uid: tutorials/razor-pages/razor-pages-start
 ---
 
 # Tutorial: Get started with Razor Pages in ASP.NET Core
@@ -144,7 +143,7 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A `.cshtml` file that has HTML markup with C# code by using Razor syntax.
 * A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. `_Layout.cshtml` sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. `_Layout.cshtml` sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see [Layout in ASP.NET Core](../../mvc/views/layout.md).
 
 ### wwwroot folder
 
@@ -189,7 +188,7 @@ If you run into a problem you can't resolve, compare your code to the completed 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](model.md)
 
 :::moniker-end
 

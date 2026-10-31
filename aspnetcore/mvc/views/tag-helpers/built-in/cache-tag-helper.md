@@ -2,7 +2,6 @@
 title: Cache Tag Helper in ASP.NET Core MVC
 description: Learn how to use the Cache Tag Helper.
 ms.date: 09/22/2025
-uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
@@ -10,7 +9,7 @@ By [Peter Kellner](https://peterkellner.net)
 
 The Cache Tag Helper provides the ability to improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
 The following Razor markup caches the current date:
 

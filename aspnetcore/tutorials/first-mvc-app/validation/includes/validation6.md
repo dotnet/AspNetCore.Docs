@@ -57,7 +57,7 @@ A portion of the `Create.cshtml` view template is shown in the following markup:
 
 The preceding markup is used by the action methods to display the initial form and to redisplay it in the event of an error.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
+The [Input Tag Helper](../../../../mvc/views/working-with-forms.md) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](../../../../mvc/views/working-with-forms.md#the-validation-tag-helpers) displays validation errors. See [Validation](../../../../mvc/models/validation.md) for more information.
 
 What's really nice about this approach is that neither the controller nor the `Create` view template knows anything about the actual validation rules being enforced or about the specific error messages displayed. The validation rules and the error strings are specified only in the `Movie` class. These same validation rules are automatically applied to the `Edit` view and any other views templates you might create that edit your model.
 
@@ -139,11 +139,11 @@ In the next part of the series, we review the app and make some improvements to 
 
 ## Related content
 
-* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
-* [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
-* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Part 8, Add a new field (EF Core migrations)](../../new-field.md)
+* [Working with Forms](../../../../mvc/views/working-with-forms.md)
+* [Globalization and localization](../../../../fundamentals/localization.md)
+* [Introduction to Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
+* [Author Tag Helpers](../../../../mvc/views/tag-helpers/authoring.md)
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/new-field.md)

@@ -9,7 +9,7 @@ ms.date: 10/02/2026
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -188,7 +188,7 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -383,7 +383,7 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -566,7 +566,7 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 :::moniker range="< aspnetcore-3.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 

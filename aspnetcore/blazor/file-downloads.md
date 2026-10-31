@@ -28,7 +28,7 @@ Security steps that reduce the likelihood of a successful attack are:
 
 * Download files from a dedicated file download area on the server, preferably from a non-system drive. Using a dedicated location makes it easier to impose security restrictions on downloadable files. Disable execute permissions on the file download area.
 * Client-side security checks are easy to circumvent by malicious users. Always perform client-side security checks on the server, too.
-* Don't receive files from users or other untrusted sources and then make the files available for immediate download without performing security checks on the files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+* Don't receive files from users or other untrusted sources and then make the files available for immediate download without performing security checks on the files. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 ## Download from a stream
 

@@ -15,7 +15,7 @@ The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/
 Razor Pages and MVC projects created with the project templates include the following GDPR support:
 
 * <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> are set in the `Startup` class.
-* The *\_CookieConsentPartial.cshtml* [partial view](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
+* The *\_CookieConsentPartial.cshtml* [partial view](../../../mvc/views/tag-helpers/built-in/partial-tag-helper.md). An **Accept** button is included in this file. When the user clicks the **Accept** button, consent to store cookies is provided.
 * The `Pages/Privacy.cshtml` page or `Views/Home/Privacy.cshtml` view provides a page to detail your site's privacy policy. The *\_CookieConsentPartial.cshtml* file generates a link to the Privacy page.
 * For apps created with individual user accounts, the Manage page provides links to download and delete [personal user data](#pd).
 

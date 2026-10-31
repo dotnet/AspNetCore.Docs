@@ -3,7 +3,6 @@ title: Work with the application model in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.date: 09/06/2026
-uid: mvc/controllers/application-model
 ---
 # Work with the application model in ASP.NET Core
 
@@ -64,7 +63,7 @@ Information on the framework's internal providers described in this section aren
 
 ## Conventions
 
-The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify an app's behavior. Conventions provide a way to write code that dynamically applies customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations permit control over how the whole app works together.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify an app's behavior. Conventions provide a way to write code that dynamically applies customizations. While [filters](filters.md) provide a means of modifying the framework's behavior, customizations permit control over how the whole app works together.
 
 The following conventions are available:
 
@@ -73,7 +72,7 @@ The following conventions are available:
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IActionModelConvention>
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IParameterModelConvention>
 
-Conventions are applied by adding them to MVC options or by implementing attributes and applying them to controllers, actions, or action parameters (similar to [filters](xref:mvc/controllers/filters)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
+Conventions are applied by adding them to MVC options or by implementing attributes and applying them to controllers, actions, or action parameters (similar to [filters](filters.md)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
 > [!NOTE]
 > For information on Razor Pages route and application model provider conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages/razor-pages-conventions.md).
@@ -203,7 +202,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 
 ### Routes
 
-<xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute> controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](xref:mvc/controllers/areas) to the route and indicates the controller is in the `api` area.
+<xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute> controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](areas.md) to the route and indicates the controller is in the `api` area.
 
 In addition to a set of conventions, the compatibility package includes a <xref:System.Web.Http.ApiController?displayProperty=fullName> base class that replaces the one provided by web API. This allows your web API controllers written for web API and inheriting from its `ApiController` to work while running on ASP.NET Core MVC. All of the [`UseWebApi*`](xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim) attributes listed earlier are applied to the base controller class. The `ApiController` exposes properties, methods, and result types that are compatible with those found in web API.
 
@@ -211,7 +210,7 @@ In addition to a set of conventions, the compatibility package includes a <xref:
 
 ## Use `ApiExplorer` to document an app
 
-The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](xref:tutorials/web-api-help-pages-using-swagger). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
+The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](../../tutorials/web-api-help-pages-using-swagger.md). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
 
 [!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
 

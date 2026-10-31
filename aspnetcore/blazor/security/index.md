@@ -553,7 +553,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
 
 :::moniker range="< aspnetcore-8.0"
 
-* Disable prerendering: Open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+* Disable prerendering: Open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
   ```cshtml
   <component type="typeof(App)" render-mode="Server" />

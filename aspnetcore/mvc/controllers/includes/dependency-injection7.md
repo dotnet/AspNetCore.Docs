@@ -75,11 +75,11 @@ Registering controllers as services enables:
 * Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
 
 > [!NOTE]
-> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See [Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core](../../advanced/app-parts.md#prevent-loading-resources) for details.
 
 ## Additional resources
 
-* See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
+* See [Test controller logic in ASP.NET Core](../testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
 
 * [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
 
@@ -159,11 +159,11 @@ Registering controllers as services enables:
 * Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
 
 > [!NOTE]
-> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See [Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core](../../advanced/app-parts.md#prevent-loading-resources) for details.
 
 ## Additional resources
 
-* See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
+* See [Test controller logic in ASP.NET Core](../testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
 
 * [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
 

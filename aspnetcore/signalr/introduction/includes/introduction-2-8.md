@@ -46,7 +46,7 @@ Hubs call client-side code by sending messages that contain the name and paramet
 ## Related content
 
 * [Introduction to ASP.NET Core SignalR](/training/modules/aspnet-core-signalr)
-* [Get started with SignalR for ASP.NET Core](xref:tutorials/signalr)
+* [Get started with SignalR for ASP.NET Core](../../../tutorials/signalr.md)
 * [Supported Platforms](../../supported-platforms.md)
 * [Hubs](../../hubs.md)
 * [JavaScript client](../../javascript-client.md)

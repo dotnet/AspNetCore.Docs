@@ -2,7 +2,6 @@
 title: Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
 description: Part 7 of Razor Pages and Entity Framework tutorial series.
 ms.date: 07/22/2019
-uid: data/ef-rp/update-related-data
 ---
 
 # Part 7, Razor Pages with EF Core in ASP.NET Core - Update Related Data
@@ -47,8 +46,8 @@ Update `Pages/Courses/Create.cshtml.cs` with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> to prevent [overposting](xref:data/ef-rp/crud#overposting).
-* Removes `ViewData["DepartmentID"]`. The `DepartmentNameSL` `SelectList` is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
+* Uses <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> to prevent [overposting](crud.md#prevent-overposting).
+* Removes `ViewData["DepartmentID"]`. The `DepartmentNameSL` `SelectList` is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
 
 ### Update the Course Create Razor page
 
@@ -63,7 +62,7 @@ The preceding code makes the following changes:
 * Adds the "Select Department" option. This change renders "Select Department" in the drop-down when no department has been selected yet, rather than the first department.
 * Adds a validation message when the department isn't selected.
 
-The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
+The Razor Page uses the [Select Tag Helper](../../mvc/views/working-with-forms.md#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -154,7 +153,7 @@ Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` and `Courses` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> prevents [overposting](xref:data/ef-rp/crud#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. <xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*> prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
@@ -228,8 +227,8 @@ Run the app and test the Delete page.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/read-related-data)
-> [Next tutorial](xref:data/ef-rp/concurrency)
+> [Previous tutorial](read-related-data.md)
+> [Next tutorial](concurrency.md)
 
 :::moniker-end
 
@@ -268,8 +267,8 @@ Update `Pages/Courses/Create.cshtml.cs` with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
-* Removes `ViewData["DepartmentID"]`. `DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
+* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#prevent-overposting).
+* Removes `ViewData["DepartmentID"]`. `DepartmentNameSL` from the base class is a strongly typed model and will be used by the Razor page. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
 
 ### Update the Course Create Razor page
 
@@ -284,7 +283,7 @@ The preceding code makes the following changes:
 * Adds the "Select Department" option. This change renders "Select Department" in the drop-down when no department has been selected yet, rather than the first department.
 * Adds a validation message when the department isn't selected.
 
-The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
+The Razor Page uses the [Select Tag Helper](../../mvc/views/working-with-forms.md#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -397,7 +396,7 @@ Update `Pages/Instructors/Edit.cshtml.cs` with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment`, `CourseAssignment`, and `CourseAssignment.Course` navigation properties.
-* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 * Calls `PopulateAssignedCourseData` in `OnGetAsync` to provide information for the checkboxes using the `AssignedCourseData` view model class.
 * Calls `UpdateInstructorCourses` in `OnPostAsync` to apply information from the checkboxes to the Instructor entity being edited.
@@ -444,8 +443,8 @@ Run the app and test the Delete page.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/read-related-data)
-> [Next tutorial](xref:data/ef-rp/concurrency)
+> [Previous tutorial](read-related-data.md)
+> [Next tutorial](concurrency.md)
 
 :::moniker-end
 
@@ -483,10 +482,10 @@ Update the Create page model with the following code:
 The preceding code:
 
 * Derives from `DepartmentNamePageModel`.
-* Uses `TryUpdateModelAsync` to prevent [overposting](xref:data/ef-rp/crud#overposting).
+* Uses `TryUpdateModelAsync` to prevent [overposting](crud.md#prevent-overposting).
 * Replaces `ViewData["DepartmentID"]` with `DepartmentNameSL` (from the base class).
 
-`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](xref:mvc/views/overview#VD_VB).
+`ViewData["DepartmentID"]` is replaced with the strongly typed `DepartmentNameSL`. Strongly typed models are preferred over weakly typed. For more information, see [Weakly typed data (ViewData and ViewBag)](../../mvc/views/overview.md#VD_VB).
 
 ### Update the Courses Create page
 
@@ -501,7 +500,7 @@ The preceding markup makes the following changes:
 * Adds the "Select Department" option. This change renders "Select Department" rather than the first department.
 * Adds a validation message when the department isn't selected.
 
-The Razor Page uses the [Select Tag Helper](xref:mvc/views/working-with-forms#the-select-tag-helper):
+The Razor Page uses the [Select Tag Helper](../../mvc/views/working-with-forms.md#the-select-tag-helper):
 
 [!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
@@ -570,7 +569,7 @@ Update the instructors Edit page model with the following code:
 The preceding code:
 
 * Gets the current `Instructor` entity from the database using eager loading for the `OfficeAssignment` navigation property.
-* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](xref:data/ef-rp/crud#overposting).
+* Updates the retrieved `Instructor` entity with values from the model binder. `TryUpdateModel` prevents [overposting](crud.md#prevent-overposting).
 * If the office location is blank, sets `Instructor.OfficeAssignment` to null. When `Instructor.OfficeAssignment` is null, the related row in the `OfficeAssignment` table is deleted.
 
 ### Update the instructor Edit page
@@ -664,7 +663,7 @@ The preceding code makes the following changes:
 * [YouTube version of this tutorial (Part 2)](https://www.youtube.com/watch?v=mOAankB_Zgc)
 
 > [!div class="step-by-step"]
-> [Previous](xref:data/ef-rp/read-related-data)
-> [Next](xref:data/ef-rp/concurrency)
+> [Previous](read-related-data.md)
+> [Next](concurrency.md)
 
 :::moniker-end

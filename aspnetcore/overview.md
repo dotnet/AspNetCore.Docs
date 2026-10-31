@@ -54,7 +54,7 @@ Key features:
 * Integrated [dependency injection](xref:fundamentals/dependency-injection).
 * [Environment-based configuration](xref:fundamentals/configuration/index).
 * Rich logging, tracing, and runtime metrics.
-* Develop apps and APIs using [Razor Pages](razor-pages/index.md) and [Model-View-Controller (MVC)](xref:mvc/overview) frameworks.
+* Develop apps and APIs using [Razor Pages](razor-pages/index.md) and [Model-View-Controller (MVC)](mvc/overview.md) frameworks.
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/).
 * [SignalR](xref:signalr/index): Add real-time web functionality.
 * [gRPC](grpc/index.md): High performance Remote Procedure Call (RPC) services.

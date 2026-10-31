@@ -66,7 +66,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      @namespace BlazorHosted.Server.Pages
      ```
 
-   * Add an [`@using`](xref:mvc/views/razor#using) directive for the **:::no-loc text="Client":::** project at the top of the file:
+   * Add an [`@using`](../../mvc/views/razor.md#using) directive for the **:::no-loc text="Client":::** project at the top of the file:
 
      ```razor
      @using BlazorHosted.Client
@@ -107,7 +107,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      <script src="_framework/blazor.webassembly.js"></script>
      ```
 
-   * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+   * Update the `render-mode` of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
 
      Delete:
 
@@ -299,12 +299,12 @@ After adopting the preceding configuration, embed Razor components into pages or
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](../../mvc/views/razor.md#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
@@ -326,17 +326,17 @@ Run the **:::no-loc text="Server":::** project. Navigate to the Razor page at `/
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
-For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
-If a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that's subject to trimming on publish, the component might be trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve the library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, add the following to any component:
+If a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) directly references a component from a library that's subject to trimming on publish, the component might be trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve the library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, add the following to any component:
 
 ```razor
 @using System.Diagnostics.CodeAnalysis
@@ -362,7 +362,7 @@ After the `builder` is established in `Program.cs`, add the `Counter` component 
 builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections).
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter2.cshtml`:
 
@@ -398,7 +398,7 @@ Additional work might be required depending on the static resources that compone
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To persist state for prerendered components, use the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the `_Host` page in an app that prerenders components.
+To persist state for prerendered components, use the [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the `_Host` page in an app that prerenders components.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -459,7 +459,7 @@ In the following example:
 }
 ```
 
-The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md) persists the component state after all component invocations.
 
 `Pages/WeatherForecastPreserveState.razor`:
 
@@ -590,7 +590,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **:::no-loc text="Server":::** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **:::no-loc text="Server":::** project's `Pages` folder, make the following changes to the files.
 
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
    Make the following changes to the `_Layout.cshtml` file:
 
@@ -608,7 +608,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      @namespace BlazorHosted.Server.Pages
      ```
 
-   * Add an [`@using`](xref:mvc/views/razor#using) directive for the **:::no-loc text="Client":::** project at the top of the file:
+   * Add an [`@using`](../../mvc/views/razor.md#using) directive for the **:::no-loc text="Client":::** project at the top of the file:
 
      ```razor
      @using BlazorHosted.Client
@@ -665,7 +665,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      @namespace BlazorHosted.Client
      ```
 
-   * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+   * Update the `render-mode` of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
 
      Delete:
 
@@ -721,7 +721,7 @@ MVC:
 * `Views/_ViewStart.cshtml`
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
 
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
@@ -860,12 +860,12 @@ After adopting the preceding configuration, embed Razor components into pages or
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](../../mvc/views/razor.md#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
@@ -887,17 +887,17 @@ Run the **:::no-loc text="Server":::** project. Navigate to the Razor page at `/
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
-For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
-If a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) directly references a component from a library that's subject to trimming on publish, the component might be trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve the library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, add the following to any component:
+If a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) directly references a component from a library that's subject to trimming on publish, the component might be trimmed out during publish because there are no references to it from client-side app code. As a result, the component isn't prerendered, leaving a blank spot in the output. If this occurs, instruct the trimmer to preserve the library component by adding a [`DynamicDependency` attribute](xref:System.Diagnostics.CodeAnalysis.DynamicDependencyAttribute) to any class in the client-side app. To preserve a component called `SomeLibraryComponentToBePreserved`, add the following to any component:
 
 ```razor
 @using System.Diagnostics.CodeAnalysis
@@ -923,7 +923,7 @@ After the `builder` is established in `Program.cs`, add the `Counter` component 
 builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections).
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter2.cshtml`:
 
@@ -959,7 +959,7 @@ Additional work might be required depending on the static resources that compone
 
 Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is setup asynchronously, the UI may flicker as the prerendered UI is replaced with temporary placeholders and then fully rendered again.
 
-To solve these problems, Blazor supports persisting state in a prerendered page using the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
+To solve these problems, Blazor supports persisting state in a prerendered page using the [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag.
 
 `Pages/_Layout.cshtml`:
 
@@ -973,7 +973,7 @@ To solve these problems, Blazor supports persisting state in a prerendered page 
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. <xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*?displayProperty=nameWithType> registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes. Make the call at the end of initialization code in order to avoid a potential race condition during app shutdown.
 
-The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) persists the component state after all component invocations.
+The following example is an updated version of the `FetchData` component in a hosted Blazor WebAssembly app based on the Blazor project template. The `WeatherForecastPreserveState` component persists weather forecast state during prerendering and then retrieves the state to initialize the component. The [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md) persists the component state after all component invocations.
 
 `Pages/WeatherForecastPreserveState.razor`:
 
@@ -1100,7 +1100,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 
 1. Add a `Pages/_Host.cshtml` file to the **:::no-loc text="Server":::** project's `Pages` folder. You can obtain a `_Host.cshtml` file from a project created from the Blazor Server template with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the `Pages/_Host.cshtml` file into the **:::no-loc text="Server":::** project of the hosted Blazor WebAssembly solution, make the following changes to the file:
 
-   * Provide an [`@using`](xref:mvc/views/razor#using) directive for the **:::no-loc text="Client":::** project (for example, `@using BlazorHosted.Client`).
+   * Provide an [`@using`](../../mvc/views/razor.md#using) directive for the **:::no-loc text="Client":::** project (for example, `@using BlazorHosted.Client`).
    * Update the stylesheet links to point to the WebAssembly project's stylesheets. In the following example, the client project's namespace is `BlazorHosted.Client`:
 
      ```diff
@@ -1113,7 +1113,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      > [!NOTE]
      > Leave the `<link>` element that requests the Bootstrap stylesheet (`css/bootstrap/bootstrap.min.css`) in place.
 
-   * Update the `render-mode` of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
+   * Update the `render-mode` of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to prerender the root `App` component with <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>:
 
      ```diff
      - <component type="typeof(App)" render-mode="ServerPrerendered" />
@@ -1158,7 +1158,7 @@ MVC:
 * `Views/_ViewImports.cshtml`
 * `Views/_ViewStart.cshtml`
 
-Obtain the preceding files from an app created from the Razor Pages or MVC project template. For more information, see <xref:tutorials/razor-pages/razor-pages-start> or <xref:tutorials/first-mvc-app/start-mvc>.
+Obtain the preceding files from an app created from the Razor Pages or MVC project template. For more information, see [Tutorial: Get started with Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md) or [Get started with ASP.NET Core MVC](../../tutorials/first-mvc-app/start-mvc.md).
 
 Update the namespaces in the imported `_ViewImports.cshtml` file to match those in use by the **:::no-loc text="Server":::** project receiving the files.
 
@@ -1243,12 +1243,12 @@ If the donor project is created from an ASP.NET Core project template and the fi
 
 ## Render components in a page or view with the Component Tag Helper
 
-After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
+After [configuring the solution](#solution-configuration), including the [additional configuration](#configuration-for-embedding-razor-components-into-pages-or-views), the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) supports two render modes for rendering a component from a Blazor WebAssembly app in a page or view:
 
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssembly>
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](xref:mvc/views/razor#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections). To avoid using the full namespace for the `Counter` component with the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) (`{ASSEMBLY NAME}.Pages.Counter`), add an [`@using`](../../mvc/views/razor.md#using) directive for the client project's `Pages` namespace. In the following example, the **:::no-loc text="Client":::** project's namespace is `BlazorHosted.Client`.
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter1.cshtml`:
 
@@ -1270,7 +1270,7 @@ Run the **:::no-loc text="Server":::** project. Navigate to the Razor page at `/
 * Is prerendered into the page.
 * Is rendered as static HTML on the page or if it includes the necessary information to bootstrap a Blazor app from the user agent.
 
-For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+For more information on the Component Tag Helper, including passing parameters and <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode> configuration, see [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 Additional work might be required depending on the static resources that components use and how layout pages are organized in an app. Typically, scripts are added to a page or view's `Scripts` render section and stylesheets are added to the layout's `<head>` element content.
 
@@ -1290,7 +1290,7 @@ After the `builder` is established in `Program.cs`, add the `Counter` component 
 builder.RootComponents.Add<Counter>("#counter-component");
 ```
 
-In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](xref:mvc/views/layout#sections).
+In the following Razor Pages example, the `Counter` component is rendered in a page. To make the component interactive, the Blazor WebAssembly script is included in the page's [render section](../../mvc/views/layout.md#sections).
 
 In the **:::no-loc text="Server":::** project, `Pages/RazorPagesCounter2.cshtml`:
 

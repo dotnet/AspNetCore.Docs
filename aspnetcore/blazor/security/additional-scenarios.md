@@ -1518,7 +1518,7 @@ app.UseStaticFiles();
 
 :::moniker-end
 
-Use an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
+Use an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../mvc/views/razor.md#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
 
 At the top of `Components/Pages/Home.razor`:
 
@@ -1554,7 +1554,7 @@ app.MapAdditionalIdentityEndpoints().AllowAnonymous();
 
 Apply [`[Authorize]` attributes](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***either*** of the following approaches:
 
-* In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+* In the app's imports file, add an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
 
   `_Imports.razor`:
 
@@ -1565,11 +1565,11 @@ Apply [`[Authorize]` attributes](xref:blazor/security/index#authorize-attribute)
 
   Imports files can be applied at any level of a folder hierarchy to apply an [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) for that folder's components and its subfolders.
 
-* Add the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to each Razor component that requires authorization under the [`@page`](xref:mvc/views/razor#page) directive with an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace:
+* Add the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to each Razor component that requires authorization under the [`@page`](../../mvc/views/razor.md#page) directive with an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
   ```
 
-  The [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the preceding example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.
+  The [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the preceding example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.

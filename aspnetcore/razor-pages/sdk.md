@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The [!INCLUDE[](~/includes/6.0-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
-* Is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
+* Is required to build, package, and publish projects containing [Razor](../mvc/views/razor.md) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
 * Includes a set of predefined properties, and items that allow customizing the compilation of Razor (`.cshtml` or `.razor`) files.
 
 The Razor SDK includes `Content` items with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
@@ -102,7 +102,7 @@ Razor's language version is tightly integrated with the version of the runtime t
 
 The [!INCLUDE[](~/includes/2.1-SDK.md)] includes the `Microsoft.NET.Sdk.Razor` MSBuild SDK (Razor SDK). The Razor SDK:
 
-* Is required to build, package, and publish projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
+* Is required to build, package, and publish projects containing [Razor](../mvc/views/razor.md) files for ASP.NET Core MVC-based or [Blazor](xref:blazor/index) projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor (`.cshtml` or `.razor`) files.
 
 The Razor SDK includes `Content` items with `Include` attributes set to the `**\*.cshtml` and `**\*.razor` globbing patterns. Matching files are published.
@@ -196,7 +196,7 @@ Razor's language version is tightly integrated with the version of the runtime t
 
 
 
-* Standardizes the experience around building, packaging, and publishing projects containing [Razor](xref:mvc/views/razor) files for ASP.NET Core MVC-based projects.
+* Standardizes the experience around building, packaging, and publishing projects containing [Razor](../mvc/views/razor.md) files for ASP.NET Core MVC-based projects.
 * Includes a set of predefined targets, properties, and items that allow customizing the compilation of Razor files.
 
 The Razor SDK includes a `Content` item with an `Include` attribute set to the `**\*.cshtml` globbing pattern. Matching files are published.

@@ -8,11 +8,11 @@ ms.date: 02/07/2020
 
 :::moniker range=">= aspnetcore-6.0"
 
-Learn how to use page [route and app model provider conventions](xref:mvc/controllers/application-model#conventions) to control page routing, discovery, and processing in Razor Pages apps.
+Learn how to use page [route and app model provider conventions](../mvc/controllers/application-model.md#conventions) to control page routing, discovery, and processing in Razor Pages apps.
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
-There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
+There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](../mvc/controllers/routing.md#reserved-routing-names).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
@@ -20,7 +20,7 @@ There are reserved words that can't be used as route segments or parameter names
 | -------- | --------------------------- |
 | [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageRouteModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageApplicationModelConvention></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageHandlerModelConvention></li></ul> | Add a route template and header to an app's pages. |
 | [Page route action conventions](#page-route-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention*></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageRouteModelConvention*></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*></li></ul> | Add a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageApplicationModelConvention*></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderApplicationModelConvention*></li><li><xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddPageApplicationModelConvention*></li><li><xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](../mvc/controllers/filters.md#ifilterfactory) to add a header to an app's pages. |
 
 Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions>. The following convention examples are explained later in this topic:
 
@@ -65,11 +65,11 @@ Route processing is established by convention:
 
 If possible, avoid depending on an established route processing order. Generally, routing selects the correct route with URL matching. If you must set route `Order` properties to route requests correctly, the app's routing scheme is probably confusing to clients and fragile to maintain. Seek to simplify the app's routing scheme. The sample app requires an explicit route processing order to demonstrate several routing scenarios using a single app. However, you should attempt to avoid the practice of setting route `Order` in production apps.
 
-Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](xref:mvc/controllers/routing#routing-ordering-ref-label).
+Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](../mvc/controllers/routing.md#routing-ordering-ref-label).
 
 ## Model conventions
 
-Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
+Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](../mvc/controllers/application-model.md#conventions) that apply to Razor Pages.
 
 ### Add a route model convention to all pages
 
@@ -253,7 +253,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 The page app model is used to check the relative path for segments that lead to the Page2 page in the *OtherPages* folder. If the condition passes, a header is added. If not, the `EmptyFilter` is applied.
 
-`EmptyFilter` is an [Action filter](xref:mvc/controllers/filters#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
+`EmptyFilter` is an [Action filter](../mvc/controllers/filters.md#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
 
 Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect the headers to view the result:
 
@@ -261,9 +261,9 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 **Configure a filter factory**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](xref:mvc/controllers/filters) to all Razor Pages.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](../mvc/controllers/filters.md) to all Razor Pages.
 
-The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
+The sample app provides an example of using a [filter factory](../mvc/controllers/filters.md#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
 [!code-csharp[](razor-pages-conventions/samples/6.x/SampleApp/Program.cs?name=snippet9)]
 
@@ -277,7 +277,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 ## MVC Filters and the Page filter (IPageFilter)
 
-MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
+MVC [Action filters](../mvc/controllers/filters.md#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](../mvc/controllers/filters.md#authorization-filters), [Exception](../mvc/controllers/filters.md#exception-filters), [Resource](../mvc/controllers/filters.md#resource-filters), and [Result](../mvc/controllers/filters.md#result-filters). For more information, see the [Filters](../mvc/controllers/filters.md) topic.
 
 The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
@@ -285,19 +285,19 @@ The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filte
 
 * [Razor Pages Routing](https://www.learnrazorpages.com/razor-pages/routing)
 * [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
-* <xref:mvc/controllers/areas#areas-with-razor-pages>
+* [Areas in ASP.NET Core](../mvc/controllers/areas.md#areas-with-razor-pages)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-Learn how to use page [route and app model provider conventions](xref:mvc/controllers/application-model#conventions) to control page routing, discovery, and processing in Razor Pages apps.
+Learn how to use page [route and app model provider conventions](../mvc/controllers/application-model.md#conventions) to control page routing, discovery, and processing in Razor Pages apps.
 
 When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
 To specify a page route, add route segments, or add parameters to a route, use the page's `@page` directive. For more information, see [Custom routes](index.md#custom-routes).
 
-There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](xref:mvc/controllers/routing#reserved-routing-names).
+There are reserved words that can't be used as route segments or parameter names. For more information, see [Routing: Reserved routing names](../mvc/controllers/routing.md#reserved-routing-names).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/razor-pages-conventions/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
@@ -305,7 +305,7 @@ There are reserved words that can't be used as route segments or parameter names
 | -------- | --------------------------- |
 | [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Add a route template and header to an app's pages. |
 | [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](../mvc/controllers/filters.md#ifilterfactory) to add a header to an app's pages. |
 
 Razor Pages conventions are configured using an <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddRazorPages*> overload that configures <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> in `Startup.ConfigureServices`. The following convention examples are explained later in this topic:
 
@@ -349,11 +349,11 @@ Route processing is established by convention:
 
 If possible, avoid depending on an established route processing order. Generally, routing selects the correct route with URL matching. If you must set route `Order` properties to route requests correctly, the app's routing scheme is probably confusing to clients and fragile to maintain. Seek to simplify the app's routing scheme. The sample app requires an explicit route processing order to demonstrate several routing scenarios using a single app. However, you should attempt to avoid the practice of setting route `Order` in production apps.
 
-Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](xref:mvc/controllers/routing#routing-ordering-ref-label).
+Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](../mvc/controllers/routing.md#routing-ordering-ref-label).
 
 ## Model conventions
 
-Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
+Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](../mvc/controllers/application-model.md#conventions) that apply to Razor Pages.
 
 ### Add a route model convention to all pages
 
@@ -535,7 +535,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 The page app model is used to check the relative path for segments that lead to the Page2 page in the *OtherPages* folder. If the condition passes, a header is added. If not, the `EmptyFilter` is applied.
 
-`EmptyFilter` is an [Action filter](xref:mvc/controllers/filters#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
+`EmptyFilter` is an [Action filter](../mvc/controllers/filters.md#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
 
 Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect the headers to view the result:
 
@@ -543,9 +543,9 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 **Configure a filter factory**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](xref:mvc/controllers/filters) to all Razor Pages.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](../mvc/controllers/filters.md) to all Razor Pages.
 
-The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
+The sample app provides an example of using a [filter factory](../mvc/controllers/filters.md#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
 [!code-csharp[](razor-pages-conventions/samples/3.x/SampleApp/Startup.cs?name=snippet9)]
 
@@ -559,20 +559,20 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 ## MVC Filters and the Page filter (IPageFilter)
 
-MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
+MVC [Action filters](../mvc/controllers/filters.md#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](../mvc/controllers/filters.md#authorization-filters), [Exception](../mvc/controllers/filters.md#exception-filters), [Resource](../mvc/controllers/filters.md#resource-filters), and [Result](../mvc/controllers/filters.md#result-filters). For more information, see the [Filters](../mvc/controllers/filters.md) topic.
 
 The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
 ## Additional resources
 
 * [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
-* <xref:mvc/controllers/areas#areas-with-razor-pages>
+* [Areas in ASP.NET Core](../mvc/controllers/areas.md#areas-with-razor-pages)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-2.2"
 
-Learn how to use page [route and app model provider conventions](xref:mvc/controllers/application-model#conventions) to control page routing, discovery, and processing in Razor Pages apps.
+Learn how to use page [route and app model provider conventions](../mvc/controllers/application-model.md#conventions) to control page routing, discovery, and processing in Razor Pages apps.
 
 When you need to configure custom page routes for individual pages, configure routing to pages with the [AddPageRoute convention](#configure-a-page-route) described later in this topic.
 
@@ -586,7 +586,7 @@ There are reserved words that can't be used as route segments or parameter names
 | -------- | --------------------------- |
 | [Model conventions](#model-conventions)<br><br>Conventions.Add<ul><li>IPageRouteModelConvention</li><li>IPageApplicationModelConvention</li><li>IPageHandlerModelConvention</li></ul> | Add a route template and header to an app's pages. |
 | [Page route action conventions](#page-route-action-conventions)<ul><li>AddFolderRouteModelConvention</li><li>AddPageRouteModelConvention</li><li>AddPageRoute</li></ul> | Add a route template to pages in a folder and to a single page. |
-| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](xref:mvc/controllers/filters#ifilterfactory) to add a header to an app's pages. |
+| [Page model action conventions](#page-model-action-conventions)<ul><li>AddFolderApplicationModelConvention</li><li>AddPageApplicationModelConvention</li><li>ConfigureFilter (filter class, lambda expression, or filter factory)</li></ul> | Add a header to pages in a folder, add a header to a single page, and configure a [filter factory](../mvc/controllers/filters.md#ifilterfactory) to add a header to an app's pages. |
 
 Razor Pages conventions are added and configured using the <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcBuilderExtensions.AddRazorPagesOptions*> extension method to <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*> on the service collection in the `Startup` class. The following convention examples are explained later in this topic:
 
@@ -631,11 +631,11 @@ Route processing is established by convention:
 
 If possible, avoid depending on an established route processing order. Generally, routing selects the correct route with URL matching. If you must set route `Order` properties to route requests correctly, the app's routing scheme is probably confusing to clients and fragile to maintain. Seek to simplify the app's routing scheme. The sample app requires an explicit route processing order to demonstrate several routing scenarios using a single app. However, you should attempt to avoid the practice of setting route `Order` in production apps.
 
-Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](xref:mvc/controllers/routing#routing-ordering-ref-label).
+Razor Pages routing and MVC controller routing share an implementation. Information on route order in the MVC topics is available at [Routing to controller actions: Ordering attribute routes](../mvc/controllers/routing.md#routing-ordering-ref-label).
 
 ## Model conventions
 
-Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](xref:mvc/controllers/application-model#conventions) that apply to Razor Pages.
+Add a delegate for <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IPageConvention> to add [model conventions](../mvc/controllers/application-model.md#conventions) that apply to Razor Pages.
 
 ### Add a route model convention to all pages
 
@@ -791,7 +791,7 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 The page app model is used to check the relative path for segments that lead to the Page2 page in the *OtherPages* folder. If the condition passes, a header is added. If not, the `EmptyFilter` is applied.
 
-`EmptyFilter` is an [Action filter](xref:mvc/controllers/filters#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
+`EmptyFilter` is an [Action filter](../mvc/controllers/filters.md#action-filters). Since Action filters are ignored by Razor Pages, the `EmptyFilter` has no effect as intended if the path doesn't contain `OtherPages/Page2`.
 
 Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect the headers to view the result:
 
@@ -799,9 +799,9 @@ Request the sample's Page2 page at `localhost:5000/OtherPages/Page2` and inspect
 
 **Configure a filter factory**
 
-<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](xref:mvc/controllers/filters) to all Razor Pages.
+<xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.ConfigureFilter*> configures the specified factory to apply [filters](../mvc/controllers/filters.md) to all Razor Pages.
 
-The sample app provides an example of using a [filter factory](xref:mvc/controllers/filters#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
+The sample app provides an example of using a [filter factory](../mvc/controllers/filters.md#ifilterfactory) by adding a header, `FilterFactoryHeader`, with two values to the app's pages:
 
 [!code-csharp[](razor-pages-conventions/samples/2.x/SampleApp/Startup.cs?name=snippet9)]
 
@@ -815,13 +815,13 @@ Request the sample's About page at `localhost:5000/About` and inspect the header
 
 ## MVC Filters and the Page filter (IPageFilter)
 
-MVC [Action filters](xref:mvc/controllers/filters#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](xref:mvc/controllers/filters#authorization-filters), [Exception](xref:mvc/controllers/filters#exception-filters), [Resource](xref:mvc/controllers/filters#resource-filters), and [Result](xref:mvc/controllers/filters#result-filters). For more information, see the [Filters](xref:mvc/controllers/filters) topic.
+MVC [Action filters](../mvc/controllers/filters.md#action-filters) are ignored by Razor Pages, since Razor Pages use handler methods. Other types of MVC filters are available for you to use: [Authorization](../mvc/controllers/filters.md#authorization-filters), [Exception](../mvc/controllers/filters.md#exception-filters), [Resource](../mvc/controllers/filters.md#resource-filters), and [Result](../mvc/controllers/filters.md#result-filters). For more information, see the [Filters](../mvc/controllers/filters.md) topic.
 
 The Page filter (<xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter>) is a filter that applies to Razor Pages. For more information, see [Filter methods for Razor Pages](filter.md).
 
 ## Additional resources
 
 * [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
-* <xref:mvc/controllers/areas#areas-with-razor-pages>
+* [Areas in ASP.NET Core](../mvc/controllers/areas.md#areas-with-razor-pages)
 
 :::moniker-end

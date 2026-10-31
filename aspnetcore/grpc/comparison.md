@@ -115,7 +115,7 @@ Other frameworks are recommended over gRPC in the following scenarios:
 
 ## Related content
 
-* <xref:tutorials/grpc/grpc-start>
+* [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)
 * [Overview for gRPC on .NET](index.md)
 * [gRPC Services with C#](basics.md)
 * [Migrate gRPC from C-core to gRPC for .NET](migration.md)

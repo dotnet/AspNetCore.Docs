@@ -3,7 +3,6 @@ title: Part 7, add a new field
 ai-usage: ai-assisted
 description: Part 7 of tutorial series on Razor Pages.
 ms.date: 05/11/2026
-uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
 
@@ -103,7 +102,7 @@ The name "Rating" is arbitrary and is used to name the migration file. It's help
 
 The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
-To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [Sql Server Object Explorer](sql.md#ssox) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
@@ -111,7 +110,7 @@ Another option is to delete the database and use migrations to re-create the dat
 1. Right-click on the database, and select **Delete**.
 1. Check **Close existing connections**.
 1. Select **OK**.
-1. In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+1. In the [PMC](new-field.md#pmc), update the database:
 
    ```powershell
    Update-Database
@@ -176,8 +175,8 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:tutorials/razor-pages/search)
-> [Next: Add Validation](xref:tutorials/razor-pages/validation)
+> [Previous: Add Search](search.md)
+> [Next: Add Validation](validation.md)
 
 :::moniker-end
 

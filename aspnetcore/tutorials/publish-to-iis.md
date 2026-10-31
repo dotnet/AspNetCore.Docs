@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to host an ASP.NET Core app on an IIS server.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 02/23/2026
-uid: tutorials/publish-to-iis
 ---
 # Publish an ASP.NET Core app to IIS
 
@@ -129,8 +128,8 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 
 ### Articles pertaining to ASP.NET Core app deployment
 
-* <xref:tutorials/publish-to-azure-webapp-using-vs>
-* <xref:tutorials/publish-to-azure-webapp-using-vscode>
+* [Publish an ASP.NET Core app to Azure with Visual Studio](publish-to-azure-webapp-using-vs.md)
+* [Publish an ASP.NET Core app to Azure with Visual Studio Code](publish-to-azure-webapp-using-vscode.md)
 * [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
 
 ### Articles on IIS HTTPS configuration

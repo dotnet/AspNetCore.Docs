@@ -3,7 +3,6 @@ title: Persist Component State Tag Helper in ASP.NET Core
 description: Learn how to use the ASP.NET Core Persist Component State Tag Helper to persist state when prerendering components.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 09/25/2023
-uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
 ---
 # Persist Component State Tag Helper in ASP.NET Core
 
@@ -30,7 +29,7 @@ Follow the guidance in the *Configuration* section for either:
 
 :::moniker range=">= aspnetcore-8.0"
 
-To persist state for prerendered components, use the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the layout in an app that prerenders components.
+To persist state for prerendered components, use the [Persist Component State Tag Helper](persist-component-state.md) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the layout in an app that prerenders components.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -52,7 +51,7 @@ For more information and examples, see <xref:blazor/state-management/prerendered
 
 :::moniker range="< aspnetcore-8.0"
 
-To persist state for prerendered components, use the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the `_Host` page in an app that prerenders components.
+To persist state for prerendered components, use the [Persist Component State Tag Helper](persist-component-state.md) ([reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Mvc/Mvc.TagHelpers/src/PersistComponentStateTagHelper.cs)). Add the Tag Helper's tag, `<persist-component-state />`, inside the closing `</body>` tag of the `_Host` page in an app that prerenders components.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -76,20 +75,20 @@ For more information and examples, see <xref:blazor/components/integration#persi
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* [Component Tag Helper in ASP.NET Core](component-tag-helper.md)
 * <xref:blazor/components/prerender>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../intro.md)
 * <xref:blazor/components/index>
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* [Component Tag Helper in ASP.NET Core](component-tag-helper.md)
 * <xref:blazor/components/integration>
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../intro.md)
 * <xref:blazor/components/index>
 
 :::moniker-end

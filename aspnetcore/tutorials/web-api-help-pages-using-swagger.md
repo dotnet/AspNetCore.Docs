@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 02/23/2026
-uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
 
@@ -28,8 +27,8 @@ The following instructions apply to projects using Swashbuckle or NSwag with ASP
 
 The two main OpenAPI implementations for .NET are [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag), see:
 
-* [Getting Started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-* [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
+* [Getting Started with Swashbuckle](getting-started-with-swashbuckle.md)
+* [Getting Started with NSwag](getting-started-with-NSwag.md)
 
 ## OpenAPI vs. Swagger
 
@@ -42,7 +41,7 @@ In short:
 
 ## OpenAPI specification (`openapi.json`)
 
-The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](xref:tutorials/get-started-with-swashbuckle#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
+The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](getting-started-with-swashbuckle.md#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
 
 ```json
 {
@@ -167,8 +166,8 @@ See [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generated
 
 ## Next steps
 
-* [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-* [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+* [Get started with Swashbuckle](getting-started-with-swashbuckle.md)
+* [Get started with NSwag](getting-started-with-NSwag.md)
 
 :::moniker-end
 

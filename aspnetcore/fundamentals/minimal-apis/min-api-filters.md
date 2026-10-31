@@ -184,5 +184,5 @@ In some scenarios, it might be necessary to apply the same filter logic for both
 
 * [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/samples/7) ([How to download](xref:fundamentals/index#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions (Validation extension methods)](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs)
-* [Tutorial: Create a Minimal API with ASP.NET Core](xref:tutorials/min-web-api)
-* [Authentication and authorization in Minimal APIs](xref:fundamentals/minimal-apis/security)
+* [Tutorial: Create a Minimal API with ASP.NET Core](../../tutorials/min-web-api.md)
+* [Authentication and authorization in Minimal APIs](security.md)

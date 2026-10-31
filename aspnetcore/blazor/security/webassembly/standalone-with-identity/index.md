@@ -157,7 +157,7 @@ The project includes packages and configuration to produce [OpenAPI documents](x
 
 :::moniker range="< aspnetcore-9.0"
 
-Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-using-swagger) are included for web API documentation and development testing. For more information on NSwag, see <xref:tutorials/get-started-with-nswag>.
+Services and endpoints for [Swagger/OpenAPI](../../../../tutorials/web-api-help-pages-using-swagger.md) are included for web API documentation and development testing. For more information on NSwag, see [Get started with NSwag and ASP.NET Core](../../../../tutorials/getting-started-with-NSwag.md).
 
 :::moniker-end
 

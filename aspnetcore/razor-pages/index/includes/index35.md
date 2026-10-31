@@ -41,7 +41,7 @@
 
 # [Visual Studio](#tab/visual-studio)
 
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
+See [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md) for detailed instructions on how to create a Razor Pages project.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -49,7 +49,7 @@ Run `dotnet new webapp` from the command line.
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 
-See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) for detailed instructions on how to create a Razor Pages project.
+See [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md) for detailed instructions on how to create a Razor Pages project.
 
 ---
 
@@ -64,7 +64,7 @@ Consider a basic page:
 
 [!code-cshtml[](~/razor-pages/index/samples/3.0/RazorPagesIntro/Pages/Index.cshtml?highlight=1)]
 
-The preceding code looks a lot like a [Razor view file](xref:tutorials/first-mvc-app/adding-view) used in an ASP.NET Core app with controllers and views. What makes it different is the [`@page`](xref:mvc/views/razor#page) directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other [Razor](xref:mvc/views/razor) constructs. Razor Pages file names have a `.cshtml` suffix.
+The preceding code looks a lot like a [Razor view file](../../../tutorials/first-mvc-app/adding-view.md) used in an ASP.NET Core app with controllers and views. What makes it different is the [`@page`](../../../mvc/views/razor.md#page) directive. `@page` makes the file into an MVC action - which means that it handles requests directly, without going through a controller. `@page` must be the first Razor directive on a page. `@page` affects the behavior of other [Razor](../../../mvc/views/razor.md) constructs. Razor Pages file names have a `.cshtml` suffix.
 
 A similar page, using a `PageModel` class, is shown in the following two files. The `Pages/Index2.cshtml` file:
 
@@ -92,7 +92,7 @@ Notes:
 
 ## Write a basic form
 
-Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](xref:mvc/models/model-binding), [Tag Helpers](xref:mvc/views/tag-helpers/intro), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
+Razor Pages is designed to make common patterns used with web browsers easy to implement when building an app. [Model binding](../../../mvc/models/model-binding.md), [Tag Helpers](../../../mvc/views/tag-helpers/intro.md), and HTML helpers all *just work* with the properties defined in a Razor Page class. Consider a page that implements a basic "contact us" form for the `Contact` model:
 
 For the samples in this document, the `DbContext` is initialized in the [Startup.cs](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/razor-pages/index/samples/3.0/RazorPagesContacts/Startup.cs#L23-L24) file.
 
@@ -133,7 +133,7 @@ The `Async` naming suffix is optional but is often used by convention for asynch
 If you're familiar with ASP.NET apps using controllers and views:
 
 * The `OnPostAsync` code in the preceding example looks similar to typical controller code.
-* Most of the MVC primitives like [model binding](xref:mvc/models/model-binding), [validation](xref:mvc/models/validation), and action results work the same with Controllers and Razor Pages. 
+* Most of the MVC primitives like [model binding](../../../mvc/models/model-binding.md), [validation](../../../mvc/models/validation.md), and action results work the same with Controllers and Razor Pages. 
 
 The previous `OnPostAsync` method:
 
@@ -180,7 +180,7 @@ The `Customer` property uses [`[BindProperty]`](xref:Microsoft.AspNetCore.Mvc.Bi
 
 [!code-csharp[](~/razor-pages/index/samples/3.0/RazorPagesContacts/Pages/Customers/Create.cshtml.cs?name=snippet_PageModel&highlight=15-16)]
 
-`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](xref:data/ef-rp/crud#overposting).
+`[BindProperty]` should **not** be used on models containing properties that should not be changed by the client. For more information, see [Overposting](../../../data/ef-rp/crud.md#prevent-overposting).
 
 Razor Pages, by default, bind properties only with non-`GET` verbs. Binding to properties removes the need to writing code to convert HTTP data to the model type. Binding reduces code by using the same property to render form fields (`<input asp-for="Customer.Name">`) and accept the input.
 
@@ -190,8 +190,8 @@ Reviewing the `Pages/Create.cshtml` view file:
 
 [!code-cshtml[](~/razor-pages/index/samples/3.0/RazorPagesContacts/Pages/Customers/Create.cshtml?highlight=3,9)]
 
-* In the preceding code, the [input tag helper](xref:mvc/views/working-with-forms#the-input-tag-helper) `<input asp-for="Customer.Name" />` binds the HTML `<input>` element to the `Customer.Name` model expression.
-* [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#addtaghelper-makes-tag-helpers-available) makes Tag Helpers available.
+* In the preceding code, the [input tag helper](../../../mvc/views/working-with-forms.md#the-input-tag-helper) `<input asp-for="Customer.Name" />` binds the HTML `<input>` element to the `Customer.Name` model expression.
+* [`@addTagHelper`](../../../mvc/views/tag-helpers/intro.md#addtaghelper-makes-tag-helpers-available) makes Tag Helpers available.
 
 ### The home page
 
@@ -207,7 +207,7 @@ The `Index.cshtml` file contains the following markup:
 
 [!code-cshtml[](~/razor-pages/index/samples/3.0/RazorPagesContacts/Pages/Customers/Index.cshtml?name=snippet_Edit)]
 
-The `<a /a>` [Anchor Tag Helper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](xref:mvc/views/tag-helpers/intro) enable server-side code to participate in creating and rendering HTML elements in Razor files.
+The `<a /a>` [Anchor Tag Helper](../../../mvc/views/tag-helpers/built-in/anchor-tag-helper.md) used the `asp-route-{value}` attribute to generate a link to the Edit page. The link contains route data with the contact ID. For example, `https://localhost:5001/Edit/1`. [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) enable server-side code to participate in creating and rendering HTML elements in Razor files.
 
 The `Index.cshtml` file contains markup to create a delete button for each customer contact:
 
@@ -271,7 +271,7 @@ Using the following `Create.cshtml` view file:
 The preceding code:
 
 * Includes jQuery and jQuery validation scripts.
-* Uses the `<div />` and `<span />` [Tag Helpers](xref:mvc/views/tag-helpers/intro) to enable:
+* Uses the `<div />` and `<span />` [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) to enable:
 
   * Client-side validation.
   * Validation error rendering.
@@ -315,8 +315,8 @@ The Create page for the `Movie` model shows displays errors with invalid values:
 
 For more information, see:
 
-* [Add validation to the Movie app](xref:tutorials/razor-pages/validation)
-* [Model validation in ASP.NET Core](xref:mvc/models/validation).
+* [Add validation to the Movie app](../../../tutorials/razor-pages/validation.md)
+* [Model validation in ASP.NET Core](../../../mvc/models/validation.md).
 
 ## Handle HEAD requests with an OnGet handler fallback
 
@@ -332,7 +332,7 @@ Razor Pages falls back to calling the `OnGet` handler if no `OnHead` handler is 
 
 ## XSRF/CSRF and Razor Pages
 
-Razor Pages are protected by [Antiforgery validation](../../../security/anti-request-forgery.md). The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
+Razor Pages are protected by [Antiforgery validation](../../../security/anti-request-forgery.md). The [FormTagHelper](../../../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements.
 
 <a name="layout"></a>
 
@@ -342,19 +342,19 @@ Pages work with all the capabilities of the Razor view engine. Layouts, partials
 
 Let's declutter this page by taking advantage of some of those capabilities.
 
-Add a [layout page](xref:mvc/views/layout) to `Pages/Shared/_Layout.cshtml`:
+Add a [layout page](../../../mvc/views/layout.md) to `Pages/Shared/_Layout.cshtml`:
 
 [!code-cshtml[](~/razor-pages/index/samples/3.0/RazorPagesContacts/Pages/Shared/_Layout2.cshtml?highlight=12)]
 
-The [Layout](xref:mvc/views/layout):
+The [Layout](../../../mvc/views/layout.md):
 
 * Controls the layout of each page (unless the page opts out of layout).
 * Imports HTML structures such as JavaScript and stylesheets.
 * The contents of the Razor page are rendered where `@RenderBody()` is called.
 
-For more information, see [layout page](xref:mvc/views/layout).
+For more information, see [layout page](../../../mvc/views/layout.md).
 
-The [Layout](xref:mvc/views/layout#specifying-a-layout) property is set in `Pages/_ViewStart.cshtml`:
+The [Layout](../../../mvc/views/layout.md#specifying-a-layout) property is set in `Pages/_ViewStart.cshtml`:
 
 [!code-cshtml[](~/razor-pages/index/samples/RazorPagesContacts2/Pages/_ViewStart.cshtml)]
 
@@ -370,7 +370,7 @@ Add a `Pages/_ViewImports.cshtml` file:
 
 [!code-cshtml[](~/razor-pages/index/samples/RazorPagesContacts2/Pages/_ViewImports.cshtml)]
 
-`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](xref:mvc/views/tag-helpers/builtin-th/Index) to all the pages in the *Pages* folder.
+`@namespace` is explained later in the tutorial. The `@addTagHelper` directive brings in the [built-in Tag Helpers](../../../mvc/views/tag-helpers/built-in/index.md) to all the pages in the *Pages* folder.
 
 <a name="namespace"></a>
 
@@ -406,7 +406,7 @@ In the preceding code, the `_ViewImports.cshtml` imported the namespace and Tag 
 
 The [Razor Pages starter project](#rpvs17) contains the `Pages/_ValidationScriptsPartial.cshtml`, which hooks up client-side validation.
 
-For more information on partial views, see <xref:mvc/views/partial>.
+For more information on partial views, see [Partial views in ASP.NET Core](../../../mvc/views/partial.md).
 
 <a name="url_gen"></a>
 
@@ -440,7 +440,7 @@ The absolute page name `/Index` is used to generate URLs to the `Pages/Index.csh
 * `<a asp-page="/Index">Home Index Page</a>`
 * `RedirectToPage("/Index")`
 
-The page name is the path to the page from the root */Pages* folder including a leading `/` (for example, `/Index`). The preceding URL generation samples offer enhanced options and functional capabilities over hard-coding a URL. URL generation uses [routing](xref:mvc/controllers/routing) and can generate and encode parameters according to how the route is defined in the destination path.
+The page name is the path to the page from the root */Pages* folder including a leading `/` (for example, `/Index`). The preceding URL generation samples offer enhanced options and functional capabilities over hard-coding a URL. URL generation uses [routing](../../../mvc/controllers/routing.md) and can generate and encode parameters according to how the route is defined in the destination path.
 
 URL generation for pages supports relative names. The following table shows which Index page is selected using different `RedirectToPage` parameters in `Pages/Customers/Create.cshtml`.
 
@@ -460,13 +460,13 @@ Relative name linking is useful when building sites with a complex structure. Wh
 * Renaming a folder doesn't break the relative links.
 * Links are not broken because they don't include the folder name.
 
-To redirect to a page in a different [Area](xref:mvc/controllers/areas), specify the area:
+To redirect to a page in a different [Area](../../../mvc/controllers/areas.md), specify the area:
 
 ```csharp
 RedirectToPage("/Index", new { area = "Services" });
 ```
 
-For more information, see <xref:mvc/controllers/areas> and [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md).
+For more information, see [Areas in ASP.NET Core](../../../mvc/controllers/areas.md) and [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md).
 
 ## ViewData attribute
 
@@ -573,7 +573,7 @@ To configure advanced options, use the <xref:Microsoft.Extensions.DependencyInje
 
 Use the <xref:Microsoft.AspNetCore.Mvc.RazorPages.RazorPagesOptions> to set the root directory for pages, or add application model conventions for pages. For more information on conventions, see [Razor Pages authorization conventions](../../security/authorization/conventions.md).
 
-To precompile views, see [Razor view compilation](xref:mvc/views/view-compilation).
+To precompile views, see [Razor view compilation](../../../mvc/views/view-compilation.md).
 
 ### Specify that Razor Pages are at the content root
 
@@ -589,16 +589,16 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 
 ## Related content
 
-* See [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start), which builds on this introduction.
+* See [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md), which builds on this introduction.
 * [`[Authorize]` attribute in Razor Pages apps](../../security/authorization/simple.md#authorize-attribute-in-razor-pages-apps)
 * [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/samples/3.0)
 * <xref:index>
-* <xref:mvc/views/razor>
-* <xref:mvc/controllers/areas>
-* <xref:tutorials/razor-pages/razor-pages-start>
+* [Razor syntax reference for ASP.NET Core](../../../mvc/views/razor.md)
+* [Areas in ASP.NET Core](../../../mvc/controllers/areas.md)
+* [Tutorial: Get started with Razor Pages in ASP.NET Core](../../../tutorials/razor-pages/razor-pages-start.md)
 * [Razor Pages authorization conventions in ASP.NET Core](../../security/authorization/conventions.md)
 * [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md)
 * <xref:test/razor-pages-tests>
-* <xref:mvc/views/partial>
+* [Partial views in ASP.NET Core](../../../mvc/views/partial.md)
 
 :::moniker-end

@@ -205,7 +205,7 @@ During the `IHostedService.StopAsync` method, the `HubConnection` is disposed of
 
 ## Related content
 
-* [Get started](xref:tutorials/signalr)
+* [Get started](../tutorials/signalr.md)
 * [Hubs](hubs.md)
 * [Publish to Azure](publish-to-azure-web-app.md)
 * [Strongly typed Hubs](hubs.md#use-strongly-typed-hubs)

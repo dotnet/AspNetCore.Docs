@@ -121,7 +121,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Delete all the records in the database. Use the delete links in the browser or from [SSOX](../../new-field.md#ssox).
 * Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
   * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
@@ -146,7 +146,7 @@ The app shows the seeded data:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Update the pages](xref:tutorials/razor-pages/da1)
+> [Previous: Scaffolded Razor Pages](../../page.md)
+> [Next: Update the pages](../../da1.md)
 
 :::moniker-end

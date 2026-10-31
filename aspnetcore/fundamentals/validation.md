@@ -21,7 +21,7 @@ Asynchronous validation attributes and <xref:System.ComponentModel.DataAnnotatio
 * Minimal APIs use the service to validate a request before the endpoint handler runs. For guidance on how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
 * Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see <xref:blazor/forms/validation>.
 
-While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
+While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see [Model validation in ASP.NET Core MVC](../mvc/models/validation.md).
 
 ## Register validation services
 
@@ -164,7 +164,7 @@ Apply <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> to a proper
 
 ## Write custom validation rules
 
-When the [built-in validation attributes](xref:mvc/models/validation#built-in-attributes) don't express a rule, write a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the model. Both are discovered and executed by <xref:Microsoft.Extensions.Validation?displayProperty=fullName> in Blazor and Minimal API apps.
+When the [built-in validation attributes](../mvc/models/validation.md#built-in-attributes) don't express a rule, write a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the model. Both are discovered and executed by <xref:Microsoft.Extensions.Validation?displayProperty=fullName> in Blazor and Minimal API apps.
 
 ### Custom validation attributes
 
@@ -643,17 +643,17 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
   * <xref:blazor/forms/validation-client-side>
   * <xref:blazor/forms/validation-advanced>
 * [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-* <xref:fundamentals/minimal-apis>
-  * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:mvc/models/validation>
+* [Minimal APIs quick reference](minimal-apis.md)
+  * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
+* [Make an ASP.NET Core app's content localizable](localization/make-content-localizable.md)
+* [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
 * <xref:blazor/forms/validation>
-* [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:mvc/models/validation>
+* [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
+* [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
 
 :::moniker-end

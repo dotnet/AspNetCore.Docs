@@ -61,14 +61,14 @@ The code generator to run. The available generators are shown in the following t
 
 Generator         | Operation
 ----------------- | ---
-`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
+`area`            | [Scaffolds an area](../../mvc/controllers/areas.md).
 `blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](xref:blazor/components/quickgrid#quickgrid-scaffolder).
 `blazor-identity` | Generates Blazor Identity files.
-`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
+`controller`      | [Scaffolds a controller](../../tutorials/first-mvc-app/adding-model.md).
 `identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
-`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
-`view`            | [Scaffolds a view](xref:mvc/views/overview).
+`razorpage`       | [Scaffolds Razor Pages](../../tutorials/razor-pages/model.md).
+`view`            | [Scaffolds a view](../../mvc/views/overview.md).
 
 :::moniker-end
 
@@ -76,12 +76,12 @@ Generator         | Operation
 
 Generator         | Operation
 ----------------- | ---
-`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
-`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
+`area`            | [Scaffolds an area](../../mvc/controllers/areas.md).
+`controller`      | [Scaffolds a controller](../../tutorials/first-mvc-app/adding-model.md).
 `identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
-`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
-`view`            | [Scaffolds a view](xref:mvc/views/overview).
+`razorpage`       | [Scaffolds Razor Pages](../../tutorials/razor-pages/model.md).
+`view`            | [Scaffolds a view](../../mvc/views/overview.md).
 
 :::moniker-end
 
@@ -256,7 +256,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator controller -h
 ```
 
-For an example that uses the `controller` generator, see <xref:tutorials/first-mvc-app/adding-model>.
+For an example that uses the `controller` generator, see [Part 4, add a model to an ASP.NET Core MVC app](../../tutorials/first-mvc-app/adding-model.md).
 
 ### Identity options
 
@@ -337,7 +337,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For an example that uses the `razorpage` generator, see <xref:tutorials/razor-pages/model>.
+For an example that uses the `razorpage` generator, see [Part 2, add a model](../../tutorials/razor-pages/model.md).
 
 ### View options
 

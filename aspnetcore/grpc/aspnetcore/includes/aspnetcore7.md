@@ -23,7 +23,7 @@ This document shows how to get started with gRPC services using ASP.NET Core.
 
 # [Visual Studio](#tab/visual-studio)
 
-See [Get started with gRPC services](xref:tutorials/grpc/grpc-start) for detailed instructions on how to create a gRPC project.
+See [Get started with gRPC services](../../../tutorials/grpc/grpc-start.md) for detailed instructions on how to create a gRPC project.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -164,7 +164,7 @@ The gRPC API provides access to some HTTP/2 message data, such as the method, ho
 
 ## Related content
 
-* <xref:tutorials/grpc/grpc-start>
+* [Create a .NET gRPC client and server in ASP.NET Core](../../../tutorials/grpc/grpc-start.md)
 * [Overview for gRPC on .NET](../../index.md)
 * [gRPC Services with C#](../../basics.md)
 * <xref:fundamentals/servers/kestrel>

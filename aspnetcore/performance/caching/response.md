@@ -116,7 +116,7 @@ Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
 
-To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add the attribute with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](../../razor-pages/filter.md).
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add the attribute with an [MVC filter](../../mvc/controllers/filters.md) or [Razor Pages filter](../../razor-pages/filter.md).
 
 In an MVC app, add the following code:
 
@@ -249,13 +249,13 @@ For more information, see <xref:performance/caching/distributed>.
 
 Cache the content from an MVC view or Razor Page with the Cache Tag Helper. The Cache Tag Helper uses in-memory caching to store data.
 
-For more information, see <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>.
+For more information, see [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md).
 
 ### Distributed Cache Tag Helper
 
 Cache the content from an MVC view or Razor Page in distributed cloud or web farm scenarios with the Distributed Cache Tag Helper. The Distributed Cache Tag Helper uses SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), or [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) to store data.
 
-For more information, see <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>.
+For more information, see [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md).
 
 ## ResponseCache attribute
 
@@ -315,7 +315,7 @@ Cache-Control: no-store,no-cache
 Pragma: no-cache
 ```
 
-To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](xref:mvc/controllers/filters) or [Razor Pages filter](../../razor-pages/filter.md).
+To apply the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> to all of the app's MVC controller or Razor Pages page responses, add it with an [MVC filter](../../mvc/controllers/filters.md) or [Razor Pages filter](../../razor-pages/filter.md).
 
 In an MVC app:
 
@@ -385,7 +385,7 @@ Cache-Control: public,max-age=30
 * <xref:performance/caching/distributed>
 * <xref:fundamentals/change-tokens>
 * <xref:performance/caching/middleware>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
 :::moniker-end

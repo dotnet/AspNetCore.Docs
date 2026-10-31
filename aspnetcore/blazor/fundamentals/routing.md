@@ -11,7 +11,7 @@ uid: blazor/fundamentals/routing
 
 This article explains Blazor app request routing with guidance on static versus interactive routing, ASP.NET Core endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 
-Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](xref:mvc/views/razor#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Components.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
+Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](../../mvc/views/razor.md#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Components.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
 The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`.
 
@@ -102,7 +102,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 :::moniker-end
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+When a Razor component (`.razor`) with an [`@page` directive](../../mvc/views/razor.md#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
 When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
@@ -113,7 +113,7 @@ At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
 Optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class for components that don't specify a layout with the [`@layout` directive](xref:blazor/components/layouts#apply-a-layout-to-a-component). The framework's [Blazor project templates](xref:blazor/project-structure) specify the `MainLayout` component (`MainLayout.razor`) as the app's default layout. For more information on layouts, see <xref:blazor/components/layouts>.
 
-Components support multiple route templates using multiple [`@page` directives](xref:mvc/views/razor#page). The following example component loads on requests for `/blazor-route` and `/different-blazor-route`.
+Components support multiple route templates using multiple [`@page` directives](../../mvc/views/razor.md#page). The following example component loads on requests for `/blazor-route` and `/different-blazor-route`.
 
 `BlazorRoute.razor`:
 
@@ -138,7 +138,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with 
 
 :::moniker-end
 
-As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](../../mvc/views/razor.md#attribute).
 
 In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
 
@@ -326,7 +326,7 @@ Optional parameters are supported. In the following example, the `text` optional
 
 :::moniker range="< aspnetcore-5.0"
 
-Optional parameters aren't supported. In the following example, two [`@page` directives](xref:mvc/views/razor#page) are applied. The first directive permits navigation to the component without a parameter. The second directive assigns the `{text}` route parameter value to the component's `Text` property.
+Optional parameters aren't supported. In the following example, two [`@page` directives](../../mvc/views/razor.md#page) are applied. The first directive permits navigation to the component without a parameter. The second directive assigns the `{text}` route parameter value to the component's `Text` property.
 
 :::moniker-end
 
@@ -468,7 +468,7 @@ To restrict a route parameter to capturing non-file paths, use the [`:nonfile` c
 
 ## Routing with URLs that contain dots
 
-A ***server-side*** default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
+A ***server-side*** default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](../../mvc/views/razor.md#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
 
 Consider the following `Example` component that can receive a route parameter from the last segment of the URL.
 
@@ -736,7 +736,7 @@ In the following example:
 
 If there's a significant delay during navigation, such as while [lazy-loading assemblies in a Blazor WebAssembly app](xref:blazor/webassembly-lazy-load-assemblies) or for a slow network connection to a Blazor server-side app, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
 
-At the top of the component that specifies the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
+At the top of the component that specifies the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, add an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Routing

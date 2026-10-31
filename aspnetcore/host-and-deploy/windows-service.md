@@ -53,7 +53,7 @@ The following sample apps accompany this article:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
+For MVC guidance, see the articles under [Overview of ASP.NET Core MVC](../mvc/overview.md) and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -377,7 +377,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
+For MVC guidance, see the articles under [Overview of ASP.NET Core MVC](../mvc/overview.md) and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -701,7 +701,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
+For MVC guidance, see the articles under [Overview of ASP.NET Core MVC](../mvc/overview.md) and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 
@@ -1024,7 +1024,7 @@ The following sample apps accompany this topic:
 * Background Worker Service Sample: A non-web app sample based on the [Worker Service template](#worker-service-template) that uses [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 * Web App Service Sample: A Razor Pages web app sample that runs as a Windows Service with [hosted services](xref:fundamentals/host/hosted-services) for background tasks.
 
-For MVC guidance, see the articles under <xref:mvc/overview> and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
+For MVC guidance, see the articles under [Overview of ASP.NET Core MVC](../mvc/overview.md) and [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md).
 
 ## Deployment type
 

@@ -3,7 +3,6 @@ title: Link Tag Helper in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover the ASP.NET Core Link Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Link tag.
 ms.date: 09/24/2019
-uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
 ---
 # Link Tag Helper in ASP.NET Core
 
@@ -51,7 +50,7 @@ The CSS property value to use for the fallback test. For more information, see <
 
 ## Related content
 
-* <xref:mvc/views/tag-helpers/intro>
-* <xref:mvc/controllers/areas>
+* [Tag Helpers in ASP.NET Core](../intro.md)
+* [Areas in ASP.NET Core](../../../controllers/areas.md)
 * [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
-* <xref:mvc/compatibility-version>
+* [Compatibility version for ASP.NET Core MVC](../../../compatibility-version.md)

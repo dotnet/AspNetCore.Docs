@@ -327,7 +327,7 @@ In the app's `appsettings.json` file, modify the `IdentityServer` section to inc
 * The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
 * The name property on certificate corresponds with the distinguished subject for the certificate.
 
-To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
+To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](../../../../tutorials/publish-to-azure-webapp-using-vs.md#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
 
 After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app must be configured in the Azure portal. Locate the thumbprint for the certificate and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
 
@@ -737,7 +737,7 @@ In the app's `appsettings.json` file, modify the `IdentityServer` section to inc
 * The store location represents where to load the certificate from (`CurrentUser` or `LocalMachine`).
 * The name property on certificate corresponds with the distinguished subject for the certificate.
 
-To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](xref:tutorials/publish-to-azure-webapp-using-vs#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
+To deploy to Azure App Service, follow the steps in [Deploy the app to Azure](../../../../tutorials/publish-to-azure-webapp-using-vs.md#deploy-the-app-to-azure), which explains how to create the necessary Azure resources and deploy the app to production.
 
 After following the preceding instructions, the app is deployed to Azure but isn't yet functional. The certificate used by the app must be configured in the Azure portal. Locate the thumbprint for the certificate and follow the steps described in [Load your certificates](/azure/app-service/app-service-web-ssl-cert-load#load-the-certificate-in-code).
 

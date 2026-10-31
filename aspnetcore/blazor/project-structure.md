@@ -58,7 +58,7 @@ The `Routes` component (`Routes.razor`) is either in the server project or the `
 
 The `Components` folder of the server project holds the app's server-side Razor components. Shared components are often placed at the root of the `Components` folder, while layout and page components are usually placed in folders within the `Components` folder.
 
-The `Components/Pages` folder of the server project contains the app's routable server-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
+The `Components/Pages` folder of the server project contains the app's routable server-side Razor components. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive.
 
 :::moniker-end
 
@@ -72,7 +72,7 @@ The `NotFound` component (`NotFound.razor`) implements a Not Found page to displ
 
 The `App` component (`App.razor`) is the root component of the app with HTML `<head>` markup, the `Routes` component, and the Blazor `<script>` tag. The root component is the first component that the app loads.
 
-An imports file (`_Imports.razor`) in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+An imports file (`_Imports.razor`) in each of the server and `.Client` projects includes common Razor directives for Razor components of either project, such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 The `Properties` folder of the server project holds [development environment configuration](xref:fundamentals/environments#development-and-launchsettingsjson) in the `launchSettings.json` file.
 
@@ -89,7 +89,7 @@ The app settings files (`appsettings.Development.json`, `appsettings.json`) in e
 
 In the `.Client` project:
 
-* The `Pages` folder contains routable client-side Razor components. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive.
+* The `Pages` folder contains routable client-side Razor components. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive.
 
 * The `wwwroot` folder is the [Web Root](xref:fundamentals/index#web-root) folder for the `.Client` project that holds the app's public static assets.
 
@@ -120,7 +120,7 @@ Project structure:
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following:
   * `_Host.cshtml`: The root page of the app implemented as a Razor Page:
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
@@ -142,7 +142,7 @@ Project structure:
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -167,7 +167,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following:
   * `_Host.cshtml`: The root page of the app implemented as a Razor Page:
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
@@ -190,7 +190,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -215,7 +215,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following:
   * `_Host.cshtml`: The root page of the app implemented as a Razor Page:
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
@@ -237,7 +237,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -264,7 +264,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `Data` folder: Contains the `WeatherForecast` class and implementation of the `WeatherForecastService` that provides example weather data to the app's `FetchData` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`) and the root Razor page of a Blazor Server app. The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following:
   * `_Host.cshtml`: The root page of the app implemented as a Razor Page:
     * When any page of the app is initially requested, this page is rendered and returned in the response.
     * The Host page specifies where the root `App` component (`App.razor`) is rendered.
@@ -284,7 +284,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `wwwroot` folder: The [Web Root](xref:fundamentals/index#web-root) folder for the app containing the app's public static assets.
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -328,7 +328,7 @@ Project structure:
 
 :::moniker range=">= aspnetcore-10.0"
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
@@ -338,7 +338,7 @@ Project structure:
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
@@ -347,7 +347,7 @@ Project structure:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
   
@@ -383,7 +383,7 @@ The Blazor WebAssembly templates create the initial files and directory structur
 
 Project structure:
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
@@ -403,7 +403,7 @@ Project structure:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -441,7 +441,7 @@ Blazor WebAssembly project template: `blazorwasm`
 
 The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
@@ -461,7 +461,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -495,7 +495,7 @@ Blazor WebAssembly project template: `blazorwasm`
 
 The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
@@ -515,7 +515,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
@@ -549,7 +549,7 @@ Blazor WebAssembly project template: `blazorwasm`
 
 The Blazor WebAssembly template creates the initial files and directory structure for a Blazor WebAssembly app. The app is populated with demonstration code for a `FetchData` component that loads data from a static asset, `weather.json`, and user interaction with a `Counter` component.
 
-* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](xref:mvc/views/razor#page) directive. The template includes the following components:
+* `Pages` folder: Contains the Blazor app's routable Razor components (`.razor`). The route for each page is specified using the [`@page`](../mvc/views/razor.md#page) directive. The template includes the following components:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `FetchData` component (`FetchData.razor`): Implements the Fetch data page.
   * `Index` component (`Index.razor`): Implements the Home page.
@@ -567,7 +567,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `app` DOM element (`<app>Loading...</app>`).
 
-* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](xref:mvc/views/razor#using) directives for namespaces.
+* `_Imports.razor`: Includes common Razor directives to include in the app's components (`.razor`), such as [`@using`](../mvc/views/razor.md#using) directives for namespaces.
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 

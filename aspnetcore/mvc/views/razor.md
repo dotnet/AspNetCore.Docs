@@ -3,7 +3,6 @@ title: Razor syntax reference for ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about Razor markup syntax for embedding server-based code into webpages.
 ms.date: 04/30/2026
-uid: mvc/views/razor
 ---
 # Razor syntax reference for ASP.NET Core
 
@@ -646,7 +645,7 @@ If "rick@contoso.com" is passed in the model, the view generates the following H
 
 ### `@inject`
 
-The `@inject` directive enables the Razor Page to inject a service from the [service container](xref:fundamentals/dependency-injection) into a view. For more information, see [Dependency injection into views](xref:mvc/views/dependency-injection).
+The `@inject` directive enables the Razor Page to inject a service from the [service container](../../fundamentals/dependency-injection.md) into a view. For more information, see [Dependency injection into views](dependency-injection.md).
 
 ### `@layout`
 
@@ -682,7 +681,7 @@ Razor exposes a `Model` property for accessing the model passed to the view:
 <div>The Login Email: @Model.Email</div>
 ```
 
-The `@model` directive specifies the type of the `Model` property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. For more information, see [Strongly typed models and the @model keyword](xref:tutorials/first-mvc-app/adding-model#strongly-typed-models-and-the--keyword).
+The `@model` directive specifies the type of the `Model` property. The directive specifies the `T` in `RazorPage<T>` that the generated class that the view derives from. If the `@model` directive isn't specified, the `Model` property is of type `dynamic`. For more information, see [Strongly typed models and the @model keyword](../../tutorials/first-mvc-app/adding-model.md#strongly-typed-models-and-the--keyword).
 
 ### `@namespace`
 
@@ -785,7 +784,7 @@ For more information, including guidance on disabling prerendering with the dire
 
 *This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
 
-The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](xref:mvc/views/layout) to enable views or pages to render content in different parts of the HTML page. For more information, see <xref:mvc/views/layout>.
+The `@section` directive is used in conjunction with [MVC and Razor Pages layouts](layout.md) to enable views or pages to render content in different parts of the HTML page. For more information, see [Layout in ASP.NET Core](layout.md).
 
 ### `@typeparam`
 
@@ -992,13 +991,13 @@ Rendered output:
 
 *This scenario only applies to MVC views and Razor Pages (`.cshtml`).*
 
-There are three directives that pertain to [Tag Helpers](xref:mvc/views/tag-helpers/intro).
+There are three directives that pertain to [Tag Helpers](tag-helpers/intro.md).
 
 | Directive | Function |
 | --------- | -------- |
-| [`@addTagHelper`](xref:mvc/views/tag-helpers/intro#add-helper-label) | Makes Tag Helpers available to a view. |
-| [`@removeTagHelper`](xref:mvc/views/tag-helpers/intro#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
-| [`@tagHelperPrefix`](xref:mvc/views/tag-helpers/intro#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
+| [`@addTagHelper`](tag-helpers/intro.md#add-helper-label) | Makes Tag Helpers available to a view. |
+| [`@removeTagHelper`](tag-helpers/intro.md#remove-razor-directives-label) | Removes Tag Helpers previously added from a view. |
+| [`@tagHelperPrefix`](tag-helpers/intro.md#prefix-razor-directives-label) | Specifies a tag prefix to enable Tag Helper support and to make Tag Helper usage explicit. |
 
 ## Razor reserved keywords
 

@@ -78,7 +78,7 @@ For prior releases of .NET, we covered prerendering and integration in a single 
 
 You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/state-management/prerendered-state-persistence?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state).
 
-Blazor Web Apps automatically persist any registered app-level state created during prerendering, removing the need for the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper).
+Blazor Web Apps automatically persist any registered app-level state created during prerendering, removing the need for the [Persist Component State Tag Helper](../mvc/views/tag-helpers/built-in/persist-component-state.md).
 
 ### Form handling and model binding
 
@@ -539,7 +539,7 @@ Starting in .NET 8, the [RequestLocalizationOptions.CultureInfoUseUserOverride](
 
 Explicit binding to form values using the [[FromForm]](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute is now supported. Parameters bound to the request with `[FromForm]` include an [antiforgery token](../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed.
 
-Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Inferred binding to forms using the <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> types is also supported. [OpenAPI](../fundamentals/openapi/aspnetcore-openapi.md) metadata is inferred for form parameters to support integration with [Swagger UI](../tutorials/web-api-help-pages-using-swagger.md).
 
 For more information, see:
 

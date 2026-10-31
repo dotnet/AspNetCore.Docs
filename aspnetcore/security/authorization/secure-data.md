@@ -44,7 +44,7 @@ In the following image, the `admin@contoso.com` user is signed in and has access
 
 An administrator has all privileges. They can read, edit, or delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
+The app was created by [scaffolding](../../tutorials/first-mvc-app/adding-model.md#scaffold-movie-pages) the following `Contact` model:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -58,11 +58,11 @@ The sample contains the following authorization handlers:
 
 This tutorial is advanced. You should be familiar with:
 
-* [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
+* [ASP.NET Core](../../tutorials/first-mvc-app/start-mvc.md)
 * [Authentication and ASP.NET Core Identity](../authentication/identity.md)
 * [Account confirmation and password recovery](../authentication/accconfirm.md)
 * [Authorization](introduction.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)
 
 ## The starter and completed app
 
@@ -418,7 +418,7 @@ In the following image, `admin@contoso.com` is signed in and in the administrato
 
 The administrator has all privileges. She can read/edit/delete any contact and change the status of contacts.
 
-The app was created by [scaffolding](xref:tutorials/first-mvc-app/adding-model#scaffold-movie-pages) the following `Contact` model:
+The app was created by [scaffolding](../../tutorials/first-mvc-app/adding-model.md#scaffold-movie-pages) the following `Contact` model:
 
 [!code-csharp[](secure-data/samples/starter2.1/Models/Contact.cs?name=snippet1)]
 
@@ -434,11 +434,11 @@ The sample contains the following authorization handlers:
 
 This tutorial is advanced. You should be familiar with:
 
-* [ASP.NET Core](xref:tutorials/first-mvc-app/start-mvc)
+* [ASP.NET Core](../../tutorials/first-mvc-app/start-mvc.md)
 * [Authentication](../authentication/identity.md)
 * [Account Confirmation and Password Recovery](../authentication/accconfirm.md)
 * [Authorization](introduction.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)
 
 ## The starter and completed app
 

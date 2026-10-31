@@ -122,10 +122,10 @@ Refreshes the local version of a file that was downloaded using the latest conte
 
 After adding an OpenAPI reference and generating a client, see the following resources to generate code, test pages, and UIs that consume an API described by an OpenAPI document:
 
-* <xref:fundamentals/openapi/using-openapi-documents>
-* <xref:tutorials/get-started-with-nswag>
-* <xref:tutorials/first-web-api>
-* <xref:tutorials/min-web-api>
+* [Use the generated OpenAPI documents](using-openapi-documents.md)
+* [Get started with NSwag and ASP.NET Core](../../tutorials/getting-started-with-NSwag.md)
+* [Tutorial: Create a controller-based web API with ASP.NET Core](../../tutorials/first-web-api.md)
+* [Tutorial: Create a Minimal API with ASP.NET Core](../../tutorials/min-web-api.md)
 
 When you generate an OpenAPI document, avoid exposing it in production, because it reveals details of the API that you might not want to make public. The preceding articles show how to make the OpenAPI document and related UI available only in the development environment.
 

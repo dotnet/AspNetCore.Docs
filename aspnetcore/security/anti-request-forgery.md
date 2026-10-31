@@ -478,7 +478,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 
 :::moniker range=">= aspnetcore-8.0"
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -495,7 +495,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -526,7 +526,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -867,7 +867,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -884,7 +884,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -915,7 +915,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -1154,7 +1154,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -1171,7 +1171,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -1202,7 +1202,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -1421,7 +1421,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-In ASP.NET Core 2.0 or later, the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+In ASP.NET Core 2.0 or later, the [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 ```cshtml
 <form method="post">
@@ -1446,7 +1446,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   </form>
   ```
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   ```cshtml
   <!form method="post">
@@ -1496,7 +1496,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
