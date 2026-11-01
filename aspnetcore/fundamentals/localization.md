@@ -11,7 +11,7 @@ uid: fundamentals/localization
 
 :::moniker range="> aspnetcore-5.0"
 
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://github.com/hishamco)
 
 A multilingual website allows a website to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
@@ -42,48 +42,19 @@ Globalizing and localizing an app involves the following tasks:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
 
-:::moniker-end
-
-[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
-
 ## Related content
-
-:::moniker range="> aspnetcore-5.0"
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
-* [`IStringLocalizer`](xref:fundamentals/localization/make-content-localizable) : Uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
-* [`IHtmlLocalizer`](xref:fundamentals/localization/make-content-localizable#ihtmllocalizer): For resources that contain HTML.
-* [View and DataAnnotations](xref:fundamentals/localization/make-content-localizable#view-localization)
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-5.0"
-
 * <xref:fundamentals/localization/make-content-localizable>
 * <xref:fundamentals/localization/provide-resources>
 * <xref:fundamentals/localization/select-language-culture>
 * <xref:fundamentals/troubleshoot-aspnet-core-localization>
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Localization & Generics](https://hishambinateya.com/localization-and-generics)
 * [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-5.0"
-
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end
+[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
