@@ -360,7 +360,7 @@ Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared U
 The `Paginator` component now supports passing custom attributes to its rendered navigation (`<nav>`) element. In the following example, the `aria-label` attribute and value are passed:
 
 ```razor
-<Paginator State="@pagination" aria-label="Orders pages" />
+<Paginator State="@pagination" aria-label="Orders page" />
 ```
 
 #### CSS breaking change
