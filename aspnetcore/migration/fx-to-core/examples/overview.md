@@ -7,7 +7,7 @@ ms.date: 07/23/2025
 
 :::moniker range=">= aspnetcore-3.0"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview). In the process, it highlights related changes from ASP.NET MVC.
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md). In the process, it highlights related changes from ASP.NET MVC.
 
 Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
@@ -82,7 +82,7 @@ The ASP.NET Core *WebApp1* project already includes a minimal example controller
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
 1. Select the `About.cshtml`, `Contact.cshtml`, and `Index.cshtml` Razor view files, then select **Add**, replacing the existing files.
 
-For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.
+For more information, see [Handle requests with controllers in ASP.NET Core MVC](../../../mvc/controllers/actions.md) and [Views in ASP.NET Core MVC](../../../mvc/views/overview.md).
 
 ## Test each method
 
@@ -169,13 +169,13 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
 
 :::moniker range="= aspnetcore-2.2"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview) 2.2. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md) 2.2. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
 * Initial setup
 * Basic controllers and views
@@ -251,7 +251,7 @@ Run the app.
 
 ![Web app open in Microsoft Edge](_static/overview/hello-world.png)
 
-For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
+For more information, see [Controllers](../../../mvc/controllers/actions.md) and [Views](../../../mvc/views/overview.md).
 
 The following functionality requires migration from the example ASP.NET MVC project to the ASP.NET Core project:
 
@@ -299,7 +299,7 @@ The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styl
 
 * Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](../../../mvc/views/tag-helpers/intro.md). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
 * Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
@@ -338,7 +338,7 @@ The updated `_Layout.cshtml` file is shown below:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](xref:mvc/views/tag-helpers/intro) and has other improvements.
+* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) and has other improvements.
 
 ## Configure bundling and minification
 
@@ -355,13 +355,13 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
 
 :::moniker range="<= aspnetcore-2.1"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
 * Initial setup
 * Basic controllers and views
@@ -437,7 +437,7 @@ Run the app.
 
 ![Web app open in Microsoft Edge](_static/overview/hello-world.png)
 
-For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
+For more information, see [Controllers](../../../mvc/controllers/actions.md) and [Views](../../../mvc/views/overview.md).
 
 The following functionality requires migration from the example ASP.NET MVC project to the ASP.NET Core project:
 
@@ -485,7 +485,7 @@ The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styl
 
 * Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](../../../mvc/views/tag-helpers/intro.md). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
 * Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
@@ -524,7 +524,7 @@ The updated `_Layout.cshtml` file is shown below:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](xref:mvc/views/tag-helpers/intro) and has other improvements.
+* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) and has other improvements.
 
 ## Configure bundling and minification
 
@@ -541,6 +541,6 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end

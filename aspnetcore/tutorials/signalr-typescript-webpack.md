@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
 monikerRange: ">= aspnetcore-2.1"
 ms.date: 02/24/2026
-uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
 

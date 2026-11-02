@@ -3,7 +3,6 @@ title: Model validation in ASP.NET Core MVC
 description: Learn about model validation in ASP.NET Core MVC and Razor Pages.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/26/2026
-uid: mvc/models/validation
 ---
 # Model validation in ASP.NET Core MVC and Razor Pages
 
@@ -19,7 +18,7 @@ This article explains how to validate user input in an ASP.NET Core MVC or Razor
 
 ## Model state
 
-Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](xref:mvc/models/model-binding) are generally data conversion errors. For example, an "x" is entered in an integer field. Model validation occurs after model binding and reports errors where data doesn't conform to business rules. For example, a 0 is entered in a field that expects a rating between 1 and 5.
+Model state represents errors that come from two subsystems: model binding and model validation. Errors that originate from [model binding](model-binding.md) are generally data conversion errors. For example, an "x" is entered in an integer field. Model validation occurs after model binding and reports errors where data doesn't conform to business rules. For example, a 0 is entered in a field that expects a rating between 1 and 5.
 
 Both model binding and model validation occur before the execution of a controller action or a Razor Pages handler method. For web apps, it's the app's responsibility to inspect `ModelState.IsValid` and react appropriately. Web apps typically redisplay the page with an error message, as shown in the following Razor Pages example:
 
@@ -291,7 +290,7 @@ Client-side validation avoids an unnecessary round trip to the server when there
 
 :::code language="cshtml" source="~/mvc/models/validation/samples/6.x/ValidationSample/Views/Shared/_ValidationScriptsPartial.cshtml" id="snippet_Scripts":::
 
-The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validation](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validation, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
+The [jQuery Unobtrusive Validation](https://github.com/aspnet/jquery-validation-unobtrusive) script is a custom Microsoft front-end library that builds on the popular [jQuery Validation](https://jqueryvalidation.org/) plugin. Without jQuery Unobtrusive Validation, you would have to code the same validation logic in two places: once in the server-side validation attributes on model properties, and then again in client-side scripts. Instead, [Tag Helpers](../views/tag-helpers/intro.md) and [HTML helpers](../views/overview.md) use the validation attributes and type metadata from model properties to render HTML 5 `data-` attributes for the form elements that need validation. jQuery Unobtrusive Validation parses the `data-` attributes and passes the logic to jQuery Validation, effectively "copying" the server-side validation logic to the client. You can display validation errors on the client using tag helpers as shown here:
 
 :::code language="cshtml" source="~/mvc/models/validation/samples/6.x/ValidationSample/Pages/Movies/Create.cshtml" id="snippet_ReleaseDate" highlight="3-4":::
 
@@ -387,7 +386,7 @@ The following example shows the `data-` attributes for the [sample app's](https:
     id="Movie_ReleaseDate" name="Movie.ReleaseDate" value="">
 ```
 
-As noted earlier, [Tag Helpers](xref:mvc/views/tag-helpers/intro) and [HTML helpers](xref:mvc/views/overview) use information from validation attributes to render `data-` attributes. There are two options for writing code that results in the creation of custom `data-` HTML attributes:
+As noted earlier, [Tag Helpers](../views/tag-helpers/intro.md) and [HTML helpers](../views/overview.md) use information from validation attributes to render `data-` attributes. There are two options for writing code that results in the creation of custom `data-` HTML attributes:
 
 * Create a class that derives from <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.AttributeAdapterBase`1> and a class that implements <xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IValidationAttributeAdapterProvider>, and register your attribute and its adapter in DI. This method follows the [single responsibility principle](https://wikipedia.org/wiki/Single_responsibility_principle) in that server-related and client-related validation code is in separate classes. The adapter also has the advantage that since it's registered in DI, other services in DI are available to it if needed.
 * Implement <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IClientModelValidator> in your <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> class. This method might be appropriate if the attribute doesn't do any server-side validation and doesn't need any services from DI.
@@ -437,7 +436,7 @@ The preceding approach won't prevent client-side validation of ASP.NET Core Iden
 ## Related content
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
-* [Model Binding](xref:mvc/models/model-binding)
+* [Model Binding](model-binding.md)
 * <xref:blazor/forms/index>
 
 :::moniker-end

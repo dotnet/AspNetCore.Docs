@@ -7,7 +7,7 @@ This topic assumes a basic understanding of unit tests. If unfamiliar with test 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
 
 * [Introduction to Razor Pages](../../../razor-pages/index.md)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md)
 * [Razor Pages unit tests](xref:test/razor-pages-tests)
 
 > [!NOTE]
@@ -80,7 +80,7 @@ Web host configuration can be created independently of the test classes by inher
    * Call `UseSqlServer` with a connection string to the database.
 
    ```csharp
-   services.AddDbContext<ApplicationDbContext>((options, context) => 
+   services.AddDbContext<ApplicationDbContext>((options, context) =>
    {
        context.UseSqlServer(
            Configuration.GetConnectionString("TestingDbConnectionString"));
@@ -180,7 +180,7 @@ The sample SUT includes a scoped service that returns a quote. The quote is embe
 The following markup is generated when the SUT app is run:
 
 ```html
-<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in 
+<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in
     London, and we&#x27;re already 30,000 years late.">
 ```
 
@@ -197,7 +197,7 @@ To test the service and quote injection in an integration test, a mock service i
 The markup produced during the test's execution reflects the quote text supplied by `TestQuoteService`, thus the assertion passes:
 
 ```html
-<input id="quote" type="hidden" value="Something&#x27;s interfering with time, 
+<input id="quote" type="hidden" value="Something&#x27;s interfering with time,
     Mr. Scarman, and time is my business.">
 ```
 
@@ -300,7 +300,7 @@ The SUT is a Razor Pages message system with the following characteristics:
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.net/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](xref:mvc/controllers/testing) (the sample implements the repository pattern).
+Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](../../../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
 ### Test app organization
 
@@ -330,6 +330,6 @@ For SUTs that still use the [Web Host](../../../fundamentals/host/web-host.md), 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
 * <xref:test/razor-pages-tests>
 * [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
-* <xref:mvc/controllers/testing>
+* [Test controller logic in ASP.NET Core](../../../mvc/controllers/testing.md)
 
 :::moniker-end

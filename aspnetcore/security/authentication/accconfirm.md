@@ -14,9 +14,9 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com
 
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning article. You should be familiar with:
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -460,6 +460,6 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Related content
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)

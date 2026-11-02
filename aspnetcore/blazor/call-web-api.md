@@ -537,7 +537,7 @@ The [`System.Net.Http.Json` package](https://www.nuget.org/packages/System.Net.H
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server. <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
 
-The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
+The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](../mvc/views/razor.md#inject) directive:
 
 ```razor
 @using System.Net.Http
@@ -783,7 +783,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
 ```
 
 > [!WARNING]
-> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
+> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md#prevent-over-posting).
 
 For a fully working PATCH experience, see the `BlazorWebAppCallWebApi` [sample app](#sample-apps).
 
@@ -1475,7 +1475,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 Web APIs can be vulnerable to an *overposting* attack, also known as a *mass assignment* attack. An overposting attack occurs when a malicious user issues an HTML form POST to the server that processes data for properties that aren't part of the rendered form and that the developer doesn't wish to allow users to modify. The term "overposting" literally means that the malicious user has *over*-POSTed with the form.
 
-For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-api#prevent-over-posting>.
+For guidance on mitigating overposting attacks, see [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md#prevent-over-posting).
 
 ### Server-side
 

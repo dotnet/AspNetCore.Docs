@@ -16,7 +16,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](../../fundamentals/minimal-apis.md), [Web API with controllers](../../web-api/index.md), [MVC](xref:mvc/overview), and [Razor Pages](../../razor-pages/index.md). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](../../fundamentals/minimal-apis.md), [Web API with controllers](../../web-api/index.md), [MVC](../../mvc/overview.md), and [Razor Pages](../../razor-pages/index.md). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
 The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](../../fundamentals/index.md#how-to-download-a-sample) and [Preprocessor directives](/dotnet/csharp/fundamentals/program-structure/preprocessor-directives).
 
@@ -123,7 +123,7 @@ The following code does the same for a controller action:
 
 :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/PostController.cs" id="snippet_post":::
 
-### Use an alternative default policy override 
+### Use an alternative default policy override
 
 Alternatively, use Dependency Injection (DI) to initialize an instance with the following changes to the custom policy class:
 
@@ -259,7 +259,7 @@ An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides 
   * The [options.Configuration](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) property is a connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=,pw,ssl=True,abortConnect=False` for Azure Cache for Redis.
 
   * (Optional) The [options.InstanceName](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) property specifies a logical partition for the cache.
- 
+
   The configuration options are identical to the [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
 
 ### Not recommended: IDistributedCache

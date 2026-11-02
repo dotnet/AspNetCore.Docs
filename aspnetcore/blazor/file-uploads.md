@@ -14,7 +14,7 @@ This article explains how to upload files in Blazor with the <xref:Microsoft.Asp
 ## File uploads
 
 > [!WARNING]
-> Always follow security best practices when permitting users to upload files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> Always follow security best practices when permitting users to upload files. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 Use the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component to read browser file data into .NET code. The <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component renders an HTML `<input>` element of type `file` for single file uploads. Add the `multiple` attribute to permit the user to upload multiple files at once.
 
@@ -172,7 +172,7 @@ In the preceding command:
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 `FileUpload1.razor`:
 
@@ -240,7 +240,7 @@ The component assumes that the Interactive WebAssembly render mode (`Interactive
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.LastModified>
 * <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.ContentType>
 
-***Never trust the values of the preceding properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI.*** Treat all user-supplied data as a significant security risk to the app, server, and network. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+***Never trust the values of the preceding properties, especially the <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.Name> property for display in the UI.*** Treat all user-supplied data as a significant security risk to the app, server, and network. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 ## Upload files to a server with server-side rendering
 
@@ -327,7 +327,7 @@ The following `FileUpload2` component:
 > * Saving the file to a file system or service.
 > * Display in UIs that don't encode file names automatically or via developer code.
 >
-> For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> For more information on security considerations when uploading files to a server, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 `FileUpload2.razor`:
 
@@ -402,7 +402,7 @@ The following controller in the web API project saves uploaded files from the cl
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 `Controllers/FilesaveController.cs`:
 
@@ -495,7 +495,7 @@ public class FilesaveController(
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName*> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
-The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>.
+The server app must register controller services and map controller endpoints. For more information, see [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md).
 
 ## Upload files to a server with client-side rendering (CSR)
 
@@ -543,7 +543,7 @@ A security best practice for production apps is to avoid sending error messages 
 > * Saving the file to a file system or service.
 > * Display in UIs that don't encode file names automatically or via developer code.
 >
-> For more information on security considerations when uploading files to a server, see <xref:mvc/models/file-uploads#security-considerations>.
+> For more information on security considerations when uploading files to a server, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -774,7 +774,7 @@ The following controller in the server-side project saves uploaded files from th
 Because the example uses the app's [environment](xref:blazor/fundamentals/environments) as part of the path where files are saved, additional folders are required if other environments are used in testing and production. For example, create a `Staging/unsafe_uploads` folder for the `Staging` environment. Create a `Production/unsafe_uploads` folder for the `Production` environment.
 
 > [!WARNING]
-> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 In the following example for a hosted Blazor WebAssembly app or where a shared project is used to supply the `UploadResult` class, add the shared project's namespace:
 
@@ -881,7 +881,7 @@ public class FilesaveController(
 
 In the preceding code, <xref:System.IO.Path.GetRandomFileName*> is called to generate a secure file name. Never trust the file name provided by the browser, as a cyberattacker may choose an existing file name that overwrites an existing file or send a path that attempts to write outside of the app.
 
-The server app must register controller services and map controller endpoints. For more information, see <xref:mvc/controllers/routing>. We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](../security/anti-request-forgery.md) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>, antiforgery isn't enabled automatically. For more information, see <xref:mvc/controllers/routing>.
+The server app must register controller services and map controller endpoints. For more information, see [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md). We recommend adding controller services with <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> in order to automatically [mitigate Cross-Site Request Forgery (XSRF/CSRF) attacks](../security/anti-request-forgery.md) for authenticated users. If you merely use <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllers*>, antiforgery isn't enabled automatically. For more information, see [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md).
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -970,7 +970,7 @@ To use the following example in a test app:
 * Set the buffer to a different value (10 KB in the following example), if desired, for increased granularity in progress reporting. We don't recommended using a buffer larger than 30 KB due to performance and security concerns.
 
 > [!WARNING]
-> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+> The example saves files without scanning their contents, and the guidance in this article doesn't take into account additional security best practices for uploaded files. On staging and production systems, disable execute permission on the upload folder and scan files with an anti-virus/anti-malware scanner API immediately after upload. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 `FileUpload3.razor`:
 
@@ -1294,7 +1294,7 @@ Possible causes:
 :::moniker range=">= aspnetcore-6.0"
 
 * <xref:blazor/file-downloads>
-* <xref:mvc/models/file-uploads#security-considerations>
+* [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations)
 * <xref:blazor/forms/index>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 
@@ -1302,7 +1302,7 @@ Possible causes:
 
 :::moniker range="< aspnetcore-6.0"
 
-* <xref:mvc/models/file-uploads#security-considerations>
+* [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations)
 * <xref:blazor/forms/index>
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
 

@@ -3,7 +3,6 @@ title: "Tutorial: Create a controller-based web API with ASP.NET Core"
 ai-usage: ai-assisted
 description: Learn how to build a controller-based web API with ASP.NET Core.
 ms.date: 08/24/2026
-uid: tutorials/first-web-api
 ---
 
 # Tutorial: Create a controller-based web API with ASP.NET Core
@@ -14,19 +13,19 @@ By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twit
 
 :::moniker range=">= aspnetcore-9.0"
 
-This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating a Minimal API, see <xref:tutorials/min-web-api>.
+This tutorial teaches the basics of building a controller-based web API that uses a database. Another approach to creating APIs in ASP.NET Core is to create *Minimal APIs*. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating a Minimal API, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md).
 
 ## Overview
 
 This tutorial creates the following API:
 
-|API | Description | Request body | Response body |
-|--- | ---- | ---- | ---- |
-|`GET /api/todoitems` | Get all to-do items | None | Array of to-do items|
-|`GET /api/todoitems/{id}` | Get an item by ID | None | To-do item|
-|`POST /api/todoitems` | Add a new item | To-do item | To-do item |
-|`PUT /api/todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /api/todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+| API                          | Description             | Request body | Response body        |
+|------------------------------|-------------------------|--------------|----------------------|
+| `GET /api/todoitems`         | Get all to-do items     | None         | Array of to-do items |
+| `GET /api/todoitems/{id}`    | Get an item by ID       | None         | To-do item           |
+| `POST /api/todoitems`        | Add a new item          | To-do item   | To-do item           |
+| `PUT /api/todoitems/{id}`    | Update an existing item | To-do item   | None                 |
+| `DELETE /api/todoitems/{id}` | Delete an item          | None         | None                 |
 
 The following diagram shows the design of the app.
 
@@ -102,7 +101,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-Visual Studio launches a terminal window and displays the URL of the running app. The API is hosted at `https://localhost:<port>`, where `<port>` is a randomly chosen port number set at the project creation. 
+Visual Studio launches a terminal window and displays the URL of the running app. The API is hosted at `https://localhost:<port>`, where `<port>` is a randomly chosen port number set at the project creation.
 
    ```output
    ...
@@ -117,7 +116,7 @@ Visual Studio launches a terminal window and displays the URL of the running app
 
 <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404).
 
-Append `/weatherforecast` to the URL to test the WeatherForecast API. 
+Append `/weatherforecast` to the URL to test the WeatherForecast API.
 The browser displays JSON similar to the following example:
 
 ```json
@@ -181,7 +180,7 @@ Run the app:
 * The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404).
 
 * Append `/weatherforecast` to the URL to test the WeatherForecast API. The browser displays JSON similar to the following example:
-    
+
 ```json
 [
     {
@@ -216,7 +215,7 @@ Run the app:
     }
 ]
 ```
-    
+
 * After testing the web app using the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to close it.
 
 ---
@@ -227,7 +226,7 @@ Run the app:
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ## Create API testing UI with Swagger
 
@@ -239,7 +238,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -349,7 +348,7 @@ The preceding code:
 
   If the scaffolding operation fails, select **Add** to try scaffolding a second time.
 
-This step adds the `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.Tools` NuGet packages to the project. 
+This step adds the `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.Tools` NuGet packages to the project.
 These packages are required for scaffolding.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -405,7 +404,7 @@ The ASP.NET Core templates for:
 * Controllers with views include `[action]` in the route template.
 * API controllers don't include `[action]` in the route template.
 
-When the `[action]` token isn't in the route template, the [action](xref:mvc/controllers/routing#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
+When the `[action]` token isn't in the route template, the [action](../mvc/controllers/routing.md#action) name (method name) isn't included in the endpoint. That is, the action's associated method name isn't used in the matching route.
 
 Open the generated `Controllers/TodoItemsController.cs` file to review the scaffolded code. Scaffolding generates a complete, working controller with action methods that create, read, update, and delete `TodoItem` data:
 
@@ -425,7 +424,7 @@ Examine the scaffolded `PostTodoItem` method. The generated code already works. 
 
 The preceding code is an `HTTP POST` method, as indicated by the [`[HttpPost]`](xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute) attribute. The method gets the value of the `TodoItem` from the body of the HTTP request.
 
-For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
+For more information, see [Attribute routing with Http[Verb] attributes](../mvc/controllers/routing.md#verb).
 
 The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
@@ -448,14 +447,14 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
   ```
   @TodoApi_HostAddress = https://localhost:49738
-    
+
   POST {{TodoApi_HostAddress}}/api/todoitems
   Content-Type: application/json
-  
+
   {
     //TodoItem
   }
-  
+
   ###
   ```
 
@@ -472,20 +471,20 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
     "isComplete": true
   }
   ```
-  
+
   The TodoApi.http file should now look like the following example, but with your port number:
-  
+
   ```
   @TodoApi_HostAddress = https://localhost:7260
-  
+
   Post {{TodoApi_HostAddress}}/api/todoitems
   Content-Type: application/json
-  
+
   {
     "name": "walk dog",
     "isComplete": true
   }
-  
+
   ###
   ```
 
@@ -520,7 +519,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
   ![Swagger with Post request](~/tutorials/first-web-api/_static/9/swagger-post.png)
 
-* Swagger provides a **Responses** pane below the **Execute** button. 
+* Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response](~/tutorials/first-web-api/_static/9/swagger-post-response.png)
 
@@ -545,7 +544,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
   ```
   GET {{TodoApi_HostAddress}}/api/todoitems
-  
+
   ###
   ```
 
@@ -590,7 +589,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     "isComplete": true
   }
   ```
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Swagger.
@@ -650,8 +649,8 @@ The [`[HttpGet]`](xref:Microsoft.AspNetCore.Mvc.HttpGetAttribute) attribute deno
 
   :::code language="csharp" source="~/tutorials/first-web-api/samples/9.0/TodoApi/Controllers/TodoItemsController.cs" id="snippet_Route" highlight="1":::
 
-* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](xref:mvc/controllers/routing) is case insensitive.
-* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](xref:mvc/controllers/routing#verb).
+* Replace `[controller]` with the name of the controller, which by convention is the controller class name minus the "Controller" suffix. For this sample, the controller class name is **TodoItems**Controller, so the controller name is "TodoItems". ASP.NET Core [routing](../mvc/controllers/routing.md) is case insensitive.
+* If the `[HttpGet]` attribute has a route template (for example, `[HttpGet("products")]`), append that to the path. This sample doesn't use a template. For more information, see [Attribute routing with Http[Verb] attributes](../mvc/controllers/routing.md#verb).
 
 In the following `GetTodoItem` method, `"{id}"` is a placeholder variable for the unique identifier of the to-do item. When `GetTodoItem` is invoked, the value of `"{id}"` in the URL is provided to the method in its `id` parameter.
 
@@ -689,11 +688,11 @@ Use the `PUT` method to update the `TodoItem` that has Id = 1 and set its name t
   ```
   PUT {{TodoApi_HostAddress}}/api/todoitems/{{id}}
   Content-Type: application/json
-  
+
   {
     //TodoItem
   }
-  
+
   ###
   ```
 
@@ -715,7 +714,7 @@ Use the `PUT` method to update the `TodoItem` that has Id = 1 and set its name t
 * Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PUT request:
@@ -758,14 +757,14 @@ Use the `DELETE` method to delete the `TodoItem` that has Id = 1. Note the respo
 
   ```
   DELETE {{TodoApi_HostAddress}}/api/todoitems/{{id}}
-  
+
   ###
   ```
 
 * Select the **Send request** link for the DELETE request.
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a DELETE request:
@@ -820,7 +819,7 @@ Verify you can't post or get the secret field.
 
 ## Call the web API with JavaScript
 
-See [Tutorial: Call an ASP.NET Core web API with JavaScript](xref:tutorials/web-api-javascript).
+See [Tutorial: Call an ASP.NET Core web API with JavaScript](web-api-javascript.md).
 
 ## Web API video series
 
@@ -845,11 +844,11 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 For more information, see the following resources:
 
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
-* <xref:tutorials/min-web-api>
+* [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md)
 * [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md)
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:data/ef-rp/intro>
-* <xref:mvc/controllers/routing>
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md)
+* [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../data/ef-rp/intro.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Deploy ASP.NET Core apps to Azure App Service](../host-and-deploy/azure-apps/index.md)
 * [Host and deploy ASP.NET Core](../host-and-deploy/index.md)

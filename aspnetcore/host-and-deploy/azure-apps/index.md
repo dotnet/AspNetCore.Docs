@@ -27,7 +27,7 @@ Subscribe to the [App Service Announcements](https://github.com/Azure/app-servic
 
 The following articles are available in ASP.NET Core documentation:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+[Publish an ASP.NET Core app to Azure with Visual Studio](../../tutorials/publish-to-azure-webapp-using-vs.md)  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
 [Create your first pipeline](/azure/devops/pipelines/get-started-yaml)  

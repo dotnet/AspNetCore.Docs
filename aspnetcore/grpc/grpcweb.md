@@ -17,7 +17,7 @@ Learn how to configure an existing ASP.NET Core gRPC service to be callable from
 
 For instructions on adding a gRPC service to an existing ASP.NET Core app, see [Add gRPC services to an ASP.NET Core app](aspnetcore.md#add-grpc-services-to-an-aspnet-core-app).
 
-For instructions on creating a gRPC project, see <xref:tutorials/grpc/grpc-start>.
+For instructions on creating a gRPC project, see [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md).
 
 ## ASP.NET Core gRPC-Web versus Envoy
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/20/2026
-uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
 ---

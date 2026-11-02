@@ -207,13 +207,13 @@ The Database developer page exception filter <xref:Microsoft.Extensions.Dependen
 
 ## Exception filters
 
-In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
+In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see [Filters in ASP.NET Core](../../../mvc/controllers/filters.md#exception-filters).
 
 Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the built-in [exception handling middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/ExceptionHandler/ExceptionHandlerMiddleware.cs), <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. We recommend using `UseExceptionHandler`, unless you need to perform error handling differently based on which MVC action is chosen.
 
 ## Model state errors
 
-For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
+For information about how to handle model state errors, see [Model binding](../../../mvc/models/model-binding.md) and [Model validation](../../../mvc/models/validation.md).
 
 <a name="pds7"></a>
 
@@ -504,13 +504,13 @@ The Database developer page exception filter <xref:Microsoft.Extensions.Dependen
 
 ## Exception filters
 
-In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
+In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see [Filters in ASP.NET Core](../../../mvc/controllers/filters.md#exception-filters).
 
 Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the built-in [exception handling middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/ExceptionHandler/ExceptionHandlerMiddleware.cs), <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. We recommend using `UseExceptionHandler`, unless you need to perform error handling differently based on which MVC action is chosen.
 
 ## Model state errors
 
-For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
+For information about how to handle model state errors, see [Model binding](../../../mvc/models/model-binding.md) and [Model validation](../../../mvc/models/validation.md).
 
 :::moniker-end
 
@@ -754,7 +754,7 @@ The Database developer page exception filter `AddDatabaseDeveloperPageExceptionF
 
 ## Exception filters
 
-In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
+In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see [Filters in ASP.NET Core](../../../mvc/controllers/filters.md#exception-filters).
 
 Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the built-in [exception handling middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/ExceptionHandler/ExceptionHandlerMiddleware.cs), `UseExceptionHandler`. We recommend using `UseExceptionHandler`, unless you need to perform error handling differently based on which MVC action is chosen.
 
@@ -762,7 +762,7 @@ Exception filters are useful for trapping exceptions that occur within MVC actio
 
 ## Model state errors
 
-For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
+For information about how to handle model state errors, see [Model binding](../../../mvc/models/model-binding.md) and [Model validation](../../../mvc/models/validation.md).
 
 :::moniker-end
 
@@ -967,13 +967,13 @@ if (env.IsDevelopment())
 
 ## Exception filters
 
-In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
+In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exception that occurs during the execution of a controller action or another filter. For more information, see [Filters in ASP.NET Core](../../../mvc/controllers/filters.md#exception-filters).
 
 > [!TIP]
 > Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the exception handling middleware. We recommend using the middleware. Use filters only where you need to perform error handling differently based on which MVC action is chosen.
 
 ## Model state errors
 
-For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
+For information about how to handle model state errors, see [Model binding](../../../mvc/models/model-binding.md) and [Model validation](../../../mvc/models/validation.md).
 
 :::moniker-end

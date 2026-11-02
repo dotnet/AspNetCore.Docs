@@ -248,7 +248,7 @@ The built-in JSON input formatter supports the `application/json`, `text/json`, 
 
 By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) request body may be any content type accepted by an <xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter> for the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter type. For a request body with [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters the default content types are `multipart/form-data` or `application/x-www-form-urlencoded`.These content types will be included in the generated OpenAPI document if the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute is not specified on the route handler method.
 
-The content types accepted by a route handler can be restricted using a [filter](xref:mvc/controllers/filters) on the endpoint (action scope).
+The content types accepted by a route handler can be restricted using a [filter](../../../mvc/controllers/filters.md) on the endpoint (action scope).
 The [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute adds an action scope filter to the endpoint that restricts the content types that a route handler will accept.
 In this case, the requestBody in the generated OpenAPI document will include only the content types specified in the [`[Consumes]`](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute.
 

@@ -3,7 +3,6 @@ title: Author Tag Helpers in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to author Tag Helpers in ASP.NET Core.
 ms.date: 12/05/2019
-uid: mvc/views/tag-helpers/authoring
 ---
 # Author Tag Helpers in ASP.NET Core
 

@@ -29,7 +29,7 @@ Nullable page or view models are supported to improve the experience when using 
 
 ### Bind with `IParsable<T>.TryParse` in MVC and API Controllers
 
-The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](xref:mvc/models/model-binding#itp7).
+The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](../mvc/models/model-binding.md#itp7).
 
 ### Customize the cookie consent value
 
@@ -71,7 +71,7 @@ The following code configures validation to use the [`NewtonsoftJsonValidationMe
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
 
-For more information, see [Use JSON property names in validation errors](xref:mvc/models/validation?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
+For more information, see [Use JSON property names in validation errors](../mvc/models/validation.md?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
 
 ## Minimal APIs
 
@@ -207,7 +207,7 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 
 * Apps to call gRPC services with familiar HTTP concepts.
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
-* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
+* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](../tutorials/getting-started-with-swashbuckle.md).
 
 For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md?view=aspnetcore-7.0&preserve-view=true).
 

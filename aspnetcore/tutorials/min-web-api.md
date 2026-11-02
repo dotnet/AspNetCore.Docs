@@ -4,7 +4,6 @@ description: Create a Minimal API with ASP.NET Core using Visual Studio or Visua
 ai-usage: ai-assisted
 ms.date: 06/28/2026
 monikerRange: '>= aspnetcore-6.0'
-uid: tutorials/min-web-api
 ---
 
 # Tutorial: Create a Minimal API with ASP.NET Core
@@ -17,7 +16,7 @@ By [Wade Pickett](https://github.com/wadepickett) and [Tom Dykstra](https://gith
 
 Minimal APIs are designed to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../web-api/index.md) that contains more features, see [Create a web API](first-web-api.md).
 
 ## Overview
 
@@ -123,7 +122,7 @@ Add NuGet packages to support the database used in this tutorial.
 
 ---
 
-<a name="model-db-classes"></a> 
+<a name="model-db-classes"></a>
 
 ## The model and database context classes
 
@@ -183,7 +182,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-<a name="add-a-browser-ui-to-view-the-openapi-document"></a> 
+<a name="add-a-browser-ui-to-view-the-openapi-document"></a>
 
 ### Add a browser UI to view the OpenAPI document
 
@@ -257,26 +256,26 @@ Use the POST endpoint to add data to the app.
 
 ```
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
 ```
-  
+
   The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
-  
+
 ```http
   @TodoApi_HostAddress = https://localhost:7057
-  
+
   POST {{TodoApi_HostAddress}}/todoitems
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
-  
+
   ###
 ```
 
@@ -403,7 +402,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     "secret": null
   }
 ```
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or the Scalar UI.
@@ -506,7 +505,7 @@ Update the Todo item that has `Id = 1` and set its name to `"feed fish"`.
   The preceding code adds a Content-Type header and a JSON request body.
 
 * Select the **Send request** link that is above the new PUT request line.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use the Scalar UI to send a PUT request:
@@ -618,7 +617,7 @@ Update only the `name` property of the Todo item that has `Id = 1` and set its n
   The preceding code adds a Content-Type header and a JSON request body with only the field to update.
 
 * Select the **Send request** link that is above the new PATCH request line.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use the Scalar UI to send a PATCH request:
@@ -674,7 +673,7 @@ Your `Program.cs` file includes a single DELETE endpoint, defined with `MapDelet
 ```
 
 * Select the **Send request** link for the DELETE request.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use the Scalar UI to send a DELETE request:

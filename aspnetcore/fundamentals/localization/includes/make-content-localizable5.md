@@ -47,7 +47,7 @@ Some developers use the `Startup` class to contain global or shared strings. In 
 
 ## View localization
 
-The `IViewLocalizer` service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
+The `IViewLocalizer` service provides localized strings for a [view](../../../mvc/views/overview.md). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
 [!code-cshtml[](~/fundamentals/localization/samples/3.x/Localization/Views/Home/About.cshtml)]
 

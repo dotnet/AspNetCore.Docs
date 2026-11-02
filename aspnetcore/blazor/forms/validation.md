@@ -228,7 +228,7 @@ When built-in attributes can't express a rule, use a custom <xref:System.Compone
 
 ### Write model-based custom rules
 
-When built-in attributes can't express a rule, use a [custom validation attribute](xref:mvc/models/validation#custom-attributes) or implement [`IValidatableObject`](xref:mvc/models/validation#ivalidatableobject). Both run through `DataAnnotationsValidator`.
+When built-in attributes can't express a rule, use a [custom validation attribute](../../mvc/models/validation.md#custom-attributes) or implement [`IValidatableObject`](../../mvc/models/validation.md#ivalidatableobject). Both run through `DataAnnotationsValidator`.
 
 When returning a <xref:System.ComponentModel.DataAnnotations.ValidationResult> from a custom attribute, include the validated member name so the result can appear in that field's `ValidationMessage` component.
 

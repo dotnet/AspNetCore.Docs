@@ -334,7 +334,7 @@ builder.Services.Configure<OptionsExample>(
     builder.Configuration.GetSection("OptionsExample"));
 ```
 
-The following Razor component retrieves the settings with the [`@inject`](xref:mvc/views/razor#inject) directive or [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute).
+The following Razor component retrieves the settings with the [`@inject`](../../mvc/views/razor.md#inject) directive or [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute).
 
 `Options.razor`:
 

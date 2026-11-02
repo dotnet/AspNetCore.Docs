@@ -3,13 +3,12 @@ title: Partial views in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how to use partial views to break up large markup files and reduce the duplication of common markup across web pages in ASP.NET Core apps.
 ms.date: 04/30/2026
-uid: mvc/views/partial
 ---
 # Partial views in ASP.NET Core
 
 By [Steve Smith](https://ardalis.com/), [Maher JENDOUBI](https://twitter.com/maherjend), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Scott Sauber](https://twitter.com/scottsauber)
 
-A partial view is a [Razor](xref:mvc/views/razor) markup file (`.cshtml`) without a [`@page`](xref:mvc/views/razor#page) directive that renders HTML output *within* another markup file's rendered output.
+A partial view is a [Razor](razor.md) markup file (`.cshtml`) without a [`@page`](razor.md#page) directive that renders HTML output *within* another markup file's rendered output.
 
 :::moniker range=">= aspnetcore-2.1"
 
@@ -30,19 +29,19 @@ Partial views are an effective way to:
 
   When the same markup elements are used across markup files, a partial view removes the duplication of markup content into one partial view file. When the markup is changed in the partial view, it updates the rendered output of the markup files that use the partial view.
 
-Partial views shouldn't be used to maintain common layout elements. Common layout elements should be specified in [_Layout.cshtml](xref:mvc/views/layout) files.
+Partial views shouldn't be used to maintain common layout elements. Common layout elements should be specified in [_Layout.cshtml](layout.md) files.
 
-Don't use a partial view where complex rendering logic or code execution is required to render the markup. Instead of a partial view, use a [view component](xref:mvc/views/view-components).
+Don't use a partial view where complex rendering logic or code execution is required to render the markup. Instead of a partial view, use a [view component](view-components.md).
 
 ## Declare partial views
 
 :::moniker range=">= aspnetcore-2.0"
 
-A partial view is a `.cshtml` markup file without an [`@page`](xref:mvc/views/razor#page) directive maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
+A partial view is a `.cshtml` markup file without an [`@page`](razor.md#page) directive maintained within the *Views* folder (MVC) or *Pages* folder (Razor Pages).
 
 In ASP.NET Core MVC, a controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. In Razor Pages, a <xref:Microsoft.AspNetCore.Mvc.RazorPages.PageModel> can return a partial view represented as a <xref:Microsoft.AspNetCore.Mvc.PartialViewResult> object. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
-Unlike MVC view or page rendering, a partial view doesn't run `_ViewStart.cshtml`. For more information on `_ViewStart.cshtml`, see <xref:mvc/views/layout>.
+Unlike MVC view or page rendering, a partial view doesn't run `_ViewStart.cshtml`. For more information on `_ViewStart.cshtml`, see [Layout in ASP.NET Core](layout.md).
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views and pages.
 
@@ -54,7 +53,7 @@ A partial view is a `.cshtml` markup file maintained within the *Views* folder.
 
 A controller's <xref:Microsoft.AspNetCore.Mvc.ViewResult> is capable of returning either a view or a partial view. Referencing and rendering partial views is described in the [Reference a partial view](#reference-a-partial-view) section.
 
-Unlike MVC view rendering, a partial view doesn't run `_ViewStart.cshtml`. For more information on `_ViewStart.cshtml`, see <xref:mvc/views/layout>.
+Unlike MVC view rendering, a partial view doesn't run `_ViewStart.cshtml`. For more information on `_ViewStart.cshtml`, see [Layout in ASP.NET Core](layout.md).
 
 Partial view file names often begin with an underscore (`_`). This naming convention isn't required, but it helps to visually differentiate partial views from views.
 
@@ -113,7 +112,7 @@ We recommend that apps use the [Asynchronous HTML Helper](#asynchronous-html-hel
 
 ### Partial Tag Helper
 
-The [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper) requires ASP.NET Core 2.1 or later.
+The [Partial Tag Helper](tag-helpers/built-in/partial-tag-helper.md) requires ASP.NET Core 2.1 or later.
 
 The Partial Tag Helper renders content asynchronously and uses an HTML-like syntax:
 
@@ -149,7 +148,7 @@ The following example references a partial view with a relative path:
 <partial name="../Account/_PartialName.cshtml" />
 ```
 
-For more information, see <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>.
+For more information, see [Partial Tag Helper in ASP.NET Core](tag-helpers/built-in/partial-tag-helper.md).
 
 :::moniker-end
 
@@ -204,7 +203,7 @@ Since `RenderPartialAsync` streams rendered content, it provides better performa
 <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.Partial*> and <xref:Microsoft.AspNetCore.Mvc.Rendering.HtmlHelperPartialExtensions.RenderPartial*> are the synchronous equivalents of `PartialAsync` and `RenderPartialAsync`, respectively. The synchronous equivalents aren't recommended because there are scenarios in which they deadlock. The synchronous methods are targeted for removal in a future release.
 
 > [!IMPORTANT]
-> If you need to execute code, use a [view component](xref:mvc/views/view-components) instead of a partial view.
+> If you need to execute code, use a [view component](view-components.md) instead of a partial view.
 
 :::moniker range=">= aspnetcore-2.1"
 
@@ -212,7 +211,7 @@ Calling `Partial` or `RenderPartial` results in a Visual Studio analyzer warning
 
 > Use of IHtmlHelper.Partial may result in application deadlocks. Consider using &lt;partial&gt; Tag Helper or IHtmlHelper.PartialAsync.
 
-Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the [Partial Tag Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper). For more information on Partial Tag Helper migration, see [Migrate from an HTML Helper](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper#migrate-from-an-html-helper).
+Replace calls to `@Html.Partial` with `@await Html.PartialAsync` or the [Partial Tag Helper](tag-helpers/built-in/partial-tag-helper.md). For more information on Partial Tag Helper migration, see [Migrate from an HTML Helper](tag-helpers/built-in/partial-tag-helper.md#migrate-from-an-html-helper).
 
 :::moniker-end
 
@@ -258,7 +257,7 @@ The following conventions apply to partial view discovery:
 * Partial views can be *chained*&mdash;a partial view can call another partial view if a circular reference isn't formed by the calls. Relative paths are always relative to the current file, not to the root or parent of the file.
 
 > [!NOTE]
-> A [Razor](xref:mvc/views/razor) `section` defined in a partial view is invisible to parent markup files. The `section` is only visible to the partial view in which it's defined.
+> A [Razor](razor.md) `section` defined in a partial view is invisible to parent markup files. The `section` is only visible to the partial view in which it's defined.
 
 ## Access data from partial views
 
@@ -333,18 +332,18 @@ The second partial view renders the article's sections:
 
 :::moniker range=">= aspnetcore-2.1"
 
-* <xref:mvc/views/razor>
-* <xref:mvc/views/tag-helpers/intro>
-* <xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper>
-* <xref:mvc/views/view-components>
-* <xref:mvc/controllers/areas>
+* [Razor syntax reference for ASP.NET Core](razor.md)
+* [Tag Helpers in ASP.NET Core](tag-helpers/intro.md)
+* [Partial Tag Helper in ASP.NET Core](tag-helpers/built-in/partial-tag-helper.md)
+* [View components in ASP.NET Core](view-components.md)
+* [Areas in ASP.NET Core](../controllers/areas.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-2.1"
 
-* <xref:mvc/views/razor>
-* <xref:mvc/views/view-components>
-* <xref:mvc/controllers/areas>
+* [Razor syntax reference for ASP.NET Core](razor.md)
+* [View components in ASP.NET Core](view-components.md)
+* [Areas in ASP.NET Core](../controllers/areas.md)
 
 :::moniker-end

@@ -14,8 +14,8 @@ This article highlights the most significant changes in ASP.NET Core in .NET 6 w
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. For more information, see:
 
-* <xref:tutorials/min-web-api>
-* [Differences between Minimal APIs and APIs with controllers](xref:tutorials/min-web-api?view=aspnetcore-6.0#differences-between-minimal-apis-and-apis-with-controllers)
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* [Differences between Minimal APIs and APIs with controllers](../fundamentals/apis.md#choosing-between-approaches)
 * [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
 * [Code samples migrated to the new minimal hosting model in 6.0](../migration/50-to-60-samples.md)
 
@@ -445,7 +445,7 @@ To enable nullable reference types, add the following property to project files:
 
  For more information, see [Nullable reference types](/dotnet/csharp/nullable-references).
 
-<!-- REVIEW This is probably not worth adding 
+<!-- REVIEW This is probably not worth adding
 #### SignalR – Nullable annotations
 
 The [ASP.NET Core SignalR Client package](https://www.nuget.org/packages/Microsoft.AspNetCore.SignalR.Client/) has been annotated for nullability.
@@ -563,7 +563,7 @@ For implemented headers the get and set accessors are implemented by going direc
 
 ### Async streaming
 
-<!-- TODO Review  from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming 
+<!-- TODO Review  from: https://devblogs.microsoft.com/dotnet/asp-net-core-updates-in-net-6-preview-4/#async-streaming
 
 - Blog writes
 ASP.NET Core now supports async streaming from controller actions all the way down to the response JSON formatter.
@@ -597,7 +597,7 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[1]
       Protocol: HTTP/2
       Method: GET
       Scheme: https
-      PathBase: 
+      PathBase:
       Path: /
       Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
       Accept-Encoding: gzip, deflate, br
@@ -676,7 +676,7 @@ In such scenarios, enable shadow copying by customizing the ASP.NET Core module 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
-  <!-- To customize the asp.net core module uncomment and edit the following section. 
+  <!-- To customize the asp.net core module uncomment and edit the following section.
   For more info see https://go.microsoft.com/fwlink/?linkid=838655 -->
 
   <system.webServer>

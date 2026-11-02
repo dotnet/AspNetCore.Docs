@@ -68,7 +68,7 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 
 ## Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use the [`@inject`](../../mvc/views/razor.md#inject) directive to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -205,7 +205,7 @@ For more information, see <xref:blazor/components/prerender#disable-prerendering
 
 :::moniker range="< aspnetcore-8.0"
 
-To disable prerendering, open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+To disable prerendering, open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
 ```cshtml
 <component type="typeof(App)" render-mode="Server" />

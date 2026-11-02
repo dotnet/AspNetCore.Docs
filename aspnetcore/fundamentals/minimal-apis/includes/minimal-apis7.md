@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-7.0"
 
-This document provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
+This document provides a quick reference for Minimal APIs. For a guided introduction, see [Tutorial: Create a Minimal API with ASP.NET Core](../../../tutorials/min-web-api.md).
 
 The Minimal APIs consist of:
 

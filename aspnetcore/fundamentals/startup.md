@@ -19,7 +19,7 @@ For Blazor startup guidance, which adds to or supersedes the guidance in this ar
 
 ASP.NET Core apps initialize and configure startup in the app's `Program` file (`Program.cs`).
 
-The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults before the app is started. The ASP.NET Core project templates assign the web application builder to a variable named `builder`: 
+The first part of the `Program` file focuses on building the app. This phase utilizes <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults before the app is started. The ASP.NET Core project templates assign the web application builder to a variable named `builder`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -61,8 +61,8 @@ When <xref:Microsoft.AspNetCore.Builder.WebApplication.Run*> executes, the app t
 
 1. The web server ([Kestrel](servers/kestrel.md) by default) is started.
 
-   The host looks inside its dependency container, locates the registered server implementation (usually Kestrel), and triggers its startup cycle. Kestrel then: 
-   
+   The host looks inside its dependency container, locates the registered server implementation (usually Kestrel), and triggers its startup cycle. Kestrel then:
+
    * Looks up the defined hosting URLs and ports from configuration, environment variables, or command-line arguments.
    * Opens and allocates physical network sockets.
    * Binds ports and begins listening for incoming traffic.
@@ -251,7 +251,7 @@ The [ASP.NET Core templates](/dotnet/core/tools/dotnet-new) configure the pipeli
 * [HTTP Strict Transport Security (HSTS)](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol)
 * [HTTPS redirection](../security/enforcing-ssl.md)
 * [Static files](static-files.md)
-* ASP.NET Core [MVC](xref:mvc/overview) and [Razor Pages](../razor-pages/index.md)
+* ASP.NET Core [MVC](../mvc/overview.md) and [Razor Pages](../razor-pages/index.md)
 
 The following example demonstrates middleware for a typical Razor Pages app:
 

@@ -18,7 +18,7 @@ You'll learn how to:
 
 ## Prerequisite
 
-This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+This tutorial uses a database you set up in the previous step: [Part 4, add a model to an ASP.NET Core MVC app](../../adding-model.md).
 
 ## Working with the database context
 

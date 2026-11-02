@@ -371,7 +371,7 @@ The next tutorial explains the files created by scaffolding.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Previous: Get Started](../../razor-pages-start.md)
+> [Next: Scaffolded Razor Pages](../../page.md)
 
 :::moniker-end

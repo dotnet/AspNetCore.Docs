@@ -413,7 +413,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](xref:tutorials/web-api-help-pages-using-swagger) to test the API.
+This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](../../web-api-help-pages-using-swagger.md) to test the API.
 
 1. Install Swagger UI by running the following command:
 

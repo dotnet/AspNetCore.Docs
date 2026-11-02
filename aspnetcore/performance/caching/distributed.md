@@ -157,7 +157,7 @@ For more information, see [SQL Database on Azure](/azure/sql-database/).
 
 ### Distributed Postgres cache
 
-[Azure Database for PostgreSQL](/azure/postgresql) can be used as a distributed cache backing store via the `IDistributedCache` interface. Azure Database for PostgreSQL is a fully managed, AI-ready Database-as-a-Service (DBaaS) offering built on the open-source PostgreSQL engine. The design supports mission-critical workloads with predictable performance, robust security, high availability, and seamless scalability. 
+[Azure Database for PostgreSQL](/azure/postgresql) can be used as a distributed cache backing store via the `IDistributedCache` interface. Azure Database for PostgreSQL is a fully managed, AI-ready Database-as-a-Service (DBaaS) offering built on the open-source PostgreSQL engine. The design supports mission-critical workloads with predictable performance, robust security, high availability, and seamless scalability.
 
 After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres) NuGet package, configure your distributed cache as follows:
 
@@ -175,14 +175,14 @@ After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.o
       options.TableName = builder.Configuration.GetValue<string>("PostgresCache:TableName", "cache");
       options.CreateIfNotExists = builder.Configuration.GetValue<bool>("PostgresCache:CreateIfNotExists", true);
       options.UseWAL = builder.Configuration.GetValue<bool>("PostgresCache:UseWAL", false);
-    
+
       // Optional: Configure expiration settings.
 
       var expirationInterval = builder.Configuration.GetValue<string>("PostgresCache:ExpiredItemsDeletionInterval");
       if (!string.IsNullOrEmpty(expirationInterval) && TimeSpan.TryParse(expirationInterval, out var interval)) {
           options.ExpiredItemsDeletionInterval = interval;
       }
-    
+
       var slidingExpiration = builder.Configuration.GetValue<string>("PostgresCache:DefaultSlidingExpiration");
       if (!string.IsNullOrEmpty(slidingExpiration) && TimeSpan.TryParse(slidingExpiration, out var sliding)) {
           options.DefaultSlidingExpiration = sliding;
@@ -196,7 +196,7 @@ After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.o
 
    ```csharp
    public class MyService {
-       private readonly IDistributedCache _cache; 
+       private readonly IDistributedCache _cache;
 
        public MyService(IDistributedCache cache) {
            _cache = cache;
@@ -204,22 +204,22 @@ After installing the [Microsoft.Extensions.Caching.Postgres](https://www.nuget.o
 
        public async Task<string> GetDataAsync(string key) {
            var cachedData = await _cache.GetStringAsync(key);
-        
+
            if (cachedData == null) {
 
                // Fetch the data from source.
                var data = await FetchDataFromSource();
-            
+
                // Cache the data with options.
                var options = new DistributedCacheEntryOptions {
                   AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(30),
                   SlidingExpiration = TimeSpan.FromMinutes(5)
                };
-            
+
                await _cache.SetStringAsync(key, data, options);
                return data;
            }
-        
+
            return cachedData;
        }
    }
@@ -321,8 +321,8 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
 * [Repository README file for Microsoft.Extensions.Caching.Cosmos](https://github.com/Azure/Microsoft.Extensions.Caching.Cosmos/blob/master/README.md)
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
+* [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 * [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end

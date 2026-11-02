@@ -4,7 +4,6 @@ description: Learn how to publish an ASP.NET Core app to Azure App Service using
 monikerRange: '>= aspnetcore-6.0'
 ms.custom: devx-track-csharp, vscode-azure-extension-update-completed
 ms.date: 08/23/2022
-uid: tutorials/publish-to-azure-webapp-using-vscode
 ---
 
 # Publish an ASP.NET Core app to Azure with Visual Studio Code

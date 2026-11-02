@@ -98,7 +98,7 @@ Blazor uses the Blazor WebAssembly hosting model to download and execute compone
 
 ## Apply a render mode to a component instance
 
-To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#rendermode) where the component is used.
+To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](../../mvc/views/razor.md#rendermode) where the component is used.
 
 In the following example, interactive server-side rendering (interactive SSR) is applied to the `Dialog` component instance:
 
@@ -123,7 +123,7 @@ You can also reference custom render mode instances instantiated directly with c
 
 ## Apply a render mode to a component definition
 
-To specify the render mode for a component as part of its definition, use the [`@rendermode` Razor directive](xref:mvc/views/razor#rendermode) and the corresponding render mode attribute.
+To specify the render mode for a component as part of its definition, use the [`@rendermode` Razor directive](../../mvc/views/razor.md#rendermode) and the corresponding render mode attribute.
 
 ```razor
 @page "..."
@@ -452,7 +452,7 @@ Rules for applying render modes:
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
-The following examples use a non-routable, non-page `SharedMessage` component. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute). If you're testing these scenarios with a Blazor Web App, place the following component in the app's `Components` folder.
+The following examples use a non-routable, non-page `SharedMessage` component. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](../../mvc/views/razor.md#attribute). If you're testing these scenarios with a Blazor Web App, place the following component in the app's `Components` folder.
 
 `SharedMessage.razor`:
 

@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](../../first-web-api.md).
 
 ## Overview
 
@@ -177,7 +177,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -198,7 +198,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see [Get started with NSwag and ASP.NET Core](../../getting-started-with-NSwag.md#customize-api-documentation)
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -245,26 +245,26 @@ The POST endpoint will be used to add data to the app.
 
   ```
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
-  
+
   The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
-  
+
   ```
   @TodoApi_HostAddress = https://localhost:7057
-  
+
   Post {{TodoApi_HostAddress}}/todoitems
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
-  
+
   ###
   ```
 
@@ -299,7 +299,7 @@ The POST endpoint will be used to add data to the app.
 
   ![Swagger with Post request](~/tutorials/min-web-api/static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. 
+Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 
@@ -379,7 +379,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     "isComplete": true
   }
   ```
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Swagger.
@@ -473,7 +473,7 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 * Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PUT request:
@@ -549,7 +549,7 @@ Update only the `name` property of the to-do item that has `Id = 1` and set its 
 * Select the **Send request** link that is above the new PATCH request line.
 
   The PATCH request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PATCH request:
@@ -593,7 +593,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 * Select the **Send request** link for the DELETE request.
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a DELETE request:

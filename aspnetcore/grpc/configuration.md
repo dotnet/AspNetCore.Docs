@@ -100,4 +100,4 @@ For more information about the different handlers and their configuration option
 * [gRPC services with ASP.NET Core](aspnetcore.md)
 * [Call gRPC services with the .NET client](client.md)
 * [Logging and diagnostics in gRPC on .NET](diagnostics.md)
-* <xref:tutorials/grpc/grpc-start>
+* [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)

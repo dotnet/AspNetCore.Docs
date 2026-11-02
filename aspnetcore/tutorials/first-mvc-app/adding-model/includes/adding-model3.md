@@ -168,7 +168,7 @@ Visual Studio creates:
 
 The automatic creation of these files is known as *scaffolding*.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files).
 
@@ -208,7 +208,7 @@ You can't use the scaffolded pages yet because the database doesn't exist. If yo
 
 ## Initial migration
 
-Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations is a set of tools that let you create and update a database to match your data model.
+Use the EF Core [Migrations](../../../../data/ef-mvc/migrations.md) feature to create the database. Migrations is a set of tools that let you create and update a database to match your data model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -225,7 +225,7 @@ Update-Database
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
-  The database update command generates the following warning: 
+  The database update command generates the following warning:
 
   > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
@@ -384,7 +384,7 @@ Because the `Model` object is strongly typed (as an `IEnumerable<Movie>` object)
 ## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
+* [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
 * [Globalization and localization](../../../../fundamentals/localization.md)
 
 > [!div class="step-by-step"]

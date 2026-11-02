@@ -378,7 +378,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ## Related content
 
-* <xref:tutorials/signalr>
+* [Get started with ASP.NET Core SignalR](../../../tutorials/signalr.md)
 * [Use hubs in ASP.NET Core SignalR](../../hubs.md)
 * [ASP.NET Core SignalR JavaScript client](../../javascript-client.md)
 * [ASP.NET Core SignalR .NET client](../../dotnet-client.md)

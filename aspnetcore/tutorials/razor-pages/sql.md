@@ -3,7 +3,6 @@ title: Part 4, work with a database
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
 ms.date: 10/20/2026
-uid: tutorials/razor-pages/sql
 ---
 
 # Part 4 of tutorial series on Razor Pages
@@ -149,8 +148,8 @@ The app shows the seeded data:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Update the pages](xref:tutorials/razor-pages/da1)
+> [Previous: Scaffolded Razor Pages](page.md)
+> [Next: Update the pages](da1.md)
 
 :::moniker-end
 

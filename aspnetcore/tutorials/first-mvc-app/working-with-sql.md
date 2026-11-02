@@ -5,7 +5,6 @@ description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/22/2026
-uid: tutorials/first-mvc-app/working-with-sql
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
@@ -27,7 +26,7 @@ You'll learn how to:
 
 ## Prerequisite
 
-This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+This tutorial uses a database you set up in the previous step: [Part 4, add a model to an ASP.NET Core MVC app](adding-model.md).
 
 ## Working with the database context
 

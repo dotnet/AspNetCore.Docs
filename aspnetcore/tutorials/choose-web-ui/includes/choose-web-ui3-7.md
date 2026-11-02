@@ -33,7 +33,7 @@ Razor Pages benefits:
   * View specific logic and view models can be kept together in their own namespace and directory.
   * Groups of related pages can be kept in their own namespace and directory.
 
-To get started with your first ASP.NET Core Razor Pages app, see <xref:tutorials/razor-pages/razor-pages-start>. For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Razor Pages architecture and concepts in ASP.NET Core](../../../razor-pages/index.md).
+To get started with your first ASP.NET Core Razor Pages app, see [Tutorial: Get started with Razor Pages in ASP.NET Core](../../razor-pages/razor-pages-start.md). For a complete overview of ASP.NET Core Razor Pages, its architecture and benefits, see: [Razor Pages architecture and concepts in ASP.NET Core](../../../razor-pages/index.md).
 
 ## ASP.NET Core MVC
 
@@ -45,7 +45,7 @@ ASP.NET Core MVC benefits:
 * Clear [separation of concerns](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#separation-of-concerns) for maximum flexibility.
 * The Model-View-Controller separation of responsibilities ensures that the business model can evolve without being tightly coupled to low-level implementation details.
 
-To get started with ASP.NET Core MVC, see <xref:tutorials/first-mvc-app/start-mvc>. For an overview of ASP.NET Core MVC's architecture and benefits, see <xref:mvc/overview>.
+To get started with ASP.NET Core MVC, see [Get started with ASP.NET Core MVC](../../first-mvc-app/start-mvc.md). For an overview of ASP.NET Core MVC's architecture and benefits, see [Overview of ASP.NET Core MVC](../../../mvc/overview.md).
 
 ## ASP.NET Core Single Page Applications (SPA) with frontend JavaScript technologies
 
@@ -76,7 +76,7 @@ MVC, Razor Pages, and Blazor are part of the ASP.NET Core framework and are desi
 Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages benefits:
 
 * Prerendering executes Razor components on the server and renders them into a view or page, which improves the perceived load time of the app.
-* Add interactivity to existing views or pages with the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper).
+* Add interactivity to existing views or pages with the [Component Tag Helper](../../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
 

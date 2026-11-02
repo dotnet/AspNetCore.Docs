@@ -12,7 +12,7 @@ Authorization in ASP.NET Core is controlled with the [`[Authorize]` attribute](x
 This article uses Blazor Razor component examples and focuses on Blazor authorization scenarios. For Razor Pages and MVC guidance, see the following resources after reading this article:
 
 * [Simple authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/simple.md)
-* <xref:mvc/security/authorization/simple>
+* [Simple authorization in ASP.NET Core MVC](../../mvc/security/authorization/simple.md)
 
 ## `[Authorize]` attribute
 
@@ -29,7 +29,7 @@ You can only see this if you're signed in.
 > [!IMPORTANT]
 > Only use the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `@page` components reached via the Blazor router. Authorization is only performed as an aspect of routing and *not* for child components rendered within a page. To authorize the display of specific parts within a page, use an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component instead, which is described in <xref:blazor/security/index#authorizeview-component>.
 
-The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can also be applied to all of the Razor components in a Blazor app or a subset of Razor components in a folder using an imports file (`_Imports.razor`). Add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute):
+The [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) can also be applied to all of the Razor components in a Blazor app or a subset of Razor components in a folder using an imports file (`_Imports.razor`). Add an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
@@ -81,4 +81,4 @@ For server-side apps where most endpoints require authentication, see [Require g
 ## Related content
 
 * [Simple authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/simple.md)
-* <xref:mvc/security/authorization/simple>
+* [Simple authorization in ASP.NET Core MVC](../../mvc/security/authorization/simple.md)

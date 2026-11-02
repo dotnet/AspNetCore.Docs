@@ -2,7 +2,6 @@
 title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
 ms.date: 04/10/2025
-uid: data/ef-rp/complex-data-model
 ---
 
 <!-- Removed from V 5.0, CourseAssignment -->
@@ -88,7 +87,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 * The browser can enable HTML5 features. For example, show a calendar control, the locale-appropriate currency symbol, email links, and client-side input validation.
 * By default, the browser renders data using the correct format based on the locale.
 
-For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
+For more information, see the [\<input> Tag Helper documentation](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 ### The StringLength attribute
 
@@ -220,7 +219,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   SQLite does not support this migration operation ('AlterColumnOperation'). For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
   ```
 
-For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migrations).
+For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](migrations.md).
 
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
@@ -728,8 +727,8 @@ Run the app. Running the app runs the `DbInitializer.Initialize` method. The `Db
 The next two tutorials show how to read and update related data.
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/migrations)
-> [Next tutorial](xref:data/ef-rp/read-related-data)
+> [Previous tutorial](migrations.md)
+> [Next tutorial](read-related-data.md)
 
 :::moniker-end
 
@@ -795,7 +794,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 * The browser can enable HTML5 features. For example, show a calendar control, the locale-appropriate currency symbol, email links, and client-side input validation.
 * By default, the browser renders data using the correct format based on the locale.
 
-For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
+For more information, see the [\<input> Tag Helper documentation](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 ### The StringLength attribute
 
@@ -922,7 +921,7 @@ SqliteException: SQLite Error 1: 'no such column: s.FirstName'.
   SQLite does not support this migration operation ('AlterColumnOperation'). For more information, see http://go.microsoft.com/fwlink/?LinkId=723262.
   ```
 
-For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](xref:data/ef-rp/migrations).
+For this tutorial, the way to get past this error is to delete and re-create the initial migration. For more information, see the SQLite warning note at the top of the [migrations tutorial](migrations.md).
 
 * Delete the *Migrations* folder.
 * Run the following commands to drop the database, create a new initial migration, and apply the migration:
@@ -1432,8 +1431,8 @@ Run the app. Running the app runs the `DbInitializer.Initialize` method. The `Db
 The next two tutorials show how to read and update related data.
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/migrations)
-> [Next tutorial](xref:data/ef-rp/read-related-data)
+> [Previous tutorial](migrations.md)
+> [Next tutorial](read-related-data.md)
 
 :::moniker-end
 
@@ -1485,7 +1484,7 @@ The `DisplayFormat` attribute can be used by itself. It's generally a good idea 
 * The browser can enable HTML5 features. For example, show a calendar control, the locale-appropriate currency symbol, email links, client-side input validation, etc.
 * By default, the browser renders data using the correct format based on the locale.
 
-For more information, see the [\<input> Tag Helper documentation](xref:mvc/views/working-with-forms#the-input-tag-helper).
+For more information, see the [\<input> Tag Helper documentation](../../mvc/views/working-with-forms.md#the-input-tag-helper).
 
 Run the app. Navigate to the Students Index page. Times are no longer displayed. Every view that uses the `Student` model displays the date without time.
 
@@ -2089,7 +2088,7 @@ The next tutorial covers related data.
 * [YouTube version of this tutorial(Part 2)](https://www.youtube.com/watch?v=Je0Z5K1TNmY)
 
 > [!div class="step-by-step"]
-> [Previous](xref:data/ef-rp/migrations)
-> [Next](xref:data/ef-rp/read-related-data)
+> [Previous](migrations.md)
+> [Next](read-related-data.md)
 
 :::moniker-end

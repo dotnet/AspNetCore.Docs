@@ -51,7 +51,7 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Design
- 
+
 ```
 
 The preceding commands add:
@@ -217,7 +217,7 @@ The scaffolded pages can't be used yet because the database doesn't exist. Runni
 
 ## Initial migration
 
-Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. Migrations are a set of tools that create and update a database to match the data model.
+Use the EF Core [Migrations](../../../../data/ef-mvc/migrations.md) feature to create the database. Migrations are a set of tools that create and update a database to match the data model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -228,7 +228,7 @@ In the Package Manager Console (PMC), enter the following commands:
 ```powershell
 Add-Migration InitialCreate
 Update-Database
- 
+
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
@@ -431,7 +431,7 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 ## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
+* [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
 * [Globalization and localization](../../../../fundamentals/localization.md)
 
 > [!div class="step-by-step"]

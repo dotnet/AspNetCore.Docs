@@ -16,7 +16,7 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 For more information, see the introduction and tutorial:
 
 * [Introduction to Razor Pages](../razor-pages/index.md)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Get started with Razor Pages](../tutorials/razor-pages/razor-pages-start.md)
 
 ## ASP.NET Core metapackage
 
@@ -118,7 +118,7 @@ For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attack
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
-For more information, see [Razor view compilation and precompilation in ASP.NET Core](xref:mvc/views/view-compilation).
+For more information, see [Razor view compilation and precompilation in ASP.NET Core](../mvc/views/view-compilation.md).
 
 ## Razor support for C# 7.1
 

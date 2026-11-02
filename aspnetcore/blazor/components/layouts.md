@@ -103,7 +103,7 @@ In apps that target .NET 10 or earlier, you can adopt the following approach in 
 
 Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
 
-In the imports file (`_Imports.razor`), add an [`@using`](xref:mvc/views/razor#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
+In the imports file (`_Imports.razor`), add an [`@using`](../../mvc/views/razor.md#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
 
 ```razor
 @using Microsoft.AspNetCore.Components.Sections
@@ -193,7 +193,7 @@ Layout file locations and namespaces changed over time for the Blazor framework.
 
 ### Apply a layout to a component
 
-Use the [`@layout`](xref:mvc/views/razor#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](xref:mvc/views/razor#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
+Use the [`@layout`](../../mvc/views/razor.md#layout) Razor directive to apply a layout to a routable Razor component that has an [`@page`](../../mvc/views/razor.md#page) directive. The compiler converts `@layout` into a <xref:Microsoft.AspNetCore.Components.LayoutAttribute> and applies the attribute to the component class.
 
 The content of the following `Episodes` component is inserted into the `DoctorWhoLayout` at the position of `@Body`.
 
@@ -272,7 +272,7 @@ Every folder of an app can optionally contain an imports file named `_Imports.ra
 ...
 ```
 
-The imports file is similar to the [_ViewImports.cshtml file for Razor views and pages](xref:mvc/views/layout#importing-shared-directives) but applied specifically to Razor component files.
+The imports file is similar to the [_ViewImports.cshtml file for Razor views and pages](../../mvc/views/layout.md#importing-shared-directives) but applied specifically to Razor component files.
 
 Specifying a layout in the imports file overrides a layout specified as the router's [default app layout](#apply-a-default-layout-to-an-app), which is described in the following section.
 
@@ -282,7 +282,7 @@ Specifying a layout in the imports file overrides a layout specified as the rout
 > The same condition results when using an imports file to apply a layout to a folder of components with the `@layout` directive and the layout component itself is in the same folder or folder hierarchy of the imports file. An infinite loop of applying the layout occurs because the `@layout` directive is also applied to the layout component. To avoid recursion problems, we recommend storing layout components in their own folder (for example, `Layouts`), away from where imports files are applying them.
 
 > [!NOTE]
-> The [`@layout`](xref:mvc/views/razor#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](xref:mvc/views/razor#page) directive.
+> The [`@layout`](../../mvc/views/razor.md#layout) Razor directive only applies a layout to routable Razor components with an [`@page`](../../mvc/views/razor.md#page) directive.
 
 ### Apply a default layout to an app
 
@@ -457,5 +457,5 @@ To control the content in a layout from a child Razor component, see <xref:blazo
 
 ## Related content
 
-* <xref:mvc/views/layout>
+* [Layout in ASP.NET Core](../../mvc/views/layout.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))

@@ -16,7 +16,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 
 * <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
 * [Static file middleware](static-files.md) uses File Providers to locate static files.
-* [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
+* [Razor](../mvc/views/razor.md) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
@@ -101,7 +101,7 @@ The `FileProviderSample` sample app creates an `ManifestEmbeddedFileProvider` an
 `Startup.cs`:
 
 ```csharp
-var manifestEmbeddedProvider = 
+var manifestEmbeddedProvider =
     new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
@@ -147,10 +147,10 @@ Some file systems, such as Docker containers and network shares, may not reliabl
 
 File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
 
-**`*`**  
+**`*`**
 Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
 
-**`**`**  
+**`**`**
 Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
 The following table provides common examples of glob patterns.
@@ -170,7 +170,7 @@ ASP.NET Core abstracts file system access through the use of File Providers. Fil
 
 * <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
 * [Static file middleware](static-files.md) uses File Providers to locate static files.
-* [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
+* [Razor](../mvc/views/razor.md) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
@@ -248,7 +248,7 @@ The sample app creates an `ManifestEmbeddedFileProvider` and passes the currentl
 `Startup.cs`:
 
 ```csharp
-var manifestEmbeddedProvider = 
+var manifestEmbeddedProvider =
     new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
@@ -289,24 +289,24 @@ Some file systems, such as Docker containers and network shares, may not reliabl
 
 File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
 
-**`*`**  
+**`*`**
 Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
 
-**`**`**  
+**`**`**
 Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
 **Glob pattern examples**
 
-**`directory/file.txt`**  
+**`directory/file.txt`**
 Matches a specific file in a specific directory.
 
-**`directory/*.txt`**  
+**`directory/*.txt`**
 Matches all files with *.txt* extension in a specific directory.
 
-**`directory/*/appsettings.json`**  
+**`directory/*/appsettings.json`**
 Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.
 
-**`directory/**/*.txt`**  
+**`directory/**/*.txt`**
 Matches all files with *.txt* extension found anywhere under the *directory* folder.
 
 :::moniker-end

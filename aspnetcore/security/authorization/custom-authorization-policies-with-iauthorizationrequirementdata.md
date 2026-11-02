@@ -9,7 +9,7 @@ ms.date: 10/13/2026
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the [Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md).
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -75,7 +75,7 @@ The endpoint displays the user's name when they satisfy the minimum age policy, 
 If the user's birth date claim indicates that they're at least 21 years old, the endpoint displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 
 > [!NOTE]
-> For MVC controller guidance that demonstrates the same behavior, see <xref:mvc/security/authorization/iard>.
+> For MVC controller guidance that demonstrates the same behavior, see [Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md).
 
 JWT bearer authentication services are added in the app's `Program` file:
 
@@ -182,12 +182,12 @@ Logging indicates that the age requirement was met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
 Re-execute the `curl.exe` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement isn't met. Access to the endpoint is forbidden (status code 403):
@@ -204,14 +204,14 @@ Logging indicates that the age requirement wasn't met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::
 
 ## Related content
 
-<xref:mvc/security/authorization/iard>
+[Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md)

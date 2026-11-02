@@ -2,7 +2,7 @@
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](../../first-web-api.md).
 
 ## Overview
 
@@ -109,7 +109,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane.
-* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**. 
+* In the **Version** drop down select the latest version 7 available, for example `7.0.17`, and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -129,7 +129,7 @@ In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todoGroup/Todo.cs":::
 
-The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
+The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
 Create a file named `TodoDb.cs` with the following code:
 
@@ -159,7 +159,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -180,7 +180,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see [Get started with NSwag and ASP.NET Core](../../getting-started-with-NSwag.md#customize-api-documentation)
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -219,7 +219,7 @@ The POST endpoint will be used to add data to the app.
 
   ![Swagger with Post](~/tutorials/min-web-api/static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. 
+Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 
@@ -499,7 +499,7 @@ See [Minimal APIs quick reference](../../../fundamentals/minimal-apis.md)
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help in choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](../../first-web-api.md).
 
 ## Overview
 
@@ -603,7 +603,7 @@ NuGet packages must be added to support the database and diagnostics used in thi
 * Select the **Browse** tab.
 * Enter **Microsoft.EntityFrameworkCore.InMemory** in the search box, and then select `Microsoft.EntityFrameworkCore.InMemory`.
 * Select the **Project** checkbox in the right pane.
-* In the **Version** drop down select the latest version 7 available, for example `6.0.28`, and then select **Install**. 
+* In the **Version** drop down select the latest version 7 available, for example `6.0.28`, and then select **Install**.
 * Follow the preceding instructions to add the `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` package with the latest version 7 available.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -623,7 +623,7 @@ In the project folder, create a file named `Todo.cs` with the following code:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/6.x/todo/Todo.cs":::
 
-The preceding code creates the model for this app. A *model* is a class that represents data that the app manages. 
+The preceding code creates the model for this app. A *model* is a class that represents data that the app manages.
 
 Create a file named `TodoDb.cs` with the following code:
 
@@ -653,7 +653,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -678,7 +678,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see [Get started with NSwag and ASP.NET Core](../../getting-started-with-NSwag.md#customize-api-documentation)
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -717,7 +717,7 @@ The POST endpoint will be used to add data to the app.
 
   ![Swagger with Post data](~/tutorials/min-web-api/static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. 
+Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response pane](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 

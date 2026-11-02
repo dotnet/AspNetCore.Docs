@@ -296,6 +296,6 @@ For more information on RCLs, see the following articles:
 ## Related content
 
 * [Razor Pages CSS isolation](../../razor-pages/index.md#css-isolation)
-* [MVC CSS isolation](xref:mvc/views/overview#css-isolation)
+* [MVC CSS isolation](../../mvc/views/overview.md#css-isolation)
 
 :::moniker-end

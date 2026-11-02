@@ -2,7 +2,6 @@
 title: Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
 description: Part 8 of Razor Pages and Entity Framework tutorial series.
 ms.date: 01/29/2025
-uid: data/ef-rp/concurrency
 ---
 # Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
 
@@ -208,7 +207,7 @@ b.Property<Guid>("ConcurrencyToken")
 
 # [Visual Studio](#tab/visual-studio)
 
-Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+Follow the instructions in [Scaffold Student pages](intro.md#scaffold-student-pages) with the following exceptions:
   * Create a *Pages/Departments* folder.  
   * Use `Department` for the model class.
   * Use the existing context class instead of creating a new one.
@@ -313,7 +312,7 @@ In the preceding highlighted code:
 The following code shows the `Department` model. `Department` is initialized in the:
 
   * `OnGetAsync` method by the EF query.
-  * `OnPostAsync` method by the hidden field in the Razor page using [model binding](xref:mvc/models/model-binding):
+  * `OnPostAsync` method by the hidden field in the Razor page using [model binding](../../mvc/models/model-binding.md):
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -629,7 +628,7 @@ This command:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Follow the instructions in [Scaffold Student pages](xref:data/ef-rp/intro#scaffold-student-pages) with the following exceptions:
+* Follow the instructions in [Scaffold Student pages](intro.md#scaffold-student-pages) with the following exceptions:
 
 * Create a *Pages/Departments* folder.  
 * Use `Department` for the model class.
@@ -930,7 +929,7 @@ The preceding commands:
 
 # [Visual Studio](#tab/visual-studio) 
 
-Follow the instructions in [Scaffold the student model](xref:data/ef-rp/intro#scaffold-student-pages) and use `Department` for the model class.
+Follow the instructions in [Scaffold the student model](intro.md#scaffold-student-pages) and use `Department` for the model class.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -1073,7 +1072,7 @@ The browser shows the Index page with the changed value and updated rowVersion i
 
 Delete the test department from the second tab. A concurrency error is display with the current values from the DB. Clicking **Delete** deletes the entity, unless `RowVersion` has been updated.
 
-See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
+See [Inheritance](../ef-mvc/inheritance.md) on how to inherit a data model.
 
 [!INCLUDE[](~/includes/reliableWAP_H2.md)]
 
@@ -1101,7 +1100,7 @@ See [Inheritance](xref:data/ef-mvc/inheritance) on how to inherit a data model.
 
 ## Next steps
 
-This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](xref:data/ef-mvc/index).
+This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](../ef-mvc/index.md).
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/update-related-data)
+> [Previous tutorial](update-related-data.md)

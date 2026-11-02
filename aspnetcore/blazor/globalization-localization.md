@@ -61,7 +61,7 @@ The guidance in this article doesn't cover setting the page's HTML language attr
 
 ## Globalization
 
-The [`@bind`](xref:mvc/views/razor#bind) attribute directive applies formats and parses values for display based on the user's first [preferred language](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages) that the app supports. [`@bind`](xref:mvc/views/razor#bind) supports the [`@bind:culture`](xref:mvc/views/razor#bindculture) parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value.
+The [`@bind`](../mvc/views/razor.md#bind) attribute directive applies formats and parses values for display based on the user's first [preferred language](https://developer.mozilla.org/docs/Web/API/NavigatorLanguage/languages) that the app supports. [`@bind`](../mvc/views/razor.md#bind) supports the [`@bind:culture`](../mvc/views/razor.md#bindculture) parameter to provide a <xref:System.Globalization.CultureInfo?displayProperty=fullName> for parsing and formatting a value.
 
 The current culture can be accessed from the <xref:System.Globalization.CultureInfo.CurrentCulture?displayProperty=fullName> property.
 
@@ -76,7 +76,7 @@ The preceding field types:
 * Can't contain free-form text.
 * Provide user interaction characteristics based on the browser's implementation.
 
-Blazor provides built-in support to render values in the current culture. Therefore, specifying a culture with [`@bind:culture`](xref:mvc/views/razor#bindculture) isn't recommended when using the `date` and `number` field types.
+Blazor provides built-in support to render values in the current culture. Therefore, specifying a culture with [`@bind:culture`](../mvc/views/razor.md#bindculture) isn't recommended when using the `date` and `number` field types.
 
 The following field types have specific formatting requirements and aren't supported by all of the major browsers, so they aren't supported by Blazor:
 
@@ -1881,9 +1881,9 @@ To create localization shared resources, adopt the following approach.
   > [!WARNING]
   > When following the approach in this section, you can't simultaneously set <xref:Microsoft.Extensions.Localization.LocalizationOptions.ResourcesPath?displayProperty=nameWithType> and use <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory.Create*?displayProperty=nameWithType> to load resources.
 
-* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> in a Razor component, either place an [`@using`](xref:mvc/views/razor#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
+* To reference the dummy class for an injected <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> in a Razor component, either place an [`@using`](../mvc/views/razor.md#using) directive for the localization namespace or include the localization namespace in the dummy class reference. In the following examples:
 
-  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](xref:mvc/views/razor#using) directive.
+  * The first example states the `Localization` namespace for the `SharedResource` dummy class with an [`@using`](../mvc/views/razor.md#using) directive.
   * The second example states the `SharedResource` dummy class's namespace explicitly.
 
   In a Razor component, use ***either*** of the following approaches:

@@ -175,7 +175,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md)
 * <xref:blazor/components/integration>
 
 :::moniker-end
@@ -774,7 +774,7 @@ By default, components are prerendered on the server before the client connectio
 
 :::moniker range="< aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 :::moniker-end
 
