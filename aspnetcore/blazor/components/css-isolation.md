@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor CSS isolation
 description: Learn how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 11/11/2025
-uid: blazor/components/css-isolation
 ---
 # ASP.NET Core Blazor CSS isolation
 
@@ -248,7 +247,7 @@ Use the wildcard (`*`) operator to share scope identifiers across multiple files
 
 ### Change base path for static web assets
 
-The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
+The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](../fundamentals/static-files.md#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
 
 ```xml
 <PropertyGroup>
@@ -288,7 +287,7 @@ Isolated styles for components in a NuGet package or [Razor class library (RCL)]
 
 For more information on RCLs, see the following articles:
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](class-libraries.md)
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 :::moniker range=">= aspnetcore-6.0"

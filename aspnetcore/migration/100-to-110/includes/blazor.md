@@ -6,11 +6,11 @@ For new feature coverage, see [What's new in ASP.NET Core in .NET 11](../../../r
 
 *This section only applies to Blazor Web Apps.*
 
-The inline JS event handler for the navigation bar toggler isn't present in the `NavMenu` component of the Blazor Web App project template in .NET 11 or later. Apps generated from the project template use a [collocated JS module](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation links on the rendered page. The approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler for the navigation bar toggler isn't present in the `NavMenu` component of the Blazor Web App project template in .NET 11 or later. Apps generated from the project template use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation links on the rendered page. The approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
 Use the following instructions to adopt the new JS module approach for the navigation links toggler in an existing app.
 
-Add a [collocated JS module](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) next to the app's `NavMenu` component.
+Add a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) next to the app's `NavMenu` component.
 
 `NavMenu.razor.js`:
 

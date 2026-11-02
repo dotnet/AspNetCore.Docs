@@ -11,7 +11,7 @@ ms.date: 10/15/2026
 
 Learn how to serve, secure, and optimize static files in ASP.NET Core apps by using Map Static Assets endpoint conventions or static file middleware. Static files, also called static assets, aren't dynamically generated and are served directly to clients, including HTML, CSS, images, and JavaScript.
 
-For Blazor static files guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/static-files>.
+For Blazor static files guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor static files](../blazor/fundamentals/static-files.md).
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -33,10 +33,10 @@ Map Static Assets provides the following benefits:
 * [Fingerprinting](https://developer.mozilla.org/docs/Glossary/Fingerprinting) for all assets at build time with a [Base64](https://developer.mozilla.org/docs/Glossary/Base64)-encoded string of the [SHA-256](xref:System.Security.Cryptography.SHA256) hash of each file's content. This prevents reusing an old version of a file, even if the old file is cached. Fingerprinted assets are cached using the [`immutable` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives), which results in the browser never requesting the asset again until it changes. For browsers that don't support the `immutable` directive, a [`max-age` directive](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#directives) is added.
   * Even if an asset isn't fingerprinted, content based `ETags` are generated for each static asset using the fingerprint hash of the file as the `ETag` value. This ensures that the browser only downloads a file if its content changes (or the file is being downloaded for the first time).
   * Internally, the framework maps physical assets to their fingerprints, which allows the app to:
-    * Find automatically generated assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](xref:blazor/components/css-isolation) and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
+    * Find automatically generated assets, such as Razor component scoped CSS for Blazor's [CSS isolation feature](../blazor/components/css-isolation.md) and JS assets described by [JS import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap).
     * Generate link tags in the `<head>` content of the page to preload assets.
 
-Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](xref:blazor/fundamentals/index#community-links-to-blazor-resources).
+Map Static Assets doesn't provide features for minification or other file transformations. Minification is usually handled by custom code or [third-party tooling](../blazor/fundamentals/index.md#community-links-to-blazor-resources).
 
 > [!NOTE]
 > <xref:Microsoft.AspNetCore.Builder.StaticAssetsEndpointRouteBuilderExtensions.MapStaticAssets*> doesn't serve [default documents](#serve-default-documents) on its own. To serve default documents, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> followed by <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>. For more information, see the [Serve default documents](#serve-default-documents) section.
@@ -292,7 +292,7 @@ For the preceding example, Razor Pages and MVC views support tilde-slash notatio
 
 :::moniker range=">= aspnetcore-6.0"
 
-*The guidance in this section applies to Razor Pages and MVC apps. For guidance that applies to Blazor Web Apps, see <xref:blazor/fundamentals/static-files#serve-files-from-multiple-locations>.*
+*The guidance in this section applies to Razor Pages and MVC apps. For guidance that applies to Blazor Web Apps, see [ASP.NET Core Blazor static files](../blazor/fundamentals/static-files.md#serve-files-from-multiple-locations).*
 
 Consider the following markup that displays a company logo:
 
@@ -843,7 +843,7 @@ If no default-named file exists in the `ExtraStaticFiles` directory, `https://{H
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> For guidance that applies to Blazor apps, see <xref:blazor/fundamentals/static-files#file-mappings-and-static-file-options>.
+> For guidance that applies to Blazor apps, see [ASP.NET Core Blazor static files](../blazor/fundamentals/static-files.md#file-mappings-and-static-file-options).
 
 :::moniker-end
 
@@ -1072,5 +1072,5 @@ Configuration key | Description
 
 ## Related content
 
-* <xref:blazor/fundamentals/static-files>
+* [ASP.NET Core Blazor static files](../blazor/fundamentals/static-files.md)
 * [ASP.NET Core middleware](middleware/index.md)

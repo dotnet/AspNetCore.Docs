@@ -38,7 +38,7 @@ For more information, see [What's new in ASP.NET Core in .NET 9](../../../releas
 
 ### Streaming rendering attribute no longer requires the `true` parameter
 
-In .NET 8, [streaming rendering](xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
+In .NET 8, [streaming rendering](../../../blazor/components/rendering.md?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
 
 ```razor
 @attribute [StreamRendering(true)]

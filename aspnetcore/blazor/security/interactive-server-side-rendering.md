@@ -13,7 +13,7 @@ This article explains how to mitigate security threats in interactive server-sid
 
 Apps adopt a *stateful* data processing model, where the server and client maintain a long-lived relationship. The persistent state is maintained by a circuit, which can span connections that are also potentially long-lived.
 
-When a user visits a site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](xref:blazor/js-interop/call-javascript-from-dotnet).
+When a user visits a site, the server creates a circuit in the server's memory. The circuit indicates to the browser what content to render and responds to events, such as when the user selects a button in the UI. To perform these actions, a circuit invokes JavaScript functions in the user's browser and .NET methods on the server. This two-way JavaScript-based interaction is referred to as [JavaScript interop (JS interop)](../javascript-interoperability/call-javascript-from-dotnet.md).
 
 Because JS interop occurs over the Internet and the client uses a remote browser, apps share most web app security concerns. This topic describes common threats to server-side Blazor apps and provides threat mitigation guidance focused on Internet-facing apps.
 
@@ -26,7 +26,7 @@ In constrained environments, such as inside corporate networks or intranets, som
 
 ## Interactive Server Components with WebSocket compression enabled
 
-[Compression](xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components) can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the cyberattacker:
+[Compression](../fundamentals/signalr.md#websocket-compression-for-interactive-server-components) can expose the app to side-channel attacks against the TLS encryption of the connection, such as [CRIME](https://wikipedia.org/wiki/CRIME_(security_exploit)) and [BREACH](https://wikipedia.org/wiki/BREACH_(security_exploit)) attacks. These types of attacks require that the cyberattacker:
 
 * Force a browser to issue requests with a payload the cyberattacker controls to a vulnerable site via cross-site form posting or by embedding the site inside an iframe of another site.
 * Observe the length of the compressed and encrypted response over the network.
@@ -59,7 +59,7 @@ In general, we recommend that you avoid rendering components that contain sensit
 
 ## `IHttpContextAccessor`/`HttpContext`
 
-For more information, see <xref:blazor/components/httpcontext>.
+For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md).
 
 ## Resource exhaustion
 
@@ -98,7 +98,7 @@ Consider the following scenario for maintaining and displaying a list of items t
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> Blazor has built-in support for virtualization. For more information, see <xref:blazor/components/virtualization>.
+> Blazor has built-in support for virtualization. For more information, see [ASP.NET Core Razor component virtualization](../components/virtualization.md).
 
 :::moniker-end
 
@@ -143,7 +143,7 @@ There's no limit on the number of connections per user for an app. If the app re
     * Proxy WebSocket connections to an app through the use of a proxy, such as the [Azure SignalR Service](/azure/azure-signalr/signalr-overview) that multiplexes connections from clients to an app. This provides an app with greater connection capacity than a single client can establish, preventing a client from exhausting the connections to the server.
   * Server level
     * Use a proxy/gateway in front of the app.
-    * Although Long Polling is supported for Blazor apps, [WebSockets is the recommended transport protocol](xref:blazor/host-and-deploy/server/index#azure-signalr-service). We recommend selecting a proxy/gateway that supports WebSockets.
+    * Although Long Polling is supported for Blazor apps, [WebSockets is the recommended transport protocol](../host-and-deploy/server/index.md#azure-signalr-service). We recommend selecting a proxy/gateway that supports WebSockets.
 
 :::moniker-end
 
@@ -159,7 +159,7 @@ There's no limit on the number of connections per user for an app. If the app re
 
 For more information and configuration coding examples, see the following articles:
 
-* <xref:blazor/fundamentals/signalr>
+* [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 
 ## Interactions with the browser (client)
@@ -174,7 +174,7 @@ A client interacts with the server through JS interop event dispatching and rend
 For calls from .NET methods to JavaScript:
 
 * All invocations have a configurable timeout after which they fail, returning a <xref:System.OperationCanceledException> to the caller.
-  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see <xref:blazor/js-interop/call-javascript-from-dotnet#harden-javascript-interop-calls>.
+  * There's a default timeout for the calls (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.JSInteropDefaultCallTimeout?displayProperty=nameWithType>) of one minute. To configure this limit, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md#harden-javascript-interop-calls).
   * A cancellation token can be provided to control the cancellation on a per-call basis. Rely on the default call timeout where possible and time-bound any call to the client if a cancellation token is provided.
 * The result of a JavaScript call can't be trusted. The Blazor app client running in the browser searches for the JavaScript function to invoke. The function is invoked, and either the result or an error is produced. A malicious client can attempt to:
   * Cause an issue in the app by returning an error from the JavaScript function.
@@ -182,7 +182,7 @@ For calls from .NET methods to JavaScript:
 
 Take the following precautions to protect against the preceding scenarios:
 
-* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+* Wrap JS interop calls within [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements to account for errors that might occur during the invocations. For more information, see [Handle errors in ASP.NET Core Blazor apps](../fundamentals/handle-errors.md#javascript-interop).
 * Validate data returned from JS interop invocations, including error messages, before taking any action.
 
 ### .NET methods invoked from the browser
@@ -209,7 +209,7 @@ For example:
 * A change event for a `<select>` could send a value that isn't within the options that the app presented to the client.
 * An `<input>` could send any text data to the server, bypassing client-side validation.
 
-The app must validate the data for any event that the app handles. The Blazor framework [forms components](xref:blazor/forms/input-components) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
+The app must validate the data for any event that the app handles. The Blazor framework [forms components](../forms/input-components.md) perform basic validations. If the app uses custom forms components, custom code must be written to validate event data as appropriate.
 
 Events are asynchronous, so multiple events can be dispatched to the server before the app has time to react by producing a new render. This has some security implications to consider. Limiting client actions in the app must be performed inside event handlers and not depend on the current rendered view state.
 
@@ -340,7 +340,7 @@ JS interop interactions between the client and server are recorded in the server
 
 When an error occurs on the server, the framework notifies the client and tears down the session. The client receives a generic error message that can be seen in the browser's developer tools.
 
-The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](xref:blazor/fundamentals/handle-errors#detailed-circuit-errors).
+The client-side error doesn't include the call stack and doesn't provide detail on the cause of the error, but server logs do contain such information. For development purposes, sensitive error information can be made available to the client by [enabling detailed errors](../fundamentals/handle-errors.md#detailed-circuit-errors).
 
 > [!WARNING]
 > Exposing error information to clients on the Internet is a security risk that should always be avoided.

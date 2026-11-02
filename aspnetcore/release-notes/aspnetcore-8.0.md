@@ -23,8 +23,8 @@ Interactive render modes also prerender content by default.
 
 For more information, see the following articles:
 
-* <xref:blazor/fundamentals/index?view=aspnetcore-8.0&preserve-view=true>: New sections on rendering and static/interactive concepts appear at the top of the article.
-* <xref:blazor/components/render-modes?view=aspnetcore-8.0&preserve-view=true>
+* [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md?view=aspnetcore-8.0&preserve-view=true): New sections on rendering and static/interactive concepts appear at the top of the article.
+* [ASP.NET Core Blazor render modes](../blazor/components/render-modes.md?view=aspnetcore-8.0&preserve-view=true)
 * **Migration coverage**: [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#blazor)
 
 Examples throughout the Blazor documentation have been updated for use in Blazor Web Apps. Blazor Server examples remain in content versioned for .NET 7 or earlier.
@@ -33,13 +33,13 @@ Examples throughout the Blazor documentation have been updated for use in Blazor
 
 We've added a new article that discusses component library authorship in Razor class libraries (RCLs) with static server-side rendering (static SSR).
 
-For more information, see <xref:blazor/components/class-libraries-with-static-ssr>.
+For more information, see [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](../blazor/components/class-libraries-and-static-server-side-rendering.md).
 
 ### New article on HTTP caching issues
 
 We've added a new article that discusses some of the common HTTP caching issues that can occur when upgrading Blazor apps across major versions and how to address HTTP caching issues.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/http-caching-issues>.
+For more information, see [Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps](../blazor/host-and-deploy/webassembly/http-caching-issues.md).
 
 ### New Blazor Web App template
 
@@ -64,14 +64,14 @@ For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
 
 The preceding legacy JS initializers aren't invoked by default in a Blazor Web App. For Blazor Web Apps, a new set of JS initializers are used: `beforeWebStart`, `afterWebStarted`, `beforeServerStart`, `afterServerStarted`, `beforeWebAssemblyStart`, and `afterWebAssemblyStarted`.
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#javascript-initializers>.
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-8.0&preserve-view=true#javascript-initializers).
 
 ### Split of prerendering and integration guidance
 
 For prior releases of .NET, we covered prerendering and integration in a single article. To simplify and focus our coverage, we've split the subjects into the following new articles, which have been updated for .NET 8:
 
-* <xref:blazor/components/prerender?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
-* <xref:blazor/components/integration?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
+* [Prerender ASP.NET Core Razor components](../blazor/components/prerender.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true)
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../blazor/components/integration.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true)
 
 ### Persist component state in a Blazor Web App
 
@@ -87,7 +87,7 @@ Form model binding in Blazor honors the data contract attributes (for example, `
 
 New antiforgery support is included in .NET 8. A new `AntiforgeryToken` component renders an antiforgery token as a hidden field, and the new `[RequireAntiforgeryToken]` attribute enables antiforgery protection. If an antiforgery check fails, a 400 (Bad Request) response is returned without form processing. The new antiforgery features are enabled by default for forms based on `Editform` and can be applied manually to standard HTML forms.
 
-For more information, see <xref:blazor/forms/index?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see [ASP.NET Core Blazor forms overview](../blazor/forms/index.md?view=aspnetcore-8.0&preserve-view=true).
 
 ### Enhanced navigation and form handling
 
@@ -97,14 +97,14 @@ New enhanced navigation API allows you to refresh the current page by calling `N
 
 For more information, see the following guidance:
 
-* [Enhanced navigation and form handling](xref:blazor/fundamentals/routing?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
-* [Location changes](xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#location-changes)
+* [Enhanced navigation and form handling](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
+* [Location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#location-changes)
 
 ### New article on static rendering with enhanced navigation for JS interop
 
 Some apps depend on JS interop to perform initialization tasks that are specific to each page. When using Blazor's enhanced navigation feature with statically-rendered pages that perform JS interop initialization tasks, page-specific JS may not be executed again as expected each time an enhanced page navigation occurs. A new article explains how to address this scenario in Blazor Web Apps:
 
-<xref:blazor/js-interop/ssr?view=aspnetcore-8.0&preserve-view=true>
+[ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../blazor/javascript-interoperability/static-server-rendering.md?view=aspnetcore-8.0&preserve-view=true)
 
 ### Streaming rendering
 
@@ -112,7 +112,7 @@ You can now stream content updates on the response stream when using static serv
 
 For example, to render a page you might need to make a long running database query or an API call. Normally, asynchronous tasks executed as part of rendering a page must complete before the rendered response is sent, which can delay loading the page. Streaming rendering initially renders the entire page with placeholder content while asynchronous operations execute. After the asynchronous operations are complete, the updated content is sent to the client on the same response connection and patched by into the DOM. The benefit of this approach is that the main layout of the app renders as quickly as possible and the page is updated as soon as the content is ready.
 
-For more information, see <xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering>.
+For more information, see [ASP.NET Core Razor component rendering](../blazor/components/rendering.md?view=aspnetcore-8.0&preserve-view=true#streaming-rendering).
 
 ### Inject keyed services into components
 
@@ -125,7 +125,7 @@ public IMyService MyService { get; set; }
 
 The `@inject` Razor directive doesn't support keyed services for this release, but work is tracked by [Update `@inject` to support keyed services (dotnet/razor #9286)](https://github.com/dotnet/razor/issues/9286) for a future .NET release.
 
-For more information, see <xref:blazor/fundamentals/dependency-injection?view=aspnetcore-8.0&preserve-view=true#inject-keyed-services-into-components>.
+For more information, see [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md?view=aspnetcore-8.0&preserve-view=true#inject-keyed-services-into-components).
 
 ### Access `HttpContext` as a cascading parameter
 
@@ -144,13 +144,13 @@ For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, a
 
 You can now render Razor components outside the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for a generating email or static site content.
 
-For more information, see <xref:blazor/components/render-outside-of-aspnetcore?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see [Render Razor components outside of ASP.NET Core](../blazor/components/render-components-outside-of-aspnetcore.md?view=aspnetcore-8.0&preserve-view=true).
 
 ### Sections support
 
 The new `SectionOutlet` and `SectionContent` components in Blazor add support for specifying outlets for content that can be filled in later. Sections are often used to define placeholders in layouts that are then filled in by specific pages. Sections are referenced either by a unique name or using a unique object ID.
 
-For more information, see <xref:blazor/components/sections?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see [ASP.NET Core Blazor sections](../blazor/components/sections.md?view=aspnetcore-8.0&preserve-view=true).
 
 ### Error page support
 
@@ -166,13 +166,13 @@ The Blazor QuickGrid component is no longer experimental and is now part of the 
 
 QuickGrid is a high performance grid component for displaying data in tabular form. QuickGrid is built to be a simple and convenient way to display your data, while still providing powerful features, such as sorting, filtering, paging, and virtualization.
 
-For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../blazor/components/quickgrid.md?view=aspnetcore-8.0&preserve-view=true).
 
 ### Route to named elements
 
 Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard `id` attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
 
-For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements>.
+For more information, see [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#navigate-to-an-element-with-a-hashed--reference).
 
 ### Root-level cascading values
 
@@ -180,14 +180,14 @@ Root-level cascading values can be registered for the entire component hierarchy
 
 For more information, see the following resources:
 
-* [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values)
-* [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values-with-notifications)
+* [Root-level cascading values](../blazor/components/cascading-values-and-parameters.md?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values)
+* [Root-level cascading values with notifications](../blazor/components/cascading-values-and-parameters.md?view=aspnetcore-8.0&preserve-view=true#root-level-cascading-values-with-notifications)
 
 ### Virtualize empty content
 
 Use the new `EmptyContent` parameter on the `Virtualize` component to supply content when the component has loaded and either `Items` is empty or `ItemsProviderResult<T>.TotalItemCount` is zero.
 
-For more information, see <xref:blazor/components/virtualization?view=aspnetcore-8.0&preserve-view=true#empty-content>.
+For more information, see [ASP.NET Core Razor component virtualization](../blazor/components/virtualization.md?view=aspnetcore-8.0&preserve-view=true#empty-content).
 
 ### Close circuits when there are no remaining interactive server components
 
@@ -197,7 +197,7 @@ Interactive server components handle web UI events using a real-time connection 
 
 You can now monitor inbound circuit activity in server-side apps using the new `CreateInboundActivityHandler` method on `CircuitHandler`. Inbound circuit activity is any activity sent from the browser to the server, such as UI events or JavaScript-to-.NET interop calls.
 
-For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity>.
+For more information, see [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md?view=aspnetcore-8.0&preserve-view=true#monitor-server-side-circuit-activity).
 
 ### Faster runtime performance with the Jiterpreter
 
@@ -218,10 +218,10 @@ For more information, see the following articles:
 
 Webcil is web-friendly packaging of .NET assemblies that removes content specific to native Windows execution to avoid issues when deploying to environments that block the download or use of `.dll` files. Webcil is enabled by default for Blazor WebAssembly apps.
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies>.
+For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly](../blazor/host-and-deploy/webassembly/index.md?view=aspnetcore-8.0&preserve-view=true#webcil-packaging-format-for-net-assemblies).
 
 > [!NOTE]
-> Prior to the release of .NET 8, guidance in <xref:blazor/host-and-deploy/webassembly/deployment-layout?view=aspnetcore-8.0&preserve-view=true> addresses environments that block clients from downloading and executing DLLs with a multipart bundling approach. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. Multipart bundling using the experimental NuGet package described by the *WebAssembly deployment layout* article isn't supported for Blazor apps in .NET 8 or later. For more information, see [Enhance `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package to define a custom bundle format (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978#issuecomment-1439283893). If you desire to continue using the multipart bundle package in .NET 8 or later apps, you can use the guidance in the article to create your own multipart bundling NuGet package, but it won't be supported by Microsoft.
+> Prior to the release of .NET 8, guidance in [Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps](../blazor/host-and-deploy/webassembly/deployment-layout.md?view=aspnetcore-8.0&preserve-view=true) addresses environments that block clients from downloading and executing DLLs with a multipart bundling approach. In .NET 8 or later, Blazor uses the Webcil file format to address this problem. Multipart bundling using the experimental NuGet package described by the *WebAssembly deployment layout* article isn't supported for Blazor apps in .NET 8 or later. For more information, see [Enhance `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package to define a custom bundle format (dotnet/aspnetcore #36978)](https://github.com/dotnet/aspnetcore/issues/36978#issuecomment-1439283893). If you desire to continue using the multipart bundle package in .NET 8 or later apps, you can use the guidance in the article to create your own multipart bundling NuGet package, but it won't be supported by Microsoft.
 
 ### Blazor WebAssembly debugging improvements
 
@@ -229,7 +229,7 @@ When debugging .NET on WebAssembly, the debugger now downloads symbol data from 
 
 You can now debug Blazor WebAssembly apps using Firefox. Debugging Blazor WebAssembly apps requires configuring the browser for remote debugging and then connecting to the browser using the browser developer tools through the .NET WebAssembly debugging proxy. Debugging Firefox from Visual Studio isn't supported at this time.
 
-For more information, see <xref:blazor/debug?view=aspnetcore-8.0&preserve-view=true#debug-with-firefox>.
+For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md?view=aspnetcore-8.0&preserve-view=true#debug-a-blazor-webassembly-app-with-firefox).
 
 ### Content Security Policy (CSP) compatibility
 
@@ -241,13 +241,13 @@ For more information, see <xref:blazor/security/content-security-policy?view=asp
 
 Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as error boundaries, can process exceptions.
 
-For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle>.
+For more information, see [Handle errors in ASP.NET Core Blazor apps](../blazor/components/synchronization-context.md?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle).
 
 ### Configure the .NET WebAssembly runtime
 
 The .NET WebAssembly runtime can now be configured for Blazor startup.
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webAssembly-runtime>.
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webassembly-runtime).
 
 ### Configuration of connection timeouts in `HubConnectionBuilder`
 
@@ -255,9 +255,8 @@ Prior workarounds for configuring hub connection timeouts can be replaced with f
 
 For more information, see the following:
 
-* <xref:blazor/fundamentals/signalr?view=aspnetcore-8.0&preserve-view=true#configure-signalr-timeouts-and-keep-alive-on-the-client>
-* <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
-* <xref:blazor/host-and-deploy/server/index?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures>
+* [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md?view=aspnetcore-8.0&preserve-view=true#configure-signalr-timeouts-and-keep-alive-on-the-client)
+* [Host and deploy ASP.NET Core server-side Blazor apps](../blazor/host-and-deploy/server/index.md?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures)
 
 ### Project templates shed Open Iconic
 
@@ -334,10 +333,10 @@ For more information, see [Support for multiple Blazor Web apps per server proje
 
 The following articles document changes for Blazor Hybrid in .NET 8:
 
-* <xref:blazor/hybrid/troubleshoot?view=aspnetcore-8.0&preserve-view=true>: A new article explains how to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging.
+* [Troubleshoot ASP.NET Core Blazor Hybrid](../blazor/hybrid/troubleshoot.md?view=aspnetcore-8.0&preserve-view=true): A new article explains how to use <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> logging.
 * [Build your first app](/dotnet/maui/get-started/first-app) tutorial: The project template name **:::no-loc text=".NET MAUI Blazor":::** has changed to **:::no-loc text=".NET MAUI Blazor Hybrid":::**.
-* <xref:blazor/hybrid/index?view=aspnetcore-8.0&preserve-view=true#access-scoped-services-from-native-ui>: `BlazorWebView` gains a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as `NavigationManager`.
-* <xref:blazor/hybrid/routing?view=aspnetcore-8.0&preserve-view=true&pivots=maui#get-or-set-a-path-for-initial-navigation>: Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading.
+* [ASP.NET Core Blazor Hybrid](../blazor/hybrid/index.md?view=aspnetcore-8.0&preserve-view=true#access-scoped-services-from-native-ui): `BlazorWebView` gains a `TryDispatchAsync` method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as `NavigationManager`.
+* [ASP.NET Core Blazor Hybrid routing and navigation](../blazor/hybrid/routing.md?view=aspnetcore-8.0&preserve-view=true&pivots=maui#get-or-set-a-path-for-initial-navigation): Use the `BlazorWebView.StartPath` property to get or set the path for initial navigation within the Blazor navigation context when the Razor component is finished loading.
 
 ### `[Parameter]` attribute is no longer required when supplied from the query string
 
@@ -789,7 +788,7 @@ For example, consider the following code written for .NET 7:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/OldStyleAuthRequirements/Authorization/MinimumAgeAuthorizationHandler.cs" highlight="7,19":::
 
-The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+The complete sample for .NET 7 or earlier is the [OldStyleAuthRequirements sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/OldStyleAuthRequirements) ([how to download](../blazor/fundamentals/index.md#sample-apps)).
 
 .NET 8 introduces the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface. The `IAuthorizationRequirementData` interface allows the attribute definition to specify the requirements associated with the authorization policy. Using `IAuthorizationRequirementData`, the preceding custom authorization policy code can be written with fewer lines of code. The updated `Program.cs` file:
 
@@ -835,7 +834,7 @@ class MinimumAgeAuthorizationHandler(ILogger<MinimumAgeAuthorizationHandler> log
 }
 ```
 
-The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+The updated sample is the [AuthRequirementsData sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](../blazor/fundamentals/index.md#sample-apps)).
 
 For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md).
 

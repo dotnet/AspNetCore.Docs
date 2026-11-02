@@ -20,7 +20,7 @@ App configuration in ASP.NET Core is performed using one or more [configuration 
 
 This article provides information on configuration in ASP.NET Core. For information on using configuration in non-ASP.NET Core apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-For additional Blazor configuration guidance, which adds to or supersedes the guidance here, see <xref:blazor/fundamentals/configuration>.
+For additional Blazor configuration guidance, which adds to or supersedes the guidance here, see [ASP.NET Core Blazor configuration](../../blazor/fundamentals/configuration.md).
 
 This article primarily pertains to app configuration. Other types of configuration, such as launch settings files and the `web.config` file, are mentioned here, but their primary documentation is elsewhere:
 
@@ -1646,7 +1646,7 @@ The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/run
 
 ## Related content
 
-* <xref:blazor/fundamentals/configuration>
+* [ASP.NET Core Blazor configuration](../../blazor/fundamentals/configuration.md)
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](../index.md#how-to-download-a-sample))
 * [Options pattern in ASP.NET Core](options.md)

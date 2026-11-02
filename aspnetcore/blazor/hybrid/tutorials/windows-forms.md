@@ -3,7 +3,6 @@ title: Build a Windows Forms Blazor app
 description: Build a Windows Forms Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
 
@@ -280,4 +279,4 @@ In this tutorial, you learned how to:
 Learn more about Blazor Hybrid apps:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/hybrid/index>
+> [ASP.NET Core Blazor Hybrid](../index.md)

@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor hosting models
 description: Learn about Blazor hosting models and how to pick which one to use.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/hosting-models
 ---
 # ASP.NET Core Blazor hosting models
 
@@ -17,7 +16,7 @@ NOTE: Daggered lines under the table (&dagger;, &Dagger;) use a double-space at 
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article explains Blazor hosting models, primarily focused on Blazor Server and Blazor WebAssembly apps in versions of .NET earlier than .NET 8. The guidance in this article is relevant under all .NET releases for Blazor Hybrid apps that run on native mobile and desktop platforms. Blazor Web Apps in .NET 8 or later are better conceptualized by how Razor components are rendered, which is described as their *render mode*. Render modes are briefly touched on in the *Fundamentals* overview article and covered in detail in <xref:blazor/components/render-modes> of the *Components* node.
+This article explains Blazor hosting models, primarily focused on Blazor Server and Blazor WebAssembly apps in versions of .NET earlier than .NET 8. The guidance in this article is relevant under all .NET releases for Blazor Hybrid apps that run on native mobile and desktop platforms. Blazor Web Apps in .NET 8 or later are better conceptualized by how Razor components are rendered, which is described as their *render mode*. Render modes are briefly touched on in the *Fundamentals* overview article and covered in detail in [ASP.NET Core Blazor render modes](components/render-modes.md) of the *Components* node.
 
 :::moniker-end
 
@@ -29,13 +28,13 @@ This article explains Blazor hosting models and how to choose which one to use.
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](components/index.md)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). You can also host Razor components in native mobile and desktop apps that render to an embedded Web View control (*Blazor Hybrid*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor is a web framework for building web UI components ([Razor components](xref:blazor/components/index)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
+Blazor is a web framework for building web UI components ([Razor components](components/index.md)) that can be hosted in different ways. Razor components can run server-side in ASP.NET Core (*Blazor Server*) versus client-side in the browser on a [WebAssembly](https://webassembly.org/)-based .NET runtime (*Blazor WebAssembly*, *Blazor Wasm*). Regardless of the hosting model, the way you build Razor components *is the same*. The same Razor components can be used with any of the hosting models unchanged.
 
 :::moniker-end
 
@@ -109,7 +108,7 @@ The Blazor script handles:
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
-* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
+* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](host-and-deploy/configure-trimmer.md).
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
 
@@ -145,7 +144,7 @@ WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/
 
 :::moniker range="< aspnetcore-6.0"
 
-Blazor WebAssembly includes support for trimming unused code from .NET libraries. For more information, see <xref:blazor/globalization-localization>.
+Blazor WebAssembly includes support for trimming unused code from .NET libraries. For more information, see [ASP.NET Core Blazor globalization and localization](globalization-localization.md).
 
 :::moniker-end
 
@@ -172,7 +171,7 @@ The Blazor Hybrid hosting model has the following limitations:
 * Separate native client apps must be built, deployed, and maintained for each target platform.
 * Native client apps usually take longer to find, download, and install over accessing a web app in a browser.
 
-For more information, see <xref:blazor/hybrid/index>.
+For more information, see [ASP.NET Core Blazor Hybrid](hybrid/index.md).
 
 For more information on Microsoft native client frameworks, see the following resources:
 
@@ -186,7 +185,7 @@ For more information on Microsoft native client frameworks, see the following re
 
 :::moniker range=">= aspnetcore-8.0"
 
-A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in <xref:blazor/components/render-modes>. The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
+A component's hosting model is set by its *render mode*, either at compile time or runtime, which is described with examples in [ASP.NET Core Blazor render modes](components/render-modes.md). The following table shows the primary considerations for setting the render mode to determine a component's hosting model. For standalone Blazor WebAssembly apps, all of the app's components are rendered on the client with the Blazor WebAssembly hosting model.
 
 :::moniker-end
 
@@ -238,7 +237,7 @@ After you choose the app's hosting model, you can generate a Blazor Server or Bl
 
 :::moniker range=">= aspnetcore-6.0"
 
-To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutorials/index>.
+To create a Blazor Hybrid app, see the articles under [ASP.NET Core Blazor Hybrid tutorials](hybrid/tutorials/index.md).
 
 :::moniker-end
 
@@ -246,7 +245,7 @@ To create a Blazor Hybrid app, see the articles under <xref:blazor/hybrid/tutori
 
 :::moniker range=">= aspnetcore-8.0"
 
-Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a [subset of .NET APIs](xref:blazor/fundamentals/index#subset-of-net-apis-for-blazor-webassembly-apps). When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
+Components rendered for the Blazor Server hosting model and Blazor Hybrid apps have complete .NET API compatibility, while components rendered for Blazor WebAssembly are limited to a [subset of .NET APIs](fundamentals/index.md#subset-of-net-apis-for-blazor-webassembly-apps). When an app's specification requires one or more .NET APIs that are unavailable to WebAssembly-rendered components, then choose to render components for Blazor Server or use Blazor Hybrid.
 
 :::moniker-end
 
@@ -429,6 +428,6 @@ Blazor Hybrid apps are native client apps that typically require an installer an
 
 ## Setting a component's hosting model
 
-To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the <xref:blazor/components/render-modes> article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the <xref:blazor/fundamentals/index> article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
+To set a component's hosting model to Blazor Server or Blazor WebAssembly at compile-time or dynamically at runtime, you set its *render mode*. Render modes are fully explained and demonstrated in the [ASP.NET Core Blazor render modes](components/render-modes.md) article. We don't recommend that you jump from this article directly to the *Render modes* article without reading the content in the articles between these two articles. For example, render modes are more easily understood by looking at Razor component examples, but basic Razor component structure and function isn't covered until the [ASP.NET Core Blazor fundamentals](fundamentals/index.md) article is reached. It's also helpful to learn about Blazor's project templates and tooling before working with the component examples in the *Render modes* article.
 
 :::moniker-end

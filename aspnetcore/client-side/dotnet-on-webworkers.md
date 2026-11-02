@@ -20,14 +20,14 @@ This approach is particularly valuable when you need to perform complex calculat
 :::moniker range=">= aspnetcore-11.0"
 
 > [!TIP]
-> In .NET 11 or later, `dotnet new blazorwebworker` generates the worker scripts and starter `[JSExport]` code used by the Blazor integration. For the Blazor-specific walkthrough, see <xref:blazor/blazor-web-workers>.
+> In .NET 11 or later, `dotnet new blazorwebworker` generates the worker scripts and starter `[JSExport]` code used by the Blazor integration. For the Blazor-specific walkthrough, see [ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
 > [!TIP]
-> For earlier versions, follow the manual `wasmbrowser` steps in this article. For the Blazor-specific walkthrough, see <xref:blazor/blazor-web-workers>.
+> For earlier versions, follow the manual `wasmbrowser` steps in this article. For the Blazor-specific walkthrough, see [ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md).
 
 :::moniker-end
 
@@ -403,4 +403,4 @@ See the [sample app](#sample-app) for a demonstration of the preceding concepts.
 
 ## Related content
 
-<xref:blazor/blazor-web-workers>
+[ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md)

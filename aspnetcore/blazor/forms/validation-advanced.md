@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Learn how to implement validator components and remote validation for Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/22/2026
-uid: blazor/forms/validation-advanced
 ---
 # ASP.NET Core Blazor advanced form validation
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article demonstrates reusable validator components and remote validation. For common form validation APIs, including data annotations, direct <xref:Microsoft.AspNetCore.Components.Forms.EditContext> validation, message display, styling, state, and submit behavior, see <xref:blazor/forms/validation>.
+This article demonstrates reusable validator components and remote validation. For common form validation APIs, including data annotations, direct <xref:Microsoft.AspNetCore.Components.Forms.EditContext> validation, message display, styling, state, and submit behavior, see [ASP.NET Core Blazor forms validation](validation.md).
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -20,7 +19,7 @@ For model-based validation rules shared by Blazor and Minimal APIs, see [Validat
 
 :::moniker range=">= aspnetcore-11.0"
 
-For browser validation in static server-side rendering (static SSR), see <xref:blazor/forms/validation-client-side>.
+For browser validation in static server-side rendering (static SSR), see [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md).
 
 :::moniker-end
 
@@ -126,7 +125,7 @@ Place the component inside an `EditForm` and capture a component reference when 
 
 The component can be used alongside `DataAnnotationsValidator`. Each validator has its own message store associated with the same `EditContext`, and `ValidationMessage` and `ValidationSummary` display messages from both validators.
 
-To implement a business rule inside the validator component instead of accepting external errors, run the rule from `HandleValidationRequested` or `HandleFieldChanged` and add its messages to `messages`. For a smaller example that performs this directly in a form component, see <xref:blazor/forms/validation#add-validation-through-editcontext>.
+To implement a business rule inside the validator component instead of accepting external errors, run the rule from `HandleValidationRequested` or `HandleFieldChanged` and add its messages to `messages`. For a smaller example that performs this directly in a form component, see [ASP.NET Core Blazor forms validation](validation.md#add-validation-through-editcontext).
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -183,7 +182,7 @@ private void HandleFieldChanged(
 
 Pass the supplied cancellation token to I/O. Clear prior messages before starting the operation, avoid publishing partial results after an exception, and call `NotifyValidationStateChanged` after updating messages.
 
-An operation canceled because it was superseded or because the validation pass was canceled is discarded. Other exceptions place the field or form in the faulted state. For displaying pending and faulted state, see <xref:blazor/forms/validation#respond-to-validation-state>.
+An operation canceled because it was superseded or because the validation pass was canceled is discarded. Other exceptions place the field or form in the faulted state. For displaying pending and faulted state, see [ASP.NET Core Blazor forms validation](validation.md#respond-to-validation-state).
 
 For a complete component that combines form-level and per-field asynchronous validation, see the following sample:
 
@@ -228,7 +227,7 @@ This example validates remotely when the form is submitted. For live per-field r
 
 :::moniker range=">= aspnetcore-8.0"
 
-If the WebAssembly form is prerendered, its client-side services must also be available during prerendering. For the available approaches, see <xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering>.
+If the WebAssembly form is prerendered, its client-side services must also be available during prerendering. For the available approaches, see [Prerender ASP.NET Core Razor components](../components/prerender.md#client-side-services-fail-to-resolve-during-prerendering).
 
 :::moniker-end
 
@@ -428,8 +427,8 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
-* <xref:blazor/forms/validation-client-side>
+* [ASP.NET Core Blazor forms validation](validation.md)
+* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 * [Validation in ASP.NET Core](../../fundamentals/validation.md)
 * [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
@@ -437,7 +436,7 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
+* [ASP.NET Core Blazor forms validation](validation.md)
 * [Validation in ASP.NET Core](../../fundamentals/validation.md)
 * [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
@@ -445,6 +444,6 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker range="< aspnetcore-10.0"
 
-<xref:blazor/forms/validation>
+[ASP.NET Core Blazor forms validation](validation.md)
 
 :::moniker-end

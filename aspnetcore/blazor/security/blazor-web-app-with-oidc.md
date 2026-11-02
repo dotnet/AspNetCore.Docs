@@ -13,7 +13,7 @@ zone_pivot_groups: blazor-web-app-oidc-specification
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
-This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/) using a sample app in the [`dotnet/blazor-samples` GitHub repository (.NET 8 or later)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps)).
 
 :::zone pivot="with-yarp-and-aspire"
 
@@ -46,9 +46,9 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 Start the solution from the ***`Aspire/Aspire.AppHost` project***.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
-The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
+The Blazor Web App uses [the Auto render mode with global interactivity](../components/render-modes.md).
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -74,10 +74,10 @@ Aspire improves the experience of building .NET cloud-native apps. It provides a
 
 YARP (Yet Another Reverse Proxy) is a library used to create a reverse proxy server. `MapForwarder` in the `Program` file of the server project adds direct forwarding of HTTP requests that match the specified pattern to a specific destination using default configuration for the outgoing request, customized transforms, and default HTTP client:
 
-* When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` class to proxy the request for weather data with the user's access token. <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> determines if an <xref:Microsoft.AspNetCore.Http.HttpContext> is available for use by the `GetWeatherForecastAsync` method. For more information, see <xref:blazor/components/index#ihttpcontextaccessorhttpcontext>.
+* When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` class to proxy the request for weather data with the user's access token. <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor.HttpContext?displayProperty=nameWithType> determines if an <xref:Microsoft.AspNetCore.Http.HttpContext> is available for use by the `GetWeatherForecastAsync` method. For more information, see [ASP.NET Core Razor components](../components/httpcontext.md).
 * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make a web API call to the server project. A Minimal API endpoint (`/weather-forecast`) defined in the server project's `Program` file transforms the request with the user's access token to obtain the weather data.
 
-For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
+For more information on (web) API calls using a service abstractions in Blazor Web Apps, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md#service-abstractions-for-web-api-calls).
 
 ## Microsoft Entra ID app registrations
 
@@ -231,7 +231,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -390,7 +390,7 @@ This version of the article covers implementing OIDC with the [Backend for Front
 
 The following specification is adopted:
 
-* The Blazor Web App uses [the Auto render mode with global interactivity](xref:blazor/components/render-modes).
+* The Blazor Web App uses [the Auto render mode with global interactivity](../components/render-modes.md).
 * Custom auth state provider services are used by the server and client apps to capture the user's authentication state and flow it between the server and client.
 * This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
@@ -408,7 +408,7 @@ The sample app consists of the following projects:
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcBffAuto` folder for .NET 8 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 Sample solution features:
 
@@ -433,7 +433,7 @@ Sample solution features:
 
 :::moniker-end
 
-For more information on (web) API calls using a service abstractions in Blazor Web Apps, see <xref:blazor/call-web-api#service-abstractions-for-web-api-calls>.
+For more information on (web) API calls using a service abstractions in Blazor Web Apps, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md#service-abstractions-for-web-api-calls).
 
 ## OIDC provider terminology and guidance
 
@@ -563,7 +563,7 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
 
 `TokenHandler.cs`:
 
@@ -590,7 +590,7 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 }
 ```
 
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
+In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](../call-web-api.md#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
 
 ```csharp
 builder.Services.AddScoped<TokenHandler>();
@@ -631,7 +631,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -772,7 +772,7 @@ This version of the article covers implementing OIDC with the [Backend for Front
 
 The following specification is adopted:
 
-* The Blazor Web App uses [the Server render mode with global interactivity](xref:blazor/components/render-modes).
+* The Blazor Web App uses [the Server render mode with global interactivity](../components/render-modes.md).
 * This app is a starting point for any OIDC authentication flow. OIDC is configured manually in the app and doesn't rely upon [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) or [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages, nor does the sample app require [Microsoft Azure](https://azure.microsoft.com/) hosting. However, the sample app can be used with Entra, Microsoft Identity Web, and hosted in Azure.
 * Automatic non-interactive token refresh.
 * A separate web API project demonstrates a secure web API call for weather data.
@@ -788,7 +788,7 @@ The sample app consists of the following projects:
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcBffServer` folder for .NET 8 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 ## Microsoft Entra ID app registrations
 
@@ -912,7 +912,7 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 Automatic non-interactive token refresh is managed by a custom cookie refresher (`CookieOidcRefresher.cs`).
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see <xref:blazor/components/httpcontext> and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
 
 `TokenHandler.cs`:
 
@@ -939,7 +939,7 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 }
 ```
 
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
+In the project's `Program` file, the token handler (`TokenHandler`) is registered as a service and specified as the message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> for making secure requests to the backend `MinimalApiJwt` web API using a [named HTTP client](../call-web-api.md#named-httpclient-with-ihttpclientfactory) ("`ExternalApi`").
 
 ```csharp
 builder.Services.AddScoped<TokenHandler>();
@@ -952,7 +952,7 @@ builder.Services.AddHttpClient("ExternalApi",
 
 The `Weather` component uses the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to prevent unauthorized access. For more information on requiring authorization across the app via an [authorization policy](../../security/authorization/policies.md) and opting out of authorization at a subset of public endpoints, see the [Razor Pages OIDC guidance](../../security/authentication/configure-oidc-web-authentication.md#force-authorization).
 
-The `ExternalApi` HTTP client is used to make a request for weather data to the secure web API. In the [`OnInitializedAsync` lifecycle event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of `Weather.razor`:
+The `ExternalApi` HTTP client is used to make a request for weather data to the secure web API. In the [`OnInitializedAsync` lifecycle event](../components/lifecycle.md#component-initialization-oninitializedasync) of `Weather.razor`:
 
 ```csharp
 using var request = new HttpRequestMessage(HttpMethod.Get, "/weather-forecast");
@@ -994,7 +994,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -1236,7 +1236,7 @@ Remove the following lines from the `Program` file:
 For more information on configuration, see the following resources:
 
 * [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)
-* <xref:blazor/fundamentals/configuration>
+* [ASP.NET Core Blazor configuration](../fundamentals/configuration.md)
 
 ## Use the "common" Authority for single-tenant apps
 
@@ -1492,13 +1492,13 @@ builder.Services.AddHttpClient<InvoiceClient>(client =>
     .AddUserAccessTokenHandler();
 ```
 
-The [typed HTTP client](xref:blazor/call-web-api#typed-httpclient) (or [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), if implemented) has automatic access token lifetime management on behalf of the currently logged-in user, including transparent refresh token management.
+The [typed HTTP client](../call-web-api.md#typed-httpclient) (or [named HTTP client](../call-web-api.md#named-httpclient-with-ihttpclientfactory), if implemented) has automatic access token lifetime management on behalf of the currently logged-in user, including transparent refresh token management.
 
 For more information, see the [Duende Access Token Management documentation for Blazor](https://docs.duendesoftware.com/accesstokenmanagement/blazor-server/).
 
 ## Host in a web farm or cluster
 
-Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
+Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](../fundamentals/signalr.md#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
 We also recommend using a shared [Data Protection](../../security/data-protection/introduction.md) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits). For more information, see the following articles:
 

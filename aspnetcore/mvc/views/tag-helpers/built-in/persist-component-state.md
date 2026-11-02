@@ -12,7 +12,7 @@ The Persist Component State Tag Helper saves the state of non-routable Razor com
 
 :::moniker range=">= aspnetcore-8.0"
 
-Follow the guidance in the *Use non-routable components in pages or views* section of the <xref:blazor/components/integration#use-non-routable-components-in-pages-or-views> article.
+Follow the guidance in the *Use non-routable components in pages or views* section of the [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md#render-components-from-a-page-or-view) article.
 
 :::moniker-end
 
@@ -20,8 +20,8 @@ Follow the guidance in the *Use non-routable components in pages or views* secti
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor WebAssembly](xref:blazor/components/integration?pivots=webassembly)
-* [Blazor Server](xref:blazor/components/integration?pivots=server)
+* [Blazor WebAssembly](../../../../blazor/components/integration.md?pivots=webassembly)
+* [Blazor Server](../../../../blazor/components/integration.md?pivots=server)
 
 :::moniker-end
 
@@ -67,7 +67,7 @@ In `Pages/_Host.cshtml` of Blazor apps that are either WebAssembly prerendered (
 
 Decide what state to persist using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. [`PersistentComponentState.RegisterOnPersisting`](xref:Microsoft.AspNetCore.Components.PersistentComponentState.RegisterOnPersisting*) registers a callback to persist the component state before the app is paused. The state is retrieved when the application resumes.
 
-For more information and examples, see <xref:blazor/components/integration#persist-prerendered-state>.
+For more information and examples, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md#persist-prerendered-state).
 
 :::moniker-end
 
@@ -76,19 +76,19 @@ For more information and examples, see <xref:blazor/components/integration#persi
 :::moniker range=">= aspnetcore-8.0"
 
 * [Component Tag Helper in ASP.NET Core](component-tag-helper.md)
-* <xref:blazor/components/prerender>
+* [Prerender ASP.NET Core Razor components](../../../../blazor/components/prerender.md)
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * [Tag Helpers in ASP.NET Core](../intro.md)
-* <xref:blazor/components/index>
+* [ASP.NET Core Razor components](../../../../blazor/components/index.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 * [Component Tag Helper in ASP.NET Core](component-tag-helper.md)
-* <xref:blazor/components/integration>
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md)
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * [Tag Helpers in ASP.NET Core](../intro.md)
-* <xref:blazor/components/index>
+* [ASP.NET Core Razor components](../../../../blazor/components/index.md)
 
 :::moniker-end

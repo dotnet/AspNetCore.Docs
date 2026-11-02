@@ -16,7 +16,7 @@ For additional guidance, see the [Configuring and hosting .NET WebAssembly appli
 Existing JS apps can use the expanded client-side WebAssembly support to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 
 > [!NOTE]
-> This article focuses on running .NET from JS apps without any dependency on [Blazor](xref:blazor/index). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
+> This article focuses on running .NET from JS apps without any dependency on [Blazor](../../blazor/index.md). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 
 These approaches are appropriate when you only expect the Blazor app to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType>.
 
@@ -220,7 +220,7 @@ const { setModuleImports, getAssemblyExports, getConfig, runMain } = await dotne
 
 setModuleImports('main.js', {
   dom: {
-    setInnerText: (selector, time) => 
+    setInnerText: (selector, time) =>
       document.querySelector(selector).innerText = time
   }
 });
@@ -282,7 +282,7 @@ import { dotnet } from './dotnet.js'
 const is_browser = typeof window != "undefined";
 if (!is_browser) throw new Error(`Expected to be running in a browser`);
 
-const { setModuleImports, getAssemblyExports, getConfig } = 
+const { setModuleImports, getAssemblyExports, getConfig } =
   await dotnet.create();
 
 setModuleImports("main.js", {
@@ -477,7 +477,7 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target fr
 ## Related content
 
 * [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](index.md)
-* <xref:blazor/js-interop/import-export-interop>
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md)
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)

@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor with Entity Framework Core (EF Core)
 description: Learn how to use Entity Framework Core (EF Core) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/blazor-ef-core
 ---
 # ASP.NET Core Blazor with Entity Framework Core (EF Core)
 
@@ -207,7 +206,7 @@ Establish a property for the <xref:Microsoft.EntityFrameworkCore.DbContext>:
 private ContactContext? Context { get; set; }
 ```
 
-[`OnInitializedAsync`](xref:blazor/components/lifecycle) is overridden to create the <xref:Microsoft.EntityFrameworkCore.DbContext>:
+[`OnInitializedAsync`](components/lifecycle.md) is overridden to create the <xref:Microsoft.EntityFrameworkCore.DbContext>:
 
 ```csharp
 protected override async Task OnInitializedAsync()

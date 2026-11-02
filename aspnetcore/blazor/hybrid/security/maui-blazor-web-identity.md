@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that manages authentication with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 
@@ -30,7 +29,7 @@ For prerequisites and preliminary steps, see the [Build your first app](/dotnet/
 
 ## Sample app
 
-[Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) in the `MauiBlazorWebIdentity` folder of the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 9 or later).
+[Obtain the sample app](../../fundamentals/index.md#sample-apps) in the `MauiBlazorWebIdentity` folder of the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 9 or later).
 
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
@@ -52,7 +51,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 
 The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter, and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
 
-In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
+In the [Razor directives](../../components/index.md#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
@@ -145,7 +144,7 @@ private async Task LoginUser()
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 
-The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
+The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see [ASP.NET Core Blazor Hybrid authentication and authorization](index.md?pivots=maui).
 
 The `MauiAuthenticationStateProvider` class uses the `HttpClientHelper` (`MauiBlazorWeb/Services/HttpClientHelper.cs`) to handle calling localhost via the emulators and simulators for testing. For more information on calling local services from emulators and simulators, see [Connect to local web services from Android emulators and iOS simulators (.NET MAUI documentation)](/dotnet/maui/data-cloud/local-web-services).
 

@@ -85,7 +85,7 @@ Optimization happens automatically when using `MapStaticAssets`. When a library 
 For more information on the new file delivery features, see the following resources:
 
 * [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0&preserve-view=true)
-* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
+* [ASP.NET Core Blazor static files](../../../blazor/fundamentals/static-files.md?view=aspnetcore-9.0&preserve-view=true)
 
 ### Customize build-time compression with MSBuild properties
 
@@ -116,7 +116,7 @@ For more information, see [Serve static files in ASP.NET Core apps](../../../fun
 
 `MapStaticAssets` has the following advantages over dynamic compression on the server:
 
-<!-- 
+<!--
 I'm confused about the following:
 If we take MudBlazor as an example, IIS will compress the CSS bundle at around 90Kb, while brotli with max settings will result in 37Kb. That is still a whopping 59% size reduction or 41% of its dynamically compressed size -->
 

@@ -52,6 +52,6 @@ Hubs call client-side code by sending messages that contain the name and paramet
 * [Logging and diagnostics in ASP.NET Core SignalR](../../diagnostics.md)
 * [Hosting and scaling ASP.NET Core SignalR](../../scale.md)
 * [JavaScript client](../../javascript-client.md)
-* <xref:blazor/fundamentals/signalr>
+* [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md)
 
 :::moniker-end

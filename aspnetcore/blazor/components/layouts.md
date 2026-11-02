@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor layouts
 description: Learn how to create reusable layout components for Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/layouts
 ---
 # ASP.NET Core Blazor layouts
 
@@ -15,7 +14,7 @@ This article explains how to create reusable layout components for Blazor apps.
 
 Some app elements, such as menus, copyright messages, and company logos, are usually part of app's overall presentation. Placing a copy of the markup for these elements into all of the components of an app isn't efficient. Every time that one of these elements is updated, every component that uses the element must be updated. This approach is costly to maintain and can lead to inconsistent content if an update is missed. *Layouts* solve these problems.
 
-A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](xref:blazor/components/data-binding), [dependency injection](xref:blazor/fundamentals/dependency-injection), and other features of components.
+A Blazor layout is a Razor component that shares markup with components that reference it. Layouts can use [data binding](data-binding.md), [dependency injection](../fundamentals/dependency-injection.md), and other features of components.
 
 ## Create a layout component
 
@@ -26,7 +25,7 @@ To create a layout component:
 * Use the Razor syntax `@Body` to specify the location in the layout markup where the content is rendered.
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [ASP.NET Core Razor components](index.md#child-content-render-fragments).
 
 The following `DoctorWhoLayout` component shows the Razor template of a layout component. The layout inherits <xref:Microsoft.AspNetCore.Components.LayoutComponentBase> and sets the `@Body` between the navigation bar (`<nav>...</nav>`) and the footer (`<footer>...</footer>`).
 
@@ -74,7 +73,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker range=">= aspnetcore-8.0"
 
-[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
+[Blazor's CSS isolation feature](css-isolation.md) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`. The ASP.NET Core framework implementation of the stylesheet is available for inspection in the ASP.NET Core reference source (`dotnet/aspnetcore` GitHub repository):
 
 * Blazor Web App: Locate `MainLayout.razor.css` in the `Components/Layout` folder of the server project in the [project template](https://github.com/dotnet/aspnetcore/tree/main/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp).
 * [Blazor WebAssembly `MainLayout.razor.css`](https://github.com/dotnet/aspnetcore/blob/main/src/ProjectTemplates/Web.ProjectTemplates/content/ComponentsWebAssembly-CSharp/Layout/MainLayout.razor.css).
@@ -85,7 +84,7 @@ In an app created from a [Blazor project template](xref:blazor/project-structure
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
-[Blazor's CSS isolation feature](xref:blazor/components/css-isolation) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`.
+[Blazor's CSS isolation feature](css-isolation.md) applies isolated CSS styles to the `MainLayout` component. By convention, the styles are provided by the accompanying stylesheet of the same name, `MainLayout.razor.css`.
 
 :::moniker-end
 
@@ -101,7 +100,7 @@ This applies to any layout component that inherits from <xref:Microsoft.AspNetCo
 
 In apps that target .NET 10 or earlier, you can adopt the following approach in a Blazor Web App that adopts per-page/component rendering.
 
-Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](xref:blazor/components/sections) that can receive content from a child component.
+Create a wrapper component that's capable of interactivity. In the following example, a wrapper component contains a [Blazor section](sections.md) that can receive content from a child component.
 
 In the imports file (`_Imports.razor`), add an [`@using`](../../mvc/views/razor.md#using) directive for sections (<xref:Microsoft.AspNetCore.Components.Sections?displayProperty=fullName>):
 
@@ -445,17 +444,17 @@ The following rendered HTML markup is produced by the preceding nested layout. E
 
 ## Share a Razor Pages layout with integrated components
 
-When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see <xref:blazor/components/integration>.
+When routable components are integrated into a Razor Pages app, the app's shared layout can be used with the components. For more information, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](integration.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
 ## Sections
 
-To control the content in a layout from a child Razor component, see <xref:blazor/components/sections>.
+To control the content in a layout from a child Razor component, see [ASP.NET Core Blazor sections](sections.md).
 
 :::moniker-end
 
 ## Related content
 
 * [Layout in ASP.NET Core](../../mvc/views/layout.md)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

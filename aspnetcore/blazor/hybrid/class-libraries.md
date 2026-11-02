@@ -3,7 +3,6 @@ title: Share assets across web and native clients using a Razor class library (R
 description: Learn how to share Razor components, C# code, and static assets across web and native clients using a Razor class library (RCL).
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/class-libraries
 ---
 # Share assets across web and native clients using a Razor class library (RCL)
 
@@ -13,7 +12,7 @@ Use a Razor class library (RCL) to share Razor components, C# code, and static a
 
 This article builds on the general concepts found in the following articles:
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md)
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 The examples in this article share assets between a server-side Blazor app and a .NET MAUI Blazor Hybrid app in the same solution:
@@ -23,7 +22,7 @@ The examples in this article share assets between a server-side Blazor app and a
 * The RCL is added as a project to the solution, but any RCL can be published as a NuGet package. A NuGet package can supply shared assets to web and native client projects.
 * The order that the projects are created isn't important. However, projects that rely on an RCL for assets must create a project reference to the RCL *after* the RCL is created.
 
-For guidance on creating an RCL, see <xref:blazor/components/class-libraries>. Optionally, access the additional guidance on RCLs that apply broadly to ASP.NET Core apps in [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md).
+For guidance on creating an RCL, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md). Optionally, access the additional guidance on RCLs that apply broadly to ASP.NET Core apps in [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md).
 
 :::moniker range="= aspnetcore-6.0"
 
@@ -62,9 +61,9 @@ The sample app showcases the following technologies:
 
 ## Share web UI Razor components, code, and static assets
 
-Components from an RCL can be simultaneously shared by web and native client apps built using Blazor. The guidance in <xref:blazor/components/class-libraries> explains how to share Razor components using a Razor class library (RCL). The same guidance applies to reusing Razor components from an RCL in a Blazor Hybrid app.
+Components from an RCL can be simultaneously shared by web and native client apps built using Blazor. The guidance in [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md) explains how to share Razor components using a Razor class library (RCL). The same guidance applies to reusing Razor components from an RCL in a Blazor Hybrid app.
 
-Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see <xref:blazor/components/index#class-name-and-namespace>. [`@using`](../../mvc/views/razor.md#using) directives can be placed in imports files (`_Imports.razor`) for components and code, as the following example demonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
+Component namespaces are derived from the RCL's package ID or assembly name and the component's folder path within the RCL. For more information, see [ASP.NET Core Razor components](../components/index.md#component-name-class-name-and-namespace). [`@using`](../../mvc/views/razor.md#using) directives can be placed in imports files (`_Imports.razor`) for components and code, as the following example demonstrates for an RCL named `SharedLibrary` with a `Shared` folder of shared Razor components and a `Data` folder of shared data classes:
 
 ```razor
 @using SharedLibrary
@@ -90,12 +89,12 @@ For an RCL named `SharedLibrary` and using the minified Bootstrap stylesheet as 
 
 For additional information on how to share static assets across projects, see the following articles:
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md)
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 The root `index.html` file is usually specific to the app and should remain in the Blazor Hybrid app or the Blazor WebAssembly app. The `index.html` file typically isn't shared.
 
-The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often might need to be specific to the hosting app. For example, `App.razor` is different in the server-side Blazor and Blazor WebAssembly project templates when authentication is enabled. You can add the [`AdditionalAssemblies` parameter](xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies) to specify the location of any shared routable components, and you can specify a [shared default layout component for the router](xref:blazor/fundamentals/routing#route-templates) by type name.
+The root Razor Component (`App.razor` or `Main.razor`) can be shared, but often might need to be specific to the hosting app. For example, `App.razor` is different in the server-side Blazor and Blazor WebAssembly project templates when authentication is enabled. You can add the [`AdditionalAssemblies` parameter](../fundamentals/routing.md#route-to-components-from-multiple-assemblies) to specify the location of any shared routable components, and you can specify a [shared default layout component for the router](../fundamentals/routing.md#route-templates) by type name.
 
 ## Provide code and services independent of hosting model
 
@@ -203,7 +202,7 @@ In the preceding example, the `{APP NAMESPACE}` placeholder is the app's namespa
 
 The Blazor Hybrid, Blazor WebAssembly, and server-side Blazor apps register their weather forecast service implementations (`Services.WeatherForecastService`) for `IWeatherForecastService`.
 
-The Blazor WebAssembly project also registers an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see <xref:blazor/call-web-api>.
+The Blazor WebAssembly project also registers an <xref:System.Net.Http.HttpClient>. The <xref:System.Net.Http.HttpClient> registered in an app created from the Blazor WebAssembly project template is sufficient for this purpose. For more information, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md).
 
 `Pages/FetchData.razor` in the RCL:
 
@@ -459,6 +458,6 @@ var message = customService.GetMessage();
 
 ## Related content
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md)
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
-* [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
+* [CSS isolation support with Razor class libraries](../components/css-isolation.md#razor-class-library-rcl-support)

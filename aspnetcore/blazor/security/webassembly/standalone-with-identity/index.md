@@ -15,7 +15,7 @@ Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by 
 
 Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in a backend API to add JSON API endpoints for registering and logging in users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
 
-In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see <xref:blazor/call-web-api>.
+In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see [Call a web API from an ASP.NET Core Blazor app](../../../call-web-api.md).
 
 On the client, call the `/register` endpoint to register a user with their email address and password:
 
@@ -104,7 +104,7 @@ In this article, sample apps serve as a reference for standalone Blazor WebAssem
 
 Access the sample apps through the latest version folder from the repository's root with the following link. The samples are provided for .NET 8 or later. See the `README` file in the `BlazorWebAssemblyStandaloneWithIdentity` folder for steps on how to run the sample apps.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../../../fundamentals/index.md#sample-apps))
 
 ## Backend web API app packages and code
 
@@ -120,7 +120,7 @@ The app uses the following NuGet packages:
 
 If your app is to use a different EF Core database provider than the in-memory provider, don't create a package reference in your app for `Microsoft.EntityFrameworkCore.InMemory`.
 
-In the app's project file (`.csproj`), [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) is configured.
+In the app's project file (`.csproj`), [invariant globalization](../../../globalization-localization.md#invariant-globalization) is configured.
 
 ### Sample app code
 
@@ -240,7 +240,7 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI content depending on whether the user is authorized. All content within a Blazor WebAssembly app placed in an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component is discoverable without authentication, so sensitive content should be obtained from a backend server-based web API after authentication succeeds. For more information, see the following resources:
 >
 > * <xref:blazor/security/index#authorizeview-component>
-> * <xref:blazor/call-web-api>
+> * [Call a web API from an ASP.NET Core Blazor app](../../../call-web-api.md)
 > * <xref:blazor/security/webassembly/additional-scenarios>
 
 ## Test user seeding demonstration
@@ -302,7 +302,7 @@ Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetC
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 
-Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
+Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and [ASP.NET Core Blazor forms overview](../../../forms/index.md#antiforgery-support).
 
 Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](../../../../security/cors.md) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
@@ -310,7 +310,7 @@ Requests to other server API endpoints (web API) with `application/json`-encoded
 
 ### Logging
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging>.
+To enable debug or trace logging for Blazor WebAssembly authentication, see [ASP.NET Core Blazor logging](../../../fundamentals/logging.md).
 
 ### Common errors
 
@@ -429,4 +429,4 @@ To troubleshoot problems with user claims, the following `UserClaims` component 
 ## Related content
 
 * [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+* [Client-side SignalR cross-origin negotiation for authentication](../../../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)

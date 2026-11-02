@@ -16,7 +16,7 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 * Set up a process manager that starts the app when requests arrive and restarts the app after it crashes or the server reboots.
 * For configuration of a reverse proxy, set up a reverse proxy to forward requests to the app.
 
-For Blazor host and deploy guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/host-and-deploy/index>.
+For Blazor host and deploy guidance, which adds to or supersedes the guidance in this node, see [Host and deploy ASP.NET Core Blazor](../blazor/host-and-deploy/index.md).
 
 ## Publish to a folder
 

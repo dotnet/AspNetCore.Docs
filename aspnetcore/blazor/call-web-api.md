@@ -3,7 +3,6 @@ title: Call a web API from an ASP.NET Core Blazor app
 description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/14/2026
-uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
@@ -91,7 +90,7 @@ else
 
 In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
 
-For an additional working example, see the server-side file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server-with-server-side-rendering> article.
+For an additional working example, see the server-side file upload example that uploads files to a web API controller in the [ASP.NET Core Blazor file uploads](file-uploads.md#upload-files-to-a-server-with-server-side-rendering) article.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -104,7 +103,7 @@ When using the interactive WebAssembly and Auto render modes, components are pre
 * The client version calls the web API with a preconfigured <xref:System.Net.Http.HttpClient>.
 * The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary. Alternatively, the API might be external to the server project, but a service abstraction for the server is required to transform the request in some way, for example to add an access token to a proxied request.
 
-When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/prerender#disable-prerendering>.
+When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see [Prerender ASP.NET Core Razor components](components/prerender.md#disable-prerendering).
 
 Examples ([sample apps](#sample-apps)):
 
@@ -132,9 +131,9 @@ Use ***either*** of the following approaches:
 
   Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 
-* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in <xref:blazor/components/prerender#disable-prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component isn't prerendered on the server.
+* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in [Prerender ASP.NET Core Razor components](components/prerender.md#disable-prerendering). If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component isn't prerendered on the server.
 
-For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article.
+For more information, see the [Client-side services fail to resolve during prerendering](components/prerender.md#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article.
 
 ## Client-side scenarios for calling external web APIs
 
@@ -522,12 +521,12 @@ When prerendering, components render twice: first statically, then interactively
 You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
 
 * <xref:blazor/state-management/prerendered-state-persistence>
-* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
+* [ASP.NET Core Blazor navigation](fundamentals/navigation.md#enhanced-navigation-and-form-handling)
 
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
+> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see [ASP.NET Core Blazor navigation](fundamentals/navigation.md#enhanced-navigation-and-form-handling).
 
 :::moniker-end
 
@@ -563,7 +562,7 @@ The following sections cover JSON helpers:
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> sends an HTTP GET request and parses the JSON response body to create an object.
 
-In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> is called when the component is finished initializing ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
+In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> is called when the component is finished initializing ([`OnInitializedAsync`](components/lifecycle.md#component-initialization-oninitializedasync)).
 
 ```csharp
 todoItems = await Http.GetFromJsonAsync<TodoItem[]>("todoitems");
@@ -826,7 +825,7 @@ Streaming requests:
 * Require HTTPS protocol and don't work on HTTP/1.x.
 * Include a body but not a `Content-Length` header. [CORS](../security/cors.md) with a preflight request is required for cross-origin streaming requests.
 
-For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see [ASP.NET Core Blazor file uploads](file-uploads.md#file-size-read-and-upload-limits) and the example at [Upload files to a server with client-side rendering (CSR)](file-uploads.md#upload-files-to-a-server-with-client-side-rendering-csr).
 
 :::moniker-end
 
@@ -1282,7 +1281,7 @@ else
 > [!NOTE]
 > The preceding example is for demonstration purposes. A web API can be configured to return JSON even when an endpoint doesn't exist or an unhandled exception occurs on the server.
 
-For more information, see <xref:blazor/fundamentals/handle-errors>.
+For more information, see [Handle errors in ASP.NET Core Blazor apps](fundamentals/handle-errors.md).
 
 ## Cross-Origin Resource Sharing (CORS)
 
@@ -1329,7 +1328,7 @@ Various network tools are publicly available for testing web API backend apps di
 
 ## Sample apps
 
-For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](fundamentals/index.md#sample-apps)).
 
 ### `BlazorWebAppCallWebApi`
 

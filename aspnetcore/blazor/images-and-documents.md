@@ -3,7 +3,6 @@ title: Display images and documents in ASP.NET Core Blazor
 description: Learn how to display images and documents in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/images-and-documents
 ---
 # Display images and documents in ASP.NET Core Blazor
 
@@ -11,7 +10,7 @@ uid: blazor/images-and-documents
 
 This article describes approaches for displaying images and documents in Blazor apps.
 
-The examples in this article are available for inspection and use in the [Blazor sample apps](xref:blazor/fundamentals/index#sample-apps):
+The examples in this article are available for inspection and use in the [Blazor sample apps](fundamentals/index.md#sample-apps):
 
 [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples): Navigate to the app named `BlazorSample_BlazorWebApp` (8.0 or later), `BlazorSample_Server` (7.0 or earlier), or `BlazorSample_WebAssembly`.
 
@@ -71,13 +70,13 @@ Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range*?dis
 }
 ```
 
-For more information on lambda expressions with event handling, see <xref:blazor/components/event-handling#lambda-expressions>.
+For more information on lambda expressions with event handling, see [ASP.NET Core Blazor event handling](components/event-handling.md#lambda-expressions).
 
 ## Stream image or document data
 
 An image or other document type, such as a PDF, can be directly transmitted to the client using Blazor's streaming interop features instead of hosting the file at a public URL.
 
-The example in this section streams source data using [JavaScript (JS) interop](xref:blazor/js-interop/index). The following `setSource` JS function:
+The example in this section streams source data using [JavaScript (JS) interop](javascript-interoperability/index.md). The following `setSource` JS function:
 
 * Can be used to stream content for the following elements: `<body>`, `<embed>`, `<iframe>`, `<img>`, `<link>`, `<object>`, `<script>`, `<style>`, and `<track>`.
 * Accepts an element `id` to display the file's contents, a data stream for the document, the content type, and a title for the display element.
@@ -111,7 +110,7 @@ The function:
 ```
 
 > [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
+> For general guidance on JS location and our recommendations for production apps, see [JavaScript location in ASP.NET Core Blazor apps](javascript-interoperability/location-of-javascript.md).
 
 The following `ShowImage2` component:
 
@@ -185,13 +184,13 @@ The following `ShowFile` component loads either a text file (`files/quote.txt`) 
 
 :::moniker-end
 
-In the preceding example, the `using` statement for the `response` variable doesn't dispose of the <xref:System.Net.Http.HttpResponseMessage> instance until the scope of `ShowFileAsync` ends. The open stream is maintained long enough to transfer the file data to the `setSource` function via JavaScript interop. For general guidance on the importance of disposing of <xref:System.Net.Http.HttpResponseMessage> instances, see <xref:blazor/call-web-api#disposal-of-httprequestmessage-httpresponsemessage-and-httpclient>.
+In the preceding example, the `using` statement for the `response` variable doesn't dispose of the <xref:System.Net.Http.HttpResponseMessage> instance until the scope of `ShowFileAsync` ends. The open stream is maintained long enough to transfer the file data to the `setSource` function via JavaScript interop. For general guidance on the importance of disposing of <xref:System.Net.Http.HttpResponseMessage> instances, see [Call a web API from an ASP.NET Core Blazor app](call-web-api.md#disposal-of-httprequestmessage-httpresponsemessage-and-httpclient).
 
 ## Related content
 
-* <xref:blazor/file-uploads>
-* [File uploads: Upload image preview](xref:blazor/file-uploads#upload-image-preview)
-* <xref:blazor/file-downloads>
-* <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
-* <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [ASP.NET Core Blazor file uploads](file-uploads.md)
+* [File uploads: Upload image preview](file-uploads.md#upload-image-preview)
+* [ASP.NET Core Blazor file downloads](file-downloads.md)
+* [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](javascript-interoperability/call-dotnet-from-javascript.md#stream-from-javascript-to-net)
+* [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](javascript-interoperability/call-javascript-from-dotnet.md#stream-from-net-to-javascript)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))

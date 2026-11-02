@@ -13,7 +13,7 @@ ms.date: 10/27/2026
 
 This article covers common approaches to handling errors in ASP.NET Core web apps. See also [Handle errors in ASP.NET Core APIs](error-handling-api.md).
 
-For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/handle-errors>.
+For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 ## Developer exception page
 

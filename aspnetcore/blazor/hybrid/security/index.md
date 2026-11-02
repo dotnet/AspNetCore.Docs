@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor Hybrid authentication and authorization
 description: Learn about Blazor Hybrid authentication and authorization scenarios.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/security/index
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid authentication and authorization
@@ -1077,7 +1076,7 @@ When implementing authentication:
 :::moniker range=">= aspnetcore-7.0"
 
 * <xref:blazor/security/index>
-* <xref:blazor/hybrid/security/security-considerations>
+* [ASP.NET Core Blazor Hybrid security considerations](security-considerations.md)
 * Entra ID documentation for .NET MAUI
   * [Tutorial: Register and configure .NET MAUI mobile app in an external tenant](/entra/external-id/customers/tutorial-mobile-app-maui-sign-in-prepare-tenant)
   * [Sign in users in a sample .NET MAUI Android application](/entra/external-id/customers/how-to-mobile-app-maui-sample-sign-in)
@@ -1091,6 +1090,6 @@ When implementing authentication:
 :::moniker range="< aspnetcore-7.0"
 
 * <xref:blazor/security/index>
-* <xref:blazor/hybrid/security/security-considerations>
+* [ASP.NET Core Blazor Hybrid security considerations](security-considerations.md)
 
 :::moniker-end

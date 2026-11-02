@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor environments
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/15/2026
-uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
@@ -189,7 +188,7 @@ Console.WriteLine(
     $"Client Hosting Environment: {builder.HostEnvironment.Environment}");
 ```
 
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup, see [ASP.NET Core Blazor startup](startup.md).
 
 :::moniker range="< aspnetcore-10.0"
 
@@ -222,7 +221,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 ```
 
 > [!NOTE]
-> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly/iis#use-of-a-custom-webconfig>.
+> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](../host-and-deploy/webassembly/iis.md#use-of-a-custom-webconfig).
 
 ### Nginx
 
@@ -243,7 +242,7 @@ http {
 For more information, see the following resources:
 
 * [Nginx documentation](http://nginx.org/docs/http/ngx_http_headers_module.html)
-* <xref:blazor/host-and-deploy/webassembly/nginx>
+* [Host and deploy ASP.NET Core Blazor WebAssembly with Nginx](../host-and-deploy/webassembly/nginx.md)
 
 ### Apache
 
@@ -260,7 +259,7 @@ For Apache servers, use the `Header` directive from the `mod_headers` module:
 For more information, see the following resources:
 
 * [Apache documentation (search the latest release for "`mod_headers`")](https://httpd.apache.org/docs/)
-* <xref:blazor/host-and-deploy/webassembly/apache>
+* [Host and deploy ASP.NET Core Blazor WebAssembly with Apache](../host-and-deploy/webassembly/apache.md)
 
 ### Set the environment for Azure App Service
 
@@ -336,7 +335,7 @@ Assuming that prerendering isn't disabled for a component or the app, a componen
 
 > :::no-loc text="There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
-To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Custom service implementation on the server](xref:blazor/components/prerender#custom-service-implementation-on-the-server) section of the *Prerendering* article, which appears later in the Blazor documentation.
+To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Create a service abstraction](../components/prerender.md#create-a-service-abstraction) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 
@@ -378,6 +377,6 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 
 ## Related content
 
-* <xref:blazor/fundamentals/startup>
+* [ASP.NET Core Blazor startup](startup.md)
 * [ASP.NET Core runtime environments](../../fundamentals/environments.md)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))

@@ -64,7 +64,7 @@ Download the installer using the following link:
 Create any type of ASP.NET Core server-based app.
 
 > [!NOTE]
-> This tutorial is based on hosting a server-side ASP.NET Core app with IIS, including a Blazor Web App. For guidance on hosting and deploying a *standalone Blazor WebAssembly app* with IIS, see <xref:blazor/host-and-deploy/webassembly/iis>.
+> This tutorial is based on hosting a server-side ASP.NET Core app with IIS, including a Blazor Web App. For guidance on hosting and deploying a *standalone Blazor WebAssembly app* with IIS, see [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](../blazor/host-and-deploy/webassembly/iis.md).
 
 ## Publish and deploy the app
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about Blazor render modes and how to apply them in Blazor Web Apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/render-modes
 ---
 # ASP.NET Core Blazor render modes
 
@@ -29,7 +28,7 @@ Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on
 
 &dagger;Client-side rendering (CSR) is assumed to be interactive. "*Interactive* client-side rendering" and "*interactive* CSR" aren't used by the industry or in the Blazor documentation.
 
-Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. For general industry terminology on client and server rendering concepts, see <xref:blazor/fundamentals/index#client-and-server-rendering-concepts>.
+Prerendering is enabled by default for interactive components. Guidance on controlling prerendering is provided later in this article. For general industry terminology on client and server rendering concepts, see [ASP.NET Core Blazor fundamentals](../fundamentals/index.md#client-and-server-rendering-concepts).
 
 The following examples demonstrate setting the component's render mode with a few basic Razor component features.
 
@@ -152,7 +151,7 @@ For apps based on the Blazor Web App project template, a render mode assigned to
 
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component propagates its render mode to the pages it routes.
 
-You also typically must set the same interactive render mode on the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component), which is also found in the `App` component of a Blazor Web App generated from the project template:
+You also typically must set the same interactive render mode on the [`HeadOutlet` component](control-head-content.md#headoutlet-component), which is also found in the `App` component of a Blazor Web App generated from the project template:
 
 ```razor
 <HeadOutlet @rendermode="InteractiveServer" />
@@ -213,7 +212,7 @@ When using a Blazor Web App, most of the Blazor documentation example components
 
 ## Prerendering
 
-Interactive render modes (Interactive Server, Interactive WebAssembly, Interactive Auto) support prerendering by default, which initially renders the page content statically from the server to improve the initial load experience. For more information, see <xref:blazor/components/prerender>.
+Interactive render modes (Interactive Server, Interactive WebAssembly, Interactive Auto) support prerendering by default, which initially renders the page content statically from the server to improve the initial load experience. For more information, see [Prerender ASP.NET Core Razor components](prerender.md).
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -349,13 +348,13 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 * [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
 
-* [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](../../fundamentals/error-handling.md#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
+* [Not Found content (`<NotFound>...</NotFound>`)](../fundamentals/routing.md#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](../../fundamentals/error-handling.md#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
 
 :::moniker-end
 
 If the app exhibits root-level interactivity, server-side ASP.NET Core request processing isn't involved after the initial static SSR, which means that the preceding Blazor features work as expected.
 
-[Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+[Enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling) with static SSR requires special attention when loading JavaScript. For more information, see [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md).
 
 ## Interactive server-side rendering (interactive SSR)
 
@@ -554,7 +553,7 @@ Non-serializable component parameters, such as child content or a render fragmen
                    https://github.com/dotnet/aspnetcore/issues/52768.
                    Determine if more work is needed here. -->
 
-The same thing happens if you attempt to adopt interactive rendering in a layout that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, such as the app's `MainLayout` component, in an app that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.
+The same thing happens if you attempt to adopt interactive rendering in a layout that inherits from <xref:Microsoft.AspNetCore.Components.LayoutComponentBase>, such as the app's `MainLayout` component, in an app that adopts per-page/component rendering. For more information, see [ASP.NET Core Blazor layouts](layouts.md#statically-rendered-layout-components).
 
 :::moniker-end
 
@@ -614,7 +613,7 @@ Mark any Razor component page with the [`[ExcludeFromInteractiveRouting]` attrib
 @attribute [ExcludeFromInteractiveRouting]
 ```
 
-Applying the attribute causes navigation to the page to exit from [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing). Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
+Applying the attribute causes navigation to the page to exit from [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing). Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
 The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
@@ -826,7 +825,7 @@ In the preceding code, change the `{INTERACTIVE RENDER MODE}` placeholder to the
 
 The `@rendermode` directive takes a single parameter that's a static instance of type <xref:Microsoft.AspNetCore.Components.IComponentRenderMode>. The `@rendermode` directive attribute can take any render mode instance, static or not. The Blazor framework provides the <xref:Microsoft.AspNetCore.Components.Web.RenderMode> static class with some predefined render modes for convenience, but you can create your own.
 
-Normally, a component uses the following `@rendermode` directive to [disable prerendering](xref:blazor/components/prerender#disable-prerendering):
+Normally, a component uses the following `@rendermode` directive to [disable prerendering](prerender.md#disable-prerendering):
 
 ```razor
 @rendermode @(new InteractiveServerRenderMode(prerender: false))
@@ -867,20 +866,20 @@ At the moment, the shorthand render mode approach is probably only useful for re
 :::moniker range=">= aspnetcore-9.0"
 
 * WebSocket compression
-  * <xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components>
+  * [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#websocket-compression-for-interactive-server-components)
   * <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>
-* <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
-* <xref:blazor/components/class-libraries-with-static-ssr>
+* [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
+* [Cascading values/parameters and render mode boundaries](cascading-values-and-parameters.md#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](cascading-values-and-parameters.md#root-level-cascading-values) and [Root-level cascading values with notifications](cascading-values-and-parameters.md#root-level-cascading-values-with-notifications) sections earlier in the article.
+* [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](class-libraries-and-static-server-side-rendering.md)
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-* <xref:blazor/js-interop/ssr>
-* [Cascading values/parameters and render mode boundaries](xref:blazor/components/cascading-values-and-parameters#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values) and [Root-level cascading values with notifications](xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications) sections earlier in the article.
-* <xref:blazor/components/class-libraries-with-static-ssr>
+* [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
+* [Cascading values/parameters and render mode boundaries](cascading-values-and-parameters.md#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](cascading-values-and-parameters.md#root-level-cascading-values) and [Root-level cascading values with notifications](cascading-values-and-parameters.md#root-level-cascading-values-with-notifications) sections earlier in the article.
+* [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](class-libraries-and-static-server-side-rendering.md)
 * [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a Blazor WebAssembly app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 04/07/2026
-uid: blazor/blazor-web-workers
 ---
 # ASP.NET Core Blazor with .NET on Web Workers
 
@@ -468,7 +467,7 @@ You can use the app's Home page to demonstrate the flow.
 </div>
 ```
 
-The following code-behind file initializes the client and generates the QR code. The [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) code guarantees that the JavaScript module is loaded before the user clicks the button, while the `GenerateQR` handler makes a single asynchronous worker request.
+The following code-behind file initializes the client and generates the QR code. The [`OnAfterRenderAsync` lifecycle method](components/lifecycle.md#after-component-render-onafterrenderasync) code guarantees that the JavaScript module is loaded before the user clicks the button, while the `GenerateQR` handler makes a single asynchronous worker request.
 
 `Home.razor.cs`:
 

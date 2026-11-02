@@ -152,103 +152,103 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-6.0&preserve-view=true#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
 
 ### Persist prerendered state
 
-Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see <xref:blazor/components/integration?view=aspnetcore-6.0&pivots=server#persist-prerendered-state>.
+Blazor supports persisting state in a prerendered page so that the state doesn't need to be recreated when the app is fully loaded. For more information, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../blazor/components/integration.md?view=aspnetcore-6.0&preserve-view=true&pivots=server#persist-prerendered-state).
 
 ### Error boundaries
 
-Error boundaries provide a convenient approach for handling exceptions on the UI level. For more information, see <xref:blazor/fundamentals/handle-errors?view=aspnetcore-6.0&pivots=server#error-boundaries>.
+Error boundaries provide a convenient approach for handling exceptions on the UI level. For more information, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md?view=aspnetcore-6.0&preserve-view=true&pivots=server#error-boundaries).
 
 ### SVG support
 
-The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element is supported to display arbitrary HTML within an SVG. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#scalable-vector-graphics-svg-images>.
+The [`<foreignObject>` element](https://developer.mozilla.org/docs/Web/SVG/Element/foreignObject) element is supported to display arbitrary HTML within an SVG. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0&preserve-view=true#scalable-vector-graphics-svg-images).
 
 ### Blazor Server support for byte array transfer in JS Interop
 
 Blazor supports optimized byte array JS interop that avoids encoding and decoding byte arrays into Base64. For more information, see the following resources:
 
-* <xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#byte-array-support>
-* <xref:blazor/js-interop/call-dotnet-from-javascript?view=aspnetcore-6.0#byte-array-support>
+* [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../blazor/javascript-interoperability/call-javascript-from-dotnet.md?view=aspnetcore-6.0&preserve-view=true#byte-array-support)
+* [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../blazor/javascript-interoperability/call-dotnet-from-javascript.md?view=aspnetcore-6.0&preserve-view=true#byte-array-support)
 
 ### Query string enhancements
 
-Support for working with query strings is improved. For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-6.0#query-strings>.
+Support for working with query strings is improved. For more information, see [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md?view=aspnetcore-6.0&preserve-view=true#query-strings).
 
 ### Binding to select multiple
 
 Binding supports multiple option selection with `<input>` elements. For more information, see the following resources:
 
-* <xref:blazor/components/data-binding?view=aspnetcore-6.0#multiple-option-selection-with-input-elements>
-* <xref:blazor/forms/input-components?view=aspnetcore-6.0#multiple-option-selection-with-the-inputselect-component>
+* [ASP.NET Core Blazor data binding](../blazor/components/data-binding.md?view=aspnetcore-6.0&preserve-view=true#multiple-option-selection-with-select-elements)
+* [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-6.0&preserve-view=true#multiple-option-selection-with-the-inputselect-component)
 
 ### Head (`<head>`) content control
 
-Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see [Control `<head>` content in ASP.NET Core Blazor apps](xref:blazor/components/control-head-content?view=aspnetcore-6.0).
+Razor components can modify the HTML `<head>` element content of a page, including setting the page's title (`<title>` element) and modifying metadata (`<meta>` elements). For more information, see [Control `<head>` content in ASP.NET Core Blazor apps](../blazor/components/control-head-content.md?view=aspnetcore-6.0&preserve-view=true).
 
 ### Generate Angular and React components
 
-Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generate-angular-and-react-components>.
+Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0&preserve-view=true#generate-angular-and-react-components).
 
 ### Render components from JavaScript
 
-Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#render-razor-components-from-javascript>.
+Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0&preserve-view=true#render-razor-components-from-javascript).
 
 ### Custom elements
 
-Experimental support is available for building custom elements, which use standard HTML interfaces. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#blazor-custom-elements>.
+Experimental support is available for building custom elements, which use standard HTML interfaces. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0&preserve-view=true#blazor-custom-elements).
 
 ### Infer component generic types from ancestor components
 
-An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#cascaded-generic-type-support>.
+An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see [ASP.NET Core Razor components](../blazor/components/generic-type-support.md?view=aspnetcore-6.0&preserve-view=true#cascaded-generic-type-support).
 
 ### Dynamically rendered components
 
-Use the new built-in `DynamicComponent` component to render components by type. For more information, see <xref:blazor/components/dynamiccomponent?view=aspnetcore-6.0>.
+Use the new built-in `DynamicComponent` component to render components by type. For more information, see [Dynamically-rendered ASP.NET Core Razor components](../blazor/components/dynamiccomponent.md?view=aspnetcore-6.0&preserve-view=true).
 
 ### Improved Blazor accessibility
 
-Use the new `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. For more information, see <xref:blazor/fundamentals/routing?view=aspnetcore-6.0#focus-an-element-on-navigation>.
+Use the new `FocusOnNavigate` component to set the UI focus to an element based on a CSS selector after navigating from one page to another. For more information, see [ASP.NET Core Blazor routing](../blazor/fundamentals/routing.md?view=aspnetcore-6.0&preserve-view=true#focus-an-element-on-navigation).
 
 ### Custom event argument support
 
-Blazor supports custom event arguments, which enable you to pass arbitrary data to .NET event handlers with custom events. For more information, see <xref:blazor/components/event-handling?view=aspnetcore-6.0#custom-event-arguments>.
+Blazor supports custom event arguments, which enable you to pass arbitrary data to .NET event handlers with custom events. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md?view=aspnetcore-6.0&preserve-view=true#custom-event-arguments).
 
 ### Required parameters
 
-Apply the new `[EditorRequired]` attribute to specify a required component parameter. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#component-parameters>.
+Apply the new `[EditorRequired]` attribute to specify a required component parameter. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0&preserve-view=true#component-parameters).
 
 ### Collocation of JavaScript files with pages, views, and components
 
-Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component>.
+Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-6.0&preserve-view=true#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
 
 ### JavaScript initializers
 
-JavaScript initializers execute logic before and after a Blazor app loads. For more information, see <xref:blazor/js-interop/index?view=aspnetcore-6.0#javascript-initializers>.
+JavaScript initializers execute logic before and after a Blazor app loads. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/fundamentals/startup.md?view=aspnetcore-6.0&preserve-view=true#javascript-initializers).
 
 ### Streaming JavaScript interop
 
 Blazor now supports streaming data directly between .NET and JavaScript. For more information, see the following resources:
 
-* [Stream from .NET to JavaScript](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-6.0#stream-from-net-to-javascript)
-* [Stream from JavaScript to .NET](xref:blazor/js-interop/call-dotnet-from-javascript?view=aspnetcore-6.0#stream-from-javascript-to-net)
+* [Stream from .NET to JavaScript](../blazor/javascript-interoperability/call-javascript-from-dotnet.md?view=aspnetcore-6.0&preserve-view=true#stream-from-net-to-javascript)
+* [Stream from JavaScript to .NET](../blazor/javascript-interoperability/call-dotnet-from-javascript.md?view=aspnetcore-6.0&preserve-view=true#stream-from-javascript-to-net)
 
 ### Generic type constraints
 
-Generic type parameters are now supported. For more information, see <xref:blazor/components/index?view=aspnetcore-6.0#generic-type-parameter-support>.
+Generic type parameters are now supported. For more information, see [ASP.NET Core Razor components](../blazor/components/generic-type-support.md?view=aspnetcore-6.0&preserve-view=true#generic-type-parameter-support).
 
 ### WebAssembly deployment layout
 
-Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see <xref:blazor/host-and-deploy/webassembly/deployment-layout?view=aspnetcore-6.0>.
+Use a deployment layout to enable Blazor WebAssembly app downloads in restricted security environments. For more information, see [Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps](../blazor/host-and-deploy/webassembly/deployment-layout.md?view=aspnetcore-6.0&preserve-view=true).
 
 ### New Blazor articles
 
 In addition to the Blazor features described in the preceding sections, new Blazor articles are available on the following subjects:
 
-* <xref:blazor/file-downloads>: Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
-* <xref:blazor/images-and-documents>: Discover how to work with images and documents in Blazor apps, including how to stream image and document data.
+* [ASP.NET Core Blazor file downloads](../blazor/file-downloads.md): Learn how to download a file using native `byte[]` streaming interop to ensure efficient transfer to the client.
+* [Display images and documents in ASP.NET Core Blazor](../blazor/images-and-documents.md): Discover how to work with images and documents in Blazor apps, including how to stream image and document data.
 
 ## Build Blazor Hybrid apps with .NET MAUI, WPF, and Windows Forms
 
@@ -262,7 +262,7 @@ Use Blazor Hybrid to blend desktop and mobile native client frameworks with .NET
 
 For more information, see the following resources:
 
-* [Preview ASP.NET Core Blazor Hybrid documentation](xref:blazor/hybrid/index)
+* [Preview ASP.NET Core Blazor Hybrid documentation](../blazor/hybrid/index.md)
 * [What is .NET MAUI?](/dotnet/maui/what-is-maui)
 * [Microsoft .NET Blog (category: ".NET MAUI")](https://devblogs.microsoft.com/dotnet/category/maui/)
 
