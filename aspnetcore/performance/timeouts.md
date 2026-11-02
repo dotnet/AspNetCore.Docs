@@ -3,7 +3,6 @@ title: Request timeouts middleware in ASP.NET Core
 description: Learn how to configure and use request timeout middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/25/2023
-uid: performance/timeouts
 ---
 # Request timeouts middleware in ASP.NET Core
 

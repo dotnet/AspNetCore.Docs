@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 3.1
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core 3.1.
 ms.date: 02/12/2020
-uid: aspnetcore-3.1
 ---
 # What's new in ASP.NET Core 3.1
 

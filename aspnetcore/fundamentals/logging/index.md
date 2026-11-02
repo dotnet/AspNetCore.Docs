@@ -846,7 +846,7 @@ The following logging providers are provided by Microsoft, but not as part of th
 
 ASP.NET Core doesn't include a logging provider for writing logs to files. To write logs to files from an ASP.NET Core app, consider using a [third-party logging provider](#third-party-logging-providers).
 
-For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
+For information on `stdout` and debug logging with the ASP.NET Core Module, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md) and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 ### `Console`
 

@@ -108,7 +108,7 @@ Use health checks middleware to perform health checks on an app and its dependen
 ## Additional resources
 
 * [.NET application publishing overview](/dotnet/core/deploying)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 :::moniker-end
@@ -182,7 +182,7 @@ For more information, see [Host ASP.NET Core in Docker containers](docker/index.
 ## Additional resources
 
 * [.NET application publishing overview](/dotnet/core/deploying)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 :::moniker-end

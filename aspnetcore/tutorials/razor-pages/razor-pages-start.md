@@ -177,7 +177,7 @@ The following code enables various [Middleware](../../fundamentals/middleware/in
 * `app.UseHttpsRedirection();` : Redirects HTTP requests to HTTPS.
 * `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, so you can remove this line.
-* `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
+* `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see [What's new in ASP.NET Core in .NET 9](../../release-notes/aspnetcore-9.0.md#static-asset-delivery-optimization).
 * `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.<hash>.css` (the `<hash>` placeholder is the file hash), for cache-busting.
 * `app.Run();` : Runs the app.
 

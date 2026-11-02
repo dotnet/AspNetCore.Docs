@@ -242,7 +242,7 @@ app.UseRouting();
 app.UseRateLimiter();
 ```
 
-For more information, see <xref:performance/rate-limit>.
+For more information, see [Rate limiting middleware in ASP.NET Core](../../../performance/rate-limit.md).
 
 ## Disable status code pages
 
@@ -277,7 +277,7 @@ The hosting layer can show an error page for a captured startup error only if th
 * The dotnet process crashes.
 * No error page is displayed when the HTTP server is [Kestrel](../../servers/kestrel.md).
 
-When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) if the process can't start. For more information, see <xref:test/troubleshoot-azure-iis>.
+When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) if the process can't start. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 ## Database error page
 

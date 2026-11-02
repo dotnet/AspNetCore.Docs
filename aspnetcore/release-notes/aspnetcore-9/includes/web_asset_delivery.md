@@ -9,7 +9,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Serve a given asset once until the file changes or the browser clears its cache. Set the [ETag](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag) header.
 * Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
 * Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
-* Use [caching middleware](xref:performance/caching/middleware).
+* Use [caching middleware](../../../performance/caching/middleware.md).
 * Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minimize the size of assets served to the browser. This optimization doesn't include minification.
@@ -84,7 +84,7 @@ Optimization happens automatically when using `MapStaticAssets`. When a library 
 
 For more information on the new file delivery features, see the following resources:
 
-* [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0)
+* [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0&preserve-view=true)
 * <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
 
 ### Customize build-time compression with MSBuild properties
@@ -110,7 +110,7 @@ To completely disable compression:
 </PropertyGroup>
 ```
 
-For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0#msbuild-properties).
+For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0&preserve-view=true#msbuild-properties).
 
 ### Enabling dynamic compression on the server vs using `MapStaticAssets`
 

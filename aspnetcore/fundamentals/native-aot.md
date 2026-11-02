@@ -113,7 +113,7 @@ The ASP.NET Core **Web API (Native AOT)** template (short name `webapiaot`) crea
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, which minimizes the app's deployed size.
 * Is configured to listen on HTTP only. HTTPS traffic is commonly handled by an ingress service in cloud-native deployments.
 * Doesn't include a launch profile for running under IIS or IIS Express.
-* Creates an [.http file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
+* Creates an [.http file](../test/http-files.md) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
 * Adds the `PublishAot` property to the project file, as [described earlier](#publish-a-native-aot-app-publishaot).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for Native AOT compilation.

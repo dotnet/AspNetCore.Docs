@@ -105,7 +105,7 @@ Example:
 
 The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that cached items are always retained. See the topics in the [Related content](#related-content) section for more information.
 
-The Cache Tag Helper is dependent on the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it hasn't been added.
+The Cache Tag Helper is dependent on the [memory cache service](../../../../performance/caching/memory.md). The Cache Tag Helper adds the service if it hasn't been added.
 
 ### `vary-by`
 
@@ -248,5 +248,5 @@ Using this attribute maintains the contents in cache through a sign-in and sign-
 
 ## Related content
 
-* <xref:performance/caching/memory>
+* [Cache in-memory in ASP.NET Core](../../../../performance/caching/memory.md)
 * [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

@@ -14,7 +14,7 @@ This article provides guidelines for maximizing performance and reliability of A
 
 ## Cache aggressively
 
-Caching is discussed in several parts of this article. For more information, see <xref:performance/caching/overview>.
+Caching is discussed in several parts of this article. For more information, see [Overview of caching in ASP.NET Core](../performance/caching/overview.md).
 
 ## Understand hot code paths
 
@@ -86,7 +86,7 @@ Recommendations:
 
 * **Do** call all data access APIs asynchronously.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that's necessary for the current HTTP request.
-* **Do** consider caching frequently accessed data retrieved from a database or remote service if slightly out-of-date data is acceptable. Depending on the scenario, use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see <xref:performance/caching/response>.
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if slightly out-of-date data is acceptable. Depending on the scenario, use a [MemoryCache](../performance/caching/memory.md) or a [DistributedCache](../performance/caching/distributed.md). For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 * **Do** minimize network round trips. The goal is to retrieve the required data in a single call rather than several calls.
 * **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries more efficiently.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is performed by the database.
@@ -142,16 +142,16 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 
 Recommendations:
 
-* **Do** use the [bundling and minification guidelines](xref:client-side/bundling-and-minification), which mention compatible tools and show how to use ASP.NET Core's `environment` tag to handle both `Development` and `Production` environments.
+* **Do** use the [bundling and minification guidelines](../client-side/bundling-and-minification.md), which mention compatible tools and show how to use ASP.NET Core's `environment` tag to handle both `Development` and `Production` environments.
 * **Do** consider other third-party tools, such as [Webpack](https://webpack.js.org/), for complex client asset management.
 
 ## Compress responses
 
- Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](xref:performance/response-compression).
+ Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](../performance/response-compression.md).
 
 ## Use the latest ASP.NET Core release
 
-Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](/dotnet/standard/memory-and-spans/memory-t-usage-guidelines). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
+Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](/dotnet/standard/memory-and-spans/memory-t-usage-guidelines). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](../release-notes/aspnetcore-3.0.md) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
 ## Minimize exceptions
 

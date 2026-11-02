@@ -93,6 +93,6 @@ Most filter attributes, such as `[Authorize]`, can be applied at the controller 
 Error handling and response caching are often cross-cutting concerns:
 
 * [Handle errors](filters.md#exception-filters)
-* [Response Caching](xref:performance/caching/response)
+* [Response Caching](../../performance/caching/response.md)
 
 Many cross-cutting concerns can be handled using filters or custom [middleware](../../fundamentals/middleware/index.md).

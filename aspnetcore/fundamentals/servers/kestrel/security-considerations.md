@@ -69,7 +69,7 @@ Key considerations:
 - **HTTPS redirection may be unnecessary** if the proxy terminates TLS and communicates with Kestrel over a private network. If using forwarded headers then `UseHttpsRedirection()` will noop as it will see the `X-Forwarded-Proto` header as HTTPS, recommend keeping it in that case.
 
 > [!NOTE]
-> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](xref:fundamentals/servers/yarp/overview) if you are using YARP as your reverse proxy.
+> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](../yarp/yarp-overview.md) if you are using YARP as your reverse proxy.
 
 > [!WARNING]
 > The Forwarded Headers middleware can be silently enabled with **no proxy restrictions** by setting the environment variable `ASPNETCORE_FORWARDEDHEADERS_ENABLED=true` (or `DOTNET_FORWARDEDHEADERS_ENABLED=true`, or the configuration key `ForwardedHeaders_Enabled`). When enabled this way, the framework **clears `KnownProxies` and `KnownIPNetworks`**, meaning every upstream IP is trusted. This is far more permissive than what is achievable through the C# API, where `KnownProxies` defaults to loopback only. **Verify this variable isn't set in edge deployments**—check your Dockerfiles, orchestrator configs, CI/CD pipelines, and hosting platform defaults.

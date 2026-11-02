@@ -99,7 +99,7 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppEntra`) are proxied to the `MinimalApiJwt` project.
 
-The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see [Use .http files in Visual Studio 2022](../../test/http-files.md).
 
 The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
@@ -405,7 +405,7 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
-The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see [Use .http files in Visual Studio 2022](../../test/http-files.md).
 
 The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
@@ -948,7 +948,7 @@ builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>.
+To configure a production distributed cache provider, see [Distributed caching in ASP.NET Core](../../performance/caching/distributed.md).
 
 > [!WARNING]
 > Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
@@ -982,7 +982,7 @@ Confirm the presence of the following packages in the server project of the Blaz
 > [!NOTE]
 > Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
 
-The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
+The following code is typically implemented at the same time that a [production distributed token cache provider](../../performance/caching/distributed.md) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
 
 Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage).
 

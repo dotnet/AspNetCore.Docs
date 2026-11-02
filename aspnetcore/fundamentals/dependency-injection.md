@@ -271,7 +271,7 @@ For more information, see [App startup in ASP.NET Core](startup.md) and [Access 
 
 For general guidance on service registrations, see [Service registration](/dotnet/core/extensions/dependency-injection/service-registration).
 
-It's common to use multiple implementations when mocking types for testing. For more information, see <xref:test/integration-tests#inject-mock-services>.
+It's common to use multiple implementations when mocking types for testing. For more information, see [Integration tests in ASP.NET Core](../test/integration-tests.md#inject-mock-services).
 
 Registering a service with only an implementation type is equivalent to registering the service with the same implementation and service type:
 

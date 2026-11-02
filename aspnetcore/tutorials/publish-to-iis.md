@@ -122,7 +122,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 
 * [ASP.NET Core Module (ANCM) for IIS](../host-and-deploy/aspnet-core-module.md)
 * [ASP.NET Core directory structure](../host-and-deploy/directory-structure.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)
 * [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [WebSockets on IIS](../fundamentals/websockets.md#enabling-websockets-on-iis)
 

@@ -259,7 +259,7 @@ When deploying to an IIS server, you can use the URL Rewrite Module with the app
 
 ## Hosted deployment with ASP.NET Core
 
-A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](xref:index) that runs on a web server.
+A *hosted deployment* serves the Blazor WebAssembly app to browsers from an [ASP.NET Core app](../../../overview.md) that runs on a web server.
 
 The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FRAMEWORK}/publish/wwwroot` folder of the server app, along with any other static web assets of the server app. The two apps are deployed together. A web server that is capable of hosting an ASP.NET Core app is required. For a hosted deployment, Visual Studio includes the **Blazor WebAssembly App** project template (`blazorwasm` template when using the [`dotnet new`](/dotnet/core/tools/dotnet-new) command) with the **`Hosted`** option selected (`-ho|--hosted` when using the `dotnet new` command).
 

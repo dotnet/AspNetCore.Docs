@@ -190,7 +190,7 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](../../../../release-notes/aspnetcore-3.0.md#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
@@ -458,7 +458,7 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](../../../../release-notes/aspnetcore-3.0.md#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 

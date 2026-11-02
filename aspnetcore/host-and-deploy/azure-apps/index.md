@@ -36,7 +36,7 @@ Set up a CI build for an ASP.NET Core app, then create a continuous deployment r
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
 
-<xref:test/troubleshoot>  
+[Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)  
 Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 
 ## Application configuration
@@ -105,7 +105,7 @@ Discover how to enable and access diagnostic logging for HTTP status codes, fail
 [Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-<xref:test/troubleshoot-azure-iis>  
+[Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md)  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
 [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)  

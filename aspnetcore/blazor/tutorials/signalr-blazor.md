@@ -239,7 +239,7 @@ Add an entry to the `NavMenu` component to reach the chat page. In `Components/L
 ```
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 ## Run the app
 
@@ -516,7 +516,7 @@ Replace the markup with the following code:
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
 
 :::moniker-end
 

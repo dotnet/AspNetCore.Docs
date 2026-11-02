@@ -44,7 +44,7 @@ The [ASP.NET Core Data Protection system](../security/data-protection/introducti
 
 ### Caching
 
-In a web farm environment, the caching mechanism must share cached items across the web farm's nodes. Caching must either rely upon a common Redis cache, a shared SQL Server database, or a custom caching implementation that shares cached items across the web farm. For more information, see <xref:performance/caching/distributed>.
+In a web farm environment, the caching mechanism must share cached items across the web farm's nodes. Caching must either rely upon a common Redis cache, a shared SQL Server database, or a custom caching implementation that shares cached items across the web farm. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 
 ## Dependent components
 
@@ -54,7 +54,7 @@ The following scenarios don't require additional configuration, but they depend 
 | -------- | ------------------- |
 | Authentication | Data Protection (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)).<br><br>For more information, see [Use cookie authentication without ASP.NET Core Identity](../security/authentication/cookie.md) and [Share authentication cookies among ASP.NET apps](../security/cookie-sharing.md). |
 | Identity | Authentication and database configuration.<br><br>For more information, see [Introduction to Identity on ASP.NET Core](../security/authentication/identity.md). |
-| Session | Data Protection (encrypted cookies) (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)) and Caching (see <xref:performance/caching/distributed>).<br><br>For more information, see [Session and state management: Session state](../fundamentals/app-state.md#session-state). |
+| Session | Data Protection (encrypted cookies) (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)) and Caching (see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md)).<br><br>For more information, see [Session and state management: Session state](../fundamentals/app-state.md#session-state). |
 | TempData | Data Protection (encrypted cookies) (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)) or Session (see [Session and state management: Session state](../fundamentals/app-state.md#session-state)).<br><br>For more information, see [Session and state management: TempData](../fundamentals/app-state.md#tempdata). |
 | Antiforgery | Data Protection (see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md)).<br><br>For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md). |
 
@@ -75,11 +75,11 @@ When any of the following symptoms occur **intermittently**, the problem is usua
 * TempData fails.
 * POSTs fail: The antiforgery check fails.
 
-For more information on Data Protection configuration for web farm deployments, see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md). For more information on caching configuration for web farm deployments, see <xref:performance/caching/distributed>.
+For more information on Data Protection configuration for web farm deployments, see [Configure ASP.NET Core Data Protection](../security/data-protection/configuration/overview.md). For more information on caching configuration for web farm deployments, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 
 ## Obtain data from apps
 
-If the web farm apps are capable of responding to requests, obtain request, connection, and additional data from the apps using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+If the web farm apps are capable of responding to requests, obtain request, connection, and additional data from the apps using terminal inline middleware. For more information and sample code, see [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md#obtain-data-from-an-app).
 
 ## Related content
 

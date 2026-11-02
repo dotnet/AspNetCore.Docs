@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to cache data in memory in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/28/2026
-uid: performance/caching/memory
 
 # customer intent: As an ASP.NET developer, I want to use in-memory caching in ASP.NET Core, so I can improve the performance and scalability of my app.
 ---
@@ -19,7 +18,7 @@ Caching can significantly improve the performance and scalability of an app by r
 
 ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> interface. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that requests from a client all go to the same server. For example, an Azure web app uses [Microsoft Application Request Routing (ARR)](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) to route all requests to the same server.
 
-Nonsticky sessions in a web farm require a [distributed cache](xref:performance/caching/distributed) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
+Nonsticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
 The in-memory cache can store any object. The distributed cache interface is limited to `byte[]`. The in-memory and distributed cache store cache items as key-value pairs.
 
@@ -197,7 +196,7 @@ The following notes apply to in-memory caching:
 
 * Accessing the <xref:Microsoft.Extensions.Caching.Memory.MemoryCache.Count> property is computationally expensive under high concurrency because it requires aggregating items across internal partitions. Avoid accessing `Count` frequently in performance-sensitive request paths.
 
-* <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> aren't atomic. When several requests miss the same key at the same time, each request runs the factory, and the last value written is the one that stays in the cache. For an expensive data source, this can cause a burst of duplicate calls. To run the factory only once per key, use [`HybridCache`](xref:performance/caching/hybrid), which provides stampede protection.
+* <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> aren't atomic. When several requests miss the same key at the same time, each request runs the factory, and the last value written is the one that stays in the cache. For an expensive data source, this can cause a burst of duplicate calls. To run the factory only once per key, use [`HybridCache`](hybrid.md), which provides stampede protection.
 
 * The cache stores references to objects, not copies. If code changes an object after reading it from the cache, every caller that reads that entry sees the change. Cache immutable objects, or copy an object before changing it.
 
@@ -209,7 +208,7 @@ Use a [background service](../../fundamentals/host/hosted-services.md) such as t
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* [Response caching in ASP.NET Core](xref:performance/caching/response)
+* [Response caching in ASP.NET Core](response.md)
     
 :::moniker-end
 
@@ -223,7 +222,7 @@ Caching can significantly improve the performance and scalability of an app by r
 
 ASP.NET Core supports several different caches. The simplest cache is based on the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. `IMemoryCache` represents a cache stored in the memory of the web server. Apps running on a server farm (multiple servers) should ensure sessions are sticky when using the in-memory cache. Sticky sessions ensure that subsequent requests from a client all go to the same server. For example, Azure Web apps use [Application Request Routing](/iis/extensions/planning-for-arr/application-request-routing-version-2-overview) (ARR) to route all subsequent requests to the same server.
 
-Non-sticky sessions in a web farm require a [distributed cache](xref:performance/caching/distributed) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
+Non-sticky sessions in a web farm require a [distributed cache](distributed.md) to avoid cache consistency problems. For some apps, a distributed cache can support higher scale-out than an in-memory cache. Using a distributed cache offloads the cache memory to an external process.
 
 The in-memory cache can store any object. The distributed cache interface is limited to `byte[]`. The in-memory and distributed cache store cache items as key-value pairs.
 
@@ -385,10 +384,10 @@ Use a [background service](../../fundamentals/host/hosted-services.md) such as <
 
 ## Related content
 
-* <xref:performance/caching/distributed>
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* <xref:performance/caching/response>
-* <xref:performance/caching/middleware>
+* [Response caching in ASP.NET Core](response.md)
+* [Response caching middleware in ASP.NET Core](middleware.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
     

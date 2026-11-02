@@ -3,7 +3,6 @@ title: JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 12/19/2025
-uid: client-side/dotnet-interop/index
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
 
@@ -15,7 +14,7 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 
 `[JSImport]`/`[JSExport]` interop is applicable when running a .NET WebAssembly module in a JS host in the following scenarios:
 
-* <xref:client-side/dotnet-interop/wasm-browser-app>.
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md).
 * <xref:blazor/js-interop/import-export-interop>.
 * Other .NET WebAssembly platforms that support `[JSImport]`/`[JSExport]` interop.
 
@@ -25,7 +24,7 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 
 Any of the following project types:
 
-* A WebAssembly Browser App project created according to <xref:client-side/dotnet-interop/wasm-browser-app>.
+* A WebAssembly Browser App project created according to [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md).
 * A Blazor client-side project created according to <xref:blazor/js-interop/import-export-interop>.
 * A project created for a commercial or open-source platform that supports `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
@@ -479,5 +478,5 @@ The preceding example displays the following output in the browser's debug conso
 
 The following articles focus on running a .NET WebAssembly module in a JS host, such as a browser:
 
-* <xref:client-side/dotnet-interop/wasm-browser-app>
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md)
 * <xref:blazor/js-interop/import-export-interop>

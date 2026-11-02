@@ -3,7 +3,6 @@ title: Response caching in ASP.NET Core
 description: Learn how to use response caching to lower bandwidth requirements and increase performance of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/05/2026
-uid: performance/caching/response
 
 # customer intent: As an ASP.NET developer, I want to use response caching in ASP.NET Core, so I can reduce bandwidth requirements and increase performance of my apps.
 ---
@@ -17,7 +16,7 @@ Response caching reduces the number of requests a client or proxy makes to a web
 
 The [ResponseCache attribute](#responsecache-attribute) sets response caching headers. Clients and intermediate proxies should honor the headers for caching responses under the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification.
 
-For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](xref:performance/caching/middleware). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
+For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](middleware.md). The middleware can use the <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> properties to influence server-side caching behavior.
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
@@ -52,7 +51,7 @@ The [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [response caching middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. .NET 7 and later includes support for *output caching* to better control server load. For more information, see [Output caching](xref:performance/caching/overview#output-caching).
+There's no developer control over this caching behavior when using the [response caching middleware](middleware.md) because the middleware adheres to the official caching specification. .NET 7 and later includes support for *output caching* to better control server load. For more information, see [Output caching](overview.md#output-caching).
 
 ## ResponseCache attribute
 
@@ -63,7 +62,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> class specifies the p
 
 The <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property varies the stored response by the values of the given list of query keys. When a single value of the wildcard asterisk (`*`) is provided, the middleware varies responses by all request query string parameters.
 
-[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[Response caching middleware](middleware.md) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Returned from                    |
 | -------------------------------- | ------------------------- |
@@ -138,11 +137,11 @@ To enable caching, the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> pro
 
 The <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted in the [NoStore and Location.None](#nostore-and-locationnone-properties) section, setting the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property to `None` sets both the `Cache-Control` and `Pragma` headers to `no-cache`.
 
-The `Location.Any` (`Cache-Control` set to `public`) property setting indicates that the *client or any intermediate proxy* can cache the value, including [response caching middleware](xref:performance/caching/middleware).
+The `Location.Any` (`Cache-Control` set to `public`) property setting indicates that the *client or any intermediate proxy* can cache the value, including [response caching middleware](middleware.md).
 
-The `Location.Client` (`Cache-Control` set to `private`) property setting indicates that *only the client* can cache the value. No intermediate cache should cache the value, including [response caching middleware](xref:performance/caching/middleware).
+The `Location.Client` (`Cache-Control` set to `private`) property setting indicates that *only the client* can cache the value. No intermediate cache should cache the value, including [response caching middleware](middleware.md).
 
-Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies honor the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response caching middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers provide guidance to clients and intermediary proxies about when and how to cache responses. There's no guarantee that clients and proxies honor the [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111) specification. [Response caching middleware](middleware.md) always follows the caching rules laid out by the specification.
 
 The following example shows the headers produced by setting the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> property and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> property value:
 
@@ -184,9 +183,9 @@ The following code applies the `[ResponseCache]` attribute at the controller lev
 
 * [Storing Responses in Caches - RFC 9111: HTTP Caching (Section 3)](https://www.rfc-editor.org/rfc/rfc9111.html#name-storing-responses-in-caches)
 * [Cache-Control - RFC 9111: HTTP Caching (Section 5.2)](https://www.rfc-editor.org/rfc/rfc9111.html#field.cache-control)
-* [Cache in-memory in ASP.NET Core](xref:performance/caching/memory)
-* [Distributed caching in ASP.NET Core](xref:performance/caching/distributed)
-* [Response caching middleware in ASP.NET Core](xref:performance/caching/middleware)
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
+* [Response caching middleware in ASP.NET Core](middleware.md)
 
 :::moniker-end
 
@@ -198,7 +197,7 @@ Response caching reduces the number of requests a client or proxy makes to a web
 
 The [`[ResponseCache]`](#responsecache-attribute) participates in setting response caching headers. Clients and intermediate proxies should honor the headers for caching responses under [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111).
 
-For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](xref:performance/caching/middleware). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
+For server-side caching that follows the HTTP 1.1 Caching specification, use [response caching middleware](middleware.md). The middleware can use the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) properties to set server-side caching headers.
 
 ## HTTP-based response caching
 
@@ -229,7 +228,7 @@ Other cache headers that play a role in caching are shown in the following table
 
 Always honoring client `Cache-Control` request headers makes sense if you consider the goal of HTTP caching. Under the official specification, caching is meant to reduce the latency and network overhead of satisfying requests across a network of clients, proxies, and servers. It isn't necessarily a way to control the load on an origin server.
 
-There's no developer control over this caching behavior when using the [response caching middleware](xref:performance/caching/middleware) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load is a design proposal for a future release of ASP.NET Core. For more information, see [Add support for Output Caching (dotnet/aspnetcore #27387)](https://github.com/dotnet/aspnetcore/issues/27387).
+There's no developer control over this caching behavior when using the [response caching middleware](middleware.md) because the middleware adheres to the official caching specification. Support for *output caching* to better control server load is a design proposal for a future release of ASP.NET Core. For more information, see [Add support for Output Caching (dotnet/aspnetcore #27387)](https://github.com/dotnet/aspnetcore/issues/27387).
 
 ## Other caching technology in ASP.NET Core
 
@@ -237,13 +236,13 @@ There's no developer control over this caching behavior when using the [response
 
 In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using session affinity. Session affinity is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
 
-For more information, see <xref:performance/caching/memory> and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
+For more information, see [Cache in-memory in ASP.NET Core](memory.md) and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
 
 ### Distributed Cache
 
 Use a distributed cache to store data in memory when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core works with SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), [Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres), and [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) distributed caches.
 
-For more information, see <xref:performance/caching/distributed>.
+For more information, see [Distributed caching in ASP.NET Core](distributed.md).
 
 ### Cache Tag Helper
 
@@ -266,7 +265,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute> specifies the paramet
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> varies the stored response by the values of the given list of query keys. When a single value of `*` is provided, the middleware varies responses by all request query string parameters.
 
-[Response caching middleware](xref:performance/caching/middleware) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
+[Response caching middleware](middleware.md) must be enabled to set the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. Otherwise, a runtime exception is thrown. There isn't a corresponding HTTP header for the <xref:Microsoft.AspNetCore.Mvc.CacheProfile.VaryByQueryKeys> property. The property is an HTTP feature handled by response caching middleware. For the middleware to serve a cached response, the query string and query string value must match a previous request. For example, consider the sequence of requests and results shown in the following table.
 
 | Request                          | Result                    |
 | -------------------------------- | ------------------------- |
@@ -337,11 +336,11 @@ To enable caching, <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> must be
 
 <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location>'s options of `Any` and `Client` translate into `Cache-Control` header values of `public` and `private`, respectively. As noted in the [NoStore and Location.None](#nostore-and-locationnone) section, setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> to `None` sets both `Cache-Control` and `Pragma` headers to `no-cache`.
 
-`Location.Any` (`Cache-Control` set to `public`) indicates that the *client or any intermediate proxy* may cache the value, including [response caching middleware](xref:performance/caching/middleware).
+`Location.Any` (`Cache-Control` set to `public`) indicates that the *client or any intermediate proxy* may cache the value, including [response caching middleware](middleware.md).
 
-`Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [response caching middleware](xref:performance/caching/middleware).
+`Location.Client` (`Cache-Control` set to `private`) indicates that *only the client* may cache the value. No intermediate cache should cache the value, including [response caching middleware](middleware.md).
 
-Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response caching middleware](xref:performance/caching/middleware) always follows the caching rules laid out by the specification.
+Cache control headers merely provide guidance to clients and intermediary proxies when and how to cache responses. There's no guarantee that clients and proxies will honor [RFC 9111: HTTP Caching](https://www.rfc-editor.org/rfc/rfc9111). [Response caching middleware](middleware.md) always follows the caching rules laid out by the specification.
 
 The following example shows the Cache3 page model from the sample app and the headers produced by setting <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Duration> and leaving the default <xref:Microsoft.AspNetCore.Mvc.CacheProfile.Location> value:
 
@@ -381,10 +380,10 @@ Cache-Control: public,max-age=30
 
 * [Storing Responses in Caches](https://www.rfc-editor.org/rfc/rfc9111#name-storing-responses-in-caches)
 * [RFC 9111: HTTP Caching (Section 5.2. Cache-Control)](https://www.rfc-editor.org/rfc/rfc9111#field.cache-control)
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* <xref:performance/caching/middleware>
+* [Response caching middleware in ASP.NET Core](middleware.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 

@@ -398,7 +398,7 @@ To disable client-side caching in browsers, developers usually adopt one of the 
 For more information, see:
 
 * <xref:blazor/fundamentals/environments>
-* <xref:performance/caching/response>
+* [Response caching in ASP.NET Core](../../performance/caching/response.md)
 
 ## Size limits on JavaScript interop calls
 

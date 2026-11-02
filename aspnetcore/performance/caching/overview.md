@@ -3,7 +3,6 @@ title: Overview of caching in ASP.NET Core
 description: Explore caching in ASP.NET Core, including in-memory, distributed, hybrid, response, and output caching.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/01/2026
-uid: performance/caching/overview
 
 # customer intent: As an ASP.NET developer, I want to explore caching options in ASP.NET Core, so I can use various types of caching in my apps.
 ---
@@ -21,13 +20,13 @@ This article provides an overview of caching in ASP.NET Core with an introductio
 
 In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers that use session affinity. Session affinity is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
 
-For more information, see [Cache in-memory in ASP.NET Core](xref:performance/caching/memory) and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
+For more information, see [Cache in-memory in ASP.NET Core](memory.md) and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
 
 ## Distributed cache
 
 Use a distributed cache to store data when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that gets handled by any server in the group when cached data for the client is available. ASP.NET Core works with SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), [Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres), and [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) distributed caches.
 
-For more information, see [Distributed caching in ASP.NET Core](xref:performance/caching/distributed).
+For more information, see [Distributed caching in ASP.NET Core](distributed.md).
 
 ## HybridCache
 
@@ -37,7 +36,7 @@ For more information, see [Distributed caching in ASP.NET Core](xref:performance
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
-For more information, see [Response caching in ASP.NET Core](xref:performance/caching/response).
+For more information, see [Response caching in ASP.NET Core](response.md).
 
 ## Output caching
 
@@ -63,7 +62,7 @@ The output caching middleware enables caching of HTTP responses. Output caching 
 
   *Cache revalidation* means the server can return a _304 Not Modified_ HTTP status code instead of a cached response body. This status code informs the client that the response to the request is unchanged from what was previously received. Response caching doesn't do cache revalidation.
 
-For more information, see [Output caching middleware in ASP.NET Core](xref:performance/caching/output).
+For more information, see [Output caching middleware in ASP.NET Core](output.md).
 
 ## Cache Tag Helper
 
@@ -84,8 +83,8 @@ For more information, see [Distributed Cache Tag Helper in ASP.NET Core](../../m
 
 ## Related content
 
-* [Cache in-memory in ASP.NET Core](xref:performance/caching/memory)
-* [Distributed caching in ASP.NET Core](xref:performance/caching/distributed)
-* [HybridCache library in ASP.NET Core](xref:performance/caching/hybrid)
-* [Response caching middleware in ASP.NET Core](xref:performance/caching/middleware)
-* [Output caching middleware in ASP.NET Core](xref:performance/caching/output)
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
+* [HybridCache library in ASP.NET Core](hybrid.md)
+* [Response caching middleware in ASP.NET Core](middleware.md)
+* [Output caching middleware in ASP.NET Core](output.md)

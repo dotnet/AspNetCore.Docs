@@ -3,7 +3,6 @@ title: Troubleshoot ASP.NET Core on Azure App Service and IIS
 description: Learn how to diagnose problems with Azure App Service and Internet Information Services (IIS) deployments of ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 11/13/2025
-uid: test/troubleshoot-azure-iis
 ---
 # Troubleshoot ASP.NET Core on Azure App Service and IIS
 
@@ -514,7 +513,7 @@ Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommende
 
 ### Obtain data from an app
 
-If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see [Troubleshoot and debug ASP.NET Core projects](troubleshoot.md#obtain-data-from-an-app).
 
 ### Slow or non-responding app (IIS)
 
@@ -579,8 +578,8 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 
 ## Related content
 
-* <xref:test/debug-aspnetcore-source>
-* <xref:test/troubleshoot>
+* [Debug .NET and ASP.NET Core source code with Visual Studio](debug-aspnetcore-source.md)
+* [Troubleshoot and debug ASP.NET Core projects](troubleshoot.md)
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../host-and-deploy/azure-iis-errors-reference.md)
 * [Handle errors in ASP.NET Core](../fundamentals/error-handling.md)
 * [ASP.NET Core Module (ANCM) for IIS](../host-and-deploy/aspnet-core-module.md)

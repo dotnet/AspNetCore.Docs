@@ -18,7 +18,7 @@ Modern Blazor WebAssembly apps often handle CPU-intensive work alongside rich UI
 
 :::moniker range=">= aspnetcore-11.0"
 
-The Blazor Web Worker project template (`blazorwebworker`) contains a Web Worker client for Blazor WebAssembly apps. The template generates the required JavaScript worker scripts, a C# `WebWorkerClient` class, and a starter `WorkerMethods.cs` file, which removes the need to write the interop layer manually. To learn about Web Workers with React or other custom JavaScript frontends, see <xref:client-side/dotnet-on-webworkers>.
+The Blazor Web Worker project template (`blazorwebworker`) contains a Web Worker client for Blazor WebAssembly apps. The template generates the required JavaScript worker scripts, a C# `WebWorkerClient` class, and a starter `WorkerMethods.cs` file, which removes the need to write the interop layer manually. To learn about Web Workers with React or other custom JavaScript frontends, see [.NET on Web Workers](../client-side/dotnet-on-webworkers.md).
 
 > [!NOTE]
 > Use of a Web Worker is primarily useful with Blazor WebAssembly apps to improve performance but can be implemented for the client-side project (`.Client`) of a Blazor Web App. Typically, a Blazor Web App performs demanding work server-side, where the server can handle the work faster than the client and the app avoids the small delay setting up a Web Worker. However, use of a Web Worker via the Blazor Web Worker template client-side in a Blazor Web App is supported.
@@ -219,7 +219,7 @@ public sealed class WebWorkerClient : IAsyncDisposable
 
 :::moniker range="< aspnetcore-11.0"
 
-The guidance in this article mirrors the concepts from the React-focused *.NET on Web Workers* walkthrough, but adapts every step to a Blazor frontend. It highlights the same QR-code generation scenario implemented in this repository. To learn about Web Workers with React, see <xref:client-side/dotnet-on-webworkers>.
+The guidance in this article mirrors the concepts from the React-focused *.NET on Web Workers* walkthrough, but adapts every step to a Blazor frontend. It highlights the same QR-code generation scenario implemented in this repository. To learn about Web Workers with React, see [.NET on Web Workers](../client-side/dotnet-on-webworkers.md).
 
 > [!NOTE]
 > Use of a Web Worker is primarily useful with Blazor WebAssembly apps to improve performance but can be implemented for the client-side project (`.Client`) of a Blazor Web App. Typically, a Blazor Web App performs demanding work server-side, where the server can handle the work faster than the client and the app avoids the small delay setting up a Web Worker. However, use of a Web Worker client-side in a Blazor Web App is supported.
@@ -522,4 +522,4 @@ public partial class Home : ComponentBase
 
 ## Related content
 
-<xref:client-side/dotnet-on-webworkers>
+[.NET on Web Workers](../client-side/dotnet-on-webworkers.md)

@@ -185,7 +185,7 @@ var app = builder.Build();
 [!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
-For detailed information, see [File configuration providers](../../configuration/index.md?view=aspnetcore-6.0#file-configuration-provider) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true).
+For detailed information, see [File configuration providers](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#file-configuration-provider) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true).
 
 ### Read configuration
 
@@ -195,7 +195,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 
@@ -277,8 +277,8 @@ The following table lists some of the middleware frequently used with Minimal AP
 | [HTTP Strict Transport Security (HSTS)](../../middleware/index.md?view=aspnetcore-6.0&preserve-view=true#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
 | [Request Logging](../../http-logging/index.md) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*> |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
+| [Response Caching](../../../performance/caching/middleware.md) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
+| [Response Compression](../../../performance/response-compression.md) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
 | [Session](../../app-state.md) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
 | [Static Files](../../static-files.md) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
 | [WebSockets](../../websockets.md) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
