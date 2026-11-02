@@ -32,9 +32,9 @@ For examples of the preceding approaches, see <xref:blazor/security/webassembly/
      article under the heading:
      "Client-side scenarios for calling external web APIs" -->
 
-To protect .NET/C# code and data, use [ASP.NET Core Data Protection](../../../security/data-protection/introduction.md) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing. For more information, see <xref:blazor/call-web-api?pivots=webassembly> and the articles and examples in this documentation node.
+To protect .NET/C# code and data, use [ASP.NET Core Data Protection](../../../security/data-protection/introduction.md) features with a server-side ASP.NET Core backend web API. The client-side Blazor WebAssembly app calls the server-side web API for secure app features and data processing. For more information, see [Call a web API from an ASP.NET Core Blazor app](../../call-web-api.md?pivots=webassembly) and the articles and examples in this documentation node.
 
-Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](xref:blazor/call-web-api#cross-origin-resource-sharing-cors). A typical exception looks like the following:
+Blazor WebAssembly apps are often prevented from making direct calls across origins to web APIs due to [Cross-Origin Request Sharing (CORS) security](../../call-web-api.md#cross-origin-resource-sharing-cors). A typical exception looks like the following:
 
 > :::no-loc text="Access to fetch at '{URL}' from origin 'https://localhost:{PORT}' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.":::
 
@@ -141,8 +141,8 @@ Blazor WebAssembly provides methods to add and retrieve additional parameters fo
 To pass additional parameters, <xref:Microsoft.AspNetCore.Components.NavigationManager> supports passing and retrieving history entry state when performing external location changes. For more information, see the following resources:
 
 * Blazor *Fundamentals* > *Navigation* article
-  * [Navigation history state](xref:blazor/fundamentals/navigation#navigation-history-state)
-  * [Navigation options](xref:blazor/fundamentals/navigation#navigation-options)
+  * [Navigation history state](../../fundamentals/navigation.md#navigation-history-state)
+  * [Navigation options](../../fundamentals/navigation.md#navigation-options)
 * MDN documentation: [History API](https://developer.mozilla.org/docs/Web/API/History_API)
 
 The state stored by the History API provides the following benefits for remote authentication:
@@ -256,13 +256,13 @@ For examples, see the following resources:
 
 :::moniker range=">= aspnetcore-8.0"
 
-[Prerendering](xref:blazor/components/prerender) isn't supported for authentication endpoints (`/authentication/` path segment).
+[Prerendering](../../components/prerender.md) isn't supported for authentication endpoints (`/authentication/` path segment).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-[Prerendering](xref:blazor/components/integration) isn't supported for authentication endpoints (`/authentication/` path segment).
+[Prerendering](../../components/integration.md) isn't supported for authentication endpoints (`/authentication/` path segment).
 
 :::moniker-end
 
@@ -286,7 +286,7 @@ For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attack
 
 To secure a SignalR hub in the server API project, apply the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) to the hub class or to methods of the hub class.
 
-In a client project with prerendering, such as hosted Blazor WebAssembly (ASP.NET Core in .NET 7 or earlier) or a Blazor Web App (ASP.NET Core in .NET 8 or later), see the guidance in <xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication>.
+In a client project with prerendering, such as hosted Blazor WebAssembly (ASP.NET Core in .NET 7 or earlier) or a Blazor Web App (ASP.NET Core in .NET 8 or later), see the guidance in [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication).
 
 In a client project component without prerendering, such as standalone Blazor WebAssembly, or non-browser apps, supply an access token to the hub connection, as the following example demonstrates. For more information, see [SignalR authentication and authorization](../../../signalr/authn-and-authz.md#bearer-token-authentication).
 
@@ -314,7 +314,7 @@ if (tokenResult.TryGetToken(out var token))
 
 *This section applies to Blazor WebAssembly apps in ASP.NET Core in .NET 7 or later.*
 
-To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a .NET 7 or later version of the <xref:blazor/fundamentals/logging> article.
+To enable debug or trace logging, see the *Authentication logging (Blazor WebAssembly)* section in a .NET 7 or later version of the [ASP.NET Core Blazor logging](../../fundamentals/logging.md) article.
 
 ## The WebAssembly sandbox
 

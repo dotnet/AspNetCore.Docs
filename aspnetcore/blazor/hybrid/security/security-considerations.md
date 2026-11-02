@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about security considerations when developing apps in Blazor Hybrid.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/security/security-considerations
 ---
 # ASP.NET Core Blazor Hybrid security considerations
 
@@ -73,7 +72,7 @@ Use one of the following approaches to keep the Web View current in deployed app
 
 ### Android
 
-The Android Web View is distributed and updated via the [Google Play Store](https://play.google.com/store/apps/details?id=com.google.android.webview). Check the Web View version by reading the [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string. Read the Web View's [`navigator.userAgent`](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent) property using [JavaScript interop](xref:blazor/js-interop/index) and optionally cache the value using a singleton service if the user agent string is required outside of a Razor component context.
+The Android Web View is distributed and updated via the [Google Play Store](https://play.google.com/store/apps/details?id=com.google.android.webview). Check the Web View version by reading the [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string. Read the Web View's [`navigator.userAgent`](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent) property using [JavaScript interop](../../javascript-interoperability/index.md) and optionally cache the value using a singleton service if the user agent string is required outside of a Razor component context.
 
 When using the Android Emulator:
 
@@ -156,5 +155,5 @@ In the app's project file (`.csproj`), add the following after the existing `<Ma
 
 ## Related content
 
-* <xref:blazor/hybrid/security/index>
+* [ASP.NET Core Blazor Hybrid authentication and authorization](index.md)
 * <xref:blazor/security/index>

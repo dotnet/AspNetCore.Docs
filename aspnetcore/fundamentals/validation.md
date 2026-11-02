@@ -18,7 +18,7 @@ Asynchronous validation attributes and <xref:System.ComponentModel.DataAnnotatio
 :::moniker-end
 
 * Minimal APIs use the service to validate a request before the endpoint handler runs. For guidance on how validation is surfaced in an endpoint, see [Minimal APIs quick reference](minimal-apis.md#validation-support-in-minimal-apis).
-* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see <xref:blazor/forms/validation>.
+* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md).
 
 While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see [Model validation in ASP.NET Core MVC](../mvc/models/validation.md).
 
@@ -250,7 +250,7 @@ For rules that require I/O, such as a database or web API call, see the [Asynchr
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In a Blazor form that uses static server-side rendering (static SSR), custom attributes aren't enforced by the browser unless the attribute also supplies a client-side rule. For more information, see <xref:blazor/forms/validation-client-side>.
+> In a Blazor form that uses static server-side rendering (static SSR), custom attributes aren't enforced by the browser unless the attribute also supplies a client-side rule. For more information, see [ASP.NET Core Blazor client-side form validation in static SSR](../blazor/forms/validation-client-side.md).
 
 :::moniker-end
 
@@ -380,7 +380,7 @@ builder.Services.AddValidation();
 There's no separate package or additional opt-in call.
 
 > [!IMPORTANT]
-> `AddLocalization` registers localization services but doesn't select the culture for a request or circuit. Validation resource lookup uses <xref:System.Globalization.CultureInfo.CurrentUICulture>. For request culture providers, including query string, cookie, and `Accept-Language` header selection, see [Strategies for selecting language and culture in a localized ASP.NET Core app](localization/select-language-culture.md). For configuring culture selection across Blazor render modes, see <xref:blazor/globalization-localization>.
+> `AddLocalization` registers localization services but doesn't select the culture for a request or circuit. Validation resource lookup uses <xref:System.Globalization.CultureInfo.CurrentUICulture>. For request culture providers, including query string, cookie, and `Accept-Language` header selection, see [Strategies for selecting language and culture in a localized ASP.NET Core app](localization/select-language-culture.md). For configuring culture selection across Blazor render modes, see [ASP.NET Core Blazor globalization and localization](../blazor/globalization-localization.md).
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -638,9 +638,9 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
-  * <xref:blazor/forms/validation-client-side>
-  * <xref:blazor/forms/validation-advanced>
+* [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md)
+  * [ASP.NET Core Blazor client-side form validation in static SSR](../blazor/forms/validation-client-side.md)
+  * [ASP.NET Core Blazor advanced form validation](../blazor/forms/validation-advanced.md)
 * [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
 * [Minimal APIs quick reference](minimal-apis.md)
   * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
@@ -651,7 +651,7 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker range="< aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
+* [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md)
 * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
 * [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
 

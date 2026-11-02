@@ -5,7 +5,6 @@ description: Learn how to host and deploy Blazor WebAssembly using Nginx.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 01/21/2026
-uid: blazor/host-and-deploy/webassembly/nginx
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Nginx
 
@@ -187,7 +186,7 @@ For more information, refer to [Nginx Docker guide](https://hub.docker.com/_/ngi
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
 
-For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
+For more information on setting the app's base path, including sub-app path configuration, see [ASP.NET Core Blazor app base path](../app-base-path.md).
 
 Follow the guidance for an [ASP.NET Core SignalR app](../../../signalr/scale.md#linux-with-nginx) with the following changes:
 

@@ -12,7 +12,7 @@ The Component Tag Helper renders a Razor component in a Razor Pages page or MVC 
 
 :::moniker range=">= aspnetcore-8.0"
 
-Follow the guidance in the *Use non-routable components in pages or views* section of the <xref:blazor/components/integration#use-non-routable-components-in-pages-or-views> article.
+Follow the guidance in the *Use non-routable components in pages or views* section of the [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md#use-non-routable-components-in-pages-or-views) article.
 
 :::moniker-end
 
@@ -20,14 +20,14 @@ Follow the guidance in the *Use non-routable components in pages or views* secti
 
 Follow the guidance in the *Configuration* section for either:
 
-* [Blazor Server](xref:blazor/components/integration?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
-* [Blazor WebAssembly](xref:blazor/components/integration?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
+* [Blazor Server](../../../../blazor/components/integration.md?pivots=server): Integrate routable and non-routable Razor components into Razor Pages and MVC apps.
+* [Blazor WebAssembly](../../../../blazor/components/integration.md?pivots=webassembly): Integrate Razor components from a hosted Blazor WebAssembly solution into Razor Pages and MVC apps.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-Follow the guidance in the *Configuration* section of the <xref:blazor/components/integration?pivots=server> article.
+Follow the guidance in the *Configuration* section of the [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md?pivots=server) article.
 
 :::moniker-end
 
@@ -130,7 +130,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
 }
 ```
 
-The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components/index#component-parameters) can be set by the Component Tag Helper:
+The `Size` (`int`) and `Color` (`string`) [component parameters](../../../../blazor/components/index.md#component-parameters) can be set by the Component Tag Helper:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -189,7 +189,7 @@ The Component Tag Helper can also pass parameters to components. Consider the fo
 }
 ```
 
-The `Size` (`int`) and `Color` (`string`) [component parameters](xref:blazor/components/index#component-parameters) can be set by the Component Tag Helper:
+The `Size` (`int`) and `Color` (`string`) [component parameters](../../../../blazor/components/index.md#component-parameters) can be set by the Component Tag Helper:
 
 ```cshtml
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -222,7 +222,7 @@ All types of parameters are supported, except:
 * Non-serializable parameters.
 * Inheritance in collection parameters.
 * Parameters whose type is defined outside of the Blazor WebAssembly app or within a lazily-loaded assembly.
-* For receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content) (for example, `param-ChildContent="..."`). For this scenario, we recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view with the Component Tag Helper.
+* For receiving a [`RenderFragment` delegate for child content](../../../../blazor/components/index.md#child-content) (for example, `param-ChildContent="..."`). For this scenario, we recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view with the Component Tag Helper.
 
 The parameter type must be JSON serializable, which typically means that the type must have a default constructor and settable properties. For example, you can specify a value for `Size` and `Color` in the preceding example because the types of `Size` and `Color` are primitive types (`int` and `string`), which are supported by the JSON serializer.
 
@@ -329,28 +329,28 @@ The preceding example assumes that the `ParameterComponent` component is in the 
 :::moniker range=">= aspnetcore-8.0"
 
 * [Persist Component State Tag Helper in ASP.NET Core](persist-component-state.md)
-* <xref:blazor/components/prerender>
+* [Prerender ASP.NET Core Razor components](../../../../blazor/components/prerender.md)
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * [Tag Helpers in ASP.NET Core](../intro.md)
-* <xref:blazor/components/index>
+* [ASP.NET Core Razor components](../../../../blazor/components/index.md)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 * [Persist Component State Tag Helper in ASP.NET Core](persist-component-state.md)
-* <xref:blazor/components/integration>
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md)
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * [Tag Helpers in ASP.NET Core](../intro.md)
-* <xref:blazor/components/index>
+* [ASP.NET Core Razor components](../../../../blazor/components/index.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* <xref:blazor/components/integration>
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md)
 * <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper>
 * [Tag Helpers in ASP.NET Core](../intro.md)
-* <xref:blazor/components/index>
+* [ASP.NET Core Razor components](../../../../blazor/components/index.md)
 
 :::moniker-end

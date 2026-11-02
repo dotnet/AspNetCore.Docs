@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use binding in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/23/2026
-uid: blazor/forms/binding
 ---
 # ASP.NET Core Blazor forms binding
 
@@ -14,7 +13,7 @@ This article explains how to use binding in Blazor forms.
 
 ## `EditForm`/`EditContext` model
 
-An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](xref:blazor/components/cascading-values-and-parameters) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
+An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> creates an <xref:Microsoft.AspNetCore.Components.Forms.EditContext> based on the assigned object as a [cascading value](../components/cascading-values-and-parameters.md) for other components in the form. The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> tracks metadata about the edit process, including which form fields have been modified and the current validation messages. Assigning to either an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> or an <xref:Microsoft.AspNetCore.Components.Forms.EditForm.EditContext?displayProperty=nameWithType> can bind a form to data.
 
 ## Model binding
 
@@ -231,7 +230,7 @@ The following `NamedFormsWithScope` component uses the library's `HelloFormFromL
 
 The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data for the form. Data in the request that matches the name of the property is bound to the property. Inputs based on `InputBase<TValue>` generate form value names that match the names Blazor uses for model binding. Unlike component parameter properties (`[Parameter]`), properties annotated with `[SupplyParameterFromForm]` aren't required to be marked `public`.
 
-Blazor form mapping with [`[SupplyParameterFromForm]`](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute) doesn't use MVC model binding. Attributes in the <xref:Microsoft.AspNetCore.Mvc.ModelBinding?displayProperty=fullName> namespace, such as [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute) and [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute), aren't supported. Don't use these attributes to prevent overposting. Instead, use a dedicated form model, view model, or data transfer object (DTO) that includes only the properties users are allowed to modify. For more information, see [Mitigate overposting attacks](xref:blazor/forms/index#mitigate-overposting-attacks).
+Blazor form mapping with [`[SupplyParameterFromForm]`](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute) doesn't use MVC model binding. Attributes in the <xref:Microsoft.AspNetCore.Mvc.ModelBinding?displayProperty=fullName> namespace, such as [`[BindNever]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindNeverAttribute) and [`[BindRequired]`](xref:Microsoft.AspNetCore.Mvc.ModelBinding.BindRequiredAttribute), aren't supported. Don't use these attributes to prevent overposting. Instead, use a dedicated form model, view model, or data transfer object (DTO) that includes only the properties users are allowed to modify. For more information, see [Mitigate overposting attacks](index.md#mitigate-overposting-attacks).
 
 You can specify the following form binding parameters to the [`[SupplyParameterFromForm]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromFormAttribute):
 
@@ -344,7 +343,7 @@ The main form is bound to the `Ship` class. The `StarshipSubform` component is u
 
 ## Initialize form data with static SSR
 
-When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and the [`OnParametersSet{Async}` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) fire when the component is initially rendered and on every form POST to the server. To initialize form model values, confirm if the model already has data before assigning new model values in `OnParametersSet{Async}`, as the following example demonstrates.
+When a component adopts static SSR, the [`OnInitialized{Async}` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync) and the [`OnParametersSet{Async}` lifecycle method](../components/lifecycle.md#after-parameters-are-set-onparameterssetasync) fire when the component is initially rendered and on every form POST to the server. To initialize form model values, confirm if the model already has data before assigning new model values in `OnParametersSet{Async}`, as the following example demonstrates.
 
 `StarshipInit.razor`:
 
@@ -521,7 +520,7 @@ The following example component:
 }
 ```
 
-To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with an `EngineeringApprovalInputDerived` component instance bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](input-components.md#example-form), replace the `<div>` block for the engineering approval field with an `EngineeringApprovalInputDerived` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
@@ -556,7 +555,7 @@ Code in the component includes:
 
 * When used in a Blazor form:
 
-  * The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading value](xref:blazor/components/cascading-values-and-parameters).
+  * The <xref:Microsoft.AspNetCore.Components.Forms.EditContext> is a [cascading value](../components/cascading-values-and-parameters.md).
   * `fieldCssClass` styles the field based on the result of <xref:Microsoft.AspNetCore.Components.Forms.EditContext> validation.
   * `ValueExpression` is an expression (`Expression<Func<T>>`) assigned by the framework that identifies the bound value.
   * <xref:Microsoft.AspNetCore.Components.Forms.FieldIdentifier> uniquely identifies a single field that can be edited, usually corresponding to a model property. The field identifier is created with the expression that identifies the bound value (`ValueExpression`).
@@ -617,7 +616,7 @@ Code in the component includes:
 }
 ```
 
-To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](xref:blazor/forms/input-components#example-form), replace the `<div>` block for the engineering approval field with a `EngineeringApprovalInputStandalone` component instance bound to the model's `IsValidatedDesign` property:
+To use the preceding component in the [starship example form (`Starship3.razor`/`Starship.cs`)](input-components.md#example-form), replace the `<div>` block for the engineering approval field with a `EngineeringApprovalInputStandalone` component instance bound to the model's `IsValidatedDesign` property:
 
 ```diff
 - <div>
@@ -647,7 +646,7 @@ The `EngineeringApprovalInputStandalone` component is also functional outside of
 
 :::moniker range=">= aspnetcore-5.0"
 
-The example in this section is based on the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of this article.
+The example in this section is based on the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](input-components.md#example-form) section of this article.
 
 Add the following [`enum` types](/dotnet/csharp/language-reference/language-specification/enums) to the app. Create a new file to hold them or add them to the `Starship.cs` file.
 
@@ -665,7 +664,7 @@ Make the `ComponentEnums` class accessible to the:
 * `Starship` model in `Starship.cs` (for example, `using static ComponentEnums;`).
 * `Starfleet Starship Database` form (`Starship3.razor`) (for example, `@using static ComponentEnums`).
 
-Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article:
+Use <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> components with the <xref:Microsoft.AspNetCore.Components.Forms.InputRadioGroup`1> component to create a radio button group. In the following example, properties are added to the `Starship` model described in the [Example form](input-components.md#example-form) section of the *Input components* article:
 
 ```csharp
 [Required]
@@ -680,7 +679,7 @@ public Color? Color { get; set; } = null;
 public Engine? Engine { get; set; } = null;
 ```
 
-Update the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article. Add the components to produce:
+Update the `Starfleet Starship Database` form (`Starship3` component) of the [Example form](input-components.md#example-form) section of the *Input components* article. Add the components to produce:
 
 * A radio button group for the ship manufacturer.
 * A nested radio button group for engine and ship color.
@@ -783,7 +782,7 @@ Update the `Starfleet Starship Database` form (`Starship3` component) of the [Ex
 > [!NOTE]
 > If `Name` is omitted, <xref:Microsoft.AspNetCore.Components.Forms.InputRadio`1> components are grouped by their most recent ancestor.
 
-If you implemented the preceding Razor markup in the `Starship3` component of the [Example form](xref:blazor/forms/input-components#example-form) section of the *Input components* article, update the logging for the `Submit` method:
+If you implemented the preceding Razor markup in the `Starship3` component of the [Example form](input-components.md#example-form) section of the *Input components* article, update the logging for the `Submit` method:
 
 ```csharp
 Logger.LogInformation("Id = {Id} Description = {Description} " +
@@ -852,8 +851,8 @@ When working with radio buttons in a form, data binding is handled differently t
 For more information on generic type parameters (`@typeparam`), see the following articles:
 
 * [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam)
-* <xref:blazor/components/index#generic-type-parameter-support>
-* <xref:blazor/components/templated-components>
+* [ASP.NET Core Razor components](../components/index.md#generic-type-parameter-support)
+* [ASP.NET Core Blazor templated components](../components/templated-components.md)
 
 Use the following example model.
 

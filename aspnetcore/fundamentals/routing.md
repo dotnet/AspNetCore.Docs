@@ -29,7 +29,7 @@ This article covers low-level details of ASP.NET Core routing. For information o
 
 * For controllers, see [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md).
 * For Razor Pages conventions, see [Razor Pages route and app conventions in ASP.NET Core](../razor-pages/razor-pages-conventions.md).
-* For Blazor routing and navigation guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/routing> and <xref:blazor/fundamentals/navigation>.
+* For Blazor routing and navigation guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor routing](../blazor/fundamentals/routing.md) and [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md).
 
 ## Routing basics
 

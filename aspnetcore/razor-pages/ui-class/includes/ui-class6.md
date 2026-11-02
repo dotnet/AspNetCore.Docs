@@ -1,7 +1,7 @@
 
 :::moniker range="= aspnetcore-6.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 For information on how to integrate npm and webpack into the build process for a Razor Class Library, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 
@@ -160,14 +160,14 @@ When the app is published, the companion assets from all referenced projects and
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../../../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
@@ -344,13 +344,13 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
@@ -556,7 +556,7 @@ Suppose `RazorUIClassLib/Pages/Shared` contains two partial files: `_Header.csht
 
 :::moniker range="= aspnetcore-5.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
@@ -739,7 +739,7 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../../../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end

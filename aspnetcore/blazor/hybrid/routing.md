@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to manage request routing and navigation in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/routing
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
@@ -223,7 +222,7 @@ public partial class NavigationExample : ContentPage
 In a Razor component:
 
 * Add the namespace for the app's content pages. In the following example, the namespace is `MauiApp1.Views`.
-* Add an HTML `button` element with an [`@onclick` event handler](xref:blazor/components/event-handling) to open the content page. The event handler method is named `OpenPage`.
+* Add an HTML `button` element with an [`@onclick` event handler](../components/event-handling.md) to open the content page. The event handler method is named `OpenPage`.
 * In the event handler, call <xref:Microsoft.Maui.Controls.INavigation.PushAsync*> to push the <xref:Microsoft.Maui.Controls.ContentPage>, `NavigationExample`, onto the navigation stack.
 
 The following example is based on the `Index` component in the .NET MAUI Blazor project template.

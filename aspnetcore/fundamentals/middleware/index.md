@@ -1170,7 +1170,7 @@ The latest release of ASP.NET Core includes the following middleware. The *UI st
 | [Static File](../static-files.md) | Provides support for serving static files and directory browsing. | All | Terminal if a request matches a file. |
 | [URL Rewrite](../url-rewriting.md) | Provides support for rewriting URLs and redirecting requests. | All | Before middleware that consume the URL. |
 | [W3C Logging](../w3c-logger/index.md) | Generates server access logs in the [W3C Extended Log File Format](https://www.w3.org/TR/WD-logfile.html). | All | At the beginning of the middleware pipeline. |
-| [Blazor WebAssembly Debugging](xref:blazor/debug) | Debugs Blazor Web Apps that use client-side rendering (CSR) inside Chromium developer tools. | BWA | At the beginning of the middleware pipeline. |
+| [Blazor WebAssembly Debugging](../../blazor/debug.md) | Debugs Blazor Web Apps that use client-side rendering (CSR) inside Chromium developer tools. | BWA | At the beginning of the middleware pipeline. |
 | [WebSockets](../websockets.md) | Enables the WebSockets protocol. | All | Before middleware that are required to accept WebSocket requests. |
 
 ## Related content

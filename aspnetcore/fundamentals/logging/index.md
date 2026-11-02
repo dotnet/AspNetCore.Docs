@@ -9,7 +9,7 @@ ms.date: 09/18/2026
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article describes logging in ASP.NET Core apps. For general guidance on logging in .NET, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For Blazor logging guidance, which adds to or supersedes this guidance, see <xref:blazor/fundamentals/logging>.
+This article describes logging in ASP.NET Core apps. For general guidance on logging in .NET, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For Blazor logging guidance, which adds to or supersedes this guidance, see [ASP.NET Core Blazor logging](../../blazor/fundamentals/logging.md).
 
 ## Logging providers
 
@@ -1542,7 +1542,7 @@ Static files
 
 ## Related content
 
-* <xref:blazor/fundamentals/logging>
+* [ASP.NET Core Blazor logging](../../blazor/fundamentals/logging.md)
 * [Improving logging performance with source generators](https://andrewlock.net/exploring-dotnet-6-part-8-improving-logging-performance-with-source-generators/)
 * [Behind `[LogProperties]` and the new telemetry logging source generator](https://andrewlock.net/behind-logproperties-and-the-new-telemetry-logging-source-generator/)
 * [`Microsoft.Extensions.Logging` reference source (`dotnet/runtime`) GitHub repository](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging)

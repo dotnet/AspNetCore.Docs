@@ -425,9 +425,9 @@ If the app is running, shut the app down by closing the browser's window and pre
 
 * Configuration articles:
   * [Configuration in ASP.NET Core](../../../fundamentals/configuration/index.md) (ASP.NET Core Configuration system)
-  * <xref:blazor/fundamentals/configuration> (Blazor documentation)
+  * [ASP.NET Core Blazor configuration](../../fundamentals/configuration.md) (Blazor documentation)
   * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
-* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
+* [Concurrency with EF Core in Blazor apps](../../blazor-ef-core.md)
 * Database provider resources:
   * EF Core documentation
     * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)

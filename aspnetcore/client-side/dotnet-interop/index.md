@@ -16,7 +16,7 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 `[JSImport]`/`[JSExport]` interop is applicable when running a .NET WebAssembly module in a JS host in the following scenarios:
 
 * <xref:client-side/dotnet-interop/wasm-browser-app>.
-* <xref:blazor/js-interop/import-export-interop>.
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 * Other .NET WebAssembly platforms that support `[JSImport]`/`[JSExport]` interop.
 
 ## Prerequisites
@@ -26,14 +26,14 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 Any of the following project types:
 
 * A WebAssembly Browser App project created according to <xref:client-side/dotnet-interop/wasm-browser-app>.
-* A Blazor client-side project created according to <xref:blazor/js-interop/import-export-interop>.
+* A Blazor client-side project created according to [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 * A project created for a commercial or open-source platform that supports `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
 :::moniker range=">= aspnetcore-8.0"
 
 ## Sample app
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)): Select an 8.0 or later version folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `WASMBrowserAppImportExportInterop`.
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../../blazor/fundamentals/index.md#sample-apps)): Select an 8.0 or later version folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `WASMBrowserAppImportExportInterop`.
 
 :::moniker-end
 
@@ -124,14 +124,14 @@ Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such a
 
 <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can take advantage of the following features:
 
-* [Import map for module scripts (Blazor Web Apps)](xref:blazor/fundamentals/static-files#importmap-component)
-* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
+* [Import map for module scripts (Blazor Web Apps)](../../blazor/fundamentals/static-files.md#importmap-component)
+* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](../../blazor/fundamentals/static-files.md#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
-<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can take advantage of an [import map for module scripts](xref:blazor/fundamentals/static-files#importmap-component) in a Blazor Web App.
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can take advantage of an [import map for module scripts](../../blazor/fundamentals/static-files.md#importmap-component) in a Blazor Web App.
 
 :::moniker-end
 
@@ -480,4 +480,4 @@ The preceding example displays the following output in the browser's debug conso
 The following articles focus on running a .NET WebAssembly module in a JS host, such as a browser:
 
 * <xref:client-side/dotnet-interop/wasm-browser-app>
-* <xref:blazor/js-interop/import-export-interop>
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md)

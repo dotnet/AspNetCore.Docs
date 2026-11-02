@@ -40,7 +40,7 @@ Record the following information:
 
 ### Create the Blazor app
 
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the [Parts of the app](#parts-of-the-app) section of this article for guidance on setting up and configuring the app.
+To create a [standalone Blazor WebAssembly app](../../hosting-models.md#blazor-webassembly) that uses the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the [Parts of the app](#parts-of-the-app) section of this article for guidance on setting up and configuring the app.
 
 # [Visual Studio](#tab/visual-studio)
 

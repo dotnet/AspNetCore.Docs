@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor Hybrid static files
 description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
 
@@ -326,7 +325,7 @@ private async Task<string> ReadData()
 }
 ```
 
-[Collocated JavaScript files](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
+[Collocated JavaScript files](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
 
 `Pages/StaticAssetExample2.razor.js`:
 

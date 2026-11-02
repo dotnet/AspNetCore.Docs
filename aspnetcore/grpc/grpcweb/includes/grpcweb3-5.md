@@ -98,7 +98,7 @@ A JavaScript gRPC-Web client exists. For instructions on how to use gRPC-Web fro
 
 ### Configure gRPC-Web with the .NET gRPC client
 
-The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](xref:blazor/index#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code. Calling gRPC-Web with a .NET client is the same as [HTTP/2 gRPC](../../client.md). The only modification is how the channel is created.
+The .NET gRPC client can be configured to make gRPC-Web calls. This is useful for [Blazor WebAssembly](../../../blazor/index.md#blazor-webassembly) apps, which are hosted in the browser and have the same HTTP limitations of JavaScript code. Calling gRPC-Web with a .NET client is the same as [HTTP/2 gRPC](../../client.md). The only modification is how the channel is created.
 
 To use gRPC-Web:
 

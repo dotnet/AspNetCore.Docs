@@ -61,7 +61,7 @@ The code generator to run. The available generators are shown in the following t
 Generator         | Operation
 ----------------- | ---
 `area`            | [Scaffolds an area](../../mvc/controllers/areas.md).
-`blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](xref:blazor/components/quickgrid#quickgrid-scaffolder).
+`blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](../../blazor/components/quickgrid.md#quickgrid-scaffolder).
 `blazor-identity` | Generates Blazor Identity files.
 `controller`      | [Scaffolds a controller](../../tutorials/first-mvc-app/adding-model.md).
 `identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
@@ -206,7 +206,7 @@ dotnet aspnet-codegenerator blazor -h
 
 For an example that uses the `blazor` generator, see <xref:blazor/tutorials/movie-database-app/index>.
 
-For more information, see <xref:blazor/components/quickgrid#quickgrid-scaffolder>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../blazor/components/quickgrid.md#quickgrid-scaffolder).
 
 ### Blazor Identity options
 

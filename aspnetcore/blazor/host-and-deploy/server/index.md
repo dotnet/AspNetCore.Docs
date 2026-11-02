@@ -4,7 +4,6 @@ description: Learn how to host and deploy server-side Blazor apps (Blazor Web Ap
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/server/index
 ---
 # Host and deploy server-side Blazor apps
 
@@ -51,7 +50,7 @@ The `ResourcePreloader` component in the `App` component's head content (`App.ra
 A Razor component is used instead of `<link>` elements because:
 
 * The component permits the base URL (`<base>` tag's `href` attribute value) to correctly identify the root of the Blazor app within an ASP.NET Core app.
-* The feature can be removed by removing the `ResourcePreloader` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+* The feature can be removed by removing the `ResourcePreloader` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](../../fundamentals/startup.md#load-client-side-boot-resources) to modify URLs.
 
 :::moniker-end
 
@@ -59,7 +58,7 @@ A Razor component is used instead of `<link>` elements because:
 
 [SignalR's hosting and scaling conditions](../../../signalr/publish-to-azure-web-app.md) apply to Blazor apps that use SignalR.
 
-For more information on SignalR in Blazor apps, including configuration guidance, see <xref:blazor/fundamentals/signalr>.
+For more information on SignalR in Blazor apps, including configuration guidance, see [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -76,7 +75,7 @@ A console warning appears if Long Polling is utilized:
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
-* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
+* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md#control-when-the-reconnection-ui-appears).
 * Consider using the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
@@ -256,7 +255,7 @@ For more information and configuration guidance, consult the following resources
 
 ## Measure network latency
 
-[JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates.
+[JS interop](../../javascript-interoperability/call-javascript-from-dotnet.md) can be used to measure network latency, as the following example demonstrates.
 
 `MeasureLatency.razor`:
 

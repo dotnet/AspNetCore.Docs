@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor SignalR guidance
 description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/fundamentals/signalr
 ---
 # ASP.NET Core Blazor SignalR guidance
 
@@ -159,7 +158,7 @@ hubConnection = new HubConnectionBuilder()
     }).Build();
 ```
 
-The preceding example configures the hub connection URL to the absolute URI address at `/chathub`. The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](xref:blazor/fundamentals/configuration). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
+The preceding example configures the hub connection URL to the absolute URI address at `/chathub`. The URI can also be set via a string, for example `https://signalr.example.com`, or via [configuration](configuration.md). `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
 For more information, see [ASP.NET Core SignalR configuration](../../signalr/configuration.md#configure-other-options).
 
@@ -176,7 +175,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
 * [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md)
-* <xref:blazor/components/integration>
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../components/integration.md)
 
 :::moniker-end
 
@@ -190,14 +189,14 @@ A large prerendered state size may exceed Blazor's SignalR circuit message size 
 To resolve the problem, use ***either*** of the following approaches:
 
 * Reduce the amount of data that you are putting into the prerendered state.
-* Increase the [SignalR message size limit](xref:blazor/fundamentals/signalr#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of Service (DoS) attacks.
+* Increase the [SignalR message size limit](signalr.md#server-side-circuit-handler-options). ***WARNING***: Increasing the limit may increase the risk of Denial of Service (DoS) attacks.
 
 ## Additional client-side resources
 
 * [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
 * [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))
 
 ## Use session affinity (sticky sessions) for server-side web farm hosting
 
@@ -207,7 +206,7 @@ The following error is thrown by an app that hasn't enabled session affinity in 
 
 > :::no-loc text="Uncaught (in promise) Error: Invocation canceled due to the underlying connection being closed.":::
 
-For more information on session affinity with Azure App Service hosting, see <xref:blazor/host-and-deploy/server/index#azure-app-service>.
+For more information on session affinity with Azure App Service hosting, see [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md#azure-app-service).
 
 ## Azure SignalR Service
 
@@ -218,7 +217,7 @@ The service isn't required for Blazor apps hosted in Azure App Service or Azure 
 * To facilitate connection scale out.
 * Handle global distribution.
 
-For more information, see <xref:blazor/host-and-deploy/server/index#azure-signalr-service>.
+For more information, see [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md#azure-signalr-service).
 
 ## Server-side circuit handler options
 
@@ -319,7 +318,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 >
 > Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
-For information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
+For information on memory management, see [Manage memory in deployed ASP.NET Core server-side Blazor apps](../host-and-deploy/server/memory-management.md).
 
 ## Blazor hub options
 
@@ -449,11 +448,11 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents()
 
 Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
-A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in server-side apps that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
+A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in server-side apps that uses techniques similar to the [`InputFile` component](../file-uploads.md), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data to the server, see <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>.
+Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#stream-from-javascript-to-net). For a forms example that streams `<textarea>` data to the server, see [Troubleshoot ASP.NET Core Blazor forms](../forms/troubleshoot.md#large-form-payloads-and-the-signalr-message-size-limit).
 
 :::moniker-end
 
@@ -468,11 +467,11 @@ builder.Services.AddServerSideBlazor()
 
 Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
-A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](xref:blazor/file-uploads), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
+A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](../file-uploads.md), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>. For a forms example that streams `<textarea>` data in a Blazor Server app, see <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>.
+Forms that process large payloads over SignalR can also use streaming JS interop directly. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#stream-from-javascript-to-net). For a forms example that streams `<textarea>` data in a Blazor Server app, see [Troubleshoot ASP.NET Core Blazor forms](../forms/troubleshoot.md#large-form-payloads-and-the-signalr-message-size-limit).
 
 :::moniker-end
 
@@ -494,9 +493,9 @@ Consider the following guidance when developing code that transfers a large amou
 :::moniker range=">= aspnetcore-6.0"
 
 * Leverage the native streaming JS interop support to transfer data larger than the SignalR incoming message size limit:
-  * <xref:blazor/js-interop/call-javascript-from-dotnet#stream-from-net-to-javascript>
-  * <xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net>
-  * Form payload example: <xref:blazor/forms/troubleshoot#large-form-payloads-and-the-signalr-message-size-limit>
+  * [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md#stream-from-net-to-javascript)
+  * [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#stream-from-javascript-to-net)
+  * Form payload example: [Troubleshoot ASP.NET Core Blazor forms](../forms/troubleshoot.md#large-form-payloads-and-the-signalr-message-size-limit)
 * General tips:
   * Don't allocate large objects in JS and C# code.
   * Free consumed memory when the process is completed or cancelled.
@@ -874,7 +873,7 @@ builder.Services.AddIdleCircuitHandler(options =>
 
 Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
 
-* <xref:blazor/fundamentals/dependency-injection#access-server-side-blazor-services-from-a-different-di-scope>
+* [ASP.NET Core Blazor dependency injection](dependency-injection.md#access-server-side-blazor-services-from-a-different-di-scope)
 * <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
 
 :::moniker-end
@@ -910,7 +909,7 @@ Configure the manual start of Blazor's SignalR circuit in the `Pages/_Host.cshtm
 
 When `autostart` is disabled, any aspect of the app that doesn't depend on the circuit works normally. For example, client-side routing is operational. However, any aspect that depends on the circuit isn't operational until `Blazor.start()` is called. App behavior is unpredictable without an established circuit. For example, component methods fail to execute while the circuit is disconnected.
 
-For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see <xref:blazor/fundamentals/startup>.
+For more information, including how to initialize Blazor when the document is ready and how to chain to a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), see [ASP.NET Core Blazor startup](startup.md).
 
 ## Configure SignalR timeouts and Keep-Alive on the client
 
@@ -1049,8 +1048,8 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 
 For more information, see the *Global deployment and connection failures* sections of the following articles:
 
-* <xref:blazor/host-and-deploy/server/index#global-deployment-and-connection-failures>
-* <xref:blazor/host-and-deploy/webassembly/index#global-deployment-and-connection-failures>
+* [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md#global-deployment-and-connection-failures)
+* [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#global-deployment-and-connection-failures)
 
 ## Adjust the server-side reconnection retry count and interval
 
@@ -1198,7 +1197,7 @@ Blazor.start({
 
 :::moniker range=">= aspnetcore-9.0"
 
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup, see [ASP.NET Core Blazor startup](startup.md).
 
 :::moniker-end
 
@@ -1271,7 +1270,7 @@ Set the following:
 
 The server timeout can be increased, and the Keep-Alive interval can remain the same. The important consideration is that if you change the values, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-In the following [startup configuration](xref:blazor/fundamentals/startup) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
+In the following [startup configuration](startup.md) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
 
 :::moniker-end
 
@@ -1348,7 +1347,7 @@ Set the following:
 
 The server timeout can be increased, and the Keep-Alive interval can remain the same. The important consideration is that if you change the values, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-In the following [startup configuration](xref:blazor/fundamentals/startup) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`keepAliveIntervalInMilliseconds`) isn't set and uses its default value of 15 seconds.
+In the following [startup configuration](startup.md) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`keepAliveIntervalInMilliseconds`) isn't set and uses its default value of 15 seconds.
 
 In `Pages/_Host.cshtml`:
 
@@ -1637,7 +1636,7 @@ Blazor Server:
 })();
 ```
 
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup, see [ASP.NET Core Blazor startup](startup.md).
 
 :::moniker-end
 
@@ -1653,7 +1652,7 @@ window.addEventListener('pagehide', () => {
 });
 ```
 
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup, see [ASP.NET Core Blazor startup](startup.md).
 
 :::moniker-end
 
@@ -1689,7 +1688,7 @@ services.AddSingleton<CircuitHandler, TrackingCircuitHandler>();
 
 If a custom circuit handler's methods throw an unhandled exception, the exception is fatal to the circuit. To tolerate exceptions in a handler's code or called methods, wrap the code in one or more [`try-catch`](/dotnet/csharp/language-reference/keywords/try-catch) statements with error handling and logging.
 
-When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
+When a circuit ends because a user has disconnected and the framework is cleaning up the circuit state, the framework disposes of the circuit's DI scope. Disposing the scope disposes any circuit-scoped DI services that implement <xref:System.IDisposable?displayProperty=fullName>. If any DI service throws an unhandled exception during disposal, the framework logs the exception. For more information, see [ASP.NET Core Blazor dependency injection](dependency-injection.md#service-lifetime).
 
 ## Server-side circuit handler to capture users for custom services
 
@@ -1894,7 +1893,7 @@ The following example:
 
 ## Additional server-side resources
 
-* [Server-side host and deployment guidance: SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
+* [Server-side host and deployment guidance: SignalR configuration](../host-and-deploy/server/index.md#signalr-configuration)
 * [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * Server-side security documentation
@@ -1902,9 +1901,9 @@ The following example:
   * <xref:blazor/security/index>
   * <xref:blazor/security/interactive-server-side-rendering>
   * <xref:blazor/security/additional-scenarios>
-* <xref:blazor/components/httpcontext>
-* [Server-side reconnection events and component lifecycle events](xref:blazor/components/lifecycle#blazor-server-reconnection-events)
+* [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md)
+* [Server-side reconnection events and component lifecycle events](../components/lifecycle.md#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Performance guide for Azure SignalR Service](/azure/azure-signalr/signalr-concept-performance)
 * [Publish an ASP.NET Core SignalR app to Azure App Service](../../signalr/publish-to-azure-web-app.md)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))

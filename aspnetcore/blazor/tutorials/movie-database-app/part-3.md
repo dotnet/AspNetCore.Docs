@@ -875,13 +875,13 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Related content
 
-* [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component)
-* <xref:blazor/components/layouts>
-* [Razor directives](../../../mvc/views/razor.md#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
-* <xref:blazor/components/quickgrid>
-* <xref:blazor/forms/index>
-* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
-* <xref:blazor/globalization-localization>: Explains how to render globalized and localized content to users in different cultures and languages, including how to accept comma number separators.
+* [`NavLink` component](../../fundamentals/navigation.md#navlink-component)
+* [ASP.NET Core Blazor layouts](../../components/layouts.md)
+* [Razor directives](../../../mvc/views/razor.md#directives) (Razor syntax article) / [Razor directives](../../components/index.md#razor-syntax) (Blazor documentation)
+* [ASP.NET Core Blazor \`QuickGrid\` component](../../components/quickgrid.md)
+* [ASP.NET Core Blazor forms overview](../../forms/index.md)
+* [Concurrency with EF Core in Blazor apps](../../blazor-ef-core.md)
+* [ASP.NET Core Blazor globalization and localization](../../globalization-localization.md): Explains how to render globalized and localized content to users in different cultures and languages, including how to accept comma number separators.
 
 ## Next steps
 

@@ -534,7 +534,7 @@ EF Core documentation:
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>: The API document includes basic information on how entities are saved and change detection.
 * [Environment-based `Startup` class and methods](../../../fundamentals/environments.md#environment-specific-startup-class)
 * [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
-* <xref:blazor/components/quickgrid>
+* [ASP.NET Core Blazor \`QuickGrid\` component](../../components/quickgrid.md)
 
 ## Legal
 

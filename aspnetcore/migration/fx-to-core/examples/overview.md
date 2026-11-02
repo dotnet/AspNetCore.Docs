@@ -168,7 +168,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
@@ -354,7 +354,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
@@ -540,7 +540,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end

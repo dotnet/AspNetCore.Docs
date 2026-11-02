@@ -85,7 +85,7 @@ Optimization happens automatically when using `MapStaticAssets`. When a library 
 For more information on the new file delivery features, see the following resources:
 
 * [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0)
-* <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
+* [ASP.NET Core Blazor static files](../../../blazor/fundamentals/static-files.md?view=aspnetcore-9.0)
 
 ### Customize build-time compression with MSBuild properties
 

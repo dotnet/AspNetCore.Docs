@@ -4,7 +4,6 @@ description: Learn how to host and deploy Blazor WebAssembly using Apache.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/apache
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with Apache
 
@@ -107,7 +106,7 @@ For more information, see [`mod_mime`](https://httpd.apache.org/docs/2.4/mod/mod
 
 Configure the app with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers by following the guidance in [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
 
-For more information on setting the app's base path, including sub-app path configuration, see <xref:blazor/host-and-deploy/app-base-path>.
+For more information on setting the app's base path, including sub-app path configuration, see [ASP.NET Core Blazor app base path](../app-base-path.md).
 
 The following example hosts the app at a root URL (no sub-app path):
 

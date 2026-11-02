@@ -4,7 +4,6 @@ description: Learn how to host and deploy Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/index
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly
 
@@ -12,7 +11,7 @@ uid: blazor/host-and-deploy/webassembly/index
 
 This article explains how to host and deploy Blazor WebAssembly apps.
 
-With the [Blazor WebAssembly hosting model](xref:blazor/hosting-models#blazor-webassembly):
+With the [Blazor WebAssembly hosting model](../../hosting-models.md#blazor-webassembly):
 
 * The Blazor app, its dependencies, and the .NET runtime are downloaded to the browser in parallel.
 * The app is executed directly on the browser UI thread.
@@ -29,7 +28,7 @@ The following deployment strategies are supported:
 
 * The Blazor app is served by an ASP.NET Core app. This strategy is covered in the [Hosted deployment with ASP.NET Core](#hosted-deployment-with-aspnet-core) section.
 * The Blazor app is placed on a static hosting web server or service, where .NET isn't used to serve the Blazor app. This strategy is covered in the [Standalone deployment](#standalone-deployment) section, which includes information on hosting a Blazor WebAssembly app as an IIS sub-app.
-* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
+* An ASP.NET Core app hosts multiple Blazor WebAssembly apps. For more information, see [Multiple hosted ASP.NET Core Blazor WebAssembly apps](multiple-hosted-webassembly.md).
 
 :::moniker-end
 
@@ -44,7 +43,7 @@ Many open-source and commercial HTTP servers can serve a published Blazor WebAss
 
 Subdomain hosting doesn't require special configuration of the app. You ***don't*** need to configure the app base path (the `<base>` tag in `wwwroot/index.html`) to host the app at a subdomain.
 
-IIS sub-application hosting ***does*** require you to set the app base path. For more information and cross-links to further guidance on IIS sub-application hosting, see <xref:blazor/host-and-deploy/index#iis>.
+IIS sub-application hosting ***does*** require you to set the app base path. For more information and cross-links to further guidance on IIS sub-application hosting, see [Host and deploy ASP.NET Core Blazor](../index.md#iis).
 
 ## Decrease maximum heap size for some mobile device browsers
 
@@ -84,7 +83,7 @@ Webcil is the default packaging format when you publish a Blazor WebAssembly app
 
 ## Customize how boot resources are loaded
 
-Customize how boot resources are loaded using the `loadBootResource` API. For more information, see <xref:blazor/fundamentals/startup#load-client-side-boot-resources>.
+Customize how boot resources are loaded using the `loadBootResource` API. For more information, see [ASP.NET Core Blazor startup](../../fundamentals/startup.md#load-client-side-boot-resources).
 
 ## Compression
 
@@ -105,7 +104,7 @@ Blazor relies on the host to serve the appropriate compressed files. When using 
 
 :::moniker-end
 
-* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](xref:blazor/host-and-deploy/webassembly/iis#brotli-and-gzip-compression) section. 
+* For IIS `web.config` compression configuration, see the [IIS: Brotli and Gzip compression](iis.md#brotli-and-gzip-compression) section. 
 * When hosting on static hosting solutions that don't support statically-compressed file content negotiation, consider configuring the app to fetch and decode Brotli compressed files:
 
 Obtain the JavaScript Brotli decoder from the [`google/brotli` GitHub repository](https://github.com/google/brotli). The minified decoder file is named `decode.min.js` and found in the repository's [`js` folder](https://github.com/google/brotli/tree/master/js).
@@ -195,7 +194,7 @@ Standalone Blazor WebAssembly:
 
 :::moniker-end
 
-For more information on loading boot resources, see <xref:blazor/fundamentals/startup#load-boot-resources>.
+For more information on loading boot resources, see [ASP.NET Core Blazor startup](../../fundamentals/startup.md#load-boot-resources).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -253,7 +252,7 @@ If a request is made using the browser's address bar for `www.contoso.com/About`
 
 Because browsers make requests to Internet-based hosts for client-side pages, web servers and hosting services must rewrite all requests for resources not physically on the server to the `index.html` page. When `index.html` is returned, the app's Blazor router takes over and responds with the correct resource.
 
-When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see <xref:blazor/host-and-deploy/webassembly/iis>.
+When deploying to an IIS server, you can use the URL Rewrite Module with the app's published `web.config` file. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](iis.md).
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -348,9 +347,9 @@ Standalone deployment assets are published into either the `/bin/Release/{TARGET
 
 ## Publish without an HTML document
 
-When an app isn't using an HTML document produced as part of the .NET build/publish process, there's no place to write the site's [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). For example, this scenario occurs when publishing a standalone Blazor app for consumption by a JavaScript/SPA app through a [Blazor custom element](xref:blazor/components/js-spa-frameworks#blazor-custom-elements).
+When an app isn't using an HTML document produced as part of the .NET build/publish process, there's no place to write the site's [import map](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap). For example, this scenario occurs when publishing a standalone Blazor app for consumption by a JavaScript/SPA app through a [Blazor custom element](../../components/js-spa-frameworks.md#blazor-custom-elements).
 
-To avoid problems loading app resources on the client, disable [fingerprinting](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) for `blazor.webassembly.js` and `dotnet.js` by removing `<OverrideHtmlAssetPlaceholders>` MSBuild property (or set it to `false`) in the app's project file (`.csproj`).
+To avoid problems loading app resources on the client, disable [fingerprinting](../../fundamentals/static-files.md#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps) for `blazor.webassembly.js` and `dotnet.js` by removing `<OverrideHtmlAssetPlaceholders>` MSBuild property (or set it to `false`) in the app's project file (`.csproj`).
 
 :::moniker-end
 
@@ -358,7 +357,7 @@ To avoid problems loading app resources on the client, disable [fingerprinting](
 
 Blazor WebAssembly apps can be deployed to Azure App Services on Windows, which hosts the app on IIS.
 
-Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](xref:blazor/host-and-deploy/webassembly/azure-static-web-apps), which supports this scenario.
+Deploying a standalone Blazor WebAssembly app to Azure App Service for Linux isn't currently supported. We recommend hosting a standalone Blazor WebAssembly app using [Azure Static Web Apps](azure-static-web-apps.md), which supports this scenario.
 
 ## Standalone with Docker
 
@@ -372,12 +371,12 @@ To host the app in Docker:
 
 For configuration guidance, see the following resources:
 
-* [Nginx](xref:blazor/host-and-deploy/webassembly/nginx) or [Apache](xref:blazor/host-and-deploy/webassembly/apache) articles
+* [Nginx](nginx.md) or [Apache](apache.md) articles
 * [Docker Documentation](https://docs.docker.com/)
 
 ## Host configuration values
 
-[Blazor WebAssembly apps](xref:blazor/hosting-models#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the `Development` environment.
+[Blazor WebAssembly apps](../../hosting-models.md#blazor-webassembly) can accept the following host configuration values as command-line arguments at runtime in the `Development` environment.
 
 ### Content root
 
@@ -405,7 +404,7 @@ The `--contentroot` argument sets the absolute path to the directory that contai
 
 ### Path base
 
-The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+The `--pathbase` argument sets the app base path for an app run locally with a non-root relative URL path (the `<base>` tag `href` is set to a path other than `/` for staging and production). In the following examples, `/relative-URL-path` is the app's path base. For more information, see [ASP.NET Core Blazor app base path](../app-base-path.md).
 
 > [!IMPORTANT]
 > Unlike the path provided to `href` of the `<base>` tag, don't include a trailing slash (`/`) when passing the `--pathbase` argument value. If the app base path is provided in the `<base>` tag as `<base href="/CoolApp/">` (includes a trailing slash), pass the command-line argument value as `--pathbase=/CoolApp` (no trailing slash).
@@ -428,7 +427,7 @@ The `--pathbase` argument sets the app base path for an app run locally with a n
   --pathbase=/relative-URL-path
   ```
 
-For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+For more information, see [ASP.NET Core Blazor app base path](../app-base-path.md).
 
 ### URLs
 
@@ -456,7 +455,7 @@ The `--urls` argument sets the IP addresses or host addresses with ports and pro
 
 ## Configure the Trimmer
 
-Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+Blazor performs Intermediate Language (IL) trimming on each Release build to remove unnecessary IL from the output assemblies. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../configure-trimmer.md).
 
 :::moniker-end
 
@@ -464,7 +463,7 @@ Blazor performs Intermediate Language (IL) trimming on each Release build to rem
 
 ## Configure the Linker
 
-Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see <xref:blazor/host-and-deploy/configure-linker>.
+Blazor performs Intermediate Language (IL) linking on each Release build to remove unnecessary IL from the output assemblies. For more information, see [Configure the Linker for ASP.NET Core Blazor](../configure-linker.md).
 
 :::moniker-end
 
@@ -481,7 +480,7 @@ Changing the file name extensions of the app's DLL files might not resolve the p
 For a more robust approach in environments that block the download and execution of DLL files, take ***either*** of the following approaches:
 
 * Use .NET 8 or later, which packages .NET assemblies as WebAssembly files (`.wasm`) using the [Webcil](https://github.com/dotnet/runtime/blob/main/docs/design/mono/webcil.md) file format. For more information, see the *Webcil packaging format for .NET assemblies* section in a .NET 8 or later version of this article.
-* In .NET 6 or later, use a [custom deployment layout](xref:blazor/host-and-deploy/webassembly/deployment-layout).
+* In .NET 6 or later, use a [custom deployment layout](deployment-layout.md).
 
 Third-party approaches exist for dealing with this problem. For more information, see the resources at [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor).
 
@@ -498,7 +497,7 @@ To use a different file extension than `.bin`, replace `.bin` in the following c
 
 # [Windows](#tab/windows)
 
-In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](../index.md#default-publish-locations).
 
 Rename file extensions in the folder:
 
@@ -522,7 +521,7 @@ In the preceding command, the `{PATH}` placeholder is the path to the published 
 
 # [Linux / macOS](#tab/linux-macos)
 
-In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations).
+In the following commands, the `{PATH}` placeholder is the path to the published `_framework` folder in the [`publish` folder](../index.md#default-publish-locations).
 
 Rename file extensions in the folder:
 
@@ -556,7 +555,7 @@ For a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index)'s compr
 * Recompress the updated `service-worker-assets.js` file, producing new `service-worker-assets.js.br` and `service-worker-assets.js.gz` files. (*Recommended*)
 * Remove the compressed `service-worker-assets.js.gz` and `service-worker-assets.js.br` files. (*Compression is disabled with this approach.*)
 
-To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index). The path to the [`publish` folder](xref:blazor/host-and-deploy/index#default-publish-locations) is passed to the script when it's executed.
+To automate the extension change on Windows in .NET 6/7, the following approach uses a PowerShell script placed at the root of the project. The following script, which disables compression, is the basis for further modification if you wish to recompress the `blazor.boot.json` file and `service-worker-assets.js` file if the app is a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index). The path to the [`publish` folder](../index.md#default-publish-locations) is passed to the script when it's executed.
 
 `ChangeDLLExtensions.ps1:`:
 
@@ -619,7 +618,7 @@ Remove entries for compressed `.dll` files if [compression](#compression) is in 
 - <mimeMap fileExtension=".dll.gz" mimeType="application/octet-stream" />
 ```
 
-For more information on custom `web.config` files, see the [Use of a custom `web.config`](xref:blazor/host-and-deploy/webassembly/iis#use-of-a-custom-webconfig) section.
+For more information on custom `web.config` files, see the [Use of a custom `web.config`](iis.md#use-of-a-custom-webconfig) section.
 
 :::moniker-end
 

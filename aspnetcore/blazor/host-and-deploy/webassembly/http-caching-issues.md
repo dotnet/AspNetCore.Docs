@@ -3,7 +3,6 @@ title: Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
 description: Learn how to avoid HTTP caching issues when upgrading Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/http-caching-issues
 ---
 # Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps
 
@@ -18,7 +17,7 @@ While future Blazor releases might provide better solutions for dealing with HTT
 Common problems that negatively impact the user upgrade experience include:
 
 * **Incorrect handling of project and package updates**: This happens if you don't update all of the app's deployed projects to use the same major framework version or if you use packages from a previous version when a newer version is available as part of the major upgrade.
-* **Incorrect configuration of caching headers**: HTTP caching headers control how, where, and for how long the app's responses are cached. If headers aren't configured correctly, users might receive stale or mismatched files. This includes [Blazor bundle assets caching](xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures), where server caching headers must be properly set to avoid caching problems on the client.
+* **Incorrect configuration of caching headers**: HTTP caching headers control how, where, and for how long the app's responses are cached. If headers aren't configured correctly, users might receive stale or mismatched files. This includes [Blazor bundle assets caching](bundle-caching-and-integrity-check-failures.md), where server caching headers must be properly set to avoid caching problems on the client.
 * **Incorrect configuration of other layers**: Content Delivery Networks (CDNs) and other layers of the deployed app can cause issues if incorrectly configured. For example, CDNs are designed to cache and deliver content to improve performance and reduce latency. If a CDN is incorrectly serving cached versions of assets, it can lead to stale content delivery to the user.
 
 ## Detect and diagnose upgrade issues

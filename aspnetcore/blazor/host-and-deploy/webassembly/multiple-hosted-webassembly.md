@@ -3,7 +3,6 @@ title: Multiple hosted ASP.NET Core Blazor WebAssembly apps
 description: Learn how to configure a hosted Blazor WebAssembly app to host multiple Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
 zone_pivot_groups: blazor-multiple-hosted-wasm-apps
 ---
 # Multiple hosted ASP.NET Core Blazor WebAssembly apps
@@ -63,7 +62,7 @@ The preceding configurations are beyond the scope of this article. For more info
 
 * [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
 * [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md)
-* <xref:blazor/components/integration-hosted-webassembly>
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions](../../components/integration-hosted-webassembly.md)
 
 Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
 
@@ -105,7 +104,7 @@ The `MultipleBlazorApps.Server` project serves the two Blazor WebAssembly client
 
 :::zone-end
 
-In the first client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
+In the first client app's project file (`MultipleBlazorApps.Client.csproj`), add a [`<StaticWebAssetBasePath>` property](../../fundamentals/static-files.md#static-web-asset-base-path) to a `<PropertyGroup>` with a value of `FirstApp` to set the base path for the project's static assets:
 
 ```xml
 <StaticWebAssetBasePath>FirstApp</StaticWebAssetBasePath>
@@ -314,7 +313,7 @@ In the server app's `Program.cs` file, remove the following code, which appears 
 
 :::zone-end
 
-For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see <xref:blazor/fundamentals/static-files>.
+For more information on <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, see [ASP.NET Core Blazor static files](../../fundamentals/static-files.md).
 
 For more information on `UseBlazorFrameworkFiles` and `MapFallbackToFile`, see the following resources:
 
@@ -450,7 +449,7 @@ public class HomeController : Controller
 > [!NOTE]
 > The preceding `Index` view is a minimal example purely for demonstration purposes. If the app requires additional MVC assets, such as a layout, styles, scripts, and imports, obtain them from an app created from the MVC project template. For more information, see [Get started with ASP.NET Core MVC](../../../tutorials/first-mvc-app/start-mvc.md).
 
-For more information on using the Razor components from either of the client apps in pages or views of the server app, see <xref:blazor/components/integration-hosted-webassembly>.
+For more information on using the Razor components from either of the client apps in pages or views of the server app, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions](../../components/integration-hosted-webassembly.md).
 
 ## Run the app
 
@@ -497,7 +496,7 @@ For example, the source for a Jeep image (`jeep-yj.png`) in the `vehicle` folder
 
 ## Razor class library (RCL) support
 
-Add the [Razor class library (RCL)](xref:blazor/components/class-libraries) to the solution as a new project:
+Add the [Razor class library (RCL)](../../components/class-libraries.md) to the solution as a new project:
 
 * Right-click the solution in **Solution Explorer** and select **Add** > **New Project**.
 * Use the **Razor Class Library** project template to create the project. The examples in this section use the project name `ComponentLibrary`, which is also the RCL's assembly name. Don't select the **Support pages and views** checkbox.
@@ -541,6 +540,6 @@ The following example shows the markup for a Jeep image (`jeep-yj.png`) in the `
 
 ## Related content
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../components/class-libraries.md)
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../../razor-pages/ui-class.md)
-* <xref:blazor/components/css-isolation>
+* [ASP.NET Core Blazor CSS isolation](../../components/css-isolation.md)

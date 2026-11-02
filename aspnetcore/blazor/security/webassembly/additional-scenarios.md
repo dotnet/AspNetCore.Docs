@@ -326,8 +326,8 @@ builder.Services.AddHttpClient("WebAPI",
 > [!NOTE]
 > In the preceding example, the `CustomAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
 >
-> * [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
-> * [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
+> * [Utility base component classes to manage a DI scope](../../fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope)
+> * [Detect client-side transient disposables](../../fundamentals/dependency-injection.md#detect-client-side-transient-disposables)
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -692,7 +692,7 @@ When the app requests a token, there are two possible outcomes:
 
 When a token request fails, you need to decide whether you want to save any current state before you perform a redirection. Several approaches exist to store state with increasing levels of complexity:
 
-* Store the current page state in session storage. During the [`OnInitializedAsync` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>), check if state can be restored before continuing.
+* Store the current page state in session storage. During the [`OnInitializedAsync` lifecycle method](../../components/lifecycle.md#component-initialization-oninitializedasync) (<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>), check if state can be restored before continuing.
 * Add a query string parameter and use that as a way to signal the app that it needs to re-hydrate the previously saved state.
 * Add a query string parameter with a unique identifier to store data in session storage without risking collisions with other items.
 
@@ -1366,7 +1366,7 @@ To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](.
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Prerendering is enabled by default in hosted Blazor WebAssembly apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/components/integration-hosted-webassembly#persist-prerendered-state>.
+> Prerendering is enabled by default in hosted Blazor WebAssembly apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions](../../components/integration-hosted-webassembly.md#persist-prerendered-state).
 
 :::moniker-end
 
@@ -1546,7 +1546,7 @@ If an app requires a custom version of the [Microsoft Authentication Library for
 1. Set up the `dotnet/aspnetcore` GitHub repository for development following the documentation at [Build ASP.NET Core from Source](https://github.com/dotnet/aspnetcore/blob/main/docs/BuildFromSource.md). Fork and clone or download a ZIP archive of the [`dotnet/aspnetcore` GitHub repository](https://github.com/dotnet/aspnetcore).
 1. Open the `src/Components/WebAssembly/Authentication.Msal/src/Interop/package.json` file and set the desired version of `@azure/msal-browser`. For a list of released versions, visit the [`@azure/msal-browser` npm website](https://www.npmjs.com/package/@azure/msal-browser) and select the **Versions** tab.
 1. Build the `Authentication.Msal` project in the `src/Components/WebAssembly/Authentication.Msal/src` folder with the `yarn build` command in a command shell.
-1. If the app uses [compressed assets (Brotli/Gzip)](xref:blazor/host-and-deploy/webassembly/index#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
+1. If the app uses [compressed assets (Brotli/Gzip)](../../host-and-deploy/webassembly/index.md#compression), compress the `Interop/dist/Release/AuthenticationService.js` file.
 1. Copy the `AuthenticationService.js` file and compressed versions (`.br`/`.gz`) of the file, if produced, from the `Interop/dist/Release` folder into the app's `publish/wwwroot/_content/Microsoft.Authentication.WebAssembly.Msal` folder in the app's published assets.
 
 ## Pass custom provider options
@@ -1610,7 +1610,7 @@ The preceding example sets redirect URIs with regular string literals. The follo
   options.RedirectUri = redirectUri;
   ```
   
-* [Host builder configuration](xref:blazor/fundamentals/configuration#host-builder-configuration):
+* [Host builder configuration](../../fundamentals/configuration.md#host-builder-configuration):
 
   ```csharp
   options.RedirectUri = builder.Configuration["RedirectUri"];
@@ -1627,5 +1627,5 @@ The preceding example sets redirect URIs with regular string literals. The follo
 ## Related content
 
 * <xref:blazor/security/webassembly/graph-api>
-* [Cookie-based request credentials (*Call web API* article)](xref:blazor/call-web-api#cookie-based-request-credentials)
-* [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api#httpclient-and-httprequestmessage-with-fetch-api-request-options)
+* [Cookie-based request credentials (*Call web API* article)](../../call-web-api.md#cookie-based-request-credentials)
+* [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](../../call-web-api.md#httpclient-and-httprequestmessage-with-fetch-api-request-options)

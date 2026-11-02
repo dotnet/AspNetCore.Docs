@@ -51,6 +51,6 @@ Hubs call client-side code by sending messages that contain the name and paramet
 * [Hubs](../../hubs.md)
 * [JavaScript client](../../javascript-client.md)
 * [Browsers that don't support ECMAScript 6 (ES6)](../../supported-platforms.md#es6)
-* <xref:blazor/fundamentals/signalr>
+* [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md)
 
 :::moniker-end

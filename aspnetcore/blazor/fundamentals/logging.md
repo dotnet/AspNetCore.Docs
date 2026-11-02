@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor logging
 description: Learn about Blazor app logging, particularly in client-side logging scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/fundamentals/logging
 ---
 # ASP.NET Core Blazor logging
 
@@ -20,7 +19,7 @@ For general ASP.NET Core logging guidance, including how to log from Razor compo
 
 ## Configuration
 
-Logging configuration can be loaded from app settings files. For more information, see <xref:blazor/fundamentals/configuration#logging-configuration>.
+Logging configuration can be loaded from app settings files. For more information, see [ASP.NET Core Blazor configuration](configuration.md#logging-configuration).
 
 At default log levels and without configuring additional logging providers:
 
@@ -510,7 +509,7 @@ Run the app again. Select the **`Log Messages`** button. Notice that the logging
 
 ## Client-side log scopes
 
-The developer tools console logger doesn't support [log scopes](../../fundamentals/logging/index.md#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+The developer tools console logger doesn't support [log scopes](../../fundamentals/logging/index.md#log-scopes). However, a [custom logger](#client-side-custom-logger-provider) can support log scopes. For an unsupported example that you can further develop to suit your needs, see the `BlazorWebAssemblyScopesLogger` sample app in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps)).
 
 The sample app uses standard ASP.NET Core <xref:Microsoft.Extensions.Logging.LoggerExtensions.BeginScope*> logging syntax to indicate scopes for logged messages. The `Logger` service in the following example is an `ILogger<CustomLoggerExample>`, which is injected into the app's `CustomLoggerExample` component (`CustomLoggerExample.razor`).
 
@@ -552,7 +551,7 @@ The `{CLASS}` placeholder in the preceding example is `BlazorWebAssemblyScopesLo
 
 ## Prerendered component logging
 
-Prerendered components execute [component initialization code twice](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
+Prerendered components execute [component initialization code twice](../components/lifecycle.md#component-initialization-oninitializedasync). Logging takes place server-side on the first execution of initialization code and client-side on the second execution of initialization code. Depending on the goal of logging during initialization, check logs server-side, client-side, or both.
 
 ## SignalR client logging with the SignalR client builder
 
@@ -673,11 +672,11 @@ Blazor Server:
 > [!NOTE]
 > Using an integer to specify the logging level in Example 2, often referred to as a *magic number* or *magic constant*, is considered a poor coding practice because the integer doesn't clearly identify the logging level when viewing the source code. If minimizing the bytes transferred to the browser is a priority, using an integer might be justified (consider removing the comment in such cases).
 
-For more information on Blazor startup (`Blazor.start()`), see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup (`Blazor.start()`), see [ASP.NET Core Blazor startup](startup.md).
 
 ## SignalR client logging with app configuration
 
-Set up app settings configuration as described in <xref:blazor/fundamentals/configuration#logging-configuration>. Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
+Set up app settings configuration as described in [ASP.NET Core Blazor configuration](configuration.md#logging-configuration). Place app settings files in `wwwroot` that contain a `Logging:LogLevel:HubConnection` app setting.
 
 > [!NOTE]
 > As an alternative to using app settings, you can pass the <xref:Microsoft.Extensions.Logging.LogLevel> as the argument to <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel*?displayProperty=nameWithType> when the hub connection is created in a Razor component. However, accidentally deploying the app to a production hosting environment with verbose logging may result in a performance penalty. We recommend using app settings to set the log level.
@@ -713,7 +712,7 @@ Provide a `Logging:LogLevel:HubConnection` app setting in the default `appsettin
 ```
 
 > [!IMPORTANT]
-> Configuration in the preceding app settings files is only used by the app if the guidance in <xref:blazor/fundamentals/configuration#logging-configuration> is followed.
+> Configuration in the preceding app settings files is only used by the app if the guidance in [ASP.NET Core Blazor configuration](configuration.md#logging-configuration) is followed.
 
 At the top of the Razor component file (`.razor`):
 
@@ -731,7 +730,7 @@ At the top of the Razor component file (`.razor`):
 > [!NOTE]
 > The following example is based on the demonstration in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
 
-In the component's [`OnInitializedAsync` method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging*?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
+In the component's [`OnInitializedAsync` method](../components/lifecycle.md#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging*?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -755,7 +754,7 @@ protected override async Task OnInitializedAsync()
 > [!NOTE]
 > In the preceding example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>.
 
-For more information on setting the app's environment, see <xref:blazor/fundamentals/environments>.
+For more information on setting the app's environment, see [ASP.NET Core Blazor environments](environments.md).
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -775,7 +774,7 @@ Use ***either*** of the following approaches:
   }
   ```
 
-  For more information on how to configure a client-side app to read app settings files, see <xref:blazor/fundamentals/configuration#logging-configuration>.
+  For more information on how to configure a client-side app to read app settings files, see [ASP.NET Core Blazor configuration](configuration.md#logging-configuration).
 
 * Using a log filter, the following example:
 
@@ -803,4 +802,4 @@ Use ***either*** of the following approaches:
 * Browser developer tools documentation:
   * [Chrome DevTools](https://developer.chrome.com/docs/devtools/)
   * [Microsoft Edge Developer Tools overview](/microsoft-edge/devtools-guide-chromium/)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))

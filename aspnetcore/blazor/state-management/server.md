@@ -22,7 +22,7 @@ Examples of user state held in a circuit include:
 * The values of fields and properties in component instances.
 * Data held in [dependency injection (DI)](../../fundamentals/dependency-injection.md) service instances that are scoped to the circuit.
 
-User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
+User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](../javascript-interoperability/call-javascript-from-dotnet.md) calls.
 
 If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit with their original state. However, reconnecting a user to their original circuit in the server's memory isn't always possible:
 
@@ -55,7 +55,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
@@ -97,7 +97,7 @@ Persisting component state across circuits is built on top of the existing <xref
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
 
-Annotate component `public` properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+Annotate component `public` properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](../components/element-component-model-relationships.md) to provide a unique identifier for each component instance:
 
 ```razor
 @foreach (var item in Items)
@@ -210,7 +210,7 @@ After the tab is hidden for `HiddenDelay`, the circuit pauses. If the user retur
 
 The package defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text `<input>` elements with Blazor `@bind` bindings are edited or audio/video is playing.
 
-For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
+For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](../fundamentals/startup.md):
 
 ```razor
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -435,7 +435,7 @@ var app = builder.Build();
 // ... rest of pipeline
 ```
 
-Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup). Place the following after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script):
+Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](../fundamentals/startup.md). Place the following after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script):
 
 ```razor
 <script> 
@@ -534,7 +534,7 @@ To persist temporary data between HTTP requests during static server-side render
 `TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file.
-* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](../components/cascading-values-and-parameters.md#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
 * Supports the [stored-value types listed earlier](#supported-property-types-for-temporary-data-and-session).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
@@ -705,7 +705,7 @@ Session storage:
 * Requires explicit session state configuration.
 * Has no practical size limits (within session constraints).
 * Serializes values with <xref:System.Text.Json> with <xref:System.Text.Json.JsonSerializerDefaults?displayProperty=nameWithType>.
-* Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see <xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting>.
+* Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting).
 
 For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
 
@@ -811,4 +811,4 @@ For more information, see <xref:blazor/state-management/protected-browser-storag
 * [State management using the URL](xref:blazor/state-management/index#url)
 * [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
 * [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
-* [Managing state via an external server API](xref:blazor/call-web-api)
+* [Managing state via an external server API](../call-web-api.md)

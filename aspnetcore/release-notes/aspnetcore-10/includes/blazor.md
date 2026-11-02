@@ -30,7 +30,7 @@ Apply a stylesheet class to a row of the grid based on the row item using the ne
 }
 ```
 
-For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-10.0#style-a-table-row-based-on-the-row-item>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../../blazor/components/quickgrid.md?view=aspnetcore-10.0#style-a-table-row-based-on-the-row-item).
 
 ### Blazor script as static web asset
 
@@ -45,7 +45,7 @@ The Blazor script (`blazor.web.js` or `blazor.server.js`) is included by the fra
 For more information, see the following resources:
   
 * <xref:blazor/project-structure?view=aspnetcore-10.0#location-of-the-blazor-script>
-* <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0>
+* [ASP.NET Core Blazor static files](../../../blazor/fundamentals/static-files.md?view=aspnetcore-10.0)
 
 ### Route template highlights
 
@@ -66,7 +66,7 @@ New reconnection UI features:
 * Apart from indicating the reconnection state by setting a specific CSS class on the reconnection UI element, the new `components-reconnect-state-changed` event is dispatched for reconnection state changes.
 * Code can better differentiate the stages of the reconnection process with the new reconnection state "`retrying`," indicated by both the CSS class and the new event.
 
-For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-10.0#reflect-the-server-side-connection-state-in-the-ui>.
+For more information, see [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-10.0#reflect-the-server-side-connection-state-in-the-ui).
 
 ### Ignore the query string and fragment when using `NavLinkMatch.All`
 
@@ -84,7 +84,7 @@ public class CustomNavLink : NavLink
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#navlink-component>.
+For more information, see [ASP.NET Core Blazor navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0#navlink-component).
 
 ### Close `QuickGrid` column options
 
@@ -135,11 +135,11 @@ To opt-out of response streaming for an individual request, set <xref:Microsoft.
 requestMessage.SetBrowserResponseStreamingEnabled(false);
 ```
 
-For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](xref:blazor/call-web-api?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
+For more information, see [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](../../../blazor/call-web-api.md?view=aspnetcore-10.0#httpclient-and-httprequestmessage-with-fetch-api-request-options).
 
 ### Client-side fingerprinting
 
-The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](../../../fundamentals/static-files.md), the [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
+The release of .NET 9 introduced [server-side fingerprinting](https://en.wikipedia.org/wiki/Fingerprint_(computing)) of static assets in Blazor Web Apps with the introduction of [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](../../../fundamentals/static-files.md), the [`ImportMap` component](../../../blazor/fundamentals/static-files.md#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`) to resolve fingerprinted JavaScript (JS) modules. For .NET 10, you can opt-into client-side fingerprinting of JS modules for standalone Blazor WebAssembly apps.
 
 In standalone Blazor WebAssembly apps during build and publish, the framework overrides placeholders in `index.html` with values computed during build to fingerprint static assets. A fingerprint is placed into the `blazor.webassembly.js` script file name.
 
@@ -229,7 +229,7 @@ In standalone Blazor WebAssembly apps, framework assets are scheduled for high p
   <link rel="preload" id="webassembly" />
   ```
 
-For more information, see <xref:blazor/fundamentals/static-files?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets>.
+For more information, see [ASP.NET Core Blazor static files](../../../blazor/fundamentals/static-files.md?view=aspnetcore-10.0#preloaded-blazor-framework-static-assets).
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -255,14 +255,14 @@ The default environments are:
 * `Development` for build.
 * `Production` for publish.
 
-For more information, see <xref:blazor/fundamentals/environments#set-the-environment>.
+For more information, see [ASP.NET Core Blazor environments](../../../blazor/fundamentals/environments.md#set-the-environment).
 
 ### Boot configuration file inlined
 
 Blazor's boot configuration, which prior to the release of .NET 10 existed in a file named `blazor.boot.json`, has been inlined into the `dotnet.js` script. This only affects developers who are interacting directly with the `blazor.boot.json` file, such as when developers are:
 
-* Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script>.
-* Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in <xref:blazor/host-and-deploy/webassembly/index?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded>.
+* Checking file integrity for published assets with the troubleshoot integrity PowerShell script per the guidance in [ASP.NET Core Blazor WebAssembly caching and integrity check failures](../../../blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md?view=aspnetcore-9.0#troubleshoot-integrity-powershell-script).
+* Changing the file name extension of DLL files when not using the default Webcil file format per the guidance in [Host and deploy ASP.NET Core Blazor WebAssembly](../../../blazor/host-and-deploy/webassembly/index.md?view=aspnetcore-9.0#customize-how-boot-resources-are-loaded).
 
 Currently, there's no documented replacement strategy for the preceding approaches. If you require either of the preceding strategies, open a new documentation issue describing your scenario using the **Open a documentation issue** link at the bottom of either article.
 
@@ -408,8 +408,8 @@ The following synchronous methods are available on <xref:Microsoft.JSInterop.IJS
 
 For more information, see the following sections of the *Call JavaScript functions from .NET methods* article:
 
-* [Create an instance of a JS object using a constructor function](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-10.0#create-an-instance-of-a-js-object-using-a-constructor-function)
-* [Read or modify the value of a JS object property](xref:blazor/js-interop/call-javascript-from-dotnet?view=aspnetcore-10.0#read-or-modify-the-value-of-a-js-object-property)
+* [Create an instance of a JS object using a constructor function](../../../blazor/javascript-interoperability/call-javascript-from-dotnet.md?view=aspnetcore-10.0#create-an-instance-of-a-js-object-using-a-constructor-function)
+* [Read or modify the value of a JS object property](../../../blazor/javascript-interoperability/call-javascript-from-dotnet.md?view=aspnetcore-10.0#read-or-modify-the-value-of-a-js-object-property)
 
 ### Blazor WebAssembly performance profiling and diagnostic counters
 
@@ -454,7 +454,7 @@ The [`NotFound` render fragment](xref:Microsoft.AspNetCore.Components.Routing.Ro
 
 The Blazor project template now includes a `NotFound.razor` page by default. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called in your app, making it easier to handle missing routes with a consistent user experience.
 
-For more information, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
+For more information, see [ASP.NET Core Blazor navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0#not-found-responses).
 
 ### Not Found responses using `NavigationManager` for static SSR and global interactive rendering
 
@@ -462,9 +462,9 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a <xre
 
 * **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> sets the HTTP status code to 404.
 
-* **Interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#route-templates)) to render Not Found content.
+* **Interactive rendering**: Signals the Blazor router ([`Router` component](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#route-templates)) to render Not Found content.
 
-* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](../../../blazor/components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
@@ -479,7 +479,7 @@ Streaming rendering can only render components that have a route, such as a [`No
 
 You can use the <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound*?displayProperty=nameWithType> event for notifications when <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is invoked.
 
-For more information and examples, see <xref:blazor/fundamentals/navigation?view=aspnetcore-10.0#not-found-responses>.
+For more information and examples, see [ASP.NET Core Blazor navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0#not-found-responses).
 
 ### Support for Not Found responses in apps without Blazor's router
 
@@ -544,13 +544,13 @@ For more information, see <xref:blazor/performance/index?view=aspnetcore-10.0#me
 
 Blazor's build output isn't compatible with JavaScript bundlers, such as [Gulp](https://gulpjs.com), [Webpack](https://webpack.js.org), and [Rollup](https://rollupjs.org/). Blazor can now produce bundler-friendly output during publish by setting the `WasmBundlerFriendlyBootConfig` MSBuild property to `true`.
 
-For more information, see <xref:blazor/host-and-deploy/index?view=aspnetcore-10.0#javascript-bundler-support>.
+For more information, see [Host and deploy ASP.NET Core Blazor](../../../blazor/host-and-deploy/index.md?view=aspnetcore-10.0#javascript-bundler-support).
 
 ### Blazor WebAssembly static asset preloading in Blazor Web Apps
 
 We replaced `<link>` headers with a `ResourcePreloader` component (`<ResourcePreloader />`) for preloading WebAssembly assets in Blazor Web Apps. This permits the app base path configuration (`<base href="..." />`) to correctly identify the app's root.
 
-Removing the component disables the feature if the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup?view=aspnetcore-10.0#load-client-side-boot-resources) to modify URLs.
+Removing the component disables the feature if the app is using a [`loadBootResource` callback](../../../blazor/fundamentals/startup.md?view=aspnetcore-10.0#load-client-side-boot-resources) to modify URLs.
 
 The Blazor Web App template adopts the feature by default in .NET 10, and apps upgrading to .NET 10 can implement the feature by placing the `ResourcePreloader` component after the base URL tag (`<base>`) in the `App` component's head content (`App.razor`):
 
@@ -563,7 +563,7 @@ The Blazor Web App template adopts the feature by default in .NET 10, and apps u
 </head>
 ```
 
-For more information, see <xref:blazor/host-and-deploy/server/index?view=aspnetcore-10.0#static-asset-preloading>.
+For more information, see [Host and deploy ASP.NET Core server-side Blazor apps](../../../blazor/host-and-deploy/server/index.md?view=aspnetcore-10.0#static-asset-preloading).
 
 ### Improved form validation
 
@@ -672,7 +672,7 @@ Now that all Blazor client-side files are fingerprinted and cached by the browse
 - <BlazorCacheBootResources>...</BlazorCacheBootResources>
 ```
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures?view=aspnetcore-10.0>.
+For more information, see [ASP.NET Core Blazor WebAssembly caching and integrity check failures](../../../blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md?view=aspnetcore-10.0).
 
 ### Web Authentication API (passkey) support for ASP.NET Core Identity
 
@@ -693,7 +693,7 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling)
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-10.0>.
 
@@ -787,7 +787,7 @@ In the following example, a hidden input field is created for the form's `Parame
 
 ### Persistent component state support for enhanced navigation
 
-Blazor now supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+Blazor now supports handling persistent component state during [enhanced navigation](../../../blazor/fundamentals/navigation.md#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 

@@ -27,7 +27,7 @@ Blazor framework supported scenarios:
 * Supply Razor components in Razor class libraries
 * JavaScript interop
 
-For more information, see <xref:blazor/index>.
+For more information, see [ASP.NET Core Blazor](../blazor/index.md).
 
 ### Blazor Server
 

@@ -23,7 +23,7 @@ We recommend reading the following MDN resources when implementing a CSP:
 * [CSP reference guidance](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy (CSP) implementation](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/CSP)
 
-To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags. For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code> and the [*The `frame-ancestors` directive*](#the-frame-ancestors-directive) section later in this article.
+To apply a CSP to an app, the developer specifies several CSP content security *directives* in one or more `Content-Security-Policy` headers or `<meta>` tags. For guidance on applying a CSP to an app in C# code at startup, see [ASP.NET Core Blazor startup](../fundamentals/startup.md#control-headers-in-c-code) and the [*The `frame-ancestors` directive*](#the-frame-ancestors-directive) section later in this article.
 
 Policies are evaluated by the browser while a page is loading. The browser inspects the page's sources and determines if they meet the requirements of the content security directives. When policy directives aren't met for a resource, the browser doesn't load the resource. For example, consider a policy that doesn't allow third-party scripts. When a page contains a `<script>` tag with a third-party origin in the `src` attribute, the browser prevents the script from loading.
 
@@ -142,7 +142,7 @@ For a Content Security Policy Level 2 browser support matrix, see [Can I use: Co
 
 You can apply a CSP via:
 
-* A response header issued by the host (for example, IIS) or issued by the app (see [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)).
+* A response header issued by the host (for example, IIS) or issued by the app (see [Control headers in C# code at startup](../fundamentals/startup.md#control-headers-in-c-code)).
 * A `<meta>` tag. *This article only demonstrates the `<meta>` tag approach.*
 
 To use a `<meta>` tag to apply the policy:
@@ -301,7 +301,7 @@ For Blazor Server apps:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-11.0"
 
-If the app uses one or more `Virtualize` components, they render dynamic inline `style` attributes on their spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Strict CSP configurations that don't allow inline styles block these `style` attributes and prevent virtualization from working. If you can't upgrade to ASP.NET Core 11.0 or later (where `Virtualize` is CSP-compliant), see <xref:blazor/components/virtualization#content-security-policy-csp-compliance>.
+If the app uses one or more `Virtualize` components, they render dynamic inline `style` attributes on their spacer elements because spacer heights are calculated at runtime based on scroll position, item count, and average item size, which change on every scroll interaction. Strict CSP configurations that don't allow inline styles block these `style` attributes and prevent virtualization from working. If you can't upgrade to ASP.NET Core 11.0 or later (where `Virtualize` is CSP-compliant), see [ASP.NET Core Razor component virtualization](../components/virtualization.md#content-security-policy-csp-compliance).
 
 :::moniker-end
 
@@ -311,7 +311,7 @@ Add additional `script-src` and `style-src` hashes as required by the app. Durin
 
 The particular script associated with the error is displayed in the console next to the error.
 
-For guidance on applying a CSP to an app in C# code at startup, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
+For guidance on applying a CSP to an app in C# code at startup, see [ASP.NET Core Blazor startup](../fundamentals/startup.md#control-headers-in-c-code).
 
 ### Client-side Blazor apps
 
@@ -563,7 +563,7 @@ When a CSP is applied to a Blazor app's `<head>` content, it interferes with loc
 Three general approaches are available:
 
 * Apply the CSP via the `App` component, which applies the CSP to all layouts of the app.
-* If you need to apply CSPs to different areas of the app, for example a custom CSP for only the admin pages, apply the CSPs on a per-layout basis using the [`<HeadContent>` tag](xref:blazor/components/control-head-content). For complete effectiveness, every app layout file must adopt the approach.
+* If you need to apply CSPs to different areas of the app, for example a custom CSP for only the admin pages, apply the CSPs on a per-layout basis using the [`<HeadContent>` tag](../components/control-head-content.md). For complete effectiveness, every app layout file must adopt the approach.
 * The hosting service or server can provide a CSP via a [`Content-Security-Policy` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy) added an app's outgoing responses. Because this approach varies by hosting service or server, it isn't addressed in the following examples. If you wish to adopt this approach, consult the documentation for your hosting service provider or server.
 
 ### Blazor Web App approaches
@@ -655,7 +655,7 @@ Test and update an app's policy every release.
 
 ## Related content
 
-* [Apply a CSP in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
+* [Apply a CSP in C# code at startup](../fundamentals/startup.md#control-headers-in-c-code)
 * [MDN web docs: Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/CSP)
 * [MDN web docs: Content-Security-Policy response header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)
 * [Content Security Policy Level 3](https://www.w3.org/TR/CSP3/)

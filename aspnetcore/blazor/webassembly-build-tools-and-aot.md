@@ -137,4 +137,4 @@ For more information, see the following resources:
 
 * <xref:blazor/performance/webassembly-runtime-performance>
 * <xref:blazor/webassembly-native-dependencies>
-* [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly/index#webcil-packaging-format-for-net-assemblies)
+* [Webcil packaging format for .NET assemblies](host-and-deploy/webassembly/index.md#webcil-packaging-format-for-net-assemblies)

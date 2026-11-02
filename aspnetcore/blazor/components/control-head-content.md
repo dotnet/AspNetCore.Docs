@@ -3,7 +3,6 @@ title: Control head content in ASP.NET Core Blazor apps
 description: Learn how to control head content in Blazor apps, including how to set the page title from a component.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/components/control-head-content
 ---
 # Control `<head>` content in ASP.NET Core Blazor apps
 
@@ -71,7 +70,7 @@ In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor W
 
 ## Set a page title for components via a layout
 
-Set the page title in a [layout component](xref:blazor/components/layouts):
+Set the page title in a [layout component](layouts.md):
 
 ```razor
 @inherits LayoutComponentBase
@@ -175,8 +174,8 @@ In Blazor apps created from a Blazor project template, the `NotFound` component 
 
 ## Related content
 
-* [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Control headers in C# code at startup](../fundamentals/startup.md#control-headers-in-c-code)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 Mozilla MDN Web Docs documentation:
 

@@ -11,7 +11,7 @@ ms.date: 09/18/2026
 
 This article describes how ASP.NET Core apps start up and how to configure services and the app's request pipeline.
 
-For Blazor startup guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/startup>.
+For Blazor startup guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md).
 
 :::moniker range=">= aspnetcore-6.0"
 

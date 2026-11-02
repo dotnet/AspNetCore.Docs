@@ -3,7 +3,6 @@ title: ASP.NET Core Razor component generic type support
 description: Learn about generic type support in ASP.NET Core Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/generic-type-support
 ---
 # ASP.NET Core Razor component generic type support
 
@@ -13,7 +12,7 @@ This article describes generic type support in Razor components.
 
 If you're new to generic types, see [Generic classes and methods (C# Guide)](/dotnet/csharp/fundamentals/types/generics) for general guidance on the use of generics before reading this article.
 
-The example code in this article is only available for the latest .NET release in the [Blazor sample apps](xref:blazor/fundamentals/index#sample-apps).
+The example code in this article is only available for the latest .NET release in the [Blazor sample apps](../fundamentals/index.md#sample-apps).
 
 ## Generic type parameter support
 
@@ -29,7 +28,7 @@ C# syntax with [`where`](/dotnet/csharp/language-reference/keywords/where-generi
 @typeparam TEntity where TEntity : IEntity
 ```
 
-A <xref:Microsoft.AspNetCore.Components.RenderFragment> generic type is supported, but components aren't supported as the generic type. To render components by type, consider using a <xref:Microsoft.AspNetCore.Components.DynamicComponent>. For more information, see <xref:blazor/components/dynamiccomponent>.
+A <xref:Microsoft.AspNetCore.Components.RenderFragment> generic type is supported, but components aren't supported as the generic type. To render components by type, consider using a <xref:Microsoft.AspNetCore.Components.DynamicComponent>. For more information, see [Dynamically-rendered ASP.NET Core Razor components](dynamiccomponent.md).
 
 In the following example, the `ListItems1` component is generically typed as `TExample`, which represents the type of the `ExampleList` collection.
 
@@ -66,7 +65,7 @@ The following component renders two `ListItems1` components:
 
 :::moniker-end
 
-For more information, see [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam). For an example of generic typing with templated components, see <xref:blazor/components/templated-components>.
+For more information, see [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam). For an example of generic typing with templated components, see [ASP.NET Core Blazor templated components](templated-components.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -156,7 +155,7 @@ The following parent component sets the child content (<xref:Microsoft.AspNetCor
 
 :::moniker range=">= aspnetcore-6.0"
 
-Specifying the type explicitly also allows the use of [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters) to provide data to child components, as the following demonstration shows.
+Specifying the type explicitly also allows the use of [cascading values and parameters](cascading-values-and-parameters.md) to provide data to child components, as the following demonstration shows.
 
 `ListDisplay2.razor`:
 

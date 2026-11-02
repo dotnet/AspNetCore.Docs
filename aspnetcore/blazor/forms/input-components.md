@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor input components
 description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/forms/input-components
 ---
 # ASP.NET Core Blazor input components
 
@@ -36,7 +35,7 @@ The components in the table are also supported outside of a form in Razor compon
 | <xref:Microsoft.AspNetCore.Components.Forms.InputTextArea> | `<textarea>` |
 | [`Label<TValue>`](#label-component) (.NET 11 or later) | `<label>` |
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see [ASP.NET Core Blazor file uploads](../file-uploads.md).
 
 :::moniker-end
 
@@ -77,7 +76,7 @@ The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> component support
 
 :::moniker range=">= aspnetcore-5.0"
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads>.
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see [ASP.NET Core Blazor file uploads](../file-uploads.md).
 
 :::moniker-end
 
@@ -317,7 +316,7 @@ In the following example:
 
 ## Multiple option selection with the `InputSelect` component
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](../components/event-handling.md#event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
 
 In the following example, the user must select at least two starship classifications but no more than three classifications.
 
@@ -409,7 +408,7 @@ For information on how empty strings and `null` values are handled in data bindi
 
 ## Binding `InputSelect` options to C# object `null` values
 
-For information on how empty strings and `null` values are handled in data binding, see <xref:blazor/components/data-binding#binding-select-element-options-to-c-object-null-values>.
+For information on how empty strings and `null` values are handled in data binding, see [ASP.NET Core Blazor data binding](../components/data-binding.md#binding-select-element-options-to-c-object-null-values).
 
 :::moniker range=">= aspnetcore-5.0"
 

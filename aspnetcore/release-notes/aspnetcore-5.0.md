@@ -116,31 +116,31 @@ For .NET 5, we made significant improvements to .NET WebAssembly runtime perform
 
 ### CSS isolation
 
-Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see <xref:blazor/components/css-isolation>.
+Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see [ASP.NET Core Blazor CSS isolation](../blazor/components/css-isolation.md).
 
 ### New `InputFile` component
 
-The `InputFile` component allows reading one or more files selected by a user for upload. For more information, see <xref:blazor/file-uploads>.
+The `InputFile` component allows reading one or more files selected by a user for upload. For more information, see [ASP.NET Core Blazor file uploads](../blazor/file-uploads.md).
 
 ### New `InputRadio` and `InputRadioGroup` components
 
-Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms/input-components>.
+Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md).
 
 ### Component virtualization
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/components/virtualization>.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see [ASP.NET Core Razor component virtualization](../blazor/components/virtualization.md).
 
 ### `ontoggle` event support
 
-Blazor events now support the `ontoggle` DOM event. For more information, see <xref:blazor/components/event-handling#event-arguments>.
+Blazor events now support the `ontoggle` DOM event. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#event-arguments).
 
 ### Set UI focus in Blazor apps
 
-Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see <xref:blazor/components/event-handling#focus-an-element>.
+Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#focus-an-element).
 
 ### Custom validation CSS class attributes
 
-Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms/validation#customize-validation-appearance>.
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md#customize-validation-appearance).
 
 ### IAsyncDisposable support
 
@@ -148,7 +148,7 @@ Razor components now support the <xref:System.IAsyncDisposable> interface for th
 
 ### JavaScript isolation and object references
 
-Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../blazor/javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 ### Form components support display name
 
@@ -158,15 +158,15 @@ The following built-in components support display names with the `DisplayName` p
 * `InputNumber`
 * `InputSelect`
 
-For more information, see <xref:blazor/forms/index#display-name-support>.
+For more information, see [ASP.NET Core Blazor forms overview](../blazor/forms/index.md#display-name-support).
 
 ### Catch-all route parameters
 
-Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. For more information, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
+Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. For more information, see [ASP.NET Core Blazor routing](../blazor/fundamentals/routing.md#catch-all-route-parameters).
 
 ### Debugging improvements
 
-Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
+Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md).
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
@@ -182,11 +182,11 @@ Component integration is improved across hosting models, and Blazor WebAssembly 
 
 ### Trimming/linking improvements
 
-Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
+Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../blazor/host-and-deploy/configure-trimmer.md) and [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ### Browser compatibility analyzer
 
-Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see <xref:blazor/components/class-libraries#browser-compatibility-analyzer-for-blazor-webassembly>.
+Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md#browser-compatibility-analyzer-for-blazor-webassembly).
 
 ### Lazy load assemblies
 
@@ -194,7 +194,7 @@ Blazor WebAssembly app startup performance can be improved by deferring the load
 
 ### Updated globalization support
 
-Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see <xref:blazor/globalization-localization>.
+Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see [ASP.NET Core Blazor globalization and localization](../blazor/globalization-localization.md).
 
 ## gRPC
 

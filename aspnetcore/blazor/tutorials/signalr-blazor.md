@@ -12,7 +12,7 @@ uid: blazor/tutorials/signalr-blazor
 This tutorial provides a basic working experience for building a real-time app using SignalR with Blazor. This article is useful for developers who are already familiar with SignalR and are seeking to understand how to use SignalR in a Blazor app. For detailed guidance on the SignalR and Blazor frameworks, see the following reference documentation sets and the API documentation:
 
 * [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../index.md)
 * [.NET API browser](/dotnet/api/)
 
 Learn how to:
@@ -40,7 +40,7 @@ Install the latest releases of the following:
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 * [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
-For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
+For more information, see [Debug ASP.NET Core Blazor apps](../debug.md#visual-studio-code-prerequisites).
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use an integrated development environment (IDE) other than Visual Studio Code.
 
@@ -64,7 +64,7 @@ Downloading the tutorial's sample chat app isn't required for this tutorial. The
 
 :::moniker-end
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -239,7 +239,7 @@ Add an entry to the `NavMenu` component to reach the chat page. In `Components/L
 ```
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 ## Run the app
 
@@ -317,7 +317,7 @@ Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence o
 To configure Visual Studio Code debugging assets, see:
 
 * <xref:blazor/tooling?pivots=linux-macos> (use the guidance for the *Linux / macOS* operating system regardless of platform)
-* <xref:blazor/debug>
+* [Debug ASP.NET Core Blazor apps](../debug.md)
 
 # [.NET CLI](#tab/net-cli)
 
@@ -516,7 +516,7 @@ Replace the markup with the following code:
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 :::moniker-end
 
@@ -605,13 +605,13 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 
 > [!div class="nextstepaction"]
 > [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
-> <xref:blazor/index>
+> [ASP.NET Core Blazor](../index.md)
 
 ## Related content
 
 * [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](../../signalr/authn-and-authz.md#bearer-token-authentication)
 * [Secure a SignalR hub in Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
-* [SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
-* <xref:blazor/debug>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [SignalR cross-origin negotiation for authentication](../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)
+* [SignalR configuration](../host-and-deploy/server/index.md#signalr-configuration)
+* [Debug ASP.NET Core Blazor apps](../debug.md)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

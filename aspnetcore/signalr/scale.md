@@ -25,7 +25,7 @@ There are three scenarios where sticky sessions aren't required for an app:
 
 In all other scenarios (including when the Redis backplane is used), the server environment must be configured for sticky sessions.
 
-For guidance on configuring Azure App Service for SignalR, see [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md). For guidance on configuring sticky sessions for Blazor apps that use the [Azure SignalR Service](#azure-signalr-service), see <xref:blazor/host-and-deploy/server/index#signalr-configuration>.
+For guidance on configuring Azure App Service for SignalR, see [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md). For guidance on configuring sticky sessions for Blazor apps that use the [Azure SignalR Service](#azure-signalr-service), see [Host and deploy ASP.NET Core server-side Blazor apps](../blazor/host-and-deploy/server/index.md#signalr-configuration).
 
 ## TCP connection resources
 

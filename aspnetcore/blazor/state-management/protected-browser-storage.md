@@ -134,7 +134,7 @@ protected override async Task OnInitializedAsync()
 
 :::moniker-end
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> is only called once when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/components/lifecycle>.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> is only called once when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see [ASP.NET Core Razor component lifecycle](../components/lifecycle.md).
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.
@@ -199,7 +199,7 @@ Also, disable prerendering for the `HeadOutlet` component:
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-For more information, see <xref:blazor/components/prerender#disable-prerendering>.
+For more information, see [Prerender ASP.NET Core Razor components](../components/prerender.md#disable-prerendering).
 
 :::moniker-end
 
@@ -215,7 +215,7 @@ To disable prerendering, open the `_Host.cshtml` file and change the `render-mod
 
 :::moniker range=">= aspnetcore-6.0"
 
-When prerendering is disabled, [prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled.
+When prerendering is disabled, [prerendering of `<head>` content](../components/control-head-content.md) is disabled.
 
 :::moniker-end
 
@@ -262,7 +262,7 @@ else
 }
 ```
 
-For more information on <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>, see <xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+For more information on <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>, see [ASP.NET Core Blazor render modes](../components/render-modes.md#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime).
 
 :::moniker-end
 
@@ -363,7 +363,7 @@ If many components rely on browser-based storage, implementing state provider co
 
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`, and it handles the loading phase by not rendering its child content until state loading is complete.
 
-The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
+The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
 
 The approach in this section isn't capable of triggering rerendering of multiple subscribed components on the same page. If one subscribed component changes the state, it rerenders and can display the updated state, but a different component on the same page displaying that state displays stale data until its own next rerender. Therefore, the approach described in this section is best suited to using state in a single component on the page.
 
@@ -473,7 +473,7 @@ else
 :::moniker-end
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [ASP.NET Core Razor components](../components/index.md#child-content-render-fragments).
 
 :::moniker range=">= aspnetcore-8.0"
 

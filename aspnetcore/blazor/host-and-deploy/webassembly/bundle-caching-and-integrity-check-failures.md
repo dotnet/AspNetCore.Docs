@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about asset caching for Blazor WebAssembly and how to resolve integrity check failures in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
 ---
 # ASP.NET Core Blazor WebAssembly .NET bundle caching and integrity check failures
 
@@ -29,8 +28,8 @@ When Blazor WebAssembly downloads an app's startup files, it instructs the brows
 
 For more information, see the following sections of the *Fundamentals: Static files* article:
 
-* [Preloaded Blazor framework static assets](xref:blazor/fundamentals/static-files#preloaded-blazor-framework-static-assets)
-* [Fingerprint client-side static assets in standalone Blazor WebAssembly apps](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
+* [Preloaded Blazor framework static assets](../../fundamentals/static-files.md#preloaded-blazor-framework-static-assets)
+* [Fingerprint client-side static assets in standalone Blazor WebAssembly apps](../../fundamentals/static-files.md#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
 
 :::moniker-end
 
@@ -162,7 +161,7 @@ There may be cases where the web server can't be relied upon to return consisten
 
 :::moniker range=">= aspnetcore-10.0"
 
-To disable integrity checks, [manually load client-side boot resources](xref:blazor/fundamentals/startup#load-client-side-boot-resources) and avoid passing the `integrity` parameter to the `fetch` call.
+To disable integrity checks, [manually load client-side boot resources](../../fundamentals/startup.md#load-client-side-boot-resources) and avoid passing the `integrity` parameter to the `fetch` call.
 
 :::moniker-end
 

@@ -677,7 +677,7 @@ items:
       - name: Blazor
         items:
           - name: Overview
-            uid: blazor/index
+            href: blazor/index.md
           - name: Supported platforms
             uid: blazor/supported-platforms
           - name: Tooling
@@ -685,7 +685,7 @@ items:
           - name: WebAssembly tooling and AOT
             uid: blazor/tooling/webassembly
           - name: Hosting models
-            uid: blazor/hosting-models
+            href: blazor/hosting-models.md
           - name: Tutorials
             items:
               - name: Overview
@@ -721,175 +721,175 @@ items:
           - name: Blazor Hybrid
             items:
               - name: Overview
-                uid: blazor/hybrid/index
+                href: blazor/hybrid/index.md
               - name: Tutorials
                 items:
                   - name: Overview
-                    uid: blazor/hybrid/tutorials/index
+                    href: blazor/hybrid/tutorials/index.md
                   - name: Build your first app
                     href: /dotnet/maui/get-started/first-app
                   - name: .NET MAUI with Blazor Web App
-                    uid: blazor/hybrid/tutorials/maui-blazor-web-app
+                    href: blazor/hybrid/tutorials/maui-blazor-web-app.md
                   - name: Windows Forms
-                    uid: blazor/hybrid/tutorials/windows-forms
+                    href: blazor/hybrid/tutorials/windows-forms.md
                   - name: WPF
-                    uid: blazor/hybrid/tutorials/wpf
+                    href: blazor/hybrid/tutorials/wpf.md
               - name: Routing and navigation
-                uid: blazor/hybrid/routing
+                href: blazor/hybrid/routing.md
               - name: Static files
-                uid: blazor/hybrid/static-files
+                href: blazor/hybrid/static-files.md
               - name: Browser developer tools
-                uid: blazor/hybrid/developer-tools
+                href: blazor/hybrid/developer-tools.md
               - name: Reuse Razor components
-                uid: blazor/hybrid/reuse-razor-components
+                href: blazor/hybrid/reuse-razor-components.md
               - name: Class libraries
-                uid: blazor/hybrid/class-libraries
+                href: blazor/hybrid/class-libraries.md
               - name: Class libraries best practices
-                uid: blazor/hybrid/class-libraries-best-practices
+                href: blazor/hybrid/class-libraries-best-practices.md
               - name: Root component parameters
-                uid: blazor/hybrid/root-component-parameters
+                href: blazor/hybrid/root-component-parameters.md
               - name: Security and Identity
                 items:
                   - name: Overview
-                    uid: blazor/hybrid/security/index
+                    href: blazor/hybrid/security/index.md
                   - name: Security considerations
-                    uid: blazor/hybrid/security/security-considerations
+                    href: blazor/hybrid/security/security-considerations.md
                   - name: .NET MAUI with Blazor Web App and Identity sample
-                    uid: blazor/hybrid/security/maui-blazor-web-identity
+                    href: blazor/hybrid/security/maui-blazor-web-identity.md
               - name: Publish
-                uid: blazor/hybrid/publish/index
+                href: blazor/hybrid/publish/index.md
               - name: Troubleshoot
-                uid: blazor/hybrid/troubleshoot
+                href: blazor/hybrid/troubleshoot.md
           - name: Project structure
             uid: blazor/project-structure
           - name: Fundamentals
             items:
               - name: Overview
-                uid: blazor/fundamentals/index
+                href: blazor/fundamentals/index.md
               - name: Routing
-                uid: blazor/fundamentals/routing
+                href: blazor/fundamentals/routing.md
               - name: Navigation
-                uid: blazor/fundamentals/navigation
+                href: blazor/fundamentals/navigation.md
               - name: Configuration
-                uid: blazor/fundamentals/configuration
+                href: blazor/fundamentals/configuration.md
               - name: Dependency injection
-                uid: blazor/fundamentals/dependency-injection
+                href: blazor/fundamentals/dependency-injection.md
               - name: Startup
-                uid: blazor/fundamentals/startup
+                href: blazor/fundamentals/startup.md
               - name: Environments
-                uid: blazor/fundamentals/environments
+                href: blazor/fundamentals/environments.md
               - name: Logging
-                uid: blazor/fundamentals/logging
+                href: blazor/fundamentals/logging.md
               - name: Handle errors
-                uid: blazor/fundamentals/handle-errors
+                href: blazor/fundamentals/handle-errors.md
               - name: SignalR
-                uid: blazor/fundamentals/signalr
+                href: blazor/fundamentals/signalr.md
               - name: Static files
-                uid: blazor/fundamentals/static-files
+                href: blazor/fundamentals/static-files.md
           - name: Components
             items:
               - name: Overview
-                uid: blazor/components/index
+                href: blazor/components/index.md
               - name: Render modes
-                uid: blazor/components/render-modes
+                href: blazor/components/render-modes.md
               - name: Prerender components
-                uid: blazor/components/prerender
+                href: blazor/components/prerender.md
               - name: IHttpContextAccessor and HttpContext
-                uid: blazor/components/httpcontext
+                href: blazor/components/httpcontext.md
               - name: Generic type support
-                uid: blazor/components/generic-type-support
+                href: blazor/components/generic-type-support.md
               - name: Synchronization context
-                uid: blazor/components/sync-context
+                href: blazor/components/synchronization-context.md
               - name: Preserve relationships with @key
-                uid: blazor/components/key
+                href: blazor/components/element-component-model-relationships.md
               - name: Overwriting parameters
-                uid: blazor/components/overwriting-parameters
+                href: blazor/components/overwriting-parameters.md
               - name: Attribute splatting and arbitrary parameters
-                uid: blazor/components/attribute-splatting
+                href: blazor/components/splat-attributes-and-arbitrary-parameters.md
               - name: Layouts
-                uid: blazor/components/layouts
+                href: blazor/components/layouts.md
               - name: Sections
-                uid: blazor/components/sections
+                href: blazor/components/sections.md
               - name: Control <head> content
-                uid: blazor/components/control-head-content
+                href: blazor/components/control-head-content.md
               - name: Cascading values and parameters
-                uid: blazor/components/cascading-values-and-parameters
+                href: blazor/components/cascading-values-and-parameters.md
               - name: Event handling
-                uid: blazor/components/event-handling
+                href: blazor/components/event-handling.md
               - name: Data binding
-                uid: blazor/components/data-binding
+                href: blazor/components/data-binding.md
               - name: Lifecycle
-                uid: blazor/components/lifecycle
+                href: blazor/components/lifecycle.md
               - name: Component disposal
-                uid: blazor/components/component-disposal
+                href: blazor/components/component-disposal.md
               - name: Virtualization
-                uid: blazor/components/virtualization
+                href: blazor/components/virtualization.md
               - name: Rendering
-                uid: blazor/components/rendering
+                href: blazor/components/rendering.md
               - name: Templated components
-                uid: blazor/components/templated-components
+                href: blazor/components/templated-components.md
               - name: CSS isolation
-                uid: blazor/components/css-isolation
+                href: blazor/components/css-isolation.md
               - name: Dynamically-rendered components
-                uid: blazor/components/dynamiccomponent
+                href: blazor/components/dynamiccomponent.md
               - name: QuickGrid component
-                uid: blazor/components/quickgrid
+                href: blazor/components/quickgrid.md
               - name: Integrate with MVC/Razor Pages
-                uid: blazor/components/integration
+                href: blazor/components/integration.md
               - name: Integrate with MVC/Razor Pages (hosted WebAssembly)
-                uid: blazor/components/integration-hosted-webassembly
+                href: blazor/components/integration-hosted-webassembly.md
               - name: Class libraries
-                uid: blazor/components/class-libraries
+                href: blazor/components/class-libraries.md
               - name: Class libraries with static SSR
-                uid: blazor/components/class-libraries-with-static-ssr
+                href: blazor/components/class-libraries-and-static-server-side-rendering.md
               - name: Return component HTML from a web API
-                uid: blazor/components/return-component-html-from-a-web-api
+                href: blazor/components/return-component-html-from-a-web-api.md
               - name: JavaScript apps and SPA frameworks
-                uid: blazor/components/js-spa-frameworks
+                href: blazor/components/js-spa-frameworks.md
               - name: Components outside of ASP.NET Core
-                uid: blazor/components/render-outside-of-aspnetcore
+                href: blazor/components/render-components-outside-of-aspnetcore.md
               - name: Built-in components
-                uid: blazor/components/built-in-components
+                href: blazor/components/built-in-components.md
           - name: Globalization and localization
-            uid: blazor/globalization-localization
+            href: blazor/globalization-localization.md
           - name: Forms
             items:
               - name: Overview
-                uid: blazor/forms/index
+                href: blazor/forms/index.md
               - name: Input components
-                uid: blazor/forms/input-components
+                href: blazor/forms/input-components.md
               - name: Binding
-                uid: blazor/forms/binding
+                href: blazor/forms/binding.md
               - name: Validation
-                uid: blazor/forms/validation
+                href: blazor/forms/validation.md
               - name: Advanced validation
-                uid: blazor/forms/validation-advanced
+                href: blazor/forms/validation-advanced.md
               - name: Client-side validation (static SSR)
-                uid: blazor/forms/validation-client-side
+                href: blazor/forms/validation-client-side.md
               - name: Troubleshoot
-                uid: blazor/forms/troubleshoot
+                href: blazor/forms/troubleshoot.md
           - name: File uploads
-            uid: blazor/file-uploads
+            href: blazor/file-uploads.md
           - name: File downloads
-            uid: blazor/file-downloads
+            href: blazor/file-downloads.md
           - name: JavaScript interop
             items:
               - name: Overview
-                uid: blazor/js-interop/index
+                href: blazor/javascript-interoperability/index.md
               - name: JavaScript location
-                uid: blazor/js-interop/javascript-location
+                href: blazor/javascript-interoperability/location-of-javascript.md
               - name: Call JS from .NET
-                uid: blazor/js-interop/call-javascript-from-dotnet
+                href: blazor/javascript-interoperability/call-javascript-from-dotnet.md
               - name: Call .NET from JS
-                uid: blazor/js-interop/call-dotnet-from-javascript
+                href: blazor/javascript-interoperability/call-dotnet-from-javascript.md
               - name: JSImport/JSExport interop
-                uid: blazor/js-interop/import-export-interop
+                href: blazor/javascript-interoperability/import-export-interop.md
               - name: Static server rendering
-                uid: blazor/js-interop/ssr
+                href: blazor/javascript-interoperability/static-server-rendering.md
           - name: Call a web API
-            uid: blazor/call-web-api
+            href: blazor/call-web-api.md
           - name: Images and documents
-            uid: blazor/images-and-documents
+            href: blazor/images-and-documents.md
           - name: Security and Identity
             items:
               - name: Overview
@@ -963,13 +963,13 @@ items:
               - name: Protected browser storage
                 uid: blazor/state-management/protected-browser-storage
           - name: Debug
-            uid: blazor/debug
+            href: blazor/debug.md
           - name: Lazy load assemblies with WebAssembly
             uid: blazor/webassembly-lazy-load-assemblies
           - name: WebAssembly native dependencies
             uid: blazor/webassembly-native-dependencies
           - name: Blazor with .NET on Web Workers
-            uid: blazor/blazor-web-workers
+            href: blazor/blazor-with-dotnet-on-web-workers.md
           - name: Performance
             items:
               - name: Overview
@@ -997,47 +997,47 @@ items:
           - name: Host and deploy
             items:
               - name: Overview
-                uid: blazor/host-and-deploy/index
+                href: blazor/host-and-deploy/index.md
               - name: App base path
-                uid: blazor/host-and-deploy/app-base-path
+                href: blazor/host-and-deploy/app-base-path.md
               - name: Server
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/server/index
+                    href: blazor/host-and-deploy/server/index.md
                   - name: Memory management
-                    uid: blazor/host-and-deploy/server/memory-management
+                    href: blazor/host-and-deploy/server/memory-management.md
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/webassembly/index
+                    href: blazor/host-and-deploy/webassembly/index.md
                   - name: Deploy to IIS
-                    uid: blazor/host-and-deploy/webassembly/iis
+                    href: blazor/host-and-deploy/webassembly/iis.md
                   - name: Deploy to Azure Static Web Apps
-                    uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
+                    href: blazor/host-and-deploy/webassembly/azure-static-web-apps.md
                   - name: Deploy to Azure Storage
-                    uid: blazor/host-and-deploy/webassembly/azure-storage
+                    href: blazor/host-and-deploy/webassembly/azure-storage.md
                   - name: Deploy to Nginx
-                    uid: blazor/host-and-deploy/webassembly/nginx
+                    href: blazor/host-and-deploy/webassembly/nginx.md
                   - name: Deploy to Apache
-                    uid: blazor/host-and-deploy/webassembly/apache
+                    href: blazor/host-and-deploy/webassembly/apache.md
                   - name: Deploy to GitHub Pages
-                    uid: blazor/host-and-deploy/webassembly/github-pages
+                    href: blazor/host-and-deploy/webassembly/github-pages.md
                   - name: Bundle caching and integrity check failures
-                    uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
+                    href: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md
                   - name: HTTP caching issues
-                    uid: blazor/host-and-deploy/webassembly/http-caching-issues
+                    href: blazor/host-and-deploy/webassembly/http-caching-issues.md
                   - name: Multiple hosted WebAssembly apps
-                    uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
+                    href: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly.md
                   - name: Deployment layout
-                    uid: blazor/host-and-deploy/webassembly/deployment-layout
+                    href: blazor/host-and-deploy/webassembly/deployment-layout.md
               - name: Configure the Linker
-                uid: blazor/host-and-deploy/configure-linker
+                href: blazor/host-and-deploy/configure-linker.md
               - name: Configure the Trimmer
-                uid: blazor/host-and-deploy/configure-trimmer
+                href: blazor/host-and-deploy/configure-trimmer.md
           - name: Blazor with EF Core
-            uid: blazor/blazor-ef-core
+            href: blazor/blazor-ef-core.md
           - name: Advanced scenarios
-            uid: blazor/advanced-scenarios
+            href: blazor/advanced-scenarios.md
       - name: Client-side development
         items:
           - name: Single Page Apps

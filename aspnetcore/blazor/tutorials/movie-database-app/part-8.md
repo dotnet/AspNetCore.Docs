@@ -289,20 +289,20 @@ Congratulations on completing the tutorial series! We hope you enjoyed this tuto
 
 If you're new to Blazor, we recommend reading the following Blazor articles that cover important general information for Blazor development:
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../index.md)
 * <xref:blazor/supported-platforms>
 * <xref:blazor/tooling>
-* <xref:blazor/hosting-models>
+* [ASP.NET Core Blazor hosting models](../../hosting-models.md)
 * <xref:blazor/project-structure>
-* <xref:blazor/fundamentals/index> and the other *Fundamentals* node articles.
-* <xref:blazor/components/index> and the other *Components* node articles.
-* <xref:blazor/forms/index>
-* <xref:blazor/js-interop/index> and the other *JavaScript interop* articles.
+* [ASP.NET Core Blazor fundamentals](../../fundamentals/index.md) and the other *Fundamentals* node articles.
+* [ASP.NET Core Razor components](../../components/index.md) and the other *Components* node articles.
+* [ASP.NET Core Blazor forms overview](../../forms/index.md)
+* [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../../javascript-interoperability/index.md) and the other *JavaScript interop* articles.
 * <xref:blazor/security/index>
-* <xref:blazor/host-and-deploy/index>
-* <xref:blazor/blazor-ef-core> covers concurrency with EF Core in Blazor apps.
+* [Host and deploy ASP.NET Core Blazor](../../host-and-deploy/index.md)
+* [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../../blazor-ef-core.md) covers concurrency with EF Core in Blazor apps.
 
-For guidance on adding a thumbnail file upload feature to this tutorial's sample app, see <xref:blazor/file-uploads#save-small-files-directly-to-a-database-with-ef-core>.
+For guidance on adding a thumbnail file upload feature to this tutorial's sample app, see [ASP.NET Core Blazor file uploads](../../file-uploads.md#save-small-files-directly-to-a-database-with-ef-core).
 
 In the documentation website's sidebar navigation, articles are organized by subject matter and laid out in roughly in a general-to-specific or basic-to-complex order. The best approach when starting to learn about Blazor is to read down the table of contents from top to bottom.
 

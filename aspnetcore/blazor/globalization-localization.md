@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/26/2026
-uid: blazor/globalization-localization
 ---
 # ASP.NET Core Blazor globalization and localization
 
@@ -24,13 +23,13 @@ A limited set of ASP.NET Core's localization features are supported:
 
 :::moniker range="< aspnetcore-11.0"
 
-For Blazor apps, localization of validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) is supported if <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> are implemented.
+For Blazor apps, localization of validation messages for [forms validation using data annotations](<forms/validation.md#data-annotations-validator-component-and-custom-validation>) is supported if <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> are implemented.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
-For Blazor apps, localized validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) are supported through two paths:
+For Blazor apps, localized validation messages for [forms validation using data annotations](<forms/validation.md#data-annotations-validator-component-and-custom-validation>) are supported through two paths:
 
 * The static resource path using <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> for display names and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> for localized error messages. This approach is supported in every release.
 * <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the validation pipeline with `AddValidation()`. For details, see [Validation in ASP.NET Core](../fundamentals/validation.md#localize-validation-messages).
@@ -54,7 +53,7 @@ In this article, *language* refers to selections made by a user in their browser
 
 *Culture* pertains to members of .NET and Blazor API. For example, a user's request can include the [`Accept-Language` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Language) specifying a *language* from the user's perspective, but the app ultimately sets the <xref:System.Globalization.CultureInfo.CurrentCulture> ("culture") property from the language that the user requested. API usually uses the word "culture" in its member names.
 
-The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessibility tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](xref:blazor/js-interop/index).
+The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessibility tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](javascript-interoperability/index.md).
 
 > [!NOTE]
 > The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the article's examples.
@@ -397,7 +396,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the ap
 
 :::moniker range="< aspnetcore-5.0"
 
-The Intermediate Language (IL) Linker configuration for client-side rendering strips out internationalization information except for locales explicitly requested. For more information, see <xref:blazor/host-and-deploy/configure-linker#configure-the-linker-for-internationalization>.
+The Intermediate Language (IL) Linker configuration for client-side rendering strips out internationalization information except for locales explicitly requested. For more information, see [Configure the Linker for ASP.NET Core Blazor](host-and-deploy/configure-linker.md#configure-the-linker-for-internationalization).
 
 :::moniker-end
 
@@ -451,7 +450,7 @@ Standalone Blazor WebAssembly:
 
 :::moniker-end
 
-The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+The value for `applicationCulture` must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47). For more information on Blazor startup, see [ASP.NET Core Blazor startup](fundamentals/startup.md).
 
 An alternative to setting the culture Blazor's start option is to set the culture in C# code. Set <xref:System.Globalization.CultureInfo.DefaultThreadCurrentCulture?displayProperty=nameWithType> and <xref:System.Globalization.CultureInfo.DefaultThreadCurrentUICulture?displayProperty=nameWithType> in the `Program` file to the same culture.
 
@@ -565,7 +564,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker-end
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage.
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](call-web-api.md). The following example demonstrates how to use browser local storage.
 
 Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
@@ -599,7 +598,7 @@ Provide JS functions after the [Blazor `<script>` tag](xref:blazor/project-struc
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 :::moniker-end
 
@@ -616,7 +615,7 @@ Remove the following line:
 - await builder.Build().RunAsync();
 ```
 
-Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
+Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](javascript-interoperability/call-javascript-from-dotnet.md) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
 
 ```csharp
 builder.Services.AddLocalization();
@@ -755,7 +754,7 @@ The following `CultureSelector` component shows how to perform the following act
 :::moniker-end
 
 > [!NOTE]
-> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](javascript-interoperability/call-javascript-from-dotnet.md#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync).
 
 In the header markup of the `MainLayout` component (`MainLayout.razor`), add the `CultureSelector` component:
 
@@ -779,7 +778,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker-end
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use a localization cookie.
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), or in an external service attached to an external database and accessed by a [web API](call-web-api.md). The following example demonstrates how to use a localization cookie.
 
 Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/packages/Microsoft.Extensions.Localization) to the app.
 
@@ -1138,7 +1137,7 @@ If the app adopts ***per-page/component*** interactivity and only server-side co
 
 *This section applies to Blazor Web Apps that adopt per-page/component interactivity.*
 
-Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), both local storage and a localization cookie (Blazor Web Apps with server and WebAssembly components), or in an external service attached to an external database and accessed by a [web API](xref:blazor/call-web-api). The following example demonstrates how to use browser local storage for client-side rendered (CSR) components and a localization cookie for server-side rendered (SSR) components. The guidance in this section also works for components in apps that adopt per-page/component rendering and specify the Interactive Auto render mode (`@rendermode InteractiveAuto`).
+Examples of locations where an app might store a user's preference include in [browser local storage](https://developer.mozilla.org/docs/Web/API/Window/localStorage) (common for client-side scenarios), in a localization cookie or database (common for server-side scenarios), both local storage and a localization cookie (Blazor Web Apps with server and WebAssembly components), or in an external service attached to an external database and accessed by a [web API](call-web-api.md). The following example demonstrates how to use browser local storage for client-side rendered (CSR) components and a localization cookie for server-side rendered (SSR) components. The guidance in this section also works for components in apps that adopt per-page/component rendering and specify the Interactive Auto render mode (`@rendermode InteractiveAuto`).
 
 ### Updates to the `.Client` project
 
@@ -1167,7 +1166,7 @@ Remove the following line:
 - await builder.Build().RunAsync();
 ```
 
-Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
+Replace the preceding line with the following code. The code adds Blazor's localization service to the app's service collection with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> and uses [JS interop](javascript-interoperability/call-javascript-from-dotnet.md) to call into JS and retrieve the user's culture selection from local storage. If local storage doesn't contain a culture for the user, the code sets a default value of United States English (`en-US`).
 
 ```csharp
 builder.Services.AddLocalization();
@@ -1261,7 +1260,7 @@ When the user changes the culture, JS interop sets the culture in local browser 
 ```
 
 > [!NOTE]
-> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync>.
+> For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](javascript-interoperability/call-javascript-from-dotnet.md#invoke-javascript-functions-without-reading-a-returned-value-invokevoidasync).
 
 In the server project's imports file (`_Imports.razor`), add the namespace for the `.Client` project's `Shared` folder (update the namespace to match your app):
 
@@ -1462,7 +1461,7 @@ After the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-
 ```
 
 > [!NOTE]
-> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+> The preceding example pollutes the client with global functions. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 Add the following `@code` block to the bottom of the `App` component file:
 
@@ -1909,7 +1908,7 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/host-and-deploy/app-base-path>
+* [ASP.NET Core Blazor app base path](host-and-deploy/app-base-path.md)
 * [Globalization and localization in ASP.NET Core](../fundamentals/localization.md)
 * [DataAnnotations localization in Minimal APIs and Blazor](../fundamentals/localization/make-content-localizable.md#dataannotations-localization-in-minimal-apis-and-blazor)
 * [Minimal APIs: Localizing validation messages](../fundamentals/minimal-apis.md#localizing-validation-messages)
@@ -1923,7 +1922,7 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 
 :::moniker range="< aspnetcore-11.0"
 
-* <xref:blazor/host-and-deploy/app-base-path>
+* [ASP.NET Core Blazor app base path](host-and-deploy/app-base-path.md)
 * [Globalization and localization in ASP.NET Core](../fundamentals/localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

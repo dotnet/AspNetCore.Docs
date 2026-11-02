@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to host and deploy Blazor WebAssembly using Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/iis
 ---
 # Host and deploy ASP.NET Core Blazor WebAssembly with IIS
 
@@ -35,14 +34,14 @@ To use a custom `web.config` file:
 :::moniker range=">= aspnetcore-8.0"
 
 1. Place the custom `web.config` file in the project's root folder.
-1. Publish the project. For more information, see <xref:blazor/host-and-deploy/index>.
+1. Publish the project. For more information, see [Host and deploy ASP.NET Core Blazor](../index.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
-1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see <xref:blazor/host-and-deploy/index>.
+1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see [Host and deploy ASP.NET Core Blazor](../index.md).
 
 :::moniker-end
 
@@ -119,9 +118,9 @@ If a standalone app is hosted as an IIS sub-app, perform either of the following
   > [!NOTE]
   > Disabling inheritance of the root (parent) app's `<system.webServer>` section is the default configuration for published apps using the .NET SDK.
 
-Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](xref:blazor/host-and-deploy/app-base-path). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
+Removing the handler or disabling inheritance is performed in addition to [configuring the app's base path](../app-base-path.md). Set the app base path in the app's `index.html` file to the IIS alias used when configuring the sub-app in IIS.
 
-Configure the app's base path by following the guidance in <xref:blazor/host-and-deploy/app-base-path>.
+Configure the app's base path by following the guidance in [ASP.NET Core Blazor app base path](../app-base-path.md).
 
 ## Brotli and Gzip compression
 

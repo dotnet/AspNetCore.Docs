@@ -3,7 +3,6 @@ title: Troubleshoot ASP.NET Core Blazor Hybrid
 description: Learn how to troubleshoot issues in ASP.NET Core Blazor Hybrid with BlazorWebView logging.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor Hybrid
 

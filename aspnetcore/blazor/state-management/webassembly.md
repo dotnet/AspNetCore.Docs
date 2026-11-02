@@ -20,7 +20,7 @@ Examples of user state held in browser memory include:
 * The hierarchy of component instances and their most recent render output in the rendered UI.
 * The values of fields and properties in component instances.
 * Data held in [dependency injection (DI)](../../fundamentals/dependency-injection.md) service instances.
-* Values set through [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
+* Values set through [JavaScript interop](../javascript-interoperability/call-javascript-from-dotnet.md) calls.
 
 When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.
 
@@ -55,7 +55,7 @@ Because Blazor WebAssembly apps run entirely in the user's browser, they require
 
 For more information, see the following resources:
 
-* <xref:blazor/call-web-api>
+* [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md)
 * <xref:blazor/security/webassembly/index>
 * Blazor *Security and Identity* articles
 
@@ -71,5 +71,5 @@ For more information on Azure data storage options, see the following:
 * [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
 * [Save app state before an authentication operation (Blazor WebAssembly)](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
 * Managing state via an external server API
-  * <xref:blazor/call-web-api>
+  * [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md)
   * <xref:blazor/security/webassembly/index>

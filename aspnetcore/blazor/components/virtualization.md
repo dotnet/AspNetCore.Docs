@@ -3,7 +3,6 @@ title: ASP.NET Core Razor component virtualization
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 09/10/2026
-uid: blazor/components/virtualization
 ---
 # ASP.NET Core Razor component virtualization
 
@@ -26,7 +25,7 @@ Without virtualization, a typical list might use a C# [`foreach`](/dotnet/csharp
 
 * `allFlights` is a collection of airplane flights.
 * The `FlightSummary` component displays details about each flight.
-* The [`@key` directive attribute](xref:blazor/components/key) preserves the relationship of each `FlightSummary` component to its rendered flight by the flight's `FlightId`.
+* The [`@key` directive attribute](element-component-model-relationships.md) preserves the relationship of each `FlightSummary` component to its rendered flight by the flight's `FlightId`.
 
 ```razor
 <div style="height:500px;overflow-y:scroll">
@@ -372,7 +371,7 @@ The comparer determines if the first loaded item changed between provider calls,
 
 ## State changes
 
-When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> to enqueue re-evaluation and rerendering of the component. For more information, see <xref:blazor/components/rendering>.
+When making changes to items rendered by the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component, call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> to enqueue re-evaluation and rerendering of the component. For more information, see [ASP.NET Core Razor component rendering](rendering.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -536,7 +535,7 @@ If the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> co
 In the preceding example, the document root is used as the scroll container, so the `html` and `body` elements are styled with `overflow-y: scroll`. For more information, see the following resources:
 
 * [Root-level virtualization](#root-level-virtualization) section
-* <xref:blazor/components/control-head-content>
+* [Control head content in ASP.NET Core Blazor apps](control-head-content.md)
 
 :::moniker-end
 

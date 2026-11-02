@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/23/2026
-uid: blazor/forms/validation
 ---
 # ASP.NET Core Blazor forms validation
 
@@ -19,21 +18,21 @@ Related articles provide more detail:
 :::moniker range=">= aspnetcore-11.0"
 
 * For writing and configuring model-based validation rules, including custom and asynchronous rules, nested object validation, and localization, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
-* For live browser validation in static server-side rendering (static SSR), see <xref:blazor/forms/validation-client-side>.
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For live browser validation in static server-side rendering (static SSR), see [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md).
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 * For writing and configuring model-based validation rules and nested object validation, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
@@ -111,7 +110,7 @@ For a static SSR form post, assign a unique `FormName` and receive the posted mo
 }
 ```
 
-For more information about form submission and model binding across render modes, see <xref:blazor/forms/index> and <xref:blazor/forms/binding>.
+For more information about form submission and model binding across render modes, see [ASP.NET Core Blazor forms overview](index.md) and [ASP.NET Core Blazor forms binding](binding.md).
 
 :::moniker-end
 
@@ -126,7 +125,7 @@ Blazor performs field validation and full-form validation:
 
 :::moniker range=">= aspnetcore-11.0"
 
-A static SSR form can provide live browser feedback with <xref:blazor/forms/validation-client-side>. The form is validated again authoritatively on the server when posted.
+A static SSR form can provide live browser feedback with [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md). The form is validated again authoritatively on the server when posted.
 
 :::moniker-end
 
@@ -342,11 +341,11 @@ Static SSR doesn't provide live .NET field validation between requests.
 
 For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `EditContext.RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
 
-For model-based asynchronous validation attributes, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support). For a complete reusable validator component, see <xref:blazor/forms/validation-advanced>.
+For model-based asynchronous validation attributes, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support). For a complete reusable validator component, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
-For a reusable implementation that encapsulates event subscriptions and its message store, see <xref:blazor/forms/validation-advanced#build-a-validator-component>.
+For a reusable implementation that encapsulates event subscriptions and its message store, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md#build-a-validator-component).
 
 <a id="validation-summary-and-validation-message-components"></a>
 
@@ -633,10 +632,10 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 ## Related content
 
-* <xref:blazor/forms/index>
-* <xref:blazor/forms/binding>
-* <xref:blazor/forms/input-components>
-* <xref:blazor/forms/validation-advanced>
+* [ASP.NET Core Blazor forms overview](index.md)
+* [ASP.NET Core Blazor forms binding](binding.md)
+* [ASP.NET Core Blazor input components](input-components.md)
+* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -646,6 +645,6 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/forms/validation-client-side>
+* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 
 :::moniker-end

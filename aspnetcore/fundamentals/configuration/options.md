@@ -18,7 +18,7 @@ Options also provide a mechanism to validate configuration data, which is descri
 
 This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
-The examples in this article rely on a general understanding of injecting services into classes. For more information, see [Dependency injection in ASP.NET Core](../dependency-injection.md). Examples are based on [Blazor's Razor components](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
+The examples in this article rely on a general understanding of injecting services into classes. For more information, see [Dependency injection in ASP.NET Core](../dependency-injection.md). Examples are based on [Blazor's Razor components](../../blazor/index.md). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
 ## How to use the options pattern
 
@@ -1128,7 +1128,7 @@ services.AddOptions<KeyOptions>()
 The following example demonstrates how to log options validation exceptions and display an <xref:Microsoft.Extensions.Options.OptionsValidationException.Message?displayProperty=nameWithType>.
 
 > [!NOTE]
-> For demonstration purposes, the following example uses a <xref:Microsoft.AspNetCore.Components.MarkupString> to format raw HTML. Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided. For more information, see <xref:blazor/components/index#raw-html>.
+> For demonstration purposes, the following example uses a <xref:Microsoft.AspNetCore.Components.MarkupString> to format raw HTML. Rendering raw HTML constructed from any untrusted source is a **security risk** and should **always** be avoided. For more information, see [ASP.NET Core Razor components](../../blazor/components/index.md#raw-html).
 
 `OptionsValidation1.razor`:
 
@@ -1782,5 +1782,5 @@ Don't use <xref:Microsoft.Extensions.Options.IOptions`1> or <xref:Microsoft.Exte
 
 ## Related content
 
-* [ASP.NET Core Blazor configuration: Options configuration](xref:blazor/fundamentals/configuration#options-configuration)
+* [ASP.NET Core Blazor configuration: Options configuration](../../blazor/fundamentals/configuration.md#options-configuration)
 * [View or download sample code (Razor Pages)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](../index.md#how-to-download-a-sample))

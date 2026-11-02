@@ -186,7 +186,7 @@ Apps created using the PWA template option have support for running offline. A u
 
 To see how offline support works:
 
-1. Publish the app. For more information, see <xref:blazor/host-and-deploy/index#publish-the-app>.
+1. Publish the app. For more information, see [Host and deploy ASP.NET Core Blazor](../host-and-deploy/index.md#publish-the-app).
 1. Deploy the app to a server that supports HTTPS, and access the app in a browser at its secure HTTPS address.
 1. Open the browser's dev tools and verify that a *Service Worker* is registered for the host on the **Application** tab:
 
@@ -416,13 +416,13 @@ The [`CarChecker`](https://github.com/SteveSandersonMS/CarChecker) sample app de
 
 :::moniker range=">= aspnetcore-10.0"
 
-[Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+[Client-side SignalR cross-origin negotiation for authentication](../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
-* [Troubleshoot integrity PowerShell script](xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures#troubleshoot-integrity-powershell-script)
-* [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+* [Troubleshoot integrity PowerShell script](../host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md#troubleshoot-integrity-powershell-script)
+* [Client-side SignalR cross-origin negotiation for authentication](../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)
 
 :::moniker-end
