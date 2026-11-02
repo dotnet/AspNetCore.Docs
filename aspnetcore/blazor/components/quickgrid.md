@@ -186,15 +186,19 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 
 In the running app, page through the items using a rendered `Paginator` component.
 
+<!-- UPDATE 11.0 - Hold for December servicing release
+
 :::moniker range=">= aspnetcore-11.0"
 
-The `Paginator` component supports passing custom attributes to its rendered navigation (`<nav>`) element:
+The `Paginator` component supports passing custom attributes to its rendered navigation element (`<nav>`). In the following example, the [`aria-label` attribute](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) and value are passed:
 
 ```razor
-<Paginator State="@pagination" aria-label="Orders pages" />
+<Paginator State="@pagination" aria-label="Orders page" />
 ```
 
 :::moniker-end
+
+-->
 
 :::moniker range="< aspnetcore-11.0"
 
