@@ -81,7 +81,7 @@ If you're new to VS Code, see the [VS Code documentation](https://code.visualstu
 
 Create a new project:
 
-* Open VS Code. 
+* Open VS Code.
 
 * Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
 
@@ -501,7 +501,7 @@ For more information, see the following resources:
 > The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
-> * <xref:aspnetcore-8#new-blazor-web-app-template>
+> * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
 > * <xref:blazor/project-structure#blazor-web-app>
 > * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
@@ -518,7 +518,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 > The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
-> * <xref:aspnetcore-8#new-blazor-web-app-template>
+> * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
 > * <xref:blazor/project-structure#blazor-web-app>
 > * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
@@ -652,8 +652,8 @@ builder.AddBlazorClientServiceDefaults();
 * <xref:blazor/tooling/webassembly>
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * [.NET SDK](/dotnet/core/sdk)
-* <xref:test/hot-reload>
 * [ASP.NET Core Blazor hosting models](hosting-models.md)
+* [.NET Hot Reload support for ASP.NET Core](../test/hot-reload.md)
 * <xref:blazor/project-structure>
 * [ASP.NET Core Blazor Hybrid tutorials](hybrid/tutorials/index.md)
 

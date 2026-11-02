@@ -247,7 +247,7 @@ Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfi
 
 ## Troubleshoot
 
-To troubleshoot a Windows Service app, see <xref:test/troubleshoot>.
+To troubleshoot a Windows Service app, see [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md).
 
 ### Common errors
 
@@ -327,7 +327,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/windows-service/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 * [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
 * [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 
 :::moniker-end
 
@@ -571,7 +571,7 @@ Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfi
 
 ## Troubleshoot
 
-To troubleshoot a Windows Service app, see <xref:test/troubleshoot>.
+To troubleshoot a Windows Service app, see [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md).
 
 ### Common errors
 
@@ -650,7 +650,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 * [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
 * [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 
 :::moniker-end
 
@@ -894,7 +894,7 @@ Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfi
 
 ## Troubleshoot
 
-To troubleshoot a Windows Service app, see <xref:test/troubleshoot>.
+To troubleshoot a Windows Service app, see [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md).
 
 ### Common errors
 
@@ -973,7 +973,7 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 * [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md) (includes HTTPS configuration and SNI support)
 * [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 
 :::moniker-end
 
@@ -1217,7 +1217,7 @@ Specify an absolute path with <xref:Microsoft.Extensions.Configuration.FileConfi
 
 ## Troubleshoot
 
-To troubleshoot a Windows Service app, see <xref:test/troubleshoot>.
+To troubleshoot a Windows Service app, see [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md).
 
 ### Common errors
 
@@ -1296,6 +1296,6 @@ A dump can be analyzed using several approaches. For more information, see [Anal
 
 * [Kestrel endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration) (includes HTTPS configuration and SNI support)
 * [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 
 :::moniker-end

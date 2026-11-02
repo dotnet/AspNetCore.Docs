@@ -3,7 +3,6 @@ title: Debug .NET and ASP.NET Core source code with Visual Studio
 description: Debug .NET and ASP.NET Core source code with Visual Studio
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 3/5/2022
-uid: test/debug-aspnetcore-source
 ---
 # Debug .NET and ASP.NET Core source code with Visual Studio
 
@@ -46,6 +45,6 @@ If you have debugged an app before with the previous version of .NET, delete the
 
 * [JIT Optimization and Debugging](/visualstudio/debugger/jit-optimization-and-debugging)
 * [Limitations of the 'Suppress JIT optimization' option](/visualstudio/debugger/jit-optimization-and-debugging#limitations-of-the-suppress-jit-optimization-option) To set `COMPlus_ReadyToRun` to `0`
-* <xref:test/hot-reload>
+* [.NET Hot Reload support for ASP.NET Core](hot-reload.md)
 * [Test Execution with Hot Reload](/visualstudio/test/test-execution-with-hot-reload)
 * [Debug ASP.NET Core Blazor apps](../blazor/debug.md)

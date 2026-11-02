@@ -17,7 +17,7 @@ Razor Pages can make coding page-focused scenarios easier and more productive th
 
 If you're looking for a tutorial that uses the Model-View-Controller approach, see [Get started with ASP.NET Core MVC](../tutorials/first-mvc-app/start-mvc.md).
 
-This article covers the architecture, concepts, and patterns that make Razor Pages effective for building page-focused web applications. It explains how Razor Pages work, their key components, and best practices for implementation. If you prefer hands-on learning with step-by-step instructions, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](xref:index).
+This article covers the architecture, concepts, and patterns that make Razor Pages effective for building page-focused web applications. It explains how Razor Pages work, their key components, and best practices for implementation. If you prefer hands-on learning with step-by-step instructions, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md). For an overview of ASP.NET Core, see the [Introduction to ASP.NET Core](../overview.md).
 
 ## Prerequisites
 
@@ -120,7 +120,7 @@ By convention, the `PageModel` class is called `<PageName>Model` and is in the s
 The `PageModel` class allows separation of the logic of a page from its presentation. It defines page handlers for requests sent to the page and the data used to render the page. This separation allows:
 
 * Managing of page dependencies through [dependency injection](../fundamentals/dependency-injection.md).
-* [Unit testing](xref:test/razor-pages-tests)
+* [Unit testing](../test/razor-pages-tests.md)
 
 The page has an `OnPostAsync` *handler method*, which runs on `POST` requests (when a user posts the form). Handler methods for any HTTP verb can be added. The most common handlers are:
 
@@ -598,13 +598,13 @@ Add <xref:Microsoft.Extensions.DependencyInjection.MvcRazorPagesMvcCoreBuilderEx
 * See [Get started with Razor Pages](../tutorials/razor-pages/razor-pages-start.md), which builds on this introduction.
 * [`[Authorize]` attribute in Razor Pages apps](security/authorization/simple.md#authorize-attribute-in-razor-pages-apps)
 * [Download or view sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/index/samples/6.0)
-* <xref:index>
+* [Overview of ASP.NET Core](../overview.md)
 * [Razor syntax reference for ASP.NET Core](../mvc/views/razor.md)
 * [Areas in ASP.NET Core](../mvc/controllers/areas.md)
 * [Tutorial: Get started with Razor Pages in ASP.NET Core](../tutorials/razor-pages/razor-pages-start.md)
 * [Razor Pages authorization conventions in ASP.NET Core](security/authorization/conventions.md)
 * [Razor Pages route and app conventions in ASP.NET Core](razor-pages-conventions.md)
-* <xref:test/razor-pages-tests>
+* [Razor Pages unit tests in ASP.NET Core](../test/razor-pages-tests.md)
 * [Partial views in ASP.NET Core](../mvc/views/partial.md)
 
 :::moniker-end

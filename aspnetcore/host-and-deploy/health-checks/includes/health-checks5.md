@@ -305,7 +305,7 @@ The second example demonstrates how to use [`Newtonsoft.Json`](https://www.nuget
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/CustomWriterStartup.cs" id="snippet_WriteResponse_NewtonSoftJson":::
 
-In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](xref:index#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
+In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](../../../fundamentals/index.md#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
 
 The health checks API doesn't provide built-in support for complex JSON return formats because the format is specific to your choice of monitoring system. Customize the response in the preceding examples as needed. For more information on JSON serialization with `System.Text.Json`, see [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to).
 
@@ -1074,7 +1074,7 @@ The second example demonstrates how to use [Newtonsoft.Json](https://www.nuget.o
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs" id="snippet_WriteResponse_NewtonSoftJson":::
 
-In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](xref:index#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
+In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](../../../fundamentals/index.md#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
 
 The health checks API doesn't provide built-in support for complex JSON return formats because the format is specific to your choice of monitoring system. Customize the response in the preceding examples as needed. For more information on JSON serialization with `System.Text.Json`, see [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to).
 

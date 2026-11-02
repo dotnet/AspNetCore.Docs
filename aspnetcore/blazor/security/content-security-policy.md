@@ -555,7 +555,7 @@ For more information, see [MDN CSP Guide: Nonces](https://developer.mozilla.org/
 
 ## Apply a CSP in non-`Development` environments
 
-When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the `Development` environment. For example, [Browser Link](xref:client-side/using-browserlink) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-`Development` environments.
+When a CSP is applied to a Blazor app's `<head>` content, it interferes with local testing in the `Development` environment. For example, [Browser Link](../../client-side/using-browserlink.md) and the browser refresh script fail to load. The following examples demonstrate how to apply the CSP's `<meta>` tag in non-`Development` environments.
 
 > [!NOTE]
 > The examples in this section don't show the full `<meta>` tag for the CSPs. The complete `<meta>` tags are found in the subsections of the [Apply the policy](#apply-the-policy) section earlier in this article.

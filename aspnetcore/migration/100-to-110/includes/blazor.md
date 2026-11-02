@@ -1,6 +1,6 @@
 ### Blazor release notes
 
-For new feature coverage, see <xref:aspnetcore-11>.
+For new feature coverage, see [What's new in ASP.NET Core in .NET 11](../../../release-notes/aspnetcore-11.md).
 
 ### Adopt Inline JS event handler removed from the `NavMenu` component
 

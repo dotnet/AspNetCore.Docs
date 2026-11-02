@@ -211,7 +211,7 @@ builder.Services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration. Place the following line of code immediately after the line that builds the app (`var app = builder.Build();`):
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -239,7 +239,7 @@ Add an entry to the `NavMenu` component to reach the chat page. In `Components/L
 ```
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 ## Run the app
 
@@ -431,7 +431,7 @@ builder.Services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration immediately after the line that builds the app:
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -466,7 +466,7 @@ services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration:
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -516,7 +516,7 @@ Replace the markup with the following code:
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 :::moniker-end
 
@@ -534,9 +534,9 @@ In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` projec
 > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
@@ -550,9 +550,9 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 > When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
@@ -572,9 +572,9 @@ dotnet watch
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 

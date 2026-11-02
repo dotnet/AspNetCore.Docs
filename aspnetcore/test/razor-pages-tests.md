@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to create unit tests for Razor Pages apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 7/30/2020
-uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
 
@@ -183,7 +182,7 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 * [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
-* <xref:test/integration-tests>
+* [Integration tests in ASP.NET Core](integration-tests.md)
 * [xUnit.net](https://github.com/xunit/xunit)
 * [Getting started with xUnit.net](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
@@ -366,7 +365,7 @@ Other tests in this group create page model objects that include the <xref:Micro
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 * [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
-* <xref:test/integration-tests>
+* [Integration tests in ASP.NET Core](integration-tests.md)
 * [xUnit.net](https://github.com/xunit/xunit)
 * [Getting started with xUnit.net](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)

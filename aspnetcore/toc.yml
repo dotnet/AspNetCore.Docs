@@ -2,15 +2,15 @@ items:
   - name: ASP.NET Core documentation
     href: index.yml
   - name: Overview
-    uid: index
+    href: overview.md
   - name: Get started
-    uid: get-started
+    href: get-started.md
   - name: What's new
     items:
       - name: ASP.NET Core 11
         items:
           - name: What's new in 11
-            uid: aspnetcore-11
+            href: release-notes/aspnetcore-11.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -56,7 +56,7 @@ items:
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
-            uid: aspnetcore-10
+            href: release-notes/aspnetcore-10.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -82,7 +82,7 @@ items:
       - name: ASP.NET Core 9
         items:
           - name: What's new in 9
-            uid: aspnetcore-9
+            href: release-notes/aspnetcore-9.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -102,7 +102,7 @@ items:
       - name: ASP.NET Core 8
         items:
           - name: What's new in 8
-            uid: aspnetcore-8
+            href: release-notes/aspnetcore-8.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -128,7 +128,7 @@ items:
       - name: ASP.NET Core 7
         items:
           - name: What's new in 7
-            uid: aspnetcore-7
+            href: release-notes/aspnetcore-7.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -166,7 +166,7 @@ items:
       - name: ASP.NET Core 6
         items:
           - name: What's new in 6
-            uid: aspnetcore-6.0
+            href: release-notes/aspnetcore-6.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -224,7 +224,7 @@ items:
       - name: ASP.NET Core 5
         items:
           - name: What's new in 5
-            uid: aspnetcore-5.0
+            href: release-notes/aspnetcore-5.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -302,17 +302,17 @@ items:
               - name: CSV content type changed to standards-compliant
                 href: breaking-changes/5/static-files-csv-content-type-changed.md
       - name: What's new in 3.1
-        uid: aspnetcore-3.1
+        href: release-notes/aspnetcore-3.1.md
       - name: What's new in 3.0
-        uid: aspnetcore-3.0
+        href: release-notes/aspnetcore-3.0.md
       - name: What's new in 2.2
-        uid: aspnetcore-2.2
+        href: release-notes/aspnetcore-2.2.md
       - name: What's new in 2.1
-        uid: aspnetcore-2.1
+        href: release-notes/aspnetcore-2.1.md
       - name: What's new in 2.0
-        uid: aspnetcore-2.0
+        href: release-notes/aspnetcore-2.0.md
       - name: What's new in 1.1
-        uid: aspnetcore-1.1
+        href: release-notes/aspnetcore-1.1.md
   - name: Tutorials
     displayName: tutorial
     items:
@@ -386,7 +386,7 @@ items:
             href: tutorials/web-api-javascript.md
           - name: Backend for mobile
             displayName: tutorial
-            uid: mobile/native-mobile-backend
+            href: mobile/native-mobile-backend.md
           - name: Publish to Azure API Management
             displayName: tutorial
             href: tutorials/publish-to-azure-api-management-using-vs.md
@@ -506,13 +506,13 @@ items:
           - name: Middleware overview
             href: fundamentals/middleware/index.md
           - name: Rate limiting middleware
-            uid: performance/rate-limit
+            href: performance/rate-limit.md
           - name: Rate limiting samples
-            uid: performance/rate-limit-sample
+            href: performance/rate-limit-samples.md
           - name: Test middleware
-            uid: test/middleware
+            href: test/middleware.md
           - name: Response caching middleware
-            uid: performance/caching/middleware
+            href: performance/caching/middleware.md
           - name: Write middleware
             href: fundamentals/middleware/write.md
           - name: Request and response operations
@@ -1051,35 +1051,35 @@ items:
               - name: JavaScript and TypeScript in Visual Studio >>
                 href: /visualstudio/javascript/javascript-in-visual-studio
               - name: Overview of SPAs
-                uid: spa/intro
+                href: client-side/spa/intro.md
               - name: Angular
-                uid: spa/angular
+                href: client-side/spa/angular.md
               - name: React
-                uid: spa/react
+                href: client-side/spa/react.md
               - name: JavaScript Services
-                uid: client-side/spa-services
+                href: client-side/spa-services.md
           - name: LibMan
             items:
               - name: Overview
-                uid: client-side/libman/index
+                href: client-side/libman/index.md
               - name: CLI
-                uid: client-side/libman/libman-cli
+                href: client-side/libman/libman-cli.md
               - name: Visual Studio
-                uid: client-side/libman/libman-vs
+                href: client-side/libman/libman-vs.md
           - name: WebAssembly JS interop
             items:
               - name: Overview
-                uid: client-side/dotnet-interop/index
+                href: client-side/dotnet-interop/index.md
               - name: JS interop (WebAssembly Browser App)
-                uid: client-side/dotnet-interop/wasm-browser-app
+                href: client-side/dotnet-interop/wasm-browser-app.md
           - name: .NET on Web Workers
-            uid: client-side/dotnet-on-webworkers
+            href: client-side/dotnet-on-webworkers.md
           - name: Grunt
-            uid: client-side/using-grunt
+            href: client-side/using-grunt.md
           - name: Bundle and minify
-            uid: client-side/bundling-and-minification
+            href: client-side/bundling-and-minification.md
           - name: Browser Link
-            uid: client-side/using-browserlink
+            href: client-side/using-browserlink.md
       - name: Session and state management
         href: fundamentals/app-state.md
       - name: Layout
@@ -1534,7 +1534,7 @@ items:
             href: host-and-deploy/iis/logging-and-diagnostics.md
           - name: Troubleshoot
             displayName: deploy, publish, server, iis
-            uid: test/troubleshoot-azure-iis
+            href: test/troubleshoot-azure-iis.md
           - name: Errors reference
             displayName: deploy, publish, server, iis
             href: host-and-deploy/azure-iis-errors-reference.md
@@ -1553,125 +1553,125 @@ items:
       - name: YARP
         items:
           - name: YARP Overview
-            uid: fundamentals/servers/yarp/overview
+            href: fundamentals/servers/yarp/yarp-overview.md
           - name: Get started with YARP
-            uid: fundamentals/servers/yarp/getting-started
+            href: fundamentals/servers/yarp/getting-started.md
           - name: Configuration
             items:
             - name: Configuration Files
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-files
+              href: fundamentals/servers/yarp/config-files.md
             - name: Configuration Providers
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-providers
+              href: fundamentals/servers/yarp/config-providers.md
             - name: Configuration Filters
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-filters
+              href: fundamentals/servers/yarp/config-filters.md
             - name: HTTP client configuration
               displayName: yarp
-              uid: fundamentals/servers/yarp/http-client-config
+              href: fundamentals/servers/yarp/http-client-config.md
           - name: Proxy Features
             items:
               - name: Header Routing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/header-routing
+                href: fundamentals/servers/yarp/header-routing.md
               - name: Query Parameter Routing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/queryparameter-routing
+                href: fundamentals/servers/yarp/queryparameter-routing.md
               - name: Transforms
                 items:
                   - name: Transforms Overview
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms
+                    href: fundamentals/servers/yarp/transforms.md
                   - name: Request Transforms
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms-request
+                    href: fundamentals/servers/yarp/transforms-request.md
                   - name: Response Transforms
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms-response
+                    href: fundamentals/servers/yarp/transforms-response.md
               - name: Load Balancing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/load-balancing
+                href: fundamentals/servers/yarp/load-balancing.md
               - name: Session Affinity
                 displayName: yarp
-                uid: fundamentals/servers/yarp/session-affinity
+                href: fundamentals/servers/yarp/session-affinity.md
               - name: Destinations Health Checks
                 displayName: yarp
-                uid: fundamentals/servers/yarp/dests-health-checks
+                href: fundamentals/servers/yarp/dests-health-checks.md
               - name: Rate Limiting
                 displayName: yarp
-                uid: fundamentals/servers/yarp/rate-limiting
+                href: fundamentals/servers/yarp/rate-limiting.md
               - name: Timeouts
                 displayName: yarp
-                uid: fundamentals/servers/yarp/timeouts
+                href: fundamentals/servers/yarp/timeouts.md
               - name: Authentication and Authorization
                 displayName: yarp
-                uid: fundamentals/servers/yarp/authn-authz
+                href: fundamentals/servers/yarp/authn-authz.md
               - name: Output Caching
                 displayName: yarp
-                uid: fundamentals/servers/yarp/output-caching
+                href: fundamentals/servers/yarp/output-caching.md
               - name: Distributed Tracing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/distributed-tracing
+                href: fundamentals/servers/yarp/distributed-tracing.md
               - name: A/B Testing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/ab-testing
+                href: fundamentals/servers/yarp/ab-testing.md
           - name: Protocols and Guidance
             items:
               - name: Header Guidelines
                 displayName: yarp
-                uid: fundamentals/servers/yarp/header-guidelines
+                href: fundamentals/servers/yarp/header-guidelines.md
               - name: HTTPS & TLS
                 displayName: yarp
-                uid: fundamentals/servers/yarp/https-tls
+                href: fundamentals/servers/yarp/https-tls.md
               - name: Proxying gRPC
                 displayName: yarp
-                uid: fundamentals/servers/yarp/grpc
+                href: fundamentals/servers/yarp/grpc.md
               - name: HTTP/3
                 displayName: yarp
-                uid: fundamentals/servers/yarp/http3
+                href: fundamentals/servers/yarp/http3.md
               - name: Cross-Origin Requests (CORS)
                 displayName: yarp
-                uid: fundamentals/servers/yarp/cors
+                href: fundamentals/servers/yarp/cors.md
               - name: Let's Encrypt
                 displayName: yarp
-                uid: fundamentals/servers/yarp/lets-encrypt
+                href: fundamentals/servers/yarp/lets-encrypt.md
               - name: WebSockets and SPDY
                 displayName: yarp
-                uid: fundamentals/servers/yarp/websockets
+                href: fundamentals/servers/yarp/websockets.md
           - name: Extensibility
             items:
             - name: Overview
               displayName: yarp
-              uid: fundamentals/servers/yarp/extensibility
+              href: fundamentals/servers/yarp/extensibility.md
             - name: Middleware
               displayName: yarp
-              uid: fundamentals/servers/yarp/middleware
+              href: fundamentals/servers/yarp/middleware.md
             - name: Direct Forwarding
               displayName: yarp
-              uid: fundamentals/servers/yarp/direct-forwarding
+              href: fundamentals/servers/yarp/direct-forwarding.md
             - name: Destination Resolvers
               displayName: yarp
-              uid: fundamentals/servers/yarp/destination-resolvers
+              href: fundamentals/servers/yarp/destination-resolvers.md
             - name: Request and Response Transform Extensibility
               displayName: yarp
-              uid: fundamentals/servers/yarp/transform-extensibility
+              href: fundamentals/servers/yarp/extensibility-transforms.md
           - name: Deployment options
             items:
             - name: HTTP.sys Delegation
               displayName: yarp
-              uid: fundamentals/servers/yarp/httpsys-delegation
+              href: fundamentals/servers/yarp/httpsys-delegation.md
             - name: Service Fabric Integration
               displayName: yarp
-              uid: fundamentals/servers/yarp/service-fabric-int
+              href: fundamentals/servers/yarp/service-fabric-int.md
             - name: YARP Kubernetes Ingress Controller
               displayName: yarp
-              uid: fundamentals/servers/yarp/kubernetes-ingress
+              href: fundamentals/servers/yarp/kubernetes-ingress.md
           - name: Troubleshooting
             items:
             - name: Diagnosing proxy issues
               displayName: yarp
-              uid: fundamentals/servers/yarp/diagnosing-yarp-issues
+              href: fundamentals/servers/yarp/diagnosing-yarp-issues.md
   - name: Metrics
     items:
       - name: Overview
@@ -1691,13 +1691,13 @@ items:
     items:
       - name: .NET Hot Reload
         displayName: test
-        uid: test/hot-reload
+        href: test/hot-reload.md
       - name: Visual Studio dev tunnels
         displayName: test, tunnels
-        uid: test/tunnels
+        href: test/dev-tunnels.md
       - name: Visual Studio .http files
         displayName: test, .rest, REST, HTTP
-        uid: test/http-files
+        href: test/http-files.md
       - name: HttpRepl
         items:
           - name: Overview
@@ -1711,21 +1711,21 @@ items:
       - name: Blazor tests
         uid: blazor/test
       - name: Razor Pages unit tests
-        uid: test/razor-pages-tests
+        href: test/razor-pages-tests.md
       - name: MVC controllers unit tests
         href: mvc/controllers/testing.md
       - name: Integration tests
-        uid: test/integration-tests
+        href: test/integration-tests.md
       - name: Load and stress testing
-        uid: test/loadtests
+        href: test/load-tests.md
       - name: Test middleware
-        uid: test/middleware
+        href: test/middleware.md
       - name: .localhost top-level domain
-        uid: test/localhost-tld
+        href: test/localhost-tld.md
   - name: Debug
     items:
       - name: Debug with Visual Studio
-        uid: test/debug-aspnetcore-source
+        href: test/debug-aspnetcore-source.md
       - name: Remote debugging
         href: /visualstudio/debugger/remote-debugging-azure
       - name: Snapshot debugging in Azure
@@ -1737,9 +1737,9 @@ items:
   - name: Troubleshoot
     items:
       - name: Troubleshoot and debug
-        uid: test/troubleshoot
+        href: test/troubleshoot.md
       - name: Troubleshoot Azure and IIS
-        uid: test/troubleshoot-azure-iis
+        href: test/troubleshoot-azure-iis.md
       - name: Azure and IIS errors reference
         href: host-and-deploy/azure-iis-errors-reference.md
   - name: Code analysis
@@ -1970,7 +1970,7 @@ items:
             href: host-and-deploy/aspnet-core-module.md
           - name: Troubleshoot
             displayName: azure, deploy, publish
-            uid: test/troubleshoot-azure-iis
+            href: test/troubleshoot-azure-iis.md
           - name: Errors reference
             displayName: azure, deploy, publish
             href: host-and-deploy/azure-iis-errors-reference.md
@@ -2300,7 +2300,7 @@ items:
   - name: Performance
     items:
       - name: Overview
-        uid: performance/overview
+        href: performance/overview.md
       - name: Best practices
         displayName: performance
         href: fundamentals/best-practices.md
@@ -2308,42 +2308,42 @@ items:
         items:
           - name: Overview
             displayName: cache, caching
-            uid: performance/caching/overview
+            href: performance/caching/overview.md
           - name: In-memory cache
             displayName: caching
-            uid: performance/caching/memory
+            href: performance/caching/memory.md
           - name: Distributed caching
             displayName: cache
-            uid: performance/caching/distributed
+            href: performance/caching/distributed.md
           - name: Hybrid cache
             displayName: caching
-            uid: performance/caching/hybrid
+            href: performance/caching/hybrid.md
           - name: Output caching
             displayName: cache
-            uid: performance/caching/output
+            href: performance/caching/output.md
           - name: Response caching
             displayName: cache
-            uid: performance/caching/response
+            href: performance/caching/response.md
           - name: Response caching middleware
             displayName: cache
-            uid: performance/caching/middleware
+            href: performance/caching/middleware.md
       - name: Rate limiting middleware
-        uid: performance/rate-limit
+        href: performance/rate-limit.md
       - name: Timeouts middleware
-        uid: performance/timeouts
+        href: performance/timeouts.md
       - name: Memory and GC
-        uid: performance/memory
+        href: performance/memory.md
       - name: Scaling apps on Azure
         displayName: azure, deploy, publish, scale
         href: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md
       - name: Object reuse with ObjectPool
-        uid: performance/ObjectPool
+        href: performance/ObjectPool.md
       - name: Response compression
-        uid: performance/response-compression
+        href: performance/response-compression.md
       - name: Diagnostic tools
-        uid: performance/diagnostic-tools
+        href: performance/diagnostic-tools.md
       - name: Load and stress testing
-        uid: test/loadtests
+        href: test/load-tests.md
       - name: Event counters
         href: /dotnet/core/diagnostics/event-counter-perf
   - name: Globalization and localization

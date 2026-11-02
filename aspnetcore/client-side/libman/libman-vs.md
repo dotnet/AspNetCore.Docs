@@ -2,13 +2,12 @@
 title: Use LibMan with ASP.NET Core in Visual Studio
 description: Learn how to use LibMan in an ASP.NET Core project with Visual Studio.
 ms.date: 12/03/2025
-uid: client-side/libman/libman-vs
 ---
 # Use LibMan with ASP.NET Core in Visual Studio
 
 By [Scott Addie](https://twitter.com/Scott_Addie)
 
-Visual Studio has built-in support for [LibMan](xref:client-side/libman/index) in ASP.NET Core projects, including:
+Visual Studio has built-in support for [LibMan](index.md) in ASP.NET Core projects, including:
 
 * Support for configuring and running LibMan restore operations on build.
 * Menu items for triggering LibMan restore and clean operations.
@@ -183,7 +182,7 @@ Clean libraries operation completed
 2 libraries were successfully deleted in 1.91 secs
 ```
 
-The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the [LibMan CLI](xref:client-side/libman/libman-cli).
+The clean operation only deletes files from the project. Library files stay in the cache for faster retrieval on future restore operations. To manage library files stored in the local machine's cache, use the [LibMan CLI](libman-cli.md).
 
 ## Uninstall library files
 
@@ -221,5 +220,5 @@ To downgrade to an older library version, manually edit the `libman.json` file. 
 
 ## Related content
 
-* <xref:client-side/libman/libman-cli>
+* [Use the LibMan CLI with ASP.NET Core](libman-cli.md)
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)

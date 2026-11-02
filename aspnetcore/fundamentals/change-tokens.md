@@ -140,7 +140,7 @@ Buttons in the UI enable and disable monitoring.
 
 ## Monitor cached file changes
 
-File content can be cached in-memory using <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. In-memory caching is described in the [Cache in-memory](xref:performance/caching/memory) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
+File content can be cached in-memory using <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. In-memory caching is described in the [Cache in-memory](../performance/caching/memory.md) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
 
 For example, not taking into account the status of a cached source file when renewing a [sliding expiration](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration) period leads to stale cached file data. Each request for the data renews the sliding expiration period, but the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly receiving stale content.
 
@@ -338,7 +338,7 @@ Buttons in the UI enable and disable monitoring.
 
 ## Monitor cached file changes
 
-File content can be cached in-memory using <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. In-memory caching is described in the [Cache in-memory](xref:performance/caching/memory) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
+File content can be cached in-memory using <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache>. In-memory caching is described in the [Cache in-memory](../performance/caching/memory.md) topic. Without taking additional steps, such as the implementation described below, *stale* (outdated) data is returned from a cache if the source data changes.
 
 For example, not taking into account the status of a cached source file when renewing a [sliding expiration](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration) period leads to stale cached file data. Each request for the data renews the sliding expiration period, but the file is never reloaded into the cache. Any app features that use the file's cached content are subject to possibly receiving stale content.
 
@@ -406,9 +406,9 @@ var compositeChangeToken =
 
 ## Related content
 
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
-* <xref:performance/caching/response>
-* <xref:performance/caching/middleware>
+* [Cache in-memory in ASP.NET Core](../performance/caching/memory.md)
+* [Distributed caching in ASP.NET Core](../performance/caching/distributed.md)
+* [Response caching in ASP.NET Core](../performance/caching/response.md)
+* [Response caching middleware in ASP.NET Core](../performance/caching/middleware.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)

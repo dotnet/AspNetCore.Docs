@@ -339,7 +339,7 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../proxy-load-balancer.md)
 * [Working with Visual Studio Docker Tools](/visualstudio/containers/add-container-support)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
-* [GC using Docker and small containers](xref:performance/memory#gc-using-docker-and-small-containers)
+* [GC using Docker and small containers](../../../performance/memory.md#gc-using-docker-and-small-containers)
 * [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](../index.md#d128)
 
 ## Next steps

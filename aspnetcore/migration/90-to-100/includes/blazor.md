@@ -1,6 +1,6 @@
 ### Blazor release notes
 
-For new feature coverage, see <xref:aspnetcore-10>.
+For new feature coverage, see [What's new in ASP.NET Core in .NET 10](../../../release-notes/aspnetcore-10.0.md).
 
 ### Set the Blazor WebAssembly environment with the `WasmApplicationEnvironmentName` MSBuild property
 
@@ -32,7 +32,7 @@ Currently, there's no documented replacement strategy for the preceding approach
 
 ###  Declarative model for persisting state from components and services
 
-In prior Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code. Starting with .NET 10, you can declaratively specify state to persist from components and services using the `[PersistentState]` attribute. For more information, see <xref:aspnetcore-10#declarative-model-for-persisting-state-from-components-and-services>.
+In prior Blazor releases, persisting component state during prerendering using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service involved a significant amount of code. Starting with .NET 10, you can declaratively specify state to persist from components and services using the `[PersistentState]` attribute. For more information, see [What's new in ASP.NET Core in .NET 10](../../../release-notes/aspnetcore-10.0.md#declarative-model-for-persisting-state-from-components-and-services).
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
@@ -52,7 +52,7 @@ For guidance, see [Implement passkeys in ASP.NET Core Blazor Web Apps](../../../
 
 *This section applies to Blazor Web Apps that set the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in order to avoid throwing an navigation exception during static server-side rendering (static SSR).*
 
-The `IdentityRedirectManager` threw an <xref:System.InvalidOperationException> in the `RedirectTo` method to ensure the method wasn't called from an interactive render mode and all the redirection methods were marked with the [`[DoesNotReturn]` attribute](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute). The .NET 10 or later Blazor Web App project template sets the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file in order to avoid throwing the exception during static SSR. If an app based on the project template from a prior release of .NET is updated to .NET 10 or later and includes the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true`, make the following changes. For more information, see <xref:aspnetcore-10#opt-in-to-avoiding-a-navigationexception-during-static-server-side-rendering-with-navigationmanagernavigateto>.
+The `IdentityRedirectManager` threw an <xref:System.InvalidOperationException> in the `RedirectTo` method to ensure the method wasn't called from an interactive render mode and all the redirection methods were marked with the [`[DoesNotReturn]` attribute](xref:System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute). The .NET 10 or later Blazor Web App project template sets the `<BlazorDisableThrowNavigationException>` MSBuild property to `true` in the app's project file in order to avoid throwing the exception during static SSR. If an app based on the project template from a prior release of .NET is updated to .NET 10 or later and includes the `<BlazorDisableThrowNavigationException>` MSBuild property set to `true`, make the following changes. For more information, see [What's new in ASP.NET Core in .NET 10](../../../release-notes/aspnetcore-10.0.md#opt-in-to-avoiding-a-navigationexception-during-static-server-side-rendering-with-navigationmanagernavigateto).
 
 In `Components/Account/IdentityRedirectManager.cs`:
 

@@ -289,7 +289,7 @@ Alternatively, enter a counter category such as `kestrel` in the **Expression** 
 
 ## Test metrics in ASP.NET Core apps
 
-You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](xref:test/integration-tests) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector`1>.
+You can test metrics in ASP.NET Core apps. One way to do this is to collect and assert metrics values in [ASP.NET Core integration tests](../test/integration-tests.md) by using <xref:Microsoft.Extensions.Diagnostics.Metrics.Testing.MetricCollector`1>.
 
 :::code language="csharp" source="~/metrics/samples/metric-tests/BasicTests.cs" id="snippet_TestClass":::
 

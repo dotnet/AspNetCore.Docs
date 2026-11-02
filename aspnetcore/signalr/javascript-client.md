@@ -23,7 +23,7 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 - Run `npm` commands in Visual Studio **Package Manager Console**.
 - Run `npm` commands in the integrated terminal in Visual Studio Code.
 - Reference a copy of the client library hosted on a Content Delivery Network (CDN).
-- Use [LibMan](xref:client-side/libman/index) and install specific client library files from a CDN-hosted client library.
+- Use [LibMan](../client-side/libman/index.md) and install specific client library files from a CDN-hosted client library.
 
 ### Install with npm
 
@@ -75,7 +75,7 @@ The code example specifies version 6.0.1. To get the latest client library versi
 
 ### Install with LibMan
 
-Another approach is to use [LibMan](xref:client-side/libman/index) and install only specific client library files from the CDN-hosted client library. For example, you can add only the minified JavaScript file to the project.
+Another approach is to use [LibMan](../client-side/libman/index.md) and install only specific client library files from the CDN-hosted client library. For example, you can add only the minified JavaScript file to the project.
 
 For details on this approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
@@ -414,7 +414,7 @@ The client library is available on the following CDNs:
 
 ### Install with LibMan
 
-[LibMan](xref:client-side/libman/index) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
+[LibMan](../client-side/libman/index.md) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
 ## Connect to a hub
 

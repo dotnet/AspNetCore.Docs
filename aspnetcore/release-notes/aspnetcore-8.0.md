@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 8
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 8.
 ms.date: 08/31/2026
-uid: aspnetcore-8
 ---
 # What's new in ASP.NET Core in .NET 8
 
@@ -578,7 +577,7 @@ For more information, see [Antiforgery with Minimal APIs](../security/anti-reque
 
 In this release, we've made the object pool easier to use by adding the <xref:Microsoft.Extensions.ObjectPool.IResettable> interface. Reusable types often need to be reset back to a default state between uses. `IResettable` types are automatically reset when returned to an object pool.
 
-For more information, see the [ObjectPool sample](xref:performance/ObjectPool##objectpool-sample).
+For more information, see the [ObjectPool sample](../performance/ObjectPool.md#objectpool-sample).
 
 ## Native AOT
 
@@ -861,7 +860,7 @@ Visual Studio project templates are now the recommended way to create single-pag
 * Use the Visual Studio project type for JavaScript and TypeScript (*.esproj*) for the frontend.
 * Use an ASP.NET Core project for the backend.
 
-For more information about the Visual Studio templates and how to access the legacy templates, see <xref:spa/intro>
+For more information about the Visual Studio templates and how to access the legacy templates, see [Overview of Single Page Apps (SPAs) - ASP.NET Core](../client-side/spa/intro.md)
 
 ### Support for generic attributes
 
@@ -1014,7 +1013,7 @@ var network = new IPNetwork(IPAddress.Parse("2001:db8:3c4d::1"), 128);
 
 ### Redis-based output caching
 
-ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a Minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](xref:performance/caching/output#cache-storage).
+ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for output caching. Output caching is a feature that enables an app to cache the output of a Minimal API endpoint, controller action, or Razor Page. For more information, see [Output caching](../performance/caching/output.md#cache-storage).
 
 ### Short-circuit middleware after routing
 

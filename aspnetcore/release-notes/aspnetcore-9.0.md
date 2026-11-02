@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core in .NET 9
 description: Learn about the new features in ASP.NET Core in .NET 9.
 ms.date: 10/27/2026
-uid: aspnetcore-9
 ---
 # What's new in ASP.NET Core in .NET 9
 

@@ -26,7 +26,7 @@ Although the environment can be any string value, the following environment valu
 
 The `Production` environment is configured to maximize security, performance, and app reliability. Common developer settings and configuration that differ from the `Development` environment include:
 
-* Enabling [caching](xref:performance/caching/memory).
+* Enabling [caching](../performance/caching/memory.md).
 * Bundling and minifying client-side resources, along with potentially serving them from a CDN.
 * Disabling diagnostic error pages and enabling friendly error pages.
 * Enabling production logging and monitoring. For example, logging is enabled for [Azure Application Insights](/azure/application-insights/app-insights-asp-net-core).
@@ -480,7 +480,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](index.md#how-to-download-a-sample))
 * [App startup in ASP.NET Core](startup.md)
 * [Configuration in ASP.NET Core](configuration/index.md)
 * [ASP.NET Core Blazor environments](../blazor/fundamentals/environments.md)

@@ -151,4 +151,4 @@ For more information on custom `web.config` files, see the [Use of a custom `web
 
 If a *500 - Internal Server Error* is received and IIS Manager throws errors when attempting to access the website's configuration, confirm that the URL Rewrite Module is installed. When the module isn't installed, the `web.config` file can't be parsed by IIS. This prevents the IIS Manager from loading the website's configuration and the website from serving Blazor's static files.
 
-For more information on troubleshooting deployments to IIS, see <xref:test/troubleshoot-azure-iis>.
+For more information on troubleshooting deployments to IIS, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).

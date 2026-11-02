@@ -437,7 +437,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 * [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../test/troubleshoot.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../proxy-load-balancer.md)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 
@@ -884,7 +884,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 * [Prerequisites for .NET Core on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Binary Releases: Official Debian/Ubuntu packages](https://www.nginx.com/resources/wiki/start/topics/tutorials/install/#official-debian-ubuntu-packages)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../test/troubleshoot.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../proxy-load-balancer.md)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 

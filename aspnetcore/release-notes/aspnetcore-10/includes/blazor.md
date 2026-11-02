@@ -662,7 +662,7 @@ If one of the preceding steps produces a validation error, the remaining steps a
 You can validate forms with models defined in a different assembly, such as a library or the `.Client` project of a Blazor Web App, by creating a method in the library or `.Client` project that receives an <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> instance as an argument and calls `AddValidation` on it.
 * In the app, call both the method and `AddValidation`.
 
-For more information, see [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-10.0#register-validation-in-multi-assembly-apps).
+For more information, see [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-10.0&preserve-view=true#register-validation-in-multi-assembly-apps).
 
 ### Custom Blazor cache and `BlazorCacheBootResources` MSBuild property removed
 
@@ -699,7 +699,7 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 ### Hot Reload for Blazor WebAssembly and .NET on WebAssembly
 
-The SDK migrated to a general purpose [Hot Reload](xref:test/hot-reload) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
+The SDK migrated to a general purpose [Hot Reload](../../../test/hot-reload.md) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
 
 For other configurations with custom configuration names, set the value to `true` in the app's project file to enable Hot Reload:
 

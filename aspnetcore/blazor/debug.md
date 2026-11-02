@@ -27,7 +27,7 @@ Available scenarios for Blazor WebAssembly debugging include:
 * Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging, configured by Visual Studio preferences.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging, configured by Visual Studio preferences.
 
 Unsupported scenarios include:
 
@@ -54,7 +54,7 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging.
 
 :::moniker-end
 
@@ -77,7 +77,7 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 * See the call stack, including call chains between JavaScript and .NET.
 * Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging.
 
 :::moniker-end
 
@@ -557,7 +557,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 ## Control Hot Reload
 
-The `WasmEnableHotReload` MSBuild property enables [Hot Reload](xref:test/hot-reload) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
+The `WasmEnableHotReload` MSBuild property enables [Hot Reload](../test/hot-reload.md) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
 
 To use a custom configuration name when debugging, for example, `DebugWebAssembly`, set the property to `true` to enable Hot Reload:
 

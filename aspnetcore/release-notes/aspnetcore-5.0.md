@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 5
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.date: 07/21/2026
-uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core in .NET 5
 

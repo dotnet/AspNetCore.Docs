@@ -168,7 +168,7 @@ The following code calls the middleware from `Startup.Configure`:
 * [Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
 * [ASP.NET Core middleware](index.md)
-* <xref:test/middleware>
+* [Test ASP.NET Core middleware](../../test/middleware.md)
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * [App startup in ASP.NET Core](../startup.md)
 * [Request Features in ASP.NET Core](../request-features.md)
@@ -181,7 +181,7 @@ The following code calls the middleware from `Startup.Configure`:
 
 * [Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * [ASP.NET Core middleware](index.md)
-* <xref:test/middleware>
+* [Test ASP.NET Core middleware](../../test/middleware.md)
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * [App startup in ASP.NET Core](../startup.md)
 * [Request Features in ASP.NET Core](../request-features.md)

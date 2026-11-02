@@ -409,8 +409,8 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 ## Additional resources
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Use Angular with ASP.NET Core](../../../../client-side/spa/angular.md)
+* [Use React with ASP.NET Core](../../../../client-side/spa/react.md)
 * [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end
@@ -819,8 +819,8 @@ AddApiAuthorization<ApplicationUser, ApplicationDbContext>(options =>
 
 ## Additional resources
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Use Angular with ASP.NET Core](../../../../client-side/spa/angular.md)
+* [Use React with ASP.NET Core](../../../../client-side/spa/react.md)
 * [Scaffold Identity in ASP.NET Core projects](../../scaffold-identity.md)
 
 :::moniker-end
