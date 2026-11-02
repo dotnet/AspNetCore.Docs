@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 8 - Add interactivity)
 description: This part of the Blazor movie database app tutorial explains how to adopt interactive SSR rendering in the app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-8
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 8 - Add interactivity)
@@ -290,15 +289,15 @@ Congratulations on completing the tutorial series! We hope you enjoyed this tuto
 If you're new to Blazor, we recommend reading the following Blazor articles that cover important general information for Blazor development:
 
 * [ASP.NET Core Blazor](../../index.md)
-* <xref:blazor/supported-platforms>
-* <xref:blazor/tooling>
+* [ASP.NET Core Blazor supported platforms](../../supported-platforms.md)
+* [Tooling for ASP.NET Core Blazor](../../tooling.md)
 * [ASP.NET Core Blazor hosting models](../../hosting-models.md)
-* <xref:blazor/project-structure>
+* [ASP.NET Core Blazor project structure](../../project-structure.md)
 * [ASP.NET Core Blazor fundamentals](../../fundamentals/index.md) and the other *Fundamentals* node articles.
 * [ASP.NET Core Razor components](../../components/index.md) and the other *Components* node articles.
 * [ASP.NET Core Blazor forms overview](../../forms/index.md)
 * [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../../javascript-interoperability/index.md) and the other *JavaScript interop* articles.
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
 * [Host and deploy ASP.NET Core Blazor](../../host-and-deploy/index.md)
 * [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../../blazor-ef-core.md) covers concurrency with EF Core in Blazor apps.
 
@@ -311,4 +310,4 @@ In the documentation website's sidebar navigation, articles are organized by sub
 [!INCLUDE[](~/blazor/tutorials/movie-database-app/includes/troubleshoot.md)]
 
 > [!div class="step-by-step"]
-> [Previous: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
+> [Previous: Add a new field](part-7.md)

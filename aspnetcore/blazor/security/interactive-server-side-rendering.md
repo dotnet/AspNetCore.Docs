@@ -3,7 +3,6 @@ title: Threat mitigation guidance for ASP.NET Core Blazor interactive server-sid
 description: Learn how to mitigate security threats in interactive server-side Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/security/interactive-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering
 
@@ -45,7 +44,7 @@ Generally speaking, Blazor apps can enable compression over the WebSocket connec
 
 * Normally for this type of attack to take place, the app must repeatedly reproduce the content in the responses so that the cyberattacker can guess the response. Given how Blazor renders (it renders once and then produces diffs of the content only for the elements that changed) this is hard for a cyberattacker to accomplish. However, it isn't impossible for a cyberattacker, so care must be taken to avoid rendering sensitive information alongside external information that can be manipulated by a cyberattacker. Some examples of this are:
 
-  * Render [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) on the page at the same time as rendering database data that was added by another user.
+  * Render [Personally Identifiable Information (PII)](index.md#personally-identifiable-information-pii) on the page at the same time as rendering database data that was added by another user.
 
   * Rendering PII information on to the page at the same time as data coming from another user via JS interop or a local singleton service on the server.
 
@@ -197,7 +196,7 @@ Don't trust calls from JavaScript to .NET methods. When a .NET method is exposed
   * Take into account that static and instance methods can be exposed to JavaScript clients. Avoid sharing state across sessions unless the design calls for sharing state with appropriate constraints.
     * For instance methods exposed through <xref:Microsoft.JSInterop.DotNetObjectReference> objects that are originally created through dependency injection (DI), the objects should be registered as scoped objects. This applies to any DI service that the app uses.
     * For static methods, avoid establishing state that can't be scoped to the client unless the app is explicitly sharing state by-design across all users on a server instance.
-  * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the DOM by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) to disable `eval` and other unsafe JavaScript primitives. For more information, see <xref:blazor/security/content-security-policy> and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+  * Avoid passing user-supplied data in parameters to JavaScript calls. If passing data in parameters is absolutely required, ensure that the JavaScript code handles passing the data without introducing [Cross-site scripting (XSS)](#cross-site-scripting-xss) vulnerabilities. For example, don't write user-supplied data to the DOM by setting the `innerHTML` property of an element. Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) to disable `eval` and other unsafe JavaScript primitives. For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](content-security-policy.md) and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 * Avoid implementing custom dispatching of .NET invocations on top of the framework's dispatching implementation. Exposing .NET methods to the browser is an advanced scenario, not recommended for general Blazor development.
 
 ### Events
@@ -403,7 +402,7 @@ For a XSS vulnerability to exist, the app must incorporate user input in the ren
 
 :::moniker-end
 
-Consider further mitigating XSS vulnerabilities. For example, implement a restrictive [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For more information, see <xref:blazor/security/content-security-policy> and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+Consider further mitigating XSS vulnerabilities. For example, implement a restrictive [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](content-security-policy.md) and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
 For more information, see [Prevent Cross-Site Scripting (XSS) in ASP.NET Core](../../security/cross-site-scripting.md).
 
@@ -424,7 +423,7 @@ To protect an app from rendering inside of an `<iframe>`, use [Content Security 
 
 For more information, see the following resources:
 
-* <xref:blazor/security/content-security-policy>
+* [Enforce a Content Security Policy for ASP.NET Core Blazor](content-security-policy.md)
 * [MDN web docs: X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options)
 
 ### Open redirects
@@ -464,7 +463,7 @@ The following list of security considerations isn't comprehensive:
 * Avoid events that produce large amounts of data.
 * Avoid using user input as part of calls to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and validate user input for URLs against a set of allowed origins first if unavoidable.
 * Don't make authorization decisions based on the state of the UI but only from component state.
-* Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) to protect against XSS attacks. For more information, see <xref:blazor/security/content-security-policy> and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+* Consider using [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) to protect against XSS attacks. For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](content-security-policy.md) and [MDN's CSP guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 * Consider using CSP and [X-Frame-Options](https://developer.mozilla.org/docs/Web/HTTP/Headers/X-Frame-Options) to protect against click-jacking.
 * Ensure CORS settings are appropriate when enabling CORS or explicitly disable CORS for Blazor apps.
 * Test to ensure that the server-side limits for the Blazor app provide an acceptable user experience without unacceptable levels of risk.

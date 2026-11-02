@@ -32,7 +32,7 @@ Prerendering is enabled by default for interactive components. Guidance on contr
 
 The following examples demonstrate setting the component's render mode with a few basic Razor component features.
 
-To test the render mode behaviors locally, you can place the following components in an app created from the *Blazor Web App* project template. When you create the app, select options from dropdown menus (Visual Studio) or apply the CLI options (.NET CLI) to enable both server-side and client-side interactivity. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
+To test the render mode behaviors locally, you can place the following components in an app created from the *Blazor Web App* project template. When you create the app, select options from dropdown menus (Visual Studio) or apply the CLI options (.NET CLI) to enable both server-side and client-side interactivity. For guidance on how to create a Blazor Web App, see [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 ## Enable support for interactive render modes
 
@@ -53,7 +53,7 @@ Endpoint convention builder extensions:
 * <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode*> configures the Interactive WebAssembly render mode for the app.
 
 > [!NOTE]
-> For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see <xref:blazor/tooling>.
+> For orientation on the placement of the API in the following examples, inspect the `Program` file of an app generated from the Blazor Web App project template. For guidance on how to create a Blazor Web App, see [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 Example 1: The following `Program` file API adds services and configuration for enabling interactive SSR:
 
@@ -168,7 +168,7 @@ To enable global interactivity when creating a Blazor Web App:
 * Visual Studio: Set the **Interactivity location** dropdown list to **Global**.
 * .NET CLI: Use the `-ai|--all-interactive` option.
 
-For more information, see <xref:blazor/tooling>.
+For more information, see [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 ## Apply a render mode programmatically
 
@@ -338,7 +338,7 @@ If using the preceding component locally in a Blazor Web App, place the componen
 
 :::moniker range=">= aspnetcore-10.0"
 
-During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for authorization. Dedicated Blazor features for authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>). Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
+During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for authorization. Dedicated Blazor features for authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](../security/index.md#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>). Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
 
 :::moniker-end
 
@@ -346,7 +346,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 During static SSR, Razor component page requests are processed by server-side ASP.NET Core middleware pipeline request processing for routing and authorization. Dedicated Blazor features for routing and authorization aren't operational because Razor components aren't rendered during server-side request processing. Blazor router features in the `Routes` component that aren't available during static SSR include displaying:
 
-* [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
+* [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](../security/index.md#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
 
 * [Not Found content (`<NotFound>...</NotFound>`)](../fundamentals/routing.md#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](../../fundamentals/error-handling.md#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
 
@@ -867,11 +867,11 @@ At the moment, the shorthand render mode approach is probably only useful for re
 
 * WebSocket compression
   * [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#websocket-compression-for-interactive-server-components)
-  * <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>
+  * [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled)
 * [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
 * [Cascading values/parameters and render mode boundaries](cascading-values-and-parameters.md#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](cascading-values-and-parameters.md#root-level-cascading-values) and [Root-level cascading values with notifications](cascading-values-and-parameters.md#root-level-cascading-values-with-notifications) sections earlier in the article.
 * [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](class-libraries-and-static-server-side-rendering.md)
-* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](../security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
 
@@ -880,6 +880,6 @@ At the moment, the shorthand render mode approach is probably only useful for re
 * [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
 * [Cascading values/parameters and render mode boundaries](cascading-values-and-parameters.md#cascading-valuesparameters-and-render-mode-boundaries): Also see the [Root-level cascading values](cascading-values-and-parameters.md#root-level-cascading-values) and [Root-level cascading values with notifications](cascading-values-and-parameters.md#root-level-cascading-values-with-notifications) sections earlier in the article.
 * [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](class-libraries-and-static-server-side-rendering.md)
-* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](../security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end

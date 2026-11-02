@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Tips for improving the rendering performance of ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/28/2026
-uid: blazor/performance/rendering
 ---
 # ASP.NET Core Blazor rendering performance best practices
 

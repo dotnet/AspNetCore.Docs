@@ -73,7 +73,7 @@ Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render 
 
 ### Inline JS event handler removed from the `NavMenu` component
 
-The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-11.0&preserve-view=true#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-11.0&preserve-view=true#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](../../../blazor/security/content-security-policy.md?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
 To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md).
 
@@ -119,7 +119,7 @@ When supplied to a parameter for simple read/write of a single value, use the `[
 public string? Message { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#temporary-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0#temporary-data-persistence).
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
@@ -182,7 +182,7 @@ For more information, see the following resources:
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see [Tooling for ASP.NET Core Blazor](../../../blazor/tooling.md?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps).
 
 ### New development server for Blazor WebAssembly apps
 
@@ -217,7 +217,7 @@ For more information, see [[Blazor] Replace DevServer with BlazorGateway for sta
 
 *This feature applies to server-side Blazor apps.*
 
-Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](xref:blazor/state-management/server#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
+Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](../../../blazor/state-management/server.md#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
 
 `Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
 
@@ -227,7 +227,7 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information and an implementation example for server restarts, see <xref:blazor/state-management/server?view=aspnetcore-11.0#server-triggered-circuit-pause>.
+For more information and an implementation example for server restarts, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0#server-triggered-circuit-pause).
 
 ### Smaller Blazor WebAssembly publish output
 
@@ -458,7 +458,7 @@ public string? Message { get; set; }
 public string? FlashMessage { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0#session-data-persistence).
 
 ### `GetUriWithFragment` extension method
 
@@ -806,7 +806,7 @@ General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 * [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md?view=aspnetcore-11.0&preserve-view=true)
 * [ASP.NET Core Blazor forms overview](../../../blazor/forms/index.md?view=aspnetcore-11.0&preserve-view=true#antiforgery-support)
-* <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-11.0#antiforgery-support)
 
 ### Blazor Virtualize can scroll to an item
 
@@ -848,11 +848,11 @@ app.MapRazorComponents<App>()
 
 After the tab is hidden for a configurable delay period (default: 2 minutes), the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity).
 
 ### Wider support for `AuthorizationPolicy` and `IAuthorizationRequirementData`
 
-Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](../../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
 For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md?view=aspnetcore-11.0&preserve-view=true).
 
@@ -879,7 +879,7 @@ The new `CacheView` component caches the rendered output of a Razor component su
 </CacheView>
 ```
 
-For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
+For more information, see [ASP.NET Core Blazor CacheView component](../../../blazor/state-management/cacheview-component.md?view=aspnetcore-11.0).
 
 ### Blazor Server circuits update after authentication refresh
 

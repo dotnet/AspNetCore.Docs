@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains how to add a movie class to the app and scaffold the database and UI from the movie class.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/15/2026
-uid: blazor/tutorials/movie-database-app/part-2
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 2 - Add and scaffold a model)
@@ -543,5 +542,5 @@ EF Core documentation:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Create a Blazor Web App](xref:blazor/tutorials/movie-database-app/part-1)
-> [Next: Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)
+> [Previous: Create a Blazor Web App](part-1.md)
+> [Next: Learn about Razor components](part-3.md)

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/15/2026
-uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
@@ -19,10 +18,10 @@ This part of the tutorial series focuses on the database context and directly wo
 
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/index> and the following articles in the *Server* security node
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/blazor-web-app-entra>
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md) and the following articles in the *Server* security node
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../security/blazor-web-app-with-oidc.md)
+* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../security/blazor-web-app-with-entra.md)
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
@@ -434,10 +433,10 @@ If the app is running, shut the app down by closing the browser's window and pre
     * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
   * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 * Blazor Web App security
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/index> and the following articles in the *Server* security node
-  * <xref:blazor/security/blazor-web-app-oidc>
-  * <xref:blazor/security/blazor-web-app-entra>
+  * [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
+  * [ASP.NET Core Blazor authentication and authorization](../../security/index.md) and the following articles in the *Server* security node
+  * [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../security/blazor-web-app-with-oidc.md)
+  * [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../security/blazor-web-app-with-entra.md)
 
 ## Legal
 
@@ -446,5 +445,5 @@ If the app is running, shut the app down by closing the browser's window and pre
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)
-> [Next: Add Validation](xref:blazor/tutorials/movie-database-app/part-5)
+> [Previous: Learn about Razor components](part-3.md)
+> [Next: Add Validation](part-5.md)

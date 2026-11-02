@@ -1462,7 +1462,7 @@ You can factor out child components purely as a way of reusing rendering logic. 
 }
 ```
 
-For more information, see [Reuse rendering logic](xref:blazor/performance/rendering#define-reusable-renderfragments-in-code).
+For more information, see [Reuse rendering logic](../performance/rendering.md#define-reusable-renderfragments-in-code).
 
 ## Loop variables with component parameters and child content
 

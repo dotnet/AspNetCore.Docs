@@ -33,7 +33,7 @@ The Blazor startup process is automatic and asynchronous via the Blazor script (
 
 :::moniker-end
 
-For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 To manually start Blazor:
 
@@ -70,7 +70,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -97,7 +97,7 @@ Standalone Blazor WebAssembly and Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -278,7 +278,7 @@ For examples of JS initializers, see the following resources:
 * [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
 * [Use Razor components in JavaScript apps and SPA frameworks](../components/js-spa-frameworks.md#render-razor-components-from-javascript) (*`quoteContainer2` example*)
 * [ASP.NET Core Blazor event handling](../components/event-handling.md#custom-event-arguments) (*Custom clipboard paste event example*)
-* <xref:blazor/security/qrcodes-for-authenticator-apps>
+* [Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App](../security/qrcodes-for-authenticator-apps.md)
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
@@ -367,7 +367,7 @@ The following example starts Blazor when the document is ready:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -382,7 +382,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -452,7 +452,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -481,7 +481,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -516,7 +516,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -547,7 +547,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -561,7 +561,7 @@ For more information, see [ASP.NET Core Blazor WebAssembly caching and integrity
 
 Control headers at startup in C# code using the following approaches.
 
-In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see <xref:blazor/security/content-security-policy>.
+In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../security/content-security-policy.md).
 
 > [!NOTE]
 > Headers can't be set after the response starts. The approaches in this section only set headers before the response starts, so the approaches described here are safe. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md#dont-set-or-modify-headers-after-the-response-starts).
@@ -996,7 +996,7 @@ The `configureRuntime` function can also be used to [enable integration with a b
 
 For the placeholders in the following examples that set an environment variable:
 
-* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 * The `{NAME}` placeholder is the environment variable's name.
 * The `{VALUE}` placeholder is the environment variable's value.
 
@@ -1023,7 +1023,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1042,7 +1042,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1074,7 +1074,7 @@ To disable [enhanced navigation and form handling](navigation.md#enhanced-naviga
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 

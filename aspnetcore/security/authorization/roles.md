@@ -127,7 +127,7 @@ Role-based authorization checks:
 * Are declarative and specify roles that the current user must be a member of to access the requested resource.
 * Are applied to Razor components (examples in this article), [Razor Pages](../../razor-pages/security/authorization/roles.md), or [MVC controllers or actions within a controller](../../mvc/security/authorization/roles.md).
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](../../blazor/security/index.md#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md).
 
 For role-based authorization of content in Razor components, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles?displayProperty=nameWithType> parameter.
 
@@ -447,7 +447,7 @@ services.AddAuthorization(options =>
 
 :::moniker range=">= aspnetcore-9.0"
 
-After the app is [configured for Windows Authentication](../authentication/windowsauth.md) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](../authentication/windowsauth.md) ([Blazor-specific guidance](../../blazor/security/blazor-web-app-with-windows-authentication.md)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 :::moniker-end
 
@@ -489,7 +489,7 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../blazor/security/blazor-web-app-with-windows-authentication.md). Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
@@ -501,8 +501,8 @@ An approach similar to the preceding example for retrieving SID group claims can
 
 ## Related content
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](../../blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md)
 * [Role-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/roles.md)
 * [Role-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

@@ -11,7 +11,7 @@ ms.date: 07/02/2026
 
 Components can be shared in a [Razor class library (RCL)](../../razor-pages/ui-class.md) across projects. Include components and static assets in an app from:
 
-* Another project in the [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+* Another project in the [solution](../tooling.md#visual-studio-solution-file-sln).
 * A referenced .NET library.
 * A NuGet package.
 
@@ -184,7 +184,7 @@ Add a page to the app that uses the `ExtraStyles` component from the RCL.
 <ExtraStyles />
 ```
 
-Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+Link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
 :::moniker-end
 
@@ -260,7 +260,7 @@ The following background image and stylesheet are used by the RCL's `Component1`
 }
 ```
 
-To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+To provide `Component1`'s `my-component` CSS class, link to the library's stylesheet in the app's `<head>` markup ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
 ```html
 <link href="_content/ComponentLibrary/styles.css" rel="stylesheet" />
@@ -404,7 +404,7 @@ For more information, see [Call JavaScript functions from .NET methods in ASP.NE
 
 ## Avoid trimming JavaScript-invokable .NET methods
 
-[Runtime relinking](xref:blazor/tooling/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
+[Runtime relinking](../webassembly-build-tools-and-aot.md#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
 
 :::moniker-end
 

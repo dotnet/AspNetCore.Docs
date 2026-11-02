@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
 description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App that adopts static server-side rendering (static SSR), where content is only rendered on the server.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-1
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
@@ -368,4 +367,4 @@ When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP pr
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
+> [Next: Add and scaffold a model](part-2.md)

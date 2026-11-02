@@ -169,11 +169,11 @@ Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
-Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)) and MSAL v2.0. For more information, see the topics in the [Blazor Security and Identity node](xref:blazor/security/index).
+Blazor security now uses Microsoft Identity v2.0 ([`Microsoft.Identity.Web`](https://www.nuget.org/packages/Microsoft.Identity.Web) and [`Microsoft.Identity.Web.UI`](https://www.nuget.org/packages/Microsoft.Identity.Web.UI)) and MSAL v2.0. For more information, see the topics in the [Blazor Security and Identity node](../blazor/security/index.md).
 
 ### Protected Browser Storage for Blazor Server
 
-Blazor Server apps can now use built-in support for storing app state in the browser that has been protected from tampering using ASP.NET Core data protection. Data can be stored in either local browser storage or session storage. For more information, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+Blazor Server apps can now use built-in support for storing app state in the browser that has been protected from tampering using ASP.NET Core data protection. Data can be stored in either local browser storage or session storage. For more information, see [ASP.NET Core Blazor state management overview](../blazor/state-management/index.md) and [ASP.NET Core Blazor server-side state management](../blazor/state-management/server.md).
 
 ### Blazor WebAssembly prerendering
 
@@ -189,7 +189,7 @@ Blazor WebAssembly apps target the full .NET API surface area, but not all .NET 
 
 ### Lazy load assemblies
 
-Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they're required. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+Blazor WebAssembly app startup performance can be improved by deferring the loading of some application assemblies until they're required. For more information, see [Lazy load assemblies in ASP.NET Core Blazor WebAssembly](../blazor/webassembly-lazy-load-assemblies.md).
 
 ### Updated globalization support
 

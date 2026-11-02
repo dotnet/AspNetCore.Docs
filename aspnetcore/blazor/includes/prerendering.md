@@ -9,7 +9,7 @@
 *This section applies to server-side apps that prerender Razor components. Prerendering is covered in [Prerender ASP.NET Core Razor components](../components/prerender.md).*
 
 > [!NOTE]
-> Internal navigation for [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
+> Internal navigation for [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md#interactive-routing-and-prerendering).
 
 :::moniker-end
 

@@ -830,7 +830,7 @@ The following example filters movies by a movie title entered in a search box. T
 
 For a working example, see the following resources:
 
-* [Build a Blazor movie database app tutorial](xref:blazor/tutorials/movie-database-app/index)
+* [Build a Blazor movie database app tutorial](../tutorials/movie-database-app/index.md)
 * [Blazor movie database sample app](https://github.com/dotnet/blazor-samples): Select the latest version folder in the repository. The sample folder for the tutorial's project is named `BlazorWebAppMovies`.
 
 ## Display name support
@@ -1082,7 +1082,7 @@ dotnet aspnet-codegenerator blazor -h
 
 ---
 
-For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example use of the QuickGrid scaffolder, see [Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md).
 
 <!-- UPDATE 12.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
                    We will continue to show this for now. The PU plans to look at it
@@ -1098,7 +1098,7 @@ This scenario is scheduled for improvement in an upcoming release of ASP.NET Cor
 
 In the meantime, you can address the problem using an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider> with a cancellation token. The cancellation token prevents concurrent queries by cancelling the previous request when a new request is issued.
 
-Consider the following example, which is based on the movie database `Index` component for the <xref:blazor/tutorials/movie-database-app/index> tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](xref:blazor/tutorials/movie-database-app/index#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
+Consider the following example, which is based on the movie database `Index` component for the [Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md) tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](../tutorials/movie-database-app/index.md#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
 
 `Components/Pages/MoviePages/Index.razor`:
 

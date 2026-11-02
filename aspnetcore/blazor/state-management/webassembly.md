@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor WebAssembly state management
 description: Learn how to persist user data (state) in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/state-management/webassembly
 ---
 # ASP.NET Core Blazor WebAssembly state management
 
@@ -25,7 +24,7 @@ Examples of user state held in browser memory include:
 When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.
 
 > [!NOTE]
-> [Protected Browser Storage](xref:blazor/state-management/protected-browser-storage#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
+> [Protected Browser Storage](protected-browser-storage.md#aspnet-core-protected-browser-storage) (<xref:Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage?displayProperty=fullName> namespace) relies on ASP.NET Core Data Protection and is only supported for server-side Blazor apps.
 
 ## Persist state across browser sessions
 
@@ -56,7 +55,7 @@ Because Blazor WebAssembly apps run entirely in the user's browser, they require
 For more information, see the following resources:
 
 * [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md)
-* <xref:blazor/security/webassembly/index>
+* [Secure ASP.NET Core Blazor WebAssembly](../security/webassembly/index.md)
 * Blazor *Security and Identity* articles
 
 For more information on Azure data storage options, see the following:
@@ -66,10 +65,10 @@ For more information on Azure data storage options, see the following:
 
 ## Related content
 
-* [State management using the URL](xref:blazor/state-management/index#url)
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
-* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
-* [Save app state before an authentication operation (Blazor WebAssembly)](xref:blazor/security/webassembly/additional-scenarios#save-app-state-before-an-authentication-operation)
+* [State management using the URL](index.md#url)
+* [In-memory state container service](index.md#in-memory-state-container-service)
+* [Cascading values and parameters](index.md#cascading-values-and-parameters)
+* [Save app state before an authentication operation (Blazor WebAssembly)](../security/webassembly/additional-scenarios.md#save-app-state-before-an-authentication-operation)
 * Managing state via an external server API
   * [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md)
-  * <xref:blazor/security/webassembly/index>
+  * [Secure ASP.NET Core Blazor WebAssembly](../security/webassembly/index.md)

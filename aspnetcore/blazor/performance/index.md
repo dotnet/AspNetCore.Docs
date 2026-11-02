@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor performance best practices
 description: Guidance on ASP.NET Core Blazor metrics and tracing, improving app performance, and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/index
 ---
 # ASP.NET Core Blazor performance best practices
 
@@ -18,7 +17,7 @@ Blazor is optimized for high performance in most realistic application UI scenar
 
 ## Ahead-of-time (AOT) compilation
 
-Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>.
+Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation).
 
 :::moniker-end
 

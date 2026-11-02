@@ -410,7 +410,7 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../../blazor/security/blazor-web-app-with-windows-authentication.md). Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
@@ -423,7 +423,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 ## Related content
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](../../../blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md)
 * [Role-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

@@ -202,7 +202,7 @@ Blazor apps that prerender their content on the server call <xref:Microsoft.AspN
 
 :::moniker range=">= aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
@@ -322,7 +322,7 @@ If a disposable component doesn't use a <xref:System.Threading.CancellationToken
 
 For more information on route parameters and constraints, see [ASP.NET Core Blazor routing](../fundamentals/routing.md).
 
-For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance/rendering#implement-setparametersasync-manually>.
+For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see [ASP.NET Core Blazor rendering performance best practices](../performance/rendering.md#implement-setparametersasync-manually).
 
 ## After component render (`OnAfterRender{Async}`)
 
@@ -718,7 +718,7 @@ By combining streaming rendering with persistent component state:
 For more information, see the following resources:
 
 * [ASP.NET Core Razor component rendering](rendering.md#streaming-rendering)
-* <xref:blazor/state-management/prerendered-state-persistence>.
+* [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
@@ -791,7 +791,7 @@ For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentT
 
 :::moniker range=">= aspnetcore-8.0"
 
-The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
+The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 

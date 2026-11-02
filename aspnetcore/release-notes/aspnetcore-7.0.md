@@ -276,8 +276,8 @@ Blazor has two new project templates for starting from a blank slate. The new **
 
 For more information, see the following articles:
 
-* <xref:blazor/tooling?view=aspnetcore-7.0>
-* <xref:blazor/project-structure?view=aspnetcore-7.0>
+* [Tooling for ASP.NET Core Blazor](../blazor/tooling.md?view=aspnetcore-7.0)
+* [ASP.NET Core Blazor project structure](../blazor/project-structure.md?view=aspnetcore-7.0)
 
 ### Blazor custom elements
 
@@ -398,8 +398,8 @@ New in .NET 7, Blazor WebAssembly supports creating dynamic authentication reque
 
 For more information, see the following articles:
 
-* <xref:blazor/security/webassembly/index?view=aspnetcore-7.0#customize-authentication>
-* <xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0#custom-authentication-request-scenarios>
+* [Secure ASP.NET Core Blazor WebAssembly](../blazor/security/webassembly/index.md?view=aspnetcore-7.0#customize-authentication)
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](../blazor/security/webassembly/additional-scenarios.md?view=aspnetcore-7.0#custom-authentication-request-scenarios)
 
 ### Blazor WebAssembly debugging improvements
 
@@ -517,7 +517,7 @@ New features in the `wasm-tools` workload for .NET 7 that help improve performan
 * [WebAssembly Single Instruction, Multiple Data (SIMD)](https://wikipedia.org/wiki/Single_instruction,_multiple_data) support (only with AOT, not supported by Apple Safari)
 * WebAssembly exception handling support
 
-For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
+For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-7.0).
 
 ## Blazor Hybrid
 

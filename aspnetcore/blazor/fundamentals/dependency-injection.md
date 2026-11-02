@@ -172,7 +172,7 @@ var builder = WebApplication.CreateBuilder(args);
 Client.Program.ConfigureCommonServices(builder.Services);
 ```
 
-For an example of this approach, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
+For an example of this approach, see [ASP.NET Core Blazor WebAssembly additional security scenarios](../security/webassembly/additional-scenarios.md#prerendering-with-authentication).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -199,7 +199,7 @@ Services can be configured with the lifetimes shown in the following table.
 
 | Lifetime | Description |
 | -------- | ----------- |
-| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | <p>Client-side doesn't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>Server-side development supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes a tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state in server-side apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.</p> |
+| <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Scoped*> | <p>Client-side doesn't currently have a concept of DI scopes. `Scoped`-registered services behave like `Singleton` services.</p><p>Server-side development supports the `Scoped` lifetime across HTTP requests but not across SignalR connection/circuit messages among components that are loaded on the client. The Razor Pages or MVC portion of the app treats scoped services normally and recreates the services on *each HTTP request* when navigating among pages or views or from a page or view to a component. Scoped services aren't reconstructed when navigating among components on the client, where the communication to the server takes place over the SignalR connection of the user's circuit, not via HTTP requests. In the following component scenarios on the client, scoped services are reconstructed because a new circuit is created for the user:</p><ul><li>The user closes the browser's window. The user opens a new window and navigates back to the app.</li><li>The user closes a tab of the app in a browser window. The user opens a new tab and navigates back to the app.</li><li>The user selects the browser's reload/refresh button.</li></ul><p>For more information on preserving user state in server-side apps, see [ASP.NET Core Blazor state management overview](../state-management/index.md) and [ASP.NET Core Blazor server-side state management](../state-management/server.md).</p> |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive the same instance of the service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
@@ -633,7 +633,7 @@ builder.Services.AddCircuitServicesAccessor();
 
 Access the circuit-scoped services by injecting the `CircuitServicesAccessor` where it's needed.
 
-For an example that shows how to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> set up using <xref:System.Net.Http.IHttpClientFactory>, see the circuit activity handler approach in <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+For an example that shows how to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> from a <xref:System.Net.Http.DelegatingHandler> set up using <xref:System.Net.Http.IHttpClientFactory>, see the circuit activity handler approach in [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware).
 
 :::moniker-end
 

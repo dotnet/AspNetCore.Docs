@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to secure a Blazor Web App with OpenID Connect (OIDC).
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 12/18/2025
-uid: blazor/security/blazor-web-app-oidc
 zone_pivot_groups: blazor-web-app-oidc-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)
@@ -19,7 +18,7 @@ This article describes how to secure a Blazor Web App with [OpenID Connect (OIDC
 
 :::moniker range=">= aspnetcore-9.0"
 
-For Microsoft Entra ID, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+For Microsoft Entra ID, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md).
 
 :::moniker-end
 
@@ -178,7 +177,7 @@ ME-ID tenant Authority example:
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
 
-The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md#sts-token-version).
 
 AAD B2C tenant Authority example:
 
@@ -382,7 +381,7 @@ The sample app only provides a user name and email for display purposes.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For Microsoft Entra ID, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+For Microsoft Entra ID, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md).
 
 :::moniker-end
 
@@ -396,7 +395,7 @@ The following specification is adopted:
 * Automatic non-interactive token refresh.
 * A separate web API project demonstrates a secure web API call for weather data.
 
-For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see <xref:blazor/security/blazor-web-app-entra>.
+For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md).
 
 ## Sample solution
 
@@ -528,7 +527,7 @@ ME-ID tenant Authority example:
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
 
-The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md#sts-token-version).
 
 AAD B2C tenant Authority example:
 
@@ -563,7 +562,7 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 The `BlazorWebAppOidc` project is the server-side project of the Blazor Web App.
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and [ASP.NET Core Blazor additional server-side security scenarios](additional-scenarios.md#use-a-token-handler-for-web-api-calls).
 
 `TokenHandler.cs`:
 
@@ -764,7 +763,7 @@ The sample app only provides a user name and email for display purposes.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see <xref:blazor/security/blazor-web-app-entra>.
+For Microsoft Entra ID or Azure AD B2C, you can use <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*> from [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) ([`Microsoft.Identity.Web` NuGet package](https://www.nuget.org/packages/Microsoft.Identity.Web), [API documentation](<xref:Microsoft.Identity.Web?displayProperty=fullName>)), which adds both the OIDC and Cookie authentication handlers with the appropriate defaults. The sample app and the guidance in this article don't use Microsoft Identity Web. The guidance demonstrates how to configure the OIDC handler *manually* for any OIDC provider. For more information on implementing Microsoft Identity Web, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md).
 
 :::moniker-end
 
@@ -777,7 +776,7 @@ The following specification is adopted:
 * Automatic non-interactive token refresh.
 * A separate web API project demonstrates a secure web API call for weather data.
 
-For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see <xref:blazor/security/blazor-web-app-entra>.
+For an alternative experience using [Microsoft Authentication Library for .NET](/entra/msal/dotnet/), [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/), and [Microsoft Entra ID](https://www.microsoft.com/security/business/identity-access/microsoft-entra-id), see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md).
 
 ## Sample solution
 
@@ -877,7 +876,7 @@ ME-ID tenant Authority example:
 jwtOptions.Authority = "https://sts.windows.net/aaaabbbb-0000-cccc-1111-dddd2222eeee/";
 ```
 
-The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md#sts-token-version).
 
 AAD B2C tenant Authority example:
 
@@ -912,7 +911,7 @@ jwtOptions.Audience = "https://contoso.onmicrosoft.com/11112222-bbbb-3333-cccc-4
 
 Automatic non-interactive token refresh is managed by a custom cookie refresher (`CookieOidcRefresher.cs`).
 
-A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>.
+A <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) manages attaching a user's access token to outgoing requests. The token handler only executes during static server-side rendering (static SSR), so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe in this scenario. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md) and [ASP.NET Core Blazor additional server-side security scenarios](additional-scenarios.md#use-a-token-handler-for-web-api-calls).
 
 `TokenHandler.cs`:
 
@@ -1203,7 +1202,7 @@ In the `MinimalApiJwt` project, add the following app settings configuration to 
 },
 ```
 
-The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
+The preceding example uses the V1 STS token URL format. For guidance on V2 STS tokens, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md#sts-token-version).
 
 Update the placeholders in the preceding configuration to match the values that the app uses in the `Program` file:
 
@@ -1216,7 +1215,7 @@ Authority formats adopt the following patterns:
 * Microsoft Entra External ID: `https://{DIRECTORY NAME}.ciamlogin.com/{TENANT ID}/v2.0`
 * B2C tenant type: `https://login.microsoftonline.com/{TENANT ID}/v2.0`
 
-The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see <xref:blazor/security/blazor-web-app-entra#sts-token-version>.
+The preceding example for the ME-ID tenant type uses the V1 STS token URL format. For guidance on V2 STS tokens, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md#sts-token-version).
 
 Audience formats adopt the following patterns (`{CLIENT ID}` is the Client Id of the web API; `{DIRECTORY NAME}` is the directory name, for example, `contoso`):
 
@@ -1377,7 +1376,7 @@ public sealed class UserInfo
 }
 ```
 
-At this point, Razor components can adopt [role-based and policy-based authorization](xref:blazor/security/index#role-based-and-policy-based-authorization). Application roles appear in `role` claims, one claim per role.
+At this point, Razor components can adopt [role-based and policy-based authorization](index.md#role-based-and-policy-based-authorization). Application roles appear in `role` claims, one claim per role.
 
 ## Application roles for apps registered with Microsoft Entra (ME-ID)
 
@@ -1395,7 +1394,7 @@ Although you can't [assign roles to groups](/entra/identity/role-based-access-co
 
 When working with the default directory, follow the guidance in [Add app roles to your application and receive them in the token (ME-ID documentation)](/entra/identity-platform/howto-add-app-roles-in-apps) to configure and assign roles. If you aren't working with the default directory, edit the app's manifest in the Azure portal to establish the app's roles manually in the `appRoles` entry of the manifest file. For more information, see [Configure the role claim (ME-ID documentation)](/entra/identity-platform/enterprise-app-role-management).
 
-A user's Azure security groups arrive in `groups` claims, and a user's built-in ME-ID administrator role assignments arrive in [well-known IDs (`wids`) claims](/entra/identity-platform/access-tokens#payload-claims). Values for both claim types are GUIDs. When received by the app, these claims can be used to establish [role and policy authorization in Razor components](xref:blazor/security/index#role-based-and-policy-based-authorization).
+A user's Azure security groups arrive in `groups` claims, and a user's built-in ME-ID administrator role assignments arrive in [well-known IDs (`wids`) claims](/entra/identity-platform/access-tokens#payload-claims). Values for both claim types are GUIDs. When received by the app, these claims can be used to establish [role and policy authorization in Razor components](index.md#role-based-and-policy-based-authorization).
 
 In the app's manifest in the Azure portal, set the [`groupMembershipClaims` attribute](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute) to `All`. A value of `All` results in ME-ID sending all of the security/distribution groups (`groups` claims) and roles (`wids` claims) of the signed-in user. To set the `groupMembershipClaims` attribute:
 
@@ -1466,7 +1465,7 @@ public sealed class UserInfo
 }
 ```
 
-At this point, Razor components can adopt [role-based and policy-based authorization](xref:blazor/security/index#role-based-and-policy-based-authorization):
+At this point, Razor components can adopt [role-based and policy-based authorization](index.md#role-based-and-policy-based-authorization):
 
 * Application roles appear in `roles` claims, one claim per role.
 * Security groups appear in `groups` claims, one claim per group. The security group GUIDs appear in the Azure portal when you create a security group and are listed when selecting **Identity** > **Overview** > **Groups** > **View**.
@@ -1517,9 +1516,9 @@ We also recommend using a shared [Data Protection](../../security/data-protectio
                  addressed for .NET 11. -->
 
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
-* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
+* [`AuthenticationStateProvider` service](index.md#authenticationstateprovider-service)
+* [Manage authentication state in Blazor Web Apps](index.md#manage-authentication-state-in-blazor-web-apps)
 * [Refresh token during http request in Blazor Interactive Server with OIDC (`dotnet/aspnetcore` #55213)](https://github.com/dotnet/aspnetcore/issues/55213)
-* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
-* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
-* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler`](additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware)
+* [Opaque (reference) access token support](additional-scenarios.md#opaque-reference-access-token-support)

@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor state management using protected browser storage
 description: Learn how to persist user data (state) in Blazor apps using browser storage.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/state-management/protected-browser-storage
 ---
 # ASP.NET Core Blazor protected browser storage
 
@@ -95,7 +94,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 The `@using` directive can be placed in the app's imports file (`_Imports.razor`) instead of in the component. Use of the imports file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](../project-structure.md), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()

@@ -5,7 +5,6 @@ description: Learn how to secure Blazor WebAssembly apps as single-page applicat
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 09/18/2026
-uid: blazor/security/webassembly/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly
 
@@ -13,7 +12,7 @@ uid: blazor/security/webassembly/index
 
 Blazor WebAssembly apps are secured in the same manner as single-page applications (SPAs). There are several approaches for authenticating users to SPAs, but the most common and comprehensive approach is to use an implementation based on the [OAuth 2.0 protocol](https://oauth.net/), such as [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/).
 
-The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Related content* section](xref:blazor/security/index#related-content).
+The Blazor WebAssembly security documentation primarily focuses on how to accomplish user authentication and authorization tasks. For OAuth 2.0/OIDC general concept coverage, see the resources in the [main overview article's *Related content* section](../index.md#related-content).
 
 ## Client-side/SPA security of sensitive data and credentials
 
@@ -24,7 +23,7 @@ The following technologies are useful for storing sensitive data, which can be u
 * [Secret Manager tool](../../../security/app-secrets.md): Only used on the local development system.
 * [Azure Key Vault](https://azure.microsoft.com/products/key-vault/): Can be used for locally-running apps in the `Development` environment and for `Staging`/`Production` deployments.
 
-For examples of the preceding approaches, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery#configure-a-secret-for-the-email-providers-security-key>.
+For examples of the preceding approaches, see [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](standalone-with-identity/account-confirmation-and-password-recovery.md#configure-a-secret-for-the-email-providers-security-key).
 
 ## Web API requests
 
@@ -124,7 +123,7 @@ The `Authentication` component (`Authentication.razor`) handles remote authentic
 
 Authentication actions, such as registering or signing in a user, are passed to the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticatorViewCore`1> component, which persists and controls state across authentication operations.
 
-For more information and examples, see <xref:blazor/security/webassembly/additional-scenarios>.
+For more information and examples, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Authorization
 
@@ -159,7 +158,7 @@ The state stored by the History API provides the following benefits for remote a
 * A user signing in (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignIn?displayProperty=nameWithType>) with the current URI for the return URL.
 * A user signing out (<xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.InteractionType.SignOut?displayProperty=nameWithType>) with the return URL.
 
-The following authentication scenarios are covered in the <xref:blazor/security/webassembly/additional-scenarios#custom-authentication-request-scenarios> article:
+The following authentication scenarios are covered in the [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md#custom-authentication-request-scenarios) article:
 
 * Customize the login process
 * Logout with a custom return URL
@@ -171,11 +170,11 @@ The following authentication scenarios are covered in the <xref:blazor/security/
 
 ## Blazor WebAssembly authorization patterns
 
-*For patterns that apply to server-side Blazor apps (Blazor Web Apps, Blazor Server apps), see <xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns>.*
+*For patterns that apply to server-side Blazor apps (Blazor Web Apps, Blazor Server apps), see [ASP.NET Core Blazor additional server-side security scenarios](../additional-scenarios.md#server-side-blazor-app-authorization-patterns).*
 
-Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The [server-side fallback policy](../../../security/authorization/policies.md#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
+Unlike server-side Blazor apps, Blazor WebAssembly apps don't support setting an <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The [server-side fallback policy](../../../security/authorization/policies.md#default-and-fallback-policies) is enforced by authorization middleware and isn't a client-side authorization mechanism. Therefore, the only supported pattern for Blazor WebAssembly apps is to apply the [`[Authorize]` attribute](../index.md#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***one*** of the following approaches:
 
-* In the app's imports file, add an [`@using`](../../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+* In the app's imports file, add an [`@using`](../../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](../index.md#authorize-attribute).
 
   `_Imports.razor`:
 
@@ -234,7 +233,7 @@ For standalone Blazor WebAssembly apps in ASP.NET Core in .NET 6 or later, we re
 
 :::moniker range="< aspnetcore-8.0"
 
-For hosted Blazor WebAssembly solutions, refresh tokens can be maintained and used by the server-side app in order to access third-party APIs. For more information, see <xref:blazor/security/webassembly/additional-scenarios#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party>.
+For hosted Blazor WebAssembly solutions, refresh tokens can be maintained and used by the server-side app in order to access third-party APIs. For more information, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md#authenticate-users-with-a-third-party-provider-and-call-protected-apis-on-the-host-server-and-the-third-party).
 
 :::moniker-end
 
@@ -245,12 +244,12 @@ For more information, see the following resources:
 
 ## Establish claims for users
 
-Apps often require claims for users based on a web API call to a server. For example, claims are frequently used to [establish authorization](xref:blazor/security/index#authorization) in an app. In these scenarios, the app requests an access token to access the service and uses the token to obtain user data for creating claims.
+Apps often require claims for users based on a web API call to a server. For example, claims are frequently used to [establish authorization](../index.md#authorization) in an app. In these scenarios, the app requests an access token to access the service and uses the token to obtain user data for creating claims.
 
 For examples, see the following resources:
 
-* [Additional scenarios: Customize the user](xref:blazor/security/webassembly/additional-scenarios#customize-the-user)
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* [Additional scenarios: Customize the user](additional-scenarios.md#customize-the-user)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md)
 
 ## Prerendering support
 
@@ -266,7 +265,7 @@ For examples, see the following resources:
 
 :::moniker-end
 
-For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
+For more information, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md#prerendering-with-authentication).
 
 ## Azure App Service on Linux with Identity Server
 
@@ -334,18 +333,18 @@ Articles under this *Overview* provide information on authenticating users in Bl
 
 Standalone Blazor WebAssembly apps:
 
-* [General guidance for OIDC providers and the WebAssembly Authentication Library](xref:blazor/security/webassembly/standalone-with-authentication-library)
-* [Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
-* [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/standalone-with-azure-active-directory-b2c)
+* [General guidance for OIDC providers and the WebAssembly Authentication Library](standalone-with-authentication-library.md)
+* [Microsoft Accounts](standalone-with-microsoft-accounts.md)
+* [Microsoft Entra ID (ME-ID)](standalone-with-microsoft-entra-id.md)
+* [Azure Active Directory (AAD) B2C](standalone-with-azure-active-directory-b2c.md)
 
 :::moniker range="< aspnetcore-8.0"
 
 Hosted Blazor WebAssembly apps:
 
-* [Microsoft Entra ID (ME-ID)](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
-* [Azure Active Directory (AAD) B2C](xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c)
-* [Identity Server](xref:blazor/security/webassembly/hosted-with-identity-server)
+* [Microsoft Entra ID (ME-ID)](hosted-with-microsoft-entra-id.md)
+* [Azure Active Directory (AAD) B2C](hosted-with-azure-active-directory-b2c.md)
+* [Identity Server](hosted-with-identity-server.md)
 
 :::moniker-end
 
@@ -353,8 +352,8 @@ Hosted Blazor WebAssembly apps:
 
 Further configuration guidance is found in the following articles:
 
-* <xref:blazor/security/webassembly/additional-scenarios>
-* <xref:blazor/security/webassembly/graph-api>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md)
 
 ## Use the Authorization Code flow with PKCE
 
@@ -376,6 +375,6 @@ For more information, see the following resources:
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
   * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.
-* [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+* [Prerendering with authentication](additional-scenarios.md#prerendering-with-authentication)
 * [WebAssembly: Security](https://webassembly.org/docs/security/)
 * [WebAssembly Specification: Security Considerations](https://webassembly.github.io/spec/core/intro/introduction.html#security-considerations)

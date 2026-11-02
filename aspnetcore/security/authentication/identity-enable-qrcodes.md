@@ -30,8 +30,8 @@ Two-factor authentication doesn't happen by using an external authentication pro
 
 If you're working with Blazor in ASP.NET Core 8.0 or later, you can find similar guidance in the following articles:
 
-* <xref:blazor/security/qrcodes-for-authenticator-apps>
-* <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps>
+* [Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App](../../blazor/security/qrcodes-for-authenticator-apps.md)
+* [Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../../blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps.md)
 
 ## Add QR codes to the 2FA configuration page
 
@@ -118,5 +118,5 @@ TOTP (Time-based One-Time Password) authentication depends on both the server an
 
 ## Related content
 
-- <xref:blazor/security/qrcodes-for-authenticator-apps>
-- <xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps>
+- [Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App](../../blazor/security/qrcodes-for-authenticator-apps.md)
+- [Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../../blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps.md)

@@ -21,7 +21,7 @@ This article explains Razor component prerendering scenarios for server-rendered
 
 Prerendering is enabled by default for interactive components.
 
-Internal navigation with interactive routing doesn't use prerendering because the page is already interactive. For more information, see [Static versus interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering).
+Internal navigation with interactive routing doesn't use prerendering because the page is already interactive. For more information, see [Static versus interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and [Interactive routing and prerendering](../state-management/prerendered-state-persistence.md#interactive-routing-and-prerendering).
 
 [`OnAfterRender{Async}` component lifecycle events](lifecycle.md#after-component-render-onafterrenderasync) aren't called when prerendering, only after the component renders interactively.
 
@@ -70,7 +70,7 @@ Disabling prerendering using the preceding techniques only takes effect for top-
 
 ## Persist prerendered state
 
-Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered. For guidance on how to persist state during prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
+Without persisting prerendered state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced when the component is rerendered. For guidance on how to persist state during prerendering, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker range=">= aspnetcore-8.0"
 

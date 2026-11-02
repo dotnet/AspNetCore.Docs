@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/29/2026
-uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
 
@@ -92,7 +91,7 @@ services.Configure<CircuitOptions>(options =>
 });
 ```
 
-Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
@@ -153,7 +152,7 @@ services.AddRazorComponents()
 
 In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](../../security/app-secrets.md#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
-For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 ## Pause and resume circuits
 
@@ -435,7 +434,7 @@ var app = builder.Build();
 // ... rest of pipeline
 ```
 
-Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](../fundamentals/startup.md). Place the following after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script):
+Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](../fundamentals/startup.md). Place the following after the [server-side Blazor script reference](../project-structure.md#location-of-the-blazor-script):
 
 ```razor
 <script> 
@@ -478,7 +477,7 @@ In a component, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCor
 }
 ```
 
-For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 -->
 
@@ -804,11 +803,11 @@ For more information on Azure data storage options, see the following:
 
 ## Browser storage
 
-For more information, see <xref:blazor/state-management/protected-browser-storage>.
+For more information, see [ASP.NET Core Blazor state management using protected browser storage](protected-browser-storage.md).
 
 ## Related content
 
-* [State management using the URL](xref:blazor/state-management/index#url)
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
-* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
+* [State management using the URL](index.md#url)
+* [In-memory state container service](index.md#in-memory-state-container-service)
+* [Cascading values and parameters](index.md#cascading-values-and-parameters)
 * [Managing state via an external server API](../call-web-api.md)

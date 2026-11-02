@@ -34,13 +34,13 @@ By default, Interactive Server components:
 
 * Adopt a [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) Content Security Policy (CSP) directive set to `'self'`, which is the default and only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
-The default `frame-ancestors` CSP can be changed by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null` if you want to [configure the CSP in a centralized way](xref:blazor/security/content-security-policy) or `'none'` for an even stricter policy. When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it will make the app vulnerable to attack. For more information, see <xref:blazor/security/content-security-policy#the-frame-ancestors-directive> and the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
+The default `frame-ancestors` CSP can be changed by setting the value of <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null` if you want to [configure the CSP in a centralized way](../security/content-security-policy.md) or `'none'` for an even stricter policy. When the `frame-ancestors` CSP is managed in a centralized fashion, care must be taken to apply a policy whenever the first document is rendered. We don't recommend removing the policy completely, as it will make the app vulnerable to attack. For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../security/content-security-policy.md#the-frame-ancestors-directive) and the [MDN CSP Guide](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP).
 
 Use <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureWebSocketAcceptContext> to configure the <xref:Microsoft.AspNetCore.Http.WebSocketAcceptContext> for the WebSocket connections used by the server components. By default, a policy that enables compression and sets a CSP for the frame ancestors defined in <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> is applied.
 
 Usage examples:
 
-Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Disable compression by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> to `true`, which reduces the [vulnerability of the app to attack](../security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -54,7 +54,7 @@ builder.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
-When compression is enabled, remove the `frame-ancestors` CSP by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](xref:blazor/security/content-security-policy):
+When compression is enabled, remove the `frame-ancestors` CSP by setting <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ContentSecurityFrameAncestorsPolicy> to `null`. This scenario is only recommended for apps that [set the CSP in a centralized way](../security/content-security-policy.md):
 
 ```csharp
 builder.MapRazorComponents<App>()
@@ -72,7 +72,7 @@ builder.MapRazorComponents<App>()
 >
 > Additional options include specifying one or more host sources and scheme sources.
 
-For security implications, see <xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled>. For more information, see <xref:blazor/security/content-security-policy> and [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
+For security implications, see [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled). For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../security/content-security-policy.md) and [CSP: `frame-ancestors` (MDN documentation)](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors).
 
 :::moniker-end
 
@@ -166,7 +166,7 @@ For more information, see [ASP.NET Core SignalR configuration](../../signalr/con
 
 :::moniker range=">= aspnetcore-8.0"
 
-If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
+If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
@@ -193,7 +193,7 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional client-side resources
 
-* [Secure a SignalR hub](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
+* [Secure a SignalR hub](../security/webassembly/index.md#secure-a-signalr-hub)
 * [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))
@@ -314,7 +314,7 @@ services.AddServerSideBlazor().AddHubOptions(options =>
 :::moniker-end
 
 > [!WARNING]
-> The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks).
+> The default value of <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> is 32 KB. Increasing the value may increase the risk of [Denial of Service (DoS) attacks](../security/interactive-server-side-rendering.md#denial-of-service-dos-attacks).
 >
 > Blazor relies on <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumParallelInvocationsPerClient> set to 1, which is the default value. For more information, see [MaximumParallelInvocationsPerClient > 1 breaks file upload in Blazor Server mode (`dotnet/aspnetcore` #53951)](https://github.com/dotnet/aspnetcore/issues/53951).
 
@@ -446,7 +446,7 @@ builder.Services.AddRazorComponents().AddInteractiveServerComponents()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](../security/interactive-server-side-rendering.md#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in server-side apps that uses techniques similar to the [`InputFile` component](../file-uploads.md), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
@@ -465,7 +465,7 @@ builder.Services.AddServerSideBlazor()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](../security/interactive-server-side-rendering.md#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 A better option for reading large payloads is to send the content in smaller chunks and process the payload as a <xref:System.IO.Stream>. This can be used when reading large JavaScript (JS) interop JSON payloads or if JS interop data is available as raw bytes. For an example that demonstrates sending large binary payloads in Blazor Server that uses techniques similar to the [`InputFile` component](../file-uploads.md), see the [Binary Submit sample app](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/BinarySubmit) and the [Blazor `InputLargeTextArea` Component Sample](https://github.com/aspnet/samples/tree/main/samples/aspnetcore/blazor/InputLargeTextArea).
 
@@ -484,7 +484,7 @@ services.AddServerSideBlazor()
     .AddHubOptions(options => options.MaximumReceiveMessageSize = 64 * 1024);
 ```
 
-Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
+Increasing the SignalR incoming message size limit comes at the cost of requiring more server resources, and it increases the risk of [Denial of Service (DoS) attacks](../security/interactive-server-side-rendering.md#denial-of-service-dos-attacks). Additionally, reading a large amount of content in to memory as strings or byte arrays can also result in allocations that work poorly with the garbage collector, resulting in additional performance penalties.
 
 :::moniker-end
 
@@ -557,7 +557,7 @@ If reconnection fails, the user is instructed to retry or reload the page:
 
 :::moniker-end
 
-If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+If reconnection succeeds, user state is often lost. Custom code can be added to any component to save and reload user state across connection failures. For more information, see [ASP.NET Core Blazor state management overview](../state-management/index.md) and [ASP.NET Core Blazor server-side state management](../state-management/server.md).
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -569,7 +569,7 @@ To create UI elements that track reconnection state, the following table describ
 | CSS class | Event | Indicates&hellip; |
 | --- | --- | --- |
 | `components-reconnect-show` | `show` | A lost connection. The client is attempting to reconnect. The reconnection modal is shown. |
-| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](xref:blazor/state-management/server#pause-and-resume-circuits). |
+| `components-reconnect-paused` | `paused` | The connection is paused. For more information, see [Pause and resume circuits](../state-management/server.md#pause-and-resume-circuits). |
 | `components-reconnect-hide` | `hide` | An active connection is re-established to the server. The reconnection model is closed. |
 | `components-reconnect-retrying` | `retrying` | The client is attempting to reconnect. |
 | `components-reconnect-failed` | `failed` | Reconnection failed, probably due to a network failure. |
@@ -767,7 +767,7 @@ When the custom reconnect modal appears, it renders the following content with a
 
 :::moniker range=">= aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
@@ -874,7 +874,7 @@ builder.Services.AddIdleCircuitHandler(options =>
 Circuit activity handlers also provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. For more information and examples, see:
 
 * [ASP.NET Core Blazor dependency injection](dependency-injection.md#access-server-side-blazor-services-from-a-different-di-scope)
-* <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>
+* [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware)
 
 :::moniker-end
 
@@ -945,7 +945,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 The following example for the `Pages/_Host.cshtml` file (Blazor Server, all versions except ASP.NET Core in .NET 6) or `Pages/_Layout.cshtml` file (Blazor Server, ASP.NET Core in .NET 6).
 
@@ -966,7 +966,7 @@ Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1018,7 +1018,7 @@ The following example for the `Pages/_Host.cshtml` file (Blazor Server, all vers
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds), <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds), and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. The following example shows the assignment of default values:
 
@@ -1074,7 +1074,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1098,7 +1098,7 @@ Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1267,7 +1267,7 @@ Set the following:
 
 The server timeout can be increased, and the Keep-Alive interval can remain the same. The important consideration is that if you change the values, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-In the following [startup configuration](startup.md) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
+In the following [startup configuration](startup.md) example ([location of the Blazor script](../project-structure.md#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`withKeepAliveInterval`) isn't set and uses its default value of 15 seconds.
 
 :::moniker-end
 
@@ -1315,7 +1315,7 @@ Blazor Server:
 
 When creating a hub connection in a component, set the server timeout (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.WithServerTimeout*>, default: 30 seconds) on the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilder>. Set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. Confirm that the timeouts are at least double the Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.WithKeepAliveInterval*>/<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) and that the Keep-Alive value matches between server and client.
 
-The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds. The Keep-Alive interval isn't set and uses its default value of 15 seconds.
+The following example is based on the `Index` component in the [SignalR with Blazor tutorial](../tutorials/signalr-blazor.md). The server timeout is increased to 60 seconds, and the handshake timeout is increased to 30 seconds. The Keep-Alive interval isn't set and uses its default value of 15 seconds.
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -1344,7 +1344,7 @@ Set the following:
 
 The server timeout can be increased, and the Keep-Alive interval can remain the same. The important consideration is that if you change the values, make sure that the server timeout is at least double the value of the Keep-Alive interval and that the Keep-Alive interval values match between server and client. For more information, see the [Configure SignalR timeouts and Keep-Alive on the client](#configure-signalr-timeouts-and-keep-alive-on-the-client) section.
 
-In the following [startup configuration](startup.md) example ([location of the Blazor script](xref:blazor/project-structure#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`keepAliveIntervalInMilliseconds`) isn't set and uses its default value of 15 seconds.
+In the following [startup configuration](startup.md) example ([location of the Blazor script](../project-structure.md#location-of-the-blazor-script)), a custom value of 60 seconds is used for the server timeout. The Keep-Alive interval (`keepAliveIntervalInMilliseconds`) isn't set and uses its default value of 15 seconds.
 
 In `Pages/_Host.cshtml`:
 
@@ -1365,7 +1365,7 @@ In `Pages/_Host.cshtml`:
 
 When creating a hub connection in a component, set the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> (default: 30 seconds) and <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> (default: 15 seconds) on the built <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection>. Confirm that the timeouts are at least double the Keep-Alive interval. Confirm that the Keep-Alive interval matches between server and client.
 
-The following example is based on the `Index` component in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> is increased to 60 seconds, and the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> is increased to 30 seconds. The Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) isn't set and uses its default value of 15 seconds.
+The following example is based on the `Index` component in the [SignalR with Blazor tutorial](../tutorials/signalr-blazor.md). The <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.ServerTimeout> is increased to 60 seconds, and the <xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.HandshakeTimeout> is increased to 30 seconds. The Keep-Alive interval (<xref:Microsoft.AspNetCore.SignalR.Client.HubConnection.KeepAliveInterval>) isn't set and uses its default value of 15 seconds.
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -1421,7 +1421,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1445,7 +1445,7 @@ Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1487,7 +1487,7 @@ The default reconnection behavior requires the user to take manual action to ref
 <script src="boot.js"></script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 Create the following `wwwroot/boot.js` file.
 
@@ -1689,7 +1689,7 @@ When a circuit ends because a user has disconnected and the framework is cleanin
 
 ## Server-side circuit handler to capture users for custom services
 
-Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
+Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to capture a user from the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and set that user in a service. For more information and example code, see [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md#circuit-handler-to-capture-users-for-custom-services).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1701,7 +1701,7 @@ Use a <xref:Microsoft.AspNetCore.Components.Server.Circuits.CircuitHandler> to c
 
 ## Start the SignalR circuit at a different URL
 
-Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)). Manually establish the circuit URL using `Blazor.start`. The following examples use the path `/signalr`.
+Prevent automatically starting the app by adding `autostart="false"` to the Blazor `<script>` tag ([location of the Blazor start script](../project-structure.md#location-of-the-blazor-script)). Manually establish the circuit URL using `Blazor.start`. The following examples use the path `/signalr`.
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
@@ -1816,7 +1816,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)).
+In the preceding code, `NavManager` is a <xref:Microsoft.AspNetCore.Components.NavigationManager>, and `AuthenticationStateProvider` is an <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service instance ([`AuthenticationStateProvider` documentation](../security/authentication-state.md)).
 
 ## Configure the hub URL endpoint for a loopback connection
 
@@ -1894,10 +1894,10 @@ The following example:
 * [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
 * [ASP.NET Core SignalR configuration](../../signalr/configuration.md)
 * Server-side security documentation
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/interactive-server-side-rendering>
-  * <xref:blazor/security/additional-scenarios>
+  * [ASP.NET Core Blazor authentication and authorization](../security/index.md)
+  * [ASP.NET Core Blazor authentication and authorization](../security/index.md)
+  * [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../security/interactive-server-side-rendering.md)
+  * [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md)
 * [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md)
 * [Server-side reconnection events and component lifecycle events](../components/lifecycle.md#blazor-server-reconnection-events)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)

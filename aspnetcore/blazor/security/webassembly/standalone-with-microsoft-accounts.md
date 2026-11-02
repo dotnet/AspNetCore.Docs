@@ -4,7 +4,6 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Accounts
 
@@ -12,7 +11,7 @@ uid: blazor/security/webassembly/standalone-with-microsoft-accounts
 
 This article explains how to create a [standalone Blazor WebAssembly app](../../hosting-models.md#blazor-webassembly) that uses [Microsoft Accounts with Microsoft Entra (ME-ID)](/security/zero-trust/develop/identity-supported-account-types) for authentication.
 
-For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Walkthrough
 
@@ -46,7 +45,7 @@ Record the Application (client) ID (for example, `00001111-aaaa-2222-bbbb-3333cc
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
 1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
-1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see <xref:blazor/security/webassembly/index#use-the-authorization-code-flow-with-pkce>.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see [Secure ASP.NET Core Blazor WebAssembly](index.md#use-the-authorization-code-flow-with-pkce).
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.
 
@@ -155,12 +154,12 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
 > [!NOTE]
-> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>  for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
+> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>  for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent).
 
 For more information, see the following sections of the *Additional scenarios* article:
 
-* [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
-* [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [Request additional access tokens](additional-scenarios.md#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](additional-scenarios.md#attach-tokens-to-outgoing-requests)
 * [Quickstart: Configure an application to expose web APIs](/entra/identity-platform/quickstart-configure-app-expose-web-apis)
 
 :::moniker range=">= aspnetcore-5.0"
@@ -208,9 +207,9 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 ## Related content
 
-* <xref:blazor/security/webassembly/additional-scenarios>
-* [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
-* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:blazor/security/webassembly/meid-groups-roles>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Build a custom version of the Authentication.MSAL JavaScript library](additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md)
 * [Quickstart: Register an application with the Microsoft identity platform](/entra/identity-platform/quickstart-register-app#register-a-new-application-using-the-azure-portal)
 * [Quickstart: Configure an application to expose web APIs](/entra/identity-platform/quickstart-configure-app-expose-web-apis)

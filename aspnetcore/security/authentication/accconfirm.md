@@ -22,8 +22,8 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 For Blazor guidance, which adds to or supersedes the guidance in this article, see the following resources:
 
-* <xref:blazor/security/account-confirmation-and-password-recovery>
-* <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>
+* [Account confirmation and password recovery in ASP.NET Core Blazor](../../blazor/security/account-confirmation-and-password-recovery.md)
+* [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../../blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md)
 
 :::moniker-end
 

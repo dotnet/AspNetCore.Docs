@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor project structure
 description: Learn about ASP.NET Core Blazor app project structure.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/project-structure
 ---
 # ASP.NET Core Blazor project structure
 
@@ -424,7 +423,7 @@ A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core proje
 * ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
 * ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
 
-The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md).
 
 The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
 
@@ -478,7 +477,7 @@ A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core proje
 * ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
 * ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
 
-The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md).
 
 The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
 
@@ -532,7 +531,7 @@ A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core proje
 * ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
 * ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
 
-The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md).
 
 The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
 
@@ -584,7 +583,7 @@ A *hosted Blazor WebAssembly solution* includes the following ASP.NET Core proje
 * ":::no-loc text="Server":::": An app that serves the Blazor WebAssembly app and weather data to clients.
 * ":::no-loc text="Shared":::": A project that maintains common classes, methods, and resources.
 
-The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see <xref:blazor/tooling>.
+The solution is generated from the Blazor WebAssembly project template in Visual Studio with the **ASP.NET Core Hosted** checkbox selected or with the `-ho|--hosted` option using the .NET CLI's `dotnet new blazorwasm` command. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md).
 
 The project structure of the client-side app in a hosted Blazor Webassembly solution (":::no-loc text="Client":::" project) is the same as the project structure for a standalone Blazor WebAssembly app. Additional files in a hosted Blazor WebAssembly solution:
 
@@ -733,7 +732,7 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 :::moniker range=">= aspnetcore-7.0"
 
-* <xref:blazor/tooling>
+* [Tooling for ASP.NET Core Blazor](tooling.md)
 * [ASP.NET Core Blazor hosting models](hosting-models.md)
 * [APIs overview](../fundamentals/apis.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))
@@ -742,7 +741,7 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 
 :::moniker range="< aspnetcore-7.0"
 
-* <xref:blazor/tooling>
+* [Tooling for ASP.NET Core Blazor](tooling.md)
 * [ASP.NET Core Blazor hosting models](hosting-models.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))
 

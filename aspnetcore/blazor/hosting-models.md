@@ -91,13 +91,13 @@ Blazor Web Apps can use the Blazor WebAssembly hosting model to enable client-si
 
 When the Blazor WebAssembly app is created for deployment without a backend ASP.NET Core app to serve its files, the app is called a *standalone* Blazor WebAssembly app.
 
-When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serve its files, the app is called a *hosted* Blazor WebAssembly app. Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](../web-api/index.md), [gRPC-web](../grpc/index.md), and [SignalR](../signalr/introduction.md) (<xref:blazor/tutorials/signalr-blazor>).
+When a standalone Blazor WebAssembly app uses a backend ASP.NET Core app to serve its files, the app is called a *hosted* Blazor WebAssembly app. Using hosted Blazor WebAssembly, you get a full-stack web development experience with .NET, including the ability to share code between the client and server apps, support for prerendering, and integration with MVC and Razor Pages. A hosted client app can interact with its backend server app over the network using a variety of messaging frameworks and protocols, such as [web API](../web-api/index.md), [gRPC-web](../grpc/index.md), and [SignalR](../signalr/introduction.md) ([Use ASP.NET Core SignalR with Blazor](tutorials/signalr-blazor.md)).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0"
 
-A Blazor WebAssembly app built as a [Progressive Web App (PWA)](xref:blazor/progressive-web-app/index) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
+A Blazor WebAssembly app built as a [Progressive Web App (PWA)](progressive-web-app/index.md) uses modern browser APIs to enable many of the capabilities of a native client app, such as working offline, running in its own app window, launching from the host's operating system, receiving push notifications, and automatically updating in the background.
 
 :::moniker-end
 
@@ -134,11 +134,11 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>. 
+Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation). 
 
-The same [.NET WebAssembly build tools](xref:blazor/tooling/webassembly) used for AOT compilation also [relink the .NET WebAssembly runtime](xref:blazor/tooling/webassembly#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
+The same [.NET WebAssembly build tools](webassembly-build-tools-and-aot.md) used for AOT compilation also [relink the .NET WebAssembly runtime](webassembly-build-tools-and-aot.md#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
 
-WebAssembly-rendered Razor components can use [native dependencies](xref:blazor/webassembly-native-dependencies) built to run on WebAssembly.
+WebAssembly-rendered Razor components can use [native dependencies](webassembly-native-dependencies.md) built to run on WebAssembly.
 
 :::moniker-end
 
@@ -213,7 +213,7 @@ Feature | Blazor Server | Blazor WebAssembly (Wasm) | Blazor Hybrid
 [Web-based deployment](#web-based-deployment) | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">✔️</span><span class="visually-hidden">Supported</span> | <span aria-hidden="true">❌</span><span class="visually-hidden">Not supported</span>
 
 &dagger;Blazor WebAssembly and Blazor Hybrid apps can use server-based APIs to access server/network resources and access private and secure app code.  
-&Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation).
+&Dagger;Blazor WebAssembly only reaches near-native performance with [ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation).
 
 :::moniker-end
 
@@ -233,7 +233,7 @@ Feature | Blazor Server | Blazor WebAssembly (Wasm)
 
 :::moniker-end
 
-After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see <xref:blazor/tooling#blazor-template-options>.
+After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md#blazor-template-options).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -316,7 +316,7 @@ Blazor Server apps have relatively small payload sizes with faster initial load 
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
+Components rendered for the Blazor WebAssembly hosting model, including Progressive Web Apps (PWAs), and standalone Blazor WebAssembly apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform. Consider using [ahead-of-time (AOT) compiled](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation) to improve runtime performance when using Blazor WebAssembly.
 
 :::moniker-end
 
@@ -324,7 +324,7 @@ Components rendered for the Blazor WebAssembly hosting model, including Progress
 
 Blazor Hybrid apps run using the .NET runtime natively on the target platform, which offers the best possible speed.
 
-Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation) for WebAssembly in the browser.
+Blazor WebAssembly, including Progressive Web Apps (PWAs), apps run using the .NET runtime for WebAssembly, which is slower than running directly on the platform, even for apps that are [ahead-of-time (AOT) compiled](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation) for WebAssembly in the browser.
 
 :::moniker-end
 

@@ -140,7 +140,7 @@ const btn = document.querySelector("#showQuoteBtn");
 btn.addEventListener("click", showQuote);
 ```
 
-After the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
+After the [Blazor script](../project-structure.md#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
 
 ```html
 <script src="_framework/{BLAZOR SCRIPT}"></script>

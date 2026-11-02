@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor WebAssembly runtime performance
 description: Learn about ASP.NET Core Blazor WebAssembly runtime performance.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/webassembly-runtime-performance
 ---
 # ASP.NET Core Blazor WebAssembly runtime performance
 
@@ -50,7 +49,7 @@ When building a Blazor app that runs on the client and targets mobile device bro
 
 One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
 
-Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see <xref:blazor/tooling#net-webassembly-build-tools>.
+Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see [Tooling for ASP.NET Core Blazor](../tooling.md#net-webassembly-build-tools).
 
 With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see [ASP.NET Core Blazor globalization and localization](../globalization-localization.md#invariant-globalization).
 
@@ -93,7 +92,7 @@ For more information, see [Configuring and hosting .NET WebAssembly applications
 
 ## Related content
 
-* <xref:blazor/performance/webassembly-browser-developer-tools>
-* <xref:blazor/performance/webassembly-event-pipe>
+* [ASP.NET Core Blazor WebAssembly browser developer tools diagnostics](webassembly-browser-developer-tools-diagnostics.md)
+* [ASP.NET Core Blazor WebAssembly Event Pipe diagnostics](webassembly-event-pipe-diagnostics.md)
 * [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)

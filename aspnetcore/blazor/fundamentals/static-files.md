@@ -220,7 +220,7 @@ The preceding code results in the following import map:
 
 The `ImportMap` component is rendered as an inline `<script>` tag, which violates a strict [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) that sets the `default-src` or `script-src` directive.
 
-For examples of how to address the policy violation with Subresource Integrity (SRI) or a cryptographic nonce, see [Resolving CSP violations with Subresource Integrity (SRI) or a nonce](xref:blazor/security/content-security-policy#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce).
+For examples of how to address the policy violation with Subresource Integrity (SRI) or a cryptographic nonce, see [Resolving CSP violations with Subresource Integrity (SRI) or a nonce](../security/content-security-policy.md#resolving-csp-violations-with-subresource-integrity-sri-or-a-cryptographic-nonce).
 
 :::moniker-end
 
@@ -310,13 +310,13 @@ The following tables summarize static file `<link>` `href` formats by .NET relea
 
 :::moniker range=">= aspnetcore-6.0"
 
-For the location of `<head>` content where static file links are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>. Static asset links can also be supplied using [`<HeadContent>` components](../components/control-head-content.md) in individual Razor components.
+For the location of `<head>` content where static file links are placed, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-head-and-body-content). Static asset links can also be supplied using [`<HeadContent>` components](../components/control-head-content.md) in individual Razor components.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-For the location of `<head>` content where static file links are placed, see <xref:blazor/project-structure#location-of-head-and-body-content>.
+For the location of `<head>` content where static file links are placed, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-head-and-body-content).
 
 :::moniker-end
 

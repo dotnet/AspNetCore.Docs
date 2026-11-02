@@ -10,7 +10,7 @@ The following articles provide information about how to optimize the performance
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:blazor/performance/index>
+* [ASP.NET Core Blazor performance best practices](../blazor/performance/index.md)
 * [ASP.NET Core Best Practices](../fundamentals/best-practices.md)
 * [Overview of caching in ASP.NET Core](caching/overview.md)
 * [Rate limiting middleware in ASP.NET Core](rate-limit.md)
@@ -27,7 +27,7 @@ The following articles provide information about how to optimize the performance
 
 :::moniker range="< aspnetcore-8.0"
 
-* <xref:blazor/performance/index>
+* [ASP.NET Core Blazor performance best practices](../blazor/performance/index.md)
 * [ASP.NET Core Best Practices](../fundamentals/best-practices.md)
 * [Overview of caching in ASP.NET Core](caching/overview.md)
 * [Rate limiting middleware in ASP.NET Core](rate-limit.md)

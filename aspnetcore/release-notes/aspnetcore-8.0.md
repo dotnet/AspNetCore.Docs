@@ -52,8 +52,8 @@ As part of unifying the various Blazor hosting models into a single model in .NE
 
 For more information on the new Blazor Web App template, see the following articles:
 
-* <xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true>
-* <xref:blazor/project-structure?view=aspnetcore-8.0&preserve-view=true>
+* [Tooling for ASP.NET Core Blazor](../blazor/tooling.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true)
+* [ASP.NET Core Blazor project structure](../blazor/project-structure.md?view=aspnetcore-8.0&preserve-view=true)
 
 ### New JS initializers for Blazor Web Apps
 
@@ -75,7 +75,7 @@ For prior releases of .NET, we covered prerendering and integration in a single 
 
 ### Persist component state in a Blazor Web App
 
-You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](xref:blazor/state-management/prerendered-state-persistence?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state).
+You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state).
 
 Blazor Web Apps automatically persist any registered app-level state created during prerendering, removing the need for the [Persist Component State Tag Helper](../mvc/views/tag-helpers/built-in/persist-component-state.md).
 
@@ -138,7 +138,7 @@ public HttpContext? HttpContext { get; set; }
 
 Accessing the <xref:Microsoft.AspNetCore.Http.HttpContext> from a static server component might be useful for inspecting and modifying headers or other properties.
 
-For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see <xref:blazor/security/additional-scenarios?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app>.
+For an example that passes <xref:Microsoft.AspNetCore.Http.HttpContext> state, access and refresh tokens, to components, see [ASP.NET Core Blazor additional server-side security scenarios](../blazor/security/additional-scenarios.md?view=aspnetcore-8.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).
 
 ### Render Razor components outside of ASP.NET Core
 
@@ -203,7 +203,7 @@ For more information, see [ASP.NET Core Blazor SignalR guidance](../blazor/funda
 
 The *Jiterpreter* is a new runtime feature in .NET 8 that enables partial Just-in-Time (JIT) compilation support when running on WebAssembly to achieve improved runtime performance.
 
-For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation>.
+For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-8.0&preserve-view=true#ahead-of-time-aot-compilation).
 
 ### Ahead-of-time (AOT) SIMD and exception handling
 
@@ -211,8 +211,8 @@ Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-w
 
 For more information, see the following articles:
 
-* [AOT: Single Instruction, Multiple Data (SIMD)](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
-* [AOT: Exception handling](xref:blazor/tooling?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+* [AOT: Single Instruction, Multiple Data (SIMD)](../blazor/tooling.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
+* [AOT: Exception handling](../blazor/tooling.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
 
 ### Web-friendly Webcil packaging
 
@@ -235,7 +235,7 @@ For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md?vi
 
 Blazor WebAssembly no longer requires enabling the `unsafe-eval` script source when specifying a Content Security Policy (CSP).
 
-For more information, see <xref:blazor/security/content-security-policy?view=aspnetcore-8.0&preserve-view=true>.
+For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../blazor/security/content-security-policy.md?view=aspnetcore-8.0&preserve-view=true).
 
 ### Handle caught exceptions outside of a Razor component's lifecycle
 
@@ -303,7 +303,7 @@ Blazor supports generating a full Blazor-based Identity UI when you choose the a
 
 For more information, see the following resources:
 
-* <xref:blazor/security/index?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts>
+* [ASP.NET Core Blazor authentication and authorization](../blazor/security/index.md?view=aspnetcore-8.0&preserve-view=true#blazor-identity-ui-individual-accounts)
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Secure Blazor WebAssembly with ASP.NET Core Identity
@@ -312,7 +312,7 @@ The Blazor documentation hosts a new article and sample app to cover securing a 
 
 For more information, see the following resources:
 
-* <xref:blazor/security/webassembly/standalone-with-identity/index?view=aspnetcore-8.0&preserve-view=true>
+* [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../blazor/security/webassembly/standalone-with-identity/index.md?view=aspnetcore-8.0&preserve-view=true)
 * [What's new with identity in .NET 8 (blog post)](https://devblogs.microsoft.com/dotnet/whats-new-with-identity-in-dotnet-8/#the-blazor-identity-ui)
 
 ### Blazor Server with Yarp routing

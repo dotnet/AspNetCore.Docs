@@ -628,8 +628,8 @@ For problems with Visual Studio Code, ask for support on community support forum
 :::moniker range=">= aspnetcore-8.0"
 
 * Tutorials
-  * <xref:blazor/tutorials/build-a-blazor-app>
-  * <xref:blazor/tutorials/movie-database-app/index>
+  * [Build a Blazor todo list app](../blazor/tutorials/build-a-blazor-app.md)
+  * [Build a Blazor movie database app (Overview)](../blazor/tutorials/movie-database-app/index.md)
   * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md)
 
@@ -638,7 +638,7 @@ For problems with Visual Studio Code, ask for support on community support forum
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 * Tutorials
-  * <xref:blazor/tutorials/build-a-blazor-app>
+  * [Build a Blazor todo list app](../blazor/tutorials/build-a-blazor-app.md)
   * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md)
 
@@ -647,7 +647,7 @@ For problems with Visual Studio Code, ask for support on community support forum
 :::moniker range="< aspnetcore-6.0"
 
 * Tutorials
-  * <xref:blazor/tutorials/build-a-blazor-app>
+  * [Build a Blazor todo list app](../blazor/tutorials/build-a-blazor-app.md)
   * [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md)
   * [Get started with ASP.NET Core MVC](../tutorials/first-mvc-app/start-mvc.md)
   * [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md)

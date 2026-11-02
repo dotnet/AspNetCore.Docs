@@ -1096,7 +1096,7 @@ If you mutate `defaultValue` directly, you're breaking the contract. Instead, th
 
 :::moniker-end
 
-For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management/index>.
+For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see [ASP.NET Core Blazor state management overview](../state-management/index.md).
 
 ## Bound field or property expression tree
 

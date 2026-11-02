@@ -109,7 +109,7 @@ Examples ([sample apps](#sample-apps)):
 
 * Movie list web API in the `BlazorWebAppCallWebApi` sample app.
 * Streaming rendering weather data web API in the `BlazorWebAppCallWebApi_Weather` sample app.
-* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see <xref:blazor/security/blazor-web-app-oidc>.
+* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](security/blazor-web-app-with-oidc.md).
 
 ## Blazor Web App external web APIs
 
@@ -360,13 +360,13 @@ In the following component code:
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md?pivots=named-client-graph-api).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md?pivots=named-client-graph-api).
 
 :::moniker-end
 
@@ -470,7 +470,7 @@ The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a w
 
 <xref:System.Net.Http.IHttpClientFactory> creates <xref:System.Net.Http.DelegatingHandler> instances in a separate dependency injection (DI) scope from the app. If you inject a scoped service into a derived <xref:System.Net.Http.DelegatingHandler> type, the handler doesn't have access to the service from the Blazor circuit.
 
-For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware).
 
 For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#outgoing-request-middleware).
 
@@ -520,7 +520,7 @@ When prerendering, components render twice: first statically, then interactively
 
 You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
 
-* <xref:blazor/state-management/prerendered-state-persistence>
+* [ASP.NET Core Blazor prerendered state persistence](state-management/prerendered-state-persistence.md)
 * [ASP.NET Core Blazor navigation](fundamentals/navigation.md#enhanced-navigation-and-form-handling)
 
 :::moniker range="< aspnetcore-10.0"
@@ -852,7 +852,7 @@ public class CookieHandler : DelegatingHandler
 ```
 
 > [!NOTE]
-> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware).
 
 The `CookieHandler` is registered in the `Program` file:
 
@@ -869,7 +869,7 @@ builder.Services.AddHttpClient(...)
 
 :::moniker range=">= aspnetcore-8.0"
 
-For a demonstration, see <xref:blazor/security/webassembly/standalone-with-identity/index>.
+For a demonstration, see [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](security/webassembly/standalone-with-identity/index.md).
 
 :::moniker-end
 
@@ -888,10 +888,10 @@ Blazor Web Apps with OIDC authentication can use a token handler approach to mak
 
 For more information, see the following resources:
 
-* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls)
 * *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
+  * [Without YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-oidc.md?pivots=without-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Server)](security/blazor-web-app-with-oidc.md?pivots=without-yarp-and-aspire-server)
 
 ## Microsoft identity platform for web API calls
 
@@ -1086,8 +1086,8 @@ For more information, see the following resources:
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
-  * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
+  * [With YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-entra.md?pivots=with-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-entra.md?pivots=without-yarp-and-aspire)
 * [Host ASP.NET Core in a web farm: Data Protection](../host-and-deploy/web-farm.md#data-protection)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
@@ -1289,7 +1289,7 @@ Browser security often restricts a webpage from making requests to a different o
 
 For more information on server-side CORS, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md). The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 
-For information on client-side CORS requests, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+For information on client-side CORS requests, see [ASP.NET Core Blazor WebAssembly additional security scenarios](security/webassembly/additional-scenarios.md#cross-origin-resource-sharing-cors).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1312,7 +1312,7 @@ private async Task OnSubmit()
 }
 ```
 
-For more information, see <xref:blazor/security/index#antiforgery-support>.
+For more information, see [ASP.NET Core Blazor authentication and authorization](security/index.md#antiforgery-support).
 
 :::moniker-end
 
@@ -1387,7 +1387,7 @@ public class ServerMovieService(MovieContext db) : IMovieService
 }
 ```
 
-For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 ### `BlazorWebAppCallWebApi_Weather`
 
@@ -1415,11 +1415,11 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidcBffAuto`
 
-A Blazor Web App with global Interactive Auto rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+A Blazor Web App with global Interactive Auto rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls) to call an external secure web API.
 
 ### `BlazorWebAppOidcBffServer`
 
-A Blazor Web App with global Interactive Server rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+A Blazor Web App with global Interactive Server rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls) to call an external secure web API.
 
 ### `BlazorWebAppOidcBffYarpAspire`
 
@@ -1459,7 +1459,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md): Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
-* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
 
@@ -1478,13 +1478,13 @@ For guidance on mitigating overposting attacks, see [Tutorial: Create a controll
 
 ### Server-side
 
-* <xref:blazor/security/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md): Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
 * [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md)
 * [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md)
 
 ### Client-side
 
-* <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
-* <xref:blazor/security/webassembly/graph-api>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](security/webassembly/additional-scenarios.md): Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)
