@@ -429,7 +429,7 @@ The sample app runs in either of two modes determined by the `#define` preproces
 * `Certificate`: Demonstrates using an Azure Key Vault Client ID and X.509 certificate to access secrets stored in Azure Key Vault. This sample can be run from any location, whether deployed to Azure App Service or any host that can serve an ASP.NET Core app.
 * `Managed`: Demonstrates how to use [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview). The managed identity authenticates the app to Azure Key Vault with Managed identities for Azure resources without credentials stored in the app's code or configuration. When using managed identities to authenticate, a Managed identities for Azure resources app ID and Password (Client Secret) aren't required. The `Managed` version of the sample must be deployed to Azure. Follow the guidance in the [Use the managed identities for Azure resources](#use-managed-identities-for-azure-resources) section.
 
-For more information configuring a sample app using preprocessor directives (`#define`), see [Overview of ASP.NET Core](../overview.md#preprocessor-directives-in-sample-code).
+For more information configuring a sample app using preprocessor directives (`#define`), see [ASP.NET Core fundamentals overview](../fundamentals/index.md#preprocessor-directives-in-sample-code).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/key-vault-configuration/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 

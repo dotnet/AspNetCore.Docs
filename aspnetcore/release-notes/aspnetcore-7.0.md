@@ -170,7 +170,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0)
+For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -590,7 +590,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0&preserve-view=true#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 

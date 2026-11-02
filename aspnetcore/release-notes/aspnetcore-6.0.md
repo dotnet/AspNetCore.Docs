@@ -286,7 +286,7 @@ Existing rules continue to work, but you can now be more selective on which rule
 
 [!code-xml[](aspnetcore-6.0/samples/WebApp1/appsettings.Test.json?highlight=6)]
 
-Log filtering applies rules with the longest matching category prefix. For more information, see [How filtering rules are applied](../fundamentals/logging/index.md?view=aspnetcore-6.0#how-filtering-rules-are-applied)
+Log filtering applies rules with the longest matching category prefix. For more information, see [How filtering rules are applied](../fundamentals/logging/index.md?view=aspnetcore-6.0&preserve-view=true#how-filtering-rules-are-applied)
 
 ### Emit KestrelServerOptions via EventSource event
 

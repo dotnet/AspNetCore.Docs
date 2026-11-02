@@ -1380,7 +1380,7 @@ Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **ei
 
 ### Global authorization via a fallback authorization policy
 
-The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../overview.md#how-to-download-a-sample)).
+The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The fallback policy is selected when no policy is produced from authorization metadata. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../../security/authorization/policies.md#default-and-fallback-policies).
 

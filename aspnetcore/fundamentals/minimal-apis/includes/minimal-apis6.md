@@ -185,7 +185,7 @@ var app = builder.Build();
 [!code-csharp[](~/migration/samples/50-to-60/samples/Web6Samples/Program.cs?name=snippet_conf)]
 -->
 
-For detailed information, see [File configuration providers](../../configuration/index.md?view=aspnetcore-6.0#file-configuration-provider) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true).
+For detailed information, see [File configuration providers](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#file-configuration-provider) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true).
 
 ### Read configuration
 
@@ -195,7 +195,7 @@ By default the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> reads c
 * Environment variables
 * The command line
 
-For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
+For a complete list of configuration sources read, see [Default configuration](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true#default-app-configuration-sources) in [Configuration in ASP.NET Core](../../configuration/index.md?view=aspnetcore-6.0&preserve-view=true)
 
 The following code reads `HelloKey` from configuration and displays the value at the `/` endpoint. If the configuration value is null, "Hello" is assigned to `message`:
 

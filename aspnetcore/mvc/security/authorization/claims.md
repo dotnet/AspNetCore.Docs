@@ -16,7 +16,7 @@ This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razo
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../overview.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 

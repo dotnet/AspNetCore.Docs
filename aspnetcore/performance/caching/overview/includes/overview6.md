@@ -34,6 +34,6 @@ For more information, see [Distributed Cache Tag Helper in ASP.NET Core](../../.
 
 ## Output caching
 
-[Output caching](../../overview.md?view=aspnetcore-7.0#oc7) is available in .NET 7 or later.
+[Output caching](../../overview.md?view=aspnetcore-7.0&preserve-view=true#oc7) is available in .NET 7 or later.
 
 :::moniker-end

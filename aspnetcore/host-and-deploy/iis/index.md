@@ -313,7 +313,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-hosting-bundle).
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-core-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-core-hosting-bundle).
 
 ### Direct download (current version)
 
@@ -892,7 +892,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-hosting-bundle).
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-core-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-core-hosting-bundle).
 
 ### Download
 

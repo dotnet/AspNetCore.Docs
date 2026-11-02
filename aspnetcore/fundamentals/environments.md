@@ -480,7 +480,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](../overview.md#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](index.md#how-to-download-a-sample))
 * [App startup in ASP.NET Core](startup.md)
 * [Configuration in ASP.NET Core](configuration/index.md)
 * <xref:blazor/fundamentals/environments>
