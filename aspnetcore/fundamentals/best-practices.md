@@ -3,7 +3,6 @@ title: ASP.NET Core Best Practices
 description: Tips for maximizing performance and reliability in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 12/29/2025
-uid: fundamentals/best-practices
 ---
 # ASP.NET Core Best Practices
 
@@ -131,7 +130,7 @@ Most requests to an ASP.NET Core app can be handled by a controller or page mode
 Recommendations:
 
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
-* **Do** consider handling long-running requests with [background services](xref:fundamentals/host/hosted-services) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
+* **Do** consider handling long-running requests with [background services](host/hosted-services.md) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
 * **Do** use real-time communication options, such as [SignalR](../signalr/introduction.md), to communicate with clients asynchronously.
 
 ## Minify client assets
@@ -302,7 +301,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 [!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
-Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
+Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](host/hosted-services.md).
 
 ## Do not capture services injected into the controllers on background threads
 

@@ -9,5 +9,5 @@ With the preceding JSON, SQL statements are displayed on the command line and in
 
 For more information, see the following resources:
 
-* <xref:fundamentals/logging/index#configuration>
+* [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md#configure-logging)
 * [ASP.NET template disables EF Core SQL logging by default (`dotnet/aspnetcore` #32977)](https://github.com/dotnet/aspnetcore/issues/32977)

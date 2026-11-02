@@ -4,8 +4,8 @@ This document provides a quick reference for Minimal APIs. For a guided introduc
 
 The Minimal APIs consist of:
 
-* [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
-* [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
+* [WebApplication and WebApplicationBuilder](../webapplication.md)
+* [Route Handlers](../route-handlers.md)
 
 [!INCLUDE[](~/fundamentals/minimal-apis/includes/webapplication8.md)]
 
@@ -18,18 +18,18 @@ The following table lists some of the middleware frequently used with Minimal AP
 | [Authentication](../../../security/authentication/index.md) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
 | [Authorization](../../../security/authorization/introduction.md) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
 | [CORS](../../../security/cors.md) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
-| [Exception Handler](xref:fundamentals/error-handling-api) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
-| [Forwarded Headers](xref:fundamentals/middleware/index#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
+| [Exception Handler](../../error-handling-api.md) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
+| [Forwarded Headers](../../middleware/index.md#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
 | [HTTPS Redirection](../../../security/enforcing-ssl.md) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
-| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
+| [HTTP Strict Transport Security (HSTS)](../../middleware/index.md#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
+| [Request Logging](../../http-logging/index.md) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
 | [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*> |
 | [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
 | [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
+| [Session](../../app-state.md) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
+| [Static Files](../../static-files.md) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
+| [WebSockets](../../websockets.md) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
 
 The following sections cover request handling: routing, parameter binding, and responses.
 
@@ -63,7 +63,7 @@ Route handlers support the following types of return values:
 |`string` | The framework writes the string directly to the response | `text/plain`
 | `T` (Any other type) | The framework JSON-serializes the response| `application/json`
 
-For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
+For a more in-depth guide to route handler return values see [Create responses in Minimal API applications](../responses.md)
 
 ### Example return values
 
@@ -87,7 +87,7 @@ The following code returns a <xref:Microsoft.AspNetCore.Http.TypedResults>:
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` versus `Results`](../responses.md#typedresults-versus-results).
 
 #### IResult return values
 
@@ -130,7 +130,7 @@ app.MapGet("/pokemon", async () =>
 });
 ```
 
-See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
+See [Create responses in Minimal API applications](../responses.md#stream7) for more examples.
 
 #### Redirect
 
@@ -186,11 +186,11 @@ The types implementing `IResult` are public, allowing for type assertions when t
 
 You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
 
-See <xref:fundamentals/minimal-apis/responses> for more examples.
+See [Create responses in Minimal API applications](../responses.md) for more examples.
 
 ## Filters
 
-For more information, see <xref:fundamentals/minimal-apis/min-api-filters>.
+For more information, see [Filters in Minimal API apps](../min-api-filters.md).
 
 ## Authorization
 
@@ -226,7 +226,7 @@ For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](
 
 ## ValidateScopes and ValidateOnBuild
 
-<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> are enabled by default in the [Development](xref:fundamentals/environments) environment but disabled in other environments.
+<xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> are enabled by default in the [Development](../../environments.md) environment but disabled in other environments.
 
 When `ValidateOnBuild` is `true`, the DI container validates the service configuration at build time. If the service configuration is invalid, the build fails at app startup, rather than at runtime when the service is requested.
 
@@ -248,13 +248,13 @@ The following code disables `ValidateScopes` and `ValidateOnBuild` in `Developme
 
 ## See also
 
-* <xref:fundamentals/minimal-apis>
-* <xref:fundamentals/openapi/aspnetcore-openapi>
-* <xref:fundamentals/minimal-apis/responses>
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* <xref:fundamentals/error-handling-api>
-* <xref:fundamentals/minimal-apis/security>
-* <xref:fundamentals/minimal-apis/test-min-api>
+* [Minimal APIs quick reference](../../minimal-apis.md)
+* [Generate OpenAPI documents](../../openapi/aspnetcore-openapi.md)
+* [Create responses in Minimal API applications](../responses.md)
+* [Filters in Minimal API apps](../min-api-filters.md)
+* [Handle errors in ASP.NET Core APIs](../../error-handling-api.md)
+* [Authentication and authorization in Minimal APIs](../security.md)
+* [Test Minimal API apps](../test-min-api.md)
 * [Short-circuit routing](https://andrewlock.net/exploring-the-dotnet-8-preview-short-circuit-routing/)
 * [Identity API endpoints](https://andrewlock.net/exploring-the-dotnet-8-preview-introducing-the-identity-api-endpoints/)
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)

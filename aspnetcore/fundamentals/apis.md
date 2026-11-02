@@ -5,7 +5,6 @@ ai-usage: ai-assisted
 ms.date: 05/04/2026
 ms.reviewer: jeliknes
 monikerRange: '>= aspnetcore-6.0'
-uid: fundamentals/apis
 ---
 
 # APIs overview
@@ -32,12 +31,12 @@ app.Run();
 
 Most APIs accept parameters as part of the route:
 
-```csharp 
+```csharp
 var builder = WebApplication.CreateBuilder(args);
 
 var app = builder.Build();
 
-app.MapGet("/users/{userId}/books/{bookId}", 
+app.MapGet("/users/{userId}/books/{bookId}",
     (int userId, int bookId) => $"The user id is {userId} and book id is {bookId}");
 
 app.Run();
@@ -153,9 +152,9 @@ Both API projects refer to the following class:
 
 ## See also
 
-* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md) - Minimal API tutorial
-* [Minimal APIs quick reference](minimal-apis.md) - Minimal APIs quick reference
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* [Minimal APIs quick reference](minimal-apis.md)
 * [Create web APIs with ASP.NET Core](../web-api/index.md) - Controller-based APIs overview
-* [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md) - Controller-based API tutorial
+* [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md)
 
 :::moniker-end

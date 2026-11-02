@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Use .NET Generic Host in ASP.NET Core apps. Generic Host is responsible for app startup and lifetime management.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/29/2026
-uid: fundamentals/host/generic-host
 
 # customer intent: As an ASP.NET developer, I want to explore the .NET Generic Host in ASP.NET Core, so I can configure startup and management for my web app.
 ---
@@ -34,7 +33,7 @@ A *host* is an object that encapsulates an application's resources, such as:
 * Configuration
 * `IHostedService` implementations
 
-When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](xref:fundamentals/index#servers).
+When a host starts, it calls the <xref:Microsoft.Extensions.Hosting.IHostedService.StartAsync*> method on each <xref:Microsoft.Extensions.Hosting.IHostedService> instance registered in the service container's collection of hosted services. In a web app, one of the `IHostedService` implementations is a web service that starts an [HTTP server implementation](../index.md#servers).
 
 By including all of the app's interdependent resources in a single object, the host enables control of application startup and graceful shutdown.
 
@@ -117,7 +116,7 @@ If the app uses Entity Framework Core, don't change the name or signature of the
 
 The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method performs the following tasks:
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
+* Sets the [content root](../index.md#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 
 * Loads the host configuration from the following sources:
   * Environment variables prefixed with `DOTNET_`
@@ -130,21 +129,21 @@ The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method perfor
   * Environment variables
   * Command-line arguments
 
-* Adds the following [logging](xref:fundamentals/logging/index) providers:
+* Adds the following [logging](../logging/index.md) providers:
   * Console
   * Debug
   * EventSource
   * EventLog (only when running on Windows)
 
-* Enables [scope validation](xref:fundamentals/dependency-injection#scope-validation) and [dependency validation](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) when the environment is `Development`.
+* Enables [scope validation](../dependency-injection.md#scope-validation) and [dependency validation](xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild) when the environment is `Development`.
 
 The <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method performs the following tasks:
 
 * Loads host configuration from environment variables prefixed with `ASPNETCORE_`.
 
-* Sets [Kestrel](xref:fundamentals/servers/kestrel) server as the web server and configures it by using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+* Sets [Kestrel](../servers/kestrel.md) server as the web server and configures it by using the app's hosting configuration providers. For the Kestrel server's default options, see [Configure options for the ASP.NET Core Kestrel web server](../servers/kestrel/options.md).
 
-* Adds [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
+* Adds [host-filtering middleware](../servers/kestrel/host-filtering.md).
 
 * Adds [Forwarded Headers middleware](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` property is set to `true`.
 
@@ -160,7 +159,7 @@ The .NET Generic Host automatically registers the following services:
 * [IHostLifetime](#ihostlifetime)
 * [IHostEnvironment / IWebHostEnvironment](#ihostenvironment-iwebhostenvironment)
 
-For more information on framework-provided services, see <xref:fundamentals/dependency-injection#framework-provided-services>.
+For more information on framework-provided services, see [Dependency injection in ASP.NET Core](../dependency-injection.md#framework-provided-services).
 
 ### IHostApplicationLifetime
 
@@ -238,7 +237,7 @@ App configuration is created by calling the <xref:Microsoft.Extensions.Hosting.H
 
 The configuration created by `ConfigureAppConfiguration` is available in the <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration> property for subsequent operations and as a service from DI. The host configuration is also added to the app configuration.
 
-For more information, see <xref:fundamentals/configuration/index>.
+For more information, see [Configuration in ASP.NET Core](../configuration/index.md).
 
 ## Configure settings for all app types
 
@@ -246,7 +245,7 @@ This section lists host settings that apply to both HTTP and non-HTTP workloads.
 
 By default, environment variables used to configure these settings can have a `DOTNET_` or `ASPNETCORE_` prefix, which appear in the following list of settings as the `{PREFIX_}` placeholder.
 
-For more information, see [Configure default builder settings](#configure-default-builder-settings) and [Configuration: Environment variables](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+For more information, see [Configure default builder settings](#configure-default-builder-settings) and [Configuration: Environment variables](../configuration/index.md#environment-variables-configuration-provider).
 
 <!-- In the following sections, two spaces at end of line are used to force line breaks in the rendered page. -->
 
@@ -291,7 +290,7 @@ Host.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Fundamentals: Content root](../index.md#content-root)
 * [Web root](#web-root)
 
 ### Environment name
@@ -357,7 +356,7 @@ The following example sets the timeout to 20 seconds:
 
 ### Reload config on change
 
-Reloads the  _appsettings.json_ and _appsettings.{Environment}.json_ files when the files change. This behavior is by default, as described in [Default app configuration sources](xref:fundamentals/configuration/index#default-app-configuration-sources). 
+Reloads the  _appsettings.json_ and _appsettings.{Environment}.json_ files when the files change. This behavior is by default, as described in [Default app configuration sources](../configuration/index.md#default-app-configuration-sources). 
 
 **Key**: `hostBuilder:reloadConfigOnChange`  
 **Type**: *bool* (`true` or `false`)  
@@ -368,7 +367,7 @@ Reloads the  _appsettings.json_ and _appsettings.{Environment}.json_ files when 
 In .NET 5 and later, you can disable the reload behavior by setting the `hostBuilder:reloadConfigOnChange` argument to `false`.
 
 > [!WARNING]
-> The colon (`:`) separator doesn't work with environment variable hierarchical keys on all platforms. For more information, see [Environment variables](xref:fundamentals/configuration/index#environment-variables-configuration-provider).
+> The colon (`:`) separator doesn't work with environment variable hierarchical keys on all platforms. For more information, see [Environment variables](../configuration/index.md#environment-variables-configuration-provider).
 
 :::moniker-end
 
@@ -563,7 +562,7 @@ webBuilder.PreferHostingUrls(true);
 
 ### Prevent hosting startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see [Use hosting startup assemblies in ASP.NET Core](platform-specific-configuration.md).
 
 **Key**: `preventHostingStartup`  
 **Type**: *bool* (`true`/`1` or `false`/`0`)  
@@ -663,7 +662,7 @@ webBuilder.UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002");
 
 :::moniker-end
 
-Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+Kestrel has its own endpoint configuration API. For more information, see [Configure endpoints for Kestrel web server](../servers/kestrel/endpoints.md).
 
 ### Web root
 
@@ -694,7 +693,7 @@ webBuilder.UseWebRoot("public");
 
 For more information, see:
 
-* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Fundamentals: Web root](../index.md#web-root)
 * [Content root](#content-root)
 
 ## Manage the host lifetime
@@ -773,7 +772,7 @@ public class Program
 
 ## Related content
 
-* <xref:fundamentals/host/hosted-services>
+* [Background tasks with hosted services in ASP.NET Core](hosted-services.md)
 * [Generic Host source on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/src/Host.cs)
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]

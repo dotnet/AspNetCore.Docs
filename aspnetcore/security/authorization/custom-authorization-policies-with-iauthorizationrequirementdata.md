@@ -61,7 +61,7 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-A [Minimal API](xref:fundamentals/minimal-apis) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
+A [Minimal API](../../fundamentals/minimal-apis.md) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
 
 ```csharp
 app.MapGet("/api/greetings/hello", (HttpContext context) =>
@@ -182,12 +182,12 @@ Logging indicates that the age requirement was met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
 Re-execute the `curl.exe` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement isn't met. Access to the endpoint is forbidden (status code 403):
@@ -204,12 +204,12 @@ Logging indicates that the age requirement wasn't met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::
 
 ## Related content

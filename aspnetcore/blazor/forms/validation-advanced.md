@@ -14,7 +14,7 @@ This article demonstrates reusable validator components and remote validation. F
 
 :::moniker range=">= aspnetcore-10.0"
 
-For model-based validation rules shared by Blazor and Minimal APIs, see <xref:fundamentals/validation>.
+For model-based validation rules shared by Blazor and Minimal APIs, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
 
 :::moniker-end
 
@@ -189,7 +189,7 @@ For a complete component that combines form-level and per-field asynchronous val
 
 :::code language="razor" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/Components/UsernameUniquenessValidator.razor":::
 
-For asynchronous validation attributes on the model, see <xref:fundamentals/validation#asynchronous-validation-support>.
+For asynchronous validation attributes on the model, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support).
 
 :::moniker-end
 
@@ -242,13 +242,13 @@ Call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionE
 
 :::moniker range="= aspnetcore-10.0"
 
-The <xref:Microsoft.Extensions.Validation?displayProperty=fullName> APIs used for generated validation metadata are experimental in .NET 10. For details, see <xref:fundamentals/validation#experimental-api-in-apps-that-target-net-10>.
+The <xref:Microsoft.Extensions.Validation?displayProperty=fullName> APIs used for generated validation metadata are experimental in .NET 10. For details, see [Validation in ASP.NET Core](../../fundamentals/validation.md#experimental-api-in-apps-that-target-net-10).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0"
 
-If the model is declared in the `.Client` project, register its generated validation metadata in both projects as described in <xref:fundamentals/validation#register-validation-across-assemblies>.
+If the model is declared in the `.Client` project, register its generated validation metadata in both projects as described in [Validation in ASP.NET Core](../../fundamentals/validation.md#register-validation-across-assemblies).
 
 The endpoint adds a private business rule and returns errors keyed by model member name:
 
@@ -430,16 +430,16 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 * <xref:blazor/forms/validation>
 * <xref:blazor/forms/validation-client-side>
-* <xref:fundamentals/validation>
-* <xref:fundamentals/minimal-apis>
+* [Validation in ASP.NET Core](../../fundamentals/validation.md)
+* [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 * <xref:blazor/forms/validation>
-* <xref:fundamentals/validation>
-* <xref:fundamentals/minimal-apis>
+* [Validation in ASP.NET Core](../../fundamentals/validation.md)
+* [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end
 

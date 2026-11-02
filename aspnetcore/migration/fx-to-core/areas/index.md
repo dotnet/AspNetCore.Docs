@@ -25,6 +25,6 @@ ms.reviewer: tasou
 For complex migration scenarios not covered in these guides:
 
 * Review the [ASP.NET Core migration overview](../index.md)
-* Consult the [ASP.NET Core fundamentals documentation](xref:fundamentals/index)
+* Consult the [ASP.NET Core fundamentals documentation](../../../fundamentals/index.md)
 * Engage with the community through [GitHub discussions](https://github.com/dotnet/aspnetcore/discussions)
 * Consider professional migration services for mission-critical applications

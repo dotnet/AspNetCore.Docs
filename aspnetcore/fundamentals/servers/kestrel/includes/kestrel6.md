@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-8.0 <= aspnetcore-9.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](../../index.md). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
 Kestrel's features include:
 
@@ -9,8 +9,8 @@ Kestrel's features include:
 * **Lightweight:** Optimized for running in resource-constrained environments, such as containers and edge devices.
 * **Security hardened:** Kestrel supports HTTPS and is hardened against web server vulnerabilities.
 * **Wide protocol support:** Kestrel supports common web protocols, including:
-  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3)
-  * [WebSockets](xref:fundamentals/websockets)
+  * HTTP/1.1, [HTTP/2](../http2.md) and [HTTP/3](../http3.md)
+  * [WebSockets](../../../websockets.md)
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:
   * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor, and gRPC.
@@ -27,7 +27,7 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
-For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
+For more information on configuring `WebApplication` and `WebApplicationBuilder`, see [Minimal APIs quick reference](../../../minimal-apis.md).
 
 ## Behavior with debugger attached
 
@@ -44,15 +44,15 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 ## Additional resources
 
 <a name="endpoint-configuration"></a>
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](../endpoints.md)
 <a name="kestrel-options"></a>
-* <xref:fundamentals/servers/kestrel/options>
+* [Configure options for the ASP.NET Core Kestrel web server](../options.md)
 <a name="http2-support"></a>
-* <xref:fundamentals/servers/kestrel/http2>
+* [Use HTTP/2 with the ASP.NET Core Kestrel web server](../http2.md)
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
-* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
+* [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
-* <xref:fundamentals/servers/kestrel/host-filtering>
+* [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
 * <xref:test/troubleshoot>
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
@@ -63,13 +63,13 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](../../index.md). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
 
 Kestrel supports the following scenarios:
 
 * HTTPS
-* [HTTP/2](xref:fundamentals/servers/kestrel/http2) (except on macOS&dagger;)
-* Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
+* [HTTP/2](../http2.md) (except on macOS&dagger;)
+* Opaque upgrade used to enable [WebSockets](../../../websockets.md)
 * Unix sockets for high performance behind Nginx
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
@@ -85,7 +85,7 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
-For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
+For more information on configuring `WebApplication` and `WebApplicationBuilder`, see [Minimal APIs quick reference](../../../minimal-apis.md).
 
 ## Behavior with debugger attached
 
@@ -102,15 +102,15 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 ## Additional resources
 
 <a name="endpoint-configuration"></a>
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](../endpoints.md)
 <a name="kestrel-options"></a>
-* <xref:fundamentals/servers/kestrel/options>
+* [Configure options for the ASP.NET Core Kestrel web server](../options.md)
 <a name="http2-support"></a>
-* <xref:fundamentals/servers/kestrel/http2>
+* [Use HTTP/2 with the ASP.NET Core Kestrel web server](../http2.md)
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
-* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
+* [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
-* <xref:fundamentals/servers/kestrel/host-filtering>
+* [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
 * <xref:test/troubleshoot>
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
@@ -121,13 +121,13 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](../../index.md). Kestrel is the web server that's included and enabled by default in ASP.NET Core project templates.
 
 Kestrel supports the following scenarios:
 
 * HTTPS
-* [HTTP/2](xref:fundamentals/servers/kestrel/http2) (except on macOS&dagger;)
-* Opaque upgrade used to enable [WebSockets](xref:fundamentals/websockets)
+* [HTTP/2](../http2.md) (except on macOS&dagger;)
+* Opaque upgrade used to enable [WebSockets](../../../websockets.md)
 * Unix sockets for high performance behind Nginx
 
 &dagger;HTTP/2 will be supported on macOS in a future release.
@@ -137,7 +137,7 @@ Kestrel is supported on all platforms and versions that .NET supports.
 > [!NOTE]
 > macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/5.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/5.x) ([how to download](../../../index.md#how-to-download-a-sample))
 
 ## Get started
 
@@ -145,20 +145,20 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/5.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
 
-For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+For more information on building the host, see the *Set up a host* and *Default builder settings* sections of [.NET Generic Host in ASP.NET Core](../../../host/generic-host.md#set-up-a-host).
 
 ## Additional resources
 
 <a name="endpoint-configuration"></a>
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](../endpoints.md)
 <a name="kestrel-options"></a>
-* <xref:fundamentals/servers/kestrel/options>
+* [Configure options for the ASP.NET Core Kestrel web server](../options.md)
 <a name="http2-support"></a>
-* <xref:fundamentals/servers/kestrel/http2>
+* [Use HTTP/2 with the ASP.NET Core Kestrel web server](../http2.md)
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
-* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
+* [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
-* <xref:fundamentals/servers/kestrel/host-filtering>
+* [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
 * <xref:test/troubleshoot>
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
@@ -169,7 +169,7 @@ For more information on building the host, see the *Set up a host* and *Default 
 
 :::moniker range="< aspnetcore-5.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the web server that's included by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](../../index.md). Kestrel is the web server that's included by default in ASP.NET Core project templates.
 
 Kestrel supports the following scenarios:
 
@@ -185,7 +185,7 @@ Kestrel is supported on all platforms and versions that .NET supports.
 > [!NOTE]
 > macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/3.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/kestrel/samples/3.x) ([how to download](../../../index.md#how-to-download-a-sample))
 
 ## HTTP/2 support
 
@@ -244,7 +244,7 @@ ASP.NET Core project templates use Kestrel by default. In `Program.cs`, the <xre
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/3.x/KestrelSample/Program.cs" id="snippet_DefaultBuilder" highlight="8":::
 
-For more information on building the host, see the *Set up a host* and *Default builder settings* sections of <xref:fundamentals/host/generic-host#set-up-a-host>.
+For more information on building the host, see the *Set up a host* and *Default builder settings* sections of [.NET Generic Host in ASP.NET Core](../../../host/generic-host.md#set-up-a-host).
 
 To provide additional configuration after calling `ConfigureWebHostDefaults`, use `ConfigureKestrel`:
 
@@ -273,7 +273,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](xref:fundamentals/configuration/index). For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](../../../configuration/index.md). For example, the [File Configuration Provider](../../../configuration/index.md#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
 
 ```json
 {
@@ -342,7 +342,7 @@ Use **one** of the following approaches:
           });
   ```
 
-Both of the preceding approaches work with any [configuration provider](xref:fundamentals/configuration/index).
+Both of the preceding approaches work with any [configuration provider](../../../configuration/index.md).
 
 ### Keep-alive timeout
 
@@ -542,7 +542,7 @@ Specify URLs using the:
 
 The value provided using these approaches can be one or more HTTP and HTTPS endpoints (HTTPS if a default cert is available). Configure the value as a semicolon-separated list (for example, `"Urls": "http://localhost:8000;http://localhost:8001"`).
 
-For more information on these approaches, see [Server URLs](xref:fundamentals/host/web-host#server-urls) and [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+For more information on these approaches, see [Server URLs](../../../host/web-host.md#server-urls) and [Override configuration](../../../host/web-host.md#override-the-web-host-configuration).
 
 A development certificate is created:
 
@@ -1065,7 +1065,7 @@ Only HTTP URL prefixes are valid. Kestrel doesn't support HTTPS when configuring
   http://*:80/
   ```
 
-  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server, such as IIS, Nginx, or Apache.
+  Host names, `*`, and `+`, aren't special. Anything not recognized as a valid IP address or `localhost` binds to all IPv4 and IPv6 IPs. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](../../httpsys.md) or a reverse proxy server, such as IIS, Nginx, or Apache.
 
   > [!WARNING]
   > Hosting in a reverse proxy configuration requires [forwarded headers middleware configuration](../../../../host-and-deploy/proxy-load-balancer.md).

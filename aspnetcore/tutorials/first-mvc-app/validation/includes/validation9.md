@@ -18,7 +18,7 @@ The validation support provided by MVC and Entity Framework Core is a good examp
 
 ## Delete the previously edited data
 
-In the next step, validation rules are added that don't allow null values. 
+In the next step, validation rules are added that don't allow null values.
 Run the app, navigate to `/Movies/Index`, delete all listed movies, and stop the app.  The app will use the seed data the next time it is run.
 
 [!INCLUDE[](~/includes/RP-MVC/validation-net9.md)]
@@ -157,6 +157,6 @@ In the next part of the series, we review the app and make some improvements to 
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/new-field.md)
-> [Next](~/tutorials/first-mvc-app/details.md)  
+> [Next](~/tutorials/first-mvc-app/details.md)
 
 :::moniker-end

@@ -214,7 +214,7 @@ services
     });
 ```
 
-SignalR hubs use [Endpoint Routing](xref:fundamentals/routing). SignalR hub connection was previously done explicitly:
+SignalR hubs use [Endpoint Routing](../fundamentals/routing.md). SignalR hub connection was previously done explicitly:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -356,7 +356,7 @@ Options for certificate authentication include the ability to:
 
 A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md).
 
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](../host-and-deploy/iis/index.md) and [HTTP.sys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](../host-and-deploy/iis/index.md) and [HTTP.sys](../fundamentals/servers/httpsys.md). In ASP.NET Core 3.0, [Kestrel](../fundamentals/servers/kestrel.md) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -395,7 +395,7 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md). Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
@@ -443,7 +443,7 @@ Endpoint Routing, which allows frameworks (for example, MVC) to work well with m
 * Endpoints can implement a policy, such as CORS or authorization, in both middleware and MVC.
 * Filters and attributes can be placed on methods in controllers.
 
-For more information, see <xref:fundamentals/routing#routing-basics>.
+For more information, see [Routing in ASP.NET Core](../fundamentals/routing.md#routing-basics).
 
 ## Health Checks
 
@@ -484,7 +484,7 @@ Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnost
 For more information, see:
 
 * [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
-* <xref:fundamentals/host/hosted-services>
+* [Background tasks with hosted services in ASP.NET Core](../fundamentals/host/hosted-services.md)
 * [Host ASP.NET Core in a Windows Service](../host-and-deploy/windows-service.md)
 
 ## Forwarded headers middleware improvements
@@ -512,7 +512,7 @@ For migration information, see [Port your code from .NET Framework to .NET Core]
 
 ## Use the ASP.NET Core shared framework
 
-The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
+The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](../fundamentals/metapackage-app.md), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

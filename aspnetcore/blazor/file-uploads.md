@@ -254,7 +254,7 @@ In the server-side app's `Program` file, add <xref:System.Net.Http.IHttpClientFa
 builder.Services.AddHttpClient();
 ```
 
-For more information, see <xref:fundamentals/http-requests>.
+For more information, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md).
 
 For the examples in this section:
 
@@ -393,7 +393,7 @@ The following controller in the web API project saves uploaded files from the cl
 :::moniker range="= aspnetcore-6.0"
 
 > [!NOTE]
-> Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core in .NET 6. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core in .NET 7 or later.
+> Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](../fundamentals/minimal-apis.md?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core in .NET 6. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core in .NET 7 or later.
 
 :::moniker-end
 
@@ -555,7 +555,7 @@ builder.Services.AddHttpClient();
 
 The <xref:System.Net.Http.HttpClient> services must be added to the server project because the client-side component is prerendered on the server. If you [disable prerendering for the following component](xref:blazor/components/prerender#disable-prerendering), you aren't required to provide the <xref:System.Net.Http.HttpClient> services in the server project and don't need to add the preceding line to the server project.
 
-For more information on adding <xref:System.Net.Http.HttpClient> services to an ASP.NET Core app, see <xref:fundamentals/http-requests>.
+For more information on adding <xref:System.Net.Http.HttpClient> services to an ASP.NET Core app, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md).
 
 The client project (`.Client`) of a Blazor Web App must also register an <xref:System.Net.Http.HttpClient> for HTTP POST requests to a backend web API controller. Confirm or add the following to the client project's `Program` file:
 
@@ -765,7 +765,7 @@ The following controller in the server-side project saves uploaded files from th
 :::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](xref:fundamentals/minimal-apis?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core in .NET 6. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core in .NET 7 or later.
+> Binding form values with the [`[FromForm]` attribute](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) isn't natively supported for [Minimal APIs](../fundamentals/minimal-apis.md?view=aspnetcore-6.0#explicit-parameter-binding) in ASP.NET Core in .NET 6. Therefore, the following `Filesave` controller example can't be converted to use Minimal APIs. Support for binding from form values with Minimal APIs is available in ASP.NET Core in .NET 7 or later.
 
 :::moniker-end
 

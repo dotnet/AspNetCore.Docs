@@ -3,7 +3,6 @@ title: Detect changes with change tokens in ASP.NET Core
 description: Learn how to use change tokens to track changes.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/07/2019
-uid: fundamentals/change-tokens
 ---
 # Detect changes with change tokens in ASP.NET Core
 
@@ -13,7 +12,7 @@ uid: fundamentals/change-tokens
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## IChangeToken interface
 
@@ -49,7 +48,7 @@ Change tokens are used in prominent areas of ASP.NET Core to monitor for changes
 
 ## Monitor for configuration changes
 
-By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
+By default, ASP.NET Core templates use [JSON configuration files](configuration/index.md#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
 
 These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter. `reloadOnChange` indicates if configuration should be reloaded on file changes. This setting appears in the <xref:Microsoft.Extensions.Hosting.Host> convenience method <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>:
 
@@ -164,7 +163,7 @@ If cached content isn't found using the cache key, the following actions are tak
 1. A change token is obtained from the file provider with [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). The token's callback is triggered when the file is modified.
 1. The file content is cached with a [sliding expiration](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration) period. The change token is attached with [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) to evict the cache entry if the file changes while it's cached.
 
-In the following example, files are stored in the app's [content root](xref:fundamentals/index#content-root). `IWebHostEnvironment.ContentRootFileProvider` is used to obtain an <xref:Microsoft.Extensions.FileProviders.IFileProvider> pointing at the app's `IWebHostEnvironment.ContentRootPath`. The `filePath` is obtained with [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+In the following example, files are stored in the app's [content root](index.md#content-root). `IWebHostEnvironment.ContentRootFileProvider` is used to obtain an <xref:Microsoft.Extensions.FileProviders.IFileProvider> pointing at the app's `IWebHostEnvironment.ContentRootPath`. The `filePath` is obtained with [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/3.x/SampleApp/Services/FileService.cs?name=snippet1)]
 
@@ -211,11 +210,11 @@ var compositeChangeToken =
 
 A *change token* is a general-purpose, low-level building block used to track state changes.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/change-tokens/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## IChangeToken interface
 
-<xref:Microsoft.Extensions.Primitives.IChangeToken> propagates notifications that a change has occurred. `IChangeToken` resides in the <xref:Microsoft.Extensions.Primitives?displayProperty=fullName> namespace. For apps that don't use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), create a package reference for the [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package.
+<xref:Microsoft.Extensions.Primitives.IChangeToken> propagates notifications that a change has occurred. `IChangeToken` resides in the <xref:Microsoft.Extensions.Primitives?displayProperty=fullName> namespace. For apps that don't use the [Microsoft.AspNetCore.App metapackage](metapackage-app.md), create a package reference for the [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package.
 
 `IChangeToken` has two properties:
 
@@ -226,7 +225,7 @@ The `IChangeToken` interface includes the [RegisterChangeCallback(Action\<Object
 
 ## ChangeToken class
 
-<xref:Microsoft.Extensions.Primitives.ChangeToken> is a static class used to propagate notifications that a change has occurred. `ChangeToken` resides in the <xref:Microsoft.Extensions.Primitives?displayProperty=fullName> namespace. For apps that don't use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), create a package reference for the [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package.
+<xref:Microsoft.Extensions.Primitives.ChangeToken> is a static class used to propagate notifications that a change has occurred. `ChangeToken` resides in the <xref:Microsoft.Extensions.Primitives?displayProperty=fullName> namespace. For apps that don't use the [Microsoft.AspNetCore.App metapackage](metapackage-app.md), create a package reference for the [Microsoft.Extensions.Primitives](https://www.nuget.org/packages/Microsoft.Extensions.Primitives/) NuGet package.
 
 The [ChangeToken.OnChange(Func\<IChangeToken>, Action)](xref:Microsoft.Extensions.Primitives.ChangeToken.OnChange*) method registers an `Action` to call whenever the token changes:
 
@@ -247,7 +246,7 @@ Change tokens are used in prominent areas of ASP.NET Core to monitor for changes
 
 ## Monitor for configuration changes
 
-By default, ASP.NET Core templates use [JSON configuration files](xref:fundamentals/configuration/index#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
+By default, ASP.NET Core templates use [JSON configuration files](configuration/index.md#json-configuration-provider) (`appsettings.json`, `appsettings.Development.json`, and `appsettings.Production.json`) to load app configuration settings.
 
 These files are configured using the [AddJsonFile(IConfigurationBuilder, String, Boolean, Boolean)](xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*) extension method on <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> that accepts a `reloadOnChange` parameter. `reloadOnChange` indicates if configuration should be reloaded on file changes. This setting appears in the <xref:Microsoft.AspNetCore.WebHost> convenience method <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>:
 
@@ -362,7 +361,7 @@ If cached content isn't found using the cache key, the following actions are tak
 1. A change token is obtained from the file provider with [IFileProviders.Watch](xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*). The token's callback is triggered when the file is modified.
 1. The file content is cached with a [sliding expiration](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.SlidingExpiration) period. The change token is attached with [MemoryCacheEntryExtensions.AddExpirationToken](xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.AddExpirationToken*) to evict the cache entry if the file changes while it's cached.
 
-In the following example, files are stored in the app's [content root](xref:fundamentals/index#content-root). [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) is used to obtain an <xref:Microsoft.Extensions.FileProviders.IFileProvider> pointing at the app's <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>. The `filePath` is obtained with [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
+In the following example, files are stored in the app's [content root](index.md#content-root). [IHostingEnvironment.ContentRootFileProvider](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootFileProvider) is used to obtain an <xref:Microsoft.Extensions.FileProviders.IFileProvider> pointing at the app's <xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.ContentRootPath>. The `filePath` is obtained with [IFileInfo.PhysicalPath](xref:Microsoft.Extensions.FileProviders.IFileInfo.PhysicalPath).
 
 [!code-csharp[](change-tokens/samples/2.x/SampleApp/Services/FileService.cs?name=snippet1)]
 

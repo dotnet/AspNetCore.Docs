@@ -11,7 +11,7 @@ ms.date: 11/11/2019
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
@@ -101,7 +101,7 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 

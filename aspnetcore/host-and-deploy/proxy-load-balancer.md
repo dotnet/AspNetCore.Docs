@@ -135,9 +135,9 @@ app.UseRouting();
 ```
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../fundamentals/routing.md).
 
-The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see <xref:fundamentals/middleware/index>.
+The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), fix redirects and links by setting the request's [PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) property:
 
@@ -200,7 +200,7 @@ If the proxy isn't base64-encoding the certificate, as is the case with Nginx, s
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable `debug` level [logging](xref:fundamentals/logging/index) and HTTP request logging. <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> must be called after <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
+When headers aren't forwarded as expected, enable `debug` level [logging](../fundamentals/logging/index.md) and HTTP request logging. <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> must be called after <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
 <!-- COMMENTED OUT DELETE after review
  If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
@@ -374,7 +374,7 @@ If `/foo` is the app base path for a proxy path passed as `/foo/api/1`, the midd
 app.UsePathBase("/foo");
 ```
 
-The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see <xref:fundamentals/middleware/index>.
+The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), fix redirects and links by setting the request's [PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) property:
 
@@ -489,7 +489,7 @@ services.AddCertificateForwarding(options =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
+When headers aren't forwarded as expected, enable [logging](../fundamentals/logging/index.md). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
 
 To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`:
 
@@ -527,7 +527,7 @@ You can write to logs instead of the response body. Writing to logs allows the s
 
 To write logs rather than to the response body:
 
-* Inject `ILogger<Startup>` into the `Startup` class as described in [Create log messages](xref:fundamentals/logging/index#create-log-messages).
+* Inject `ILogger<Startup>` into the `Startup` class as described in [Create log messages](../fundamentals/logging/index.md#create-log-messages).
 * Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
 
 ```csharp

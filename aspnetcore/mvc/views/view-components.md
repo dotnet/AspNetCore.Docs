@@ -225,7 +225,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -491,7 +491,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method that can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
@@ -533,7 +533,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -627,7 +627,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## View components
 
@@ -674,7 +674,7 @@ A view component class:
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
- 
+
 ```csharp
 [NonViewComponent]
 public class ReviewComponent
@@ -793,7 +793,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.

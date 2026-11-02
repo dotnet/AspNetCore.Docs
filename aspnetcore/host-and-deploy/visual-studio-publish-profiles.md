@@ -222,7 +222,7 @@ If testing, delete the app or restore the basic auth settings to disabled.
 
 ## Set the environment
 
-Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file to set the app's [environment](xref:fundamentals/environments):
+Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file to set the app's [environment](../fundamentals/environments.md):
 
 ```xml
 <PropertyGroup>

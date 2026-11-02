@@ -13,7 +13,7 @@ By [Rutger Storm](https://github.com/rutix)
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -501,7 +501,7 @@ The sample app's `FileHelpers` class demonstrates several checks for buffered <x
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -571,7 +571,7 @@ Many implementations must include a check that the file exists; otherwise, a fil
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -692,7 +692,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel/options.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -704,7 +704,7 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel/options.md#maximum-request-body-size) for a single page or action.
 
 In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Program.cs`:
 
@@ -745,8 +745,8 @@ The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../
 
 Other Kestrel limits might apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel/options#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel/options#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel/options.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel/options.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -846,7 +846,7 @@ The examples in this article rely upon <xref:System.IO.MemoryStream> to hold the
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -1276,7 +1276,7 @@ The sample app's `FileHelpers` class demonstrates a several checks for buffered 
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -1346,7 +1346,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -1463,7 +1463,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -1479,7 +1479,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) for a single page or action.
 
 In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
@@ -1518,8 +1518,8 @@ The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../
 
 Other Kestrel limits may apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -1581,7 +1581,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -2011,7 +2011,7 @@ The sample app's `FileHelpers` class demonstrates a several checks for buffered 
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -2081,7 +2081,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -2200,7 +2200,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2213,7 +2213,7 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) for a single page or action.
 
 In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
@@ -2248,8 +2248,8 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 Other Kestrel limits may apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -2311,12 +2311,12 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 :::moniker range="< aspnetcore-5.0"
 
-* [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
+* [HTTP connection request draining](../../fundamentals/servers/kestrel.md#http11-request-draining)
 
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0"
 
-* [HTTP connection request draining](xref:fundamentals/servers/kestrel/request-draining)
+* [HTTP connection request draining](../../fundamentals/servers/kestrel/request-draining.md)
 
 :::moniker-end
 

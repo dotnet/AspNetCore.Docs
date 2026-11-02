@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 10/21/2026
-uid: fundamentals/openapi/customize-openapi
 ---
 # Customize OpenAPI documents
 
@@ -109,7 +108,7 @@ Operation transformers can also be added to specific endpoint with the <xref:Mic
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> to an endpoint, a response type, or a property sets `deprecated: true` on the corresponding operation, component schema, or schema property. Applying `[Obsolete]` to an endpoint handler does not propagate to its response schema unless the response type itself is also marked obsolete. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](xref:fundamentals/openapi/include-metadata#mark-apis-as-deprecated).
+> A transformer isn't needed just to mark an API deprecated. Applying <xref:System.ObsoleteAttribute> to an endpoint, a response type, or a property sets `deprecated: true` on the corresponding operation, component schema, or schema property. Applying `[Obsolete]` to an endpoint handler does not propagate to its response schema unless the response type itself is also marked obsolete. Use an operation transformer when the OpenAPI value must differ from what `[Obsolete]` produces. For more information, see [Mark APIs as deprecated](include-metadata.md#mark-apis-as-deprecated).
 
 :::moniker-end
 
@@ -256,7 +255,7 @@ builder.Services.AddOpenApi(options =>
 
 * [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](/aspnet/core/breaking-changes/11/microsoft-openapi-3x)
 * [OpenAPI 3.x upgrade migration guidance](../../migration/100-to-110.md#microsoftopenapi-upgraded-to-3x)
-* <xref:fundamentals/openapi/using-openapi-documents>
+* [Use the generated OpenAPI documents](using-openapi-documents.md)
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
 :::moniker-end

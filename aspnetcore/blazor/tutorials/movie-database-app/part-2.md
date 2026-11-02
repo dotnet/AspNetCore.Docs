@@ -532,8 +532,8 @@ EF Core documentation:
 * [Entity Framework Core tools reference - .NET CLI](/ef/core/cli/dotnet)
 * [Data Types](/ef/core/modeling/relational/data-types)
 * <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>: The API document includes basic information on how entities are saved and change detection.
-* [Environment-based `Startup` class and methods](xref:fundamentals/environments#environment-based-startup-class-and-methods)
-* <xref:fundamentals/dependency-injection>
+* [Environment-based `Startup` class and methods](../../../fundamentals/environments.md#environment-specific-startup-class)
+* [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
 * <xref:blazor/components/quickgrid>
 
 ## Legal

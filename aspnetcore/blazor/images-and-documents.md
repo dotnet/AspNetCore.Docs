@@ -124,7 +124,7 @@ The following `ShowImage2` component:
   * Invokes the `setSource` JavaScript function, which accepts the data on the client.
 
 > [!NOTE]
-> Server-side apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer of a server-side Blazor app to register an <xref:System.Net.Http.HttpClient> service. Client-side apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in the `Program` file of a client-side app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see <xref:fundamentals/http-requests>.
+> Server-side apps use a dedicated <xref:System.Net.Http.HttpClient> service to make requests, so no action is required by the developer of a server-side Blazor app to register an <xref:System.Net.Http.HttpClient> service. Client-side apps have a default <xref:System.Net.Http.HttpClient> service registration when the app is created from a Blazor project template. If an <xref:System.Net.Http.HttpClient> service registration isn't present in the `Program` file of a client-side app, provide one by adding `builder.Services.AddHttpClient();`. For more information, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md).
 
 `ShowImage2.razor`:
 

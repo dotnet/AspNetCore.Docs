@@ -33,7 +33,7 @@ For Blazor apps, localization of validation messages for [forms validation using
 For Blazor apps, localized validation messages for [forms validation using data annotations](<xref:blazor/forms/validation#data-annotations-validator-component-and-custom-validation>) are supported through two paths:
 
 * The static resource path using <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.ResourceType?displayProperty=nameWithType> for display names and <xref:System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType?displayProperty=nameWithType> for localized error messages. This approach is supported in every release.
-* <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the validation pipeline with `AddValidation()`. For details, see <xref:fundamentals/validation#localize-validation-messages>.
+* <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, which resolves validation messages and display names through <xref:Microsoft.Extensions.Localization.IStringLocalizer>. Available for Blazor apps that enable the validation pipeline with `AddValidation()`. For details, see [Validation in ASP.NET Core](../fundamentals/validation.md#localize-validation-messages).
 
 :::moniker-end
 
@@ -44,7 +44,7 @@ This article describes how to use Blazor's globalization and localization featur
 
 For additional general information, see the following resources:
 
-* <xref:fundamentals/localization>
+* [Globalization and localization in ASP.NET Core](../fundamentals/localization.md)
 * [.NET Fundamentals: Globalization](/dotnet/core/extensions/globalization)
 * [.NET Fundamentals: Localization](/dotnet/core/extensions/localization)
 
@@ -306,7 +306,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the client-side culture by user preference](#dynamically-set-the-client-side-culture-by-user-preference) section of this article.
 
-Apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 Add the following line to the `Program` file where services are registered:
 
@@ -355,7 +355,7 @@ app.UseRequestLocalization(localizationOptions);
 
 In the preceding example, [`CultureTypes.SpecificCultures`](xref:System.Globalization.CultureTypes) returns only cultures that are specific to a country or region—such as `en-US` or `fr-FR`—which come with full, concrete globalization data (for dates, numbers, calendars, and other cultural UI) that .NET can use for accurate formatting and parsing. Neutral cultures, such as `en` or `fr`, may not have complete globalization data, so they aren't included in this list.
 
-For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 Use the `CultureExample1` component shown in the [Demonstration component](#demonstration-component) section to study how globalization works. Issue a request with United States English (`en-US`). Switch to Costa Rican Spanish (`es-CR`) in the browser's language settings. Request the webpage again.
 
@@ -493,7 +493,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -523,13 +523,13 @@ app.UseRequestLocalization("en-US");
 
 The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of the `Program` file, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -545,7 +545,7 @@ app.UseRequestLocalization("en-US");
 
 The culture value for <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> must conform to the [BCP-47 language tag format](https://www.rfc-editor.org/info/bcp47).
 
-For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 :::moniker-end
 
@@ -785,7 +785,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -817,7 +817,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 The following example shows how to set the current culture in a cookie that can be read by the localization middleware.
 
@@ -880,7 +880,7 @@ Add the following Razor markup to the file:
 
 :::moniker-end
 
-For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -1417,7 +1417,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](xref:fundamentals/localization#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the server project's `Program` file where services are registered:
 
@@ -1548,7 +1548,7 @@ builder.Services.AddLocalization();
 
 ### Server-side localization
 
-Use [localization middleware](xref:fundamentals/localization#localization-middleware) to set the app's culture.
+Use [localization middleware](../fundamentals/localization.md#localization-middleware) to set the app's culture.
 
 If the app doesn't already support dynamic culture selection:
 
@@ -1587,7 +1587,7 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the localization middleware in the middleware pipeline, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 :::moniker-end
 
@@ -1614,11 +1614,11 @@ var localizationOptions = new RequestLocalizationOptions()
 app.UseRequestLocalization(localizationOptions);
 ```
 
-For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see <xref:fundamentals/middleware/index#middleware-order>.
+For information on ordering the localization middleware in the middleware pipeline of `Startup.Configure`, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 
 :::moniker-end
 
-If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](xref:fundamentals/websockets), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the server-side culture by user preference](#dynamically-set-the-server-side-culture-by-user-preference) section of this article to see an example Razor expression that persists the user's culture selection.
+If the app should localize resources based on storing a user's culture setting, use a localization culture cookie. Use of a cookie ensures that the WebSocket connection can correctly propagate the culture. If localization schemes are based on the URL path or query string, the scheme might not be able to work with [WebSockets](../fundamentals/websockets.md), thus fail to persist the culture. Therefore, the recommended approach is to use a localization culture cookie. See the [Dynamically set the server-side culture by user preference](#dynamically-set-the-server-side-culture-by-user-preference) section of this article to see an example Razor expression that persists the user's culture selection.
 
 ### Example of localized resources
 
@@ -1897,7 +1897,7 @@ To create localization shared resources, adopt the following approach.
   @inject IStringLocalizer<Localization.SharedResource> Loc
   ```
 
-For additional guidance, see <xref:fundamentals/localization>.
+For additional guidance, see [Globalization and localization in ASP.NET Core](../fundamentals/localization.md).
 
 ## Location override using "Sensors" pane in developer tools
 
@@ -1910,9 +1910,9 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 :::moniker range=">= aspnetcore-11.0"
 
 * <xref:blazor/host-and-deploy/app-base-path>
-* <xref:fundamentals/localization>
-* [DataAnnotations localization in Minimal APIs and Blazor](xref:fundamentals/localization/make-content-localizable#dataannotations-localization-in-minimal-apis-and-blazor)
-* [Minimal APIs: Localizing validation messages](xref:fundamentals/minimal-apis#localizing-validation-messages)
+* [Globalization and localization in ASP.NET Core](../fundamentals/localization.md)
+* [DataAnnotations localization in Minimal APIs and Blazor](../fundamentals/localization/make-content-localizable.md#dataannotations-localization-in-minimal-apis-and-blazor)
+* [Minimal APIs: Localizing validation messages](../fundamentals/minimal-apis.md#localizing-validation-messages)
 * [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
@@ -1924,7 +1924,7 @@ For more information, see [Blazor Localization does not work with InteractiveSer
 :::moniker range="< aspnetcore-11.0"
 
 * <xref:blazor/host-and-deploy/app-base-path>
-* <xref:fundamentals/localization>
+* [Globalization and localization in ASP.NET Core](../fundamentals/localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/core/extensions/globalization-and-localization)
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)

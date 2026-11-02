@@ -95,7 +95,7 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ## Register the database context
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services (such as the EF Core DB context) must be registered with DI during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, you register the database context with the DI container.
+ASP.NET Core is built with [dependency injection (DI)](../../../../fundamentals/dependency-injection.md). Services (such as the EF Core DB context) must be registered with DI during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a DB context instance is shown later in the tutorial. In this section, you register the database context with the DI container.
 
 Add the following `using` statements at the top of `Startup.cs`:
 
@@ -116,7 +116,7 @@ Add the following highlighted code in `Startup.ConfigureServices`:
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 <a name="cs"></a>
 
@@ -168,7 +168,7 @@ Visual Studio creates:
 
 The automatic creation of these files is known as *scaffolding*.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 * Open a command window in the project directory (The directory that contains the `Program.cs`, `Startup.cs`, and `.csproj` files).
 
@@ -225,7 +225,7 @@ Update-Database
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
 
-  The database update command generates the following warning: 
+  The database update command generates the following warning:
 
   > No type was specified for the decimal column 'Price' on entity type 'Movie'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
 
@@ -298,13 +298,13 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 ### Use SQLite for development, SQL Server for production
 

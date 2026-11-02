@@ -63,7 +63,7 @@ For more information on .NET Core framework components and distribution methods,
 
 Include the following NuGet packages to provide automatic logging features for apps deployed to Azure App Service:
 
-* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core logging integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
+* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](../../fundamentals/host/platform-specific-configuration.md) to provide ASP.NET Core logging integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executes <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> to add Azure App Service diagnostics logging providers in the `Microsoft.Extensions.Logging.AzureAppServices` package.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) provides logger implementations to support Azure App Service diagnostics logs and log streaming features.
 
@@ -74,7 +74,7 @@ The preceding packages must be explicitly referenced in the app's project file.
 App settings in the Azure portal permit you to set environment variables for the app. For more information, see the following resources:
 
 * [Configure an App Service app (Azure documentation)](/azure/app-service/configure-common)
-* <xref:fundamentals/configuration/index#environment-variables-configuration-provider>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md#environment-variables-configuration-provider)
 
 ## Proxy server and load balancer scenarios
 
@@ -102,7 +102,7 @@ Learn how to review quotas and metrics for apps and App Service plans.
 [Enable diagnostics logging for apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
-<xref:fundamentals/error-handling>  
+[Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
 <xref:test/troubleshoot-azure-iis>  

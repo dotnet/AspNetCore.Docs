@@ -187,7 +187,7 @@ In the Package Manager Console (PMC), enter the following command:
 
 ```powershell
 Add-Migration InitialCreate
- 
+
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
@@ -200,7 +200,7 @@ In the PMC, enter the following command:
 
 ```powershell
 Update-Database
- 
+
 ```
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
@@ -278,9 +278,9 @@ The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.
 
 ### Dependency injection
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](../../fundamentals/dependency-injection.md). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
 
-In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](../../fundamentals/dependency-injection.md) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Program.cs`:
 
@@ -294,7 +294,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 ---
 
-The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
+The [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 
@@ -312,7 +312,7 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
+For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -333,7 +333,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/MoviesController.cs?name=snippet_Constructor)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Test the **Create** page. Enter and submit data.
 
@@ -392,7 +392,7 @@ Examine the `Index.cshtml` view and the `Index` method in the Movies controller.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
-The code returns [problem details](xref:fundamentals/error-handling-api#problem-details-service) if the `Movie` property of the data context is null.
+The code returns [problem details](../../fundamentals/error-handling-api.md#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 

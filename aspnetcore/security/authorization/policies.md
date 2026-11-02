@@ -84,7 +84,7 @@ The fallback policy applies to requests processed by the authorization middlewar
 * Static files served by static file middleware before the authorization middleware aren't protected by the fallback policy.
 * Public endpoints can depend on static assets that must also allow anonymous access.
 
-For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files#static-file-authorization) and [Server-side Blazor app authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns). Blazor WebAssembly apps don't support a server-side fallback authorization policy. For Blazor WebAssembly authorization patterns, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.
+For more information, see [Static files in ASP.NET Core](../../fundamentals/static-files.md#static-file-authorization) and [Server-side Blazor app authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns). Blazor WebAssembly apps don't support a server-side fallback authorization policy. For Blazor WebAssembly authorization patterns, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.
 
 ## Default and fallback policies
 
@@ -288,7 +288,7 @@ The preceding code traverses <xref:Microsoft.AspNetCore.Authorization.Authorizat
 
 ### Handler registration
 
-Register handlers in the services collection during configuration. The following example registers a minimum age handler (`MinimumAgeHandler`) as a singleton service, but a handler can be registered using any of the built-in [service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes):
+Register handlers in the services collection during configuration. The following example registers a minimum age handler (`MinimumAgeHandler`) as a singleton service, but a handler can be registered using any of the built-in [service lifetimes](../../fundamentals/dependency-injection.md#service-lifetimes):
 
 :::moniker range=">= aspnetcore-6.0"
 

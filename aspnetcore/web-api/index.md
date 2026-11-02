@@ -212,7 +212,7 @@ When an action has more than one parameter bound from the request body, an excep
 
 ### FromServices inference notes
 
-Parameter binding binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding binds parameters through [dependency injection](../fundamentals/dependency-injection.md) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](index/samples/7.x/ApiController/Controllers/MyController.cs?name=snippet)]
 
@@ -299,9 +299,9 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
@@ -574,13 +574,13 @@ The `[Consumes]` attribute also allows an action to influence its selection base
 
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
 
-The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`.
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
@@ -594,7 +594,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 
 ## ControllerBase class
 
@@ -870,7 +870,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 ## Additional resources
 
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
@@ -1103,10 +1103,10 @@ In the preceding code, the `CreateProduct` action specifies the content type `ap
 The `[Consumes]` attribute also allows an action to influence its selection based on an incoming request's content type by applying a type constraint. Consider the following example:
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
-The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`.
 ## Additional resources
 * [Controller action return types in ASP.NET Core web API](action-return-types.md)
-* <xref:fundamentals/error-handling-api>
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
 * [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)

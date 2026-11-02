@@ -60,7 +60,7 @@ If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets
 
 For apps hosted without the Azure SignalR Service, enable:
 
-* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* [WebSockets](../fundamentals/websockets.md) to allow the WebSockets transport to function. The default setting is **Off**.
 * [Session affinity (ARR affinity)](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance. The default setting is **On**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.

@@ -8,7 +8,7 @@
 
 The [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) allows you to test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates. See the [ReadMe](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) file for testing instructions.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## ASP.NET Core GDPR support in template-generated code
 
@@ -51,11 +51,11 @@ If consent to store cookies hasn't been provided, only cookies marked essential 
 
 ### TempData provider and session state cookies aren't essential
 
-The [TempData provider](xref:fundamentals/app-state#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
+The [TempData provider](../../../fundamentals/app-state.md#tempdata) cookie isn't essential. If tracking is disabled, the TempData provider isn't functional. To enable the TempData provider when tracking is disabled, mark the TempData cookie as essential in `Startup.ConfigureServices`:
 
 [!code-csharp[Main](~/security/gdpr/samples/RP2.2/Startup.cs?name=snippet1)]
 
-[Session state](xref:fundamentals/app-state) cookies are not essential. Session state isn't functional when tracking is disabled. The following code makes session cookies essential:
+[Session state](../../../fundamentals/app-state.md) cookies are not essential. Session state isn't functional when tracking is disabled. The following code makes session cookies essential:
 
 [!code-csharp[](~/security/gdpr/samples/RP2.2/Startup.cs?name=snippet2)]
 

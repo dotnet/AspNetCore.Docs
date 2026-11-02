@@ -84,7 +84,7 @@ Optimization happens automatically when using `MapStaticAssets`. When a library 
 
 For more information on the new file delivery features, see the following resources:
 
-* <xref:fundamentals/static-files?view=aspnetcore-9.0>
+* [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0)
 * <xref:blazor/fundamentals/static-files?view=aspnetcore-9.0>
 
 ### Customize build-time compression with MSBuild properties
@@ -110,7 +110,7 @@ To completely disable compression:
 </PropertyGroup>
 ```
 
-For more information, see <xref:fundamentals/static-files?view=aspnetcore-9.0#msbuild-properties>.
+For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md?view=aspnetcore-9.0#msbuild-properties).
 
 ### Enabling dynamic compression on the server vs using `MapStaticAssets`
 

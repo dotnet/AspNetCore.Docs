@@ -193,13 +193,13 @@ To configure the system to use a key lifetime of 14 days instead of the default 
 
 ## Set the application name (`SetApplicationName`)
 
-By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](../../../fundamentals/index.md#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 
 * Configure <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> in each app with the same value.
 * Use the same version of the Data Protection API stack across the apps. Perform **either** of the following in the apps' project files:
-  * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+  * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md).
   * Reference the same [Data Protection package](../introduction.md#package-layout) version.
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
@@ -251,7 +251,7 @@ When the Data Protection system is provided by an ASP.NET Core host, it automati
 The isolation mechanism works by considering each app on the local machine as a unique tenant, thus the <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> rooted for any given app automatically includes the app ID as a discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>). The app's unique ID is the app's physical path:
 
 * For apps hosted in IIS, the unique ID is the IIS physical path of the app. If an app is deployed in a web farm environment, this value is stable assuming that the IIS environments are configured similarly across all machines in the web farm.
-* For self-hosted apps running on the [Kestrel server](xref:fundamentals/servers/index#kestrel), the unique ID is the physical path to the app on disk.
+* For self-hosted apps running on the [Kestrel server](../../../fundamentals/servers/index.md#kestrel), the unique ID is the physical path to the app on disk.
 
 The unique identifier is designed to survive resets&mdash;both of the individual app and of the machine itself.
 
@@ -336,7 +336,7 @@ Enable the `Information` or lower level of logging to diagnose problems. The fol
 
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
 
-For more information on logging, see <xref:fundamentals/logging/index>.
+For more information on logging, see [Logging in .NET and ASP.NET Core](../../../fundamentals/logging/index.md).
 
 ## Additional resources
 
@@ -555,13 +555,13 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Set the application name (`SetApplicationName`)
 
-By default, the Data Protection system isolates apps from one another based on their [content root](xref:fundamentals/index#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
+By default, the Data Protection system isolates apps from one another based on their [content root](../../../fundamentals/index.md#content-root) paths, even if they share the same physical key repository. This isolation prevents the apps from understanding each other's protected payloads.
 
 To share protected payloads among apps:
 
 * Configure <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> in each app with the same value.
 * Use the same version of the Data Protection API stack across the apps. Perform **either** of the following in the apps' project files:
-  * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+  * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md).
   * Reference the same [Data Protection package](../introduction.md#package-layout) version.
 
 ```csharp
@@ -596,7 +596,7 @@ When the Data Protection system is provided by an ASP.NET Core host, it automati
 The isolation mechanism works by considering each app on the local machine as a unique tenant, thus the <xref:Microsoft.AspNetCore.DataProtection.IDataProtector> rooted for any given app automatically includes the app ID as a discriminator (<xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator>). The app's unique ID is the app's physical path:
 
 * For apps hosted in IIS, the unique ID is the IIS physical path of the app. If an app is deployed in a web farm environment, this value is stable assuming that the IIS environments are configured similarly across all machines in the web farm.
-* For self-hosted apps running on the [Kestrel server](xref:fundamentals/servers/index#kestrel), the unique ID is the physical path to the app on disk.
+* For self-hosted apps running on the [Kestrel server](../../../fundamentals/servers/index.md#kestrel), the unique ID is the physical path to the app on disk.
 
 The unique identifier is designed to survive resets&mdash;both of the individual app and of the machine itself.
 
@@ -739,7 +739,7 @@ Enable the `Information` or lower level of logging to diagnose problems. The fol
 }
 ```
 
-For more information on logging, see <xref:fundamentals/logging/index>.
+For more information on logging, see [Logging in .NET and ASP.NET Core](../../../fundamentals/logging/index.md).
 
 ## Additional resources
 

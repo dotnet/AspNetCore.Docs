@@ -3,7 +3,6 @@ title: ASP.NET Core runtime environments
 description: Learn how to set and control app behavior across runtime environments in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/29/2026
-uid: fundamentals/environments
 ---
 # ASP.NET Core runtime environments
 
@@ -49,7 +48,7 @@ To determine the runtime environment, ASP.NET Core reads from the following envi
 
 :::moniker range=">= aspnetcore-7.0"
 
-* [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT`
 
 When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIRONMENT` value take precedence over `ASPNETCORE_ENVIRONMENT`. When using <xref:Microsoft.AspNetCore.WebHost>, `ASPNETCORE_ENVIRONMENT` takes precedence.
@@ -58,14 +57,14 @@ When using <xref:Microsoft.AspNetCore.Builder.WebApplication>, the `DOTNET_ENVIR
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-* [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT` when the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> method is called. The ASP.NET Core web app project templates call `WebApplication.CreateBuilder`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* [`DOTNET_ENVIRONMENT`](xref:fundamentals/configuration/index#default-host-configuration)
+* [`DOTNET_ENVIRONMENT`](configuration/index.md#default-host-configuration-sources)
 * `ASPNETCORE_ENVIRONMENT` when <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> is called. The ASP.NET Core web app project templates call `ConfigureWebHostDefaults`. The `ASPNETCORE_ENVIRONMENT` value overrides `DOTNET_ENVIRONMENT`.
 
 :::moniker-end
@@ -83,7 +82,7 @@ Use <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Environment?display
 The following code in the app's `Program` file:
 
 * Uses <xref:Microsoft.AspNetCore.Builder.WebApplication.Environment?displayProperty=nameWithType> to distinguish the environment.
-* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, which adds [exception handler middleware](xref:fundamentals/error-handling) to the request processing pipeline to handle exceptions.
+* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, which adds [exception handler middleware](error-handling.md) to the request processing pipeline to handle exceptions.
 * Calls <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>, which adds [HSTS middleware](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) to apply the [`Strict-Transport-Security` header](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Strict-Transport-Security).
 
 ```csharp
@@ -106,7 +105,7 @@ The following code in `Startup.Configure`:
 
 * Injects <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> into `Startup.Configure` to tailor the code to the environment. This approach is useful when the app only requires adjusting `Startup.Configure` for a few environments with minimal code differences per environment. When many code differences exist per environment, consider using [accessing the environment from a `Startup` class](#access-the-environment-from-a-startup-class), which is covered later in this article.
 * Calls <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*> when `ASPNETCORE_ENVIRONMENT` is set to `Development`. The call adds middleware that captures exceptions and generates HTML error responses.
-* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> when the value of `ASPNETCORE_ENVIRONMENT` is set to `Production`, `Staging`, or `Testing`. The call adds [exception handler middleware](xref:fundamentals/error-handling) to the pipeline to handle exceptions.
+* Calls <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> when the value of `ASPNETCORE_ENVIRONMENT` is set to `Production`, `Staging`, or `Testing`. The call adds [exception handler middleware](error-handling.md) to the pipeline to handle exceptions.
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -355,13 +354,13 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 :::moniker range="< aspnetcore-6.0"
 
-Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. For more information, see <xref:fundamentals/host/generic-host#environmentname>.
+Call <xref:Microsoft.Extensions.Hosting.HostingHostBuilderExtensions.UseEnvironment*> when building the host. For more information, see [.NET Generic Host in ASP.NET Core](host/generic-host.md#environment-name).
 
 :::moniker-end
 
 ## Load configuration by environment
 
-To load configuration by environment, see <xref:fundamentals/configuration/index#json-configuration-provider>.
+To load configuration by environment, see [Configuration in ASP.NET Core](configuration/index.md#json-configuration-provider).
 
 ## Access the environment from a `Startup` class
 
@@ -482,6 +481,6 @@ public void ConfigureServices(IServiceCollection services)
 ## Related content
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](xref:index#how-to-download-a-sample))
-* <xref:fundamentals/startup>
-* <xref:fundamentals/configuration/index>
+* [App startup in ASP.NET Core](startup.md)
+* [Configuration in ASP.NET Core](configuration/index.md)
 * <xref:blazor/fundamentals/environments>

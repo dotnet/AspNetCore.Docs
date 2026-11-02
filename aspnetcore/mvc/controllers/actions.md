@@ -95,4 +95,4 @@ Error handling and response caching are often cross-cutting concerns:
 * [Handle errors](filters.md#exception-filters)
 * [Response Caching](xref:performance/caching/response)
 
-Many cross-cutting concerns can be handled using filters or custom [middleware](xref:fundamentals/middleware/index).
+Many cross-cutting concerns can be handled using filters or custom [middleware](../../fundamentals/middleware/index.md).

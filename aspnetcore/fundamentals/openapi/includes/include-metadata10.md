@@ -23,7 +23,7 @@ The following table provides an overview of the metadata collected and the strat
 | responses | [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*>, <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*> | <xref:Microsoft.AspNetCore.Http.TypedResults> |
 | Excluding endpoints | [`[ExcludeFromDescription]`](xref:Microsoft.AspNetCore.Routing.ExcludeFromDescriptionAttribute), [`[ApiExplorerSettings]`](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) | <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ExcludeFromDescription*> | |
 
-ASP.NET Core can also collect metadata from XML doc comments. For more information, see <xref:fundamentals/openapi/aspnet-openapi-xml> for more details.
+ASP.NET Core can also collect metadata from XML doc comments. For more information, see [ASP.NET Core OpenAPI XML documentation comment support in ASP.NET Core](../openapi-comments.md) for more details.
 
 The following sections demonstrate how to include metadata in an app to customize the generated OpenAPI document.
 
@@ -173,7 +173,7 @@ public IResult Attributes(
 
 The `requestBody` field in OpenAPI describes the body of a request that an API client can send to the server, including the content types supported and the schema for the body content.
 
-When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
+When the endpoint handler method accepts parameters that are bound from the request body, ASP.NET Core generates a corresponding `requestBody` for the operation in the OpenAPI document. Metadata for the request body can also be specified using attributes or extension methods. Additional metadata can be set with a [document transformer](../customize-openapi.md#use-document-transformers) or [operation transformer](../customize-openapi.md#use-operation-transformers).
 
 If the endpoint doesn't define any parameters bound to the request body, but instead consumes the request body from the <xref:Microsoft.AspNetCore.Http.HttpContext> directly, ASP.NET Core provides mechanisms to specify request body metadata. This is a common scenario for endpoints that process the request body as a stream.
 
@@ -184,7 +184,7 @@ A description for the request body can be set with a [`[Description]`](xref:Syst
 If the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is non-nullable and <xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute.EmptyBodyBehavior> is not set to <xref:Microsoft.AspNetCore.Mvc.ModelBinding.EmptyBodyBehavior.Allow> in the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) attribute, the request body is required and the `required` field of the `requestBody` is set to `true` in the generated OpenAPI document.
 Form bodies are always required and have `required` set to `true`.
 
-Use a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or an [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
+Use a [document transformer](../customize-openapi.md#use-document-transformers) or an [operation transformer](../customize-openapi.md#use-operation-transformers) to set the `example`, `examples`, or `encoding` fields, or to add specification extensions for the request body in the generated OpenAPI document.
 
 For endpoints that accept a JSON Patch document, the generated OpenAPI document uses the `application/json-patch+json` media type for the request body and includes a detailed schema that describes the structure of the JSON Patch document, including the operations it can contain. For more information about JSON Patch in ASP.NET Core, see [JsonPatch in ASP.NET Core web API](../../../web-api/jsonpatch.md).
 
@@ -196,7 +196,7 @@ The content types for the request body in the generated OpenAPI document are det
 By default, the content type of a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter is `application/json`, and the content type for [`FromForm`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) parameters is `multipart/form-data` or `application/x-www-form-urlencoded`.
 
 Support for these default content types is built in to Minimal APIs, and other content types can be handled by using custom binding.
-See the [Custom binding](xref:fundamentals/minimal-apis/parameter-binding#custom-binding) topic of the Minimal APIs documentation for more information.
+See the [Custom binding](../../minimal-apis/parameter-binding.md#custom-binding) topic of the Minimal APIs documentation for more information.
 
 There are several ways to specify a different content type for the request body.
 If the type of the [`FromBody`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) parameter implements <xref:Microsoft.AspNetCore.Http.Metadata.IEndpointParameterMetadataProvider>, ASP.NET Core uses this interface to determine the content types in the request body.
@@ -275,7 +275,7 @@ If the route handler doesn't have a [`FromBody`](xref:Microsoft.AspNetCore.Mvc.F
 
 ### Describe response types
 
-OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content types of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](xref:fundamentals/openapi/customize-openapi#use-document-transformers) or [operation transformer](xref:fundamentals/openapi/customize-openapi#use-operation-transformers).
+OpenAPI supports providing a description of the responses returned from an API. ASP.NET Core provides several strategies for setting the response metadata of an endpoint. Response metadata that can be set includes the status code, the type of the response body, and content types of a response. Responses in OpenAPI may have additional metadata, such as description, headers, links, and examples. This additional metadata can be set with a [document transformer](../customize-openapi.md#use-document-transformers) or [operation transformer](../customize-openapi.md#use-operation-transformers).
 
 The specific mechanisms for setting response metadata depend on the type of app being developed.
 
@@ -361,7 +361,7 @@ When setting the response type for endpoints that may return a ProblemDetails re
 * <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesValidationProblem*> extension method.
 * <xref:Microsoft.AspNetCore.Http.TypedResults> with a status code in the (400-499) range.
 
-For more information on how to configure a Minimal API app to return ProblemDetails responses, see <xref:fundamentals/error-handling-api>.
+For more information on how to configure a Minimal API app to return ProblemDetails responses, see [Handle errors in ASP.NET Core APIs](../../error-handling-api.md).
 
 ##### Multiple response types
 
@@ -576,7 +576,7 @@ The `description` of a property is included in the generated OpenAPI document ev
 
 Note that in controller-based apps, these attributes add filters to the operation to validate that any incoming data satisfies the constraints. In Minimal APIs, these attributes set the metadata in the generated schema but validation must be performed explicitly via an endpoint filter, in the route handler's logic, or via a third-party package.
 
-Validation is separate from OpenAPI schema generation. The `[SkipValidation]` attribute opts a parameter, type, or property out of runtime validation but doesn't change the generated OpenAPI schema. For more information about validating request data, including the experimental validation attributes introduced in .NET 10, see <xref:fundamentals/validation>.
+Validation is separate from OpenAPI schema generation. The `[SkipValidation]` attribute opts a parameter, type, or property out of runtime validation but doesn't change the generated OpenAPI schema. For more information about validating request data, including the experimental validation attributes introduced in .NET 10, see [Validation in ASP.NET Core](../../validation.md).
 
 Attributes can also be placed on parameters in the parameter list of a record definition but must include the `property` modifier. For example:
 
@@ -694,7 +694,7 @@ An abstract class with a [`[JsonPolymorphic]`](xref:System.Text.Json.Serializati
 
 ### Add metadata with a schema transformer
 
-A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](xref:fundamentals/openapi/customize-openapi#use-schema-transformers) for more information.
+A schema transformer can be used to override any default metadata or add additional metadata, such as `example` values, to the generated schema. See [Use schema transformers](../customize-openapi.md#use-schema-transformers) for more information.
 
 ## Set JSON serialization options globally
 
@@ -717,7 +717,7 @@ The following table shows the key differences between the MVC JSON options and g
 
 ## Related content
 
-* <xref:fundamentals/openapi/using-openapi-documents>
+* [Use the generated OpenAPI documents](../using-openapi-documents.md)
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
 :::moniker-end

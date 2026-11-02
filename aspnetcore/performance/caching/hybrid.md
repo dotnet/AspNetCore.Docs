@@ -21,7 +21,7 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
+Add the `HybridCache` service to the [dependency injection (DI)](../../fundamentals/dependency-injection.md) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
@@ -249,7 +249,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 * **Trimming**
 
-  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
+  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see [ASP.NET Core support for Native AOT](../../fundamentals/native-aot.md).
 
 If you set up serialization and trimming correctly, `HybridCache` behaves the same way in Native AOT as in regular ASP.NET Core apps.
 

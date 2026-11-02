@@ -25,7 +25,7 @@ After Kestrel picks up the request from the module, the request is forwarded int
 
 For ASP.NET Core Module configuration guidance, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
-For more information on hosting, see [Host in ASP.NET Core](xref:fundamentals/index#host).
+For more information on hosting, see [Host in ASP.NET Core](../../fundamentals/index.md#host).
 
 ## Application configuration
 
@@ -39,7 +39,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         ...
 ```
 
-For more information on `CreateDefaultBuilder`, see <xref:fundamentals/host/generic-host#default-builder-settings>.
+For more information on `CreateDefaultBuilder`, see [.NET Generic Host in ASP.NET Core](../../fundamentals/host/generic-host.md#configure-default-builder-settings).
 
 
 **Out-of-process hosting model**
@@ -86,9 +86,9 @@ In-process hosting is set with `InProcess`, which is the default value.
 
 The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
 
-[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+[Kestrel](../../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.

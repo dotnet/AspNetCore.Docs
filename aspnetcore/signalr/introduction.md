@@ -43,7 +43,7 @@ The source is hosted in the [ASP.NET Core SignalR repository on GitHub](https://
 
 SignalR supports the following techniques for handling real-time communication (in order of graceful fallback):
 
-* [WebSockets](xref:fundamentals/websockets)
+* [WebSockets](../fundamentals/websockets.md)
 * Server-sent events
 * Long polling
 

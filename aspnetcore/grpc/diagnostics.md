@@ -14,20 +14,20 @@ By [James Newton-King](https://twitter.com/jamesnk)
 :::moniker range=">= aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
-* **Logging** - Structured logs written to [.NET logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
+* **Logging** - Structured logs written to [.NET logging](../fundamentals/logging/index.md). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
 * **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command-line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
-gRPC services and the gRPC client write logs using [.NET logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
+gRPC services and the gRPC client write logs using [.NET logging](../fundamentals/logging/index.md). Logs are a good place to start when debugging unexpected behavior in service and client apps.
 
 ### gRPC services logging
 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](../fundamentals/logging/index.md) for details on configuring ASP.NET Core logging.
 
 gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in the `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
@@ -72,11 +72,11 @@ How server-side logs are accessed depends on the app's environment.
 
 #### As a console app
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. gRPC logs will appear in the console.
+If you're running in a console app, the [Console logger](../fundamentals/logging/index.md#console) should be enabled by default. gRPC logs will appear in the console.
 
 #### Other environments
 
-If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see <xref:fundamentals/logging/index> for more information on how to configure logging providers suitable for the environment.
+If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md) for more information on how to configure logging providers suitable for the environment.
 
 ### gRPC client logging
 
@@ -229,7 +229,7 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 
 ## Additional resources
 
-* <xref:fundamentals/logging/index>
+* [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md)
 * [gRPC for .NET configuration](configuration.md)
 * [gRPC client factory integration in .NET](clientfactory.md)
 
@@ -238,20 +238,20 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 This article provides guidance for gathering diagnostics from a gRPC app to help troubleshoot issues. Topics covered include:
 
-* **Logging** - Structured logs written to [.NET logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
+* **Logging** - Structured logs written to [.NET logging](../fundamentals/logging/index.md). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
 * **Tracing** - Events related to an operation written using `DiaganosticSource` and `Activity`. Traces from diagnostic source are commonly used to collect app telemetry by libraries such as [Application Insights](/azure/azure-monitor/app/asp-net-core) and [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-dotnet).
 * **Metrics** - Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 
 ## Logging
 
-gRPC services and the gRPC client write logs using [.NET logging](xref:fundamentals/logging/index). Logs are a good place to start when debugging unexpected behavior in service and client apps.
+gRPC services and the gRPC client write logs using [.NET logging](../fundamentals/logging/index.md). Logs are a good place to start when debugging unexpected behavior in service and client apps.
 
 ### gRPC services logging
 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since gRPC services are hosted on ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, gRPC logs minimal information, but logging can be configured. See the documentation on [ASP.NET Core logging](../fundamentals/logging/index.md) for details on configuring ASP.NET Core logging.
 
 gRPC adds logs under the `Grpc` category. To enable detailed logs from gRPC, configure the `Grpc` prefixes to the `Debug` level in your `appsettings.json` file by adding the following items to the `LogLevel` subsection in `Logging`:
 
@@ -296,11 +296,11 @@ How you access server-side logs depends on the environment in which you're runni
 
 #### As a console app
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. gRPC logs will appear in the console.
+If you're running in a console app, the [Console logger](../fundamentals/logging/index.md#console) should be enabled by default. gRPC logs will appear in the console.
 
 #### Other environments
 
-If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see <xref:fundamentals/logging/index> for more information on how to configure logging providers suitable for the environment.
+If the app is deployed to another environment (for example, Docker, Kubernetes, or Windows Service), see [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md) for more information on how to configure logging providers suitable for the environment.
 
 ### gRPC client logging
 
@@ -453,7 +453,7 @@ Specify the gRPC counters for Application Insight to collect in `Startup.cs`:
 
 ## Additional resources
 
-* <xref:fundamentals/logging/index>
+* [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md)
 * [gRPC for .NET configuration](configuration.md)
 * [gRPC client factory integration in .NET](clientfactory.md)
 

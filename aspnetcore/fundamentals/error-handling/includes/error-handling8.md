@@ -3,18 +3,18 @@
 
 By [Tom Dykstra](https://github.com/tdykstra/)
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also [Handle errors in ASP.NET Core APIs](../../error-handling-api.md).
 
 ## Developer exception page
 
 The *Developer Exception Page* displays detailed information about unhandled request exceptions. ASP.NET Core apps enable the developer exception page by default when both:
 
-* Running in the [`Development` environment](xref:fundamentals/environments).
+* Running in the [`Development` environment](../../environments.md).
 * App created with the current templates, that is, using [WebApplication.CreateBuilder](/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder).  Apps created using the [`WebHost.CreateDefaultBuilder`](xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder) must enable the developer exception page by calling `app.UseDeveloperExceptionPage` in `Configure`.
 
 The developer exception page runs early in the middleware pipeline, so that it can catch unhandled exceptions thrown in middleware that follows.
 
-Detailed exception information shouldn't be displayed publicly when the app runs in the `Production` environment. For more information on configuring environments, see <xref:fundamentals/environments>.
+Detailed exception information shouldn't be displayed publicly when the app runs in the `Production` environment. For more information on configuring environments, see [ASP.NET Core runtime environments](../../environments.md).
 
 The Developer Exception Page can include the following information about the exception and the request:
 
@@ -23,11 +23,11 @@ The Developer Exception Page can include the following information about the exc
 * Cookies, if any
 * Headers
 
-The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
+The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](../../logging/index.md) for complete error information.
 
 ## Exception handler page
 
-To configure a custom error handling page for the [`Production` environment](xref:fundamentals/environments), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This exception handling middleware:
+To configure a custom error handling page for the [`Production` environment](../../environments.md), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This exception handling middleware:
 
 * Catches and logs unhandled exceptions.
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
@@ -100,7 +100,7 @@ Exception handling middleware iterates through registered exception handlers in 
 > }
 > ```
 >
-> Starting in .NET 10, diagnostics are suppressed by default for handled exceptions. See [SuppressDiagnosticsCallback](xref:fundamentals/error-handling#suppressdiagnosticscallback).
+> Starting in .NET 10, diagnostics are suppressed by default for handled exceptions. See [SuppressDiagnosticsCallback](../../error-handling.md#suppressdiagnosticscallback).
 
 The following example shows an `IExceptionHandler` implementation:
 
@@ -265,17 +265,17 @@ Once the headers for a response are sent:
 
 ## Server exception handling
 
-In addition to the exception handling logic in an app, the [HTTP server implementation](xref:fundamentals/servers/index) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a `500 - Internal Server Error` response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by the app are handled by the server. Any exception that occurs when the server is handling the request is handled by the server's exception handling. The app's custom error pages, exception handling middleware, and filters don't affect this behavior.
+In addition to the exception handling logic in an app, the [HTTP server implementation](../../servers/index.md) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a `500 - Internal Server Error` response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by the app are handled by the server. Any exception that occurs when the server is handling the request is handled by the server's exception handling. The app's custom error pages, exception handling middleware, and filters don't affect this behavior.
 
 ## Startup exception handling
 
-Only the hosting layer can handle exceptions that take place during app startup. The host can be configured to [capture startup errors](xref:fundamentals/host/web-host#capture-startup-errors) and [capture detailed errors](xref:fundamentals/host/web-host#detailed-errors).
+Only the hosting layer can handle exceptions that take place during app startup. The host can be configured to [capture startup errors](../../host/web-host.md#capture-startup-errors) and [capture detailed errors](../../host/web-host.md#detailed-errors).
 
 The hosting layer can show an error page for a captured startup error only if the error occurs after host address/port binding. If binding fails:
 
 * The hosting layer logs a critical exception.
 * The dotnet process crashes.
-* No error page is displayed when the HTTP server is [Kestrel](xref:fundamentals/servers/kestrel).
+* No error page is displayed when the HTTP server is [Kestrel](../../servers/kestrel.md).
 
 When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) if the process can't start. For more information, see <xref:test/troubleshoot-azure-iis>.
 
@@ -382,7 +382,7 @@ In non-development environments, when an exception occurs, the following is a st
 
 For most apps, the preceding code is all that's needed for exceptions. However, the following section shows how to get more detailed problem responses.
 
-An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
+An alternative to a [custom exception handler page](../../error-handling.md#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_lambda" :::
 

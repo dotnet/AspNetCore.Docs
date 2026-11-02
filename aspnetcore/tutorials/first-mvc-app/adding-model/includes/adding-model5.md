@@ -51,7 +51,7 @@ In the PMC, run the following command:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Design
- 
+
 ```
 
 The preceding commands add:
@@ -91,7 +91,7 @@ Run the following .NET CLI command:
 dotnet tool install --global dotnet-aspnet-codegenerator
 ```
 
-The preceding command adds the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+The preceding command adds the [aspnet-codegenerator scaffolding tool](../../../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 [!INCLUDE[](~/includes/dotnet-tool-install-arch-options.md)]
 
@@ -228,7 +228,7 @@ In the Package Manager Console (PMC), enter the following commands:
 ```powershell
 Add-Migration InitialCreate
 Update-Database
- 
+
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
@@ -296,9 +296,9 @@ Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property that represents the movies in the database.
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](../../../../fundamentals/dependency-injection.md). Services, such as the database context, must be registered with DI in `Startup`. Components that require these services are provided via constructor parameters.
 
-In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Startup.ConfigureServices`:
 
@@ -316,7 +316,7 @@ Scaffolding generated the following highlighted code in `Startup.ConfigureServic
 
 ---
 
-The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
+The [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 
@@ -334,7 +334,7 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
+For local development, the [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -355,7 +355,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie22/Controllers/MC1.cs?name=snippet_1)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Test the **Create** page. Enter and submit data.
 

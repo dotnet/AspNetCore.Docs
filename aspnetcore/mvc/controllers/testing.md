@@ -18,9 +18,9 @@ Set up unit tests of controller actions to focus on the controller's behavior. A
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 
-To demonstrate controller unit tests, review the following controller in the sample app. 
+To demonstrate controller unit tests, review the following controller in the sample app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 The Home controller displays a list of brainstorming sessions and allows the creation of new brainstorming sessions with a POST request:
 
@@ -29,7 +29,7 @@ The Home controller displays a list of brainstorming sessions and allows the cre
 The preceding controller:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
-* Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide an instance of `IBrainstormSessionRepository`.
+* Expects [dependency injection (DI)](../../fundamentals/dependency-injection.md) to provide an instance of `IBrainstormSessionRepository`.
 * Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests).
 
 The `HTTP GET Index` method has no looping or branching and only calls one method. The unit test for this action:
@@ -175,7 +175,7 @@ For a valid session `id`, the final test confirms that:
 
 [Controllers](actions.md) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Unit tests of controller logic
 
@@ -192,7 +192,7 @@ To demonstrate controller unit tests, review the following controller in the sam
 The preceding controller:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
-* Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide an instance of `IBrainstormSessionRepository`.
+* Expects [dependency injection (DI)](../../fundamentals/dependency-injection.md) to provide an instance of `IBrainstormSessionRepository`.
 * Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests).
 
 The `HTTP GET Index` method has no looping or branching and only calls one method. The unit test for this action:

@@ -392,5 +392,5 @@ Advice for creating high-performance applications with large binary payloads:
   *  [gRPC streaming file download](https://github.com/grpc/grpc-dotnet/tree/master/examples#downloader).
   *  [gRPC streaming file upload](https://github.com/grpc/grpc-dotnet/tree/master/examples#uploader).
 * **Consider** not using gRPC for large binary data. In ASP.NET Core, web APIs can be used alongside gRPC services. An HTTP endpoint can access the request and response stream body directly:
-  * [Read the request body in a Minimal API](xref:fundamentals/minimal-apis#read-the-request-body)
-  * [Return stream response in a Minimal API](xref:fundamentals/minimal-apis#stream)
+  * [Read the request body in a Minimal API](../fundamentals/minimal-apis.md#read-the-request-body)
+  * [Return stream response in a Minimal API](../fundamentals/minimal-apis.md#stream)

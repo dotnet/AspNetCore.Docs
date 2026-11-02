@@ -53,7 +53,7 @@ In the preceding example, the model binding targets are method parameters that a
 Model binding tries to find values for the following kinds of targets:
 
 * Parameters of the controller action method that a request is routed to.
-* Parameters of the Razor Pages handler method that a request is routed to. 
+* Parameters of the Razor Pages handler method that a request is routed to.
 * Public (`public`) properties of a controller or `PageModel` class, if specified by attributes.
 
 ### [BindProperty] attribute
@@ -101,7 +101,7 @@ For each target parameter or property, the sources are scanned in the order indi
 
 If the default source is not correct, use one of the following attributes to specify the source:
 
-* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string. 
+* [`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute) - Gets values from the query string.
 * [`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute) - Gets values from route data.
 * [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) - Gets values from posted form fields.
 * [`[FromBody]`](xref:Microsoft.AspNetCore.Mvc.FromBodyAttribute) - Gets values from the request body.
@@ -143,7 +143,7 @@ The `Pet` class specifies that its `Breed` property is populated from a query st
 In the preceding example:
 
 * The `[FromQuery]` attribute is ignored.
-* The `Breed` property is not populated from a query string parameter. 
+* The `Breed` property is not populated from a query string parameter.
 
 Input formatters read only the body and don't understand binding source attributes. If a suitable value is found in the body, that value is used to populate the `Breed` property.
 
@@ -379,7 +379,7 @@ public class Instructor
 {
     [ModelBinder(Name = "instructor_id")]
     public string Id { get; set; }
-    
+
     // ...
 }
 ```
@@ -409,9 +409,9 @@ For targets that are collections of simple types, model binding looks for matche
   ```
 
 * Form or query string data can be in one of the following formats:
-   
+
   ```
-  selectedCourses=1050&selectedCourses=2000 
+  selectedCourses=1050&selectedCourses=2000
   ```
 
   ```
@@ -431,7 +431,7 @@ For targets that are collections of simple types, model binding looks for matche
   ```
 
   Avoid binding a parameter or a property named `index` or `Index` if it is adjacent to a collection value. Model binding attempts to use `index` as the index for the collection which might result in incorrect binding. For example, consider the following action:
-  
+
   ```csharp
   public IActionResult Post(string index, List<Product> products)
   ```
@@ -486,7 +486,7 @@ For `Dictionary` targets, model binding looks for matches to *parameter_name* or
 
   * selectedCourses["1050"]="Chemistry"
   * selectedCourses["2000"]="Economics"
-  
+
 ## Constructor binding and record types
 
 Model binding requires that complex types have a parameterless constructor. Both `System.Text.Json` and `Newtonsoft.Json` based input formatters support deserialization of classes that don't have a parameterless constructor.
@@ -679,7 +679,7 @@ To use the built-in XML input formatters:
 
 ### Customize model binding with input formatters
 
-An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json`-based input formatter to understand a custom type named `ObjectId`. 
+An input formatter takes full responsibility for reading data from the request body. To customize this process, configure the APIs used by the input formatter. This section describes how to customize the `System.Text.Json`-based input formatter to understand a custom type named `ObjectId`.
 
 Consider the following model, which contains a custom `ObjectId` property:
 
@@ -726,7 +726,7 @@ For more information, see [TryUpdateModelAsync](../../data/ef-rp/crud.md#use-the
 
 ## [FromServices] attribute
 
-This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](xref:fundamentals/dependency-injection) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
+This attribute's name follows the pattern of model binding attributes that specify a data source. But it's not about binding data from a value provider. It gets an instance of a type from the [dependency injection](../../fundamentals/dependency-injection.md) container. Its purpose is to provide an alternative to constructor injection for when you need a service only if a particular method is called.
 
 If an instance of the type isn't registered in the dependency injection container, the app throws an exception when attempting to bind the parameter. To make the parameter optional, use one of the following approaches:
 

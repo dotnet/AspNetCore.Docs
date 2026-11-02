@@ -19,13 +19,13 @@ This tutorial teaches the basics of building a controller-based web API that use
 
 This tutorial creates the following API:
 
-|API | Description | Request body | Response body |
-|--- | ---- | ---- | ---- |
-|`GET /api/todoitems` | Get all to-do items | None | Array of to-do items|
-|`GET /api/todoitems/{id}` | Get an item by ID | None | To-do item|
-|`POST /api/todoitems` | Add a new item | To-do item | To-do item |
-|`PUT /api/todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /api/todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+| API                          | Description             | Request body | Response body        |
+|------------------------------|-------------------------|--------------|----------------------|
+| `GET /api/todoitems`         | Get all to-do items     | None         | Array of to-do items |
+| `GET /api/todoitems/{id}`    | Get an item by ID       | None         | To-do item           |
+| `POST /api/todoitems`        | Add a new item          | To-do item   | To-do item           |
+| `PUT /api/todoitems/{id}`    | Update an existing item | To-do item   | None                 |
+| `DELETE /api/todoitems/{id}` | Delete an item          | None         | None                 |
 
 The following diagram shows the design of the app.
 
@@ -93,7 +93,7 @@ A NuGet package must be added to support the database used in this tutorial.
 
 ### Run the project
 
-The project template creates a `WeatherForecast` API with support for [OpenAPI](xref:fundamentals/openapi/overview).
+The project template creates a `WeatherForecast` API with support for [OpenAPI](../fundamentals/openapi/overview.md).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -101,7 +101,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS.md)]
 
-Visual Studio launches a terminal window and displays the URL of the running app. The API is hosted at `https://localhost:<port>`, where `<port>` is a randomly chosen port number set at the project creation. 
+Visual Studio launches a terminal window and displays the URL of the running app. The API is hosted at `https://localhost:<port>`, where `<port>` is a randomly chosen port number set at the project creation.
 
    ```output
    ...
@@ -116,7 +116,7 @@ Visual Studio launches a terminal window and displays the URL of the running app
 
 <kbd>Ctrl</kbd>+*click* the HTTPS URL in the output to test the web app in a browser. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404).
 
-Append `/weatherforecast` to the URL to test the WeatherForecast API. 
+Append `/weatherforecast` to the URL to test the WeatherForecast API.
 The browser displays JSON similar to the following example:
 
 ```json
@@ -180,7 +180,7 @@ Run the app:
 * The default browser is launched to `https://localhost:<port>`, where `<port>` is the randomly chosen port number displayed in the output. There's no endpoint at `https://localhost:<port>`, so the browser returns [HTTP 404 Not Found](https://developer.mozilla.org/docs/Web/HTTP/Status/404).
 
 * Append `/weatherforecast` to the URL to test the WeatherForecast API. The browser displays JSON similar to the following example:
-    
+
 ```json
 [
     {
@@ -215,7 +215,7 @@ Run the app:
     }
 ]
 ```
-    
+
 * After testing the web app using the following instruction, press <kbd>Ctrl</kbd>+<kbd>C</kbd> in the integrated terminal to close it.
 
 ---
@@ -226,7 +226,7 @@ Run the app:
 
 This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
 
-# [Visual Studio Code](#tab/visual-studio-code) 
+# [Visual Studio Code](#tab/visual-studio-code)
 
 ## Create API testing UI with Swagger
 
@@ -313,7 +313,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Register the database context
 
-In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
+In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](../fundamentals/dependency-injection.md) container. The container provides the service to controllers.
 
 Update `Program.cs` with the following highlighted code:
 
@@ -348,7 +348,7 @@ The preceding code:
 
   If the scaffolding operation fails, select **Add** to try scaffolding a second time.
 
-This step adds the `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.Tools` NuGet packages to the project. 
+This step adds the `Microsoft.VisualStudio.Web.CodeGeneration.Design` and `Microsoft.EntityFrameworkCore.Tools` NuGet packages to the project.
 These packages are required for scaffolding.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -447,14 +447,14 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
   ```
   @TodoApi_HostAddress = https://localhost:49738
-    
+
   POST {{TodoApi_HostAddress}}/api/todoitems
   Content-Type: application/json
-  
+
   {
     //TodoItem
   }
-  
+
   ###
   ```
 
@@ -471,20 +471,20 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
     "isComplete": true
   }
   ```
-  
+
   The TodoApi.http file should now look like the following example, but with your port number:
-  
+
   ```
   @TodoApi_HostAddress = https://localhost:7260
-  
+
   Post {{TodoApi_HostAddress}}/api/todoitems
   Content-Type: application/json
-  
+
   {
     "name": "walk dog",
     "isComplete": true
   }
-  
+
   ###
   ```
 
@@ -519,7 +519,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 
   ![Swagger with Post request](~/tutorials/first-web-api/_static/9/swagger-post.png)
 
-* Swagger provides a **Responses** pane below the **Execute** button. 
+* Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response](~/tutorials/first-web-api/_static/9/swagger-post-response.png)
 
@@ -544,7 +544,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
 
   ```
   GET {{TodoApi_HostAddress}}/api/todoitems
-  
+
   ###
   ```
 
@@ -589,7 +589,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     "isComplete": true
   }
   ```
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Swagger.
@@ -688,11 +688,11 @@ Use the `PUT` method to update the `TodoItem` that has Id = 1 and set its name t
   ```
   PUT {{TodoApi_HostAddress}}/api/todoitems/{{id}}
   Content-Type: application/json
-  
+
   {
     //TodoItem
   }
-  
+
   ###
   ```
 
@@ -714,7 +714,7 @@ Use the `PUT` method to update the `TodoItem` that has Id = 1 and set its name t
 * Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PUT request:
@@ -757,14 +757,14 @@ Use the `DELETE` method to delete the `TodoItem` that has Id = 1. Note the respo
 
   ```
   DELETE {{TodoApi_HostAddress}}/api/todoitems/{{id}}
-  
+
   ###
   ```
 
 * Select the **Send request** link for the DELETE request.
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a DELETE request:
@@ -839,7 +839,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Related content
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](../fundamentals/index.md#how-to-download-a-sample).
 
 For more information, see the following resources:
 

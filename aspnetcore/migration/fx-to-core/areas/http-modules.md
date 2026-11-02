@@ -7,7 +7,7 @@ ms.reviewer: tasou
 ---
 # Migrate HTTP modules to ASP.NET Core middleware
 
-This article shows how to migrate existing ASP.NET [HTTP modules from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](xref:fundamentals/middleware/index).
+This article shows how to migrate existing ASP.NET [HTTP modules from system.webserver](/iis/configuration/system.webserver/) to ASP.NET Core [middleware](../../../fundamentals/middleware/index.md).
 
 ## Modules revisited
 
@@ -47,12 +47,12 @@ In addition to modules, you can add handlers for the life cycle events to your `
 
 :::moniker range=">= aspnetcore-3.0"
 
-* [Pipeline branching](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+* [Pipeline branching](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 :::moniker-end
 :::moniker range="< aspnetcore-3.0"
 
-* [Pipeline branching](xref:fundamentals/middleware/index#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
+* [Pipeline branching](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline) lets you send requests to specific middleware, based on not only the URL but also on request headers, query strings, etc.
 
 :::moniker-end
 
@@ -70,7 +70,7 @@ In addition to modules, you can add handlers for the life cycle events to your `
 
 * Order of middleware for responses is the reverse from that for requests, while order of modules is the same for requests and responses
 
-* See [Create a middleware pipeline with IApplicationBuilder](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder)
+* See [Create a middleware pipeline with IApplicationBuilder](../../../fundamentals/middleware/index.md#create-a-middleware-pipeline-with-iapplicationbuilder)
 
 ![Authorization middleware short-circuits a request for a user who isn't authorized. A request for the Index page is permitted and processed by MVC middleware. A request for a sales report is permitted and processed by a custom report middleware.](_static/middleware.png)
 
@@ -82,13 +82,13 @@ An existing HTTP module will look similar to this:
 
 [!code-csharp[](./samples/Asp.Net4/Asp.Net4/Modules/MyModule.cs?highlight=6,8,24,31)]
 
-As shown in the [Middleware](xref:fundamentals/middleware/index) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
+As shown in the [Middleware](../../../fundamentals/middleware/index.md) page, an ASP.NET Core middleware is a class that exposes an `Invoke` method taking an `HttpContext` and returning a `Task`. Your new middleware will look like this:
 
 <a name="http-modules-usemiddleware"></a>
 
 [!code-csharp[](./samples/Asp.Net.Core/Middleware/MyMiddleware.cs?highlight=9,13,20,24,28,30,32)]
 
-The preceding middleware template was taken from the section on [writing middleware](xref:fundamentals/middleware/write).
+The preceding middleware template was taken from the section on [writing middleware](../../../fundamentals/middleware/write.md).
 
 The *MyMiddlewareExtensions* helper class makes it easier to configure your middleware in your `Startup` class. The `UseMyMiddleware` method adds your middleware class to the request pipeline. Services required by the middleware get injected in the middleware's constructor.
 
@@ -110,7 +110,7 @@ HTTP modules are typically added to the request pipeline using *Web.config*:
 
 [!code-xml[](./samples/Asp.Net4/Asp.Net4/Web.config?highlight=6&range=1-3,32-33,36,43,50,101)]
 
-Convert this by [adding your new middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
+Convert this by [adding your new middleware](../../../fundamentals/middleware/index.md#create-a-middleware-pipeline-with-iapplicationbuilder) to the request pipeline in your `Startup` class:
 
 [!code-csharp[](./samples/Asp.Net.Core/Startup.cs?name=snippet_Configure&highlight=16)]
 
@@ -124,11 +124,11 @@ If ordering becomes a problem, you could split your module into multiple middlew
 
 Some modules have configuration options that are stored in *Web.config*. However, in ASP.NET Core a new configuration model is used in place of *Web.config*.
 
-The new [configuration system](xref:fundamentals/configuration/index) gives you these options to solve this:
+The new [configuration system](../../../fundamentals/configuration/index.md) gives you these options to solve this:
 
 * Directly inject the options into the middleware, as shown in the [next section](#loading-middleware-options-through-direct-injection).
 
-* Use the [options pattern](xref:fundamentals/configuration/options):
+* Use the [options pattern](../../../fundamentals/configuration/options.md):
 
 1. Create a class to hold your middleware options, for example:
 
@@ -228,7 +228,7 @@ Because modules and applications in ASP.NET Framework were assigned to a request
 ## Related content
 
 * [HTTP Handlers and HTTP Modules Overview](/iis/configuration/system.webserver/)
-* [Configuration](xref:fundamentals/configuration/index)
-* [Application Startup](xref:fundamentals/startup)
-* [Middleware](xref:fundamentals/middleware/index)
+* [Configuration](../../../fundamentals/configuration/index.md)
+* [Application Startup](../../../fundamentals/startup.md)
+* [Middleware](../../../fundamentals/middleware/index.md)
 * [Migrate from ASP.NET Framework HttpContext to ASP.NET Core](http-context.md)

@@ -87,7 +87,7 @@ Optional, test server-side validation:
        return Page();
     }
    ```
-  
+
 Alternatively, [Disable client-side validation on the server](../../../../mvc/models/validation.md#disable-client-side-validation).
 
 The following code shows a portion of the `Create.cshtml` page scaffolded earlier in the tutorial. It's used by the Create and Edit pages to:
@@ -116,7 +116,7 @@ The `[DataType]` attributes provide:
 
 Use the `[RegularExpression]` attribute to validate the format of the data. The `[DataType]` attribute is used to specify a data type that's more specific than the database intrinsic type. `[DataType]` attributes aren't validation attributes. In the sample application, only the date is displayed, without time.
 
-The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more. 
+The `DataType` enumeration provides many data types, such as `Date`, `Time`, `PhoneNumber`, `Currency`, `EmailAddress`, and more.
 
 The `[DataType]` attributes:
 
@@ -150,7 +150,7 @@ The `[DisplayFormat]` attribute can be used by itself, but it's generally a good
 [Range(typeof(DateTime), "1/1/1966", "1/1/2020")]
    ```
 
-It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration](xref:fundamentals/configuration/index) for date ranges and other values that are subject to frequent change rather than specifying it in code.
+It's a best practice to avoid compiling hard dates in models, so using the `[Range]` attribute and `DateTime` is discouraged. Use [Configuration](../../../../fundamentals/configuration/index.md) for date ranges and other values that are subject to frequent change rather than specifying it in code.
 
 The following code shows combining attributes on one line:
 

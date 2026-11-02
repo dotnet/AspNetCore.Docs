@@ -27,7 +27,7 @@ The source is hosted in a [SignalR repository on GitHub](https://github.com/dotn
 
 SignalR supports the following techniques for handling real-time communication (in order of graceful fallback):
 
-* [WebSockets](xref:fundamentals/websockets)
+* [WebSockets](../../../fundamentals/websockets.md)
 * Server-Sent Events
 * Long Polling
 

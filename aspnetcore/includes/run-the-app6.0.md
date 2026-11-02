@@ -6,7 +6,7 @@
 
   Visual Studio:
 
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Starts [Kestrel](../fundamentals/servers/index.md#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.
     * *port*: A randomly assigned port number for the app.
@@ -20,7 +20,7 @@
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Starts [Kestrel](../fundamentals/servers/index.md#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.
     * *port*: A randomly assigned port number for the app.
@@ -32,7 +32,7 @@
 
   Visual Studio for Mac:
 
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Starts [Kestrel](../fundamentals/servers/index.md#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.
     * *port*: A randomly assigned port number for the app.
@@ -42,7 +42,7 @@
 
 * From Visual Studio, press **Opt-Cmd-Return** to run without the debugger. Alternatively, navigate to the menu bar and go to **Run>Start Without Debugging**.
 
-  Visual Studio starts [Kestrel](xref:fundamentals/servers/kestrel), launches a browser, and navigates to a randomly assigned port such as `http://localhost:7042`.
+  Visual Studio starts [Kestrel](../fundamentals/servers/kestrel.md), launches a browser, and navigates to a randomly assigned port such as `http://localhost:7042`.
 
 <!-- End of VS tabs -->
 

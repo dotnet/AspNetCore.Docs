@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Command reference for the `Microsoft.dotnet-openapi` tool, which adds and manages OpenAPI references that generate clients to consume OpenAPI documents.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/30/2026
-uid: fundamentals/openapi/openapi-tools
 ---
 # .NET OpenAPI tool command reference and installation
 
@@ -12,9 +11,9 @@ uid: fundamentals/openapi/openapi-tools
 
 This tool addresses the *consumer* side of OpenAPI. For guidance on generating and using an OpenAPI document for your own ASP.NET Core API, see the following articles:
 
-* <xref:fundamentals/openapi/overview>
-* <xref:fundamentals/openapi/aspnetcore-openapi>
-* <xref:fundamentals/openapi/using-openapi-documents>
+* [Overview of OpenAPI support in ASP.NET Core API apps](overview.md)
+* [Generate OpenAPI documents](aspnetcore-openapi.md)
+* [Use the generated OpenAPI documents](using-openapi-documents.md)
 
 ## Installation
 
@@ -97,9 +96,9 @@ Removes the OpenAPI reference matching the given filename from the `.csproj` fil
 
 ### Arguments
 
-|  Argument  | Description| Example |
-| ------------|------------|---------|
-| source-file | The source to remove the reference to. |dotnet openapi remove *.\OpenAPI.json* |
+| Argument    | Description                            | Example                                |
+|-------------|----------------------------------------|----------------------------------------|
+| source-file | The source to remove the reference to. | dotnet openapi remove *.\OpenAPI.json* |
 
 ## Refresh
 

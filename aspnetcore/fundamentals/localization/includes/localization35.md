@@ -23,11 +23,11 @@ The [RFC 4646](https://www.ietf.org/rfc/rfc4646.txt) format for the culture name
 
 Globalizing and localizing an app involves the following tasks:
 
-* [Make an ASP.NET Core app's content localizable](xref:fundamentals/localization/make-content-localizable).
-* [Provide localized resources for the cultures the app supports](xref:fundamentals/localization/provide-resources)
-* [Implement a strategy to select the culture for each request](xref:fundamentals/localization/select-language-culture)
+* [Make an ASP.NET Core app's content localizable](../make-content-localizable.md).
+* [Provide localized resources for the cultures the app supports](../provide-resources.md)
+* [Implement a strategy to select the culture for each request](../select-language-culture.md)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/) ([how to download](../../index.md#how-to-download-a-sample))
 
 :::moniker-end
 
@@ -47,7 +47,7 @@ App localization involves the following:
 1. Provide localized resources for the languages and cultures you support
 1. Implement a strategy to select the language/culture for each request
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/Localization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/3.x/Localization) ([how to download](../../index.md#how-to-download-a-sample))
 
 ## Make the app content localizable
 
@@ -240,7 +240,7 @@ Localization is configured in the `Startup.ConfigureServices` method:
 
 ### Localization middleware
 
-The current culture on a request is set in the localization [Middleware](xref:fundamentals/middleware/index). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`). Localization middleware must appear after routing middleware if using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. For more information on middleware order, see <xref:fundamentals/middleware/index#middleware-order>.
+The current culture on a request is set in the localization [Middleware](../../middleware/index.md). The localization middleware is enabled in the `Startup.Configure` method. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`). Localization middleware must appear after routing middleware if using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. For more information on middleware order, see [ASP.NET Core middleware](../../middleware/index.md#middleware-order).
 
 [!code-csharp[](~/fundamentals/localization/samples/3.x/Localization/Startup.cs?name=snippet2)]
 

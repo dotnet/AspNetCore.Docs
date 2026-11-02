@@ -47,7 +47,7 @@ Interactive routing also prevents prerendering because new page content isn't re
 
 *This section applies to Blazor Web Apps operating over a circuit.*
 
-A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
+A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
@@ -59,7 +59,7 @@ app.MapRazorComponents<App>();
 
 *This section applies to Blazor Server apps operating over a circuit.*
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in the `Program` file:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in the `Program` file:
 
 ```csharp
 app.UseRouting();
@@ -74,7 +74,7 @@ app.MapFallbackToPage("/_Host");
 
 *This section applies to Blazor Server apps operating over a circuit.*
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in `Startup.Configure`.
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in `Startup.Configure`.
 
 :::moniker-end
 
@@ -503,7 +503,7 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 app.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
-For more information, see <xref:fundamentals/routing>.
+For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 :::moniker-end
 
@@ -525,7 +525,7 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
-For more information, see <xref:fundamentals/routing>.
+For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 :::moniker-end
 

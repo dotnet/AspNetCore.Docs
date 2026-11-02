@@ -6,13 +6,13 @@ This tutorial teaches the basics of building a controller-based web API that use
 
 This tutorial creates the following API:
 
-|API | Description | Request body | Response body |
-|--- | ---- | ---- | ---- |
-|`GET /api/todoitems` | Get all to-do items | None | Array of to-do items|
-|`GET /api/todoitems/{id}` | Get an item by ID | None | To-do item|
-|`POST /api/todoitems` | Add a new item | To-do item | To-do item |
-|`PUT /api/todoitems/{id}` | Update an existing item &nbsp; | To-do item | None |
-|`DELETE /api/todoitems/{id}` &nbsp; &nbsp; | Delete an item &nbsp; &nbsp; | None | None|
+| API                          | Description             | Request body | Response body        |
+|------------------------------|-------------------------|--------------|----------------------|
+| `GET /api/todoitems`         | Get all to-do items     | None         | Array of to-do items |
+| `GET /api/todoitems/{id}`    | Get an item by ID       | None         | To-do item           |
+| `POST /api/todoitems`        | Add a new item          | To-do item   | To-do item           |
+| `PUT /api/todoitems/{id}`    | Update an existing item | To-do item   | None                 |
+| `DELETE /api/todoitems/{id}` | Delete an item          | None         | None                 |
 
 The following diagram shows the design of the app.
 
@@ -212,7 +212,7 @@ The *database context* is the main class that coordinates Entity Framework funct
 
 ## Register the database context
 
-In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) container. The container provides the service to controllers.
+In ASP.NET Core, services such as the DB context must be registered with the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container. The container provides the service to controllers.
 
 Update `Program.cs` with the following highlighted code:
 
@@ -327,7 +327,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> method:
 * Press Ctrl+F5 to run the app.
 * In the Swagger browser window, select **POST /api/TodoItems**, and then select **Try it out**.
 * In the **Request body** input window, update the JSON. For example,
-  
+
   ```JSON
   {
     "name": "walk dog",
@@ -478,7 +478,7 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Related content
 
-[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](xref:fundamentals/index#how-to-download-a-sample).
+[View or download sample code for this tutorial](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-web-api/samples). See [how to download](../../../fundamentals/index.md#how-to-download-a-sample).
 
 For more information, see the following resources:
 

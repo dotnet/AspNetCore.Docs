@@ -57,7 +57,7 @@ Add the following data annotations to the `Movie` class properties. To update al
        public DateOnly ReleaseDate { get; set; }
 
      And the following text:
-     
+
      The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) with a <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name> is used to present the name of the property as `Release Date`, which includes a space.
 
      Update the following example to include the added attribute. Setting the Title

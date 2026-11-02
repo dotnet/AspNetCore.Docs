@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 10/09/2026
-uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
 
@@ -223,7 +222,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](endpoints.md) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
 
 ## General limits
 

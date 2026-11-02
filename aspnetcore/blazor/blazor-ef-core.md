@@ -11,7 +11,7 @@ uid: blazor/blazor-ef-core
 
 This article explains how to use [Entity Framework Core (EF Core)](/ef/core/) in server-side Blazor apps.
 
-Server-side Blazor is a stateful app framework. The app maintains an ongoing connection to the server, and the user's state is held in the server's memory in a *circuit*. One example of user state is data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit. The unique application model that Blazor provides requires a special approach to use Entity Framework Core.
+Server-side Blazor is a stateful app framework. The app maintains an ongoing connection to the server, and the user's state is held in the server's memory in a *circuit*. One example of user state is data held in [dependency injection (DI)](../fundamentals/dependency-injection.md) service instances that are scoped to the circuit. The unique application model that Blazor provides requires a special approach to use Entity Framework Core.
 
 > [!NOTE]
 > This article addresses EF Core in server-side Blazor apps. Blazor WebAssembly apps run in a WebAssembly sandbox that prevents most direct database connections. Running EF Core in Blazor WebAssembly is beyond the scope of this article.

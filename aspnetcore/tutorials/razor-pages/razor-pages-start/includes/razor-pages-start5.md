@@ -126,23 +126,23 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 ### wwwroot folder
 
-Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
+Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see [Serve static files in ASP.NET Core apps](../../../../fundamentals/static-files.md).
 
 ### `appsettings.json`
 
-Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
+Contains configuration data, like connection strings. For more information, see [Configuration in ASP.NET Core](../../../../fundamentals/configuration/index.md).
 
 ### Program.cs
 
-Contains the entry point for the app. For more information, see <xref:fundamentals/host/generic-host>.
+Contains the entry point for the app. For more information, see [.NET Generic Host in ASP.NET Core](../../../../fundamentals/host/generic-host.md).
 
 ### Startup.cs
 
-Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+Contains code that configures app behavior. For more information, see [App startup in ASP.NET Core](../../../../fundamentals/startup.md).
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 

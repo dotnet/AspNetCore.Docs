@@ -20,7 +20,7 @@ Transformations to the *web.config* file can be applied automatically when an ap
 These transformations occur for either of the following *web.config* generation scenarios:
 
 * Generated automatically by the `Microsoft.NET.Sdk.Web` SDK.
-* Provided by the developer in the [content root](xref:fundamentals/index#content-root) of the app.
+* Provided by the developer in the [content root](../../fundamentals/index.md#content-root) of the app.
 
 ## Build configuration
 
@@ -96,7 +96,7 @@ If no profile is passed, the default profile name is **FileSystem** and *web.Fil
 
 Environment transformations are run third, after [Build configuration](#build-configuration) and [Profile](#profile) transforms.
 
-Include a *web.{ENVIRONMENT}.config* file for each [environment](xref:fundamentals/environments) requiring a *web.config* transformation.
+Include a *web.{ENVIRONMENT}.config* file for each [environment](../../fundamentals/environments.md) requiring a *web.config* transformation.
 
 In the following example, an environment-specific environment variable is set in *web.Production.config* for the `Production` environment:
 

@@ -23,7 +23,7 @@ Browser security prevents a web page from making requests to a different domain 
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
 * Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/8.0/Cors/Web2API) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/8.0/Cors/Web2API) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Same origin
 
@@ -52,7 +52,7 @@ There are three ways to enable CORS:
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](../fundamentals/middleware/index.md#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
 
 Each approach is detailed in the following sections.
 
@@ -67,7 +67,7 @@ CORS middleware handles cross-origin requests. The following code applies a CORS
 The preceding code:
 
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](../fundamentals/middleware/index.md#middleware-order).
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors6) to apply a CORS policy to specific endpoints.
 * When using [response caching middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
@@ -538,7 +538,7 @@ needs to be installed and configured for the app.
 
 ## Test CORS
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/8.0/Cors/Web2API) has code to test CORS. See [how to download](xref:fundamentals/index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/8.0/Cors/Web2API) has code to test CORS. See [how to download](../fundamentals/index.md#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
 [!code-csharp[](~/security/cors/samples/8.0/Cors/Web2API/ProgramTest.cs?name=snippet_test)]
 

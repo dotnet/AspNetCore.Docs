@@ -13,13 +13,13 @@ By [Rainer Stropek](https://www.timecockpit.com) and [Mike Rousos](https://githu
 
 This article explains how Blazor apps can inject services into components.
 
-[Dependency injection (DI)](xref:fundamentals/dependency-injection) is a technique for accessing services configured in a central location:
+[Dependency injection (DI)](../../fundamentals/dependency-injection.md) is a technique for accessing services configured in a central location:
 
 * Framework-registered services can be injected directly into Razor components.
 * Blazor apps define and register custom services and make them available throughout the app via DI.
 
 > [!NOTE]
-> We recommend reading <xref:fundamentals/dependency-injection> before reading this topic.
+> We recommend reading [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md) before reading this topic.
 
 ## Default services
 
@@ -204,7 +204,7 @@ Services can be configured with the lifetimes shown in the following table.
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Singleton*> | DI creates a *single instance* of the service. All components requiring a `Singleton` service receive the same instance of the service. |
 | <xref:Microsoft.Extensions.DependencyInjection.ServiceDescriptor.Transient*> | Whenever a component obtains an instance of a `Transient` service from the service container, it receives a *new instance* of the service. |
 
-The DI system is based on the DI system in ASP.NET Core. For more information, see <xref:fundamentals/dependency-injection>.
+The DI system is based on the DI system in ASP.NET Core. For more information, see [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md).
 
 ## Request a service in a component
 
@@ -370,18 +370,18 @@ Two versions of <xref:Microsoft.AspNetCore.Components.OwningComponentBase> type 
 <xref:Microsoft.AspNetCore.Components.OwningComponentBase> is an abstract, disposable child of the <xref:Microsoft.AspNetCore.Components.ComponentBase> type with a protected <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> property of type <xref:System.IServiceProvider>. The provider can be used to resolve services that are scoped to the lifetime of the component.
 
 DI services injected into the component using [`@inject`](../../mvc/views/razor.md#inject) or the [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute) aren't created in the component's scope. To use the component's scope, services must be resolved using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> with either <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService*> or <xref:System.IServiceProvider.GetService*>. Any services resolved using the <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> provider have their dependencies provided in the component's scope.
-  
+
 The following example demonstrates the difference between injecting a scoped service directly and resolving a service using <xref:Microsoft.AspNetCore.Components.OwningComponentBase.ScopedServices> on the server. The following interface and implementation for a time travel class include a `DT` property to hold a <xref:System.DateTime> value. The implementation calls <xref:System.DateTime.Now?displayProperty=nameWithType> to set `DT` when the `TimeTravel` class is instantiated.
-  
+
 `ITimeTravel.cs`:
-  
+
 ```csharp
 public interface ITimeTravel
 {
     public DateTime DT { get; set; }
 }
 ```
-  
+
 `TimeTravel.cs`:
 
 ```csharp
@@ -390,11 +390,11 @@ public class TimeTravel : ITimeTravel
     public DateTime DT { get; set; } = DateTime.Now;
 }
 ```
-  
+
 The service is registered as scoped in the server-side `Program` file. Server-side, scoped services have a lifetime equal to the duration of the [circuit](xref:blazor/hosting-models#blazor-server).
-  
+
 In the `Program` file:
-  
+
 ```csharp
 builder.Services.AddScoped<ITimeTravel, TimeTravel>();
 ```
@@ -459,18 +459,18 @@ In the following `TimeTravel` component:
 :::moniker-end
 
 Initially navigating to the `TimeTravel` component, the time travel service is instantiated twice when the component loads, and `TimeTravel1` and `TimeTravel2` have the same initial value:
-  
-> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:45 PM":::
-  
+
 When navigating away from the `TimeTravel` component to another component and back to the `TimeTravel` component:
 
 * `TimeTravel1` is provided the same service instance that was created when the component first loaded, so the value of `DT` remains the same.
 * `TimeTravel2` obtains a new `ITimeTravel` service instance in `TimeTravel2` with a new DT value.
-  
-> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::  
+
+> :::no-loc text="TimeTravel1.DT: 8/31/2022 2:54:45 PM":::
 > :::no-loc text="TimeTravel2.DT: 8/31/2022 2:54:48 PM":::
-  
+
 `TimeTravel1` is tied to the user's circuit, which remains intact and isn't disposed until the underlying circuit is deconstructed. For example, the service is disposed if the circuit is disconnected for the [disconnected circuit retention period](xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.DisconnectedCircuitRetentionPeriod).
 
 In spite of the scoped service registration in the `Program` file and the longevity of the user's circuit, `TimeTravel2` receives a new `ITimeTravel` service instance each time the component is initialized.
@@ -583,7 +583,7 @@ For more information, see <xref:blazor/blazor-ef-core>.
 
 :::moniker range=">= aspnetcore-8.0"
 
-[Circuit activity handlers](xref:blazor/fundamentals/signalr#monitor-server-side-circuit-activity) provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes. 
+[Circuit activity handlers](xref:blazor/fundamentals/signalr#monitor-server-side-circuit-activity) provide an approach for accessing scoped Blazor services from other non-Blazor dependency injection (DI) scopes.
 
 Prior to the release of ASP.NET Core in .NET 8, accessing circuit-scoped services from other dependency injection scopes required using a custom base component type. With circuit activity handlers, a custom base component type isn't required, as the following example demonstrates:
 
@@ -600,11 +600,11 @@ public class CircuitServicesAccessor
 }
 
 public class ServicesAccessorCircuitHandler(
-    IServiceProvider services, CircuitServicesAccessor servicesAccessor) 
+    IServiceProvider services, CircuitServicesAccessor servicesAccessor)
     : CircuitHandler
 {
     public override Func<CircuitInboundActivityContext, Task> CreateInboundActivityHandler(
-        Func<CircuitInboundActivityContext, Task> next) => 
+        Func<CircuitInboundActivityContext, Task> next) =>
             async context =>
             {
                 servicesAccessor.Services = services;
@@ -687,7 +687,7 @@ To set the value of `BlazorServiceAccessor.Services` automatically when an `asyn
 * <xref:Microsoft.AspNetCore.Components.IHandleAfterRender.OnAfterRenderAsync*?displayProperty=nameWithType>
 
 The following class demonstrates the implementation for the base component.
-  
+
 `CustomComponentBase.cs`:
 
 ```csharp

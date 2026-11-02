@@ -31,7 +31,7 @@ The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-sign
 
 By default, Interactive Server components:
 
-* Enable compression for [WebSocket connections](xref:fundamentals/websockets). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
+* Enable compression for [WebSocket connections](../../fundamentals/websockets.md). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
 
 * Adopt a [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) Content Security Policy (CSP) directive set to `'self'`, which is the default and only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 

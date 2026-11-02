@@ -22,7 +22,7 @@ For more information, see the introduction and tutorial:
 
 A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](xref:fundamentals/metapackage).
+For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](../fundamentals/metapackage.md).
 
 ## Runtime Store
 
@@ -46,7 +46,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the `Program.cs` file instead of in the `Startup.cs` file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
 
-For more information, see [Introduction to Logging](xref:fundamentals/logging/index).
+For more information, see [Introduction to Logging](../fundamentals/logging/index.md).
 
 ## Authentication update
 
@@ -78,13 +78,13 @@ The Kestrel web server has new features that make it more suitable as an Interne
 * Maximum request body size
 * Minimum request body data rate
 
-For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel).
+For more information, see [Kestrel web server implementation in ASP.NET Core](../fundamentals/servers/kestrel.md).
 
 ## WebListener renamed to HTTP.sys
 
 The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
 
-For more information, see [HTTP.sys web server implementation in ASP.NET Core](xref:fundamentals/servers/httpsys).
+For more information, see [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md).
 
 ## Enhanced HTTP header support
 

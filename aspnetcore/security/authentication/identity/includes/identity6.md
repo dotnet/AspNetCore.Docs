@@ -24,7 +24,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -98,13 +98,13 @@ Services are added in `Program.cs`. The typical pattern is to call methods in th
 
 :::code language="csharp" source="../samples/WebApp6x/Program.cs" id="snippet_":::
 
-The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 The template-generated app doesn't use [authorization](../../../authorization/secure-data.md). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
-For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](../../../../fundamentals/startup.md).
 
 <!-- Start here for .NET 6 -->
 
@@ -273,7 +273,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -350,9 +350,9 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 
 :::code language="csharp" source="../samples/WebApp3/Startup.cs" id="snippet_configureservices" highlight="11-99":::
 
-The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp3/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -362,9 +362,9 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 :::code language="csharp" source="../samples/WebApp5x/Startup.cs" id="snippet_configureservices" highlight="12-99":::
 
-The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp5x/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -374,7 +374,7 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 The template-generated app doesn't use [authorization](../../../authorization/secure-data.md). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, `UseAuthorization`, and `UseEndpoints` must be called in the order shown in the preceding code.
 
-For more information on `IdentityOptions` and `Startup`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+For more information on `IdentityOptions` and `Startup`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](../../../../fundamentals/startup.md).
 
 ## Scaffold Register, Login, LogOut, and RegisterConfirmation
 

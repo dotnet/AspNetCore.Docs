@@ -112,6 +112,6 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/working-with-sql.md)
-> [Next](~/tutorials/first-mvc-app/search.md)  
+> [Next](~/tutorials/first-mvc-app/search.md)
 
 :::moniker-end

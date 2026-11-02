@@ -125,7 +125,7 @@ Select **Yes** if you agree to trust the development certificate.
 
 Visual Studio:
 
-* Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
+* Runs the app, which  launches the [Kestrel server](../../../../fundamentals/servers/kestrel.md).
 * Launches the default browser at `https://localhost:5001`, which displays the apps UI.
 
 # [Visual Studio Code](#tab/visual-studio-code)
@@ -157,11 +157,11 @@ Supporting files have names that begin with an underscore. For example, the `_La
 
 ### wwwroot folder
 
-Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
+Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see [Serve static files in ASP.NET Core apps](../../../../fundamentals/static-files.md).
 
 ### `appsettings.json`
 
-Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
+Contains configuration data, like connection strings. For more information, see [Configuration in ASP.NET Core](../../../../fundamentals/configuration/index.md).
 
 ### Program.cs
 
@@ -169,7 +169,7 @@ Contains the following code:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie60/Program1Snip.cs?name=snippet_all)]
 
-The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
+The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](../../../../fundamentals/dependency-injection.md), and build the app:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie60/Program1Snip.cs?name=snippet_di)]
 
@@ -179,20 +179,20 @@ The following code sets the exception endpoint to `/Error` and enables [HTTP Str
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie60/Program1Snip.cs?name=snippet_env)]
 
-For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
+For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](../../../../fundamentals/environments.md).
 
-The following code enables various [Middleware](xref:fundamentals/middleware/index):
+The following code enables various [Middleware](../../../../fundamentals/middleware/index.md):
 
 * `app.UseHttpsRedirection();` : Redirects HTTP requests to HTTPS.
-* `app.UseStaticFiles();` : Enables static files, such as HTML, CSS, images, and JavaScript to be served. For more information, see <xref:fundamentals/static-files>.
-* `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>
+* `app.UseStaticFiles();` : Enables static files, such as HTML, CSS, images, and JavaScript to be served. For more information, see [Serve static files in ASP.NET Core apps](../../../../fundamentals/static-files.md).
+* `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see [Routing in ASP.NET Core](../../../../fundamentals/routing.md)
 * `app.MapRazorPages();`: Configures endpoint routing for Razor Pages.
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, therefore this line could be removed.
 * `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie60) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie60) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 

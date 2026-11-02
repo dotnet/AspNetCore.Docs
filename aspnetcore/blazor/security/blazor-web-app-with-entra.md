@@ -51,7 +51,7 @@ The sample solution consists of the following projects:
 * Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default Aspire app configurations that can be extended and customized as needed.
-* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
 
@@ -97,11 +97,11 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 ## Backend web API project (`MinimalApiJwt`)
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppEntra`) are proxied to the `MinimalApiJwt` project.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppEntra`) are proxied to the `MinimalApiJwt` project.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -367,9 +367,9 @@ The following specification is covered:
 
 The sample solution consists of the following projects:
 
-* `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
-* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntraBff` folder for .NET 9 or later.
 
@@ -403,11 +403,11 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 ## Backend web API project (`MinimalApiJwt`)
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -766,7 +766,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](../../fundamentals/configuration/index.md). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project, add the following JSON configuration:
 
@@ -899,7 +899,7 @@ Remove the following lines from the `Program` file:
 
 For more information on configuration, see the following resources:
 
-* <xref:fundamentals/configuration/index>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)
 * <xref:blazor/fundamentals/configuration>
 
 ## Use a production distributed token cache provider

@@ -88,7 +88,7 @@ The following image shows an example of the Authenticated request duration metri
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
-For more information, see <xref:metrics/security#microsoftaspnetcoreauthorization>.
+For more information, see [ASP.NET Core built-in authentication and authorization metrics](../metrics/security.md#microsoftaspnetcoreauthorization).
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/identity-metrics.md)]
 

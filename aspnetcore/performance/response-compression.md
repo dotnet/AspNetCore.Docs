@@ -22,7 +22,7 @@ Even when the app disables the `EnableForHttps` property (`false`), Internet Inf
 
 ## Determine when to use response compression middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the response compression middleware probably can't match that of the server modules. The [HTTP.sys](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the response compression middleware probably can't match that of the server modules. The [HTTP.sys](../fundamentals/servers/httpsys.md) server and [Kestrel](../fundamentals/servers/kestrel.md) server don't currently offer built-in compression support.
 
 Use response compression middleware when the app is:
 
@@ -32,8 +32,8 @@ Use response compression middleware when the app is:
   * [Nginx compression and decompression](https://docs.nginx.com/nginx/admin-guide/web-server/compression/)
 
 * Hosting directly on:
-  * [HTTP.sys server](xref:fundamentals/servers/httpsys)
-  * [Kestrel server](xref:fundamentals/servers/kestrel)
+  * [HTTP.sys server](../fundamentals/servers/httpsys.md)
+  * [Kestrel server](../fundamentals/servers/kestrel.md)
 
 ## Explore response compression
 
@@ -124,7 +124,7 @@ The following code shows how to enable the response compression middleware for d
 When you work with response compression middleware, keep in mind the following points:
 
 * Setting the `EnableForHttps` property to `true` is a security risk. For more information, see the [Compression with HTTPS](#explore-compression-with-https) section earlier in this article.
-* The [app.UseResponseCompression](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*) method must be called ***before*** any middleware that compresses responses. For more information, see [ASP.NET Core middleware > Middleware order](xref:fundamentals/middleware/index#middleware-order).
+* The [app.UseResponseCompression](xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*) method must be called ***before*** any middleware that compresses responses. For more information, see [ASP.NET Core middleware > Middleware order](../fundamentals/middleware/index.md#middleware-order).
 * Use a tool such as [Firefox Browser - Developer edition](https://www.firefox.com/channel/desktop/developer/) to set the `Accept-Encoding` request header and examine the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` header isn't in the Response Headers collection.
@@ -313,7 +313,7 @@ The sample app deployed to Azure has the following _Program.cs_ file:
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 * [Response compression middleware source](https://github.com/dotnet/aspnetcore/tree/main/src/Middleware/ResponseCompression/src)
 * [RFC 9110: HTTP Semantics (Section 8.4.1 Content Codings)](https://www.rfc-editor.org/rfc/rfc9110#name-content-codings)
 * [RFC 9110: HTTP Semantics (Section 8.4.1.3 Gzip Coding)](https://www.rfc-editor.org/rfc/rfc9110#gzip.coding)
@@ -326,11 +326,11 @@ The sample app deployed to Azure has the following _Program.cs_ file:
 
 Network bandwidth is a limited resource. Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/response-compression/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## When to use response compression middleware
 
-Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys](xref:fundamentals/servers/httpsys) server and [Kestrel](xref:fundamentals/servers/kestrel) server don't currently offer built-in compression support.
+Use server-based response compression technologies in IIS, Apache, or Nginx. The performance of the middleware probably won't match that of the server modules. [HTTP.sys](../fundamentals/servers/httpsys.md) server and [Kestrel](../fundamentals/servers/kestrel.md) server don't currently offer built-in compression support.
 
 Use response compression middleware when you're:
 
@@ -339,8 +339,8 @@ Use response compression middleware when you're:
   * [Apache mod_deflate module](https://httpd.apache.org/docs/current/mod/mod_deflate.html)
   * [Nginx Compression and Decompression](https://www.nginx.com/resources/admin-guide/compression-and-decompression/)
 * Hosting directly on:
-  * [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener)
-  * [Kestrel server](xref:fundamentals/servers/kestrel)
+  * [HTTP.sys server](../fundamentals/servers/httpsys.md) (formerly called WebListener)
+  * [Kestrel server](../fundamentals/servers/kestrel.md)
 
 ## Response compression
 
@@ -403,7 +403,7 @@ public class Startup
 
 Notes:
 
-* `app.UseResponseCompression` must be called before any middleware that compresses responses. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
+* `app.UseResponseCompression` must be called before any middleware that compresses responses. For more information, see [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order).
 * Use a tool such as [Fiddler](https://www.telerik.com/fiddler), [Firefox Browser Developer](https://www.mozilla.org/firefox/developer/) to set the `Accept-Encoding` request header and study the response headers, size, and body.
 
 Submit a request to the sample app without the `Accept-Encoding` header and observe that the response is uncompressed. The `Content-Encoding` and `Vary` headers aren't present on the response.
@@ -557,8 +557,8 @@ Use a tool like [Fiddler](https://www.telerik.com/fiddler) or [Firefox Browser D
 
 ## Related content
 
-* <xref:fundamentals/startup>
-* <xref:fundamentals/middleware/index>
+* [App startup in ASP.NET Core](../fundamentals/startup.md)
+* [ASP.NET Core middleware](../fundamentals/middleware/index.md)
 * [Mozilla Developer Network: Accept-Encoding](https://developer.mozilla.org/docs/Web/HTTP/Headers/Accept-Encoding)
 * [RFC 9110 Section 8.4.1: Content Codings](https://www.rfc-editor.org/rfc/rfc9110#name-content-codings)
 * [RFC 9110 Section 8.4.1.3: Gzip Coding](https://www.rfc-editor.org/rfc/rfc9110#gzip.coding)

@@ -57,7 +57,7 @@ In ASP.NET Core, the `Startup` class:
 * Replaces `Global.asax`.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 In the ASP.NET Core project, open the `Startup.cs` file:
 
@@ -66,10 +66,10 @@ In the ASP.NET Core project, open the `Startup.cs` file:
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
 * The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](../../22-to-30.md#mvc-service-registration)
-* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see <xref:fundamentals/static-files>.
-* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see <xref:fundamentals/routing>.
+* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md).
+* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see [Routing in ASP.NET Core](../../../fundamentals/routing.md).
 
-This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see <xref:fundamentals/startup>.
+This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 ## Migrate controllers and views
 
@@ -93,7 +93,7 @@ Each controller endpoint can be tested, however, layout and styles are covered l
 
 ## Migrate static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files).
+In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](../../../fundamentals/index.md#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](../../../fundamentals/static-files.md).
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the `wwwroot` directory in the ASP.NET Core *WebApp1* project:
 
@@ -160,7 +160,7 @@ There are many problems that can cause an HTTP 500 error message that contains n
 
 [!code-csharp[](samples/mvc/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Next steps
 
@@ -209,15 +209,15 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
 
-`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](../../../fundamentals/static-files.md).
 
 * Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
-The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
+The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](../../../fundamentals/startup.md) and [Routing](../../../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -350,7 +350,7 @@ There are many problems that can cause an HTTP 500 error messages that contain n
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Additional resources
 
@@ -395,15 +395,15 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
 
-`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](../../../fundamentals/static-files.md).
 
 * Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
-The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
+The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../../../fundamentals/startup.md) and [Routing](../../../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -536,7 +536,7 @@ There are many problems that can cause an HTTP 500 error messages that contain n
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Additional resources
 

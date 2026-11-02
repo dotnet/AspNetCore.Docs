@@ -7,7 +7,7 @@ ms.date: 03/12/2020
 # Client IP safelist for ASP.NET Core
 
 By [Damien Bowden](https://github.com/damienbod) and [Tom Dykstra](https://github.com/tdykstra)
- 
+
 This article shows three ways to implement an IP address safelist (also known as an allow list) in an ASP.NET Core app. An accompanying sample app demonstrates all three approaches. You can use:
 
 * Middleware to check the remote IP address of every request.
@@ -16,12 +16,12 @@ This article shows three ways to implement an IP address safelist (also known as
 
 In each case, a string containing approved client IP addresses is stored in an app setting. The middleware or filter:
 
-* Parses the string into an array. 
+* Parses the string into an array.
 * Checks if the remote IP address exists in the array.
 
 Access is allowed if the array contains the IP address. Otherwise, an HTTP 403 Forbidden status code is returned.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/ip-safelist/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/ip-safelist/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## IP address safelist
 
@@ -76,7 +76,7 @@ In the sample app, the action filter is applied to the controller's `Get` action
     dbug: ClientIpSafelistComponents.Filters.ClientIpCheckActionFilter[0]
           Remote IpAddress: ::1
     dbug: ClientIpAspNetCore.Controllers.ValuesController[0]
-          successful HTTP GET    
+          successful HTTP GET
     ```
 
 * An HTTP request verb other than GET, the `AdminSafeListMiddleware` middleware validates the client IP address.

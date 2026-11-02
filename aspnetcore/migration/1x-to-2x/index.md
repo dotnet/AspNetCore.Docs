@@ -48,7 +48,7 @@ If your solution relies upon a [global.json](/dotnet/core/tools/global-json) fil
 
 The `.csproj` file in a 1.x project lists each NuGet package used by the project.
 
-In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the `.csproj` file replaces the collection of packages:
+In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](../../fundamentals/metapackage.md) reference in the `.csproj` file replaces the collection of packages:
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App.csproj?range=8-10)]
 
@@ -122,7 +122,7 @@ To remove the default providers added by `WebHostBuilder.CreateDefaultBuilder`, 
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+For more information, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 <a name="db-init-code"></a>
 
@@ -178,7 +178,7 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
     [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Shared/_Layout.cshtml?range=1,19&dedent=4)]
 
-If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](xref:fundamentals/metapackage) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
+If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](../../fundamentals/metapackage.md) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 
 <a name="auth-and-identity"></a>
 

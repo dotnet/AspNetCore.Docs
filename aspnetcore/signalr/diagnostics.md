@@ -16,7 +16,7 @@ This article provides guidance for gathering diagnostics from your ASP.NET Core 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs minimal information, but the logging level can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs minimal information, but the logging level can be configured. See the documentation on [ASP.NET Core logging](../fundamentals/logging/index.md) for details on configuring ASP.NET Core logging.
 
 SignalR uses two logger categories:
 
@@ -46,7 +46,7 @@ How server-side logs are accessed depends on the environment in which the app is
 
 ### As a console app outside IIS
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. SignalR logs appear in the console.
+If you're running in a console app, the [Console logger](../fundamentals/logging/index.md#console) should be enabled by default. SignalR logs appear in the console.
 
 ### Within IIS Express from Visual Studio
 
@@ -54,11 +54,11 @@ Visual Studio displays the log output in the **Output** window. Select the **ASP
 
 ### Azure App Service
 
-Enable the **Application Logging (Filesystem)** option in the **Diagnostics logs** section of the Azure App Service portal and configure the **Level** to `Verbose`. Logs should be available from the **Log streaming** service and in logs on the file system of the App Service. For more information, see [Azure log streaming](xref:fundamentals/logging/index#azure-log-streaming).
+Enable the **Application Logging (Filesystem)** option in the **Diagnostics logs** section of the Azure App Service portal and configure the **Level** to `Verbose`. Logs should be available from the **Log streaming** service and in logs on the file system of the App Service. For more information, see [Azure log streaming](../fundamentals/logging/index.md#azure-log-streaming).
 
 ### Other environments
 
-For more information on configuring logging providers suitable for different deployment environments, such as Docker, Kubernetes, or Windows Service, see <xref:fundamentals/logging/index>.
+For more information on configuring logging providers suitable for different deployment environments, such as Docker, Kubernetes, or Windows Service, see [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md).
 
 ## JavaScript client logging
 

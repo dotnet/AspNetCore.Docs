@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/02/2026
-uid: fundamentals/servers/kestrel
 ---
 # Kestrel web server in ASP.NET Core
 
@@ -14,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra), [Chris Ross](https://github.com/T
 
 :::moniker range=">= aspnetcore-10.0"
 
-Kestrel is a cross-platform [web server for ASP.NET Core](xref:fundamentals/servers/index). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
+Kestrel is a cross-platform [web server for ASP.NET Core](index.md). Kestrel is the recommended server for ASP.NET Core, and it's configured by default in ASP.NET Core project templates.
 
 Kestrel's features include:
 
@@ -23,15 +22,15 @@ Kestrel's features include:
 * **Lightweight:** Optimized for running in resource-constrained environments, such as containers and edge devices.
 * **Security hardened:** Kestrel supports HTTPS and is hardened against web server vulnerabilities.
 * **Wide protocol support:** Kestrel supports common web protocols, including:
-  * HTTP/1.1, [HTTP/2](xref:fundamentals/servers/kestrel/http2) and [HTTP/3](xref:fundamentals/servers/kestrel/http3). Starting in .NET 11, HTTP/3 uses [early request processing](xref:fundamentals/servers/kestrel/http3#early-request-processing) to reduce first-request latency.
-  * [WebSockets](xref:fundamentals/websockets)
+  * HTTP/1.1, [HTTP/2](kestrel/http2.md) and [HTTP/3](kestrel/http3.md). Starting in .NET 11, HTTP/3 uses [early request processing](kestrel/http3.md#early-request-processing) to reduce first-request latency.
+  * [WebSockets](../websockets.md)
 * **Integration with ASP.NET Core:** Seamless integration with other ASP.NET Core components, such as the middleware pipeline, dependency injection, and configuration system.
 * **Flexible workloads**: Kestrel supports many workloads:
   * ASP.NET app frameworks such as Minimal APIs, MVC, Razor pages, SignalR, Blazor, and gRPC.
   * Building a reverse proxy with [YARP](https://github.com/microsoft/reverse-proxy).
 * **Extensibility:** Customize Kestrel through configuration, middleware, and custom transports.
 * **Performance diagnostics:** Kestrel provides built-in performance diagnostics features, such as logging and metrics.
-* **Memory management:** Kestrel includes features for efficient memory management. For more information, see <xref:fundamentals/servers/kestrel/memory-management>.
+* **Memory management:** Kestrel includes features for efficient memory management. For more information, see [Memory management in Kestrel](kestrel/memory-management.md).
 
 > [!NOTE]
 > macOS is supported for ASP.NET Core development, testing, continuous integration (CI), and local services without external access, but not for production server workloads. There is no server edition of macOS, and [Apple discontinued macOS Server](https://support.apple.com/101601). For production hosting, use Windows or Linux server distributions.
@@ -42,20 +41,20 @@ ASP.NET Core project templates use Kestrel by default when not hosted with IIS. 
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Program.cs" id="snippet_CreateBuilder" highlight="1":::
 
-For more information on configuring `WebApplication` and `WebApplicationBuilder`, see <xref:fundamentals/minimal-apis>.
+For more information on configuring `WebApplication` and `WebApplicationBuilder`, see [Minimal APIs quick reference](../minimal-apis.md).
 
 ## Related content
 
 <a name="endpoint-configuration"></a>
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](kestrel/endpoints.md)
 <a name="kestrel-options"></a>
-* <xref:fundamentals/servers/kestrel/options>
+* [Configure options for the ASP.NET Core Kestrel web server](kestrel/options.md)
 <a name="http2-support"></a>
-* <xref:fundamentals/servers/kestrel/http2>
+* [Use HTTP/2 with the ASP.NET Core Kestrel web server](kestrel/http2.md)
 <a name="when-to-use-kestrel-with-a-reverse-proxy"></a>
-* <xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy>
+* [When to use a reverse proxy with the ASP.NET Core Kestrel web server](kestrel/when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
-* <xref:fundamentals/servers/kestrel/host-filtering>
+* [Host filtering with ASP.NET Core Kestrel web server](kestrel/host-filtering.md)
 * <xref:test/troubleshoot>
 * [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md)

@@ -66,7 +66,7 @@ This tutorial is advanced. You should be familiar with:
 
 ## The starter and completed app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+[Download](../../fundamentals/index.md#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 > [!TIP]
 > You can use the [git sparse-checkout](https://git-scm.com/docs/git-sparse-checkout) command to download only the sample subfolder.
@@ -82,7 +82,7 @@ git sparse-checkout set aspnetcore/security/authorization/secure-data/samples
 
 ### The starter app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
+[Download](../../fundamentals/index.md#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact. To create the starter app, see [Create the starter app](#create-the-starter-app).
 
@@ -121,7 +121,7 @@ The preceding highlighted code sets the fallback authorization policy to require
 
 The <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> method adds the <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> class to the current instance, which enforces that the current user is authenticated.
 
-The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
+The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](../../fundamentals/static-files.md#static-file-authorization).
 
 Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
@@ -192,7 +192,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services that use Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services that use Entity Framework Core must be registered for [dependency injection](../../fundamentals/dependency-injection.md) with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](../../fundamentals/dependency-injection.md). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final6/Program.cs?name=snippet4&highlight=22-30)]
 
@@ -442,11 +442,11 @@ This tutorial is advanced. You should be familiar with:
 
 ## The starter and completed app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
+[Download](../../fundamentals/index.md#how-to-download-a-sample) the [completed](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples) app. [Test](#test-the-completed-app) the completed app so you become familiar with its security features.
 
 ### The starter app
 
-[Download](xref:fundamentals/index#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
+[Download](../../fundamentals/index.md#how-to-download-a-sample) the [starter](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authorization/secure-data/samples/) app.
 
 Run the app, tap the **ContactManager** link, and verify you can create, edit, and delete a contact. To create the starter app, see [Create the starter app](#create-the-starter-app).
 
@@ -487,7 +487,7 @@ The preceding highlighted code sets the fallback authorization policy to require
 
 <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*> adds <xref:Microsoft.AspNetCore.Authorization.Infrastructure.DenyAnonymousAuthorizationRequirement> to the current instance, which enforces that the current user is authenticated.
 
-The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](xref:fundamentals/static-files#static-file-authorization).
+The fallback authorization policy applies to requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. It can also apply when a request doesn't match an endpoint. Middleware order determines whether the authorization middleware processes requests for resources such as [static files](../../fundamentals/static-files.md#static-file-authorization).
 
 Setting the fallback authorization policy to require users to be authenticated protects newly added Razor Pages and controllers. Having authorization required by default is more secure than relying on new controllers and Razor Pages to include the `[Authorize]` attribute.
 
@@ -556,7 +556,7 @@ Create a `ContactAdministratorsAuthorizationHandler` class in the *Authorization
 
 ## Register the authorization handlers
 
-Services using Entity Framework Core must be registered for [dependency injection](xref:fundamentals/dependency-injection) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](xref:fundamentals/dependency-injection). Add the following code to the end of `ConfigureServices`:
+Services using Entity Framework Core must be registered for [dependency injection](../../fundamentals/dependency-injection.md) using <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>. The `ContactIsOwnerAuthorizationHandler` uses ASP.NET Core [Identity](../authentication/identity.md), which is built on Entity Framework Core. Register the handlers with the service collection so they're available to the `ContactsController` through [dependency injection](../../fundamentals/dependency-injection.md). Add the following code to the end of `ConfigureServices`:
 
 [!code-csharp[](secure-data/samples/final3/Startup.cs?name=snippet_defaultPolicy&highlight=23-99)]
 

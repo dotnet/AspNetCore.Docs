@@ -114,7 +114,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](../../../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 [!INCLUDE[](~/includes/DevProdSQLite.md)]
 
@@ -221,7 +221,7 @@ The data context `RazorPagesMovieContext`:
 
 The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](../../../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 <a name="test7"></a>
 
@@ -251,7 +251,7 @@ The next tutorial explains the files created by scaffolding.
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../../../fundamentals/dependency-injection.md). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container. The following highlighted code is added to the `Program.cs` file by the scaffolder:
 
@@ -266,7 +266,7 @@ The scaffolding tool automatically created a database context and registered it 
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie80) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 

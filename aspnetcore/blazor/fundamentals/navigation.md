@@ -300,7 +300,7 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
@@ -312,7 +312,7 @@ Streaming rendering can only render components that have a route, such as a <xre
 * A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
-[Status code pages re-execution middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status code pages re-execution middleware](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called, the 404 status code is set on the response:
 

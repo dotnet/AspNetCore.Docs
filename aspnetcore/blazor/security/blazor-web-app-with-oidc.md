@@ -38,7 +38,7 @@ The sample app consists of the following projects:
 * Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default Aspire app configurations that can be extended and customized as needed.
-* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppOidc`: Server-side project of the Blazor Web App. The project uses [YARP](https://dotnet.github.io/yarp/) to proxy requests to a weather forecast endpoint in the backend web API project (`MinimalApiJwt`) with the `access_token` stored in the authentication cookie.
 * `BlazorWebAppOidc.Client`: Client-side project of the Blazor Web App.
 
@@ -127,19 +127,19 @@ The sample app only configures an insecure HTTP launch profile (`http`) for use 
 
 ## `MinimalApiJwt` project
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppOidc`) are proxied to the `MinimalApiJwt` project.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppOidc`) are proxied to the `MinimalApiJwt` project.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 :::moniker range=">= aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see [Use the generated OpenAPI documents](../../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 
 :::moniker-end
 
@@ -231,7 +231,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see <xref:fundamentals/configuration/index> and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -402,9 +402,9 @@ For an alternative experience using [Microsoft Authentication Library for .NET](
 
 The sample app consists of the following projects:
 
-* `BlazorWebAppOidc`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `BlazorWebAppOidc`: Server-side project of the Blazor Web App, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppOidc.Client`: Client-side project of the Blazor Web App.
-* `MinimalApiJwt`: Backend web API with a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API with a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcBffAuto` folder for .NET 8 or later.
 
@@ -418,7 +418,7 @@ Sample solution features:
 
 * The app securely calls a web API for weather data:
 
-  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data from the web API in the `MinimalApiJwt` project using a <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) that attaches the access token from the <xref:Microsoft.AspNetCore.Http.HttpContext> to the request. For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+  * When rendering the `Weather` component on the server, the component uses the `ServerWeatherForecaster` on the server to obtain weather data from the web API in the `MinimalApiJwt` project using a <xref:System.Net.Http.DelegatingHandler> (`TokenHandler`) that attaches the access token from the <xref:Microsoft.AspNetCore.Http.HttpContext> to the request. For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../../fundamentals/http-requests.md#outgoing-request-middleware).
   * When the component is rendered on the client, the component uses the `ClientWeatherForecaster` service implementation, which uses a preconfigured <xref:System.Net.Http.HttpClient> (in the client project's `Program` file) to make the web API call from the server project's `ServerWeatherForecaster`.
 
 :::moniker range=">= aspnetcore-9.0"
@@ -479,23 +479,23 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 
 ## `MinimalApiJwt` project
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 :::moniker range=">= aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see [Use the generated OpenAPI documents](../../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 
 :::moniker-end
 
-The project creates a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data:
+The project creates a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data:
 
 ```csharp
 app.MapGet("/weather-forecast", () =>
@@ -631,7 +631,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see <xref:fundamentals/configuration/index> and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -784,7 +784,7 @@ For an alternative experience using [Microsoft Authentication Library for .NET](
 The sample app consists of the following projects:
 
 * `BlazorWebAppOidcServer`: Blazor Web App server-side project (global Interactive Server rendering).
-* `MinimalApiJwt`: Backend web API with a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API with a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppOidcBffServer` folder for .NET 8 or later.
 
@@ -828,23 +828,23 @@ If using Visual Studio, you can confirm the secret is set by right-clicking the 
 
 ## `MinimalApiJwt` project
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
 
 :::moniker range=">= aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md) and the [Swagger UI](https://swagger.io/api-hub/) in the `Development` environment. For more information, see [Use the generated OpenAPI documents](../../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 
 :::moniker-end
 
-The project creates a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data:
+The project creates a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data:
 
 ```csharp
 app.MapGet("/weather-forecast", () =>
@@ -994,7 +994,7 @@ oidcOptions.PushedAuthorizationBehavior = PushedAuthorizationBehavior.UseIfAvail
 oidcOptions.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
 ```
 
-Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see <xref:fundamentals/configuration/index> and <xref:blazor/fundamentals/configuration>.
+Scopes for `openid` and `profile` (<xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Scope>) (Optional): The `openid` and `profile` scopes are also configured by default because they're required for the OIDC handler to work, but these may need to be re-added if scopes are included in the `Authentication:Schemes:MicrosoftOidc:Scope` configuration. For general configuration guidance, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) and <xref:blazor/fundamentals/configuration>.
 
 ```csharp
 oidcOptions.Scope.Add(OpenIdConnectScope.OpenIdProfile);
@@ -1135,7 +1135,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+The [sample solution projects](#sample-solution) configure OIDC and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](../../fundamentals/configuration/index.md). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppOidc` or `BlazorWebAppOidcServer` project, add the following JSON configuration:
 
@@ -1235,7 +1235,7 @@ Remove the following lines from the `Program` file:
 
 For more information on configuration, see the following resources:
 
-* <xref:fundamentals/configuration/index>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)
 * <xref:blazor/fundamentals/configuration>
 
 ## Use the "common" Authority for single-tenant apps
