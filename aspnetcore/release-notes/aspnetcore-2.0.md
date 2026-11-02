@@ -67,7 +67,7 @@ For more information on authentication changes in 2.0, see the following resourc
 
 ## SPA templates
 
-Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](../client-side/spa-services.md#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see [The features described in this article are obsolete as of ASP.NET Core 3.0](../client-side/spa-services.md).
+Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](../client-side/spa-services.md#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Use JavaScript Services to Create Single Page Applications in ASP.NET Core](../client-side/spa-services.md).
 
 ## Kestrel improvements
 
