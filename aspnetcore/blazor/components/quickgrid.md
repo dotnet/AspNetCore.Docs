@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor `QuickGrid` component
 ai-usage: ai-assisted
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/17/2026
+ms.date: 11/02/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -185,6 +185,20 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 ```
 
 In the running app, page through the items using a rendered `Paginator` component.
+
+:::moniker range=">= aspnetcore-11.0"
+
+In .NET 11 or later, the `Paginator` component's internal `<nav>` element has the default accessible name "Pagination". Unmatched attributes supplied to `Paginator` are applied to this navigation element, not its outer wrapper. Override `aria-label` to provide a contextual or localized name, or set `aria-labelledby` to the `id` of an existing heading.
+
+When paginators control different grids on the same page, give them distinct accessible names so assistive technology users can distinguish them. For example, name the paginator for an orders grid:
+
+```razor
+<Paginator State="@pagination" aria-label="Orders pages" />
+```
+
+Paginators with identical controls for the same grid, such as those above and below it, can share an accessible name.
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
