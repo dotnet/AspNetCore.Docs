@@ -2,9 +2,9 @@
 
 We've added and updated the Blazor Web App security samples linked in the following articles:
 
-* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../../blazor/security/blazor-web-app-with-oidc.md?view=aspnetcore-10.0)
-* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../../blazor/security/blazor-web-app-with-entra.md?view=aspnetcore-10.0)
-* [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../../blazor/security/blazor-web-app-with-windows-authentication.md?view=aspnetcore-10.0)
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../../blazor/security/blazor-web-app-with-oidc.md?view=aspnetcore-10.0&preserve-view=true)
+* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../../blazor/security/blazor-web-app-with-entra.md?view=aspnetcore-10.0&preserve-view=true)
+* [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../../blazor/security/blazor-web-app-with-windows-authentication.md?view=aspnetcore-10.0&preserve-view=true)
 
 All of our OIDC and Entra sample solutions now include a separate web API project (`MinimalApiJwt`) to demonstrate how to configure and call an external web API securely. Calling web APIs is demonstrated with a token handler and named HTTP client for an OIDC identity provider or Microsoft Identity Web packages/API for Microsoft Entra ID.
 
@@ -44,7 +44,7 @@ The Blazor script (`blazor.web.js` or `blazor.server.js`) is included by the fra
 
 For more information, see the following resources:
   
-* [ASP.NET Core Blazor project structure](../../../blazor/project-structure.md?view=aspnetcore-10.0#location-of-the-blazor-script)
+* [ASP.NET Core Blazor project structure](../../../blazor/project-structure.md?view=aspnetcore-10.0&preserve-view=true#location-of-the-blazor-script)
 * [ASP.NET Core Blazor static files](../../../blazor/fundamentals/static-files.md?view=aspnetcore-10.0&preserve-view=true)
 
 ### Route template highlights
@@ -346,7 +346,7 @@ else
 
 Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](../../../blazor/performance/app-download-size.md#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
-State can be serialized for multiple components of the same type, and you can establish declarative state in a service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>) with a custom service type and render mode. For more information, see [ASP.NET Core Blazor prerendered state persistence](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-10.0).
+State can be serialized for multiple components of the same type, and you can establish declarative state in a service for use around the app by calling `RegisterPersistentService` on the Razor components builder (<xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>) with a custom service type and render mode. For more information, see [ASP.NET Core Blazor prerendered state persistence](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-10.0&preserve-view=true).
 
 ### New JavaScript interop features
 
@@ -415,8 +415,8 @@ For more information, see the following sections of the *Call JavaScript functio
 
 New performance profiling and diagnostic counters are available for Blazor WebAssembly apps. For more information, see the following articles:
 
-* [ASP.NET Core Blazor WebAssembly browser developer tools diagnostics](../../../blazor/performance/webassembly-browser-developer-tools-diagnostics.md?view=aspnetcore-10.0)
-* [ASP.NET Core Blazor WebAssembly Event Pipe diagnostics](../../../blazor/performance/webassembly-event-pipe-diagnostics.md?view=aspnetcore-10.0)
+* [ASP.NET Core Blazor WebAssembly browser developer tools diagnostics](../../../blazor/performance/webassembly-browser-developer-tools-diagnostics.md?view=aspnetcore-10.0&preserve-view=true)
+* [ASP.NET Core Blazor WebAssembly Event Pipe diagnostics](../../../blazor/performance/webassembly-event-pipe-diagnostics.md?view=aspnetcore-10.0&preserve-view=true)
 
 ### Opt-in to avoiding a `NavigationException` during static server-side rendering with `NavigationManager.NavigateTo`
 
@@ -538,7 +538,7 @@ If you use both approaches in your app, the Not Found path specified in the `OnN
 
 This release introduces comprehensive metrics and tracing capabilities for Blazor apps, providing detailed observability of the component lifecycle, navigation, event handling, and circuit management.
 
-For more information, see [ASP.NET Core Blazor performance best practices](../../../blazor/performance/index.md?view=aspnetcore-10.0#metrics-and-tracing).
+For more information, see [ASP.NET Core Blazor performance best practices](../../../blazor/performance/index.md?view=aspnetcore-10.0&preserve-view=true#metrics-and-tracing).
 
 ### JavaScript bundler support
 
@@ -695,7 +695,7 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 * Proactive resource management (pausing inactive circuits)
 * [Enhanced navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0&preserve-view=true#enhanced-navigation-and-form-handling)
 
-For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-10.0).
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-10.0&preserve-view=true).
 
 ### Hot Reload for Blazor WebAssembly and .NET on WebAssembly
 

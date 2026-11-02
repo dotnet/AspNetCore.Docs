@@ -136,7 +136,7 @@ The .NET [Intermediate Language (IL)](/dotnet/standard/glossary#il) interpreter 
 
 Blazor supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation). 
 
-The same [.NET WebAssembly build tools](webassembly-build-tools-and-aot.md) used for AOT compilation also [relink the .NET WebAssembly runtime](webassembly-build-tools-and-aot.md#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
+The same [.NET WebAssembly build tools](webassembly-build-tools-and-aot.md) used for AOT compilation also [relink the .NET WebAssembly runtime](performance/webassembly-runtime-performance.md#runtime-relinking) to trim unused runtime code. Blazor also trims unused code from .NET framework libraries. The .NET compiler further precompresses a standalone Blazor WebAssembly app for a smaller app payload.
 
 WebAssembly-rendered Razor components can use [native dependencies](webassembly-native-dependencies.md) built to run on WebAssembly.
 
@@ -233,7 +233,7 @@ Feature | Blazor Server | Blazor WebAssembly (Wasm)
 
 :::moniker-end
 
-After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md#blazor-template-options).
+After you choose the app's hosting model, you can generate a Blazor Server or Blazor WebAssembly app from a Blazor project template. For more information, see [Tooling for ASP.NET Core Blazor](tooling.md#blazor-project-templates-and-template-options).
 
 :::moniker range=">= aspnetcore-6.0"
 

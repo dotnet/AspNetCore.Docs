@@ -404,7 +404,7 @@ For more information, see [Call JavaScript functions from .NET methods in ASP.NE
 
 ## Avoid trimming JavaScript-invokable .NET methods
 
-[Runtime relinking](../webassembly-build-tools-and-aot.md#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
+[Runtime relinking](../performance/webassembly-runtime-performance.md#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
 
 :::moniker-end
 

@@ -209,7 +209,7 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 * [Identity and account types for single- and multitenant apps](/security/zero-trust/develop/identity-supported-account-types)
 * [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
-* [Build a custom version of the Authentication.MSAL JavaScript library](additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md)
 * [Microsoft identity platform and Microsoft Entra ID with ASP.NET Core](../../../security/authentication/azure-active-directory/index.md)

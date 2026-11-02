@@ -807,7 +807,7 @@ For more information, see [ASP.NET Core Blazor state management using protected 
 
 ## Related content
 
-* [State management using the URL](index.md#url)
+* [State management using the URL](index.md#state-management-using-the-url)
 * [In-memory state container service](index.md#in-memory-state-container-service)
 * [Cascading values and parameters](index.md#cascading-values-and-parameters)
 * [Managing state via an external server API](../call-web-api.md)

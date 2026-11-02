@@ -814,7 +814,7 @@ Passing `https://localhost:8001/segment` in `inputURI` results in the following 
 
 ## Navigation history state
 
-The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's [History API](https://developer.mozilla.org/docs/Web/API/History_API) to maintain navigation history state associated with each location change made by the app. Maintaining history state is particularly useful in external redirect scenarios, such as when [authenticating users with external identity providers](../security/webassembly/index.md#customize-authorization). For more information, see the [Navigation options](#navigation-options) section.
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's [History API](https://developer.mozilla.org/docs/Web/API/History_API) to maintain navigation history state associated with each location change made by the app. Maintaining history state is particularly useful in external redirect scenarios, such as when [authenticating users with external identity providers](../security/webassembly/index.md#customize-authentication). For more information, see the [Navigation options](#navigation-options) section.
 
 ## Navigation options
 

@@ -1822,7 +1822,7 @@ PII refers any information relating to an identified or identifiable natural per
 * [ASP.NET Core security topics](../../security/index.md)
 * [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md)
 * [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md)
-* [Build a custom version of the Authentication.MSAL JavaScript library](webassembly/additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](webassembly/additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * [ASP.NET Core Blazor Hybrid authentication and authorization](../hybrid/security/index.md)
 * [Opaque (reference) access token support](additional-scenarios.md#opaque-reference-access-token-support)
@@ -1848,7 +1848,7 @@ PII refers any information relating to an identified or identifiable natural per
 * [ASP.NET Core security topics](../../security/index.md)
 * [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md)
 * [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md)
-* [Build a custom version of the Authentication.MSAL JavaScript library](webassembly/additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](webassembly/additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
 * [Awesome Blazor: Authentication](https://github.com/AdrienTorris/awesome-blazor#authentication) community sample links
 * [Opaque (reference) access token support](additional-scenarios.md#opaque-reference-access-token-support)
 * [Blazor WebAssembly authorization patterns](webassembly/index.md#blazor-webassembly-authorization-patterns)

@@ -446,7 +446,7 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 * [Configure an app's publisher domain](/entra/identity-platform/howto-configure-publisher-domain)
 * [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/reference-app-manifest#identifieruris-attribute)
 * [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
-* [Build a custom version of the Authentication.MSAL JavaScript library](additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * [Cloud authentication with Azure Active Directory B2C in ASP.NET Core](../../../security/authentication/azure-ad-b2c.md)
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)

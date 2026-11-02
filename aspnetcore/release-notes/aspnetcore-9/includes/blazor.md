@@ -69,7 +69,7 @@ New APIs make it easier to add authentication to an existing Blazor Web App. Whe
 
 These providers flow the user's authentication state to the browser. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized.
 
-The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-9.0) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. 
+The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-9.0&preserve-view=true) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance.
 
 This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
@@ -78,10 +78,10 @@ This works well if you've started from the Blazor Web App project template and s
 
 By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to include all claims.
 
-For more information, see the following sections of [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-9.0):
+For more information, see the following sections of [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true):
 
-* [Blazor Identity UI (Individual Accounts)](../../../blazor/security/index.md?view=aspnetcore-9.0#blazor-identity-ui-individual-accounts)
-* [Manage authentication state in Blazor Web Apps](../../../blazor/security/index.md?view=aspnetcore-9.0#manage-authentication-state-in-blazor-web-apps)
+* [Blazor Identity UI (Individual Accounts)](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#blazor-identity-ui-individual-accounts)
+* [Manage authentication state in Blazor Web Apps](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#manage-authentication-state-in-blazor-web-apps)
 
 ### Add static server-side rendering (SSR) pages to a globally-interactive Blazor Web App
 
@@ -167,7 +167,7 @@ Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quot
 For more information, see the following resources:
 
 * [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#websocket-compression-for-interactive-server-components)
-* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../../blazor/security/interactive-server-side-rendering.md?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled)
+* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../../blazor/security/interactive-server-side-rendering.md?view=aspnetcore-9.0&preserve-view=true#interactive-server-components-with-websocket-compression-enabled)
 
 ### Handle keyboard composition events in Blazor
 

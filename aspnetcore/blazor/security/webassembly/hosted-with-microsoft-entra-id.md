@@ -513,7 +513,7 @@ Example App ID URI of `urn://custom-app-id-uri` and a scope name of `API.Access`
 * [Configure an app's publisher domain](/entra/identity-platform/howto-configure-publisher-domain)
 * [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/reference-app-manifest#identifieruris-attribute)
 * [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
-* [Build a custom version of the Authentication.MSAL JavaScript library](additional-scenarios.md#build-a-custom-version-of-the-authenticationmsal-javascript-library)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
 * [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles (.NET 5 to .NET 7)](microsoft-entra-id-groups-and-roles-net-5-to-7.md)
 * [Microsoft identity platform and Microsoft Entra ID with ASP.NET Core](../../../security/authentication/azure-active-directory/index.md)

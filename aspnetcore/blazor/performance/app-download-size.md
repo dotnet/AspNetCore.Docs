@@ -12,7 +12,7 @@ ms.date: 11/11/2025
 
 ## Runtime relinking
 
-For information on how runtime relinking minimizes an app's download size, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md#runtime-relinking).
+For information on how runtime relinking minimizes an app's download size, see [ASP.NET Core Blazor WebAssembly runtime performance](webassembly-runtime-performance.md#runtime-relinking).
 
 :::moniker-end
 

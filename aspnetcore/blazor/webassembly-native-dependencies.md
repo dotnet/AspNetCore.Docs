@@ -8,7 +8,7 @@ ms.date: 07/06/2026
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the **.NET WebAssembly build tools**, the same tools used to [ahead-of-time (AOT) compile](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation) a Blazor app to WebAssembly and to [relink the runtime to remove unused features](webassembly-build-tools-and-aot.md#runtime-relinking).
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the **.NET WebAssembly build tools**, the same tools used to [ahead-of-time (AOT) compile](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation) a Blazor app to WebAssembly and to [relink the runtime to remove unused features](performance/webassembly-runtime-performance.md#runtime-relinking).
 
 *This article only applies to Blazor WebAssembly.*
 

@@ -65,10 +65,10 @@ For more information on Azure data storage options, see the following:
 
 ## Related content
 
-* [State management using the URL](index.md#url)
+* [State management using the URL](index.md#state-management-using-the-url)
 * [In-memory state container service](index.md#in-memory-state-container-service)
 * [Cascading values and parameters](index.md#cascading-values-and-parameters)
-* [Save app state before an authentication operation (Blazor WebAssembly)](../security/webassembly/additional-scenarios.md#save-app-state-before-an-authentication-operation)
+* [Save app state before an authentication operation with session storage (Blazor WebAssembly)](../security/webassembly/additional-scenarios.md#save-app-state-before-an-authentication-operation-with-session-storage)
 * Managing state via an external server API
   * [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md)
   * [Secure ASP.NET Core Blazor WebAssembly](../security/webassembly/index.md)

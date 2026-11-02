@@ -75,7 +75,7 @@ For prior releases of .NET, we covered prerendering and integration in a single 
 
 ### Persist component state in a Blazor Web App
 
-You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-8.0&preserve-view=true#persist-prerendered-state).
+You can persist and read component state in a Blazor Web App using the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service. This is useful for [persisting component state during prerendering](../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-8.0&preserve-view=true).
 
 Blazor Web Apps automatically persist any registered app-level state created during prerendering, removing the need for the [Persist Component State Tag Helper](../mvc/views/tag-helpers/built-in/persist-component-state.md).
 
@@ -211,8 +211,8 @@ Blazor WebAssembly ahead-of-time (AOT) compilation now uses [WebAssembly Fixed-w
 
 For more information, see the following articles:
 
-* [AOT: Single Instruction, Multiple Data (SIMD)](../blazor/tooling.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true#single-instruction-multiple-data-simd)
-* [AOT: Exception handling](../blazor/tooling.md?view=aspnetcore-8.0&pivots=windows&preserve-view=true#exception-handling)
+* [AOT: Single Instruction, Multiple Data (SIMD)](../blazor/performance/webassembly-runtime-performance.md?view=aspnetcore-8.0&preserve-view=true#single-instruction-multiple-data-simd)
+* [AOT: Exception handling](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-8.0&preserve-view=true#exception-handling)
 
 ### Web-friendly Webcil packaging
 

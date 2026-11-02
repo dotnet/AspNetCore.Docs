@@ -1240,7 +1240,7 @@ public void ConfigureServices(IServiceCollection services)
 
 :::moniker range="< aspnetcore-8.0"
 
-For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [ASP.NET Core Blazor authentication and authorization](../index.md#authenticationstateprovider).
+For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [ASP.NET Core Blazor authentication and authorization](../index.md#authenticationstateprovider-service).
 
 In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
