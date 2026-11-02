@@ -54,7 +54,7 @@ For configuration guidance, see [Advanced configuration](advanced.md).
 * [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
 * [ASP.NET Core directory structure](../directory-structure.md)
 * [IIS modules with ASP.NET Core](modules.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md)
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Overlapped recycle
@@ -67,8 +67,8 @@ For information on apps that must protect a subset of the app with a certificate
 
 ## Additional resources
 
-* <xref:test/troubleshoot>
-* <xref:index>
+* [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)
+* [Overview of ASP.NET Core](../../overview.md)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
@@ -93,7 +93,7 @@ The following operating systems are supported:
 
 For information on hosting in Azure, see [Deploy ASP.NET Core apps to Azure App Service](../azure-apps/index.md).
 
-For troubleshooting guidance, see <xref:test/troubleshoot>.
+For troubleshooting guidance, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md).
 
 ## Supported platforms
 
@@ -313,7 +313,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-hosting-bundle>.
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-hosting-bundle).
 
 ### Direct download (current version)
 
@@ -690,13 +690,13 @@ To prevent apps hosted [out-of-process](#out-of-process-hosting-model) from timi
 * [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
 * [ASP.NET Core directory structure](../directory-structure.md)
 * [IIS modules with ASP.NET Core](modules.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md)
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Additional resources
 
-* <xref:test/troubleshoot>
-* <xref:index>
+* [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)
+* [Overview of ASP.NET Core](../../overview.md)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)
@@ -721,7 +721,7 @@ The following operating systems are supported:
 
 For information on hosting in Azure, see [Deploy ASP.NET Core apps to Azure App Service](../azure-apps/index.md).
 
-For troubleshooting guidance, see <xref:test/troubleshoot>.
+For troubleshooting guidance, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md).
 
 ## Supported platforms
 
@@ -892,7 +892,7 @@ Install the *.NET Hosting Bundle* on the hosting system. The bundle installs the
 > [!IMPORTANT]
 > If the Hosting Bundle is installed before IIS, the bundle installation must be repaired. Run the Hosting Bundle installer again after installing IIS.
 >
-> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](xref:test/troubleshoot#no-net-sdks-were-detected)). To resolve the problem, see <xref:test/troubleshoot#missing-sdk-after-installing-the-net-hosting-bundle>.
+> If the Hosting Bundle is installed after installing the 64-bit (x64) version of .NET, SDKs might appear to be missing ([No .NET SDKs were detected](../../test/troubleshoot.md#no-net-sdks-were-detected)). To resolve the problem, see [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md#missing-sdk-after-installing-the-net-hosting-bundle).
 
 ### Download
 
@@ -1208,14 +1208,14 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 * [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
 * [ASP.NET Core directory structure](../directory-structure.md)
 * [IIS modules with ASP.NET Core](modules.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md)
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)
 
 ## Additional resources
 
 * [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md)
-* <xref:test/troubleshoot>
-* <xref:index>
+* [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)
+* [Overview of ASP.NET Core](../../overview.md)
 * [The Official Microsoft IIS Site](https://www.iis.net/)
 * [Windows Server technical content library](/windows-server)
 * [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis)

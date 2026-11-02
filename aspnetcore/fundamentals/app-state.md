@@ -72,14 +72,14 @@ Session state exhibits the following behaviors:
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
-* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
 
 Middleware for managing session state is included in the framework. To enable the session middleware, `Program.cs` must contain:
 
-* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
+* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*>
 * A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*>
 
@@ -251,11 +251,11 @@ Other code can access the value stored in `HttpContext.Items` using the key expo
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 
 Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-To cache application wide data, see <xref:performance/caching/memory>.
+To cache application wide data, see [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 ## Checking session state
 
@@ -267,7 +267,7 @@ Libraries that need to test session availability can use `HttpContext.Features.G
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md) and [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 If the session middleware fails to persist a session:
 
@@ -345,7 +345,7 @@ Session state exhibits the following behaviors:
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
-* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
@@ -357,7 +357,7 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 
 To enable the session middleware, `Startup` must contain:
 
-* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
+* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*> in `ConfigureServices`.
 * A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> in `Configure`.
 
@@ -524,17 +524,17 @@ This approach also has the advantage of eliminating the use of key strings in th
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 
 Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-To cache application wide data, see <xref:performance/caching/memory>.
+To cache application wide data, see [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 ## Common errors
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md) and [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 If the session middleware fails to persist a session:
 

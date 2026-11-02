@@ -4,7 +4,6 @@ description: Learn about response compression and how to use response compressio
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/02/2026
-uid: performance/response-compression
 
 # customer intent: As an ASP.NET developer, I want to configure response compression middleware in ASP.NET Core, so I use response compression in my apps.
 ---

@@ -459,7 +459,7 @@ Use the Swagger UI to delete the `TodoItem` that has Id = 1. Note the response i
 
 There are many other tools that can be used to test web APIs, for example:
 
-* [Visual Studio Endpoints Explorer and .http files](xref:test/http-files)
+* [Visual Studio Endpoints Explorer and .http files](../../../test/http-files.md)
 * [http-repl](../../../web-api/http-repl/index.md)
 * [curl](https://terminalcheatsheet.com/guides/curl-rest-api). Swagger uses `curl` and shows the `curl` commands it submits.
 * [Fiddler](https://www.telerik.com/fiddler)

@@ -699,7 +699,7 @@ For more information, see <xref:blazor/state-management/server?view=aspnetcore-1
 
 ### Hot Reload for Blazor WebAssembly and .NET on WebAssembly
 
-The SDK migrated to a general purpose [Hot Reload](xref:test/hot-reload) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
+The SDK migrated to a general purpose [Hot Reload](../../../test/hot-reload.md) for WebAssembly scenarios. There's a new MSBuild property `WasmEnableHotReload` that's `true` by default for the `Debug` configuration (`Configuration == "Debug"`) that enables Hot Reload.
 
 For other configurations with custom configuration names, set the value to `true` in the app's project file to enable Hot Reload:
 

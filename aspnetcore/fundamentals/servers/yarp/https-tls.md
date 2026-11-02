@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/https-tls
 title: YARP HTTPS & TLS
 description: YARP HTTPS & TLS
 ms.date: 02/14/2025
@@ -32,8 +31,8 @@ Kestrel supports intercepting incoming connections before the TLS handshake. YAR
 
 To enable TLS encryption when communicating with a destination specify the destination address as `https` like `"https://destinationHost"`. See the [configuration docs](config-files.md#examine-the-configuration-structure) for examples.
 
-The host name specified in the destination address will be used for the TLS handshake by default, including SNI and server certificate validation. If proxying the [original host header](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) is enabled, that value will be used for the TLS handshake instead. If a custom host value needs to be used then use the [RequestHeader](xref:fundamentals/servers/yarp/transforms#requestheader) transform to set the host header.
+The host name specified in the destination address will be used for the TLS handshake by default, including SNI and server certificate validation. If proxying the [original host header](transforms.md#requestheaderoriginalhost) is enabled, that value will be used for the TLS handshake instead. If a custom host value needs to be used then use the [RequestHeader](transforms.md#requestheader) transform to set the host header.
 
-Outbound connections to the destinations are handled by HttpClient/SocketsHttpHandler. A different instance and settings can be configured per cluster. Some settings are available in the configuration model, while others can only be configured in code. See the [HttpClient](xref:fundamentals/servers/yarp/http-client-config) docs for details.
+Outbound connections to the destinations are handled by HttpClient/SocketsHttpHandler. A different instance and settings can be configured per cluster. Some settings are available in the configuration model, while others can only be configured in code. See the [HttpClient](http-client-config.md) docs for details.
 
-Destination server certificates need to be trusted by the proxy or custom validation needs to be applied via the [HttpClient](xref:fundamentals/servers/yarp/http-client-config) configuration.
+Destination server certificates need to be trusted by the proxy or custom validation needs to be applied via the [HttpClient](http-client-config.md) configuration.

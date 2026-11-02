@@ -2,7 +2,6 @@
 title: Overview of ASP.NET Core
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.date: 07/28/2025
-uid: index
 ---
 # Overview of ASP.NET Core
 
@@ -78,4 +77,4 @@ Key features:
 Are you ready to start your ASP.NET Core learning journey? It's time to build your first web app with ASP.NET Core!
 
 > [!div class="nextstepaction"]
-> <xref:get-started>
+> [Get started with ASP.NET Core](get-started.md)

@@ -320,7 +320,7 @@ You can also implement validation within your custom binding logic:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/7.0/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/7.0/CustomBindingExample) ([how to download](../../../overview.md#how-to-download-a-sample))
 
 ### Binding failures
 

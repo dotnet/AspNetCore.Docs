@@ -10,7 +10,7 @@ ms.date: 02/03/2023
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
+To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md).
 
 ## Set up
 
@@ -196,4 +196,4 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)
 * [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)

@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core 2.2
 description: Learn about the new features in ASP.NET Core 2.2.
 ms.date: 12/5/2019
-uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
 
@@ -86,7 +85,7 @@ For more information, see [CORS middleware](../security/cors.md?view=aspnetcore-
 
 ASP.NET Core 2.2 can compress responses with the [Brotli compression format](https://tools.ietf.org/html/rfc7932).
 
-For more information, see [response compression middleware supports Brotli compression](xref:performance/response-compression?view=aspnetcore-2.2#brotli-compression-provider).
+For more information, see [response compression middleware supports Brotli compression](../performance/response-compression.md?view=aspnetcore-2.2#brotli-compression-provider).
 
 ## Project templates
 

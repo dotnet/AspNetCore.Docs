@@ -377,4 +377,4 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
 * [The host](../index.md#host)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)

@@ -68,7 +68,7 @@ Common reasons why this fails include:
 * Something has changed the contents of the files between the build and delivery of the files to the browser. This might happen:
   * If you or build tools manually modify the build output.
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
-  * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
+  * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](../../../client-side/bundling-and-minification.md#minification) HTML, thereby modifying it. You may need to disable such features.
 * The boot manifest fails to load properly or is improperly cached on the client. Common causes include either of the following: 
   * Misconfigured or malfunctioning custom developer code.
   * One or more misconfigured intermediate caching layers.

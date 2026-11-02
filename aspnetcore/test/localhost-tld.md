@@ -3,7 +3,6 @@ description: Learn how using localhost as top-level domain can make testing easi
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 11/19/2025
 title: Support for the .localhost top-level domain
-uid: test/localhost-tld
 ---
 
 # Support for the .localhost top-level domain

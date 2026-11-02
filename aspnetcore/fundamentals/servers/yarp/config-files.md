@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/config-files
 title: YARP Configuration Files
 description: Explore how to work with YARP configuration files, examine the file structure and properties, define routes, clusters, and sources, and load proxy configuration. 
 ms.date: 04/24/2026
@@ -41,7 +40,7 @@ app.Run();
 > [!NOTE]
 > For details about middleware ordering, see [ASP.NET Core middleware > Middleware order](/aspnet/core/fundamentals/middleware/#middleware-order).
 
-Configuration can be modified during the load sequence by using [YARP configuration filters](xref:fundamentals/servers/yarp/config-filters).
+Configuration can be modified during the load sequence by using [YARP configuration filters](config-filters.md).
 
 ## Load from multiple configuration sources
 
@@ -109,7 +108,7 @@ Each route requires at least the following fields:
 
 Route matching is based on the most specific routes having highest precedence, as described in [URL matching](/aspnet/core/fundamentals/routing#url-matching). Explicit ordering can be achieved by using the `order` field, where lower values take higher priority.
 
-[YARP headers](xref:fundamentals/servers/yarp/header-routing), [authentication and authorization](xref:fundamentals/servers/yarp/authn-authz), [cross-origin requests (CORS)](xref:fundamentals/servers/yarp/cors), and other route-based policies can be configured on each route entry. For other fields, see the [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) reference.
+[YARP headers](header-routing.md), [authentication and authorization](authn-authz.md), [cross-origin requests (CORS)](cors.md), and other route-based policies can be configured on each route entry. For other fields, see the [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) reference.
 
 The proxy applies the given matching criteria and policies, and passes off the request to the specified cluster.
 
@@ -255,4 +254,4 @@ The following JSON example shows all properties available for the YARP proxy con
 ## Related content
 
 - [Logging configuration](diagnosing-yarp-issues.md#logging)
-- [HTTP client configuration](xref:fundamentals/servers/yarp/http-client-config)
+- [HTTP client configuration](http-client-config.md)

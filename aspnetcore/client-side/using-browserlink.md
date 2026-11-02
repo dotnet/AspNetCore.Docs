@@ -3,7 +3,6 @@ title: Browser link in ASP.NET Core
 description: Explains how browser link is a Visual Studio feature that links the Development environment with one or more web browsers.
 monikerRange: '>= aspnetcore-1.1'
 ms.date: 06/05/2024
-uid: client-side/using-browserlink
 ---
 # Browser link in ASP.NET Core
 
@@ -22,7 +21,7 @@ Browser link is a Visual Studio feature. It creates a communication channel betw
 
 ## Runtime compilation vs. hot reload
 
-Use browser Link with [runtime compilation](../mvc/views/view-compilation.md) or [hot reload](xref:test/hot-reload) to see the effect of run-time changes in Razor (`.cshtml`) files. We recommend hot reload.
+Use browser Link with [runtime compilation](../mvc/views/view-compilation.md) or [hot reload](../test/hot-reload.md) to see the effect of run-time changes in Razor (`.cshtml`) files. We recommend hot reload.
 
 ## How to use browser link
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a React app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 04/07/2026
-uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
 

@@ -45,4 +45,4 @@ The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok*> cl
 * [Authentication and authorization in Minimal APIs](security.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * [Test controller logic in ASP.NET Core](../../mvc/controllers/testing.md)
-* <xref:test/razor-pages-tests>
+* [Razor Pages unit tests in ASP.NET Core](../../test/razor-pages-tests.md)

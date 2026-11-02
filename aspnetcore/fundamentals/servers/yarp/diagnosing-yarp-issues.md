@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/diagnosing-yarp-issues
 title: YARP Diagnosing YARP-based proxies
 description: YARP Diagnosing YARP-based proxies
 ms.date: 2/6/2025

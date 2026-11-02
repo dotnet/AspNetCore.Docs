@@ -3,7 +3,6 @@ title: Use React with ASP.NET Core
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and Create React App (CRA).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/24/2026
-uid: spa/react
 
 # customer intent: As an ASP.NET developer, I want to get started with the SPA project template for React and CRA, so I can use React and create apps.
 ---

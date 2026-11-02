@@ -2,18 +2,18 @@
 
 This topic describes the most common errors and provides troubleshooting advice when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
-See <xref:test/troubleshoot-azure-iis> information on common app startup errors and instructions on how to diagnose errors.
+See [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md) information on common app startup errors and instructions on how to diagnose errors.
 
 Collect the following information:
 
 * Browser behavior such as status code and error message.
 * Application Event Log entries
-  * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: See [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
   * IIS
     1. Select **Start** on the **Windows** menu, type *Event Viewer*, and press **Enter**.
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
 * ASP.NET Core Module stdout and debug log entries
-  * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: See [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
   * IIS: Follow the instructions in the [Log creation and redirection](../../aspnet-core-module.md#log-creation-and-redirection) and [Enhanced diagnostic logs](../../iis/logging-and-diagnostics.md#enhanced-diagnostic-logs) sections of the ASP.NET Core Module topic.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
@@ -85,7 +85,7 @@ For an x86 framework-dependent deployment (`<PlatformTarget>x86</PlatformTarget>
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * If this exception occurs for an Azure Apps deployment when upgrading an app and deploying newer assemblies, manually delete all files from the prior deployment. Lingering incompatible assemblies can result in a `System.BadImageFormatException` exception when deploying an upgraded app.
 
@@ -169,7 +169,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * Check the *processPath* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's `dotnet` for a framework-dependent deployment (FDD) or `.\{ASSEMBLY}.exe` for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
@@ -199,7 +199,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) `.\{ASSEMBLY}.dll` for a framework-dependent deployment (FDD); or (b) not present, an empty string (`arguments=""`), or a list of the app's arguments (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) for a self-contained deployment (SCD).
 
@@ -281,8 +281,8 @@ The process failed to start, most likely due to an app configuration or programm
 
 For more information, see the following topics:
 
-* <xref:test/troubleshoot-azure-iis>
-* <xref:test/troubleshoot>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md)
+* [Troubleshoot and debug ASP.NET Core projects](../../../test/troubleshoot.md)
 
 :::moniker-end
 
@@ -290,18 +290,18 @@ For more information, see the following topics:
 
 This topic describes common errors and provides troubleshooting advice for specific errors when hosting ASP.NET Core apps on Azure Apps Service and IIS.
 
-For general troubleshooting guidance, see <xref:test/troubleshoot-azure-iis>.
+For general troubleshooting guidance, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 Collect the following information:
 
 * Browser behavior (status code and error message)
 * Application Event Log entries
-  * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: See [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
   * IIS
     1. Select **Start** on the **Windows** menu, type *Event Viewer*, and press **Enter**.
     1. After the **Event Viewer** opens, expand **Windows Logs** > **Application** in the sidebar.
 * ASP.NET Core Module stdout and debug log entries
-  * Azure App Service: See <xref:test/troubleshoot-azure-iis>.
+  * Azure App Service: See [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
   * IIS: Follow the instructions in the [Log creation and redirection](../../aspnet-core-module.md#log-creation-and-redirection) and [Enhanced diagnostic logs](../../iis/logging-and-diagnostics.md#enhanced-diagnostic-logs) sections of the ASP.NET Core Module topic.
 
 Compare error information to the following common errors. If a match is found, follow the troubleshooting advice.
@@ -369,7 +369,7 @@ For an x86 framework-dependent deployment (`<PlatformTarget>x86</PlatformTarget>
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * If this exception occurs for an Azure Apps deployment when upgrading an app and deploying newer assemblies, manually delete all files from the prior deployment. Lingering incompatible assemblies can result in a `System.BadImageFormatException` exception when deploying an upgraded app.
 
@@ -445,7 +445,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * Check the *processPath* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's `dotnet` for a framework-dependent deployment (FDD) or `.\{ASSEMBLY}.exe` for a [self-contained deployment (SCD)](/dotnet/core/deploying/#self-contained-deployments-scd).
 
@@ -473,7 +473,7 @@ Troubleshooting:
 
 Troubleshooting:
 
-* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see <xref:test/troubleshoot-azure-iis>.
+* Confirm that the app runs locally on Kestrel. A process failure might be the result of a problem within the app. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md).
 
 * Examine the *arguments* attribute on the `<aspNetCore>` element in *web.config* to confirm that it's either (a) `.\{ASSEMBLY}.dll` for a framework-dependent deployment (FDD); or (b) not present, an empty string (`arguments=""`), or a list of the app's arguments (`arguments="{ARGUMENT_1}, {ARGUMENT_2}, ... {ARGUMENT_X}"`) for a self-contained deployment (SCD).
 
@@ -533,7 +533,7 @@ The process failed to start, most likely due to an app configuration or programm
 
 For more information, see the following topics:
 
-* <xref:test/troubleshoot-azure-iis>
-* <xref:test/troubleshoot>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../../test/troubleshoot-azure-iis.md)
+* [Troubleshoot and debug ASP.NET Core projects](../../../test/troubleshoot.md)
 
 :::moniker-end

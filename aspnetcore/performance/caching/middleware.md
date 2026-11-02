@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure and use response caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 1/1/2022
-uid: performance/caching/middleware
 ---
 # Response caching middleware in ASP.NET Core
 
@@ -12,7 +11,7 @@ By [John Luo](https://github.com/JunTaoLuo) and [Rick Anderson](https://twitter.
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article explains how to configure [response caching middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure [response caching middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/ResponseCachingMiddleware.cs) in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](response.md).
 
 [!INCLUDE[](~/includes/response-caching-mid.md)]
 
@@ -62,7 +61,7 @@ The following example configures the middleware to:
 
 ## VaryByQueryKeys
 
-When using MVC, web API controllers, or Razor Pages page models, the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute specifies the parameters necessary for setting the appropriate headers for response caching. The only parameter of the `[ResponseCache]` attribute that strictly requires the middleware is <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.VaryByQueryKeys>, which doesn't correspond to an actual HTTP header. For more information, see <xref:performance/caching/response#responsecache-attribute>.
+When using MVC, web API controllers, or Razor Pages page models, the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute specifies the parameters necessary for setting the appropriate headers for response caching. The only parameter of the `[ResponseCache]` attribute that strictly requires the middleware is <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.VaryByQueryKeys>, which doesn't correspond to an actual HTTP header. For more information, see [Response caching in ASP.NET Core](response.md#responsecache-attribute).
 
 When not using the `[ResponseCache]` attribute, response caching can be varied with `VaryByQueryKeys`. Use the <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingFeature> directly from the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features):
 
@@ -101,8 +100,8 @@ The middleware respects the rules of [RFC 9111: HTTP Caching (Section 5.2. Cache
 
 For more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
@@ -144,10 +143,10 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 * [GitHub source for `IResponseCachingPolicyProvider`](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/ResponseCaching/src/Interfaces/IResponseCachingPolicyProvider.cs)
 * [App startup in ASP.NET Core](../../fundamentals/startup.md)
 * [ASP.NET Core middleware](../../fundamentals/middleware/index.md)
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* <xref:performance/caching/response>
+* [Response caching in ASP.NET Core](response.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
@@ -155,7 +154,7 @@ When testing and troubleshooting caching behavior, a browser typically sets requ
 
 :::moniker range="< aspnetcore-6.0"
 
-This article explains how to configure response caching middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](xref:performance/caching/response).
+This article explains how to configure response caching middleware in an ASP.NET Core app. The middleware determines when responses are cacheable, stores responses, and serves responses from cache. For an introduction to HTTP caching and the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute, see [Response Caching](response.md).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/middleware/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
@@ -215,7 +214,7 @@ services.AddResponseCaching(options =>
 
 ## VaryByQueryKeys
 
-When using MVC / web API controllers or Razor Pages page models, the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute specifies the parameters necessary for setting the appropriate headers for response caching. The only parameter of the `[ResponseCache]` attribute that strictly requires the middleware is <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.VaryByQueryKeys>, which doesn't correspond to an actual HTTP header. For more information, see <xref:performance/caching/response#responsecache-attribute>.
+When using MVC / web API controllers or Razor Pages page models, the [`[ResponseCache]`](xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute) attribute specifies the parameters necessary for setting the appropriate headers for response caching. The only parameter of the `[ResponseCache]` attribute that strictly requires the middleware is <xref:Microsoft.AspNetCore.Mvc.ResponseCacheAttribute.VaryByQueryKeys>, which doesn't correspond to an actual HTTP header. For more information, see [Response caching in ASP.NET Core](response.md#responsecache-attribute).
 
 When not using the `[ResponseCache]` attribute, response caching can be varied with `VaryByQueryKeys`. Use the <xref:Microsoft.AspNetCore.ResponseCaching.ResponseCachingFeature> directly from the [HttpContext.Features](xref:Microsoft.AspNetCore.Http.HttpContext.Features):
 
@@ -254,8 +253,8 @@ The middleware respects the rules of [RFC 9111: HTTP Caching (Section 5.2. Cache
 
 For more control over caching behavior, explore other caching features of ASP.NET Core. See the following topics:
 
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 
@@ -290,10 +289,10 @@ When testing and troubleshooting caching behavior, a browser may set request hea
 
 * [App startup in ASP.NET Core](../../fundamentals/startup.md)
 * [ASP.NET Core middleware](../../fundamentals/middleware/index.md)
-* <xref:performance/caching/memory>
-* <xref:performance/caching/distributed>
+* [Cache in-memory in ASP.NET Core](memory.md)
+* [Distributed caching in ASP.NET Core](distributed.md)
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
-* <xref:performance/caching/response>
+* [Response caching in ASP.NET Core](response.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 

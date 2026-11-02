@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/header-guidelines
 title: YARP HTTP header guidelines
 description: Learn about YARP HTTP header guidelines.
 ms.date: 09/18/2026
@@ -63,15 +62,15 @@ This header instructs clients to always use HTTPS, but there may be a conflict b
 
 ### `Host`
 
-The Host header indicates which site on the server the request is intended for. This header is removed by default since the host name used publicly by the proxy is likely to differ from the one used by the service behind the proxy. This can be configured using the [`RequestHeaderOriginalHost`](xref:fundamentals/servers/yarp/transforms#requestheaderoriginalhost) transform.
+The Host header indicates which site on the server the request is intended for. This header is removed by default since the host name used publicly by the proxy is likely to differ from the one used by the service behind the proxy. This can be configured using the [`RequestHeaderOriginalHost`](transforms.md#requestheaderoriginalhost) transform.
 
 ### `X-Forwarded-*`, `Forwarded`
 
-Because a separate connection is used to communicate with the destination, these request headers can be used to forward information about the original connection, such as the IP, scheme, port, and client certificate. `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Prefix` are enabled by default. This information is subject to spoofing attacks so any existing headers on the request are removed and replaced by default. The destination app should be careful about how much trust it places in these values. See [transforms](xref:fundamentals/servers/yarp/transforms#defaults) for configuring these in the proxy. For guidance on configuring the destination app to read these headers, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
+Because a separate connection is used to communicate with the destination, these request headers can be used to forward information about the original connection, such as the IP, scheme, port, and client certificate. `X-Forwarded-For`, `X-Forwarded-Proto`, `X-Forwarded-Host`, and `X-Forwarded-Prefix` are enabled by default. This information is subject to spoofing attacks so any existing headers on the request are removed and replaced by default. The destination app should be careful about how much trust it places in these values. See [transforms](transforms.md#defaults) for configuring these in the proxy. For guidance on configuring the destination app to read these headers, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).
 
 ### `X-http-method-override`, `x-http-method`, `x-method-override`
 
-Some clients and servers limit which HTTP methods they allow (for example, GET). These request headers are sometimes used to work around those restrictions. These headers are proxied by default. If in the proxy you want to prevent these bypasses then use the [RequestHeaderRemove](xref:fundamentals/servers/yarp/transforms#requestheaderremove) transform.
+Some clients and servers limit which HTTP methods they allow (for example, GET). These request headers are sometimes used to work around those restrictions. These headers are proxied by default. If in the proxy you want to prevent these bypasses then use the [RequestHeaderRemove](transforms.md#requestheaderremove) transform.
 
 ### `Set-Cookie`
 
@@ -83,8 +82,8 @@ This response header is used with redirects and may contain a scheme, domain, an
 
 ### `Server`
 
-This response header indicates what server technology was used to generate the response (for example, IIS, Kestrel). This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](xref:fundamentals/servers/yarp/transforms#responseheaderremove) transform, in which case the proxy's default server header will be used. Suppressing the proxy default server header is server specific, such as for [Kestrel](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.addserverheader#Microsoft_AspNetCore_Server_Kestrel_Core_KestrelServerOptions_AddServerHeader).
+This response header indicates what server technology was used to generate the response (for example, IIS, Kestrel). This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](transforms.md#responseheaderremove) transform, in which case the proxy's default server header will be used. Suppressing the proxy default server header is server specific, such as for [Kestrel](/dotnet/api/microsoft.aspnetcore.server.kestrel.core.kestrelserveroptions.addserverheader#Microsoft_AspNetCore_Server_Kestrel_Core_KestrelServerOptions_AddServerHeader).
 
 ### `X-Powered-By`
 
-This response header indicates what web framework was used to generate the response (for example, ASP.NET). ASP.NET Core does not generate this header but IIS can. This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](xref:fundamentals/servers/yarp/transforms#responseheaderremove) transform.
+This response header indicates what web framework was used to generate the response (for example, ASP.NET). ASP.NET Core does not generate this header but IIS can. This header is proxied from the destination by default. Applications that want to remove it can use the [ResponseHeaderRemove](transforms.md#responseheaderremove) transform.

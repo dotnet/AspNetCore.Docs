@@ -18,7 +18,7 @@ Examples throughout this article apply claim-based authorization via one or more
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../overview.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 

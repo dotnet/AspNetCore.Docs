@@ -1111,11 +1111,11 @@ For Single Page Applications (SPAs), the SPA middleware <xref:Microsoft.Extensio
 * To allow all other middleware to respond to matching requests first.
 * To allow SPAs with client-side routing to run for all routes that the server app doesn't recognize.
 
-For more details on SPAs, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+For more details on SPAs, see the guides for the [React](../../client-side/spa/react.md) and [Angular](../../client-side/spa/angular.md) project templates.
 
 :::moniker-end
 
-For information about Single Page Applications, see the guides for the [React](xref:spa/react) and [Angular](xref:spa/angular) project templates.
+For information about Single Page Applications, see the guides for the [React](../../client-side/spa/react.md) and [Angular](../../client-side/spa/angular.md) project templates.
 
 ## `UseCors` and `UseStaticFiles` order
 
@@ -1158,12 +1158,12 @@ The latest release of ASP.NET Core includes the following middleware. The *UI st
 | [HTTP Strict Transport Security (HSTS)](../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) | Security enhancement middleware that adds a special response header. | All | Before responses are sent and after middleware that modify requests. Examples: Forwarded Headers, URL Rewriting. |
 | [MVC](../../mvc/overview.md) | Processes requests with MVC and Razor Pages. | RP/MVC | Terminal if a request matches a route. |
 | [OWIN](../owin.md) | Interop with OWIN-based apps, servers, and middleware. | RP/MVC | Terminal if the OWIN middleware fully processes the request. |
-| [Output Caching](xref:performance/caching/output) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>. |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. This middleware requires client participation to work. Use output caching for complete server control. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](xref:performance/caching/output) benefits UI apps. |
+| [Output Caching](../../performance/caching/output.md) | Provides support for caching responses based on configuration. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>, <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>, and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> must come before <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>. |
+| [Response Caching](../../performance/caching/middleware.md) | Provides support for caching responses. This middleware requires client participation to work. Use output caching for complete server control. | RP/MVC | Before middleware that require caching. <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must come before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>. Response caching isn't typically beneficial for UI apps, such as Razor Pages, because browsers generally set request headers that prevent caching. [Output caching](../../performance/caching/output.md) benefits UI apps. |
 | [Request Decompression](request-decompression.md) | Provides support for decompressing requests. | All | Before middleware that read the request body. |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | All | Before middleware that require compression. |
+| [Response Compression](../../performance/response-compression.md) | Provides support for compressing responses. | All | Before middleware that require compression. |
 | [Request Localization](../localization.md) | Provides localization support. | All | Before localization sensitive middleware. Must appear after routing middleware when using <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider>. |
-| [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global and per endpoint. | All | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts*> must come after <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>. |
+| [Request Timeouts](../../performance/timeouts.md) | Provides support for configuring request timeouts, global and per endpoint. | All | <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts*> must come after <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>, <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>. |
 | [Endpoint Routing](../routing.md). | Defines and constrains request routes. | All | Terminal for matching routes. |
 | [SPA](xref:Microsoft.AspNetCore.Builder.SpaApplicationBuilderExtensions.UseSpa*) | Handles all requests from this point in the middleware chain by returning the default page for the Single Page Application (SPA). | All | Appears late in the pipeline, so other middleware for serving static files, such as MVC actions, take precedence. |
 | [Session](../app-state.md) | Provides support for managing user sessions. | RP/MVC | Before middleware that require Session. |
@@ -1177,7 +1177,7 @@ The latest release of ASP.NET Core includes the following middleware. The *UI st
 
 * [Lifetime and registration options (includes middleware sample)](../dependency-injection.md#lifetime-and-registration-options)
 * [Write custom ASP.NET Core middleware](write.md)
-* <xref:test/middleware>
+* [Test ASP.NET Core middleware](../../test/middleware.md)
 * [Configure gRPC-Web in ASP.NET Core](../../grpc/browser.md#grpc-web)
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
 * [App startup in ASP.NET Core](../startup.md)

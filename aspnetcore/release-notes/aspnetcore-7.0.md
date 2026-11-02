@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 7
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.date: 11/07/2022
-uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core in .NET 7
 
@@ -11,7 +10,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 7 w
 
 ## Rate limiting middleware in ASP.NET Core
 
-The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see [Rate limiting middleware in ASP.NET Core](../performance/rate-limit.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Authentication uses single scheme as DefaultScheme
 
@@ -496,7 +495,7 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 For more information:
 
 * <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
-* <xref:client-side/dotnet-interop/index>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](../client-side/dotnet-interop/index.md): Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 
@@ -539,7 +538,7 @@ New guidance is available for Blazor Hybrid security scenarios. For more informa
 
 ### Output caching middleware
 
-Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](xref:performance/caching/overview#response-caching) in the following ways:
+Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](../performance/caching/overview.md#response-caching) in the following ways:
 
 * The caching behavior is configurable on the server.
 * Cache entries can be programmatically invalidated.
@@ -547,7 +546,7 @@ Output caching is a new middleware that stores responses from a web app and serv
 * Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
 * The cache storage medium is extensible.
 
-For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
+For more information, see [Overview of caching](../performance/caching/overview.md) and [Output caching middleware](../performance/caching/output.md).
 
 ### HTTP/3 improvements
 

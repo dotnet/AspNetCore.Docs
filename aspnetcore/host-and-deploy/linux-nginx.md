@@ -547,7 +547,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 * [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Linux packages - Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 

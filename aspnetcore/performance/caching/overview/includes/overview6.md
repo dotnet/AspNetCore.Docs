@@ -4,13 +4,13 @@
 
 In-memory caching uses server memory to store cached data. This type of caching is suitable for a single server or multiple servers using session affinity. Session affinity is also known as *sticky sessions*. Session affinity means that the requests from a client are always routed to the same server for processing.
 
-For more information, see <xref:performance/caching/memory> and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
+For more information, see [Cache in-memory in ASP.NET Core](../../memory.md) and [Troubleshoot Azure Application Gateway session affinity issues](/azure/application-gateway/how-to-troubleshoot-application-gateway-session-affinity-issues).
 
 ## Distributed Cache
 
 Use a distributed cache to store data when the app is hosted in a cloud or server farm. The cache is shared across the servers that process requests. A client can submit a request that's handled by any server in the group if cached data for the client is available. ASP.NET Core works with SQL Server, [Redis](https://www.nuget.org/packages/Microsoft.Extensions.Caching.StackExchangeRedis), [Postgres](https://www.nuget.org/packages/Microsoft.Extensions.Caching.Postgres), and [NCache](https://www.nuget.org/packages/Alachisoft.NCache.OpenSource.SDK/) distributed caches.
 
-For more information, see <xref:performance/caching/distributed>.
+For more information, see [Distributed caching in ASP.NET Core](../../distributed.md).
 
 ## HybridCache
 
@@ -34,6 +34,6 @@ For more information, see [Distributed Cache Tag Helper in ASP.NET Core](../../.
 
 ## Output caching
 
-[Output caching](xref:performance/caching/overview?view=aspnetcore-7.0#oc7) is available in .NET 7 or later.
+[Output caching](../../overview.md?view=aspnetcore-7.0#oc7) is available in .NET 7 or later.
 
 :::moniker-end

@@ -3,7 +3,6 @@ title: Object reuse with ObjectPool in ASP.NET Core
 description: Tips for increasing performance in ASP.NET Core apps using ObjectPool.
 monikerRange: '>= aspnetcore-1.1'
 ms.date: 4/21/2023
-uid: performance/ObjectPool
 ---
 # Object reuse with ObjectPool in ASP.NET Core
 

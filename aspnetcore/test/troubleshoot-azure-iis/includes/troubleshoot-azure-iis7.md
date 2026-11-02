@@ -505,7 +505,7 @@ Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommende
 
 ### Obtain data from an app
 
-If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md#obtain-data-from-an-app).
 
 ### Slow or nonresponding app (IIS)
 
@@ -570,8 +570,8 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 
 ## Related content
 
-* <xref:test/debug-aspnetcore-source>
-* <xref:test/troubleshoot>
+* [Debug .NET and ASP.NET Core source code with Visual Studio](../../debug-aspnetcore-source.md)
+* [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md)
 * [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../../../host-and-deploy/azure-iis-errors-reference.md)
 * [Handle errors in ASP.NET Core](../../../fundamentals/error-handling.md)
 * [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md)

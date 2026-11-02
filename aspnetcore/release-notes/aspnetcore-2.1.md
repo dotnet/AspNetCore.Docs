@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core 2.1
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.date: 02/06/2023
-uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
 
@@ -105,7 +104,7 @@ public class BasicTests
 }
 ```
 
-For more information, see the [Integration tests](xref:test/integration-tests) topic.
+For more information, see the [Integration tests](../test/integration-tests.md) topic.
 
 ## [ApiController], ActionResult\<T>
 
@@ -140,8 +139,8 @@ The Angular template is based on the Angular CLI, and the React template is base
 
 For more information, see:
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Use Angular with ASP.NET Core](../client-side/spa/angular.md)
+* [Use React with ASP.NET Core](../client-side/spa/react.md)
 
 ## Razor Pages search for Razor assets
 
