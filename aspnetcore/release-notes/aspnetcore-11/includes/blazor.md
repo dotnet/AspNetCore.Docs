@@ -357,11 +357,15 @@ Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared U
 
 `GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
 
+<!-- UPDATE 11.0 - Hold for December servicing release
+
 The `Paginator` component now supports passing custom attributes to its rendered navigation element (`<nav>`). In the following example, the [`aria-label` attribute](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) and value are passed:
 
 ```razor
 <Paginator State="@pagination" aria-label="Orders page" />
 ```
+
+-->
 
 #### CSS breaking change
 
