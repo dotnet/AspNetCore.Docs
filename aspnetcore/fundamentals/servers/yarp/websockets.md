@@ -34,7 +34,7 @@ After the initial handshake WebSockets function the same way over both HTTP vers
 
 [Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](timeouts.md).
 
-The cluster's [`ActivityTimeout`](http-client-config.md#HttpRequest) (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, use *either* of the following approaches:
+The cluster's [`ActivityTimeout`](http-client-config.md#httprequest) (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, use *either* of the following approaches:
 
 * Send WebSocket keep-alives at an interval shorter than `ActivityTimeout` from the client or the destination server.
 * Increase the `ActivityTimeout` for the cluster.

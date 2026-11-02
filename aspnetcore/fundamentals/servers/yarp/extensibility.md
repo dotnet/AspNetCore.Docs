@@ -15,7 +15,7 @@ There are 2 main styles of extensibility for YARP, depending on the routing beha
 
 ## Middleware pipeline
 
-YARP uses the concept of [Routes](config-files.md#routes), [Clusters](config-files.md#clusters) and Destinations. These can be supplied through [configuration files](config-files.md) or [directly through code](config-providers.md). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
+YARP uses the concept of [Routes](config-files.md#define-configuration-routes), [Clusters](config-files.md#define-configuration-clusters) and Destinations. These can be supplied through [configuration files](config-files.md) or [directly through code](config-providers.md). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
 
 ![Middleware pipeline diagram](~/fundamentals/servers/yarp/media/yarp-pipeline.png)
 

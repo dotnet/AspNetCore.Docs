@@ -578,7 +578,7 @@ For more information, see [Antiforgery with Minimal APIs](../security/anti-reque
 
 In this release, we've made the object pool easier to use by adding the <xref:Microsoft.Extensions.ObjectPool.IResettable> interface. Reusable types often need to be reset back to a default state between uses. `IResettable` types are automatically reset when returned to an object pool.
 
-For more information, see the [ObjectPool sample](../performance/ObjectPool.md##objectpool-sample).
+For more information, see the [ObjectPool sample](../performance/ObjectPool.md#objectpool-sample).
 
 ## Native AOT
 

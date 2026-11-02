@@ -430,7 +430,7 @@ routeConfig = routeConfig.WithTransformRequestHeadersAllowed("Header1", "header2
 transformBuilderContext.AddRequestHeadersAllowed("Header1", "header2");
 ```
 
-YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](transforms.md#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
+YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
 
 Note that there are some headers YARP does not copy by default since they are connection specific or otherwise security sensitive (e.g. `Connection`, `Alt-Svc`). Putting those header names in the allow list will bypass that restriction but is strongly discouraged as it may negatively affect the functionality of the proxy or cause security vulnerabilities.
 
