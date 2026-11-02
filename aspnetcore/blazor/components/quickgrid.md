@@ -188,15 +188,11 @@ In the running app, page through the items using a rendered `Paginator` componen
 
 :::moniker range=">= aspnetcore-11.0"
 
-In .NET 11 or later, the `Paginator` component's internal `<nav>` element has the default accessible name "Pagination". Unmatched attributes supplied to `Paginator` are applied to this navigation element, not its outer wrapper. Override `aria-label` to provide a contextual or localized name, or set `aria-labelledby` to the `id` of an existing heading.
-
-When paginators control different grids on the same page, give them distinct accessible names so assistive technology users can distinguish them. For example, name the paginator for an orders grid:
+The `Paginator` component supports passing custom attributes to its rendered navigation (`<nav>`) element:
 
 ```razor
 <Paginator State="@pagination" aria-label="Orders pages" />
 ```
-
-Paginators with identical controls for the same grid, such as those above and below it, can share an accessible name.
 
 :::moniker-end
 
