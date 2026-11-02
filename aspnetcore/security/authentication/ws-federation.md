@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
-ms.date: 10/20/2026
+ms.date: 11/03/2026
 uid: security/authentication/ws-federation
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
@@ -22,7 +22,15 @@ By default, the new middleware:
 
 ## Remote sign-out
 
-The middleware processes a `wsignoutcleanup1.0` message received at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType> by signing out the local session. The cleanup message doesn't include a signature or session identifier, so the middleware can't verify that it came from the identity provider. By default, `RemoteSignOutPath` is `/signin-wsfed`; a request from any origin that reaches this path can trigger the user to sign out.
+The handler processes GET requests containing `wa=wsignoutcleanup1.0` at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType>, which defaults to `/signin-wsfed`. It calls `SignOutAsync` for the configured `SignOutScheme`. Cleanup messages aren't signed or bound to a session, so the handler can't verify that they came from the identity provider.
+
+In apps that use ASP.NET Core Identity, the default sign-in scheme can be `Identity.External`. To sign out the application cookie when the identity provider initiates sign-out, set `SignOutScheme` to `IdentityConstants.ApplicationScheme` in the options passed to `AddWsFederation`:
+
+```csharp
+options.SignOutScheme = IdentityConstants.ApplicationScheme;
+```
+
+Only configure this scheme if provider-initiated sign-out should end the app's Identity session.
 
 If the app doesn't require the identity provider to initiate a process for users to sign out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty?displayProperty=nameWithType>:
 
@@ -46,7 +54,23 @@ options.Events.OnRemoteSignOut = context =>
 };
 ```
 
-The missing `Referer` is rejected deliberately, and the trailing `/` prevents matching look-alike host names. This filter uses request metadata, not cryptographic authentication; non-browser clients can forge headers. Before enforcing a filter, check which headers the identity provider sends in an actual cleanup request, including `Referer`, `Sec-Fetch-Dest`, and `Sec-Fetch-Site`. For iframe- or image-based cleanup, the authentication cookie generally requires `SameSite=None` and `Secure`, so the browser sends it.
+This check helps prevent another site from triggering sign-out through the user's browser. It rejects missing `Referer` headers, and the trailing `/` prevents matching look-alike host names. Before enabling the filter, verify that cleanup requests from the identity provider include the expected `Referer`.
+
+If the identity provider sends cleanup requests in a cross-site iframe or image, the browser might omit the authentication cookie because of its `SameSite` setting. If needed, set `SameSite=None` and `Secure` on the cookie deletion response without changing the cookie settings used for normal requests:
+
+```csharp
+services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnSigningOut = context =>
+    {
+        context.CookieOptions.SameSite = SameSiteMode.None;
+        context.CookieOptions.Secure = true;
+        return Task.CompletedTask;
+    };
+});
+```
+
+Browser restrictions on third-party cookies can still prevent the browser from sending or removing the cookie.
 
 ## Register the app with Active Directory
 
