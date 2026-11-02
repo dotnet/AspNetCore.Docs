@@ -294,7 +294,7 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 
 * **Per-page/component interactive rendering**: Behaves the same as static server-side rendering (static SSR) during prerendering on the server, while interactive Not Found behavior no-ops.
 
-* **Streaming rendering**: If [enhanced navigation](navigation.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](../components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](navigation.md#enhanced-navigation-and-form-handling) is active, [streaming rendering](../components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> and is described in more detail later in this section.

@@ -267,8 +267,8 @@ In .NET 7, Blazor supports location changing events and maintaining navigation s
 
 For more information, see the following sections of the *Routing and navigation* article:
 
-* [Navigation options](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0#navigation-options)
-* [Handle/prevent location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0#handleprevent-location-changes)
+* [Navigation options](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#navigation-options)
+* [Handle/prevent location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#handleprevent-location-changes)
 
 ### Empty Blazor project templates
 
@@ -283,7 +283,7 @@ For more information, see the following articles:
 
 The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom DOM elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
 
-For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-7.0#blazor-custom-elements).
+For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-7.0&preserve-view=true#blazor-custom-elements).
 
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
@@ -434,13 +434,13 @@ For more information, see [Developers targeting browser-wasm can use Web Crypto 
 
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
-For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md?view=aspnetcore-7.0#inject-services-into-a-custom-validation-attribute).
+For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-custom-validation-attribute).
 
 ### `Input*` components outside of an `EditContext`/`EditForm`
 
 The built-in input components are now supported outside of a form in Razor component markup.
 
-For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-7.0).
+For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Project template changes
 
@@ -467,26 +467,26 @@ Virtualization enhancements in .NET 7:
 
 For more information, see the following sections of the *Virtualization* article:
 
-* [Root-level virtualization](../blazor/components/virtualization.md?view=aspnetcore-7.0#root-level-virtualization)
-* [Control the spacer element tag name](../blazor/components/virtualization.md?view=aspnetcore-7.0#control-the-spacer-element-tag-name)
+* [Root-level virtualization](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#root-level-virtualization)
+* [Control the spacer element tag name](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#control-the-spacer-element-tag-name)
 
 ### `MouseEventArgs` updates
 
 `MovementX` and `MovementY` have been added to `MouseEventArgs`.
 
-For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md?view=aspnetcore-7.0#built-in-event-arguments).
+For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md?view=aspnetcore-7.0&preserve-view=true#built-in-event-arguments).
 
 ### New Blazor loading page
 
 The Blazor WebAssembly project template has a new loading UI that shows the progress of loading the app.
 
-For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-7.0#blazor-webassembly-app-loading-progress).
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-7.0&preserve-view=true#blazor-webassembly-app-loading-progress).
 
 ### Improved diagnostics for authentication in Blazor WebAssembly
 
 To help diagnose authentication issues in Blazor WebAssembly apps, detailed logging is available.
 
-For more information, see [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md?view=aspnetcore-7.0#client-side-authentication-logging).
+For more information, see [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md?view=aspnetcore-7.0&preserve-view=true#client-side-authentication-logging).
 
 ### JavaScript interop on WebAssembly
 
@@ -525,14 +525,14 @@ For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
 
 An option has been added that permits opening external webpages in the browser.
 
-For more information, see [ASP.NET Core Blazor Hybrid routing and navigation](../blazor/hybrid/routing.md?view=aspnetcore-7.0#uri-request-routing-behavior).
+For more information, see [ASP.NET Core Blazor Hybrid routing and navigation](../blazor/hybrid/routing.md?view=aspnetcore-7.0&preserve-view=true#uri-request-routing-behavior).
 
 ### Security
 
 New guidance is available for Blazor Hybrid security scenarios. For more information, see the following articles:
 
-* [ASP.NET Core Blazor Hybrid authentication and authorization](../blazor/hybrid/security/index.md?view=aspnetcore-7.0)
-* [ASP.NET Core Blazor Hybrid security considerations](../blazor/hybrid/security/security-considerations.md?view=aspnetcore-7.0)
+* [ASP.NET Core Blazor Hybrid authentication and authorization](../blazor/hybrid/security/index.md?view=aspnetcore-7.0&preserve-view=true)
+* [ASP.NET Core Blazor Hybrid security considerations](../blazor/hybrid/security/security-considerations.md?view=aspnetcore-7.0&preserve-view=true)
 
 ## Performance
 
