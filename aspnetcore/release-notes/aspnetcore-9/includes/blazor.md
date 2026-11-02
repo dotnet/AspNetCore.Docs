@@ -128,7 +128,7 @@ In the `App` component, use the pattern in the following example:
 
 An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This feature is covered by the reference documentation in [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app).
+This feature is covered by the reference documentation in [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0#static-ssr-pages-in-an-interactive-app).
 
 ### Constructor injection
 

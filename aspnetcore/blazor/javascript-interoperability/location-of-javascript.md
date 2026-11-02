@@ -190,7 +190,7 @@ To ensure scripts load before or after Blazor starts, use a JavaScript initializ
 
 ## Inject a script after Blazor starts
 
-To inject a script after Blazor starts, chain to the `Promise` that results from a manual start of Blazor. For more information and an example, see [ASP.NET Core Blazor startup](../fundamentals/startup.md#inject-a-script-after-blazor-starts).
+To inject a script after Blazor starts, chain to the `Promise` that results from a manual start of Blazor. For more information and an example, see [ASP.NET Core Blazor startup](location-of-javascript.md#inject-a-script-after-blazor-starts).
 
 :::moniker-end
 

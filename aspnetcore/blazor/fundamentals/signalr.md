@@ -1046,10 +1046,7 @@ When changing the values of the server timeout (<xref:Microsoft.AspNetCore.Signa
 * The server timeout should be at least double the value assigned to the Keep-Alive interval.
 * The Keep-Alive interval should be less than or equal to half the value assigned to the server timeout.
 
-For more information, see the *Global deployment and connection failures* sections of the following articles:
-
-* [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md#global-deployment-and-connection-failures)
-* [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#global-deployment-and-connection-failures)
+For more information, see the *Global deployment and connection failures* section of [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md#global-deployment-and-connection-failures).
 
 ## Adjust the server-side reconnection retry count and interval
 

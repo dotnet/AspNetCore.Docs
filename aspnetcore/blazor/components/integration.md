@@ -390,7 +390,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see [ASP.NET Core Razor components](index.md#class-name-and-namespace).
+For more information, see [ASP.NET Core Razor components](index.md#component-name-class-name-and-namespace).
 
 ## Persist prerendered state
 
@@ -1041,7 +1041,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see [ASP.NET Core Razor components](index.md#class-name-and-namespace).
+For more information, see [ASP.NET Core Razor components](index.md#component-name-class-name-and-namespace).
 
 ## Persist prerendered state
 
@@ -1576,7 +1576,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see [ASP.NET Core Razor components](index.md#class-name-and-namespace).
+For more information, see [ASP.NET Core Razor components](index.md#component-name-class-name-and-namespace).
 
 ## Prerendered state size and SignalR message size limit
 
@@ -2006,7 +2006,7 @@ When using a custom folder to hold the project's Razor components, add the names
 
 The `_ViewImports.cshtml` file is located in the `Pages` folder of a Razor Pages app or the `Views` folder of an MVC app.
 
-For more information, see [ASP.NET Core Razor components](index.md#class-name-and-namespace).
+For more information, see [ASP.NET Core Razor components](index.md#component-name-class-name-and-namespace).
 
 ## Prerendered state size and SignalR message size limit
 

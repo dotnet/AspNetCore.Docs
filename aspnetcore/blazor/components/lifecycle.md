@@ -787,7 +787,7 @@ builder.Services.AddMemoryCache();
 
 :::moniker-end
 
-For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#server-side-render-mode).
+For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#server-side-rendering).
 
 :::moniker range=">= aspnetcore-8.0"
 

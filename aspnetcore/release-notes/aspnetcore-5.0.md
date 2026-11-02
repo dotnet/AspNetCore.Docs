@@ -132,7 +132,7 @@ Improve the perceived performance of component rendering using the Blazor framew
 
 ### `ontoggle` event support
 
-Blazor events now support the `ontoggle` DOM event. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#event-arguments).
+Blazor events now support the `ontoggle` DOM event. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#built-in-event-arguments).
 
 ### Set UI focus in Blazor apps
 
@@ -158,7 +158,7 @@ The following built-in components support display names with the `DisplayName` p
 * `InputNumber`
 * `InputSelect`
 
-For more information, see [ASP.NET Core Blazor forms overview](../blazor/forms/index.md#display-name-support).
+For more information, see [ASP.NET Core Blazor forms overview](../blazor/forms/input-components.md#display-name-support).
 
 ### Catch-all route parameters
 
@@ -186,7 +186,7 @@ Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a
 
 ### Browser compatibility analyzer
 
-Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md#browser-compatibility-analyzer-for-blazor-webassembly).
+Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md#client-side-browser-compatibility-analyzer).
 
 ### Lazy load assemblies
 

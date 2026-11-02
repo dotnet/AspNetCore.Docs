@@ -229,7 +229,7 @@ Also, consider that it might be an improvement not to have a table cell componen
 For more information on generic type parameters (`@typeparam`), see the following resources:
 
 * [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam)
-* [ASP.NET Core Razor components](../components/index.md#generic-type-parameter-support)
+* [ASP.NET Core Razor components](../components/generic-type-support.md#generic-type-parameter-support)
 * [ASP.NET Core Blazor templated components](../components/templated-components.md)
 
 ## Ensure cascading parameters are fixed
@@ -487,7 +487,7 @@ In the following example:
 
 * Selecting the first button, which calls `HandleClick1`, triggers a rerender.
 * Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
-* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](../components/event-handling.md#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](../components/event-handling.md#built-in-event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `HandleSelect2.razor`:
 

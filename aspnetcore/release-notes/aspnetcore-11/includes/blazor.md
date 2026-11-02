@@ -79,7 +79,7 @@ To migrate an existing app to .NET 11, including adopting the new JS module appr
 
 ### `NavigateTo` and `NavLink` support for relative navigation
 
-The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](../../../blazor/fundamentals/routing.md?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
+The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
 
 Consider the following nested endpoints:
 
@@ -88,7 +88,7 @@ Consider the following nested endpoints:
     * `/installation`
     * `/configuration`
 
-When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](../../../blazor/fundamentals/routing.md?view=aspnetcore-11.0#navlink-component) for the desired navigation:
+When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0#navlink-component) for the desired navigation:
 
 ```csharp
 Navigation.NavigateTo("/configuration", new NavigationOptions

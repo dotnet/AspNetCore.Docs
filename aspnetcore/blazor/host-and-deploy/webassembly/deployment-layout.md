@@ -27,7 +27,7 @@ Blazor WebAssembly apps require [dynamic-link libraries (DLLs)](/windows/win32/d
 
 A hosted Blazor WebAssembly app can customize its published files and packaging of app DLLs using the following features:
 
-* [JavaScript initializers](../../javascript-interoperability/index.md#javascript-initializers) that allow customizing the Blazor boot process.
+* [JavaScript initializers](../../fundamentals/startup.md#javascript-initializers) that allow customizing the Blazor boot process.
 * MSBuild extensibility to transform the list of published files and define *Blazor Publish Extensions*. Blazor Publish Extensions are files defined during the publish process that provide an alternative representation for the set of files required to run a published Blazor WebAssembly app. In this article, a Blazor Publish Extension is created that produces a multipart bundle with all of the app's DLLs packed into a single file so that the DLLs can be downloaded together.
 
 The approach demonstrated in this article serves as a starting point for developers to devise their own strategies and custom loading processes.
@@ -40,7 +40,7 @@ The approach demonstrated in this article serves as a starting point for develop
 
 ## Experimental NuGet package and sample app
 
-The approach described in this article is used by the *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) for apps targeting .NET 6 or later. The package contains MSBuild targets to customize the Blazor publish output and a [JavaScript initializer](../../javascript-interoperability/index.md#javascript-initializers) to use a custom [boot resource loader](../../fundamentals/startup.md#load-boot-resources), each of which are described in detail later in this article.
+The approach described in this article is used by the *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) for apps targeting .NET 6 or later. The package contains MSBuild targets to customize the Blazor publish output and a [JavaScript initializer](../../fundamentals/startup.md#javascript-initializers) to use a custom [boot resource loader](../../fundamentals/startup.md#load-client-side-boot-resources), each of which are described in detail later in this article.
 
 > [!WARNING]
 > Experimental and preview features are provided for the purpose of collecting feedback and aren't supported for production use.
@@ -62,7 +62,7 @@ Later in this article, the [Customize the Blazor WebAssembly loading process via
 > [!WARNING]
 > The guidance in this section with its three subsections pertains to building a NuGet package from scratch to implement your own strategy and custom loading process. The *experimental* [`Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle` package (NuGet.org)](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle) for .NET 6 and 7 is based on the guidance in this section. When using the provided package in a **local demonstration** of the multipart bundle download approach, you don't need to follow the guidance in this section. For guidance on how to use the provided package, see the [Experimental NuGet package and sample app](#experimental-nuget-package-and-sample-app) section.
 
-Blazor app resources are packed into a multipart bundle file and loaded by the browser via a custom [JavaScript (JS) initializer](../../javascript-interoperability/index.md#javascript-initializers). For an app consuming the package with the JS initializer, the app only requires that the bundle file is served when requested. All of the other aspects of this approach are handled transparently.
+Blazor app resources are packed into a multipart bundle file and loaded by the browser via a custom [JavaScript (JS) initializer](../../fundamentals/startup.md#javascript-initializers). For an app consuming the package with the JS initializer, the app only requires that the bundle file is served when requested. All of the other aspects of this approach are handled transparently.
 
 Four customizations are required to how a default published Blazor app loads:
 
@@ -307,7 +307,7 @@ When the package is referenced, it generates a bundle of the Blazor files during
 
 ### Automatically bootstrap Blazor from the bundle
 
-The NuGet package leverages [JavaScript (JS) initializers](../../javascript-interoperability/index.md#javascript-initializers) to automatically bootstrap a Blazor WebAssembly app from the bundle instead of using individual DLL files. JS initializers are used to change the Blazor [boot resource loader](../../fundamentals/startup.md#load-boot-resources) and use the bundle.
+The NuGet package leverages [JavaScript (JS) initializers](../../fundamentals/startup.md#javascript-initializers) to automatically bootstrap a Blazor WebAssembly app from the bundle instead of using individual DLL files. JS initializers are used to change the Blazor [boot resource loader](../../fundamentals/startup.md#load-client-side-boot-resources) and use the bundle.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -317,7 +317,7 @@ The JS initializers:
 
 * Detect if the Publish Extension is available by checking for `extensions.multipart`, which is the extension name (`ExtensionName`) provided in the [Create an MSBuild task to customize the list of published files and define new extensions](#create-an-msbuild-task-to-customize-the-list-of-published-files-and-define-new-extensions) section.
 * Download the bundle and parse the contents into a resources map using generated object URLs.
-* Update the [boot resource loader (`options.loadBootResource`)](../../fundamentals/startup.md#load-boot-resources) with a custom function that resolves the resources using the object URLs.
+* Update the [boot resource loader (`options.loadBootResource`)](../../fundamentals/startup.md#load-client-side-boot-resources) with a custom function that resolves the resources using the object URLs.
 * After the app has started, revoke the object URLs to release memory in the `afterWebAssemblyStarted` function.
 
 `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle/wwwroot/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle.lib.module.js`:
@@ -363,7 +363,7 @@ The JS initializers:
 
 * Detect if the Publish Extension is available by checking for `extensions.multipart`, which is the extension name (`ExtensionName`) provided in the [Create an MSBuild task to customize the list of published files and define new extensions](#create-an-msbuild-task-to-customize-the-list-of-published-files-and-define-new-extensions) section.
 * Download the bundle and parse the contents into a resources map using generated object URLs.
-* Update the [boot resource loader (`options.loadBootResource`)](../../fundamentals/startup.md#load-boot-resources) with a custom function that resolves the resources using the object URLs.
+* Update the [boot resource loader (`options.loadBootResource`)](../../fundamentals/startup.md#load-client-side-boot-resources) with a custom function that resolves the resources using the object URLs.
 * After the app has started, revoke the object URLs to release memory in the `afterStarted` function.
 
 `Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle/wwwroot/Microsoft.AspNetCore.Components.WebAssembly.MultipartBundle.lib.module.js`:

@@ -825,7 +825,7 @@ The following example shows capturing a reference to the `username` `<input>` el
 >
 > If JS interop *mutates the contents* of element `MyList` and Blazor attempts to apply diffs to the element, the diffs won't match the DOM. Modifying the contents of the list via JS interop with the `MyList` element reference is ***not supported***.
 >
-> For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-document-object-model-dom).
+> For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-dom).
 
 An <xref:Microsoft.AspNetCore.Components.ElementReference> is passed through to JS code via JS interop. The JS code receives an [`HTMLElement`](https://developer.mozilla.org/docs/Web/API/HTMLElement) instance, which it can use with normal DOM APIs. For example, the following code defines a .NET extension method (`TriggerClickEvent`) that enables sending a mouse click to an element.
 

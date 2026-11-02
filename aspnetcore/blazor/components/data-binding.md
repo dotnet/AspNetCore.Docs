@@ -433,7 +433,7 @@ Using `:get`/`:set` modifiers both controls the underlying value of `inputValue`
 
 ## Multiple option selection with `<select>` elements
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](event-handling.md#event-arguments). The value must be bound to an array type.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](event-handling.md#built-in-event-arguments). The value must be bound to an array type.
 
 `BindMultipleInput.razor`:
 
@@ -1185,6 +1185,6 @@ The following `ChildParameterExpression` component identifies the `Year` express
 * [Parameter change detection and additional guidance on Razor component rendering](rendering.md)
 * [ASP.NET Core Blazor forms overview](../forms/index.md)
 * [Binding to radio buttons in a form](../forms/binding.md#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](../forms/binding.md#binding-inputselect-options-to-c-object-null-values)
+* [Binding `InputSelect` options to C# object `null` values](../forms/input-components.md#binding-inputselect-options-to-c-object-null-values)
 * [ASP.NET Core Blazor event handling: `EventCallback` section](event-handling.md#eventcallback)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

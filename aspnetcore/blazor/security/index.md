@@ -940,7 +940,7 @@ internal sealed class ServerWeatherForecaster(HttpClient httpClient,
 }
 ```
 
-In yet another approach, you can inject an HTTP client factory (`IHttpClientFactory`) into the `ServerWeatherForecaster` and call an external web API using a named HTTP Client with a token handler. For more information, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md#use-a-token-handler-for-web-API-calls).
+In yet another approach, you can inject an HTTP client factory (`IHttpClientFactory`) into the `ServerWeatherForecaster` and call an external web API using a named HTTP Client with a token handler. For more information, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md#use-a-token-handler-for-web-api-calls).
 
 If the app uses [Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) (see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md#microsoft-identity-platform-for-web-api-calls)), the following `ServerWeatherForecaster` demonstrates making an external web API call. The access token is automatically attached to the request.
 

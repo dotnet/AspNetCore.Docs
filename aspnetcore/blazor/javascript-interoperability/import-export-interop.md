@@ -146,7 +146,7 @@ In the following `CallJavaScript1` component:
 > [!NOTE]
 > Include a conditional check in code with <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType> to ensure that the JS interop is only called by a component rendered on the client. This is important for libraries/NuGet packages that target server-side components, which can't execute the code provided by this JS interop API.
 
-To import a JS function to call it from C#, use the [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute) on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](index.md#javascript-isolation-in-javascript-modules).
+To import a JS function to call it from C#, use the [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute) on a C# method signature that matches the JS function's signature. The first parameter to the `[JSImport]` attribute is the name of the JS function to import, and the second parameter is the name of the [JS module](location-of-javascript.md#javascript-isolation-in-javascript-modules).
 
 In the following example, `getMessage` is a JS function that returns a `string` for a module named `CallJavaScript1`. The C# method signature matches: No parameters are passed to the JS function, and the JS function returns a `string`. The JS function is called by `GetWelcomeMessage` in C# code.
 
@@ -210,7 +210,7 @@ Functions accessible on the global namespace can be imported by using the [`glob
 internal static partial void Log([JSMarshalAs<JSType.String>] string message);
 ```
 
-Export scripts from a standard [JavaScript module](index.md#javascript-isolation-in-javascript-modules) either [collocated with a component](location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILE NAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILE NAME}` placeholder is the file name).
+Export scripts from a standard [JavaScript module](location-of-javascript.md#javascript-isolation-in-javascript-modules) either [collocated with a component](location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) or placed with other JavaScript static assets in a JS file (for example, `wwwroot/js/{FILE NAME}.js`, where JS static assets are maintained in a folder named `js` in the app's `wwwroot` folder and the `{FILE NAME}` placeholder is the file name).
 
 In the following example, a JS function named `getMessage` is exported from a collocated JS file that returns a welcome message, "Hello from Blazor!" in Portuguese:
 
@@ -228,12 +228,12 @@ This section explains how to call .NET methods from JS.
 
 The following `CallDotNet1` component calls JS that directly interacts with the DOM to render the welcome message string:
 
-* The `CallDotNet` [JS module](index.md#javascript-isolation-in-javascript-modules) is imported asynchronously from the collocated JS file for this component.
+* The `CallDotNet` [JS module](location-of-javascript.md#javascript-isolation-in-javascript-modules) is imported asynchronously from the collocated JS file for this component.
 * The imported `setMessage` JS function is called by `SetWelcomeMessage`.
 * The returned welcome message is displayed by `setMessage` in the UI via the `message` field.
 
 > [!IMPORTANT]
-> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](../components/lifecycle.md#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-document-object-model-dom).
+> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](../components/lifecycle.md#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-dom).
 
 `CallDotNet1.razor`:
 
@@ -396,7 +396,7 @@ export async function setMessage() {
 :::moniker-end
 
 > [!NOTE]
-> Calling `getAssemblyExports` to obtain the exports can occur in a [JavaScript initializer](index.md#javascript-initializers) for availability across the app.
+> Calling `getAssemblyExports` to obtain the exports can occur in a [JavaScript initializer](../fundamentals/startup.md#javascript-initializers) for availability across the app.
 
 ## Multiple module import calls
 
@@ -592,7 +592,7 @@ if (OperatingSystem.IsBrowser())
 :::moniker-end
 
 > [!IMPORTANT]
-> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](../components/lifecycle.md#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-document-object-model-dom).
+> In this section's example, JS interop is used to mutate a DOM element *purely for demonstration purposes* after the component is rendered in [`OnAfterRender`](../components/lifecycle.md#after-component-render-onafterrenderasync). Typically, you should only mutate the DOM with JS when the object doesn't interact with Blazor. The approach shown in this section is similar to cases where a third-party JS library is used in a Razor component, where the component interacts with the JS library via JS interop, the third-party JS library interacts with part of the DOM, and Blazor isn't involved directly with the DOM updates to that part of the DOM. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#interaction-with-the-dom).
 
 ## Related content
 

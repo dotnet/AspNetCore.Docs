@@ -464,7 +464,7 @@ The <xref:Microsoft.AspNetCore.Components.NavigationManager> now includes a <xre
 
 * **Interactive rendering**: Signals the Blazor router ([`Router` component](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#route-templates)) to render Not Found content.
 
-* **Streaming rendering**: If [enhanced navigation](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](../../../blazor/components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](../../../blazor/components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 Streaming rendering can only render components that have a route, such as a [`NotFoundPage` assignment](#blazor-router-has-a-notfoundpage-parameter) (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
@@ -563,7 +563,7 @@ The Blazor Web App template adopts the feature by default in .NET 10, and apps u
 </head>
 ```
 
-For more information, see [Host and deploy ASP.NET Core server-side Blazor apps](../../../blazor/host-and-deploy/server/index.md?view=aspnetcore-10.0#static-asset-preloading).
+For more information, see [Host and deploy ASP.NET Core server-side Blazor apps](../../../blazor/host-and-deploy/server/index.md?view=aspnetcore-10.0#blazor-webassembly-static-asset-preloading).
 
 ### Improved form validation
 
@@ -693,7 +693,7 @@ During server-side rendering, Blazor Web Apps can now persist a user's session (
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](../../../blazor/fundamentals/routing.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](../../../blazor/fundamentals/navigation.md?view=aspnetcore-10.0#enhanced-navigation-and-form-handling)
 
 For more information, see <xref:blazor/state-management/server?view=aspnetcore-10.0>.
 

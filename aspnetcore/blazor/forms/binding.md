@@ -851,7 +851,7 @@ When working with radio buttons in a form, data binding is handled differently t
 For more information on generic type parameters (`@typeparam`), see the following articles:
 
 * [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam)
-* [ASP.NET Core Razor components](../components/index.md#generic-type-parameter-support)
+* [ASP.NET Core Razor components](../components/generic-type-support.md#generic-type-parameter-support)
 * [ASP.NET Core Blazor templated components](../components/templated-components.md)
 
 Use the following example model.

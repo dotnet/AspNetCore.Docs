@@ -194,7 +194,7 @@ Standalone Blazor WebAssembly:
 
 :::moniker-end
 
-For more information on loading boot resources, see [ASP.NET Core Blazor startup](../../fundamentals/startup.md#load-boot-resources).
+For more information on loading boot resources, see [ASP.NET Core Blazor startup](../../fundamentals/startup.md#load-client-side-boot-resources).
 
 :::moniker range=">= aspnetcore-8.0"
 

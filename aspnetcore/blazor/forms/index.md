@@ -430,7 +430,7 @@ In the following example, the content of the `<div>` element is updated dynamica
 </div>
 ```
 
-To disable enhanced navigation and form handling globally, see [ASP.NET Core Blazor startup](../fundamentals/startup.md#enhanced-navigation-and-form-handling).
+To disable enhanced navigation and form handling globally, see [ASP.NET Core Blazor startup](../fundamentals/navigation.md#enhanced-navigation-and-form-handling).
 
 For guidance on using the `enhancedload` event to listen for enhanced page updates, see [ASP.NET Core Blazor navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling).
 

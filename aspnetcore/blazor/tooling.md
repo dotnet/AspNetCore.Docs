@@ -202,7 +202,7 @@ An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** proje
 ```
 
 > [!NOTE]
-> Only [browser debugging](debug.md#debug-in-the-browser) is supported at this time.
+> Only [browser debugging](debug.md#debug-blazor-webassembly-with-google-chrome-or-microsoft-edge) is supported at this time.
 >
 > You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](../tutorials/dotnet-watch.md).
 

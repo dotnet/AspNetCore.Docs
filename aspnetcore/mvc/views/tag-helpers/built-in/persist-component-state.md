@@ -12,7 +12,7 @@ The Persist Component State Tag Helper saves the state of non-routable Razor com
 
 :::moniker range=">= aspnetcore-8.0"
 
-Follow the guidance in the *Use non-routable components in pages or views* section of the [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md#use-non-routable-components-in-pages-or-views) article.
+Follow the guidance in the *Use non-routable components in pages or views* section of the [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../../blazor/components/integration.md#render-components-from-a-page-or-view) article.
 
 :::moniker-end
 

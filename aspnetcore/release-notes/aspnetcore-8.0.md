@@ -98,7 +98,7 @@ New enhanced navigation API allows you to refresh the current page by calling `N
 
 For more information, see the following guidance:
 
-* [Enhanced navigation and form handling](../blazor/fundamentals/routing.md?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
+* [Enhanced navigation and form handling](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#enhanced-navigation-and-form-handling)
 * [Location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#location-changes)
 
 ### New article on static rendering with enhanced navigation for JS interop
@@ -173,7 +173,7 @@ For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../blazo
 
 Blazor now supports using client-side routing to navigate to a specific HTML element on a page using standard URL fragments. If you specify an identifier for an HTML element using the standard `id` attribute, Blazor correctly scrolls to that element when the URL fragment matches the element identifier.
 
-For more information, see [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#hashed-routing-to-named-elements).
+For more information, see [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md?view=aspnetcore-8.0&preserve-view=true#navigate-to-an-element-with-a-hashed--reference).
 
 ### Root-level cascading values
 
@@ -230,7 +230,7 @@ When debugging .NET on WebAssembly, the debugger now downloads symbol data from 
 
 You can now debug Blazor WebAssembly apps using Firefox. Debugging Blazor WebAssembly apps requires configuring the browser for remote debugging and then connecting to the browser using the browser developer tools through the .NET WebAssembly debugging proxy. Debugging Firefox from Visual Studio isn't supported at this time.
 
-For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md?view=aspnetcore-8.0&preserve-view=true#debug-with-firefox).
+For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md?view=aspnetcore-8.0&preserve-view=true#debug-a-blazor-webassembly-app-with-firefox).
 
 ### Content Security Policy (CSP) compatibility
 
@@ -242,13 +242,13 @@ For more information, see <xref:blazor/security/content-security-policy?view=asp
 
 Use `ComponentBase.DispatchExceptionAsync` in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as error boundaries, can process exceptions.
 
-For more information, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle).
+For more information, see [Handle errors in ASP.NET Core Blazor apps](../blazor/components/synchronization-context.md?view=aspnetcore-8.0&preserve-view=true#handle-caught-exceptions-outside-of-a-razor-components-lifecycle).
 
 ### Configure the .NET WebAssembly runtime
 
 The .NET WebAssembly runtime can now be configured for Blazor startup.
 
-For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webAssembly-runtime).
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-8.0&preserve-view=true#configure-the-net-webassembly-runtime).
 
 ### Configuration of connection timeouts in `HubConnectionBuilder`
 
@@ -257,7 +257,6 @@ Prior workarounds for configuring hub connection timeouts can be replaced with f
 For more information, see the following:
 
 * [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md?view=aspnetcore-8.0&preserve-view=true#configure-signalr-timeouts-and-keep-alive-on-the-client)
-* [Host and deploy ASP.NET Core Blazor WebAssembly](../blazor/host-and-deploy/webassembly/index.md?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures)
 * [Host and deploy ASP.NET Core server-side Blazor apps](../blazor/host-and-deploy/server/index.md?view=aspnetcore-8.0&preserve-view=true#global-deployment-and-connection-failures)
 
 ### Project templates shed Open Iconic

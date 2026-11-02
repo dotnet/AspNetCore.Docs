@@ -316,7 +316,7 @@ In the following example:
 
 ## Multiple option selection with the `InputSelect` component
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](../components/event-handling.md#event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected options via [event arguments (`ChangeEventArgs`)](../components/event-handling.md#built-in-event-arguments). The value must be bound to an array type, which results in the <xref:Microsoft.AspNetCore.Components.Forms.InputSelect`1> component automatically adding the [`multiple` attribute](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) to the `<select>` element when the component is rendered.
 
 In the following example, the user must select at least two starship classifications but no more than three classifications.
 

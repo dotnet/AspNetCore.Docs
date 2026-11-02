@@ -335,7 +335,7 @@ Assuming that prerendering isn't disabled for a component or the app, a componen
 
 > :::no-loc text="There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
-To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Custom service implementation on the server](../components/prerender.md#custom-service-implementation-on-the-server) section of the *Prerendering* article, which appears later in the Blazor documentation.
+To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Create a service abstraction](../components/prerender.md#create-a-service-abstraction) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 

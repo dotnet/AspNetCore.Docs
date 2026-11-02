@@ -153,7 +153,7 @@ Blazor WebAssembly apps can use native dependencies built to run on WebAssembly.
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](../blazor/host-and-deploy/webassembly/index.md?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-6.0#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
 
 ### Persist prerendered state
 
@@ -182,7 +182,7 @@ Support for working with query strings is improved. For more information, see [A
 
 Binding supports multiple option selection with `<input>` elements. For more information, see the following resources:
 
-* [ASP.NET Core Blazor data binding](../blazor/components/data-binding.md?view=aspnetcore-6.0#multiple-option-selection-with-input-elements)
+* [ASP.NET Core Blazor data binding](../blazor/components/data-binding.md?view=aspnetcore-6.0#multiple-option-selection-with-select-elements)
 * [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-6.0#multiple-option-selection-with-the-inputselect-component)
 
 ### Head (`<head>`) content control
@@ -191,19 +191,19 @@ Razor components can modify the HTML `<head>` element content of a page, includi
 
 ### Generate Angular and React components
 
-Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0#generate-angular-and-react-components).
+Generate framework-specific JavaScript components from Razor components for web frameworks, such as Angular or React. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0#generate-angular-and-react-components).
 
 ### Render components from JavaScript
 
-Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0#render-razor-components-from-javascript).
+Render Razor components dynamically from JavaScript for existing JavaScript apps. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0#render-razor-components-from-javascript).
 
 ### Custom elements
 
-Experimental support is available for building custom elements, which use standard HTML interfaces. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0#blazor-custom-elements).
+Experimental support is available for building custom elements, which use standard HTML interfaces. For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-6.0#blazor-custom-elements).
 
 ### Infer component generic types from ancestor components
 
-An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0#cascaded-generic-type-support).
+An ancestor component can cascade a type parameter by name to descendants using the new `[CascadingTypeParameter]` attribute. For more information, see [ASP.NET Core Razor components](../blazor/components/generic-type-support.md?view=aspnetcore-6.0#cascaded-generic-type-support).
 
 ### Dynamically rendered components
 
@@ -223,11 +223,11 @@ Apply the new `[EditorRequired]` attribute to specify a required component param
 
 ### Collocation of JavaScript files with pages, views, and components
 
-Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/javascript-interoperability/index.md?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
+Collocate JavaScript files for pages, views, and Razor components as a convenient way to organize scripts in an app. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-6.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component).
 
 ### JavaScript initializers
 
-JavaScript initializers execute logic before and after a Blazor app loads. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/javascript-interoperability/index.md?view=aspnetcore-6.0#javascript-initializers).
+JavaScript initializers execute logic before and after a Blazor app loads. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../blazor/fundamentals/startup.md?view=aspnetcore-6.0#javascript-initializers).
 
 ### Streaming JavaScript interop
 
@@ -238,7 +238,7 @@ Blazor now supports streaming data directly between .NET and JavaScript. For mor
 
 ### Generic type constraints
 
-Generic type parameters are now supported. For more information, see [ASP.NET Core Razor components](../blazor/components/index.md?view=aspnetcore-6.0#generic-type-parameter-support).
+Generic type parameters are now supported. For more information, see [ASP.NET Core Razor components](../blazor/components/generic-type-support.md?view=aspnetcore-6.0#generic-type-parameter-support).
 
 ### WebAssembly deployment layout
 

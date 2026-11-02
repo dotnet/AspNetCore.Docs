@@ -1009,7 +1009,7 @@ Inject the client into components using the keyed service:
 
 ### Circuit activity handler
 
-The approach in this section uses a [circuit activity handler](../fundamentals/signalr.md#monitor-circuit-activity-blazor-server) to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is an alternative to the recommended [application scope handler approach](#application-scope-handler-recommended) in the preceding section.
+The approach in this section uses a [circuit activity handler](../fundamentals/signalr.md#monitor-server-side-circuit-activity) to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is an alternative to the recommended [application scope handler approach](#application-scope-handler-recommended) in the preceding section.
 
 First, implement the `CircuitServicesAccessor` class in the following section of the Blazor dependency injection (DI) article:
 
