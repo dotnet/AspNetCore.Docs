@@ -220,7 +220,7 @@ The `wwwroot` folder contains static assets, such as image, JavaScript (`.js`), 
 
 These folders contain *Razor components*, often referred to as "components," and supporting files. A component is a self-contained portion of user interface (UI) with optional processing logic. Components can be nested, reused, and shared among projects.
 
-Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
+Components are implemented using a combination of C# and HTML markup in [Razor](../../../mvc/views/razor.md) component files with the `.razor` file extension.
 
 Typically, components that are nested within other components and not directly reachable ("routable") at a URL are placed in the `Components` folder. Components that are routable via a URL are usually placed in the `Components/Pages` folder.
 

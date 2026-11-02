@@ -1,6 +1,4 @@
 ---
-author: tdykstra
-ms.author: wpickett
 ms.date: 10/21/2026
 ---
 

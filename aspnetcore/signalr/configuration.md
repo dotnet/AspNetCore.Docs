@@ -168,10 +168,10 @@ In the .NET client and JavaScript client, the client options are configured on t
 
 ### Configure logging
 
-Logging is configured in the .NET client by using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. For more information, see the [Logging in ASP.NET Core](xref:fundamentals/logging/index) documentation.
+Logging is configured in the .NET client by using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. For more information, see the [Logging in ASP.NET Core](../fundamentals/logging/index.md) documentation.
 
 > [!NOTE]
-> To register logging providers, you must install the necessary packages. For more information, see the full list of [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers).
+> To register logging providers, you must install the necessary packages. For more information, see the full list of [Built-in logging providers](../fundamentals/logging/index.md#built-in-logging-providers).
 
 For example, to enable Console logging, install the `Microsoft.Extensions.Logging.Console` NuGet package. Call the `AddConsole` extension method:
 
@@ -513,7 +513,7 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ## Related content
 
-* <xref:tutorials/signalr>
+* [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
 * [Use hubs in ASP.NET Core SignalR](hubs.md)
 * [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 * [ASP.NET Core SignalR .NET client](dotnet-client.md)

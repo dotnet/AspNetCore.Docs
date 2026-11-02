@@ -15,7 +15,7 @@ The [`Microsoft.AspNetCore.Components.Web` NuGet package](https://www.nuget.org/
 
 ## Delegate event handlers
 
-Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](xref:mvc/views/razor#onevent) Razor syntax:
+Specify delegate event handlers in Razor component markup with [`@on{DOM EVENT}="{DELEGATE}"`](../../mvc/views/razor.md#onevent) Razor syntax:
 
 * The `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events) (for example, `click`).
 * The `{DELEGATE}` placeholder is the C# delegate event handler.
@@ -764,7 +764,7 @@ The second occurrence of the `Child2` component demonstrates an asynchronous cal
 
 ## Prevent default actions
 
-Use the [`@on{DOM EVENT}:preventDefault`](xref:mvc/views/razor#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events).
+Use the [`@on{DOM EVENT}:preventDefault`](../../mvc/views/razor.md#oneventpreventdefault) directive attribute to prevent the default action for an event, where the `{DOM EVENT}` placeholder is a [DOM event](https://developer.mozilla.org/docs/Web/Events).
 
 When a key is selected on an input device and the element focus is on a text box, a browser normally displays the key's character in the text box. In the following example, the default behavior is prevented by specifying the `@onkeydown:preventDefault` directive attribute. When the focus is on the `<input>` element, the counter increments with the key sequence <kbd>Shift</kbd>+<kbd>+</kbd>. The `+` character isn't assigned to the `<input>` element's value. For more information on `keydown`, see [`MDN Web Docs: Document: keydown` event](https://developer.mozilla.org/docs/Web/API/Document/keydown_event).
 
@@ -832,7 +832,7 @@ An expression is also a permitted value of the attribute. In the following examp
 
 ## Stop event propagation
 
-Use the [`@on{DOM EVENT}:stopPropagation`](xref:mvc/views/razor#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [DOM event](https://developer.mozilla.org/docs/Web/Events).
+Use the [`@on{DOM EVENT}:stopPropagation`](../../mvc/views/razor.md#oneventstoppropagation) directive attribute to stop event propagation within the Blazor scope. `{DOM EVENT}` is a placeholder for a [DOM event](https://developer.mozilla.org/docs/Web/Events).
 
 The `stopPropagation` directive attribute's effect is limited to the Blazor scope and doesn't extend to the HTML DOM. Events must propagate to the HTML DOM root before Blazor can act upon them. For a mechanism to prevent HTML DOM event propagation, consider the following approach:
 

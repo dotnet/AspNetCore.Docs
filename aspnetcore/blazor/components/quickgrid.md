@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor `QuickGrid` component
 ai-usage: ai-assisted
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/17/2026
+ms.date: 11/02/2026
 uid: blazor/components/quickgrid
 ---
 # ASP.NET Core Blazor `QuickGrid` component
@@ -185,6 +185,16 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 ```
 
 In the running app, page through the items using a rendered `Paginator` component.
+
+:::moniker range=">= aspnetcore-11.0"
+
+The `Paginator` component supports passing custom attributes to its rendered navigation (`<nav>`) element:
+
+```razor
+<Paginator State="@pagination" aria-label="Orders pages" />
+```
+
+:::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
@@ -989,7 +999,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
@@ -1041,7 +1051,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.

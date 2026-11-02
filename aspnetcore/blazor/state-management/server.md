@@ -20,7 +20,7 @@ Examples of user state held in a circuit include:
 
 * The hierarchy of component instances and their most recent render output in the rendered UI.
 * The values of fields and properties in component instances.
-* Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
+* Data held in [dependency injection (DI)](../../fundamentals/dependency-injection.md) service instances that are scoped to the circuit.
 
 User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
 

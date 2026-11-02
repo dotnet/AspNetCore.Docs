@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover the ASP.NET Core Anchor Tag Helper attributes and the role each attribute plays in extending behavior of the HTML anchor tag.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 05/08/2026
-uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
 ---
 
 # Anchor Tag Helper in ASP.NET Core
@@ -13,9 +12,9 @@ By [Peter Kellner](https://peterkellner.net) and [Scott Addie](https://github.co
 
 The [Anchor Tag Helper](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper) enhances the standard HTML anchor (`<a ... ></a>`) tag by adding new attributes. By convention, the attribute names are prefixed with `asp-`. The rendered anchor element's `href` attribute value is determined by the values of the `asp-` attributes.
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/built-in/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
 
 *SpeakerController* is used in samples throughout this document:
 
@@ -118,7 +117,7 @@ If either `asp-controller` or `asp-action` aren't specified, then the same defau
 
 ### asp-route
 
-The [asp-route](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route) attribute is used for creating a URL linking directly to a named route. Using [routing attributes](xref:mvc/controllers/routing#ar), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action:
+The [asp-route](xref:Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper.Route) attribute is used for creating a URL linking directly to a named route. Using [routing attributes](../../../controllers/routing.md#ar), a route can be named as shown in the `SpeakerController` and used in its `Evaluations` action:
 
 [!code-csharp[](samples/TagHelpersBuiltIn/Controllers/SpeakerController.cs?range=24-25)]
 
@@ -289,7 +288,7 @@ The generated HTML:
 <a href="/Attendee?attendeeid=10">View Attendee</a>
 ```
 
-If the referenced page doesn't exist, a link to the current page is generated using an [ambient value](xref:fundamentals/routing#ambient-values-and-explicit-values) from the request. No warning is indicated, except at the debug log level.
+If the referenced page doesn't exist, a link to the current page is generated using an [ambient value](../../../../fundamentals/routing.md#ambient-values-and-explicit-values) from the request. No warning is indicated, except at the debug log level.
 
 ### asp-page-handler
 
@@ -311,6 +310,6 @@ The generated HTML:
 
 ## Related content
 
-* <xref:mvc/controllers/areas>
+* [Areas in ASP.NET Core](../../../controllers/areas.md)
 * [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
-* <xref:mvc/compatibility-version>
+* [Compatibility version for ASP.NET Core MVC](../../../compatibility-version.md)

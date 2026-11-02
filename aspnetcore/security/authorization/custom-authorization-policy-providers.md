@@ -228,7 +228,7 @@ The following component uses the strongly-typed [custom `MinimumAgeAuthorizeAttr
 
 :::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21PolicyWithAttribute.razor":::
 
-The same approach is useful for securing [Minimal API endpoints](xref:fundamentals/minimal-apis#authorization):
+The same approach is useful for securing [Minimal API endpoints](../../fundamentals/minimal-apis.md#authorization):
 
 ```csharp
 app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () => 
@@ -240,4 +240,4 @@ app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () =>
 * [Complete custom 'IAuthorizationPolicyProvider' sample (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
 * [Policy-based authorization in ASP.NET Core](policies.md)
 * [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
-* <xref:mvc/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/policies.md)

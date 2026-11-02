@@ -2,7 +2,6 @@
 title: Script Tag Helper in ASP.NET Core
 description: Discover the ASP.NET Core Script Tag Helper attributes and the role each attribute plays in extending behavior of the HTML Script tag.
 ms.date: 9/12/2024
-uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
 ---
 # Script Tag Helper in ASP.NET Core
 
@@ -75,7 +74,7 @@ Boolean value that determines if an integrity hash will be compared with the asp
 
 ## Related content
 
-* <xref:mvc/views/tag-helpers/intro>
-* <xref:mvc/controllers/areas>
+* [Tag Helpers in ASP.NET Core](../intro.md)
+* [Areas in ASP.NET Core](../../../controllers/areas.md)
 * [Razor Pages architecture and concepts in ASP.NET Core](../../../../razor-pages/index.md)
-* <xref:mvc/compatibility-version>
+* [Compatibility version for ASP.NET Core MVC](../../../compatibility-version.md)

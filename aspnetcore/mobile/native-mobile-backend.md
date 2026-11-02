@@ -306,7 +306,7 @@ A DTO may be used to:
 * Omit some properties to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
-To demonstrate the DTO approach, see [Prevent over-posting](xref:tutorials/first-web-api#prevent-over-posting)
+To demonstrate the DTO approach, see [Prevent over-posting](../tutorials/first-web-api.md#prevent-over-posting)
 
 ## Common Web API conventions
 

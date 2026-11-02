@@ -98,7 +98,7 @@ Blazor uses the Blazor WebAssembly hosting model to download and execute compone
 
 ## Apply a render mode to a component instance
 
-To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](xref:mvc/views/razor#rendermode) where the component is used.
+To apply a render mode to a component instance use the [`@rendermode` Razor directive attribute](../../mvc/views/razor.md#rendermode) where the component is used.
 
 In the following example, interactive server-side rendering (interactive SSR) is applied to the `Dialog` component instance:
 
@@ -123,7 +123,7 @@ You can also reference custom render mode instances instantiated directly with c
 
 ## Apply a render mode to a component definition
 
-To specify the render mode for a component as part of its definition, use the [`@rendermode` Razor directive](xref:mvc/views/razor#rendermode) and the corresponding render mode attribute.
+To specify the render mode for a component as part of its definition, use the [`@rendermode` Razor directive](../../mvc/views/razor.md#rendermode) and the corresponding render mode attribute.
 
 ```razor
 @page "..."
@@ -349,7 +349,7 @@ During static SSR, Razor component page requests are processed by server-side AS
 
 * [Not Authorized content (`<NotAuthorized>...</NotAuthorized>`)](xref:blazor/security/index#authorizeview-component) (<xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView.NotAuthorized>): Blazor Web Apps typically process unauthorized requests on the server by [customizing the behavior of authorization middleware](../../security/authorization/customizingauthorizationmiddlewareresponse.md).
 
-* [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](xref:fundamentals/error-handling#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
+* [Not Found content (`<NotFound>...</NotFound>`)](xref:blazor/fundamentals/routing#provide-custom-content-when-content-isnt-found) (<xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound>): Blazor Web Apps typically process bad URL requests on the server by either displaying the browser's built-in 404 UI or returning a custom 404 page (or other response) via ASP.NET Core middleware (for example, [`UseStatusCodePagesWithRedirects`](../../fundamentals/error-handling.md#usestatuscodepageswithredirects) / [API documentation](xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithRedirects*)).
 
 :::moniker-end
 
@@ -452,7 +452,7 @@ Rules for applying render modes:
 * You can't switch to a different interactive render mode in a child component. For example, a Server component can't be a child of a WebAssembly component.
 * Parameters passed to an interactive child component from a Static parent must be JSON serializable. This means that you can't pass render fragments or child content from a Static parent component to an interactive child component.
 
-The following examples use a non-routable, non-page `SharedMessage` component. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](xref:mvc/views/razor#attribute). If you're testing these scenarios with a Blazor Web App, place the following component in the app's `Components` folder.
+The following examples use a non-routable, non-page `SharedMessage` component. The render mode agnostic `SharedMessage` component doesn't apply a render mode with an [`@attribute` directive](../../mvc/views/razor.md#attribute). If you're testing these scenarios with a Blazor Web App, place the following component in the app's `Components` folder.
 
 `SharedMessage.razor`:
 

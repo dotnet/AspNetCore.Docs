@@ -299,7 +299,7 @@ In 2.0 projects, import the `Microsoft.AspNetCore.Authentication` namespace, and
 There are two variations of Windows authentication:
 
 * The host only allows authenticated users. This variation isn't affected by the 2.0 changes.
-* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](../../host-and-deploy/iis/index.md) or [HTTP.sys](xref:fundamentals/servers/httpsys) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
+* The host allows both anonymous and authenticated users. This variation is affected by the 2.0 changes. For example, the app should allow anonymous users at the [IIS](../../host-and-deploy/iis/index.md) or [HTTP.sys](../../fundamentals/servers/httpsys.md) layer but authorize users at the controller level. In this scenario, set the default scheme in the `Startup.ConfigureServices` method.
 
   For [Microsoft.AspNetCore.Server.IISIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IISIntegration/), set the default scheme to `IISDefaults.AuthenticationScheme`:
 
@@ -329,7 +329,7 @@ For more information, see [Configure Windows Authentication in ASP.NET Core](../
 
 A side effect of the 2.0 changes is the switch to using named options instead of cookie options instances. The ability to customize the Identity cookie scheme names is removed.
 
-For example, 1.x projects use [constructor injection](xref:mvc/controllers/dependency-injection#constructor-injection) to pass an `IdentityCookieOptions` parameter into `AccountController.cs` and `ManageController.cs`. The external cookie authentication scheme is accessed from the provided instance:
+For example, 1.x projects use [constructor injection](../../mvc/controllers/dependency-injection.md#constructor-injection) to pass an `IdentityCookieOptions` parameter into `AccountController.cs` and `ManageController.cs`. The external cookie authentication scheme is accessed from the provided instance:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Controllers/AccountController.cs?name=snippet_AccountControllerConstructor&highlight=4,11)]
 

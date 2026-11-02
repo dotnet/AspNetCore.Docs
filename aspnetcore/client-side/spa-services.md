@@ -73,7 +73,7 @@ To work with SpaServices, install the following:
 
 A universal (also known as isomorphic) application is a JavaScript application capable of running both on the server and the client. Angular, React, and other popular frameworks provide a universal platform for this application development style. The idea is to first render the framework components on the server via Node.js, and then delegate further execution to the client.
 
-ASP.NET Core [Tag Helpers](xref:mvc/views/tag-helpers/intro) provided by SpaServices simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server.
+ASP.NET Core [Tag Helpers](../mvc/views/tag-helpers/intro.md) provided by SpaServices simplify the implementation of server-side prerendering by invoking the JavaScript functions on the server.
 
 ### Server-side prerendering prerequisites
 
@@ -145,7 +145,7 @@ Webpack dev middleware is registered into the HTTP request pipeline via the foll
 
 [!code-csharp[](../client-side/spa-services/samples/SpaServicesSampleApp/Startup.cs?name=snippet_WebpackMiddlewareRegistration&highlight=4)]
 
-The `UseWebpackDevMiddleware` extension method must be called before [registering static file hosting](xref:fundamentals/static-files) via the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
+The `UseWebpackDevMiddleware` extension method must be called before [registering static file hosting](../fundamentals/static-files.md) via the `UseStaticFiles` extension method. For security reasons, register the middleware only when the app runs in development mode.
 
 The `webpack.config.js` file's `output.publicPath` property tells the middleware to watch the `dist` folder for changes:
 
@@ -240,7 +240,7 @@ Two primary runtime configuration modes exist:
   * Excludes source maps.
   * Optimizes the client-side code via bundling and minification.
 
-ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](xref:fundamentals/environments#set-the-environment).
+ASP.NET Core uses an environment variable named `ASPNETCORE_ENVIRONMENT` to store the configuration mode. For more information, see [Set the environment](../fundamentals/environments.md#set-the-environment-with-an-environment-variable).
 
 ### Run with .NET CLI
 

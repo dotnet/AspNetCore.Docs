@@ -18,7 +18,7 @@ The Blazor framework supports forms and provides built-in input components:
 
 :::moniker range=">= aspnetcore-8.0"
 
-* Bound to an object or model that can use [data annotations](xref:mvc/models/validation).
+* Bound to an object or model that can use [data annotations](../../mvc/models/validation.md).
   * HTML forms with the `<form>` element.
   * <xref:Microsoft.AspNetCore.Components.Forms.EditForm> components.
 * [Built-in input components](xref:blazor/forms/input-components).
@@ -27,7 +27,7 @@ The Blazor framework supports forms and provides built-in input components:
 
 :::moniker range="< aspnetcore-8.0"
 
-* An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](xref:mvc/models/validation).
+* An <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component bound to an object or model that can use [data annotations](../../mvc/models/validation.md).
 * [Built-in input components](xref:blazor/forms/input-components).
 
 :::moniker-end
@@ -72,13 +72,13 @@ Standard HTML forms are supported. Create a form using the normal HTML `<form>` 
 
 In the preceding `StarshipPlainForm` component:
 
-* The form is rendered where the `<form>` element appears. The form is named with the [`@formname`](xref:mvc/views/razor#formname) directive attribute, which uniquely identifies the form to the Blazor framework.
+* The form is rendered where the `<form>` element appears. The form is named with the [`@formname`](../../mvc/views/razor.md#formname) directive attribute, which uniquely identifies the form to the Blazor framework.
 * The model is created in the component's `@code` block and held in a `public` property (`Model`). The `[SupplyParameterFromForm]` attribute indicates that the value of the associated property should be supplied from the form data. Data in the request that matches the property's name is bound to the property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.InputText> component is an input component for editing string values. The `@bind-Value` directive attribute binds the `Model.Id` model property to the <xref:Microsoft.AspNetCore.Components.Forms.InputText> component's <xref:Microsoft.AspNetCore.Components.Forms.InputBase`1.Value> property.
 * The `Submit` method is registered as a handler for the <!-- <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnSubmit> --> `@onsubmit` callback. The handler is called when the form is submitted by the user.
 
 > [!IMPORTANT]
-> Always use the [`@formname`](xref:mvc/views/razor#formname) directive attribute with a unique form name.
+> Always use the [`@formname`](../../mvc/views/razor.md#formname) directive attribute with a unique form name.
 
 Blazor enhances page navigation and form handling by intercepting the request in order to apply the response to the existing DOM, preserving as much of the rendered form as possible. The enhancement avoids the need to fully load the page and provides a much smoother user experience, similar to a single-page app (SPA), although the component is rendered on the server. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
 
@@ -473,7 +473,7 @@ If using C# 9 or earlier (.NET 5 or earlier), add `@using` directives to the top
 
 :::moniker-end
 
-To demonstrate how forms work with [data annotations](xref:mvc/models/validation) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. If you wish to avoid an extra line of code in components that use data annotations, make the namespace available throughout the app's components with the imports file (`_Imports.razor`):
+To demonstrate how forms work with [data annotations](../../mvc/models/validation.md) validation, example components rely on <xref:System.ComponentModel.DataAnnotations?displayProperty=nameWithType> API. If you wish to avoid an extra line of code in components that use data annotations, make the namespace available throughout the app's components with the imports file (`_Imports.razor`):
 
 ```razor
 @using System.ComponentModel.DataAnnotations
@@ -499,7 +499,7 @@ In Blazor Web Apps, forms in components that adopt static server-side rendering 
 
 ## Unsupported validation features
 
-All of the [data annotation built-in validators](xref:mvc/models/validation#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](xref:mvc/models/validation#remote-attribute).
+All of the [data annotation built-in validators](../../mvc/models/validation.md#built-in-attributes) are supported in Blazor except for the [`[Remote]` validation attribute](../../mvc/models/validation.md#remote-attribute).
 
 jQuery validation isn't supported in Razor components. We recommend any of the following approaches:
 

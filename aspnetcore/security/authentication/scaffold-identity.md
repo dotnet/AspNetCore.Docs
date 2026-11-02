@@ -97,7 +97,7 @@ The following commands assume you're using a SQL Server database and the SQL Ser
    These commands add:
 
    * [Command-line interface (CLI) tools](/ef/core/cli/dotnet) for Entity Framework Core
-   * The [aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator) scaffolding tool
+   * The [aspnet-codegenerator](../../fundamentals/tools/dotnet-aspnet-codegenerator.md) scaffolding tool
    * Design time tools for Entity Framework Core
    * The SQLite and SQL Server providers with the Entity Framework Core package as a dependency
    * [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
@@ -714,7 +714,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ### Migrations, UseAuthentication, and layout
 
@@ -749,7 +749,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -775,7 +775,7 @@ Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.c
 
 Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`.
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -801,7 +801,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ### Migrations
 
@@ -826,7 +826,7 @@ The Identity pages layout and styles can be modified to produce pages that use s
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ## Client-side Blazor apps
 

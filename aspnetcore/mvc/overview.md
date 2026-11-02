@@ -2,7 +2,6 @@
 title: Overview of ASP.NET Core MVC
 description: Learn how ASP.NET Core MVC is a rich framework for building web apps and APIs using the Model-View-Controller design pattern.
 ms.date: 08/05/2026
-uid: mvc/overview
 ---
 # Overview of ASP.NET Core MVC
 
@@ -226,9 +225,9 @@ Tag Helpers provide an HTML-friendly development experience and a rich IntelliSe
 
 ## Compatibility version
 
-The `SetCompatibilityVersion` method allowed an app to opt in or opt out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. The method is a no-op for ASP.NET Core 3.0 and later apps, and it's removed in ASP.NET Core 11. For more information, see <xref:mvc/compatibility-version> and [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
+The `SetCompatibilityVersion` method allowed an app to opt in or opt out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. The method is a no-op for ASP.NET Core 3.0 and later apps, and it's removed in ASP.NET Core 11. For more information, see [Compatibility version for ASP.NET Core MVC](compatibility-version.md) and [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
 
 ## Related content
 
 * [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
-* <xref:fundamentals/dependency-injection>
+* [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md)

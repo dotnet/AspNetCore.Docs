@@ -5,7 +5,6 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 05/06/2026
-uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
 
@@ -428,7 +427,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](xref:tutorials/web-api-help-pages-using-swagger) to test the API.
+This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](web-api-help-pages-using-swagger.md) to test the API.
 
 1. Install Swagger UI by running the following command:
 
@@ -525,7 +524,7 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Create a minimal web API with ASP.NET Core](/training/modules/interact-api/)

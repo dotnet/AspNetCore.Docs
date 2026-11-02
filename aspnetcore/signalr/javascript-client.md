@@ -14,7 +14,7 @@ ms.date: 09/20/2026
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side SignalR hub code. This article describes how to use the APIs to connect to a SignalR hub, and call the JavaScript hub and client methods.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -77,7 +77,7 @@ The code example specifies version 6.0.1. To get the latest client library versi
 
 Another approach is to use [LibMan](xref:client-side/libman/index) and install only specific client library files from the CDN-hosted client library. For example, you can add only the minified JavaScript file to the project.
 
-For details on this approach, see [Add the SignalR client library](xref:tutorials/signalr#add-the-signalr-client-library).
+For details on this approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
 ## Connect to a hub
 
@@ -363,8 +363,8 @@ For the refresh options, the success and failure handlers, and the server config
 
 ## Related content
 
-* [JavaScript tutorial](xref:tutorials/signalr)
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
+* [JavaScript tutorial](../tutorials/signalr.md)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
 * [Hubs](hubs.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
 * [Troubleshoot connection errors](troubleshoot.md)
@@ -377,7 +377,7 @@ By [Rachel Appel](https://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -414,7 +414,7 @@ The client library is available on the following CDNs:
 
 ### Install with LibMan
 
-[LibMan](xref:client-side/libman/index) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](xref:tutorials/signalr#add-the-signalr-client-library).
+[LibMan](xref:client-side/libman/index) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
 ## Connect to a hub
 
@@ -668,8 +668,8 @@ For the preceding code example:
 ## Related content
 
 * [JavaScript API reference](/javascript/api/@microsoft/signalr)
-* [JavaScript tutorial](xref:tutorials/signalr)
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
+* [JavaScript tutorial](../tutorials/signalr.md)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
 * [Hubs](hubs.md)
 * [.NET client](dotnet-client.md)
 * [Publish to Azure](publish-to-azure-web-app.md)

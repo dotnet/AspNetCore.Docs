@@ -15,7 +15,7 @@ Resource-based authorization requires special attention in ASP.NET Core apps. At
 This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
 
 * [Resource-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/resource-based.md)
-* <xref:mvc/security/authorization/resource-based>
+* [Resource-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/resource-based.md)
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
@@ -28,7 +28,7 @@ The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` s
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](xref:fundamentals/dependency-injection):
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](../../fundamentals/dependency-injection.md):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

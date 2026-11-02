@@ -424,7 +424,7 @@ If the app is running, shut the app down by closing the browser's window and pre
 ## Related content
 
 * Configuration articles:
-  * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
+  * [Configuration in ASP.NET Core](../../../fundamentals/configuration/index.md) (ASP.NET Core Configuration system)
   * <xref:blazor/fundamentals/configuration> (Blazor documentation)
   * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
 * [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)

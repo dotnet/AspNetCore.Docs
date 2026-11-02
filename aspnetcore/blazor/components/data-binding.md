@@ -14,7 +14,7 @@ This article explains data binding features for Razor components and DOM element
 
 ## Binding features
 
-Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
+Razor components provide data binding features with the [`@bind`](../../mvc/views/razor.md#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:
 
@@ -103,7 +103,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 :::moniker-end
 
-When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
+When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](../../mvc/views/razor.md#bind) handles cases where type conversions are performed. In general, [`@bind`](../../mvc/views/razor.md#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
 
 Default binding with `@bind` uses the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) DOM event (`onchange`). Binding can also take place on the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM event using the `@bind:event="{EVENT}"` attribute, where the `{EVENT}` placeholder is either `oninput` or `onchange` (default).
 
@@ -434,7 +434,7 @@ Using `:get`/`:set` modifiers both controls the underlying value of `inputValue`
 
 ## Multiple option selection with `<select>` elements
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
 
 `BindMultipleInput.razor`:
 
@@ -693,7 +693,7 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 A common scenario is binding a property of a child component to a property in its parent component. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](xref:mvc/views/razor#bind) syntax to set up data binding with the child component.
+You can't implement chained binds with [`@bind`](../../mvc/views/razor.md#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](../../mvc/views/razor.md#bind) syntax to set up data binding with the child component.
 
 The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback`1>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> is named `YearChanged`.
 

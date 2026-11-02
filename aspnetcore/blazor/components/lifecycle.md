@@ -251,7 +251,7 @@ For the following example component, navigate to the component's page at a URL:
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](xref:mvc/views/razor#page) directives to handle routing with and without a supplied date segment in the URL.
+> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](../../mvc/views/razor.md#page) directives to handle routing with and without a supplied date segment in the URL.
 
 :::moniker-end
 

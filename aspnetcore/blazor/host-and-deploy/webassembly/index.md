@@ -266,7 +266,7 @@ The client Blazor WebAssembly app is published into the `/bin/Release/{TARGET FR
 For more information, see the following articles:
 
 * ASP.NET Core app hosting and deployment: [Host and deploy ASP.NET Core](../../../host-and-deploy/index.md)
-* Deployment to Azure App Service: <xref:tutorials/publish-to-azure-webapp-using-vs>
+* Deployment to Azure App Service: [Publish an ASP.NET Core app to Azure with Visual Studio](../../../tutorials/publish-to-azure-webapp-using-vs.md)
 * Blazor project templates: <xref:blazor/project-structure>
 
 ## Hosted deployment of a framework-dependent executable for a specific platform
@@ -381,7 +381,7 @@ For configuration guidance, see the following resources:
 
 ### Content root
 
-The `--contentroot` argument sets the absolute path to the directory that contains the app's content files ([content root](xref:fundamentals/index#content-root)). In the following examples, `/content-root-path` is the app's content root path.
+The `--contentroot` argument sets the absolute path to the directory that contains the app's content files ([content root](../../../fundamentals/index.md#content-root)). In the following examples, `/content-root-path` is the app's content root path.
 
 * Pass the argument when running the app locally at a command prompt. From the app's directory, execute:
 

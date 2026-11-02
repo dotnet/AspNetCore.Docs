@@ -13,7 +13,7 @@ The `web.config` is a file that's read by IIS and the [ASP.NET Core Module](../a
 
 ## `web.config` file location
 
-In order to set up the [ASP.NET Core Module](../aspnet-core-module.md) correctly, the `web.config` file must be present at the [content root](xref:fundamentals/index#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
+In order to set up the [ASP.NET Core Module](../aspnet-core-module.md) correctly, the `web.config` file must be present at the [content root](../../fundamentals/index.md#content-root) path (typically the app base path) of the deployed app. This is the same location as the website physical path provided to IIS. The `web.config` file is required at the root of the app to enable the publishing of multiple apps using Web Deploy.
 
 Sensitive files exist on the app's physical path, such as `{ASSEMBLY}.runtimeconfig.json`, `{ASSEMBLY}.xml` (XML Documentation comments), and `{ASSEMBLY}.deps.json`, where the placeholder `{ASSEMBLY}` is the assembly name. When the `web.config` file is present and the site starts normally, IIS doesn't serve these sensitive files if they're requested. If the `web.config` file is missing, incorrectly named, or unable to configure the site for normal startup, IIS might serve sensitive files publicly.
 
@@ -111,7 +111,7 @@ For information on IIS sub-application configuration, see [Advanced configuratio
 
 Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
 
-The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](../../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -159,7 +159,7 @@ Configuration sections of ASP.NET 4.x apps in `web.config` aren't used by ASP.NE
 * `<connectionStrings>`
 * `<location>`
 
-ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](xref:fundamentals/configuration/index).
+ASP.NET Core apps are configured using other configuration providers. For more information, see [Configuration](../../fundamentals/configuration/index.md).
 
 ## Transform web.config
 

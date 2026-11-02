@@ -22,7 +22,7 @@ This article provides an overview of MFA in ASP.NET Core and the recommended aut
 * Send an MFA sign-in requirement to the OpenID Connect server.
 * Force the ASP.NET Core OpenID Connect client to require MFA.
 
-[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## MFA versus 2FA
 

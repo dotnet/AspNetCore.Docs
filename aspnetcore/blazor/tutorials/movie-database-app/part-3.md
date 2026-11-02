@@ -19,7 +19,7 @@ This part of the tutorial series examines the Razor components in the project th
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
-*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity.
+*Razor* refers to how components are usually written in the form of a [Razor](../../../mvc/views/razor.md) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity.
 
 Although developers and online resources use the term "Blazor components," the documentation uses the formal name "Razor components" (or just "components").
 
@@ -877,7 +877,7 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 * [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component)
 * <xref:blazor/components/layouts>
-* [Razor directives](xref:mvc/views/razor#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
+* [Razor directives](../../../mvc/views/razor.md#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
 * <xref:blazor/components/quickgrid>
 * <xref:blazor/forms/index>
 * [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)

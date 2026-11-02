@@ -35,7 +35,7 @@ The contents of the browser's address bar are retained:
 * If the user manually reloads the page.
 * *Server-side scenarios only*: If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
 
-For information on defining URL patterns with the [`@page`](xref:mvc/views/razor#page) directive, see <xref:blazor/fundamentals/routing>.
+For information on defining URL patterns with the [`@page`](../../mvc/views/razor.md#page) directive, see <xref:blazor/fundamentals/routing>.
 
 ## In-memory state container service
 

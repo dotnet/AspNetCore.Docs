@@ -236,7 +236,7 @@ let connection = HubConnectionBuilder()
 
 ## Related content
 
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
 * [Hubs](hubs.md)
 * [.NET client](dotnet-client.md)
 * [JavaScript client](javascript-client.md)

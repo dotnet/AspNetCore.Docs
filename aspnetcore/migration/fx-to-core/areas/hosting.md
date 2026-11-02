@@ -85,7 +85,7 @@ HttpApplicationHost.RegisterHost(builder =>
 });
 ```
 
-For details on how to customize the dependency injection system, including replacing the service container, see the full documentation: <xref:fundamentals/dependency-injection>.
+For details on how to customize the dependency injection system, including replacing the service container, see the full documentation: [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md).
 
 If you are currently overriding the dependency injection hooks in the ASP.NET Framework, you will need to update to the current pattern for your dependency injection and remove the existing integrations for WebForms/MVC4/WebAPI.
 
@@ -159,7 +159,7 @@ public class OrderService : IOrderService
 }
 ```
 
-For details on customizing and using logging, including integrating with your own providers, see <xref:fundamentals/logging/index>.
+For details on customizing and using logging, including integrating with your own providers, see [Logging in .NET and ASP.NET Core](../../../fundamentals/logging/index.md).
 
 ## Configuration
 
@@ -236,7 +236,7 @@ public class EmailService : IEmailService
 }
 ```
 
-For advanced configuration scenarios, including custom configuration sources and environment-specific settings, see <xref:fundamentals/configuration/index>.
+For advanced configuration scenarios, including custom configuration sources and environment-specific settings, see [Configuration in ASP.NET Core](../../../fundamentals/configuration/index.md).
 
 ## Migration strategies
 
@@ -266,7 +266,7 @@ While migrating to this setup, small incremental changes will help ensure a succ
 
 ## Related content
 
-* <xref:fundamentals/host/generic-host>
-* <xref:fundamentals/dependency-injection>
-* <xref:fundamentals/logging/index>
-* <xref:fundamentals/configuration/index>
+* [.NET Generic Host in ASP.NET Core](../../../fundamentals/host/generic-host.md)
+* [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
+* [Logging in .NET and ASP.NET Core](../../../fundamentals/logging/index.md)
+* [Configuration in ASP.NET Core](../../../fundamentals/configuration/index.md)

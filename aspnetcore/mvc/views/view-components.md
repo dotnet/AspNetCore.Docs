@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.date: 05/04/2026
 monikerRange: '>= aspnetcore-3.1'
-uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
 
@@ -118,7 +117,7 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 
 ## Invoke a view component as a Tag Helper
 
-A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+A View Component can be invoked as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
@@ -137,7 +136,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -226,7 +225,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -285,7 +284,7 @@ The view component's Razor file:
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -311,8 +310,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
+* [Dependency injection into views](dependency-injection.md)
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
@@ -426,7 +425,7 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 
 ## Invoke a view component as a Tag Helper
 
-A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+A View Component can be invoked as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
@@ -445,7 +444,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -492,7 +491,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method that can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
@@ -534,7 +533,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -593,7 +592,7 @@ The view component's Razor file:
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -619,8 +618,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
+* [Dependency injection into views](dependency-injection.md)
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
@@ -628,7 +627,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## View components
 
@@ -675,7 +674,7 @@ A view component class:
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
- 
+
 ```csharp
 [NonViewComponent]
 public class ReviewComponent
@@ -730,7 +729,7 @@ The parameters will be passed to the `InvokeAsync` method. The `PriorityList` vi
 
 ## Invoking a view component as a Tag Helper
 
-For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
@@ -749,7 +748,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -794,7 +793,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
@@ -917,7 +916,7 @@ The view component's Razor file lists the strings passed to the `Invoke` method 
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -950,6 +949,6 @@ Each parameter in a view component is a required attribute. See [this GitHub iss
 
 ## Additional resources
 
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [Dependency injection into views](dependency-injection.md)
 
 :::moniker-end

@@ -3,7 +3,6 @@ title: "Tutorial: Get started with EF Core in an ASP.NET MVC web app"
 description: "This page is the first in a series of tutorials that explain how to build the Contoso University sample EF/MVC app"
 ms.date: 05/28/2025
 ms.topic: tutorial
-uid: data/ef-mvc/intro
 ---
 # Tutorial: Get started with EF Core in an ASP.NET MVC web app
 
@@ -20,7 +19,7 @@ The sample app is a web site for a fictional Contoso University. It includes fun
 
 ## Prerequisites
 
-* If you're new to ASP.NET Core MVC, go through the [Get started with ASP.NET Core MVC](xref:tutorials/first-mvc-app/start-mvc) tutorial series before starting this one.
+* If you're new to ASP.NET Core MVC, go through the [Get started with ASP.NET Core MVC](../../tutorials/first-mvc-app/start-mvc.md) tutorial series before starting this one.
 
 [!INCLUDE[VS prereqs](~/includes/net-prereqs-vs-6.0.md)]
 
@@ -28,7 +27,7 @@ This tutorial has not been updated for ASP.NET Core in .NET 6 or later. The tuto
 
 Another difference introduced in .NET 6 is the NRT [(nullable reference types)](/ef/core/miscellaneous/nullable-reference-types ) feature. The project templates enable this feature by default. Problems can happen where EF considers a property to be required in .NET 6 which is nullable in .NET 5. For example, the Create Student page will fail silently unless the `Enrollments` property is made nullable or the `asp-validation-summary` helper tag is changed from `ModelOnly` to `All`.
 
-We recommend that you install and use the .NET 5 SDK for this tutorial. Until this tutorial is updated, see <xref:data/ef-rp/intro> on how to use Entity Framework with ASP.NET Core in .NET 6 or later.
+We recommend that you install and use the .NET 5 SDK for this tutorial. Until this tutorial is updated, see [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../ef-rp/intro.md) on how to use Entity Framework with ASP.NET Core in .NET 6 or later.
 
 ## Database engines
 
@@ -207,7 +206,7 @@ To register `SchoolContext` as a service, open `Startup.cs`, and add the highlig
 
 [!code-csharp[](intro/samples/5cu-snap/Startup.cs?name=snippet&highlight=1-2,22-23)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 Open the `appsettings.json` file and add a connection string as shown in the following markup:
 
@@ -219,7 +218,7 @@ Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptio
 
 [!code-csharp[](intro/samples/5cu/Startup.cs?name=snippet&highlight=6)]
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments).
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md).
 
 ### SQL Server Express LocalDB
 
@@ -370,7 +369,7 @@ For more information about asynchronous programming in .NET, see [Async Overview
 
 ## Limit entities fetched
 
-See [Performance considerations](xref:data/ef-rp/intro#performance-considerations) for information on limiting the number of entities returned from a query.
+See [Performance considerations](../ef-rp/intro.md#performance-considerations) for information on limiting the number of entities returned from a query.
 
 [!INCLUDE[s](~/includes/sql-log.md)]
 
@@ -387,7 +386,7 @@ Advance to the next tutorial to learn how to perform basic CRUD (create, read, u
 
 The Contoso University sample web application demonstrates how to create ASP.NET Core 2.2 MVC web applications using Entity Framework (EF) Core 2.2 and Visual Studio 2019.
 
-This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core in .NET 5](xref:data/ef-mvc/intro?view=aspnetcore-5.0&preserve-view=true).
+This tutorial has not been updated for ASP.NET Core 3.1. It has been updated for [ASP.NET Core in .NET 5](intro.md?view=aspnetcore-5.0&preserve-view=true).
 
 The sample application is a web site for a fictional Contoso University. It includes functionality such as student admission, course creation, and instructor assignments. This is the first in a series of tutorials that explain how to build the Contoso University sample application from scratch.
 
@@ -463,7 +462,7 @@ Press CTRL+F5 to run the project or choose **Debug > Start Without Debugging** f
 
 ## About EF Core NuGet packages
 
-To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), so you don't need to reference the package.
+To add EF Core support to a project, install the database provider that you want to target. This tutorial uses SQL Server, and the provider package is [Microsoft.EntityFrameworkCore.SqlServer](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.SqlServer/). This package is included in the [Microsoft.AspNetCore.App metapackage](../../fundamentals/metapackage-app.md), so you don't need to reference the package.
 
 The EF SQL Server package and its dependencies (`Microsoft.EntityFrameworkCore` and `Microsoft.EntityFrameworkCore.Relational`) provide runtime support for EF. You'll add a tooling package later, in the [Migrations](migrations.md) tutorial.
 
@@ -551,7 +550,7 @@ To register `SchoolContext` as a service, open `Startup.cs`, and add the highlig
 
 [!code-csharp[](intro/samples/cu/Startup.cs?name=snippet_SchoolContext&highlight=9-10)]
 
-The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a `DbContextOptionsBuilder` object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 Add `using` statements for `ContosoUniversity.Data` and `Microsoft.EntityFrameworkCore` namespaces, and then build the project.
 

@@ -2,7 +2,6 @@
 title: Distributed Cache Tag Helper in ASP.NET Core
 description: Learn how to use the Distributed Cache Tag Helper.
 ms.date: 09/24/2025
-uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
 ---
 # Distributed Cache Tag Helper in ASP.NET Core
 
@@ -10,11 +9,11 @@ By [Peter Kellner](https://peterkellner.net)
 
 The Distributed Cache Tag Helper provides the ability to dramatically improve the performance of your ASP.NET Core app by caching its content to a [distributed cache source](xref:performance/caching/distributed).
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
-The Distributed Cache Tag Helper inherits from the same base class as the Cache Tag Helper. All of the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper) attributes are available to the Distributed Tag Helper.
+The Distributed Cache Tag Helper inherits from the same base class as the Cache Tag Helper. All of the [Cache Tag Helper](cache-tag-helper.md) attributes are available to the Distributed Tag Helper.
 
-The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/dependency-injection#constructor-injection-behavior). The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface is passed into the Distributed Cache Tag Helper's constructor. If no concrete implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is created in the `Program` file or  `Startup.ConfigureServices` (`Startup.cs`), the Distributed Cache Tag Helper uses the same in-memory provider for storing cached data as the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
+The Distributed Cache Tag Helper uses [constructor injection](../../../../fundamentals/dependency-injection.md#constructor-injection-behavior). The <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface is passed into the Distributed Cache Tag Helper's constructor. If no concrete implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is created in the `Program` file or  `Startup.ConfigureServices` (`Startup.cs`), the Distributed Cache Tag Helper uses the same in-memory provider for storing cached data as the [Cache Tag Helper](cache-tag-helper.md).
 
 ## Distributed Cache Tag Helper Attributes
 
@@ -34,7 +33,7 @@ The Distributed Cache Tag Helper uses [constructor injection](xref:fundamentals/
 
 The `expires-sliding` attribute value defaults to 30 seconds if `expires-after` and `expires-on` aren't set. Otherwise, the value defaults to 20 minutes with the SQL Server caching service.
 
-The Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper. For descriptions of these attributes, see the [Cache Tag Helper](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper).
+The Distributed Cache Tag Helper inherits from the same class as Cache Tag Helper. For descriptions of these attributes, see the [Cache Tag Helper](cache-tag-helper.md).
 
 ### name
 
@@ -62,7 +61,7 @@ For more information, see <xref:performance/caching/distributed>.
 
 ## Related content
 
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:fundamentals/dependency-injection>
+* [Cache Tag Helper in ASP.NET Core MVC](cache-tag-helper.md)
+* [Dependency injection in ASP.NET Core](../../../../fundamentals/dependency-injection.md)
 * <xref:performance/caching/memory>
 * [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

@@ -115,7 +115,7 @@ public static class AzureHelper
 }
 ```
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](../../fundamentals/configuration/options.md):
 
 ```csharp
 TokenCredential? credential;

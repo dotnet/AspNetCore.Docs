@@ -90,7 +90,7 @@ In the project file's existing `<PropertyGroup>` add the following markup to set
 
 Save the changes to the project file (`WpfBlazor.csproj`).
 
-Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
+Add an `_Imports.razor` file to the root of the project with an [`@using`](../../../mvc/views/razor.md#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
 `_Imports.razor`:
 

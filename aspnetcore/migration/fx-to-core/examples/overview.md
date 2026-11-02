@@ -7,7 +7,7 @@ ms.date: 07/23/2025
 
 :::moniker range=">= aspnetcore-3.0"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview). In the process, it highlights related changes from ASP.NET MVC.
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md). In the process, it highlights related changes from ASP.NET MVC.
 
 Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
@@ -57,7 +57,7 @@ In ASP.NET Core, the `Startup` class:
 * Replaces `Global.asax`.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 In the ASP.NET Core project, open the `Startup.cs` file:
 
@@ -66,10 +66,10 @@ In the ASP.NET Core project, open the `Startup.cs` file:
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
 * The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](../../22-to-30.md#mvc-service-registration)
-* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see <xref:fundamentals/static-files>.
-* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see <xref:fundamentals/routing>.
+* The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md).
+* The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see [Routing in ASP.NET Core](../../../fundamentals/routing.md).
 
-This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see <xref:fundamentals/startup>.
+This existing configuration includes what is needed to migrate the example ASP.NET MVC project. For more information on ASP.NET Core middleware options, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 ## Migrate controllers and views
 
@@ -82,7 +82,7 @@ The ASP.NET Core *WebApp1* project already includes a minimal example controller
 1. In the **Add Existing Item** dialog, navigate to the ASP.NET MVC *WebApp1* project's *Views/Home* directory.
 1. Select the `About.cshtml`, `Contact.cshtml`, and `Index.cshtml` Razor view files, then select **Add**, replacing the existing files.
 
-For more information, see <xref:mvc/controllers/actions> and <xref:mvc/views/overview>.
+For more information, see [Handle requests with controllers in ASP.NET Core MVC](../../../mvc/controllers/actions.md) and [Views in ASP.NET Core MVC](../../../mvc/views/overview.md).
 
 ## Test each method
 
@@ -93,7 +93,7 @@ Each controller endpoint can be tested, however, layout and styles are covered l
 
 ## Migrate static content
 
-In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](xref:fundamentals/index#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](xref:fundamentals/static-files).
+In ASP.NET MVC 5 or earlier, static content was hosted from the web project's root directory and was intermixed with server-side files. In ASP.NET Core, static files are stored within the project's [web root](../../../fundamentals/index.md#web-root) directory. The default directory is `{content root}/wwwroot`, but it can be changed. For more information, see [Static files in ASP.NET Core](../../../fundamentals/static-files.md).
 
 Copy the static content from the ASP.NET MVC *WebApp1* project to the `wwwroot` directory in the ASP.NET Core *WebApp1* project:
 
@@ -160,7 +160,7 @@ There are many problems that can cause an HTTP 500 error message that contains n
 
 [!code-csharp[](samples/mvc/3.x/Startup.cs?highlight=17-21&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Next steps
 
@@ -169,13 +169,13 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
 
 :::moniker range="= aspnetcore-2.2"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview) 2.2. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md) 2.2. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
 * Initial setup
 * Basic controllers and views
@@ -209,15 +209,15 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
 
-`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](../../../fundamentals/static-files.md).
 
 * Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
-The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
+The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. For more information, see [Application Startup](../../../fundamentals/startup.md) and [Routing](../../../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -251,7 +251,7 @@ Run the app.
 
 ![Web app open in Microsoft Edge](_static/overview/hello-world.png)
 
-For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
+For more information, see [Controllers](../../../mvc/controllers/actions.md) and [Views](../../../mvc/views/overview.md).
 
 The following functionality requires migration from the example ASP.NET MVC project to the ASP.NET Core project:
 
@@ -299,7 +299,7 @@ The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styl
 
 * Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](../../../mvc/views/tag-helpers/intro.md). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
 * Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
@@ -338,7 +338,7 @@ The updated `_Layout.cshtml` file is shown below:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](xref:mvc/views/tag-helpers/intro) and has other improvements.
+* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) and has other improvements.
 
 ## Configure bundling and minification
 
@@ -350,18 +350,18 @@ There are many problems that can cause an HTTP 500 error messages that contain n
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
 
 :::moniker range="<= aspnetcore-2.1"
 
-This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](xref:mvc/overview) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
+This article shows how to start migrating an ASP.NET MVC project to [ASP.NET Core MVC](../../../mvc/overview.md) 2.1. In the process, it highlights many of the things that have changed from ASP.NET MVC. Migrating from ASP.NET MVC is a multi-step process. This article covers:
 
 * Initial setup
 * Basic controllers and views
@@ -395,15 +395,15 @@ Create a new *empty* ASP.NET Core web app with the same name as the previous pro
 
 ## Configure the site to use MVC
 
-* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
+* When targeting .NET Core, the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md) is referenced by default. This package contains packages commonly used by MVC apps. If targeting .NET Framework, package references must be listed individually in the project file.
 
-`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](xref:fundamentals/static-files).
+`Microsoft.AspNetCore.Mvc` is the ASP.NET Core MVC framework. `Microsoft.AspNetCore.StaticFiles` is the static file handler. ASP.NET Core apps explicitly opt in for middleware, such as for serving static files. For more information, see [Static files](../../../fundamentals/static-files.md).
 
 * Open the `Startup.cs` file and change the code to match the following:
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=7,20-25&name=snippet)]
 
-The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](xref:fundamentals/startup) and [Routing](xref:fundamentals/routing).
+The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler. The `UseMvc` extension method adds routing. For more information, see [Application Startup](../../../fundamentals/startup.md) and [Routing](../../../fundamentals/routing.md).
 
 ## Add a controller and view
 
@@ -437,7 +437,7 @@ Run the app.
 
 ![Web app open in Microsoft Edge](_static/overview/hello-world.png)
 
-For more information, see [Controllers](xref:mvc/controllers/actions) and [Views](xref:mvc/views/overview).
+For more information, see [Controllers](../../../mvc/controllers/actions.md) and [Views](../../../mvc/views/overview.md).
 
 The following functionality requires migration from the example ASP.NET MVC project to the ASP.NET Core project:
 
@@ -485,7 +485,7 @@ The ASP.NET MVC project uses [Bootstrap](https://getbootstrap.com/) for its styl
 
 * Create a `Views/Shared` directory.
 
-* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](xref:mvc/views/tag-helpers/intro). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
+* *Optional:* Copy `_ViewImports.cshtml` from the *FullAspNetCore* MVC project's `Views` directory into the ASP.NET Core project's `Views` directory. Remove any namespace declaration in the `_ViewImports.cshtml` file. The `_ViewImports.cshtml` file provides namespaces for all the view files and brings in [Tag Helpers](../../../mvc/views/tag-helpers/intro.md). Tag Helpers are used in the new layout file. The `_ViewImports.cshtml` file is new for ASP.NET Core.
 
 * Copy the `_Layout.cshtml` file from the ASP.NET MVC project's `Views/Shared` directory into the ASP.NET Core project's `Views/Shared` directory.
 
@@ -524,7 +524,7 @@ The updated `_Layout.cshtml` file is shown below:
 
 View the site in the browser. It should now load correctly, with the expected styles in place.
 
-* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](xref:mvc/views/tag-helpers/intro) and has other improvements.
+* *Optional:* Try using the new layout file. Copy the layout file from the *FullAspNetCore* project. The new layout file uses [Tag Helpers](../../../mvc/views/tag-helpers/intro.md) and has other improvements.
 
 ## Configure bundling and minification
 
@@ -536,11 +536,11 @@ There are many problems that can cause an HTTP 500 error messages that contain n
 
 [!code-csharp[](samples/mvc/2.x/Startup.cs?highlight=11-15&name=snippet)]
 
-ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](xref:fundamentals/error-handling#developer-exception-page).
+ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normally, error details aren't included in these responses to prevent disclosure of potentially sensitive information about the server. For more information, see [Developer Exception Page](../../../fundamentals/error-handling.md#developer-exception-page).
 
 ## Additional resources
 
 * <xref:blazor/index>
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end

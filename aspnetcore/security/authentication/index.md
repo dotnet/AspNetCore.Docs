@@ -10,7 +10,7 @@ ms.date: 10/27/2026
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](../../fundamentals/middleware/index.md). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
@@ -177,7 +177,7 @@ Finbuckle.MultiTenant:
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](../../fundamentals/middleware/index.md). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.
@@ -319,7 +319,7 @@ See the [Orchard Core](https://github.com/OrchardCMS/OrchardCore) source for an 
 
 By [Mike Rousos](https://github.com/mjrousos)
 
-Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](xref:fundamentals/middleware/index). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
+Authentication is the process of determining a user's identity. [Authorization](../authorization/introduction.md) is the process of determining whether a user has access to a resource. In ASP.NET Core, authentication is handled by the authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, which is used by authentication [middleware](../../fundamentals/middleware/index.md). The authentication service uses registered authentication handlers to complete authentication-related actions. Examples of authentication-related actions include:
 
 * Authenticating a user.
 * Responding when an unauthenticated user tries to access a restricted resource.

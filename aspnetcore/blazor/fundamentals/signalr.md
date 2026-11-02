@@ -31,7 +31,7 @@ The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-sign
 
 By default, Interactive Server components:
 
-* Enable compression for [WebSocket connections](xref:fundamentals/websockets). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
+* Enable compression for [WebSocket connections](../../fundamentals/websockets.md). <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.DisableWebSocketCompression> (default: `false`) controls WebSocket compression.
 
 * Adopt a [`frame-ancestors`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors) Content Security Policy (CSP) directive set to `'self'`, which is the default and only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
@@ -175,7 +175,7 @@ If prerendering is configured, prerendering occurs before the client connection 
 
 If prerendering is configured, prerendering occurs before the client connection to the server is established. For more information, see the following articles:
 
-* <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>
+* [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md)
 * <xref:blazor/components/integration>
 
 :::moniker-end
@@ -774,7 +774,7 @@ By default, components are prerendered on the server before the client connectio
 
 :::moniker range="< aspnetcore-8.0"
 
-By default, components are prerendered on the server before the client connection to the server is established. For more information, see <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>.
+By default, components are prerendered on the server before the client connection to the server is established. For more information, see [Component Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
 :::moniker-end
 

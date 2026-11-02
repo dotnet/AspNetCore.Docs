@@ -122,31 +122,31 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A `.cshtml` file that has HTML markup with C# code using Razor syntax.
 * A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. This file sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see [Layout in ASP.NET Core](../../../../mvc/views/layout.md).
 
 ### wwwroot folder
 
-Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
+Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see [Serve static files in ASP.NET Core apps](../../../../fundamentals/static-files.md).
 
 ### `appsettings.json`
 
-Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
+Contains configuration data, like connection strings. For more information, see [Configuration in ASP.NET Core](../../../../fundamentals/configuration/index.md).
 
 ### Program.cs
 
-Contains the entry point for the app. For more information, see <xref:fundamentals/host/generic-host>.
+Contains the entry point for the app. For more information, see [.NET Generic Host in ASP.NET Core](../../../../fundamentals/host/generic-host.md).
 
 ### Startup.cs
 
-Contains code that configures app behavior. For more information, see <xref:fundamentals/startup>.
+Contains code that configures app behavior. For more information, see [App startup in ASP.NET Core](../../../../fundamentals/startup.md).
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](../../model.md)
 
 :::moniker-end

@@ -10,7 +10,7 @@ ms.date: 04/27/2026
 
 By [Sayed Ibrahim Hashimi](https://github.com/sayedihashimi) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-This document focuses on using Visual Studio 2022 or later to create and use [publish profiles](/visualstudio/deployment/publish-overview). The publish profiles created with Visual Studio can be used with MSBuild and Visual Studio. For instructions on publishing to Azure, see <xref:tutorials/publish-to-azure-webapp-using-vs>.
+This document focuses on using Visual Studio 2022 or later to create and use [publish profiles](/visualstudio/deployment/publish-overview). The publish profiles created with Visual Studio can be used with MSBuild and Visual Studio. For instructions on publishing to Azure, see [Publish an ASP.NET Core app to Azure with Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md).
 
 For the most current and detailed information on:
 
@@ -222,7 +222,7 @@ If testing, delete the app or restore the basic auth settings to disabled.
 
 ## Set the environment
 
-Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file to set the app's [environment](xref:fundamentals/environments):
+Include the `<EnvironmentName>` property in the publish profile (*.pubxml*) or project file to set the app's [environment](../fundamentals/environments.md):
 
 ```xml
 <PropertyGroup>

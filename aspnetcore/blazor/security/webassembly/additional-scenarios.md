@@ -23,7 +23,7 @@ For convenience, the framework provides the <xref:Microsoft.AspNetCore.Component
 In the following example:
 
 * <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> adds <xref:System.Net.Http.IHttpClientFactory> and related services to the service collection and configures a named <xref:System.Net.Http.HttpClient> (`WebAPI`). <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is the base address of the resource URI when sending requests. <xref:System.Net.Http.IHttpClientFactory> is provided by the [`Microsoft.Extensions.Http`](https://www.nuget.org/packages/Microsoft.Extensions.Http) NuGet package.
-* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is the <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Access tokens are only added when the request URI is within the app's base URI. For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+* <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.BaseAddressAuthorizationMessageHandler> is the <xref:System.Net.Http.DelegatingHandler> used to process access tokens. Access tokens are only added when the request URI is within the app's base URI. For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../../../fundamentals/http-requests.md#outgoing-request-middleware).
 
 * <xref:System.Net.Http.IHttpClientFactory.CreateClient*?displayProperty=nameWithType> creates and configures an <xref:System.Net.Http.HttpClient> instance for outgoing requests using the configuration that corresponds to the named <xref:System.Net.Http.HttpClient> (`WebAPI`).
 
@@ -1354,7 +1354,7 @@ The list of claims in the ID token changes for v2.0 endpoints. Microsoft documen
 To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](../../../grpc/index.md):
 
 * Enable gRPC-Web on the server. For more information, see [gRPC-Web in ASP.NET Core gRPC apps](../../../grpc/grpcweb.md).
-* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](xref:tutorials/grpc/grpc-start#create-a-grpc-service) (the `Program` file).
+* Register gRPC services for the app's message handler. The following example configures the app's authorization message handler to use the [`GreeterClient` service from the gRPC tutorial](../../../tutorials/grpc/grpc-start.md#create-a-grpc-service) (the `Program` file).
 
 :::moniker range=">= aspnetcore-8.0"
 

@@ -19,7 +19,7 @@ Examples of user state held in browser memory include:
 
 * The hierarchy of component instances and their most recent render output in the rendered UI.
 * The values of fields and properties in component instances.
-* Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances.
+* Data held in [dependency injection (DI)](../../fundamentals/dependency-injection.md) service instances.
 * Values set through [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
 
 When a user closes and reopens their browser or reloads the page, user state held in the browser's memory is lost.

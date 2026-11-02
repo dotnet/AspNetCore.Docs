@@ -169,7 +169,7 @@ To change the default value to the more restrictive `'none'` and prevent all par
 .AddInteractiveServerRenderMode(o => o.ContentSecurityFrameAncestorsPolicy = "'none'")
 ```
 
-In Blazor Server apps, a default `frame-ancestors` directive isn't added to the response headers collection. You can add a CSP header manually with [middleware](xref:fundamentals/middleware/index) in the request processing pipeline:
+In Blazor Server apps, a default `frame-ancestors` directive isn't added to the response headers collection. You can add a CSP header manually with [middleware](../../fundamentals/middleware/index.md) in the request processing pipeline:
 
 ```csharp
 app.Use(async (context, next) =>

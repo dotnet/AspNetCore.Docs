@@ -553,7 +553,7 @@ To avoid showing unauthorized content, for example content in an [`AuthorizeView
 
 :::moniker range="< aspnetcore-8.0"
 
-* Disable prerendering: Open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+* Disable prerendering: Open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
   ```cshtml
   <component type="typeof(App)" render-mode="Server" />
@@ -1126,7 +1126,7 @@ In the preceding example:
 
 If `user.Identity.IsAuthenticated` is `true` and because the user is a <xref:System.Security.Claims.ClaimsPrincipal>, claims can be enumerated and membership in roles evaluated.
 
-For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and <xref:fundamentals/dependency-injection>. For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider>.
+For more information on dependency injection (DI) and services, see <xref:blazor/fundamentals/dependency-injection> and [Dependency injection in ASP.NET Core](../../fundamentals/dependency-injection.md). For information on how to implement a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, see <xref:blazor/security/authentication-state#implement-a-custom-authenticationstateprovider>.
 
 ## Expose the authentication state as a cascading parameter
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to write custom ASP.NET Core middleware.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 06/21/2025
-uid: fundamentals/middleware/write
 ---
 # Write custom ASP.NET Core middleware
 
@@ -16,7 +15,7 @@ By [Fiyaz Hasan](https://twitter.com/FiyazBinHasan), [Rick Anderson](https://twi
 
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware.
 
-This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see <xref:fundamentals/middleware/extensibility>.
+This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see [Factory-based middleware activation in ASP.NET Core](extensibility.md).
 
 ## Middleware class
 
@@ -35,7 +34,7 @@ Prefer using the later overload as it saves two internal per-request allocations
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=es-es`.
 
-For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
+For ASP.NET Core's built-in localization support, see [Globalization and localization in ASP.NET Core](../localization.md).
 
 <!--?culture=de-de ?culture=fr-fr /?culture=zh-hk -->
 
@@ -50,7 +49,7 @@ The middleware class must include:
   * Return a `Task`.
   * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
   
-Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](../dependency-injection.md).
 
 Typically, an extension method is created to expose the middleware through <xref:Microsoft.AspNetCore.Builder.IApplicationBuilder>:
 
@@ -64,7 +63,7 @@ The following code calls the middleware from `Program.cs`:
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*.
 
-Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
+Middleware components can resolve their dependencies from [dependency injection (DI)](../dependency-injection.md) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
 
 ## Per-request middleware dependencies
 
@@ -73,7 +72,7 @@ time. [Scoped lifetime](/dotnet/core/extensions/dependency-injection/service-lif
 
 :::code language="csharp" source="~/fundamentals/middleware/write/samples/6/WebMiddleware/MyCustomMiddleware.cs":::
 
-[Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
+[Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
 
 The following code is used to test the preceding middleware:
 
@@ -92,7 +91,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Steve Smith](https://ar
 Middleware is software that's assembled into an app pipeline to handle requests and responses. ASP.NET Core provides a rich set of built-in middleware components, but in some scenarios you might want to write a custom middleware.
 
 > [!NOTE]
-> This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see <xref:fundamentals/middleware/extensibility>.
+> This topic describes how to write *convention-based* middleware. For an approach that uses strong typing and per-request activation, see [Factory-based middleware activation in ASP.NET Core](extensibility.md).
 
 ## Middleware class
 
@@ -100,7 +99,7 @@ Middleware is generally encapsulated in a class and exposed with an extension me
 
 :::code language="csharp" source="write/snapshot/StartupCulture.cs":::
 
-The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see <xref:fundamentals/localization>.
+The preceding sample code is used to demonstrate creating a middleware component. For ASP.NET Core's built-in localization support, see [Globalization and localization in ASP.NET Core](../localization.md).
 
 Test the middleware by passing in the culture. For example, request `https://localhost:5001/?culture=no`.
 
@@ -115,13 +114,13 @@ The middleware class must include:
   * Return a `Task`.
   * Accept a first parameter of type <xref:Microsoft.AspNetCore.Http.HttpContext>.
   
-Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+Additional parameters for the constructor and `Invoke`/`InvokeAsync` are populated by [dependency injection (DI)](../dependency-injection.md).
 
 ## Middleware dependencies
 
 Middleware should follow the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies) by exposing its dependencies in its constructor. Middleware is constructed once per *application lifetime*. See the [Per-request middleware dependencies](#per-request-middleware-dependencies) section if you need to share services with middleware within a request.
 
-Middleware components can resolve their dependencies from [dependency injection (DI)](xref:fundamentals/dependency-injection) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
+Middleware components can resolve their dependencies from [dependency injection (DI)](../dependency-injection.md) through constructor parameters. <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*> can also accept additional parameters directly.
 
 ## Per-request middleware dependencies
 
@@ -146,7 +145,7 @@ public class CustomMiddleware
 }
 ```
 
-[Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
+[Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped* lifetime services.
 
 ## Middleware extension method
 
@@ -166,27 +165,27 @@ The following code calls the middleware from `Startup.Configure`:
 
 * [Sample code used in this article](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/write/samples/6/WebMiddleware)
 * [UseExtensions source on GitHub](https://github.com/dotnet/aspnetcore/blob/main/src/Http/Http.Abstractions/src/Extensions/UseExtensions.cs)
-* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
+* [Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
 * [DEEP DIVE: HOW IS THE ASP.NET CORE MIDDLEWARE PIPELINE BUILT](https://www.stevejgordon.co.uk/how-is-the-asp-net-core-middleware-pipeline-built)
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](index.md)
 * <xref:test/middleware>
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/request-features>
-* <xref:fundamentals/middleware/extensibility>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
+* [App startup in ASP.NET Core](../startup.md)
+* [Request Features in ASP.NET Core](../request-features.md)
+* [Factory-based middleware activation in ASP.NET Core](extensibility.md)
+* [Middleware activation with a third-party container in ASP.NET Core](extensibility-third-party-container.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* [Lifetime and registration options](xref:fundamentals/dependency-injection#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
-* <xref:fundamentals/middleware/index>
+* [Lifetime and registration options](../dependency-injection.md#lifetime-and-registration-options) contains a complete sample of middleware with *scoped*, *transient*, and *singleton* lifetime services.
+* [ASP.NET Core middleware](index.md)
 * <xref:test/middleware>
 * [Migrate HTTP modules to ASP.NET Core middleware](../../migration/fx-to-core/areas/http-modules.md)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/request-features>
-* <xref:fundamentals/middleware/extensibility>
-* <xref:fundamentals/middleware/extensibility-third-party-container>
+* [App startup in ASP.NET Core](../startup.md)
+* [Request Features in ASP.NET Core](../request-features.md)
+* [Factory-based middleware activation in ASP.NET Core](extensibility.md)
+* [Middleware activation with a third-party container in ASP.NET Core](extensibility-third-party-container.md)
 
 :::moniker-end

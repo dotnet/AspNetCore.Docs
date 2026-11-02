@@ -14,7 +14,7 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 This article uses Razor Pages examples and focuses on Razor Pages authorization scenarios. For Blazor and MVC guidance, see the following resources:
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:mvc/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/roles.md)
 
 Examples throughout this article apply role-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, role-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
@@ -106,7 +106,7 @@ public class ControlPanelModel : PageModel
 
 Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods. If you need to implement different authorization rules for different page handlers, adopt either of the following approaches.
 
-* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
+* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](../../../mvc/views/partial.md) for shared content.
 
 * Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
 
@@ -425,5 +425,5 @@ An approach similar to the preceding example for retrieving SID group claims can
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 * <xref:blazor/security/index>
 * <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:mvc/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

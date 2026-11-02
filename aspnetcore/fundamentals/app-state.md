@@ -3,7 +3,6 @@ title: Session in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover approaches to preserve session between requests.
 ms.date: 04/24/2025
-uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
 
@@ -90,7 +89,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute`. See [Middleware Ordering](xref:fundamentals/middleware/index#middleware-order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute`. See [Middleware Ordering](middleware/index.md#middleware-order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -238,7 +237,7 @@ Data can be saved in hidden form fields and posted back on the next request. Thi
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
-In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
+In the following example, [middleware](middleware/index.md) adds `isVerified` to the `Items` collection:
 
 [!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet_hci)]
 
@@ -287,7 +286,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## State management
 
@@ -368,7 +367,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important. Call `UseSession` after `UseRouting` and before `UseEndpoints`. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
+The order of middleware is important. Call `UseSession` after `UseRouting` and before `UseEndpoints`. For more information, see [ASP.NET Core middleware](middleware/index.md#middleware-order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -509,7 +508,7 @@ Data can be saved in hidden form fields and posted back on the next request. Thi
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
-In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
+In the following example, [middleware](middleware/index.md) adds `isVerified` to the `Items` collection:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
 
@@ -552,7 +551,7 @@ The recommended approach to check for errors is to call `await feature.Session.C
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](index.md#how-to-download-a-sample))
 * [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end

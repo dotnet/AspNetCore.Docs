@@ -12,7 +12,7 @@ The following articles provide information about how to optimize the performance
 :::moniker range=">= aspnetcore-8.0"
 
 * <xref:blazor/performance/index>
-* <xref:fundamentals/best-practices>
+* [ASP.NET Core Best Practices](../fundamentals/best-practices.md)
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
 * <xref:performance/memory>
@@ -22,14 +22,14 @@ The following articles provide information about how to optimize the performance
 * <xref:performance/diagnostic-tools>
 * <xref:test/loadtests>
 * <xref:performance/timeouts>
-* [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing)
+* [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
 * <xref:blazor/performance/index>
-* <xref:fundamentals/best-practices>
+* [ASP.NET Core Best Practices](../fundamentals/best-practices.md)
 * <xref:performance/caching/overview>
 * <xref:performance/rate-limit>
 * <xref:performance/memory>

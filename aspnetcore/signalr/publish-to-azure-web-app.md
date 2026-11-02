@@ -60,7 +60,7 @@ If an HTTP *502.2 - Bad Gateway* error occurs when deploying an app that targets
 
 For apps hosted without the Azure SignalR Service, enable:
 
-* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* [WebSockets](../fundamentals/websockets.md) to allow the WebSockets transport to function. The default setting is **Off**.
 * [Session affinity (ARR affinity)](https://azure.github.io/AppService/2016/05/16/Disable-Session-affinity-cookie-(ARR-cookie)-for-Azure-web-apps.html) to route requests from a user back to the same App Service instance. The default setting is **On**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.
@@ -77,6 +77,6 @@ WebSockets and other transports are limited based on the App Service Plan select
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
 * [Overview of ASP.NET Core SignalR](introduction.md)
 * [Host and deploy ASP.NET Core](../host-and-deploy/index.md)
-* <xref:tutorials/publish-to-azure-webapp-using-vs>
+* [Publish an ASP.NET Core app to Azure with Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md)
 * [Publish an ASP.NET Core app to Azure with command line tools](/azure/app-service/app-service-web-get-started-dotnet)
 * [Host and deploy ASP.NET Core Preview apps on Azure](../host-and-deploy/azure-apps/index.md#deploy-aspnet-core-preview-release-to-azure-app-service)

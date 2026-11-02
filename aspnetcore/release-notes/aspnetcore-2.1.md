@@ -63,7 +63,7 @@ Use of HTTPS can be further enforced using [HTTP Strict Transport Security (HSTS
 
 In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Apps can be configured to use:
 
-* Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+* Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration).
 * The certificate to use for HTTPS either from a file on disk or from a certificate store.
 
 ## GDPR
@@ -120,17 +120,17 @@ ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easie
 * Makes registering of instances of `HttpClient` per named client more intuitive.
 * Implements a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 
-For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests).
+For more information, see [Initiate HTTP Requests](../fundamentals/http-requests.md).
 
 ## Kestrel libuv transport configuration
 
-With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Libuv transport configuration](xref:fundamentals/servers/kestrel#libuv-transport-configuration).
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Libuv transport configuration](../fundamentals/servers/kestrel.md#libuv-transport-configuration).
 
 ## Generic host builder
 
 The Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for apps that don't process HTTP requests (Messaging, background tasks, etc.).
 
-For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host).
+For more information, see [.NET Generic Host](../fundamentals/host/generic-host.md).
 
 ## Updated SPA templates
 
@@ -153,13 +153,13 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in th
 
 ## Razor Pages in an area
 
-Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+Razor Pages now support [areas](../mvc/controllers/areas.md). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
 ## MVC compatibility version
 
 The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
-For more information, see <xref:mvc/compatibility-version>.
+For more information, see [Compatibility version for ASP.NET Core MVC](../mvc/compatibility-version.md).
 
 ## Migrate from 2.0 to 2.1
 

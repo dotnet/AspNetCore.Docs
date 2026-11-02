@@ -1,6 +1,6 @@
 :::moniker range=">= aspnetcore-6.0 <= aspnetcore-7.0"
 
-[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
+[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](../../index.md) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](../../kestrel.md) server and offers some features that Kestrel doesn't provide.
 
 > [!IMPORTANT]
 > HTTP.sys isn't compatible with the [ASP.NET Core Module](../../../../host-and-deploy/aspnet-core-module.md) and can't be used with IIS or IIS Express.
@@ -20,7 +20,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](../../../index.md#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -30,7 +30,7 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
-* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
+* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](../../index.md#kestrel-vs-httpsys)
 
   ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 
@@ -270,7 +270,7 @@ Requirements to run gRPC with HTTP.sys:
 
 :::moniker range="< aspnetcore-6.0"
 
-[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
+[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](../../index.md) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](../../kestrel.md) server and offers some features that Kestrel doesn't provide.
 
 > [!IMPORTANT]
 > HTTP.sys isn't compatible with the [ASP.NET Core Module](../../../../host-and-deploy/aspnet-core-module.md) and can't be used with IIS or IIS Express.
@@ -290,7 +290,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](../../../index.md#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -300,7 +300,7 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the Internet](~/fundamentals/servers/httpsys/_static/httpsys-to-internet.png)
 
-* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
+* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](../../index.md#kestrel-vs-httpsys)
 
   ![HTTP.sys communicates directly with the internal network](~/fundamentals/servers/httpsys/_static/httpsys-to-internal.png)
 

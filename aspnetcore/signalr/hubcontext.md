@@ -12,7 +12,7 @@ The SignalR hub is the core abstraction for sending messages to clients connecte
 > [!NOTE]
 > The `IHubContext` is for sending notifications to clients, it is not used to call methods on the `Hub`.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/hubcontext/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 ## Get an instance of `IHubContext`
 
@@ -144,6 +144,6 @@ This is useful when:
 ## Related content
 
 * [SignalR assemblies in shared framework](../migration/22-to-30.md#signalr-assemblies-in-shared-framework)
-* <xref:tutorials/signalr>
+* [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
 * [Use hubs in ASP.NET Core SignalR](hubs.md)
 * [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

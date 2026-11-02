@@ -57,16 +57,16 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](../fundamentals/servers/kestrel.md) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
 :::moniker-end 
 
 :::moniker range=">= aspnetcore-5.0"
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel/when-to-use-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel/when-to-use-a-reverse-proxy.md).
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.2 < aspnetcore-5.0"
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel.md#when-to-use-kestrel-with-a-reverse-proxy).
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.2"
@@ -79,11 +79,11 @@ Additional configuration might be required for apps hosted behind proxy servers 
 
 Deployment often requires additional tasks besides copying the output from [dotnet publish](/dotnet/core/tools/dotnet-publish) to a server. For example, extra files might be required or excluded from the *publish* folder. Visual Studio uses [MSBuild](/visualstudio/msbuild/msbuild) for web deployment, and MSBuild can be customized to do many other tasks during deployment. For more information, see [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](visual-studio-publish-profiles.md) and the [Using MSBuild and Team Foundation Build](https://www.microsoftpressstore.com/store/inside-the-microsoft-build-engine-using-msbuild-and-9780735645240) book.
 
-By using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs), apps can be deployed directly from Visual Studio to the Azure App Service. Azure DevOps Services supports [continuous deployment to Azure App Service](/azure/devops/pipelines/targets/webapp). For more information, see [DevOps for ASP.NET Core Developers](/dotnet/architecture/devops-for-aspnet-developers).
+By using [the Publish Web feature](../tutorials/publish-to-azure-webapp-using-vs.md), apps can be deployed directly from Visual Studio to the Azure App Service. Azure DevOps Services supports [continuous deployment to Azure App Service](/azure/devops/pipelines/targets/webapp). For more information, see [DevOps for ASP.NET Core Developers](/dotnet/architecture/devops-for-aspnet-developers).
 
 ## Publish to Azure
 
-See <xref:tutorials/publish-to-azure-webapp-using-vs> for instructions on how to publish an app to Azure using Visual Studio. An additional example is provided by [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet).
+See [Publish an ASP.NET Core app to Azure with Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md) for instructions on how to publish an app to Azure using Visual Studio. An additional example is provided by [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet).
 
 ## Publish with MSDeploy on Windows
 
@@ -145,9 +145,9 @@ An ASP.NET Core app is a console app that must be started when a server boots an
 
 ## Set up a reverse proxy
 
-If the app uses the [Kestrel](xref:fundamentals/servers/kestrel) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
+If the app uses the [Kestrel](../fundamentals/servers/kestrel.md) server, [Nginx](linux-nginx.md), or [IIS](iis/index.md) can be used as a reverse proxy server. A reverse proxy server receives HTTP requests from the Internet and forwards them to Kestrel.
 
-Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](xref:fundamentals/servers/kestrel#when-to-use-kestrel-with-a-reverse-proxy).
+Either configuration&mdash;with or without a reverse proxy server&mdash;is a supported hosting configuration. For more information, see [When to use Kestrel with a reverse proxy](../fundamentals/servers/kestrel.md#when-to-use-kestrel-with-a-reverse-proxy).
 
 ## Proxy server and load balancer scenarios
 
@@ -157,11 +157,11 @@ Additional configuration might be required for apps hosted behind proxy servers 
 
 Deployment often requires additional tasks besides copying the output from [dotnet publish](/dotnet/core/tools/dotnet-publish) to a server. For example, extra files might be required or excluded from the *publish* folder. Visual Studio uses MSBuild for web deployment, and MSBuild can be customized to do many other tasks during deployment. For more information, see [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](visual-studio-publish-profiles.md) and the [Using MSBuild and Team Foundation Build](https://www.microsoftpressstore.com/store/inside-the-microsoft-build-engine-using-msbuild-and-9780735645240) book.
 
-By using [the Publish Web feature](xref:tutorials/publish-to-azure-webapp-using-vs), apps can be deployed directly from Visual Studio to the Azure App Service. Azure DevOps Services supports [continuous deployment to Azure App Service](/azure/devops/pipelines/targets/webapp). For more information, see [DevOps for ASP.NET Core Developers](/dotnet/architecture/devops-for-aspnet-developers).
+By using [the Publish Web feature](../tutorials/publish-to-azure-webapp-using-vs.md), apps can be deployed directly from Visual Studio to the Azure App Service. Azure DevOps Services supports [continuous deployment to Azure App Service](/azure/devops/pipelines/targets/webapp). For more information, see [DevOps for ASP.NET Core Developers](/dotnet/architecture/devops-for-aspnet-developers).
 
 ## Publish to Azure
 
-See <xref:tutorials/publish-to-azure-webapp-using-vs> for instructions on how to publish an app to Azure using Visual Studio. An additional example is provided by [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet).
+See [Publish an ASP.NET Core app to Azure with Visual Studio](../tutorials/publish-to-azure-webapp-using-vs.md) for instructions on how to publish an app to Azure using Visual Studio. An additional example is provided by [Create an ASP.NET Core web app in Azure](/azure/app-service/app-service-web-get-started-dotnet).
 
 ## Publish with MSDeploy on Windows
 

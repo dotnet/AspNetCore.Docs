@@ -75,7 +75,7 @@ builder.Services
     });
 ```
 
-For more information, see [Make HTTP requests using IHttpClientFactory](xref:fundamentals/http-requests).
+For more information, see [Make HTTP requests using IHttpClientFactory](../fundamentals/http-requests.md).
 
 ## Configure Interceptors
 
@@ -230,7 +230,7 @@ public class AggregatorService : Aggregator.AggregatorBase
 
 * [Call gRPC services with the .NET client](client.md)
 * [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md)
-* <xref:fundamentals/http-requests>
+* [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md)
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
@@ -298,7 +298,7 @@ services
     });
 ```
 
-For more information, see [Make HTTP requests using IHttpClientFactory](xref:fundamentals/http-requests).
+For more information, see [Make HTTP requests using IHttpClientFactory](../fundamentals/http-requests.md).
 
 ## Configure Interceptors
 
@@ -431,5 +431,5 @@ public class AggregatorService : Aggregator.AggregatorBase
 
 * [Call gRPC services with the .NET client](client.md)
 * [Reliable gRPC services with deadlines and cancellation](deadlines-cancellation.md)
-* <xref:fundamentals/http-requests>
+* [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md)
 :::moniker-end

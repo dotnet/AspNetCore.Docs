@@ -24,7 +24,7 @@ builder.Services.AddValidation();
 The implementation automatically discovers types that are defined in Minimal API handlers or as base types of types defined in Minimal API handlers. An endpoint filter performs validation on these types and is added for each endpoint.
 
 > [!NOTE]
-> `AddValidation` uses a source generator that only discovers validatable types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see <xref:fundamentals/validation#register-validation-in-multi-assembly-apps>.
+> `AddValidation` uses a source generator that only discovers validatable types within the assembly where `AddValidation` is called. If the Minimal API endpoints are defined in a different assembly, call `AddValidation` from within that assembly. For more information, see [Validation in ASP.NET Core](../../../fundamentals/validation.md#register-validation-in-multi-assembly-apps).
 
 > [!NOTE]
 > <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> validates properties and objects using data annotations on bound parameters and request models. It does not validate or reject unmapped JSON properties. By default, `System.Text.Json` sets <xref:System.Text.Json.JsonSerializerOptions.UnmappedMemberHandling> to <xref:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Skip>. To reject requests containing unexpected JSON properties, configure `JsonSerializerOptions.UnmappedMemberHandling = JsonUnmappedMemberHandling.Disallow`.

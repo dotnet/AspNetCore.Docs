@@ -62,7 +62,7 @@ Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/ass
 * Can be nested and reused.
 * Can be shared and distributed as [Razor class libraries](../razor-pages/ui-class.md) or [NuGet packages](/nuget/what-is-nuget).
 
-The component class is usually written in the form of a [Razor](xref:mvc/views/razor) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
+The component class is usually written in the form of a [Razor](../mvc/views/razor.md) markup page with a `.razor` file extension. Components in Blazor are formally referred to as *Razor components*, informally as *Blazor components*. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor allows you to switch between HTML markup and C# in the same file with [IntelliSense](/visualstudio/ide/using-intellisense) programming support in Visual Studio.
 
 Blazor uses natural HTML tags for UI composition. The following Razor markup demonstrates a component that increments a counter when the user selects a button.
 
@@ -125,7 +125,7 @@ The connection used by Blazor Server to communicate with the browser is also use
 
 ![Blazor Server runs .NET code on the server and interacts with the Document Object Model on the client over a SignalR connection](~/blazor/index/_static/blazor-server.png)
 
-Blazor Server apps render content differently than traditional models for rendering UI in ASP.NET Core apps using Razor views or Razor Pages. Both models use the [Razor language](xref:mvc/views/razor) to describe HTML content for rendering, but they significantly differ in *how* markup is rendered.
+Blazor Server apps render content differently than traditional models for rendering UI in ASP.NET Core apps using Razor views or Razor Pages. Both models use the [Razor language](../mvc/views/razor.md) to describe HTML content for rendering, but they significantly differ in *how* markup is rendered.
 
 When a Razor Page or view is rendered, every line of Razor code emits HTML in text form. After rendering, the server disposes of the page or view instance, including any state that was produced. When another request for the page occurs, the entire page is rerendered to HTML again and sent to the client.
 

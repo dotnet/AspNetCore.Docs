@@ -53,7 +53,7 @@ The following example sets the page's title and description using Razor.
 
 When Razor components are prerendered, the use of a layout page (`_Layout.cshtml`) is required to control `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control `<head>` content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
 
-If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
+If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
 In a **required**, shared `_Layout.cshtml` file of a Blazor Server app or Razor Pages/MVC app that embeds components into pages or views:
 
@@ -102,7 +102,7 @@ In a Blazor Web App created from the project template, the <xref:Microsoft.AspNe
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Host.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Host.cshtml`:
 
 ```cshtml
 <head>
@@ -115,7 +115,7 @@ In Blazor Server apps created from the Blazor Server project template, a [Compon
 
 :::moniker range="< aspnetcore-7.0"
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
 
 ```cshtml
 <head>

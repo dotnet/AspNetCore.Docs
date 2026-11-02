@@ -30,7 +30,7 @@ Run the app and inspect logging from the component. The following is example out
 
 The first logged count occurs during prerendering. The count is set again after prerendering when the component is rerendered. There's also a flicker in the UI when the count updates from 41 to 92.
 
-To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)).
+To retain the initial value of the counter during prerendering, Blazor supports persisting state in a prerendered page using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service (and for components embedded into pages or views of Razor Pages or MVC apps, the [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md)).
 
 By initializing components with the same state used during prerendering, any expensive initialization steps are only executed once. The rendered UI also matches the prerendered UI, so no flicker occurs in the browser.
 
@@ -447,7 +447,7 @@ Using the preceding serializer with the `PrerenderedCounter2` component (`Preren
 
 ## Components embedded into pages and views (Razor Pages/MVC)
 
-For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see <xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper>.
+For components embedded into a page or view of a Razor Pages or MVC app, you must add the [Persist Component State Tag Helper](../../mvc/views/tag-helpers/built-in/persist-component-state.md) with the `<persist-component-state />` HTML tag inside the closing `</body>` tag of the app's layout. **This is only required for Razor Pages and MVC apps.** For more information, see [Persist Component State Tag Helper in ASP.NET Core](../../mvc/views/tag-helpers/built-in/persist-component-state.md).
 
 `Pages/Shared/_Layout.cshtml`:
 

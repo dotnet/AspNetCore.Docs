@@ -85,7 +85,7 @@ To empty the target folder automatically before the app is published, add the fo
 To host a Blazor app in IIS, see the following resources:
 
 * IIS hosting
-  * <xref:tutorials/publish-to-iis>
+  * [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md)
   * [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
 * <xref:blazor/host-and-deploy/server/index>: Blazor Web Apps (.NET 8 or later) and Blazor Server apps (.NET 7 or earlier) running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
 * <xref:blazor/host-and-deploy/webassembly/iis>: Standalone Blazor WebAssembly apps (all .NET releases) and hosted Blazor WebAssembly apps (.NET 7 or earlier).

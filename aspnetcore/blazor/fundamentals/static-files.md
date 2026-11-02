@@ -14,7 +14,7 @@ This article describes Blazor app configuration for serving static files.
 
 :::moniker range=">= aspnetcore-9.0"
 
-For general information on serving static files with Map Static Assets routing endpoint conventions, see <xref:fundamentals/static-files> before reading this article.
+For general information on serving static files with Map Static Assets routing endpoint conventions, see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md) before reading this article.
 
 :::moniker-end
 
@@ -77,7 +77,7 @@ Static file middleware (<xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.
 * Applying a path prefix to Blazor WebAssembly static asset files, which is covered in the [Prefix for Blazor WebAssembly assets](#prefix-for-blazor-webassembly-assets) section.
 * Configuring file mappings of extensions to specific content types and setting static file options, which is covered in the [File mappings and static file options](#file-mappings-and-static-file-options) section.
       
-For more information, see <xref:fundamentals/static-files>.
+For more information, see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md).
 
 ## Deliver assets with Map Static Assets routing endpoint conventions
 
@@ -227,7 +227,7 @@ For examples of how to address the policy violation with Subresource Integrity (
 
 :::moniker range="< aspnetcore-9.0"
 
-Configure static file middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> in the app's request processing pipeline. For more information, see <xref:fundamentals/static-files>.
+Configure static file middleware to serve static assets to clients by calling <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> in the app's request processing pipeline. For more information, see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md).
 
 In releases prior to .NET 8, Blazor framework static files, such as the Blazor script, are served via static file middleware. In .NET 8 or later, Blazor framework static files are mapped using endpoint routing, and static file middleware is no longer used.
 
@@ -288,7 +288,7 @@ Any JS file (`*.js`) in `index.html` with the fingerprint marker is fingerprinte
 
 ## Fingerprint client-side static assets in Blazor Web Apps
 
-For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](xref:fundamentals/static-files), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see <xref:fundamentals/static-files>.
+For client-side rendering (CSR) in Blazor Web Apps (Interactive Auto or Interactive WebAssembly render modes), static asset server-side [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) is enabled by adopting [Map Static Assets routing endpoint conventions (`MapStaticAssets`)](../../fundamentals/static-files.md), [`ImportMap` component](xref:blazor/fundamentals/static-files#importmap-component), and the <xref:Microsoft.AspNetCore.Components.ComponentBase.Assets?displayProperty=nameWithType> property (`@Assets["..."]`). For more information, see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md).
 
 To fingerprint additional JavaScript modules for CSR, use the `<StaticWebAssetFingerprintPattern>` item in the app's project file (`.csproj`). In the following example, a fingerprint is added for all developer-supplied `.mjs` files in the app:
 

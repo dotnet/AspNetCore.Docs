@@ -25,7 +25,7 @@ In unit testing, only the gRPC service is involved. Dependencies injected into t
 
 To demonstrate service tests, review the following service in the sample app. 
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/grpc/test-services/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 The `TesterService` returns greetings using gRPC's four method types.
 
@@ -34,7 +34,7 @@ The `TesterService` returns greetings using gRPC's four method types.
 The preceding gRPC service:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
-* Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide an instance of `IGreeter`.
+* Expects [dependency injection (DI)](../fundamentals/dependency-injection.md) to provide an instance of `IGreeter`.
 * Can be tested with a mocked `IGreeter` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see <xref:test/integration-tests#introduction-to-integration-tests>.
 
 ## Unit test gRPC services
