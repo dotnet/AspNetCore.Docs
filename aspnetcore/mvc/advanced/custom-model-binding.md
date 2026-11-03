@@ -23,7 +23,7 @@ The default model binders support most of the common .NET Core data types and sh
 
 Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string using <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend creating a type converter or using `TryParse` for a `string` to `SomeType` conversion that doesn't require external resources or multiple inputs.
 
-See [Simple types](../models/model-binding.md#simp7) for a list of types that the model binder can convert from strings.
+For a list of types that the model binder can convert from strings, see [Simple types](../models/model-binding.md#simple-types).
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 

@@ -34,7 +34,7 @@ Model binding goes through the following steps after the routing system selects 
 
 The framework then calls the `GetById` method, passing in 2 for the `id` parameter, and `true` for the `dogsOnly` parameter.
 
-In the preceding example, the model binding targets are method parameters that are [simple](#simp-comp7) types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](../../validation.md) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
+In the preceding example, the model binding targets are method parameters that are [simple](#model-binding-simple-and-complex-types) types. Targets may also be the properties of a complex type. After each property is successfully bound, [model validation](../../validation.md) occurs for that property. The record of what data is bound to the model, and any binding or validation errors, is stored in [ControllerBase.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState) or [PageModel.ModelState](xref:Microsoft.AspNetCore.Mvc.ControllerBase.ModelState). To find out if this process was successful, the app checks the [ModelState.IsValid](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary.IsValid) flag.
 
 ## Targets
 
@@ -79,7 +79,7 @@ By default, model binding gets data in the form of key-value pairs from the foll
 
 For each target parameter or property, the sources are scanned in the order indicated in the preceding list. There are a few exceptions:
 
-* Route data and query string values are used only for [simple](#simp-comp7) types.
+* Route data and query string values are used only for [simple](#model-binding-simple-and-complex-types) types.
 * Uploaded files are bound only to target types that implement `IFormFile` or `IEnumerable<IFormFile>`.
 
 If the default source is not correct, use one of the following attributes to specify the source:
@@ -139,7 +139,7 @@ The preceding code puts the custom value provider after all built-in value provi
 
 By default, a model state error isn't created if no value is found for a model property. The property is set to null or a default value:
 
-* Nullable [simple](#simp-comp7) types are set to `null`.
+* Nullable [simple](#model-binding-simple-and-complex-types) types are set to `null`.
 * Non-nullable value types are set to `default(T)`. For example, a parameter `int id` is set to 0.
 * For complex Types, model binding creates an instance by using the default constructor, without setting properties.
 * Arrays are set to `Array.Empty<T>()`, except that `byte[]` arrays are set to `null`.
@@ -164,7 +164,7 @@ The same strategy is recommended if you don't want type conversion errors to res
 
 ## Simple types
 
-See [Model binding simple and complex types](#simp-comp7) for explanation of simple and complex types.
+See [Model binding simple and complex types](#model-binding-simple-and-complex-types) for explanation of simple and complex types.
 
 The simple types that the model binder can convert source strings into include the following:
 
@@ -230,7 +230,7 @@ public static bool TryParse(string value, T out result);
 public static bool TryParse(string value, IFormatProvider provider, T out result);
 ```
 
-[`IParsable<T>.TryParse`](#itp7) is the recommended approach for parameter binding because unlike `TryParse`, it doesn't depend on reflection.
+[`IParsable<T>.TryParse`](#bind-with-iparsablettryparse) is the recommended approach for parameter binding because unlike `TryParse`, it doesn't depend on reflection.
 
 The following `DateRangeTP` class implements `TryParse`:
 

@@ -28,7 +28,7 @@ Nullable page or view models are supported to improve the experience when using 
 
 ### Bind with `IParsable<T>.TryParse` in MVC and API Controllers
 
-The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](../mvc/models/model-binding.md#itp7).
+The <xref:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)?displayProperty=nameWithType> API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](../mvc/models/model-binding.md#bind-with-iparsablettryparse).
 
 ### Customize the cookie consent value
 
