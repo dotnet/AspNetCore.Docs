@@ -47,7 +47,7 @@ h1 {
 
 ## CSS isolation bundling
 
-CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)). The following `<link>` element is added to an app created from the Blazor project templates:
+CSS isolation occurs at build time. Blazor rewrites CSS selectors to match markup rendered by the component. The rewritten CSS styles are bundled and produced as a static asset. The stylesheet is referenced inside the `<head>` tag ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)). The following `<link>` element is added to an app created from the Blazor project templates:
 
 :::moniker range=">= aspnetcore-9.0"
 

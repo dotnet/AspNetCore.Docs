@@ -219,4 +219,4 @@ As a workaround in .NET 8, you can add the `_ExtraTrimmerArgs` MSBuild property 
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
 * [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming)
-* <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>
+* [ASP.NET Core Blazor app download size performance best practices](../performance/app-download-size.md#intermediate-language-il-trimming)

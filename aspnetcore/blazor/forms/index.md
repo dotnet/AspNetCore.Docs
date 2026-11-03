@@ -369,7 +369,7 @@ For forms based on the HTML `<form>` element, manually add the <xref:Microsoft.A
 > @attribute [RequireAntiforgeryToken(required: false)]
 > ```
 
-For more information, see <xref:blazor/security/index#antiforgery-support>.
+For more information, see [ASP.NET Core Blazor authentication and authorization](../security/index.md#antiforgery-support).
 
 :::moniker-end
 
@@ -536,9 +536,9 @@ jQuery validation isn't supported in Razor components. We recommend any of the f
 :::moniker range="< aspnetcore-8.0"
 
 * [ASP.NET Core Blazor file uploads](../file-uploads.md)
-* <xref:blazor/security/webassembly/hosted-with-microsoft-entra-id>
-* <xref:blazor/security/webassembly/hosted-with-azure-active-directory-b2c>
-* <xref:blazor/security/webassembly/hosted-with-identity-server>
+* [Secure a hosted ASP.NET Core Blazor WebAssembly app with Microsoft Entra ID](../security/webassembly/hosted-with-microsoft-entra-id.md)
+* [Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C](../security/webassembly/hosted-with-azure-active-directory-b2c.md)
+* [Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server](../security/webassembly/hosted-with-identity-server.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 * [ASP.NET Core GitHub repository (`dotnet/aspnetcore`) forms test assets](https://github.com/dotnet/aspnetcore/tree/main/src/Components/test/testassets/Components.TestServer/RazorComponents/Pages/Forms)
 

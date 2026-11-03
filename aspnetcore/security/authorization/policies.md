@@ -84,7 +84,7 @@ The fallback policy applies to requests processed by the authorization middlewar
 * Static files served by static file middleware before the authorization middleware aren't protected by the fallback policy.
 * Public endpoints can depend on static assets that must also allow anonymous access.
 
-For more information, see [Static files in ASP.NET Core](../../fundamentals/static-files.md#static-file-authorization) and [Server-side Blazor app authorization patterns](xref:blazor/security/additional-scenarios#server-side-blazor-app-authorization-patterns). Blazor WebAssembly apps don't support a server-side fallback authorization policy. For Blazor WebAssembly authorization patterns, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.
+For more information, see [Static files in ASP.NET Core](../../fundamentals/static-files.md#static-file-authorization) and [Server-side Blazor app authorization patterns](../../blazor/security/additional-scenarios.md#server-side-blazor-app-authorization-patterns). Blazor WebAssembly apps don't support a server-side fallback authorization policy. For Blazor WebAssembly authorization patterns, see [Secure ASP.NET Core Blazor WebAssembly](../../blazor/security/webassembly/index.md#blazor-webassembly-authorization-patterns).
 
 ## Default and fallback policies
 

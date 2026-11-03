@@ -175,13 +175,13 @@ Samples apps in the repository:
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
+* Blazor Web App Movies tutorial sample ([Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md))
+* Blazor Web App with SignalR ([Use ASP.NET Core SignalR with Blazor](../tutorials/signalr-blazor.md))
 * Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs ([Call a web API from an ASP.NET Core Blazor app](../call-web-api.md))
-* Blazor Web App with OIDC (<xref:blazor/security/blazor-web-app-oidc>)
-* Blazor Web App with Entra (<xref:blazor/security/blazor-web-app-entra>)
+* Blazor Web App with OIDC ([Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../security/blazor-web-app-with-oidc.md))
+* Blazor Web App with Entra ([Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../security/blazor-web-app-with-entra.md))
 * Blazor WebAssembly scopes-enabled logging ([ASP.NET Core Blazor logging](logging.md#client-side-log-scopes))
-* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
+* Blazor WebAssembly with ASP.NET Core Identity ([Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../security/webassembly/standalone-with-identity/index.md))
 * .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) ([Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../hybrid/tutorials/maui-blazor-web-app.md))
 * Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
@@ -193,12 +193,12 @@ Samples apps in the repository:
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
+* Blazor Web App Movies tutorial sample ([Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md))
+* Blazor Web App with SignalR ([Use ASP.NET Core SignalR with Blazor](../tutorials/signalr-blazor.md))
 * Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs ([Call a web API from an ASP.NET Core Blazor app](../call-web-api.md))
-* Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
+* Blazor Web App with OIDC (BFF and non-BFF patterns) ([Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../security/blazor-web-app-with-oidc.md))
 * Blazor WebAssembly scopes-enabled logging ([ASP.NET Core Blazor logging](logging.md#client-side-log-scopes))
-* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
+* Blazor WebAssembly with ASP.NET Core Identity ([Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../security/webassembly/standalone-with-identity/index.md))
 * .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) ([Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../hybrid/tutorials/maui-blazor-web-app.md))
 * Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 

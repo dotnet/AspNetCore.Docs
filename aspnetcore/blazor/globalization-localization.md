@@ -178,7 +178,7 @@ Adopting [invariant globalization](#invariant-globalization) only results in usi
 ```
 
 > [!NOTE]
-> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance/app-download-size#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+> [`<BlazorEnableTimeZoneSupport>`](performance/app-download-size.md#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
 
 :::moniker-end
 
@@ -402,15 +402,15 @@ The Intermediate Language (IL) Linker configuration for client-side rendering st
 
 The app's culture can be set in JavaScript when Blazor starts with the `applicationCulture` Blazor start option. The following example configures the app to launch using the United States English (`en-US`) culture.
 
-Prevent Blazor autostart by adding `autostart="false"` to the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script):
+Prevent Blazor autostart by adding `autostart="false"` to the [Blazor `<script>` tag](project-structure.md#location-of-the-blazor-script):
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](project-structure.md#location-of-the-blazor-script).
 
-Add the following `<script>` block after the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) and before the closing `</body>` tag:
+Add the following `<script>` block after the [Blazor `<script>` tag](project-structure.md#location-of-the-blazor-script) and before the closing `</body>` tag:
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
@@ -584,7 +584,7 @@ Set the `BlazorWebAssemblyLoadAllGlobalizationData` property to `true` in the pr
 
 The app's culture for client-side rendering is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage.
 
-Provide JS functions after the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script) to get and set the user's culture selection with browser local storage:
+Provide JS functions after the [Blazor `<script>` tag](project-structure.md#location-of-the-blazor-script) to get and set the user's culture selection with browser local storage:
 
 ```html
 <script>
@@ -1449,7 +1449,7 @@ Add the <xref:System.Globalization?displayProperty=fullName> and <xref:Microsoft
 
 The app's culture for client-side rendering is set using the Blazor framework's API. A user's culture selection can be persisted in browser local storage for CSR components.
 
-After the [Blazor `<script>` tag](xref:blazor/project-structure#location-of-the-blazor-script), provide JS functions to get and set the user's culture selection with browser local storage:
+After the [Blazor `<script>` tag](project-structure.md#location-of-the-blazor-script), provide JS functions to get and set the user's culture selection with browser local storage:
 
 ```html
 <script>

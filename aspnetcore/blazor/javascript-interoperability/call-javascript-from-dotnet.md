@@ -762,7 +762,7 @@ In the preceding example:
   * The path segment for the current directory (`./`) is required in order to create the correct static asset path to the JS file.
   * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and file name under `wwwroot`.
 * Disposes the <xref:Microsoft.JSInterop.IJSObjectReference> for [garbage collection](../components/component-disposal.md#asynchronous-iasyncdisposable) in <xref:System.IAsyncDisposable.DisposeAsync*?displayProperty=nameWithType>.
-* Don't place a `<script>` tag for the script after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
+* Don't place a `<script>` tag for the script after the [Blazor script](../project-structure.md#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
 Dynamically importing a module requires a network request, so it can only be achieved asynchronously by calling <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*>.
 
@@ -1264,7 +1264,7 @@ In the preceding example:
 
 Although a common cause of JS interop failures are network failures with server-side components, per-invocation timeouts can be set for JS interop calls for client-side components. Although no Blazor-SignalR circuit exists for a client-side component, JS interop calls might fail for other reasons that apply.
 
-For more information on resource exhaustion, see <xref:blazor/security/interactive-server-side-rendering>.
+For more information on resource exhaustion, see [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../security/interactive-server-side-rendering.md).
 
 ## Avoid circular object references
 
@@ -1331,7 +1331,7 @@ export function setMapCenter(map, latitude, longitude) {
 
 To produce correct styling, add the following stylesheet tag to the host HTML page.
 
-Add the following `<link>` element to the `<head>` element markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+Add the following `<link>` element to the `<head>` element markup ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
 ```html
 <link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" 
@@ -1892,4 +1892,4 @@ For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS i
 * [`InteropComponent.razor` example (`dotnet/AspNetCore` GitHub repository `main` branch)](https://github.com/dotnet/AspNetCore/blob/main/src/Components/test/testassets/BasicTestApp/InteropComponent.razor): The `main` branch represents the product unit's current development for the next release of ASP.NET Core. To select the branch for a different release (for example, `release/{VERSION}`, where the `{VERSION}` placeholder is the release version), use the **Switch branches or tags** dropdown list to select the branch. For a branch that no longer exists, use the **Tags** tab to find the API (for example, `v7.0.0`).
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 * [Handle errors in ASP.NET Core Blazor apps](../fundamentals/handle-errors.md#javascript-interop) (*JavaScript interop* section)
-* [Threat mitigation: JavaScript functions invoked from .NET](xref:blazor/security/interactive-server-side-rendering#javascript-functions-invoked-from-net)
+* [Threat mitigation: JavaScript functions invoked from .NET](../security/interactive-server-side-rendering.md#javascript-functions-invoked-from-net)

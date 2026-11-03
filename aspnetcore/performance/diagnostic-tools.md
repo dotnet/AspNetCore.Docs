@@ -10,7 +10,7 @@ By [Mike Rousos](https://github.com/mjrousos)
 
 This article lists tools for diagnosing performance issues in ASP.NET Core.
 
-For information on Blazor WebAssembly performance diagnostic tools and counters, see <xref:blazor/performance/webassembly-browser-developer-tools> and <xref:blazor/performance/webassembly-event-pipe>.
+For information on Blazor WebAssembly performance diagnostic tools and counters, see [ASP.NET Core Blazor WebAssembly browser developer tools diagnostics](../blazor/performance/webassembly-browser-developer-tools-diagnostics.md) and [ASP.NET Core Blazor WebAssembly Event Pipe diagnostics](../blazor/performance/webassembly-event-pipe-diagnostics.md).
 
 ## Visual Studio Diagnostic Tools
 

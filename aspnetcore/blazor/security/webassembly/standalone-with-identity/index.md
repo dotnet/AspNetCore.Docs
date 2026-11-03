@@ -3,7 +3,6 @@ title: Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 description: Learn how to secure Blazor WebAssembly apps with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-identity/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -83,8 +82,8 @@ At this point, you must provide custom code to parse the <xref:Microsoft.AspNetC
 
 Scenarios covered by the Blazor documentation set:
 
-* [Account confirmation, password management, and recovery codes](xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery)
-* [Two-factor authentication (2FA) with a TOTP authenticator app](xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps)
+* [Account confirmation, password management, and recovery codes](account-confirmation-and-password-recovery.md)
+* [Two-factor authentication (2FA) with a TOTP authenticator app](qrcodes-for-authenticator-apps.md)
 
 For information on additional Identity scenarios provided by the API, see [Use Identity to secure a Web API backend for SPAs](../../../../security/authentication/identity-api-authorization.md):
 
@@ -213,9 +212,9 @@ The [`CookieHandler` class (`Identity/CookieHandler.cs`)](https://github.com/dot
 
 The [`wwwroot/appsettings.file`](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/wwwroot/appsettings.json) provides backend and frontend URL endpoints.
 
-The [`App` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/App.razor) exposes the authentication state as a cascading parameter. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter>.
+The [`App` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/App.razor) exposes the authentication state as a cascading parameter. For more information, see [ASP.NET Core Blazor authentication and authorization](../../index.md#expose-the-authentication-state-as-a-cascading-parameter).
 
-The [`MainLayout` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/MainLayout.razor) and [`NavMenu` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/NavMenu.razor) use the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to selectively display content based on the user's authentication status.
+The [`MainLayout` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/MainLayout.razor) and [`NavMenu` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/NavMenu.razor) use the [`AuthorizeView` component](../../index.md#authorizeview-component) to selectively display content based on the user's authentication status.
 
 The following components handle common user authentication tasks, making use of `IAccountManagement` services:
 
@@ -239,9 +238,9 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > [!WARNING]
 > The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI content depending on whether the user is authorized. All content within a Blazor WebAssembly app placed in an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component is discoverable without authentication, so sensitive content should be obtained from a backend server-based web API after authentication succeeds. For more information, see the following resources:
 >
-> * <xref:blazor/security/index#authorizeview-component>
+> * [ASP.NET Core Blazor authentication and authorization](../../index.md#authorizeview-component)
 > * [Call a web API from an ASP.NET Core Blazor app](../../../call-web-api.md)
-> * <xref:blazor/security/webassembly/additional-scenarios>
+> * [ASP.NET Core Blazor WebAssembly additional security scenarios](../additional-scenarios.md)
 
 ## Test user seeding demonstration
 
@@ -302,7 +301,7 @@ Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetC
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 
-Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and [ASP.NET Core Blazor forms overview](../../../forms/index.md#antiforgery-support).
+Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see [ASP.NET Core Blazor authentication and authorization](../../index.md#antiforgery-support) and [ASP.NET Core Blazor forms overview](../../../forms/index.md#antiforgery-support).
 
 Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](../../../../security/cors.md) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
@@ -428,5 +427,5 @@ To troubleshoot problems with user claims, the following `UserClaims` component 
 
 ## Related content
 
-* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
+* [`AuthenticationStateProvider` service](../../index.md#authenticationstateprovider-service)
 * [Client-side SignalR cross-origin negotiation for authentication](../../../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)

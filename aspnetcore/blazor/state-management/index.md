@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor state management overview
 description: Learn how to persist user data (state) in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/state-management/index
 ---
 # ASP.NET Core Blazor state management overview
 

@@ -352,7 +352,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 > [!NOTE]
 > Only browser debugging is supported.
 >
-> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](../tutorials/dotnet-watch.md).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](tooling.md#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](../tutorials/dotnet-watch.md).
 
 Publishing an app disables debugger support. To debug a published, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** project's project file:
 

@@ -5,7 +5,6 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 07/06/2026
-uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
@@ -1171,7 +1170,7 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 
 ## Weather data security
 
-For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 ## Host in a web farm or cluster
 
@@ -1230,11 +1229,11 @@ For more information, see [Access tokens in the Microsoft identity platform: Tok
 * [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
-* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
+* [`AuthenticationStateProvider` service](index.md#authenticationstateprovider-service)
+* [Manage authentication state in Blazor Web Apps](index.md#manage-authentication-state-in-blazor-web-apps)
 * [Service abstractions in Blazor Web Apps](../call-web-api.md#service-abstractions-for-web-api-calls)
 * Data Protection resources
   * [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
   * [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
   * [Key encryption at rest in Windows and Azure using ASP.NET Core](../../security/data-protection/implementation/key-encryption-at-rest.md)
-* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
+* [Opaque (reference) access token support](additional-scenarios.md#opaque-reference-access-token-support)

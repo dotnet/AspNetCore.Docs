@@ -28,7 +28,7 @@ Claim-based authorization checks:
 * Are declarative and specify claims via policies that the current user must present to access the requested resource.
 * Are applied to Razor components (examples in this article), [Razor Pages](../../razor-pages/security/authorization/claims.md), or [MVC controllers or actions within a controller](../../mvc/security/authorization/claims.md).
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *policy-based* authorization, where the policy requires one or more claims. Alternatively, a claims-based authorization via one or more policy checks can be set up using [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in Razor components. The developer must build and register a policy expressing the claims requirements. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](../../blazor/security/index.md#authorizeview-component)) supports *policy-based* authorization, where the policy requires one or more claims. Alternatively, a claims-based authorization via one or more policy checks can be set up using [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) in Razor components. The developer must build and register a policy expressing the claims requirements. This section covers basic concepts. For complete coverage, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md).
 
 The simplest type of claim policy looks for the presence of a claim and doesn't check the value.
 
@@ -346,11 +346,11 @@ In practice, this distinction rarely matters for role authorization because the 
 
 ## Related content
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/authentication-state>
-* <xref:blazor/security/webassembly/additional-scenarios>
-* <xref:blazor/security/webassembly/graph-api#customize-user-claims-using-the-graph-sdk>
-* <xref:blazor/security/webassembly/index#establish-claims-for-users>
+* [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md)
+* [ASP.NET Core Blazor authentication state](../../blazor/security/authentication-state.md)
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](../../blazor/security/webassembly/additional-scenarios.md)
+* [Use Graph API with ASP.NET Core Blazor WebAssembly](../../blazor/security/webassembly/graph-api.md#customize-user-claims-using-the-graph-sdk)
+* [Secure ASP.NET Core Blazor WebAssembly](../../blazor/security/webassembly/index.md#establish-claims-for-users)
 * [Claim-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/claims.md)
 * [Claim-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/claims.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

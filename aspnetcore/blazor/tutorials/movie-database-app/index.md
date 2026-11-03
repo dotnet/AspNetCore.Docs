@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Overview)
 description: This tutorial explains the basics of building a Blazor Web App with a database, Entity Framework (EF) Core, and user interactivity.
 ms.date: 11/11/2025
 monikerRange: '>= aspnetcore-8.0'
-uid: blazor/tutorials/movie-database-app/index
 ---
 # Build a Blazor movie database app (Overview)
 
@@ -13,23 +12,23 @@ This tutorial explains the basics of building a Blazor Web App with a database, 
 
 Parts of this series include:
 
-1. [Create a Blazor Web App](xref:blazor/tutorials/movie-database-app/part-1)
-1. [Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
-1. [Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)
-1. [Work with a database](xref:blazor/tutorials/movie-database-app/part-4)
-1. [Add validation](xref:blazor/tutorials/movie-database-app/part-5)
-1. [Add search](xref:blazor/tutorials/movie-database-app/part-6)
-1. [Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
-1. [Add interactivity](xref:blazor/tutorials/movie-database-app/part-8)
+1. [Create a Blazor Web App](part-1.md)
+1. [Add and scaffold a model](part-2.md)
+1. [Learn about Razor components](part-3.md)
+1. [Work with a database](part-4.md)
+1. [Add validation](part-5.md)
+1. [Add search](part-6.md)
+1. [Add a new field](part-7.md)
+1. [Add interactivity](part-8.md)
 
 At the end of the tutorial, you'll have a Blazor Web App that can display and manage movies in a movie database.
 
 ## Secure authentication flow required for production apps
 
-This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see <xref:blazor/security/index> and the following articles in the *Server* security node:
+This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see [ASP.NET Core Blazor authentication and authorization](../../security/index.md) and the following articles in the *Server* security node:
 
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/blazor-web-app-entra>
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../security/blazor-web-app-with-oidc.md)
+* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../security/blazor-web-app-with-entra.md)
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
@@ -83,4 +82,4 @@ For general questions about .NET and Blazor beyond the tutorial and reference do
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Create a Blazor Web App](xref:blazor/tutorials/movie-database-app/part-1)
+> [Next: Create a Blazor Web App](part-1.md)

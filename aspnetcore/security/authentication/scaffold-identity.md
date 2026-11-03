@@ -25,7 +25,7 @@ Although the scaffolder generates the necessary C# code to scaffold Identity int
 
 After running the Identity scaffolder, inspect the changes. Use GitHub or another source control system that shows file changes with a revert changes feature.
 
-Services are required when using [two-factor authentication (2FA)](xref:blazor/security/qrcodes-for-authenticator-apps), [account confirmation and password recovery](xref:blazor/security/account-confirmation-and-password-recovery), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
+Services are required when using [two-factor authentication (2FA)](../../blazor/security/qrcodes-for-authenticator-apps.md), [account confirmation and password recovery](../../blazor/security/account-confirmation-and-password-recovery.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
 
 ## Razor Pages and MVC Identity scaffolding
 
@@ -170,7 +170,7 @@ The update database command runs the `Up` method migrations that aren't applied 
 
 Client-side Blazor apps (Standalone Blazor WebAssembly) use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Scaffold Identity into a Razor project without existing authorization
 
@@ -552,7 +552,7 @@ Client-side Blazor apps use their own Identity UI approaches and can't use ASP.N
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Create full Identity UI source
 <!-- remove AllowAreas  #23280 -->
@@ -834,7 +834,7 @@ Client-side Blazor apps use their own Identity UI approaches and can't use ASP.N
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Create full Identity UI source
 <!-- remove AllowAreas  #23280 -->

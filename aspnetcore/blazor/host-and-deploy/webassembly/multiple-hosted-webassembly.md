@@ -64,7 +64,7 @@ The preceding configurations are beyond the scope of this article. For more info
 * [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md)
 * [Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions](../../components/integration-hosted-webassembly.md)
 
-Use an existing hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](xref:blazor/tooling) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
+Use an existing hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln) or create a [new hosted Blazor WebAssembly solution](../../tooling.md) from the Blazor WebAssembly project template by passing the `-ho|--hosted` option if using the .NET CLI or selecting the **ASP.NET Core Hosted** checkbox in Visual Studio when the project is created in the IDE.
 
 Use a folder for the solution named `MultipleBlazorApps` and name the project `MultipleBlazorApps`.
 

@@ -365,7 +365,7 @@ items:
               - name: Examine Details and Delete
                 href: tutorials/first-mvc-app/details.md
           - name: Blazor
-            uid: blazor/tutorials/index
+            href: blazor/tutorials/index.md
       - name: APIs
         items:
         - name: Minimal APIs
@@ -400,7 +400,7 @@ items:
             href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
             displayName: tutorial
-            uid: blazor/tutorials/signalr-blazor
+            href: blazor/tutorials/signalr-blazor.md
       - name: Remote Procedure Call apps
         items:
           - name: Get started with a gRPC service
@@ -679,43 +679,43 @@ items:
           - name: Overview
             href: blazor/index.md
           - name: Supported platforms
-            uid: blazor/supported-platforms
+            href: blazor/supported-platforms.md
           - name: Tooling
-            uid: blazor/tooling
+            href: blazor/tooling.md
           - name: WebAssembly tooling and AOT
-            uid: blazor/tooling/webassembly
+            href: blazor/webassembly-build-tools-and-aot.md
           - name: Hosting models
             href: blazor/hosting-models.md
           - name: Tutorials
             items:
               - name: Overview
-                uid: blazor/tutorials/index
+                href: blazor/tutorials/index.md
               - name: Build your first Blazor app
                 href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
               - name: Build a Blazor todo list app
-                uid: blazor/tutorials/build-a-blazor-app
+                href: blazor/tutorials/build-a-blazor-app.md
               - name: Build a Blazor movie database app
                 items:
                   - name: Overview
-                    uid: blazor/tutorials/movie-database-app/index
+                    href: blazor/tutorials/movie-database-app/index.md
                   - name: Create a Blazor Web App
-                    uid: blazor/tutorials/movie-database-app/part-1
+                    href: blazor/tutorials/movie-database-app/part-1.md
                   - name: Add and scaffold a model
-                    uid: blazor/tutorials/movie-database-app/part-2
+                    href: blazor/tutorials/movie-database-app/part-2.md
                   - name: Learn about Razor components
-                    uid: blazor/tutorials/movie-database-app/part-3
+                    href: blazor/tutorials/movie-database-app/part-3.md
                   - name: Work with a database
-                    uid: blazor/tutorials/movie-database-app/part-4
+                    href: blazor/tutorials/movie-database-app/part-4.md
                   - name: Add validation
-                    uid: blazor/tutorials/movie-database-app/part-5
+                    href: blazor/tutorials/movie-database-app/part-5.md
                   - name: Add search
-                    uid: blazor/tutorials/movie-database-app/part-6
+                    href: blazor/tutorials/movie-database-app/part-6.md
                   - name: Add a new field
-                    uid: blazor/tutorials/movie-database-app/part-7
+                    href: blazor/tutorials/movie-database-app/part-7.md
                   - name: Add interactivity
-                    uid: blazor/tutorials/movie-database-app/part-8
+                    href: blazor/tutorials/movie-database-app/part-8.md
               - name: SignalR with Blazor
-                uid: blazor/tutorials/signalr-blazor
+                href: blazor/tutorials/signalr-blazor.md
               - name: Learn modules
                 href: /training/paths/build-web-apps-with-blazor/
           - name: Blazor Hybrid
@@ -761,7 +761,7 @@ items:
               - name: Troubleshoot
                 href: blazor/hybrid/troubleshoot.md
           - name: Project structure
-            uid: blazor/project-structure
+            href: blazor/project-structure.md
           - name: Fundamentals
             items:
               - name: Overview
@@ -893,107 +893,107 @@ items:
           - name: Security and Identity
             items:
               - name: Overview
-                uid: blazor/security/index
+                href: blazor/security/index.md
               - name: Authentication state
-                uid: blazor/security/authentication-state
+                href: blazor/security/authentication-state.md
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
-                    uid: blazor/security/webassembly/index
+                    href: blazor/security/webassembly/index.md
                   - name: Standalone with Identity
                     items:
                       - name: Overview
-                        uid: blazor/security/webassembly/standalone-with-identity/index
+                        href: blazor/security/webassembly/standalone-with-identity/index.md
                       - name: Account confirmation and password recovery
-                        uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
+                        href: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md
                       - name: QR codes with TOTP
-                        uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
+                        href: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps.md
                   - name: Standalone with Authentication library
-                    uid: blazor/security/webassembly/standalone-with-authentication-library
+                    href: blazor/security/webassembly/standalone-with-authentication-library.md
                   - name: Standalone with Microsoft Accounts
-                    uid: blazor/security/webassembly/standalone-with-microsoft-accounts
+                    href: blazor/security/webassembly/standalone-with-microsoft-accounts.md
                   - name: Standalone with ME-ID
-                    uid: blazor/security/webassembly/standalone-with-microsoft-entra-id
+                    href: blazor/security/webassembly/standalone-with-microsoft-entra-id.md
                   - name: Standalone with AAD B2C
-                    uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
+                    href: blazor/security/webassembly/standalone-with-azure-active-directory-b2c.md
                   - name: Hosted with ME-ID
-                    uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
+                    href: blazor/security/webassembly/hosted-with-microsoft-entra-id.md
                   - name: Hosted with AAD B2C
-                    uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
+                    href: blazor/security/webassembly/hosted-with-azure-active-directory-b2c.md
                   - name: Hosted with Identity Server
-                    uid: blazor/security/webassembly/hosted-with-identity-server
+                    href: blazor/security/webassembly/hosted-with-identity-server.md
                   - name: Additional scenarios
-                    uid: blazor/security/webassembly/additional-scenarios
+                    href: blazor/security/webassembly/additional-scenarios.md
                   - name: ME-ID groups and roles
-                    uid: blazor/security/webassembly/meid-groups-roles
+                    href: blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md
                   - name: ME-ID groups and roles
-                    uid: blazor/security/webassembly/meid-groups-roles-net5to7
+                    href: blazor/security/webassembly/microsoft-entra-id-groups-and-roles-net-5-to-7.md
                   - name: Graph API
-                    uid: blazor/security/webassembly/graph-api
+                    href: blazor/security/webassembly/graph-api.md
               - name: Blazor Web App with Entra
-                uid: blazor/security/blazor-web-app-entra
+                href: blazor/security/blazor-web-app-with-entra.md
               - name: Blazor Web App with OIDC
-                uid: blazor/security/blazor-web-app-oidc
+                href: blazor/security/blazor-web-app-with-oidc.md
               - name: Blazor Web App with Windows Auth
-                uid: blazor/security/blazor-web-app-windows-authentication
+                href: blazor/security/blazor-web-app-with-windows-authentication.md
               - name: Static server-side rendering threats
-                uid: blazor/security/static-server-side-rendering
+                href: blazor/security/static-server-side-rendering.md
               - name: Interactive server-side rendering threats
-                uid: blazor/security/interactive-server-side-rendering
+                href: blazor/security/interactive-server-side-rendering.md
               - name: Account confirmation and password recovery
-                uid: blazor/security/account-confirmation-and-password-recovery
+                href: blazor/security/account-confirmation-and-password-recovery.md
               - name: QR codes with TOTP
-                uid: blazor/security/qrcodes-for-authenticator-apps
+                href: blazor/security/qrcodes-for-authenticator-apps.md
               - name: Content Security Policy
-                uid: blazor/security/content-security-policy
+                href: blazor/security/content-security-policy.md
               - name: EU General Data Protection Regulation (GDPR) support
-                uid: blazor/security/gdpr
+                href: blazor/security/gdpr.md
               - name: Server-side and Blazor Web App additional scenarios
-                uid: blazor/security/additional-scenarios
+                href: blazor/security/additional-scenarios.md
           - name: State management
             items:
               - name: Overview
-                uid: blazor/state-management/index
+                href: blazor/state-management/index.md
               - name: Prerendered state persistence
-                uid: blazor/state-management/prerendered-state-persistence
+                href: blazor/state-management/prerendered-state-persistence.md
               - name: Server
-                uid: blazor/state-management/server
+                href: blazor/state-management/server.md
               - name: WebAssembly
-                uid: blazor/state-management/webassembly
+                href: blazor/state-management/webassembly.md
               - name: Protected browser storage
-                uid: blazor/state-management/protected-browser-storage
+                href: blazor/state-management/protected-browser-storage.md
           - name: Debug
             href: blazor/debug.md
           - name: Lazy load assemblies with WebAssembly
-            uid: blazor/webassembly-lazy-load-assemblies
+            href: blazor/webassembly-lazy-load-assemblies.md
           - name: WebAssembly native dependencies
-            uid: blazor/webassembly-native-dependencies
+            href: blazor/webassembly-native-dependencies.md
           - name: Blazor with .NET on Web Workers
             href: blazor/blazor-with-dotnet-on-web-workers.md
           - name: Performance
             items:
               - name: Overview
-                uid: blazor/performance/index
+                href: blazor/performance/index.md
               - name: Rendering speed
-                uid: blazor/performance/rendering
+                href: blazor/performance/rendering.md
               - name: App download size
-                uid: blazor/performance/app-download-size
+                href: blazor/performance/app-download-size.md
               - name: JavaScript interop
-                uid: blazor/performance/js-interop
+                href: blazor/performance/javascript-interoperability.md
               - name: WebAssembly runtime performance
-                uid: blazor/performance/webassembly-runtime-performance
+                href: blazor/performance/webassembly-runtime-performance.md
               - name: WebAssembly browser developer tools diagnostics
-                uid: blazor/performance/webassembly-browser-developer-tools
+                href: blazor/performance/webassembly-browser-developer-tools-diagnostics.md
               - name: WebAssembly Event Pipe diagnostics
-                uid: blazor/performance/webassembly-event-pipe
+                href: blazor/performance/webassembly-event-pipe-diagnostics.md
           - name: Test components
-            uid: blazor/test
+            href: blazor/test.md
           - name: Progressive Web Applications
             items:
               - name: Overview
-                uid: blazor/progressive-web-app/index
+                href: blazor/progressive-web-app/index.md
               - name: Push notifications
-                uid: blazor/progressive-web-app/push-notifications
+                href: blazor/progressive-web-app/push-notifications.md
           - name: Host and deploy
             items:
               - name: Overview
@@ -1257,7 +1257,7 @@ items:
           - name: SignalR with TypeScript
             href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
-            uid: blazor/tutorials/signalr-blazor
+            href: blazor/tutorials/signalr-blazor.md
       - name: Samples
         displayName: signalr
         items:
@@ -1709,7 +1709,7 @@ items:
       - name: Test Minimal API
         href: fundamentals/minimal-apis/test-min-api.md
       - name: Blazor tests
-        uid: blazor/test
+        href: blazor/test.md
       - name: Razor Pages unit tests
         href: test/razor-pages-tests.md
       - name: MVC controllers unit tests

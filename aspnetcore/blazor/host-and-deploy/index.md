@@ -17,7 +17,7 @@ Apps are published for deployment in Release configuration.
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Publish a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) from the **:::no-loc text="Server":::** project.
+> Publish a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln) from the **:::no-loc text="Server":::** project.
 
 :::moniker-end
 
@@ -98,7 +98,7 @@ Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazo
 
 One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](../hosting-models.md#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
 
-For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
+For more information on *solutions*, see [Tooling for ASP.NET Core Blazor](../tooling.md#visual-studio-solution-file-sln).
 
 :::moniker-end
 

@@ -4,7 +4,6 @@ description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app wi
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.custom: linux-related-content
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/hosted-with-identity-server
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Identity Server
 
@@ -20,9 +19,9 @@ This article explains how to create a [hosted Blazor WebAssembly solution](../..
 :::moniker-end
 
 > [!NOTE]
-> To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in <xref:blazor/security/webassembly/standalone-with-authentication-library>.
+> To configure a standalone or hosted Blazor WebAssembly app to use an existing, external Identity Server instance, follow the guidance in [Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library](standalone-with-authentication-library.md).
 
-For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Walkthrough
 
@@ -601,9 +600,9 @@ JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Remove("role");
 
 In the **:::no-loc text="Client":::** app, component authorization approaches are functional at this point. Any of the authorization mechanisms in components can use a role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
-* [Procedural logic](xref:blazor/security/index#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
+* [`AuthorizeView` component](../index.md#authorizeview-component) (Example: `<AuthorizeView Roles="Admin">`)
+* [`[Authorize]` attribute directive](../index.md#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>) (Example: `@attribute [Authorize(Roles = "Admin")]`)
+* [Procedural logic](../index.md#procedural-logic) (Example: `if (user.IsInRole("Admin")) { ... }`)
 
   Multiple role tests are supported:
 
@@ -729,8 +728,8 @@ Get-ChildItem -path Cert:\CurrentUser\My -Recurse | Format-List DnsNameList, Sub
 
 * [Deployment to Azure App Service](../../../security/authentication/identity-api-authorization.md#deploy-to-production)
 * [Import a certificate from Key Vault (Azure documentation)](/azure/app-service/configure-ssl-certificate#import-a-certificate-from-key-vault)
-* <xref:blazor/security/webassembly/additional-scenarios>
-* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md): Includes guidance on:
   * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.

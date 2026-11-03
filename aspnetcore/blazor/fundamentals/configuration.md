@@ -246,7 +246,7 @@ Provide ***public*** authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library):
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](../security/webassembly/standalone-with-authentication-library.md):
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -296,12 +296,12 @@ var hostname = builder.Configuration["HostName"];
 
 ## Cached configuration
 
-Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app/index), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](../progressive-web-app/index.md), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
 * Users have cached versions of the files that they continue to use.
 * The PWA's `service-worker.js` and `service-worker-assets.js` files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
-For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app/index#background-updates>.
+For more information on how background updates are handled by PWAs, see [ASP.NET Core Blazor Progressive Web Application (PWA)](../progressive-web-app/index.md#background-updates).
 
 ## Options configuration
 

@@ -19,7 +19,7 @@ Server-side Blazor apps can accept [Generic Host configuration values](../../../
 
 Using a server-side hosting model, Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](../../../signalr/introduction.md) connection.
 
-A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes a server-side app project template. For more information on Blazor project templates, see <xref:blazor/project-structure>.
+A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes a server-side app project template. For more information on Blazor project templates, see [ASP.NET Core Blazor project structure](../../project-structure.md).
 
 Publish an app in Release configuration and deploy the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
@@ -32,8 +32,8 @@ When considering the scalability of a single server (scale up), the memory avail
 
 For guidance on building secure and scalable server-side Blazor apps, see the following resources:
 
-* <xref:blazor/security/static-server-side-rendering>
-* <xref:blazor/security/interactive-server-side-rendering>
+* [Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering](../../security/static-server-side-rendering.md)
+* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../security/interactive-server-side-rendering.md)
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 

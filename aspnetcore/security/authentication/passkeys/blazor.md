@@ -244,7 +244,7 @@ In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink`
 
 ## Include the JavaScript file
 
-In the `App` component (`Components/App.razor`), locate the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) tag:
+In the `App` component (`Components/App.razor`), locate the [Blazor script](../../../blazor/project-structure.md#location-of-the-blazor-script) tag:
 
 ```razor
 <script src="@Assets["_framework/blazor.web.js"]"></script>

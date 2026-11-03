@@ -40,7 +40,7 @@ To use a custom `web.config` file:
 
 :::moniker range="< aspnetcore-8.0"
 
-1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
+1. Place the custom `web.config` file in the project's root folder. For a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln), place the file in the **:::no-loc text="Server":::** project's folder.
 1. Publish the project. For a hosted Blazor WebAssembly solution, publish the solution from the **:::no-loc text="Server":::** project. For more information, see [Host and deploy ASP.NET Core Blazor](../index.md).
 
 :::moniker-end

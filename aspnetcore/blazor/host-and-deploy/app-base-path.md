@@ -133,23 +133,23 @@ To provide configuration for the Blazor app's base path of `https://www.contoso.
 
 By configuring the app base path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component handles the internal navigation.
 
-Place the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
+Place the `<base>` tag in `<head>` markup ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
 
 :::moniker range=">= aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
+In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](../project-structure.md#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](../project-structure.md#location-of-head-and-body-content).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following in [`<head>` content](../project-structure.md#location-of-head-and-body-content):
 
 * Blazor Server: `~/` configured as `<base href="~/" />`.
 * Blazor WebAssembly: `/` configured as `<base href="/" />`.
@@ -163,7 +163,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
 :::moniker range=">= aspnetcore-11.0"
 
-  * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+  * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
     ```razor
     <BasePath />
@@ -175,7 +175,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
 :::moniker range="< aspnetcore-11.0"
 
-  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
     ```html
     <base href="/CoolApp/">
@@ -308,7 +308,7 @@ Add the app settings file to the app. The following example is for the `Staging`
 }
 ```
 
-In a server-side Blazor app, load the base path from configuration in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+In a server-side Blazor app, load the base path from configuration in [`<head>` content](../project-structure.md#location-of-head-and-body-content):
 
 ```razor
 @inject IConfiguration Config

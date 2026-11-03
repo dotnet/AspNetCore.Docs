@@ -73,7 +73,7 @@ At the end of this tutorial, you'll have a working Razor Pages web app that you'
 
   A *.vscode* directory, containing `launch.json` and `tasks.json` files, is added to the project's root directory.
 
-  If Visual Studio Code doesn't offer to add the assets automatically, see the **Linux** operating system guidance in <xref:blazor/tooling?pivot=linux>.
+  If Visual Studio Code doesn't offer to add the assets automatically, see the **Linux** operating system guidance in [Tooling for ASP.NET Core Blazor](../../../../blazor/tooling.md?pivot=linux).
 
 # [Visual Studio for Mac](#tab/visual-studio-mac)
 

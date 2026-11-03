@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to persist user data (state) in Blazor apps using Blazor's Persistent Component State service.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 08/20/2026
-uid: blazor/state-management/prerendered-state-persistence
 ---
 # ASP.NET Core Blazor prerendered state persistence
 
@@ -40,7 +39,7 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 To persist prerendered state using the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service, apply the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to `public` properties. The state is retrieved when the component renders interactively or the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service is instantiated.
 
-Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](xref:blazor/performance/app-download-size#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
+Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](../performance/app-download-size.md#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
 By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../host-and-deploy/configure-trimmer.md).
 
@@ -486,14 +485,14 @@ protected override async Task OnInitializedAsync()
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](xref:blazor/state-management/server#automatic-circuit-pause-on-tab-inactivity).
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](server.md#circuit-state-persistence) when the circuit pauses, including an automatic pause caused by [tab inactivity](server.md#automatic-circuit-pause-on-tab-inactivity).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](xref:blazor/state-management/server#circuit-state-persistence) when the circuit pauses.
+> <xref:Microsoft.AspNetCore.Components.PersistentStateAttribute.AllowUpdates?displayProperty=nameWithType> doesn't control whether the current property value is captured by [circuit state persistence](server.md#circuit-state-persistence) when the circuit pauses.
 
 :::moniker-end
 

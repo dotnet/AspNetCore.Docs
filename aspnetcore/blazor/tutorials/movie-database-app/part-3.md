@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/15/2026
-uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
@@ -848,7 +847,7 @@ If there's a concurrency exception and the movie entity no longer exists at the 
 -->
 
 > [!NOTE]
-> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
+> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of [Build a Blazor movie database app (Part 4 - Work with a database)](part-4.md), which is the next article in this tutorial.
 
 :::moniker-end
 
@@ -886,5 +885,5 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
-> [Next: Work with a database](xref:blazor/tutorials/movie-database-app/part-4)
+> [Previous: Add and scaffold a model](part-2.md)
+> [Next: Work with a database](part-4.md)

@@ -3,7 +3,6 @@ title: Enforce a Content Security Policy for ASP.NET Core Blazor
 description: Learn how to use a Content Security Policy (CSP) with ASP.NET Core Blazor apps to help protect against Cross-Site Scripting (XSS) attacks.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/18/2026
-uid: blazor/security/content-security-policy
 ---
 # Enforce a Content Security Policy for ASP.NET Core Blazor
 
@@ -149,7 +148,7 @@ To use a `<meta>` tag to apply the policy:
 
 * Set the value of the `http-equiv` attribute to `Content-Security-Policy`.
 * Place the directives in the `content` attribute value. Separate directives with a semicolon (`;`). An ending semicolon for the last directive of the policy string isn't required per the [Content Security Policy Level 3 specification](https://www.w3.org/TR/CSP3/).
-* Place the `<meta>` tag in the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content) just inside the opening `<head>` tag. The policy is evaluated and enforced when the CSP markup is parsed, so the policy should appear at the top of `<head>` markup to ensure that it's enforced on all `<script>` and `<link>` tags.
+* Place the `<meta>` tag in the [`<head>` content](../project-structure.md#location-of-head-and-body-content) just inside the opening `<head>` tag. The policy is evaluated and enforced when the CSP markup is parsed, so the policy should appear at the top of `<head>` markup to ensure that it's enforced on all `<script>` and `<link>` tags.
 
 The following sections show example policies. These examples are versioned with this article for each release of Blazor. To use a version appropriate for your release, select the document version with the **Version** dropdown selector on this webpage.
 
@@ -186,7 +185,7 @@ For more information, see [CSP: frame-ancestors (MDN documentation)](https://dev
 
 ### Server-side Blazor apps
 
-The following example is a starting point for further development. At the top of [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the [*Policy directives*](#policy-directives) section, along with any other directives that your app specification requires.
+The following example is a starting point for further development. At the top of [`<head>` content](../project-structure.md#location-of-head-and-body-content), apply the directives described in the [*Policy directives*](#policy-directives) section, along with any other directives that your app specification requires.
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -315,7 +314,7 @@ For guidance on applying a CSP to an app in C# code at startup, see [ASP.NET Cor
 
 ### Client-side Blazor apps
 
-The following example is a starting point for further development. In the [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
+The following example is a starting point for further development. In the [`<head>` content](../project-structure.md#location-of-head-and-body-content), apply the directives described in the *Policy directives* section:
 
 :::moniker range=">= aspnetcore-8.0"
 

@@ -3,7 +3,6 @@ title: Tooling for ASP.NET Core Blazor
 description: Learn about the tools available to build Blazor apps and how to use them.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tooling
 zone_pivot_groups: tooling
 ---
 # Tooling for ASP.NET Core Blazor
@@ -242,9 +241,9 @@ Example for a project folder of :::no-loc text="Server"::: and that spawns Micro
 In the preceding argument:
 
 * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
-* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
+* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](project-structure.md).
 
-The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
+The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](tutorials/signalr-blazor.md) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 ...
@@ -502,7 +501,7 @@ For more information, see the following resources:
 >
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
 > * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
-> * <xref:blazor/project-structure#blazor-web-app>
+> * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
 > * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
@@ -519,7 +518,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 >
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
 > * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
-> * <xref:blazor/project-structure#blazor-web-app>
+> * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
 > * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
@@ -538,7 +537,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 
 :::moniker-end
 
-For more information on Blazor project templates, see <xref:blazor/project-structure>.
+For more information on Blazor project templates, see [ASP.NET Core Blazor project structure](project-structure.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -649,12 +648,12 @@ builder.AddBlazorClientServiceDefaults();
 
 * [Visual Studio](https://visualstudio.microsoft.com)
 * [Visual Studio Code](https://code.visualstudio.com)
-* <xref:blazor/tooling/webassembly>
+* [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md)
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * [.NET SDK](/dotnet/core/sdk)
 * [ASP.NET Core Blazor hosting models](hosting-models.md)
 * [.NET Hot Reload support for ASP.NET Core](../test/hot-reload.md)
-* <xref:blazor/project-structure>
+* [ASP.NET Core Blazor project structure](project-structure.md)
 * [ASP.NET Core Blazor Hybrid tutorials](hybrid/tutorials/index.md)
 
 :::moniker-end
@@ -666,6 +665,6 @@ builder.AddBlazorClientServiceDefaults();
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * [.NET SDK](/dotnet/core/sdk)
 * [ASP.NET Core Blazor hosting models](hosting-models.md)
-* <xref:blazor/project-structure>
+* [ASP.NET Core Blazor project structure](project-structure.md)
 
 :::moniker-end

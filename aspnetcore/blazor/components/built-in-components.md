@@ -8,13 +8,13 @@ ms.date: 08/14/2026
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-The following built-in Razor components are provided by the Blazor framework. For information on non-security-related project template components, see <xref:blazor/project-structure>. For information on security-related project template components, see the [Security node articles](xref:blazor/security/index).
+The following built-in Razor components are provided by the Blazor framework. For information on non-security-related project template components, see [ASP.NET Core Blazor project structure](../project-structure.md). For information on security-related project template components, see the [Security node articles](../security/index.md).
 
 :::moniker range=">= aspnetcore-11.0"
 
 * [`AntiforgeryToken`](../forms/index.md#antiforgery-support)
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
-* [`CacheView`](xref:blazor/state-management/cacheview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
+* [`CacheView`](../state-management/cacheview-component.md)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](dynamiccomponent.md)
@@ -55,7 +55,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 :::moniker range=">= aspnetcore-9.0 < aspnetcore-11.0"
 
 * [`AntiforgeryToken`](../forms/index.md#antiforgery-support)
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](dynamiccomponent.md)
@@ -96,7 +96,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-9.0"
 
 * [`AntiforgeryToken`](../forms/index.md#antiforgery-support)
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](dynamiccomponent.md)
@@ -135,7 +135,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](dynamiccomponent.md)
@@ -169,7 +169,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`DynamicComponent`](dynamiccomponent.md)
@@ -202,7 +202,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`EditForm`](../forms/binding.md#editformeditcontext-model)
@@ -229,7 +229,7 @@ The following built-in Razor components are provided by the Blazor framework. Fo
 
 :::moniker range="< aspnetcore-5.0"
 
-* [`AuthorizeView`](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView`](../security/index.md#authorizeview-component)
 * [`CascadingValue`](cascading-values-and-parameters.md#cascadingvalue-component)
 * [`DataAnnotationsValidator`](../forms/validation.md#data-annotations-validator-component-and-custom-validation)
 * [`EditForm`](../forms/binding.md#editformeditcontext-model)
