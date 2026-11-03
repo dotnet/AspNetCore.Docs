@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-8.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
@@ -12,7 +17,7 @@ At the end of the series, you'll have an app that manages and displays movie dat
 > * Work with a database.
 > * Add search and validation.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -104,7 +109,7 @@ You can debug the app by selecting the **https** button in the toolbar:
 
 The following image shows the app:
 
-![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-vs.png)
+![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-VS.png)
 
 * Close the browser window.  Visual Studio will stop the application.
 
@@ -116,7 +121,7 @@ The following image shows the app:
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/kestrel)
+  * Starts [Kestrel](../../../../fundamentals/servers/kestrel.md)
   * Launches a browser.
   * Navigates to `https://localhost:<port#>`.
 
@@ -128,7 +133,7 @@ Launching the app without debugging by selecting Ctrl+F5 allows you to:
 * Save the file.
 * Quickly refresh the browser and see the code changes.
 
-  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-vs.png)
+  ![Home or Index page](~/tutorials/first-mvc-app/start-mvc/_static/home80-VS.png)
 
 * Close the browser window.
 

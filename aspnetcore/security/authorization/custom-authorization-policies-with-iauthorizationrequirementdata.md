@@ -3,18 +3,19 @@ title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 07/29/2026
-uid: security/authorization/iard
+ms.date: 10/13/2026
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
 
 Use the <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> interface to specify requirements associated with the authorization policy in attribute definitions.
 
-This article uses a [Minimal API](xref:fundamentals/minimal-apis) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the <xref:mvc/security/authorization/iard>.
+This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint within the app and focuses on testing JWT-based authorization. For a demonstration of similar guidance in an MVC app with a controller, see the [Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md).
 
 :::moniker range=">= aspnetcore-11.0"
 
 You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+
+Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
 :::moniker-end
 
@@ -31,7 +32,7 @@ Support for the preceding is available for apps that target .NET 11 or later.
 :::moniker-end
 ## Sample app
 
-The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users accessing a Minimal API endpoint at `/api/greetings/hello`, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app implements a minimum age handler for users accessing a Minimal API endpoint at `/api/greetings/hello`, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
 ## Minimum age authorize attribute
 
@@ -60,7 +61,7 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-A [Minimal API](xref:fundamentals/minimal-apis) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> extension method and the `MinimumAgeAuthorizeAttribute`:
+A [Minimal API](../../fundamentals/minimal-apis.md) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
 
 ```csharp
 app.MapGet("/api/greetings/hello", (HttpContext context) =>
@@ -74,7 +75,7 @@ The endpoint displays the user's name when they satisfy the minimum age policy, 
 If the user's birth date claim indicates that they're at least 21 years old, the endpoint displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 
 > [!NOTE]
-> For MVC controller guidance that demonstrates the same behavior, see <xref:mvc/security/authorization/iard>.
+> For MVC controller guidance that demonstrates the same behavior, see [Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md).
 
 JWT bearer authentication services are added in the app's `Program` file:
 
@@ -102,7 +103,7 @@ In the preceding example, the localhost audience matches the localhost address s
 
 ## Demonstration
 
-Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
+Test the sample with [`dotnet user-jwts`](../authentication/jwt-authn.md) and curl.
 
 From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
 
@@ -181,12 +182,12 @@ Logging indicates that the age requirement was met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Minimum age authorization requirement 21 satisfied":::
 
 Re-execute the `curl.exe` command with the second token, which indicates the user is under 21 years old. The output indicates that the requirement isn't met. Access to the endpoint is forbidden (status code 403):
@@ -203,14 +204,14 @@ Logging indicates that the age requirement wasn't met:
 <!-- DOC AUTHOR NOTE
 
 The following block quote uses two spaces at the ends of lines (except the
-last line) to create returns in the rendered content. Don't remove the two 
+last line) to create returns in the rendered content. Don't remove the two
 spaces at the ends of the lines when editing the following content.
 
 -->
 
-> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::  
+> :::no-loc text="MinimumAgeAuthorizationHandler: Information: Evaluating authorization requirement for age >= 21":::
 > :::no-loc text="MinimumAgeAuthorizationHandler: Information: Current user's DateOfBirth claim (2020-01-01) doesn't satisfy the minimum age authorization requirement 21":::
 
 ## Related content
 
-<xref:mvc/security/authorization/iard>
+[Custom authorization policies with \`IAuthorizationRequirementData\` in ASP.NET Core MVC](../../mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md)

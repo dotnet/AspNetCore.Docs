@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: How to use model binding and streaming to upload files in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/03/2026
-uid: mvc/models/file-uploads
 ---
 # Upload files in ASP.NET Core
 
@@ -14,7 +13,7 @@ By [Rutger Storm](https://github.com/rutix)
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -218,7 +217,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple />
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename"></a>
 
@@ -308,7 +307,7 @@ Files uploaded using the <xref:Microsoft.AspNetCore.Http.IFormFile> technique ar
 For another example that loops over multiple files for upload and uses safe file names, see `Pages/BufferedMultipleFileUploadPhysical.cshtml.cs` in the sample app.
 
 > [!WARNING]
-> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName%2A) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
+> In .NET 7 or earlier versions, [Path.GetTempFileName](xref:System.IO.Path.GetTempFileName*) throws an <xref:System.IO.IOException> when more than 65,535 files are created without deleting previous temporary files. The limit of 65,535 files is a per-server limit. For more information on this limit on Windows OS, see the remarks in the following articles:
 >
 > * [GetTempFileNameA function](/windows/win32/api/fileapi/nf-fileapi-gettempfilenamea#remarks)
 > * <xref:System.IO.Path.GetTempFileName*>
@@ -439,7 +438,7 @@ while ((section = await reader.ReadNextSectionAsync(cancellationToken)) != null)
 }
 ```
 
-<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync%2A> method to populate the request's form data, then access uploaded files from the built-in collection:
+<xref:Microsoft.AspNetCore.Http.Features.IFormFeature> is a wrapper around <xref:Microsoft.AspNetCore.WebUtilities.MultipartReader> that doesn't require you to write manual request body parsing code. You can use its <xref:Microsoft.AspNetCore.Http.Features.IFormFeature.ReadFormAsync*> method to populate the request's form data, then access uploaded files from the built-in collection:
 
 ```csharp
 // Get the IFormFeature and read the form
@@ -452,11 +451,11 @@ var filePath = Request.Form.Files.First().FileName;
 return Results.Ok($"Saved file at {filePath}");
 ```
 
-For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader%2A?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
+For advanced scenarios, manually parse the raw request body using <xref:Microsoft.AspNetCore.Http.HttpRequest.BodyReader?displayProperty=nameWithType>, which exposes an [`IPipeReader`](/aspnet/core/fundamentals/middleware/request-response) for low-level, high-performance streaming. The sample app includes endpoint handlers that use `IPipeReader` in both Minimal APIs and controllers.
 
 The [3.1 example](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/mvc/models/file-uploads/samples/3.x/SampleApp/Pages/StreamedSingleFileUploadDb.cshtml) demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, another customer filter disables form model binding. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
-The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
+The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](../../security/anti-request-forgery.md) to set a cookie with a request token:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -464,7 +463,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=7-10,16-19)]
 
@@ -502,7 +501,7 @@ The sample app's `FileHelpers` class demonstrates several checks for buffered <x
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -572,7 +571,7 @@ Many implementations must include a check that the file exists; otherwise, a fil
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -659,7 +658,7 @@ builder.Services.Configure<FormOptions>(options =>
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -693,7 +692,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel/options.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -705,9 +704,9 @@ builder.WebHost.ConfigureKestrel(options =>
 });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel/options#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel/options.md#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Program.cs`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Program.cs`:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -736,7 +735,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xref:mvc/views/razor#attribute) Razor directive:
+The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../views/razor.md#attribute) Razor directive:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -746,8 +745,8 @@ The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xre
 
 Other Kestrel limits might apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel/options#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel/options#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel/options.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel/options.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -847,7 +846,7 @@ The examples in this article rely upon <xref:System.IO.MemoryStream> to hold the
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -1034,7 +1033,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple>
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename"></a>
 
@@ -1231,7 +1230,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 
 The following example demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
-The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
+The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](../../security/anti-request-forgery.md) to set a cookie with a request token:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -1239,7 +1238,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/3.x/SampleApp/Startup.cs?name=snippet_AddRazorPages&highlight=7-10,16-19)]
 
@@ -1277,7 +1276,7 @@ The sample app's `FileHelpers` class demonstrates a several checks for buffered 
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -1347,7 +1346,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -1435,7 +1434,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages(options =>
@@ -1464,7 +1463,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -1480,9 +1479,9 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddRazorPages(options =>
@@ -1509,7 +1508,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 }
 ```
 
-The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xref:mvc/views/razor#attribute) Razor directive:
+The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](../views/razor.md#attribute) Razor directive:
 
 ```cshtml
 @attribute [RequestSizeLimitAttribute(52428800)]
@@ -1519,8 +1518,8 @@ The `RequestSizeLimitAttribute` can also be applied using the [`@attribute`](xre
 
 Other Kestrel limits may apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -1538,7 +1537,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>
@@ -1547,7 +1546,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-For more information, see <xref:host-and-deploy/iis/index#iis-options>.
+For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 ## Troubleshoot
 
@@ -1582,7 +1581,7 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 ASP.NET Core supports uploading one or more files using buffered model binding for smaller files and unbuffered streaming for larger files.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/models/file-uploads/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Security considerations
 
@@ -1769,7 +1768,7 @@ For a `files` input element to support uploading multiple files provide the `mul
 <input asp-for="FileUpload.FormFiles" type="file" multiple>
 ```
 
-The individual files uploaded to the server can be accessed through [Model Binding](xref:mvc/models/model-binding) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
+The individual files uploaded to the server can be accessed through [Model Binding](model-binding.md) using <xref:Microsoft.AspNetCore.Http.IFormFile>. The sample app demonstrates multiple buffered file uploads for database and physical storage scenarios.
 
 <a name="filename2"></a>
 
@@ -1966,7 +1965,7 @@ The preceding example is similar to a scenario demonstrated in the sample app:
 
 The following example demonstrates how to use JavaScript to stream a file to a controller action. The file's antiforgery token is generated using a custom filter attribute and passed to the client HTTP headers instead of in the request body. Because the action method processes the uploaded data directly, form model binding is disabled by another custom filter. Within the action, the form's contents are read using a `MultipartReader`, which reads each individual `MultipartSection`, processing the file or storing the contents as appropriate. After the multipart sections are read, the action performs its own model binding.
 
-The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](xref:security/anti-request-forgery) to set a cookie with a request token:
+The initial page response loads the form and saves an antiforgery token in a cookie (via the `GenerateAntiforgeryTokenCookieAttribute` attribute). The attribute uses ASP.NET Core's built-in [antiforgery support](../../security/anti-request-forgery.md) to set a cookie with a request token:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/Antiforgery.cs?name=snippet_GenerateAntiforgeryTokenCookieAttribute)]
 
@@ -1974,7 +1973,7 @@ The `DisableFormValueModelBindingAttribute` is used to disable model binding:
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Filters/ModelBinding.cs?name=snippet_DisableFormValueModelBindingAttribute)]
 
-In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](xref:razor-pages/razor-pages-conventions):
+In the sample app, `GenerateAntiforgeryTokenCookieAttribute` and `DisableFormValueModelBindingAttribute` are applied as filters to the page application models of `/StreamedSingleFileUploadDb` and `/StreamedSingleFileUploadPhysical` in `Startup.ConfigureServices` using [Razor Pages conventions](../../razor-pages/razor-pages-conventions.md):
 
 [!code-csharp[](file-uploads/samples/2.x/SampleApp/Startup.cs?name=snippet_AddMvc&highlight=8-11,17-20)]
 
@@ -2012,7 +2011,7 @@ The sample app's `FileHelpers` class demonstrates a several checks for buffered 
 
 **Use a third party virus/malware scanning API on uploaded content.**
 
-Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](xref:fundamentals/host/hosted-services), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
+Scanning files is demanding on server resources in high volume scenarios. If request processing performance is diminished due to file scanning, consider offloading the scanning work to a [background service](../../fundamentals/host/hosted-services.md), possibly a service running on a server different from the app's server. Typically, uploaded files are held in a quarantined area until the background virus scanner checks them. When a file passes, the file is moved to the normal file storage location. These steps are usually performed in conjunction with a database record that indicates the scanning status of a file. By using such an approach, the app and app server remain focused on responding to requests.
 
 ### File extension validation
 
@@ -2082,7 +2081,7 @@ Many implementations must include a check that the file exists; otherwise, the f
 
 Limit the size of uploaded files.
 
-In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](xref:fundamentals/configuration/index) from the `appsettings.json` file:
+In the sample app, the size of the file is limited to 2 MB (indicated in bytes). The limit is supplied via [Configuration](../../fundamentals/configuration/index.md) from the `appsettings.json` file:
 
 ```json
 {
@@ -2170,7 +2169,7 @@ public void ConfigureServices(IServiceCollection services)
 
 <xref:Microsoft.AspNetCore.Mvc.RequestFormLimitsAttribute> is used to set the <xref:Microsoft.AspNetCore.Http.Features.FormOptions.MultipartBodyLengthLimit> for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -2201,7 +2200,7 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 ### Kestrel maximum request body size
 
-For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) Kestrel server option:
+For apps hosted by Kestrel, the default maximum request body size is 30,000,000 bytes, which is approximately 28.6 MB. Customize the limit using the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) Kestrel server option:
 
 ```csharp
 public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
@@ -2214,9 +2213,9 @@ public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         });
 ```
 
-<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](xref:fundamentals/servers/kestrel#maximum-request-body-size) for a single page or action.
+<xref:Microsoft.AspNetCore.Mvc.RequestSizeLimitAttribute> is used to set the [MaxRequestBodySize](../../fundamentals/servers/kestrel.md#maximum-request-body-size) for a single page or action.
 
-In a Razor Pages app, apply the filter with a [convention](xref:razor-pages/razor-pages-conventions) in `Startup.ConfigureServices`:
+In a Razor Pages app, apply the filter with a [convention](../../razor-pages/razor-pages-conventions.md) in `Startup.ConfigureServices`:
 
 ```csharp
 services.AddMvc()
@@ -2249,8 +2248,8 @@ public class BufferedSingleFileUploadPhysicalModel : PageModel
 
 Other Kestrel limits may apply for apps hosted by Kestrel:
 
-* [Maximum client connections](xref:fundamentals/servers/kestrel#maximum-client-connections)
-* [Request and response data rates](xref:fundamentals/servers/kestrel#minimum-request-body-data-rate)
+* [Maximum client connections](../../fundamentals/servers/kestrel.md#maximum-client-connections)
+* [Request and response data rates](../../fundamentals/servers/kestrel.md#minimum-request-body-data-rate)
 
 ### IIS
 
@@ -2268,7 +2267,7 @@ The default request limit (`maxAllowedContentLength`) is 30,000,000 bytes, which
 
 The `maxAllowedContentLength` setting only applies to IIS. For more information, see [Request Limits `<requestLimits>`](/iis/configuration/system.webServer/security/requestFiltering/requestLimits/).
 
-Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize%2A?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
+Increase the maximum request body size for the HTTP request by setting <xref:Microsoft.AspNetCore.Builder.IISServerOptions.MaxRequestBodySize?displayProperty=nameWithType> in `Startup.ConfigureServices`. In the following example, the limit is set to 50 MB (52,428,800 bytes):
 
 ```csharp
 services.Configure<IISServerOptions>(options =>
@@ -2277,7 +2276,7 @@ services.Configure<IISServerOptions>(options =>
 });
 ```
 
-For more information, see <xref:host-and-deploy/iis/index#iis-options>.
+For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
 ## Troubleshoot
 
@@ -2312,12 +2311,12 @@ The examples in this topic rely upon <xref:System.IO.MemoryStream> to hold the u
 
 :::moniker range="< aspnetcore-5.0"
 
-* [HTTP connection request draining](xref:fundamentals/servers/kestrel#http11-request-draining)
+* [HTTP connection request draining](../../fundamentals/servers/kestrel.md#http11-request-draining)
 
 :::moniker-end
 :::moniker range=">= aspnetcore-5.0"
 
-* [HTTP connection request draining](xref:fundamentals/servers/kestrel/request-draining)
+* [HTTP connection request draining](../../fundamentals/servers/kestrel/request-draining.md)
 
 :::moniker-end
 

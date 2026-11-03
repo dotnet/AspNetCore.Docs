@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 The Model-View-Controller (MVC) architectural pattern separates an app into three main components: **M**odel, **V**iew, and **C**ontroller. The MVC pattern helps you create apps that are more testable and easier to update than traditional monolithic apps.
@@ -46,7 +51,7 @@ Select the **EXPLORER** icon and then control-click (right-click) **Controllers 
 
 Replace the contents of `Controllers/HelloWorldController.cs` with the following code:
 
-  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_First)]
+  [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_First)]
 
 Every `public` method in a controller is callable as an HTTP endpoint. In the sample above, both methods return a string. Note the comments preceding each method.
 
@@ -68,7 +73,7 @@ Append `/HelloWorld` to the path in the address bar. The `Index` method returns 
 
 ![Browser window showing an app response of This is my default action](~/tutorials/first-mvc-app/adding-controller/_static/9/hello1.png)
 
-MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](xref:mvc/controllers/routing) used by MVC, uses a format like this to determine what code to invoke:
+MVC invokes controller classes, and the action methods within them, depending on the incoming URL. The default [URL routing logic](../../../../mvc/controllers/routing.md) used by MVC, uses a format like this to determine what code to invoke:
 
 `/[Controller]/[ActionName]/[Parameters]`
 
@@ -92,7 +97,7 @@ Modify the code to pass some parameter information from the URL to the controlle
 
 Change the `Welcome` method to include two parameters as shown in the following code.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/HelloWorldController.cs?name=snippet_Second)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/HelloWorldController.cs?name=snippet_Second)]
 
 The preceding code:
 
@@ -102,7 +107,7 @@ The preceding code:
 
 Run the app and browse to: `https://localhost:{PORT}/HelloWorld/Welcome?name=Rick&numtimes=4`. Replace `{PORT}` with your port number.
 
-Try different values for `name` and `numtimes` in the URL. The MVC [model binding](xref:mvc/models/model-binding) system automatically maps the named parameters from the query string to parameters in the method. See [Model Binding](xref:mvc/models/model-binding) for more information.
+Try different values for `name` and `numtimes` in the URL. The MVC [model binding](../../../../mvc/models/model-binding.md) system automatically maps the named parameters from the query string to parameters in the method. See [Model Binding](../../../../mvc/models/model-binding.md) for more information.
 
 ![Browser window showing an application response of Hello Rick, NumTimes is\: 4](~/tutorials/first-mvc-app/adding-controller/_static/9/rick4.png)
 

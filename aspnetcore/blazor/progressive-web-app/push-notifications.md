@@ -227,7 +227,7 @@ async Task RequestNotificationSubscriptionAsync()
 }
 ```
 
-In the `Checkout` component, `RequestNotificationSubscriptionAsync` is called in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and executes on component initialization. The method is asynchronous, but it can run in the background, and the <xref:System.Threading.Tasks.Task> that it returns can be discarded. Therefore, the method isn't called in the asynchronous lifecycle method for component initialization (`OnInitializedAsync`). This approach renders the component faster.
+In the `Checkout` component, `RequestNotificationSubscriptionAsync` is called in the [`OnInitialized` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync) and executes on component initialization. The method is asynchronous, but it can run in the background, and the <xref:System.Threading.Tasks.Task> that it returns can be discarded. Therefore, the method isn't called in the asynchronous lifecycle method for component initialization (`OnInitializedAsync`). This approach renders the component faster.
 
 ```csharp
 protected override void OnInitialized()
@@ -253,7 +253,7 @@ Sending a notification involves performing some complex cryptographic operations
 The `SendNotificationAsync` method dispatches order notifications using the captured subscription. The following code makes uses of `WebPush` APIs for dispatching the notification. The payload of the notification is JSON serialized and includes a message and a URL. The message is displayed to the user, and the URL allows the user to reach the pizza order associated with the notification. Additional parameters can be serialized as required for other notification scenarios.
 
 > [!CAUTION]
-> In the following example, we recommend using a secure approach for supplying the private key. When working locally in the `Development` environment, a private key can be provided to the app using the [Secret Manager](xref:security/app-secrets#secret-manager) tool. In `Development`, `Staging`, and `Production` environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
+> In the following example, we recommend using a secure approach for supplying the private key. When working locally in the `Development` environment, a private key can be provided to the app using the [Secret Manager](../../security/app-secrets.md#secret-manager) tool. In `Development`, `Staging`, and `Production` environments, [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) can be used, noting in passing that to obtain a certificate's private key from a key vault that the certificate must have an exportable private key.
 
 ```csharp
 private static async Task SendNotificationAsync(Order order, 

@@ -3,8 +3,7 @@ title: Filters in Minimal API apps
 ai-usage: ai-assisted
 description: Use filters in Minimal API apps, including validation of an object with a filter, and registering a filter.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 04/28/2026
-uid: fundamentals/minimal-apis/min-api-filters
+ms.date: 10/21/2026
 
 # customer intent: As an ASP.NET developer, I want to use filters in Minimal APIs, so I can validate and log request and response data for my apps.
 ---
@@ -39,7 +38,7 @@ The preceding code:
 
 * Calls the `AddEndpointFilter` extension method to add a filter to the `/colorSelector/{color}` endpoint.
 * Returns the color specified, except for the value `"Red"`.
-* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem%2A) when the `/colorSelector/Red` is requested.
+* Returns [Results.Problem](xref:Microsoft.AspNetCore.Http.Results.Problem*) when the `/colorSelector/Red` is requested.
 * Uses `next` as the `EndpointFilterDelegate` and `invocationContext` as the `EndpointFilterInvocationContext` to invoke the next filter in the pipeline, or the request delegate if the last filter is already invoked.
 
 The filter runs before the endpoint handler. When multiple `AddEndpointFilter` invocations are made on a handler:
@@ -96,7 +95,7 @@ In addition to being passed as delegates, filters can be registered by implement
 
 [!code-csharp[](~/fundamentals/minimal-apis/min-api-filters/samples/7/todo/EndpointFilters/ToDoIsValidFilter.cs?name=snippet)]
 
-Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection (DI)](xref:fundamentals/dependency-injection), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves **can't** be resolved from DI.
+Filters that implement the `IEndpointFilter` interface can resolve dependencies from [Dependency Injection (DI)](../dependency-injection.md), as shown in the previous code. Although filters can resolve dependencies from DI, filters themselves **can't** be resolved from DI.
 
 The `ToDoIsValidFilter` is applied to the following endpoints:
 
@@ -118,6 +117,62 @@ In the preceding code:
 * The signature of the handler is examined by inspecting `MethodInfo` for the expected type signature. If the expected signature is found, the validation filter is registered onto the endpoint. This factory pattern is useful to register a filter that depends on the signature of the target endpoint handler.
 * If a matching signature isn't found, a pass-through filter is registered.
 
+:::moniker range=">= aspnetcore-8.0"
+
+## Filters and parameter binding failures
+
+Endpoint filters can run when a parameter-check failure occurs, such as a failed route, query, or header parse, or a missing required parameter. When a filter pipeline is built for an endpoint, `ThrowOnBadRequest` is `false`, and a parameter check fails, the framework:
+
+* Sets `HttpContext.Response.StatusCode` to `400`.
+* Invokes the filter pipeline.
+* Skips the route handler. The innermost step of the pipeline returns an empty result instead of calling the handler whenever the response status code is `400` or greater.
+
+Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported media types) or when an exception is thrown during parameter binding (such as from a custom `BindAsync` method); in those cases, the framework returns or throws before invoking the filter pipeline.
+
+A filter therefore sees the failed request and can replace the empty `400` with a response body of its own:
+
+```csharp
+app.MapGet("/products/{id}", (Guid id) => TypedResults.Ok(id))
+    .AddEndpointFilter(async (context, next) =>
+    {
+        if (context.HttpContext.Response.StatusCode >= StatusCodes.Status400BadRequest)
+        {
+            return TypedResults.Problem(
+                title: "The request couldn't be bound.",
+                statusCode: context.HttpContext.Response.StatusCode);
+        }
+
+        return await next(context);
+    });
+```
+
+Test the status code with `>=` rather than `== 400`. That's the same comparison the framework uses to decide whether to skip the handler, and a filter that runs earlier in the pipeline can set a different code.
+
+Because parameter binding did not fully succeed, values in <xref:Microsoft.AspNetCore.Http.EndpointFilterInvocationContext.Arguments?displayProperty=nameWithType> might only be partially bound. A filter that inspects arguments should check the status code first before relying on argument values.
+
+## Observe binding failures in the Development environment
+
+<xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> controls whether the framework throws <xref:Microsoft.AspNetCore.Http.BadHttpRequestException> in addition to writing a `Debug`-level log entry when it handles an invalid request. It defaults to the value of <xref:Microsoft.Extensions.Hosting.HostEnvironmentEnvExtensions.IsDevelopment*>, so it's `true` in the `Development` environment and `false` in other environments.
+
+In the `Development` environment with the default value of `true`, the exception reaches the developer exception page before a filter can respond. Set <xref:Microsoft.AspNetCore.Routing.RouteHandlerOptions.ThrowOnBadRequest> to `false` to receive the `400` response that the filter can observe:
+
+```csharp
+builder.Services.Configure<RouteHandlerOptions>(options =>
+{
+    options.ThrowOnBadRequest = false;
+});
+```
+
+No change is needed in other environments, where `false` is already the default.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+An endpoint whose filter factories all return `next` unchanged—so that no filter pipeline is actually built—no longer runs its route handler after a parameter-binding failure. In earlier releases, that configuration set the `400` status code and then invoked the handler anyway with unbound argument values. For more information, see [Refactor param binding failure handling in RequestDelegate (`dotnet/aspnetcore` #64539)](https://github.com/dotnet/aspnetcore/pull/64539). (Please don't comment on closed issues and PRs.)
+
+:::moniker-end
+
 ## Register a filter on controller actions
 
 In some scenarios, it might be necessary to apply the same filter logic for both route-handler based endpoints and controller actions. For this scenario, you can invoke `AddEndpointFilter` on `ControllerActionEndpointConventionBuilder` to support executing the same filter logic on actions and endpoints.
@@ -126,7 +181,7 @@ In some scenarios, it might be necessary to apply the same filter logic for both
 
 ## Related content
 
-* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/samples/7) ([How to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/aspnet/Docs/tree/main/aspnetcore/fundamentals/minimal-apis/min-api-filters/samples/7) ([How to download](../index.md#how-to-download-a-sample))
 * [ValidationFilterRouteHandlerBuilderExtensions (Validation extension methods)](https://github.com/DamianEdwards/MinimalApis.Extensions/blob/main/src/MinimalApis.Extensions/Filters/ValidationFilterRouteHandlerBuilderExtensions.cs)
-* [Tutorial: Create a Minimal API with ASP.NET Core](xref:tutorials/min-web-api)
-* [Authentication and authorization in Minimal APIs](xref:fundamentals/minimal-apis/security)
+* [Tutorial: Create a Minimal API with ASP.NET Core](../../tutorials/min-web-api.md)
+* [Authentication and authorization in Minimal APIs](security.md)

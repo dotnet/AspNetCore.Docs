@@ -61,7 +61,7 @@ We strongly recommend that you avoid storing secrets in project code or configur
 
 ## Secret Manager Tool
 
-If the server project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
+If the server project has already been initialized for the [Secret Manager tool](../../../../security/app-secrets.md), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
 
 ```dotnetcli
 dotnet user-secrets init
@@ -75,7 +75,7 @@ dotnet user-secrets set "EmailAuthKey" "{KEY}"
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
-For more information, see <xref:security/app-secrets>.
+For more information, see [Safe storage of app secrets in development](../../../../security/app-secrets.md).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -131,7 +131,7 @@ public static class AzureHelper
 > [!NOTE]
 > The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](../../../../fundamentals/configuration/options.md):
 
 ```csharp
 var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
@@ -176,7 +176,7 @@ Example:
 "VaultUri": "https://contoso.vault.azure.net/"
 ```
 
-Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see [ASP.NET Core Blazor configuration](../../../fundamentals/configuration.md).
 
 ## Implement `IEmailSender` in the server project
 
@@ -184,7 +184,7 @@ The following example is based on Mailchimp's Transactional API using [Mandrill.
 
 Add the [Mandrill.net](https://www.nuget.org/packages/Mandrill.net) NuGet package to the server project.
 
-Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender%601>. In the following example, `AppUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
+Add the following `EmailSender` class to implement <xref:Microsoft.AspNetCore.Identity.IEmailSender`1>. In the following example, `AppUser` is an <xref:Microsoft.AspNetCore.Identity.IdentityUser>. The message HTML markup can be further customized. As long as the `message` passed to `MandrillMessage` starts with the `<` character, the Mandrill.net API assumes that the message body is composed in HTML.
 
 `EmailSender.cs`:
 
@@ -244,7 +244,7 @@ public class EmailSender(IOptions<AuthMessageSenderOptions> optionsAccessor,
 > [!NOTE]
 > Body content for messages might require special encoding for the email service provider. If links in the message body can't be followed in the email message, consult the service provider's documentation to troubleshoot the problem.
 
-Add the following <xref:Microsoft.AspNetCore.Identity.IEmailSender%601> service registration to the server project's `Program` file:
+Add the following <xref:Microsoft.AspNetCore.Identity.IEmailSender`1> service registration to the server project's `Program` file:
 
 ```csharp
 builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
@@ -254,7 +254,7 @@ builder.Services.AddTransient<IEmailSender<AppUser>, EmailSender>();
 
 In the server project's `Program` file, require a confirmed email address to sign in to the app.
 
-Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore%2A> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
+Locate the line that calls <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentityCore*> and set the <xref:Microsoft.AspNetCore.Identity.SignInOptions.RequireConfirmedEmail> property to `true`:
 
 ```diff
 - builder.Services.AddIdentityCore<AppUser>()
@@ -311,7 +311,7 @@ Password recovery requires the server app to adopt an email provider in order to
 
 Password recovery is a two-step process:
 
-1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi%2A> in the server project. A message in the UI instructs the user to check their email for a reset code.
+1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in the server project. A message in the UI instructs the user to check their email for a reset code.
 1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email address, password reset code, and new password.
 
 The preceding steps are demonstrated by the following implementation guidance for the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
@@ -615,7 +615,7 @@ The default token lifespan of the [Identity user tokens](https://github.com/dotn
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> to the server project.
+To change the email token lifespan, add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider`1> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> to the server project.
 
 `CustomTokenProvider.cs`:
 

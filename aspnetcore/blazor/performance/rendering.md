@@ -20,14 +20,14 @@ At runtime, components exist in a hierarchy. A root component (the first compone
 
 1. The event is dispatched to the component that rendered the event's handler. After executing the event handler, the component is rerendered.
 1. When a component is rerendered, it supplies a new copy of parameter values to each of its child components.
-1. After a new set of parameter values is received, Blazor decides whether to rerender the component. Components rerender if [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `true`, which is the default behavior unless overridden, and the parameter values may have changed, for example, if they're mutable objects.
+1. After a new set of parameter values is received, Blazor decides whether to rerender the component. Components rerender if [`ShouldRender`](../components/rendering.md#suppress-ui-refreshing-shouldrender) returns `true`, which is the default behavior unless overridden, and the parameter values may have changed, for example, if they're mutable objects.
 
 The last two steps of the preceding sequence continue recursively down the component hierarchy. In many cases, the entire subtree is rerendered. Events targeting high-level components can cause expensive rerendering because every component below the high-level component must rerender.
 
 To prevent rendering recursion into a particular subtree, use either of the following approaches:
 
 * Ensure that child component parameters are of specific immutable types&dagger;, such as `string`, `int`, `bool`, and `DateTime`. The built-in logic for detecting changes automatically skips rerendering if the immutable parameter values haven't changed. If you render a child component with `<Customer CustomerId="item.CustomerId" />`, where `CustomerId` is an `int` type, then the `Customer` component isn't rerendered unless `item.CustomerId` changes.
-* Override [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender), returning `false`:
+* Override [`ShouldRender`](../components/rendering.md#suppress-ui-refreshing-shouldrender), returning `false`:
   * When parameters are nonprimitive types or unsupported immutable types&dagger;, such as complex custom model types or <xref:Microsoft.AspNetCore.Components.RenderFragment> values, and the parameter values haven't changed,
   * If authoring a UI-only component that doesn't change after the initial render, regardless of parameter value changes.
 
@@ -35,7 +35,7 @@ To prevent rendering recursion into a particular subtree, use either of the foll
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-The following airline flight search tool example uses private fields to track the necessary information to detect changes. The previous inbound flight identifier (`prevInboundFlightId`) and previous outbound flight identifier (`prevOutboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`. If `shouldRender` evaluates to `false` after checking the flight identifiers, an expensive rerender is avoided:
+The following airline flight search tool example uses private fields to track the necessary information to detect changes. The previous inbound flight identifier (`prevInboundFlightId`) and previous outbound flight identifier (`prevOutboundFlightId`) track information for the next potential component update. If either of the flight identifiers change when the component's parameters are set in [`OnParametersSet`](../components/lifecycle.md#after-parameters-are-set-onparameterssetasync), the component is rerendered because `shouldRender` is set to `true`. If `shouldRender` evaluates to `false` after checking the flight identifiers, an expensive rerender is avoided:
 
 ```razor
 @code {
@@ -66,9 +66,9 @@ An event handler can also set `shouldRender` to `true`. For most components, det
 
 For more information, see the following resources:
 
-* <xref:blazor/components/lifecycle>
-* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A>
-* <xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender>
+* [ASP.NET Core Razor component lifecycle](../components/lifecycle.md)
+* <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*>
+* [ASP.NET Core Razor component rendering](../components/rendering.md#suppress-ui-refreshing-shouldrender)
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -76,9 +76,9 @@ For more information, see the following resources:
 
 When rendering large amounts of UI within a loop, for example, a list or grid with thousands of entries, the sheer quantity of rendering operations can lead to a lag in UI rendering. Given that the user can only see a small number of elements at once without scrolling, it's often wasteful to spend time rendering elements that aren't currently visible.
 
-Blazor provides the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize%601> component to create the appearance and scroll behaviors of an arbitrarily-large list while only rendering the list items that are within the current scroll viewport. For example, a component can render a list with 100,000 entries but only pay the rendering cost of 20 items that are visible.
+Blazor provides the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component to create the appearance and scroll behaviors of an arbitrarily-large list while only rendering the list items that are within the current scroll viewport. For example, a component can render a list with 100,000 entries but only pay the rendering cost of 20 items that are visible.
 
-For more information, see <xref:blazor/components/virtualization>.
+For more information, see [ASP.NET Core Razor component virtualization](../components/virtualization.md).
 
 :::moniker-end
 
@@ -104,7 +104,7 @@ In a test performed by the ASP.NET Core product unit engineers, a rendering over
 
 It's possible to make components more lightweight so that you can have more of them. However, a more powerful technique is often to avoid having so many components to render. The following sections describe two approaches that you can take.
 
-For more information on memory management, see <xref:blazor/host-and-deploy/server/memory-management>.
+For more information on memory management, see [Manage memory in deployed ASP.NET Core server-side Blazor apps](../host-and-deploy/server/memory-management.md).
 
 **Inline child components into their parents:** Consider the following portion of a parent component that renders child components in a loop:
 
@@ -228,13 +228,13 @@ Also, consider that it might be an improvement not to have a table cell componen
 
 For more information on generic type parameters (`@typeparam`), see the following resources:
 
-* <xref:mvc/views/razor#typeparam>
-* <xref:blazor/components/index#generic-type-parameter-support>
-* <xref:blazor/components/templated-components>
+* [Razor syntax reference for ASP.NET Core](../../mvc/views/razor.md#typeparam)
+* [ASP.NET Core Razor components](../components/generic-type-support.md#generic-type-parameter-support)
+* [ASP.NET Core Blazor templated components](../components/templated-components.md)
 
 ## Ensure cascading parameters are fixed
 
-The [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component) has an optional `IsFixed` parameter:
+The [`CascadingValue` component](../components/cascading-values-and-parameters.md#cascadingvalue-component) has an optional `IsFixed` parameter:
 
 * If `IsFixed` is `false` (the default), every recipient of the cascaded value sets up a subscription to receive change notifications. Each `[CascadingParameter]` is **substantially more expensive** than a regular `[Parameter]` due to the subscription tracking.
 * If `IsFixed` is `true` (for example, `<CascadingValue Value="someValue" IsFixed="true">`), recipients receive the initial value but don't set up a subscription to receive updates. Each `[CascadingParameter]` is lightweight and no more expensive than a regular `[Parameter]`.
@@ -249,7 +249,7 @@ Where a component passes `this` as a cascaded value, `IsFixed` can also be set t
 </CascadingValue>
 ```
 
-For more information, see <xref:blazor/components/cascading-values-and-parameters>.
+For more information, see [ASP.NET Core Blazor cascading values and parameters](../components/cascading-values-and-parameters.md).
 
 ## Avoid attribute splatting with `CaptureUnmatchedValues`
 
@@ -271,7 +271,7 @@ This approach allows passing arbitrary additional attributes to the element. How
 
 Use <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> where component rendering performance isn't critical, such as components that aren't repeated frequently. For components that render at scale, such as each item in a large list or in the cells of a grid, try to avoid attribute splatting.
 
-For more information, see <xref:blazor/components/attribute-splatting>.
+For more information, see [ASP.NET Core Blazor attribute splatting and arbitrary parameters](../components/splat-attributes-and-arbitrary-parameters.md).
 
 ## Implement `SetParametersAsync` manually
 
@@ -283,7 +283,7 @@ In some extreme cases, you may wish to avoid the reflection and implement your o
 * A component accepts many parameters.
 * You find that the overhead of receiving parameters has an observable impact on UI responsiveness.
 
-In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
+In extreme cases, you can override the component's virtual <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> method and implement your own component-specific logic. The following example deliberately avoids dictionary lookups:
 
 ```razor
 @code {
@@ -327,17 +327,17 @@ In extreme cases, you can override the component's virtual <xref:Microsoft.AspNe
 }
 ```
 
-In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> runs the normal lifecycle method without assigning parameters again.
+In the preceding code, returning the base class <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> runs the normal lifecycle method without assigning parameters again.
 
 :::moniker range=">= aspnetcore-8.0"
 
-As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The potential gains are smaller in later releases because reflection-based parameter assignment is optimized. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](xref:blazor/components/lifecycle#lifecycle-events) transport for Interactive Server.
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can yield a small rendering improvement, typically under ~10% even at 10,000+ component instances when targeting .NET 10. The potential gains are smaller in later releases because reflection-based parameter assignment is optimized. Only consider this approach in the extreme scenarios listed earlier in this section and benchmark first&mdash;the savings are usually dwarfed by other costs, for example, the SignalR [diff (DOM edits)](../components/lifecycle.md#lifecycle-events) transport for Interactive Server.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
+As you can see in the preceding code, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> and supplying custom logic is complicated and laborious, so we don't generally recommend adopting this approach. In extreme cases, the approach can improve rendering performance by 20-25%, but you should only consider this approach in the extreme scenarios listed earlier in this section.
 
 :::moniker-end
 
@@ -400,12 +400,12 @@ The corresponding JavaScript code registers the DOM event listener for mouse mov
 
 ## Avoid rerendering after handling events without state changes
 
-Components inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>, which automatically invokes <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> after the component's event handlers are invoked. In some cases, it might be unnecessary or undesirable to trigger a rerender after an event handler is invoked. For example, an event handler might not modify component state. In these scenarios, the app can leverage the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface to control the behavior of Blazor's event handling.
+Components inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>, which automatically invokes <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> after the component's event handlers are invoked. In some cases, it might be unnecessary or undesirable to trigger a rerender after an event handler is invoked. For example, an event handler might not modify component state. In these scenarios, the app can leverage the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface to control the behavior of Blazor's event handling.
 
 > [!NOTE]
-> The approach in this section doesn't flow exceptions to [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries). For more information and demonstration code that supports error boundaries by calling <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync%2A?displayProperty=nameWithType>, see [AsNonRenderingEventHandler + ErrorBoundary = unexpected behavior (`dotnet/aspnetcore` #54543)](https://github.com/dotnet/aspnetcore/issues/54543).
+> The approach in this section doesn't flow exceptions to [error boundaries](../fundamentals/handle-errors.md#error-boundaries). For more information and demonstration code that supports error boundaries by calling <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType>, see [AsNonRenderingEventHandler + ErrorBoundary = unexpected behavior (`dotnet/aspnetcore` #54543)](https://github.com/dotnet/aspnetcore/issues/54543).
 
-To prevent rerenders for all of a component's event handlers, implement <xref:Microsoft.AspNetCore.Components.IHandleEvent> and provide a <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync%2A?displayProperty=nameWithType> task that invokes the event handler without calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>.
+To prevent rerenders for all of a component's event handlers, implement <xref:Microsoft.AspNetCore.Components.IHandleEvent> and provide a <xref:Microsoft.AspNetCore.Components.IHandleEvent.HandleEventAsync*?displayProperty=nameWithType> task that invokes the event handler without calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*>.
 
 In the following example, no event handler added to the component triggers a rerender, so `HandleSelect` doesn't result in a rerender when invoked.
 
@@ -487,7 +487,7 @@ In the following example:
 
 * Selecting the first button, which calls `HandleClick1`, triggers a rerender.
 * Selecting the second button, which calls `HandleClick2`, doesn't trigger a rerender.
-* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](xref:blazor/components/event-handling#event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
+* Selecting the third button, which calls `HandleClick3`, doesn't trigger a rerender and uses [event arguments](../components/event-handling.md#built-in-event-arguments) (<xref:Microsoft.AspNetCore.Components.Web.MouseEventArgs>).
 
 `HandleSelect2.razor`:
 
@@ -541,13 +541,13 @@ In the following example:
 }
 ```
 
-In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender%2A> in child components of the target component can be used to control rerendering.
+In addition to implementing the <xref:Microsoft.AspNetCore.Components.IHandleEvent> interface, leveraging the other best practices described in this article can also help reduce unwanted renders after events are handled. For example, overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*> in child components of the target component can be used to control rerendering.
 
 ## Avoid recreating delegates for many repeated elements or components
 
-Blazor's recreation of [lambda expression delegates](xref:blazor/components/event-handling#lambda-expressions) for elements or components in a loop can lead to poor performance.
+Blazor's recreation of [lambda expression delegates](../components/event-handling.md#lambda-expressions) for elements or components in a loop can lead to poor performance.
 
-The following component shown in the [event handling article](xref:blazor/components/event-handling#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its `@onclick` event, which is fine if there aren't many buttons to render.
+The following component shown in the [event handling article](../components/event-handling.md#lambda-expressions) renders a set of buttons. Each button assigns a delegate to its `@onclick` event, which is fine if there aren't many buttons to render.
 
 `EventHandlerExample5.razor`:
 

@@ -1,16 +1,16 @@
 ### Blazor release notes
 
-For new feature coverage, see <xref:aspnetcore-11>.
+For new feature coverage, see [What's new in ASP.NET Core in .NET 11](../../../release-notes/aspnetcore-11.md).
 
 ### Adopt Inline JS event handler removed from the `NavMenu` component
 
 *This section only applies to Blazor Web Apps.*
 
-The inline JS event handler for the navigation bar toggler isn't present in the `NavMenu` component of the Blazor Web App project template in .NET 11 or later. Apps generated from the project template use a [collocated JS module](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation links on the rendered page. The approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler for the navigation bar toggler isn't present in the `NavMenu` component of the Blazor Web App project template in .NET 11 or later. Apps generated from the project template use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation links on the rendered page. The approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
 Use the following instructions to adopt the new JS module approach for the navigation links toggler in an existing app.
 
-Add a [collocated JS module](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) next to the app's `NavMenu` component.
+Add a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) next to the app's `NavMenu` component.
 
 `NavMenu.razor.js`:
 
@@ -86,3 +86,15 @@ AppContext.SetSwitch(
 The switch only controls the rendered HTML element; sort and page state is read from and written to the URL query string regardless of the setting.
 
 For more information, see [QuickGrid sorting and pagination controls render as links](/aspnet/core/breaking-changes/11/quickgrid-controls-render-as-links).
+
+### Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10
+
+<xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> were published as *experimental* in .NET 10. In .NET 11 or later, they aren't experimental. Referencing them from any project, including a plain class library that uses the `Microsoft.NET.Sdk` SDK, no longer produces the `ASP0029` code analysis warning.
+
+Apps upgrading from .NET 10 can remove the workarounds that warning required:
+
+* Delete `#pragma warning disable ASP0029` and `#pragma warning restore ASP0029` directives around uses of the attributes.
+* Remove `ASP0029` from any `<NoWarn>` property in the project file.
+* Replace any locally declared `Microsoft.Extensions.Validation.Embedded.ValidatableType` or `Microsoft.Extensions.Validation.Embedded.SkipValidation` attribute with the real <xref:Microsoft.Extensions.Validation.ValidatableTypeAttribute> and <xref:Microsoft.Extensions.Validation.SkipValidationAttribute>, and remove the `global using Microsoft.Extensions.Validation.Embedded;` statement or the `<Using Include="Microsoft.Extensions.Validation.Embedded" />` item that made it visible.
+
+Leaving the suppressions in place is harmless, so an upgraded app doesn't fail because of them. Removing them keeps the project free of suppressions that no longer correspond to a diagnostic.

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to make an ASP.NET Core app's content localizable to prepare the app for localizing content into different languages and cultures.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 09/22/2026
-uid: fundamentals/localization/make-content-localizable
 ---
 # Make an ASP.NET Core app's content localizable
 
@@ -18,7 +17,7 @@ One task for localizing an app is to wrap localizable content with code that fac
 
 ## `IStringLocalizer`
 
-<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer%601> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.
+<xref:Microsoft.Extensions.Localization.IStringLocalizer> and <xref:Microsoft.Extensions.Localization.IStringLocalizer`1> were architected to improve productivity when developing localized apps. `IStringLocalizer` uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings. `IStringLocalizer` doesn't require storing the default language strings in a resource file. You can develop an app targeted for localization and not need to create resource files early in development.
 
 The following code example shows how to wrap the string "About Title" for localization.
 
@@ -32,7 +31,7 @@ Alternatively, you can use the traditional approach and provide a key to retriev
 
 ## `IHtmlLocalizer`
 
-Use the <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer%601> implementation for resources that contain HTML. <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
+Use the <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer`1> implementation for resources that contain HTML. <xref:Microsoft.AspNetCore.Mvc.Localization.IHtmlLocalizer> HTML-encodes arguments that are formatted in the resource string, but doesn't HTML-encode the resource string itself. In the following highlighted code, only the value of the `name` parameter is HTML-encoded.
 
 [!code-csharp[](~/fundamentals/localization/samples/8.x/Localization/Controllers/BookController.cs?highlight=3,5,20&start=1&end=24)]
 
@@ -58,7 +57,7 @@ In the following sample, the `InfoController` and the `SharedResource` localizer
 
 ## View localization
 
-The <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> service provides localized strings for a [view](xref:mvc/views/overview). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
+The <xref:Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer> service provides localized strings for a [view](../../mvc/views/overview.md). The `ViewLocalizer` class implements this interface and finds the resource location from the view file path. The following code shows how to use the default implementation of `IViewLocalizer`:
 
 [!code-cshtml[](~/fundamentals/localization/samples/8.x/Localization/Views/Home/About.cshtml)]
 
@@ -117,16 +116,16 @@ In the preceding code, `SharedResource` is the class corresponding to the *.resx
 
 Validation error messages and the display names of validated members are localized by <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, which is the validation pipeline used by Minimal APIs and Blazor forms.
 
-Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> together with <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation%2A>:
+Localization activates automatically when an <xref:Microsoft.Extensions.Localization.IStringLocalizerFactory> is registered. Call <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> together with <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*>:
 
 ```csharp
 builder.Services.AddLocalization();
 builder.Services.AddValidation();
 ```
 
-For the message lookup key conventions, shared resource files, custom message formatting, and the full set of options, see <xref:fundamentals/validation#localize-validation-messages>.
+For the message lookup key conventions, shared resource files, custom message formatting, and the full set of options, see [Validation in ASP.NET Core](../validation.md#localize-validation-messages).
 
-The integration doesn't apply to MVC and Razor Pages apps. For those frameworks, see <xref:mvc/models/validation>.
+The integration doesn't apply to MVC and Razor Pages apps. For those frameworks, see [Model validation in ASP.NET Core MVC](../../mvc/models/validation.md).
 
 :::moniker-end
 
@@ -138,11 +137,11 @@ Localization services are configured in `Program.cs`:
 
 [!code-csharp[](~/fundamentals/localization/samples/6.x/Localization/Program.cs?name=snippet_LocalizationConfigurationServices)]
 
-* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
+* <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*> adds the localization services to the services container, including implementations for `IStringLocalizer<T>` and `IStringLocalizerFactory`. The preceding code also sets the resources path to "Resources".
 
-* <xref:Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization%2A> adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcLocalizationMvcBuilderExtensions.AddViewLocalization*> adds support for localized view files. In this sample, view localization is based on the view file suffix. For example "fr" in the `Index.fr.cshtml` file.
 
-* <xref:Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization%2A> adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
+* <xref:Microsoft.Extensions.DependencyInjection.MvcDataAnnotationsMvcBuilderExtensions.AddDataAnnotationsLocalization*> adds support for localized `DataAnnotations` validation messages through `IStringLocalizer` abstractions.
 
 [!INCLUDE[](~/includes/localization/currency.md)]
 
@@ -150,17 +149,17 @@ Localization services are configured in `Program.cs`:
 
 Localizing an app also involves the following tasks:
 
-* [Provide localized resources for the languages and cultures the app supports](xref:fundamentals/localization/provide-resources)
-* [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
+* [Provide localized resources for the languages and cultures the app supports](provide-resources.md)
+* [Implement a strategy to select the language/culture for each request](select-language-culture.md)
 
 ## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/provide-resources>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../localization.md)
+* [Provide localized resources for languages and cultures in an ASP.NET Core app](provide-resources.md)
+* [Strategies for selecting language and culture in a localized ASP.NET Core app](select-language-culture.md)
+* [Troubleshoot ASP.NET Core localization](../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 [!INCLUDE [consider RP](~/includes/razor.md)]
@@ -12,7 +17,7 @@ At the end of the series, you'll have an app that manages, validates, and displa
 > * Work with a database.
 > * Add search and validation.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -46,7 +51,7 @@ See https://github.com/dotnet/AspNetCore.Docs/issues/21193
   * Verify that **Do not use top-level statements** is unchecked.
 * Select **Create**.
 
-![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/9/additional-info-VS22-17.11.0.png)
+![Additional info dialog](~/tutorials/first-mvc-app/start-mvc/_static/9/additional-info-vs22-17.11.0.png)
 
 For more information, including alternative approaches to create the project, see [Create a new project in Visual Studio](/visualstudio/ide/create-new-project).
 
@@ -116,7 +121,7 @@ The following image shows the app:
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/kestrel)
+  * Starts [Kestrel](../../../../fundamentals/servers/kestrel.md)
   * Launches a browser.
   * Navigates to `https://localhost:<port#>`.
 

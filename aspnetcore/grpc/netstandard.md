@@ -3,7 +3,6 @@ title: Use gRPC client with .NET Standard 2.0
 description: Learn how to use the .NET gRPC client in apps and libraries that support .NET Standard 2.0.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 01/08/2025
-uid: grpc/netstandard
 ---
 # Use gRPC client with .NET Standard 2.0
 
@@ -43,7 +42,7 @@ var client = new Greeter.GreeterClient(channel);
 var response = await client.SayHelloAsync(new HelloRequest { Name = ".NET" });
 ```
 
-Clients can also be created using the [gRPC client factory](xref:grpc/clientfactory). An HTTP provider is configured using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method.
+Clients can also be created using the [gRPC client factory](clientfactory.md). An HTTP provider is configured using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method.
 
 ```csharp
 builder.Services
@@ -55,10 +54,10 @@ builder.Services
         () => new GrpcWebHandler(new HttpClientHandler()));
 ```
 
-For more information, see [Configure gRPC-Web with the .NET gRPC client](xref:grpc/grpcweb#configure-grpc-web-with-the-net-grpc-client).
+For more information, see [Configure gRPC-Web with the .NET gRPC client](grpcweb.md#configure-grpc-web-with-the-net-grpc-client).
 
 > [!IMPORTANT]
-> gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](xref:grpc/grpcweb#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
+> gRPC-Web requires the client ***and*** server to support it. gRPC-Web can be [quickly configured by an ASP.NET Core gRPC server](grpcweb.md#configure-grpc-web-in-aspnet-core). Other gRPC server implementations require a proxy to support gRPC-Web.
 
 ## .NET Framework
 
@@ -98,6 +97,6 @@ An alternative option for .NET Framework has been to use [gRPC C# core-library](
 
 ## Related content
 
-* <xref:grpc/client>
-* <xref:grpc/browser>
+* [Call gRPC services with the .NET client](client.md)
+* [Use gRPC in browser apps](browser.md)
 * [gRPC C# core-library](https://grpc.io/docs/languages/csharp/quickstart/)

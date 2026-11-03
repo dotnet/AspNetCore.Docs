@@ -3,7 +3,6 @@ title: Request and Response operations in ASP.NET Core
 description: Learn how to read the request body and write the response body in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 04/24/2025
-uid: fundamentals/middleware/request-response
 ---
 # Request and response operations in ASP.NET Core
 
@@ -96,6 +95,6 @@ The `Body`, `BodyReader`, and `BodyWriter` properties are available for `HttpReq
 ## Related content
 
 * [System.IO.Pipelines in .NET](/dotnet/standard/io/pipelines)
-* <xref:fundamentals/middleware/write>
+* [Write custom ASP.NET Core middleware](write.md)
 
 <!-- Test with Fiddler, .http files for Visual Studio, dotnet httprepl for CLI or other tool. See image in static directory. -->

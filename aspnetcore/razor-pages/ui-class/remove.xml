@@ -13,4 +13,10 @@
     <Content Remove="wwwroot\{path-to-typescript-outputs}" />
   </ItemGroup>
 
+  <Target Name="RemoveDeletedTypeScriptOutputsFromContent" AfterTargets="TypeScriptDeleteCompilerOutput">
+    <ItemGroup>
+      <Content Remove="@(Content)" Condition="!Exists('%(FullPath)') And ('%(Extension)' == '.js' Or '%(Extension)' == '.map')" />
+    </ItemGroup>
+  </Target>
+
 </Project>

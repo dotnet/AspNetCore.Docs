@@ -3,7 +3,6 @@
 #elif FIRST
 // <snippet_1>
 using Microsoft.EntityFrameworkCore;
-using RazorPagesMovie.Data;
 
 namespace RazorPagesMovie.Models;
 

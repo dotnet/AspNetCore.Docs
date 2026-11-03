@@ -2,7 +2,6 @@
 title: Memory management and patterns in ASP.NET Core
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.date: 05/06/2026
-uid: performance/memory
 
 # customer intent: As an ASP.NET developer, I want to understand memory management and garbage collection in ASP.NET Core, so I can manage memory in my apps.
 ---
@@ -18,7 +17,7 @@ This article demonstrates common memory use patterns that can be problematic, an
 
 The GC process allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of three generations: 0, 1, or 2. The generation determines the frequency of the GC attempts to release memory on managed objects that the app no longer references.  The GC addresses the lower-numbered generations more frequently.
 
-Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](xref:fundamentals/dependency-injection#service-lifetimes) generally migrate to Gen 2.
+Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](../fundamentals/dependency-injection.md#service-lifetimes) generally migrate to Gen 2.
 
 When an ASP.NET Core app starts, the GC process:
 
@@ -29,7 +28,7 @@ The preceding memory allocations are done for performance reasons. The performan
 
 ### Review caveats when using GC.Collect 
 
-In general, ASP.NET Core apps in production should **not** use the [GC.Collect](xref:System.GC.Collect%2A) method explicitly. Inducing garbage collections at suboptimal times can decrease performance significantly.
+In general, ASP.NET Core apps in production should **not** use the [GC.Collect](xref:System.GC.Collect*) method explicitly. Inducing garbage collections at suboptimal times can decrease performance significantly.
 
 `GC.Collect` is useful when investigating memory leaks. Calling `GC.Collect()` triggers a blocking garbage collection cycle that tries to reclaim all objects inaccessible from managed code. It's a useful way to understand the size of the reachable live objects in the heap, and track growth of memory size over time.
 
@@ -185,7 +184,7 @@ Some scenarios, such as caching, require object references to be held until memo
 
 Some .NET objects rely on native memory, but native memory **isn't collectable** by the GC. The .NET object that uses native memory must free it by using native code.
 
-.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if the <xref:System.IDisposable.Dispose%2A> method isn't called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/finalizers) runs.
+.NET provides the <xref:System.IDisposable> interface to let developers release native memory. Even if the <xref:System.IDisposable.Dispose*> method isn't called, correctly implemented classes call `Dispose` when the [finalizer](/dotnet/csharp/programming-guide/classes-and-structs/finalizers) runs.
 
 Consider the following code:
 
@@ -264,7 +263,7 @@ Comparing the two preceding charts:
 
 Temporary large objects are problematic because they cause Gen 2 collections.
 
-For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [response caching middleware](xref:performance/caching/response) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
+For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [response caching middleware](caching/response.md) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 
@@ -285,7 +284,7 @@ System resources (such as database connections, sockets, file handles, and so on
 * They're more scarce than memory.
 * They're more problematic when leaked than memory.
 
-Experienced .NET developers know to call the <xref:System.IDisposable.Dispose%2A> method on objects that implement the <xref:System.IDisposable> interface. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
+Experienced .NET developers know to call the <xref:System.IDisposable.Dispose*> method on objects that implement the <xref:System.IDisposable> interface. Not disposing objects that implement `IDisposable` typically results in leaked memory or leaked system resources.
 
 `HttpClient` implements `IDisposable`, but should **not** be disposed on every invocation. Rather, `HttpClient` should be reused.
 
@@ -372,7 +371,7 @@ The following chart displays calling the preceding API with moderate load:
 
 The chart reveals that Gen 0 collections happen about once per second.
 
-The code can be optimized by pooling the `byte` buffer by using the [ArrayPool\<T>](xref:System.Buffers.ArrayPool%601) class. A static instance is reused across requests.
+The code can be optimized by pooling the `byte` buffer by using the [ArrayPool\<T>](xref:System.Buffers.ArrayPool`1) class. A static instance is reused across requests.
 
 What's different with this approach is that a pooled object is returned from the API:
 
@@ -382,7 +381,7 @@ What's different with this approach is that a pooled object is returned from the
 To set up disposal of the object:
 
 * Encapsulate the pooled array in a disposable object.
-* Register the pooled object by using the [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose%2A) method.
+* Register the pooled object by using the [HttpContext.Response.RegisterForDispose](xref:Microsoft.AspNetCore.Http.HttpResponse.RegisterForDispose*) method.
 
 `RegisterForDispose` takes care of calling `Dispose` on the target object, so the object is released only after the HTTP request completes.
 

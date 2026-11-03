@@ -3,7 +3,6 @@ title: ASP.NET Core support for Native AOT
 description: Review ASP.NET Core support for Native ahead-of-time (AOT) applications, including publishing and deployment.
 content_well_notification: AI-contribution
 ms.date: 06/02/2026
-uid: fundamentals/native-aot
 ai-usage: ai-assisted
 ---
 # ASP.NET Core support for Native AOT
@@ -103,8 +102,8 @@ Native AOT analysis includes all of the application code and the libraries the a
 In .NET 8 and later, the following ASP.NET Core app types support Native AOT:
 
 * **Minimal APIs** - For more information, see [Review the Web API (Native AOT) template](#review-the-web-api-native-aot-template) later in this article.
-* **gRPC** - For more information, see [gRPC and Native AOT](xref:grpc/native-aot).
-* **Worker services** - For more information, see [Background tasks with hosted services in ASP.NET Core > Native AOT](xref:fundamentals/host/hosted-services#native-aot).
+* **gRPC** - For more information, see [gRPC and Native AOT](../grpc/native-aot.md).
+* **Worker services** - For more information, see [Background tasks with hosted services in ASP.NET Core > Native AOT](host/hosted-services.md#native-aot).
 
 ## Review the Web API (Native AOT) template
 
@@ -114,7 +113,7 @@ The ASP.NET Core **Web API (Native AOT)** template (short name `webapiaot`) crea
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, which minimizes the app's deployed size.
 * Is configured to listen on HTTP only. HTTPS traffic is commonly handled by an ingress service in cloud-native deployments.
 * Doesn't include a launch profile for running under IIS or IIS Express.
-* Creates an [.http file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
+* Creates an [.http file](../test/http-files.md) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
 * Adds the `PublishAot` property to the project file, as [described earlier](#publish-a-native-aot-app-publishaot).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for Native AOT compilation.
@@ -213,7 +212,7 @@ The **Web API (Native AOT)** template uses the <xref:Microsoft.AspNetCore.Builde
 The `CreateSlimBuilder` method initializes the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> with the minimum ASP.NET Core features necessary to run an app.
 
 As described earlier, the `CreateSlimBuilder` method doesn't include support for HTTPS or HTTP/3. These protocols typically aren't required for apps that run behind a TLS termination proxy. For example, see [TLS termination and end to end TLS with Application Gateway](/azure/application-gateway/ssl-overview). You can enable HTTPS by calling the 
-[builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) method, or enable HTTP/3 by calling the [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A).
+[builder.WebHost.UseKestrelHttpsConfiguration](/dotnet/api/microsoft.aspnetcore.hosting.webhostbuilderkestrelextensions.usekestrelhttpsconfiguration) method, or enable HTTP/3 by calling the [builder.WebHost.UseQuic](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic*).
 
 ## Compare CreateSlimBuilder() and CreateBuilder()
 
@@ -234,18 +233,18 @@ If you prefer to use a builder that omits all features, see the [WebApplication.
 
 The `CreateSlimBuilder` method **doesn't** provide the following features, which are available in `CreateBuilder`:
 
-* [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
-* [UseStartup](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A) method
+* [Hosting startup assemblies](host/platform-specific-configuration.md)
+* [UseStartup](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*) method
 * Logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
     * [Debug](/aspnet/core/fundamentals/logging#debug)
     * [EventSource](/aspnet/core/fundamentals/logging#eventsource)
 * Web hosting features:
-    * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A) method
-    * [IIS integration](xref:host-and-deploy/iis/index)
+    * [UseStaticWebAssets](xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*) method
+    * [IIS integration](../host-and-deploy/iis/index.md)
 * Kestrel configuration:
-    * [HTTPS endpoints](xref:fundamentals/servers/kestrel/endpoints#configure-https)
-    * [QUIC (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
+    * [HTTPS endpoints](servers/kestrel/endpoints.md#configure-https)
+    * [QUIC (HTTP/3)](servers/kestrel/http3.md#http3-benefits)
 * [Regex and alpha constraints used in routing (GitHub /dotnet/aspnetcore/issues #46142)](https://github.com/dotnet/aspnetcore/issues/46142)
 
 For more detailed information, see [Comparing WebApplication.CreateBuilder to CreateSlimBuilder](https://andrewlock.net/exploring-the-dotnet-8-preview-comparing-createbuilder-to-the-new-createslimbuilder-method/)
@@ -284,7 +283,7 @@ All types transmitted as part of the HTTP body or returned from request delegate
 
 :::code language="csharp" source="~/fundamentals/aot/samples/Program.cs" highlight="7-10,25-99":::
 
-* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection). For more information, see [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation#combine-source-generators) and the <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>.
+* The JSON serializer context is registered with the [DI container](dependency-injection.md). For more information, see [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation#combine-source-generators) and the <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>.
 
 * The custom `JsonSerializerContext` is annotated with the [JsonSerializable](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute, which enables source generated JSON serializer code for the `ToDo` type.
 
@@ -298,7 +297,7 @@ To report or review issues with Native AOT support in ASP.NET Core, see [GitHub 
 
 ## Related content
 
-* [Publish an ASP.NET Core app with Native AOT](xref:fundamentals/native-aot-tutorial)
+* [Publish an ASP.NET Core app with Native AOT](aot/native-aot-tutorial.md)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
 * [Optimize AOT deployments](/dotnet/core/deploying/native-aot/optimizing)
 

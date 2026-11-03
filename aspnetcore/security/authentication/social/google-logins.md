@@ -2,13 +2,12 @@
 title: Google external login setup in ASP.NET Core
 description: This tutorial demonstrates the integration of Google account user authentication into an existing ASP.NET Core app.
 ms.date: 10/08/2026
-uid: security/authentication/google-logins
 ---
 # Google external login setup in ASP.NET Core
 
 By [Valeriy Novytskyy](https://github.com/01binary), [Rick Anderson](https://twitter.com/RickAndMSFT), and [Sharaf Abacery](https://github.com/sharafabacery)
 
-This tutorial shows how to enable user sign in with Google accounts using a sample ASP.NET Core project created in <xref:security/authentication/social/index>. Follow Google's official guidance in [Sign in with Google for Web: Setup](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid) to create a Google API client ID.
+This tutorial shows how to enable user sign in with Google accounts using a sample ASP.NET Core project created in [Using external login providers with Identity in ASP.NET Core](index.md). Follow Google's official guidance in [Sign in with Google for Web: Setup](https://developers.google.com/identity/gsi/web/guides/get-google-api-clientid) to create a Google API client ID.
 
 ## Create the app in Google
 
@@ -43,7 +42,7 @@ Create the client credentials for the app by opening the **Clients** sidebar men
 * Save the **Client ID** and **Client secret**, which are used later in the ASP.NET app configuration.
 
 > [!NOTE]
-> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property.
+> The URI segment `/signin-google` is set as the default callback of the Google authentication provider. It's possible to change the default callback URI while configuring the Google authentication middleware via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property.
 
 When deploying the app, either:
 
@@ -52,9 +51,9 @@ When deploying the app, either:
 
 ## Store the Google client ID and secret
 
-Store sensitive settings, such as the Google client ID and secret values, with [Secret Manager](xref:security/app-secrets). For this sample, follow these steps:
+Store sensitive settings, such as the Google client ID and secret values, with [Secret Manager](../../app-secrets.md). For this sample, follow these steps:
 
-1. Initialize the project for secret storage according to the instructions in <xref:security/app-secrets>.
+1. Initialize the project for secret storage according to the instructions in [Safe storage of app secrets in development](../../app-secrets.md).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Google:ClientId` (value: `{CLIENT ID}` placeholder) and `Authentication:Google:ClientSecret` (value: `{CLIENT SECRET}` placeholder):
 
     ```dotnetcli
@@ -139,10 +138,10 @@ The user is now logged in using Google credentials.
 
 ## Next steps
 
-* This article demonstrates authentication with Google. For information on authenticating with other external providers, see <xref:security/authentication/social/index>.
+* This article demonstrates authentication with Google. For information on authenticating with other external providers, see [Using external login providers with Identity in ASP.NET Core](index.md).
 * After the app is deployed to Azure, reset the `ClientSecret` in the Google API console.
 * Set the `Authentication:Google:ClientId` and `Authentication:Google:ClientSecret` as app settings in the Azure portal. The configuration system is set up to read keys from the environment variables.
 
 ## Related content
 
-[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)
+[Multiple authentication providers](index.md#multiple-authentication-providers)

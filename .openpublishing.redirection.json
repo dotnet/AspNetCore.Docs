@@ -1409,6 +1409,10 @@
         {
             "source_path": "aspnetcore/blazor/hybrid/tutorials/maui.md",
             "redirect_url": "/dotnet/maui/get-started/first-app"
+        },
+        {
+            "source_path": "aspnetcore/fundamentals/dotnet-scaffold-telemetry.md",
+            "redirect_url": "/dotnet/core/tools/dotnet-scaffold-telemetry"
         }
     ]
 }

@@ -3,7 +3,6 @@ title: General Data Protection Regulation (GDPR) support in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to access the GDPR extension points in an ASP.NET Core web app.
 ms.date: 07/11/2019
-uid: security/gdpr
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core
 
@@ -22,7 +21,7 @@ To enable the default cookie consent feature like that found in the ASP.NET Core
 
   [!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_1&highlight=4-11,23)]
 
-In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A> are used.
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> and <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*> are used.
 
 * Add the cookie consent partial to the `_Layout.cshtml` file:
 
@@ -32,7 +31,7 @@ In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> a
 
   [!code-cshtml[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Pages/Shared/_CookieConsentPartial.cshtml)]
 
-* Select the ASP.NET Core [2.2 version](xref:security/gdpr?view=aspnetcore-2.2&preserve-view=true) of this article to read about the cookie consent feature.
+* Select the ASP.NET Core [2.2 version](gdpr.md?view=aspnetcore-2.2&preserve-view=true) of this article to read about the cookie consent feature.
 
 ## Customize the cookie consent value
 

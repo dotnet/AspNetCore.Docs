@@ -2,7 +2,6 @@
 title: Client-side library acquisition in ASP.NET Core with LibMan
 description: Learn how to install client-side library assets in an ASP.NET Core project using Library Manager (LibMan).
 ms.date: 08/14/2018
-uid: client-side/libman/index
 ---
 # Client-side library acquisition in ASP.NET Core with LibMan
 
@@ -22,6 +21,6 @@ LibMan isn't a package management system. If you're already using a package mana
 
 ## Related content
 
-* <xref:client-side/libman/libman-vs>
-* <xref:client-side/libman/libman-cli>
+* [Use LibMan with ASP.NET Core in Visual Studio](libman-vs.md)
+* [Use the LibMan CLI with ASP.NET Core](libman-cli.md)
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)

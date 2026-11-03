@@ -93,7 +93,7 @@ Assign users to ME-ID security groups and ME-ID Administrator Roles in the Azure
 The examples in this article:
 
 * Assume that a user is assigned to the ME-ID *Billing Administrator* role in the Azure portal ME-ID tenant for authorization to access server API data.
-* Use [authorization policies](xref:security/authorization/policies) to control access within the **CLIENT** and **SERVER** apps.
+* Use [authorization policies](../../../security/authorization/policies.md) to control access within the **CLIENT** and **SERVER** apps.
 
 In the **CLIENT** app, extend <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> to include properties for:
 
@@ -350,7 +350,7 @@ Confirm that the `Program` file uses the <xref:Microsoft.AspNetCore.Components.W
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-Update the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> call to the following. Note that the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> is replaced by the app's `CustomUserAccount` for the MSAL authentication and account claims principal factory:
+Update the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication*> call to the following. Note that the Blazor framework's <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> is replaced by the app's `CustomUserAccount` for the MSAL authentication and account claims principal factory:
 
 ```csharp
 builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
@@ -398,7 +398,7 @@ builder.Services.AddGraphClient(baseUrl, scopes);
 
 ## Authorization configuration
 
-In the **CLIENT** app, create a [policy](xref:security/authorization/policies) for each [App Role](#app-roles), ME-ID Administrator Role, or security group in the `Program` file. The following example creates a policy for the ME-ID built-in *Billing Administrator* role:
+In the **CLIENT** app, create a [policy](../../../security/authorization/policies.md) for each [App Role](#app-roles), ME-ID Administrator Role, or security group in the `Program` file. The following example creates a policy for the ME-ID built-in *Billing Administrator* role:
 
 ```csharp
 builder.Services.AddAuthorizationCore(options =>
@@ -409,7 +409,7 @@ builder.Services.AddAuthorizationCore(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Entra documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Entra documentation. For more information on authorization policies, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md).
 
 In the following examples, the **CLIENT** app uses the preceding policy to authorize the user.
 
@@ -486,7 +486,7 @@ Using the preceding approaches, you can also create policy-based access for [app
 
 ## Authorize server API/web API access
 
-A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](xref:security/authorization/policies) for security groups, ME-ID Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the ME-ID *Billing Administrator* role in the `Program` file using the `wids` (well-known IDs/Role Template IDs) claims:
+A **SERVER** API app can authorize users to access secure API endpoints with [authorization policies](../../../security/authorization/policies.md) for security groups, ME-ID Administrator Roles, and App Roles when an access token contains `groups`, `wids`, and `role` claims. The following example creates a policy for the ME-ID *Billing Administrator* role in the `Program` file using the `wids` (well-known IDs/Role Template IDs) claims:
 
 ```csharp
 builder.Services.AddAuthorization(options =>
@@ -496,9 +496,9 @@ builder.Services.AddAuthorization(options =>
 });
 ```
 
-For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Azure documentation. For more information on authorization policies, see <xref:security/authorization/policies>.
+For the complete list of IDs for ME-ID Administrator Roles, see [Role template IDs](/entra/identity/role-based-access-control/permissions-reference) in the Azure documentation. For more information on authorization policies, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md).
 
-Access to a controller in the **SERVER** app can be based on using an [`[Authorize]` attribute](xref:security/authorization/simple) with the name of the policy (API documentation: <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>).
+Access to a controller in the **SERVER** app can be based on using an [`[Authorize]` attribute](../../../security/authorization/simple.md) with the name of the policy (API documentation: <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>).
 
 The following example limits access to billing data from the `BillingDataController` to Azure Billing Administrators with a policy name of `BillingAdministrator`:
 
@@ -516,7 +516,7 @@ public class BillingDataController : ControllerBase
 }
 ```
 
-For more information, see <xref:security/authorization/policies>.
+For more information, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md).
 
 ## App Roles
 
@@ -579,7 +579,7 @@ Multiple roles are assigned in the Azure portal by ***re-adding a user*** for ea
 
 The `CustomAccountFactory` shown in the [Custom user account](#custom-user-account) section is set up to act on a `role` claim with a JSON array value. Add and register the `CustomAccountFactory` in the **CLIENT** app as shown in the [Custom user account](#custom-user-account) section. There's no need to provide code to remove the original `role` claim because it's automatically removed by the framework.
 
-In the `Program` file of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In the `Program` file of a **CLIENT** app, specify the claim named "`appRole`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole*?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddMsalAuthentication(options =>
@@ -593,7 +593,7 @@ builder.Services.AddMsalAuthentication(options =>
 > [!NOTE]
 > If you prefer to use the `directoryRoles` claim (ADD Administrator Roles), assign "`directoryRoles`" to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteAuthenticationUserOptions.RoleClaim?displayProperty=nameWithType>.
 
-In the `Program` file of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole%2A?displayProperty=nameWithType> checks:
+In the `Program` file of a **SERVER** app, specify the claim named "`http://schemas.microsoft.com/ws/2008/06/identity/claims/role`" as the role claim for <xref:System.Security.Claims.ClaimsPrincipal.IsInRole*?displayProperty=nameWithType> checks:
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -759,7 +759,7 @@ Multiple role tests are supported:
   if (User.IsInRole("Admin") && User.IsInRole("Developer"))
   ```
 
-Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>. By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md#claim-case-sensitivity). By contrast, ASP.NET Core policy name lookup is typically case-insensitive, so `RequireAdministratorRole` and `requireadministratorrole` refer to the same policy.
 
 ## Related content
 
@@ -767,6 +767,6 @@ Role matching is typically case-sensitive because role names are stored and comp
 * [`groupMembershipClaims` attribute (Entra documentation)](/entra/identity-platform/reference-app-manifest#groupmembershipclaims-attribute)
 * [Add app roles to your application and receive them in the token (Entra documentation)](/entra/identity-platform/howto-add-app-roles-in-apps)
 * [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
-* <xref:security/authorization/claims>
-* <xref:security/authorization/roles>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
+* [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
 * <xref:blazor/security/index>

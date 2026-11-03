@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 5
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 5.
 ms.date: 07/21/2026
-uid: aspnetcore-5.0
 ---
 # What's new in ASP.NET Core in .NET 5
 
@@ -98,7 +97,7 @@ The template generated code won't accidentally expose the API's description when
 
 #### Azure API Management Import
 
-When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](xref:tutorials/publish-to-azure-api-management-using-vs) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
+When ASP.NET Core API projects enable OpenAPI, the Visual Studio 2019 version 16.8 or later publishing automatically offer an additional step in the publishing flow. Developers who use [Azure API Management](../tutorials/publish-to-azure-api-management-using-vs.md) have an opportunity to automatically import the APIs into Azure API Management during the publish flow:
 
 ![Azure API Management Import VS publishing](~/release-notes/static/publish-to-apim.png)
 
@@ -116,31 +115,31 @@ For .NET 5, we made significant improvements to .NET WebAssembly runtime perform
 
 ### CSS isolation
 
-Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see <xref:blazor/components/css-isolation>.
+Blazor now supports defining CSS styles that are scoped to a given component. Component-specific CSS styles make it easier to reason about the styles in an app and to avoid unintentional side effects of global styles. For more information, see [ASP.NET Core Blazor CSS isolation](../blazor/components/css-isolation.md).
 
 ### New `InputFile` component
 
-The `InputFile` component allows reading one or more files selected by a user for upload. For more information, see <xref:blazor/file-uploads>.
+The `InputFile` component allows reading one or more files selected by a user for upload. For more information, see [ASP.NET Core Blazor file uploads](../blazor/file-uploads.md).
 
 ### New `InputRadio` and `InputRadioGroup` components
 
-Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see <xref:blazor/forms/input-components>.
+Blazor has built-in `InputRadio` and `InputRadioGroup` components that simplify data binding to radio button groups with integrated validation. For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md).
 
 ### Component virtualization
 
-Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see <xref:blazor/components/virtualization>.
+Improve the perceived performance of component rendering using the Blazor framework's built-in virtualization support. For more information, see [ASP.NET Core Razor component virtualization](../blazor/components/virtualization.md).
 
 ### `ontoggle` event support
 
-Blazor events now support the `ontoggle` DOM event. For more information, see <xref:blazor/components/event-handling#event-arguments>.
+Blazor events now support the `ontoggle` DOM event. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#built-in-event-arguments).
 
 ### Set UI focus in Blazor apps
 
-Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see <xref:blazor/components/event-handling#focus-an-element>.
+Use the `FocusAsync` convenience method on element references to set the UI focus to that element. For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md#focus-an-element).
 
 ### Custom validation CSS class attributes
 
-Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see <xref:blazor/forms/validation#customize-validation-appearance>.
+Custom validation CSS class attributes are useful when integrating with CSS frameworks, such as Bootstrap. For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md#customize-validation-appearance).
 
 ### IAsyncDisposable support
 
@@ -148,7 +147,7 @@ Razor components now support the <xref:System.IAsyncDisposable> interface for th
 
 ### JavaScript isolation and object references
 
-Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+Blazor enables JavaScript isolation in standard [JavaScript modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules). For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../blazor/javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 ### Form components support display name
 
@@ -158,15 +157,15 @@ The following built-in components support display names with the `DisplayName` p
 * `InputNumber`
 * `InputSelect`
 
-For more information, see <xref:blazor/forms/index#display-name-support>.
+For more information, see [ASP.NET Core Blazor forms overview](../blazor/forms/input-components.md#display-name-support).
 
 ### Catch-all route parameters
 
-Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. For more information, see <xref:blazor/fundamentals/routing#catch-all-route-parameters>.
+Catch-all route parameters, which capture paths across multiple folder boundaries, are supported in components. For more information, see [ASP.NET Core Blazor routing](../blazor/fundamentals/routing.md#catch-all-route-parameters).
 
 ### Debugging improvements
 
-Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see <xref:blazor/debug>.
+Debugging Blazor WebAssembly apps is improved in .NET 5. Additionally, debugging is now supported on Visual Studio for Mac. For more information, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md).
 
 ### Microsoft Identity v2.0 and MSAL v2.0
 
@@ -178,15 +177,15 @@ Blazor Server apps can now use built-in support for storing app state in the bro
 
 ### Blazor WebAssembly prerendering
 
-Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and <xref:mvc/views/tag-helpers/builtin-th/component-tag-helper>. -->
+Component integration is improved across hosting models, and Blazor WebAssembly apps can now prerender output on the server. <!-- UNCOMMENT AFTER https://github.com/dotnet/AspNetCore.Docs/pull/19887 MERGES: For more information, see <xref:blazor/components/integrate-components-into-razor-pages-and-mvc-apps> and [Component Tag Helper in ASP.NET Core](../mvc/views/tag-helpers/built-in/component-tag-helper.md). -->
 
 ### Trimming/linking improvements
 
-Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see <xref:blazor/host-and-deploy/configure-trimmer> and [Trimming options](/dotnet/core/deploying/trimming-options).
+Blazor WebAssembly performs Intermediate Language (IL) trimming/linking during a build to trim unnecessary IL from the app's output assemblies. With the release of .NET 5, Blazor WebAssembly performs improved trimming with additional configuration options. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../blazor/host-and-deploy/configure-trimmer.md) and [Trimming options](/dotnet/core/deploying/trimming-options).
 
 ### Browser compatibility analyzer
 
-Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see <xref:blazor/components/class-libraries#browser-compatibility-analyzer-for-blazor-webassembly>.
+Blazor WebAssembly apps target the full .NET API surface area, but not all .NET APIs are supported on WebAssembly due to browser sandbox constraints. Unsupported APIs throw <xref:System.PlatformNotSupportedException> when running on WebAssembly. A platform compatibility analyzer warns the developer when the app uses APIs that aren't supported by the app's target platforms. For more information, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md#client-side-browser-compatibility-analyzer).
 
 ### Lazy load assemblies
 
@@ -194,13 +193,13 @@ Blazor WebAssembly app startup performance can be improved by deferring the load
 
 ### Updated globalization support
 
-Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see <xref:blazor/globalization-localization>.
+Globalization support is available for Blazor WebAssembly based on International Components for Unicode (ICU). For more information, see [ASP.NET Core Blazor globalization and localization](../blazor/globalization-localization.md).
 
 ## gRPC
 
 Many performance improvements have been made in [gRPC](https://grpc.io/). For more information, see [gRPC performance improvements in .NET 5](https://devblogs.microsoft.com/aspnet/grpc-performance-improvements-in-net-5/).
 
-For more gRPC information, see <xref:grpc/index>.
+For more gRPC information, see [Overview for gRPC on .NET](../grpc/index.md).
 
 ## SignalR
 
@@ -208,7 +207,7 @@ For more gRPC information, see <xref:grpc/index>.
 
 SignalR Hub filters, called Hub pipelines in ASP.NET SignalR, is a feature that allows code to run before and after Hub methods are called. Running code before and after Hub methods are called is similar to how middleware has the ability to run code before and after an HTTP request. Common uses include logging, error handling, and argument validation.
 
-For more information, see [Use hub filters in ASP.NET Core SignalR](xref:signalr/hub-filters).
+For more information, see [Use hub filters in ASP.NET Core SignalR](../signalr/hub-filters.md).
 
 ### SignalR parallel hub invocations
 
@@ -228,14 +227,14 @@ HubConnection hubConnection = HubConnectionBuilder.create(
 ```
 
 <!--
-See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instructions.
+See [Update SignalR code](../migration/31-to-50.md#signalr) for migration instructions.
 -->
 
 ## Kestrel
 
-* Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure%2A) and unbind from existing endpoints and bind to new endpoints without requiring an application restart when the `reloadOnChange` parameter is `true`. By default when using <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> or <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, Kestrel binds to the ["Kestrel"](https://github.com/dotnet/aspnetcore/blob/7e9e03b70124784b1de5564c573bd65cdaccbfcc/src/DefaultBuilder/src/WebHost.cs#L226) configuration subsection with `reloadOnChange` enabled. Apps must pass `reloadOnChange: true` when calling `KestrelServerOptions.Configure` manually to get reloadable endpoints.
+* Reloadable endpoints via configuration: Kestrel can detect changes to configuration passed to [KestrelServerOptions.Configure](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Configure*) and unbind from existing endpoints and bind to new endpoints without requiring an application restart when the `reloadOnChange` parameter is `true`. By default when using <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> or <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, Kestrel binds to the ["Kestrel"](https://github.com/dotnet/aspnetcore/blob/7e9e03b70124784b1de5564c573bd65cdaccbfcc/src/DefaultBuilder/src/WebHost.cs#L226) configuration subsection with `reloadOnChange` enabled. Apps must pass `reloadOnChange: true` when calling `KestrelServerOptions.Configure` manually to get reloadable endpoints.
 * HTTP/2 response headers improvements. For more information, see [Performance improvements](#performance-improvements) in the next section.
-* Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](xref:fundamentals/servers/kestrel) allows binding to both existing file handles and Unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
+* Support for additional endpoints types in the sockets transport: Adding to the new API introduced in <xref:System.Net.Sockets?displayProperty=nameWithType>, the sockets default transport in [Kestrel](../fundamentals/servers/kestrel.md) allows binding to both existing file handles and Unix domain sockets. Support for binding to existing file handles enables using the existing `Systemd` integration without requiring the `libuv` transport.
 * Custom header decoding in Kestrel: Apps can specify which <xref:System.Text.Encoding> to use to interpret incoming headers based on the header name instead of defaulting to UTF-8. Set the <!--<xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.RequestHeaderEncodingSelector> --> `Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions.RequestHeaderEncodingSelector` property to specify which encoding to use:
  
   ```csharp
@@ -260,7 +259,7 @@ See [Update SignalR code](xref:migration/31-to-50#signalr) for migration instruc
 
 ### Kestrel endpoint-specific options via configuration
 
-Support has been added for configuring Kestrel's endpoint-specific options via [configuration](xref:fundamentals/configuration/index). The endpoint-specific configurations includes the:
+Support has been added for configuring Kestrel's endpoint-specific options via [configuration](../fundamentals/configuration/index.md). The endpoint-specific configurations includes the:
 
 * HTTP protocols used
 * TLS protocols used
@@ -313,8 +312,8 @@ Server Name Indication (SNI) is a TLS extension to include a virtual domain as a
 ### HTTP/2
 
 * Significant reductions in allocations in the HTTP/2 code path.
-* Support for [HPack dynamic compression](https://tools.ietf.org/html/rfc7541) of HTTP/2 response headers in [Kestrel](xref:fundamentals/servers/kestrel). For more information, see [Header table size](xref:fundamentals/servers/kestrel/options#header-table-size) and [HPACK: the silent killer (feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/).
-* Sending HTTP/2 PING frames: HTTP/2 has a mechanism for sending PING frames to ensure an idle connection is still functional. Ensuring a viable connection is especially useful when working with long-lived streams that are often idle but only intermittently see activity, for example, gRPC streams. Apps can send periodic PING frames in [Kestrel](xref:fundamentals/servers/kestrel) by setting limits on 
+* Support for [HPack dynamic compression](https://tools.ietf.org/html/rfc7541) of HTTP/2 response headers in [Kestrel](../fundamentals/servers/kestrel.md). For more information, see [Header table size](../fundamentals/servers/kestrel/options.md#header-table-size) and [HPACK: the silent killer (feature) of HTTP/2](https://blog.cloudflare.com/hpack-the-silent-killer-feature-of-http-2/).
+* Sending HTTP/2 PING frames: HTTP/2 has a mechanism for sending PING frames to ensure an idle connection is still functional. Ensuring a viable connection is especially useful when working with long-lived streams that are often idle but only intermittently see activity, for example, gRPC streams. Apps can send periodic PING frames in [Kestrel](../fundamentals/servers/kestrel.md) by setting limits on 
 <xref:Microsoft.AspNetCore.Server.Kestrel.KestrelServerOptions>:
 
    ```csharp
@@ -355,25 +354,25 @@ The `AllowAnonymous` extension method allows anonymous access to an endpoint:
 
 ### Custom handling of authorization failures
 
-Custom handling of authorization failures is now easier with the new <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> interface that is invoked by the [authorization middleware (`UseAuthorization`)](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A). The default implementation remains the same, but a custom handler can be registered with dependency injection, which allows custom HTTP responses based on an authorization failure. See [`SampleAuthorizationMiddlewareResultHandler.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) for a demonstration of `IAuthorizationMiddlewareResultHandler`.
+Custom handling of authorization failures is now easier with the new <xref:Microsoft.AspNetCore.Authorization.IAuthorizationMiddlewareResultHandler> interface that is invoked by the [authorization middleware (`UseAuthorization`)](xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*). The default implementation remains the same, but a custom handler can be registered with dependency injection, which allows custom HTTP responses based on an authorization failure. See [`SampleAuthorizationMiddlewareResultHandler.cs` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Security/samples/CustomAuthorizationFailureResponse/Authorization/SampleAuthorizationMiddlewareResultHandler.cs) for a demonstration of `IAuthorizationMiddlewareResultHandler`.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
 ### Authorization when using endpoint routing
 
-Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A).
+Authorization when using endpoint routing now receives the `HttpContext` rather than the endpoint instance. This allows the authorization middleware to access the `RouteData` and other properties of the `HttpContext` that were not accessible though the <xref:Microsoft.AspNetCore.Http.Endpoint> class. The endpoint can be fetched from the context using [context.GetEndpoint](xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*).
 
 ### Role-based access control with Kerberos authentication and LDAP on Linux
 
-See [Kerberos authentication and role-based access control (RBAC)](xref:security/authentication/windowsauth#rbac)
+See [Kerberos authentication and role-based access control (RBAC)](../security/authentication/windowsauth.md#rbac)
 
 ## API improvements
 
 ### JSON extension methods for HttpRequest and HttpResponse
 
-JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync%2A> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. The new `HasJsonContentType` extension method can also check if a request has a JSON content type.
+JSON data can be read and written to from an `HttpRequest` and `HttpResponse` using the new <xref:System.Net.Http.Json.HttpContentJsonExtensions.ReadFromJsonAsync*> and `WriteAsJsonAsync` extension methods. These extension methods use the [System.Text.Json](xref:System.Text.Json) serializer to handle the JSON data. The new `HasJsonContentType` extension method can also check if a request has a JSON content type.
 
-The JSON extension methods can be combined with [endpoint routing](xref:fundamentals/routing) to create JSON APIs in a style of programming we call ***route to code***. It is a new option for developers who want to create basic JSON APIs in a lightweight way. For example, a web app that has only a handful of endpoints might choose to use route to code rather than the full functionality of ASP.NET Core MVC:
+The JSON extension methods can be combined with [endpoint routing](../fundamentals/routing.md) to create JSON APIs in a style of programming we call ***route to code***. It is a new option for developers who want to create basic JSON APIs in a lightweight way. For example, a web app that has only a handful of endpoints might choose to use route to code rather than the full functionality of ASP.NET Core MVC:
 
 ```csharp
 endpoints.MapGet("/weather/{city:alpha}", async context =>
@@ -407,7 +406,7 @@ We've started applying [nullable annotations](/dotnet/csharp/nullable-references
 
 ### Control Startup class activation
 
-An additional <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseStartup%2A> overload has been added that lets an app provide a factory method for controlling `Startup` class activation. Controlling `Startup` class activation is useful to pass additional parameters to `Startup` that are initialized along with the host:
+An additional <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseStartup*> overload has been added that lets an app provide a factory method for controlling `Startup` class activation. Controlling `Startup` class activation is useful to pass additional parameters to `Startup` that are initialized along with the host:
 
 ```csharp
 public class Program
@@ -429,7 +428,7 @@ public class Program
 
 ### Auto refresh with dotnet watch
 
-In .NET 5, running [dotnet watch](xref:tutorials/dotnet-watch) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
+In .NET 5, running [dotnet watch](../tutorials/dotnet-watch.md) on an ASP.NET Core project both launches the default browser and auto refreshes the browser as changes are made to the code. This means you can:
 
 * Open an ASP.NET Core project in a text editor.
 * Run `dotnet watch`.

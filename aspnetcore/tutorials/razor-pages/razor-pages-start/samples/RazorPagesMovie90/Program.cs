@@ -32,7 +32,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages();
+app.MapRazorPages()
+   .WithStaticAssets();
 
 app.Run();
 #elif SQL_Lite
@@ -68,7 +69,8 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapStaticAssets();
-app.MapRazorPages();
+app.MapRazorPages()
+   .WithStaticAssets();
 
 app.Run();
 #endif

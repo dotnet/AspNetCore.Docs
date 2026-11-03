@@ -3,7 +3,6 @@ title: Get started with ASP.NET Core
 description: A short tutorial using the .NET CLI to create and run a basic Hello World app using ASP.NET Core Blazor.
 monikerRange: ">= aspnetcore-3.1"
 ms.date: 07/23/2025
-uid: get-started
 ---
 # Get started with ASP.NET Core
 
@@ -248,7 +247,7 @@ In this tutorial, you learned how to:
 To learn more about the fundamentals of ASP.NET Core, see the following:
 
 > [!div class="nextstepaction"]
-> <xref:fundamentals/index>
+> [ASP.NET Core fundamentals overview](fundamentals/index.md)
 
 ## Additional tutorials
 
@@ -257,9 +256,9 @@ To learn more about the fundamentals of ASP.NET Core, see the following:
 App type | Scenario | Tutorials
 -------- | -------- | ---------
 Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
-Web API | Server-based data processing with Minimal APIs | <xref:tutorials/min-web-api>
-Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
-Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
+Web API | Server-based data processing with Minimal APIs | [Tutorial: Create a Minimal API with ASP.NET Core](tutorials/min-web-api.md)
+Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | [Create a .NET gRPC client and server in ASP.NET Core](tutorials/grpc/grpc-start.md)
+Real-time app | Server/client bidirectional communication | [Get started with ASP.NET Core SignalR](tutorials/signalr.md)
 
 :::moniker-end
 
@@ -268,9 +267,9 @@ Real-time app | Server/client bidirectional communication | <xref:tutorials/sign
 App type | Scenario | Tutorials
 -------- | -------- | ---------
 Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
-Web API | Server-based data processing | <xref:tutorials/first-web-api>
-Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | <xref:tutorials/grpc/grpc-start>
-Real-time app | Server/client bidirectional communication | <xref:tutorials/signalr>
+Web API | Server-based data processing | [Tutorial: Create a controller-based web API with ASP.NET Core](tutorials/first-web-api.md)
+Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | [Create a .NET gRPC client and server in ASP.NET Core](tutorials/grpc/grpc-start.md)
+Real-time app | Server/client bidirectional communication | [Get started with ASP.NET Core SignalR](tutorials/signalr.md)
 
 :::moniker-end
 

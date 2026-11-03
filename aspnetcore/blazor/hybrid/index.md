@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor Hybrid
 description: Explore ASP.NET Core Blazor Hybrid, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/index
 ---
 # ASP.NET Core Blazor Hybrid
 
@@ -13,13 +12,13 @@ This article explains ASP.NET Core Blazor Hybrid, a way to build interactive cli
 
 Use *Blazor Hybrid* to blend desktop and mobile native client frameworks with .NET and Blazor.
 
-In a Blazor Hybrid app, [Razor components](xref:blazor/components/index) run natively on the device. Components render to an embedded Web View control through a local interop channel. Components don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform. Component styles rendered in a Web View are platform dependent and may require you to account for rendering differences across platforms using custom stylesheets.
+In a Blazor Hybrid app, [Razor components](../components/index.md) run natively on the device. Components render to an embedded Web View control through a local interop channel. Components don't run in the browser, and WebAssembly isn't involved. Razor components load and execute code quickly, and components have full access to the native capabilities of the device through the .NET platform. Component styles rendered in a Web View are platform dependent and may require you to account for rendering differences across platforms using custom stylesheets.
 
-Blazor Hybrid articles cover subjects pertaining to integrating [Razor components](xref:blazor/components/index) into native client frameworks.
+Blazor Hybrid articles cover subjects pertaining to integrating [Razor components](../components/index.md) into native client frameworks.
 
 ## Blazor Hybrid apps with .NET MAUI
 
-Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui) framework. .NET MAUI includes the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control that permits rendering [Razor components](xref:blazor/components/index) into an embedded Web View. By using .NET MAUI and Blazor together, you can reuse one set of web UI components across mobile, desktop, and web.
+Blazor Hybrid support is built into the [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui) framework. .NET MAUI includes the <xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> control that permits rendering [Razor components](../components/index.md) into an embedded Web View. By using .NET MAUI and Blazor together, you can reuse one set of web UI components across mobile, desktop, and web.
 
 ## Blazor Hybrid apps with WPF and Windows Forms
 
@@ -86,7 +85,7 @@ For more information, see the following resources:
 
 ## Access scoped services from native UI
 
-<xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> has a <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.TryDispatchAsync%2A> method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as <xref:Microsoft.AspNetCore.Components.NavigationManager>:
+<xref:Microsoft.AspNetCore.Components.WebView.Maui.BlazorWebView> has a <xref:Microsoft.AspNetCore.Components.WebView.Wpf.BlazorWebView.TryDispatchAsync*> method that calls a specified `Action<ServiceProvider>` asynchronously and passes in the scoped services available in Razor components. This enables code from the native UI to access scoped services such as <xref:Microsoft.AspNetCore.Components.NavigationManager>:
 
 ```csharp
 private async void MyMauiButtonHandler(object sender, EventArgs e)
@@ -110,7 +109,7 @@ When `wasDispatchCalled` is `false`, consider what to do if the call wasn't disp
 
 ## Related content
 
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor Hybrid tutorials](tutorials/index.md)
 * [.NET Multi-platform App UI (.NET MAUI)](/dotnet/maui/what-is-maui)
 * [Windows Presentation Foundation (WPF)](/dotnet/desktop/wpf/overview/)
 * [Windows Forms](/dotnet/desktop/winforms/overview/)

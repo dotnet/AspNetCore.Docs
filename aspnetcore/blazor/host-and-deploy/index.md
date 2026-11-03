@@ -3,7 +3,6 @@ title: Host and deploy ASP.NET Core Blazor
 description: Discover how to host and deploy Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/index
 ---
 # Host and deploy ASP.NET Core Blazor
 
@@ -85,19 +84,19 @@ To empty the target folder automatically before the app is published, add the fo
 To host a Blazor app in IIS, see the following resources:
 
 * IIS hosting
-  * <xref:tutorials/publish-to-iis>
-  * <xref:host-and-deploy/iis/index>
-* <xref:blazor/host-and-deploy/server/index>: Blazor Web Apps (.NET 8 or later) and Blazor Server apps (.NET 7 or earlier) running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
-* <xref:blazor/host-and-deploy/webassembly/iis>: Standalone Blazor WebAssembly apps (all .NET releases) and hosted Blazor WebAssembly apps (.NET 7 or earlier).
+  * [Publish an ASP.NET Core app to IIS](../../tutorials/publish-to-iis.md)
+  * [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [Host and deploy ASP.NET Core server-side Blazor apps](server/index.md): Blazor Web Apps (.NET 8 or later) and Blazor Server apps (.NET 7 or earlier) running on IIS, including IIS with Azure Virtual Machines (VMs) running Windows OS and Azure App Service.
+* [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](webassembly/iis.md): Standalone Blazor WebAssembly apps (all .NET releases) and hosted Blazor WebAssembly apps (.NET 7 or earlier).
 * IIS sub-application hosting
-  * Follow the [app base path guidance](xref:blazor/host-and-deploy/app-base-path) prior to publishing the app. The examples use an app base path of `/CoolApp` and show how to [obtain the base path from app settings or other configuration providers](xref:blazor/host-and-deploy/app-base-path#obtain-the-app-base-path-from-configuration).
-  * Follow the sub-application configuration guidance in <xref:host-and-deploy/iis/advanced#sub-applications>. The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
+  * Follow the [app base path guidance](app-base-path.md) prior to publishing the app. The examples use an app base path of `/CoolApp` and show how to [obtain the base path from app settings or other configuration providers](app-base-path.md#obtain-the-app-base-path-from-configuration).
+  * Follow the sub-application configuration guidance in [Advanced configuration](../../host-and-deploy/iis/advanced.md#sub-applications). The sub-app's folder path under the root site becomes the virtual path of the sub-app. For an app base path of `/CoolApp`, the Blazor app is placed in a folder named `CoolApp` under the root site and the sub-app takes on a virtual path of `/CoolApp`.
 
 Sharing an app pool among ASP.NET Core apps isn't supported, including for Blazor apps. Use one app pool per app when hosting with IIS, and avoid the use of IIS's [virtual directories](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#virtual-directories) for hosting multiple apps.
 
 :::moniker range="< aspnetcore-8.0"
 
-One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
+One or more Blazor WebAssembly apps hosted by an ASP.NET Core app, known as a [hosted Blazor WebAssembly solution](../hosting-models.md#blazor-webassembly), are supported for ***one*** app pool. However, we don't recommend or support assigning a single app pool to multiple hosted Blazor WebAssembly solutions or in sub-app hosting scenarios.
 
 For more information on *solutions*, see <xref:blazor/tooling#visual-studio-solution-file-sln>.
 
@@ -140,14 +139,14 @@ Demonstration sample apps for Blazor WebAssembly in a React app (`BlazorWebAssem
 
 Blazor bundle caching and HTTP caching guidance in the *Blazor WebAssembly* node focus on standalone Blazor WebAssembly apps, but several aspects of client-side caching in these articles also apply to Blazor Web Apps that adopt Interactive WebAssembly or Interactive Auto render modes. If a Blazor Web App that renders content client-side encounters a static asset or bundle caching problem, see the guidance in these articles to troubleshoot the problem:
 
-* <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>
-* <xref:blazor/host-and-deploy/webassembly/http-caching-issues>
+* [ASP.NET Core Blazor WebAssembly caching and integrity check failures](webassembly/bundle-caching-and-integrity-check-failures.md)
+* [Avoid HTTP caching issues when upgrading ASP.NET Core Blazor apps](webassembly/http-caching-issues.md)
 
 :::moniker-end
 
 ## Blazor Server `MapFallbackToPage` configuration
 
-*This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*
+*This section only applies to Blazor Server apps. <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*> isn't supported in Blazor Web Apps and Blazor WebAssembly apps.*
 
 In scenarios where an app requires a separate area with custom resources and Razor components:
 
@@ -160,7 +159,7 @@ In scenarios where an app requires a separate area with custom resources and Raz
   * `~/_framework/blazor.server.js` (Blazor script)
 * If the area should have its own static asset folder, add the folder and specify its location to static file middleware in `Program.cs` (for example, `app.UseStaticFiles("/Admin/wwwroot")`).
 * Razor components are added to the area's folder. At a minimum, add an `Index` component to the area folder with the correct `@page` directive for the area. For example, add a `Pages/Admin/Index.razor` file based on the app's default `Pages/Index.razor` file. Indicate the Admin area as the route template at the top of the file (`@page "/admin"`). Add additional components as needed. For example, `Pages/Admin/Component1.razor` with an `@page` directive and route template of `@page "/admin/component1`.
-* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for the area's request path immediately before the fallback root page path to the `_Host` page:
+* In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*> for the area's request path immediately before the fallback root page path to the `_Host` page:
 
   ```csharp
   ...

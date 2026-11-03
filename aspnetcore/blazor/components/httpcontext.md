@@ -3,7 +3,6 @@ title: IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps
 description: Learn about IHttpContextAccessor and HttpContext in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/httpcontext
 ---
 # `IHttpContextAccessor`/`HttpContext` in ASP.NET Core Blazor apps
 
@@ -37,10 +36,10 @@ Attempting to set or modify a header after the first rendering (after the respon
 
 Examples of situations that result in this error include:
 
-* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager%601.PasswordSignInAsync%2A?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](xref:blazor/components/rendering#streaming-rendering).
+* Calling <xref:Microsoft.AspNetCore.Identity.SignInManager`1.PasswordSignInAsync*?displayProperty=nameWithType>, which must set headers for Identity to function correctly, while adopting [streaming rendering](rendering.md#streaming-rendering).
 * Attempting to set or modify a header after the response has started during interactive rendering.
 
-For guidance on setting headers before the response starts, see <xref:blazor/fundamentals/startup#control-headers-in-c-code>.
+For guidance on setting headers before the response starts, see [ASP.NET Core Blazor startup](../fundamentals/startup.md#control-headers-in-c-code).
 
 :::moniker-end
 
@@ -54,4 +53,4 @@ A critical aspect of server-side Blazor security is that the user attached to a 
 
 :::moniker-end
 
-For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and <xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core SignalR, see <xref:signalr/httpcontext>.
+For guidance on <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> and <xref:Microsoft.AspNetCore.Http.HttpContext> in ASP.NET Core SignalR, see [IHttpContextAccessor/HttpContext in ASP.NET Core SignalR](../../signalr/httpcontext.md).

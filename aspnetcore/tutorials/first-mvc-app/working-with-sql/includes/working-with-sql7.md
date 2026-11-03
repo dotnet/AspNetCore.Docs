@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-7.0"
 
 ## Introduction
@@ -13,17 +18,17 @@ You'll learn how to:
 
 ## Prerequisite
 
-This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+This tutorial uses a database you set up in the previous step: [Part 4, add a model to an ASP.NET Core MVC app](../../adding-model.md).
 
 ## Working with the database context
 
-The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
+The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../../../fundamentals/dependency-injection.md) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Program.cs?name=snippet_FirstSQLServer&highlight=3-4)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../../../fundamentals/configuration/index.md) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/appsettings.json?highlight=2&range=9-11)]
 
@@ -31,7 +36,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../../../fundamentals/configuration/index.md) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/appsettings_SQLite.json?highlight=2&range=9-11)]
 
@@ -71,7 +76,7 @@ Right-click on the `Movie` table **> View Data**
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
-[!INCLUDE[](~/includes/rp/sqlite.md)]
+[!INCLUDE[](~/includes/RP/sqlite.md)]
 [!INCLUDE[](~/includes/RP-mvc-shared/sqlite-warn.md)]
 
 ---
@@ -102,7 +107,7 @@ Replace the contents of `Program.cs` with the following code. The new code is hi
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Program.cs?name=snippet_SQLServerSeedData&highlight=4,16-21)]
 
-Delete all the records in the database. You can do this with the delete links in the browser or from SSOX.
+If the database already contains records, delete them, which causes the seed initializer to run. You can do this with the delete links in the browser or from SSOX.
 
 Test the app. Force the app to initialize, calling the code in the `Program.cs` file, so the seed method runs. To force initialization, close the command prompt window that Visual Studio opened, and restart by pressing Ctrl+F5.
 
@@ -112,7 +117,7 @@ Update `Program.cs` with the following highlighted code:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Program.cs?name=snippet_SQLiteSeedData&highlight=4,16-21)]
 
-Delete all the records in the database.
+If the database already contains records, delete them, which causes the seed initializer to run.
 
 Test the app. Stop it and restart it so the `SeedData.Initialize` method runs and seeds the database.
 

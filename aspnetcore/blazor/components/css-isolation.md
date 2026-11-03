@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor CSS isolation
 description: Learn how CSS isolation scopes CSS to Razor components, which can simplify CSS and avoid collisions with other components or libraries.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 11/11/2025
-uid: blazor/components/css-isolation
 ---
 # ASP.NET Core Blazor CSS isolation
 
@@ -248,7 +247,7 @@ Use the wildcard (`*`) operator to share scope identifiers across multiple files
 
 ### Change base path for static web assets
 
-The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](xref:blazor/fundamentals/static-files#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
+The `scoped.styles.css` file is generated at the root of the app. In the project file, use the [`<StaticWebAssetBasePath>` property](../fundamentals/static-files.md#static-web-asset-base-path) to change the default path. The following example places the `scoped.styles.css` file, and the rest of the app's assets, at the `_content` path:
 
 ```xml
 <PropertyGroup>
@@ -276,7 +275,7 @@ Disable CSS isolation for a project by setting the `<ScopedCssEnabled>` property
 
 ## Razor class library (RCL) support
 
-Isolated styles for components in a NuGet package or [Razor class library (RCL)](xref:razor-pages/ui-class) are automatically bundled:
+Isolated styles for components in a NuGet package or [Razor class library (RCL)](../../razor-pages/ui-class.md) are automatically bundled:
 
 * The app uses CSS imports to reference the RCL's bundled styles. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet:
   
@@ -288,14 +287,14 @@ Isolated styles for components in a NuGet package or [Razor class library (RCL)]
 
 For more information on RCLs, see the following articles:
 
-* <xref:blazor/components/class-libraries>
-* <xref:razor-pages/ui-class>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](class-libraries.md)
+* [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Related content
 
-* [Razor Pages CSS isolation](xref:razor-pages/index#css-isolation)
-* [MVC CSS isolation](xref:mvc/views/overview#css-isolation)
+* [Razor Pages CSS isolation](../../razor-pages/index.md#css-isolation)
+* [MVC CSS isolation](../../mvc/views/overview.md#css-isolation)
 
 :::moniker-end

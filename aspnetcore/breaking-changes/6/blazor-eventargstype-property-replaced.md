@@ -9,7 +9,7 @@ no-loc: [ Blazor ]
 
 The <xref:Microsoft.AspNetCore.Components.RenderTree.WebEventDescriptor> class is part of Blazor's internal protocol for communicating events from JavaScript into .NET. This class isn't typically used by app code, but rather by platform authors.
 
-Starting in ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Components.RenderTree.WebEventDescriptor.EventArgsType%2A> property on `WebEventDescriptor` is being replaced by a new `EventName` property. This change is unlikely to affect any app code, as it's a low-level platform implementation detail.
+Starting in ASP.NET Core 6.0, the <xref:Microsoft.AspNetCore.Components.RenderTree.WebEventDescriptor.EventArgsType> property on `WebEventDescriptor` is being replaced by a new `EventName` property. This change is unlikely to affect any app code, as it's a low-level platform implementation detail.
 
 ## Version introduced
 
@@ -35,7 +35,7 @@ If building a custom Blazor rendering platform, you may need to update the mecha
 
 ## Affected APIs
 
-<xref:Microsoft.AspNetCore.Components.RenderTree.WebEventDescriptor.EventArgsType%2A?displayProperty=nameWithType>
+<xref:Microsoft.AspNetCore.Components.RenderTree.WebEventDescriptor.EventArgsType?displayProperty=nameWithType>
 
 <!--
 

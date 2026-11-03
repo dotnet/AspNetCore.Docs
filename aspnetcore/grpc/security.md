@@ -3,7 +3,6 @@ title: Security considerations in gRPC for ASP.NET Core
 description: Learn about security considerations for gRPC for ASP.NET Core.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 07/07/2019
-uid: grpc/security
 ---
 # Security considerations in gRPC for ASP.NET Core
 
@@ -21,18 +20,18 @@ gRPC messages are sent and received using HTTP/2. We recommend:
 * gRPC services should only listen and respond over secured ports.
 
 :::moniker range=">= aspnetcore-5.0"
-TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md).
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration).
 :::moniker-end
 
 A [TLS termination proxy](https://wikipedia.org/wiki/TLS_termination_proxy) can be combined with TLS. The benefits of using TLS termination should be considered against the security risks of sending unsecured HTTP requests between apps in the private network.
 
 ## Exceptions
 
-Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example, in development or test) with [EnableDetailedErrors](xref:grpc/configuration#configure-services-options). Exception messages shouldn't be exposed to the client in production apps.
+Exception messages are generally considered sensitive data that shouldn't be revealed to a client. By default, gRPC doesn't send the details of an exception thrown by a gRPC service to the client. Instead, the client receives a generic message indicating an error occurred. Exception message delivery to the client can be overridden (for example, in development or test) with [EnableDetailedErrors](configuration.md#configure-services-options). Exception messages shouldn't be exposed to the client in production apps.
 
 ## Message size limits
 
@@ -53,13 +52,13 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Limits can also be configured for an individual service using `AddServiceOptions<TService>`. For more information on configuring message size limits, see [gRPC configuration](xref:grpc/configuration).
+Limits can also be configured for an individual service using `AddServiceOptions<TService>`. For more information on configuring message size limits, see [gRPC configuration](configuration.md).
 
 ## Client certificate validation
 
 [Client certificates](https://tools.ietf.org/html/rfc5246#section-7.4.4) are initially validated when the connection is established. By default, Kestrel doesn't perform additional validation of a connection's client certificate.
 
-We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](xref:security/authentication/certauth) package. ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
+We recommend that gRPC services secured by client certificates use the [Microsoft.AspNetCore.Authentication.Certificate](../security/authentication/certauth.md) package. ASP.NET Core certification authentication will perform additional validation on a client certificate, including:
 
 * Certificate has a valid extended key use (EKU)
 * Is within its validity period

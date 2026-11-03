@@ -13,7 +13,7 @@ The following tutorials provide basic working experiences for building Blazor ap
 
 :::moniker range=">= aspnetcore-8.0"
 
-For an overview of Blazor, see <xref:blazor/index>.
+For an overview of Blazor, see [ASP.NET Core Blazor](../index.md).
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
 
@@ -23,7 +23,7 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 * <xref:blazor/tutorials/signalr-blazor> (Blazor Web App)
 
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor Hybrid tutorials](../hybrid/tutorials/index.md)
 
 * Microsoft Learn
 
@@ -34,7 +34,7 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 :::moniker range="< aspnetcore-8.0"
 
-For an overview of Blazor, see <xref:blazor/index>. For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
+For an overview of Blazor, see [ASP.NET Core Blazor](../index.md). For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see [ASP.NET Core Blazor hosting models](../hosting-models.md).
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
@@ -42,7 +42,7 @@ For an overview of Blazor, see <xref:blazor/index>. For more information on the 
 
 * <xref:blazor/tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
 
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor Hybrid tutorials](../hybrid/tutorials/index.md)
 
 * Microsoft Learn
 

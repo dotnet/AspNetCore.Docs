@@ -101,7 +101,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
 ### Use `<xref:>` for API references — not inline code
 
 * **Wrong**: `` `AddOpenApi()` ``
-* **Correct**: `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>`
+* **Correct**: `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>`
 * **Wrong**: `` `BadHttpRequestException` ``
 * **Correct**: `<xref:Microsoft.AspNetCore.Http.BadHttpRequestException>`
 * When referencing an API type or method, use `<xref:fully.qualified.name>`
@@ -222,7 +222,7 @@ Before completing, verify:
 
 `Microsoft.AspNetCore.OpenApi` now supports OpenAPI 3.2.0 through an updated dependency on `Microsoft.OpenApi` 3.3.1. This update includes breaking changes from the underlying library. For more information, see the [Microsoft.OpenApi upgrade guide](https://github.com/microsoft/OpenAPI.NET/blob/main/docs/upgrade-guide-3.md).
 
-To generate an OpenAPI 3.2.0 document, specify the version when calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+To generate an OpenAPI 3.2.0 document, specify the version when calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>

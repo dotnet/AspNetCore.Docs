@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-5.0"
 
 <!-- In the next update on the CLI version, let the scaffolder do the same work the VS driven scaffolder does. That is, create the DB context, etc -->
@@ -6,7 +11,7 @@ In this section, classes are added for managing movies in a database. The app's 
 
 The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O**bjects") because they don't have a dependency on EF Core. They define the properties of the data that are stored in the database.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Add a data model
 
@@ -129,7 +134,7 @@ Use the `-h` option to get help on the `dotnet aspnet-codegenerator razorpage` c
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+For more information, see [dotnet aspnet-codegenerator](../../../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 [!INCLUDE[](~/includes/RP/sqlitedev.md)]
 
@@ -151,7 +156,7 @@ For more information, see [dotnet aspnet-codegenerator](xref:fundamentals/tools/
    1. In the **DbContext Class to use:** row, name the class `RazorPagesMovie.Data.RazorPagesMovieContext`.
    1. Select **Finish**.
 
-   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpMac.png)
+   ![Add Razor Pages on Mac](~/tutorials/razor-pages/model/_static/5/arpmac.png)
 
 The `appsettings.json` file is updated with the connection string used to connect to a local database.
 
@@ -227,7 +232,7 @@ The `update` command runs the `Up` method in migrations that have not been appli
 
 ### Examine the context registered with dependency injection
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../../../fundamentals/dependency-injection.md). Services, such as the EF Core database context, are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically created a database context and registered it with the dependency injection container.
 
@@ -239,9 +244,9 @@ The `RazorPagesMovieContext` coordinates EF Core functionality, such as Create, 
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie50/Data/RazorPagesMovieContext.cs)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property for the entity set. In Entity Framework terminology, an entity set typically corresponds to a database table. An entity corresponds to a row in the table.
 
-The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a [DbContextOptions](xref:Microsoft.EntityFrameworkCore.DbContextOptions) object. For local development, the [Configuration system](../../../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 # [Visual Studio Code / Visual Studio for Mac](#tab/visual-studio-code+visual-studio-mac)
 
@@ -280,7 +285,7 @@ The next tutorial explains the files created by scaffolding.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Get Started](xref:tutorials/razor-pages/razor-pages-start)
-> [Next: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
+> [Previous: Get Started](../../razor-pages-start.md)
+> [Next: Scaffolded Razor Pages](../../page.md)
 
 :::moniker-end

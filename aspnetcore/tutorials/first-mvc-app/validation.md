@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Part 9 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/26/2026
-uid: tutorials/first-mvc-app/validation
 ---
 
 # Part 9, add validation to an ASP.NET Core MVC app
@@ -26,7 +25,7 @@ The validation support provided by MVC and Entity Framework Core is a good examp
 
 ## Delete the previously edited data
 
-In the next step, validation rules are added that don't allow null values. 
+In the next step, validation rules are added that don't allow null values.
 Run the app, navigate to `/Movies/Index`, delete all listed movies, and stop the app.  The app will use the seed data the next time it is run.
 
 ## Add validation rules to the movie model
@@ -97,7 +96,7 @@ A portion of the `Create.cshtml` view template is shown in the following markup:
 
 The preceding markup is used by the action methods to display the initial form and to redisplay it in the event of an error.
 
-The [Input Tag Helper](xref:mvc/views/working-with-forms) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](xref:mvc/views/working-with-forms#the-validation-tag-helpers) displays validation errors. See [Validation](xref:mvc/models/validation) for more information.
+The [Input Tag Helper](../../mvc/views/working-with-forms.md) uses the [DataAnnotations](/aspnet/mvc/overview/older-versions/mvc-music-store/mvc-music-store-part-6) attributes and produces HTML attributes needed for jQuery Validation on the client side. The [Validation Tag Helper](../../mvc/views/working-with-forms.md#the-validation-tag-helpers) displays validation errors. See [Validation](../../mvc/models/validation.md) for more information.
 
 What's really nice about this approach is that neither the controller nor the `Create` view template knows anything about the actual validation rules being enforced or about the specific error messages displayed. The validation rules and the error strings are specified only in the `Movie` class. These same validation rules are automatically applied to the `Edit` view and any other views templates you might create that edit your model.
 
@@ -107,7 +106,7 @@ When you need to change validation logic, you can do so in exactly one place by 
 
 Open the `Movie.cs` file and examine the `Movie` class. The `System.ComponentModel.DataAnnotations` namespace provides formatting attributes in addition to the built-in set of validation attributes. We've already applied a `DataType` enumeration value to the release date and to the price fields. The following code shows the `ReleaseDate` and `Price` properties with the appropriate `DataType` attribute.
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie10/Models/Movie.cs?highlight=2,6&name=snippet_DataType)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Models/Movie.cs?highlight=2,6&name=snippet_DataType)]
 
 The `DataType` attributes only provide hints for the view engine to format the data and supplies elements/attributes such as `<a>` for URL's and `<a href="mailto:EmailAddress.com">` for email. You can use the `RegularExpression` attribute to validate the format of the data. The `DataType` attribute is used to specify a data type that's more specific than the database intrinsic type, they're not validation attributes. In this case we only want to keep track of the date, not the time. The `DataType` Enumeration provides for many data types, such as Date, Time, PhoneNumber, Currency, EmailAddress and more. The `DataType` attribute can also enable the application to automatically provide type-specific features. For example, a `mailto:` link can be created for `DataType.EmailAddress`, and a date selector can be provided for `DataType.Date` in browsers that support HTML5. The `DataType` attributes emit HTML 5 `data-` (pronounced data dash) attributes that HTML 5 browsers can understand. The
 `DataType` attributes do **not** provide any validation.
@@ -167,15 +166,15 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 
 ## Related content
 
-* [Part 8, Add a new field (EF Core migrations)](xref:tutorials/first-mvc-app/new-field)
-* [Working with Forms](xref:mvc/views/working-with-forms)
-* [Globalization and localization](xref:fundamentals/localization)
-* [Introduction to Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Author Tag Helpers](xref:mvc/views/tag-helpers/authoring)
+* [Part 8, Add a new field (EF Core migrations)](new-field.md)
+* [Working with Forms](../../mvc/views/working-with-forms.md)
+* [Globalization and localization](../../fundamentals/localization.md)
+* [Introduction to Tag Helpers](../../mvc/views/tag-helpers/intro.md)
+* [Author Tag Helpers](../../mvc/views/tag-helpers/authoring.md)
 
 > [!div class="step-by-step"]
 > [Previous](~/tutorials/first-mvc-app/new-field.md)
-> [Next](~/tutorials/first-mvc-app/details.md)  
+> [Next](~/tutorials/first-mvc-app/details.md)
 
 :::moniker-end
 

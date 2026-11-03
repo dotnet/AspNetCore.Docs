@@ -3,8 +3,7 @@ title: Security considerations for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 07/29/2026
-uid: fundamentals/servers/kestrel/security-considerations
+ms.date: 10/09/2026
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
 
@@ -62,7 +61,7 @@ When Kestrel sits behind a reverse proxy (YARP, IIS Application Request Routing 
 
 Key considerations:
 
-- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 - **Authentication and secure-cookie behavior often depend on the restored scheme.** If the proxy terminates TLS but Kestrel still sees the request as `http`, authentication handlers may generate incorrect redirect URIs, secure cookies may not be issued or returned as expected, and policies that require HTTPS can fail.
 - **Configure `KnownProxies` or `KnownIPNetworks` explicitly.** By default, Forwarded Headers middleware only trusts the IPv6 loopback address (`::1`). If your proxy's IP isn't in the trusted list, the original client information is discarded.
 - **Keep `ForwardLimit` at `1`** unless you have a chain of multiple proxies. Setting it to `null` (unlimited) means any number of `X-Forwarded-For` entries are processed, which can be exploited.
@@ -70,7 +69,7 @@ Key considerations:
 - **HTTPS redirection may be unnecessary** if the proxy terminates TLS and communicates with Kestrel over a private network. If using forwarded headers then `UseHttpsRedirection()` will noop as it will see the `X-Forwarded-Proto` header as HTTPS, recommend keeping it in that case.
 
 > [!NOTE]
-> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](xref:fundamentals/servers/yarp/overview) if you are using YARP as your reverse proxy.
+> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](../yarp/yarp-overview.md) if you are using YARP as your reverse proxy.
 
 > [!WARNING]
 > The Forwarded Headers middleware can be silently enabled with **no proxy restrictions** by setting the environment variable `ASPNETCORE_FORWARDEDHEADERS_ENABLED=true` (or `DOTNET_FORWARDEDHEADERS_ENABLED=true`, or the configuration key `ForwardedHeaders_Enabled`). When enabled this way, the framework **clears `KnownProxies` and `KnownIPNetworks`**, meaning every upstream IP is trusted. This is far more permissive than what is achievable through the C# API, where `KnownProxies` defaults to loopback only. **Verify this variable isn't set in edge deployments**—check your Dockerfiles, orchestrator configs, CI/CD pipelines, and hosting platform defaults.
@@ -239,6 +238,29 @@ The `HandshakeTimeout` defaults to **10 seconds**. This limits how long a client
 - **`OnAuthenticate`**: A callback providing direct access to `SslServerAuthenticationOptions` per connection for advanced scenarios (cipher suite selection, ALPN negotiation, etc.).
 - **`UseTlsClientHelloListener`** (.NET 11+): A connection middleware (on `ListenOptions`) that inspects the raw TLS Client Hello bytes before the handshake begins. This enables custom logic based on the client's TLS capabilities (e.g., SNI-based routing, fingerprinting). It must be called **before** `UseHttps()` in the middleware pipeline. It has its own timeout (default 8 seconds), which is **additive** with the TLS handshake timeout—consider reducing each timeout to keep the total bounded (e.g., 5s + 5s instead of 8s + 10s).
 - **`TlsClientHelloBytesCallback`** (.NET 10): A property on `HttpsConnectionAdapterOptions` and `TlsHandshakeCallbackOptions` that provides raw Client Hello inspection. In .NET 11 this property is obsolete in favor of `UseTlsClientHelloListener`.
+- **`ITlsHandshakeFeature.Exception`** (.NET 11+): The <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> feature exposes an `Exception` property holding the exception thrown during a **failed** TLS handshake (`null` when the handshake succeeded or hasn't completed). Connection middleware and logging can record *why* a connection failed instead of seeing only a bare `IOException` higher in the stack. Kestrel snapshots the relevant fields off the underlying `SslStream` before it's disposed, so the value is still readable after the failure. Read it from connection middleware registered with `ListenOptions.Use`:
+
+  Register this middleware before `UseHttps` so it wraps the HTTPS middleware. Failed TLS handshakes don't reach middleware registered after `UseHttps`.
+
+  ```csharp
+  listenOptions.Use(next => async context =>
+  {
+      try
+      {
+          await next(context);
+      }
+      finally
+      {
+          var handshake = context.Features.Get<ITlsHandshakeFeature>();
+          if (handshake?.Exception is { } ex)
+          {
+              // Log ex.GetType().Name and ex.Message to diagnose the failed handshake.
+          }
+      }
+  });
+
+  listenOptions.UseHttps();
+  ```
 
 ## HTTP/1.1 request parsing and validation
 
@@ -671,8 +693,8 @@ Beyond rejection-specific signals, Kestrel emits a set of built-in metrics under
 
 These metrics integrate with OpenTelemetry, `dotnet-counters`, Prometheus exporters, and Azure Monitor. For full setup guidance, see:
 
-- [ASP.NET Core metrics overview](xref:metrics/overview)
-- [Kestrel built-in metrics reference](xref:metrics/http#microsoftaspnetcoreserverkestrel)
+- [ASP.NET Core metrics overview](../../../metrics/overview.md)
+- [Kestrel built-in metrics reference](../../../metrics/http.md#microsoftaspnetcoreserverkestrel)
 
 ### TLS-over-HTTP detection
 
@@ -713,13 +735,13 @@ app.UseHttpsRedirection();
 
 | Option | Default | Description |
 | --- | --- | --- |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort%2A> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode%2A> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
 
 > [!NOTE]
 > **Edge servers:** Enable HTTPS Redirection. **Behind a proxy**: Often unnecessary if the proxy handles TLS termination and all internal traffic is over a private network.
 >
-> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](../../../security/enforcing-ssl.md#https-redirection-middleware-usehttpsredirection).
 
 ### HTTP strict transport security (HSTS)
 
@@ -769,7 +791,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 > [!WARNING]
 > Forwarded Headers middleware **must be placed before** any middleware that depends on scheme, host, or client IP (authentication, authorization, CORS, etc.). If it runs too late, those components may see the backend hop as plain `http` instead of the original `https` request and fail in subtle ways—for example, authentication handlers may reject requests because the scheme is `http` instead of `https`, and secure cookies won't be sent. Also, **never enable this middleware in edge deployments**—it allows clients to spoof their IP address.
 >
-> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 
 ### Rate limiting
 

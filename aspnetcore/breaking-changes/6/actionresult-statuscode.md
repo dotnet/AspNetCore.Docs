@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/485
 ---
 # ActionResult\<T> sets StatusCode to 200
 
-When returning a `T` in an MVC/API controller action that declares the return type as <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> is always set to 200, except when the `T` is a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+When returning a `T` in an MVC/API controller action that declares the return type as <xref:Microsoft.AspNetCore.Mvc.ActionResult`1>, the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> is always set to 200, except when the `T` is a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
 This change can cause unexpected behavior in some scenarios where you set the status code manually, since previously the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> was `null`. Also, an action filter could be affected by this change if it expects a null value instead of 200.
 

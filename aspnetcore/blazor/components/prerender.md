@@ -3,7 +3,6 @@ title: Prerender ASP.NET Core Razor components
 description: Learn about Razor component prerendering in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/prerender
 ---
 # Prerender ASP.NET Core Razor components
 
@@ -22,9 +21,9 @@ This article explains Razor component prerendering scenarios for server-rendered
 
 Prerendering is enabled by default for interactive components.
 
-Internal navigation with interactive routing doesn't use prerendering because the page is already interactive. For more information, see [Static versus interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering).
+Internal navigation with interactive routing doesn't use prerendering because the page is already interactive. For more information, see [Static versus interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and [Interactive routing and prerendering](xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering).
 
-[`OnAfterRender{Async}` component lifecycle events](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) aren't called when prerendering, only after the component renders interactively.
+[`OnAfterRender{Async}` component lifecycle events](lifecycle.md#after-component-render-onafterrenderasync) aren't called when prerendering, only after the component renders interactively.
 
 ## Disable prerendering
 
@@ -57,7 +56,7 @@ For apps based on the Blazor Web App project template, a render mode assigned to
 <Routes @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-Also, disable prerendering for the [`HeadOutlet` component](xref:blazor/components/control-head-content#headoutlet-component) in the `App` component:
+Also, disable prerendering for the [`HeadOutlet` component](control-head-content.md#headoutlet-component) in the `App` component:
 
 ```razor
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
@@ -79,7 +78,7 @@ Without persisting prerendered state, state used during prerendering is lost and
 
 Assuming that prerendering isn't disabled for a component or for the app, a component in the `.Client` project is prerendered on the server. Because the server doesn't have access to registered client-side Blazor services, it isn't possible to inject these services into a component without receiving an error that the service can't be found during prerendering.
 
-For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](xref:blazor/components/render-modes#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
+For example, consider the following `Home` component in the `.Client` project in a Blazor Web App with [global Interactive WebAssembly or Interactive Auto rendering](render-modes.md#apply-a-render-mode-to-the-entire-app). The component attempts to inject <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> to obtain the environment's name.
 
 ```razor
 @page "/"
@@ -110,7 +109,7 @@ Consider any of the following approaches to address this scenario:
 
 ### Register the service on the server in addition to the client
 
-If the service supports server execution, register the service on the server in addition to the client so that it's available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](xref:blazor/call-web-api#blazor-web-app-external-web-apis) section of the *Call web API* article.
+If the service supports server execution, register the service on the server in addition to the client so that it's available during prerendering. For an example of this scenario, see the guidance for <xref:System.Net.Http.HttpClient> services in the [Blazor Web App external web APIs](../call-web-api.md#blazor-web-app-external-web-apis) section of the *Call web API* article.
 
 ### Inject a service that the app can use during prerendering
 
@@ -200,7 +199,7 @@ In the server project's `Program` file, register the service:
 builder.Services.TryAddScoped<IWebAssemblyHostEnvironment, ServerHostEnvironment>();
 ```
 
-At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be [injected into an interactive WebAssembly or Auto component that is also prerendered from the server](xref:blazor/fundamentals/environments#read-the-environment-in-a-blazor-webassembly-app).
+At this point, the <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> service can be [injected into an interactive WebAssembly or Auto component that is also prerendered from the server](../fundamentals/environments.md#read-the-environment-in-a-blazor-webassembly-app).
 
 ### Disable prerendering for the component
 

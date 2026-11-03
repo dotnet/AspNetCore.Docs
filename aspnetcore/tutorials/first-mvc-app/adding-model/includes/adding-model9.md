@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-9.0"
 
 In this tutorial, classes are added for managing movies in a database. These classes are the "**M**odel" part of the **M**VC app.
@@ -22,7 +27,7 @@ Add a file named `Movie.cs` to the *Models* folder.
 
 Update the `Models/Movie.cs` file with the following code:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Models/Movie.cs?name=snippet_First)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Models/Movie.cs?name=snippet_First)]
 
 The `Movie` class contains an `Id` field, which is required by the database for the primary key.
 
@@ -164,7 +169,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 ## Initial migration
 
-Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
+Use the EF Core [Migrations](../../../../data/ef-mvc/migrations.md) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -174,7 +179,7 @@ In the Package Manager Console (PMC), enter the following command:
 
 ```powershell
 Add-Migration InitialCreate
- 
+
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
@@ -187,7 +192,7 @@ In the PMC, enter the following command:
 
 ```powershell
 Update-Database
- 
+
 ```
 
 * `Update-Database`: Updates the database to the latest migration, which the previous command created. This command runs the `Up` method in the `Migrations/{time-stamp}_InitialCreate.cs` file, which creates the database.
@@ -259,13 +264,13 @@ Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Data/MvcMovieContext.cs?name=snippet_First)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property that represents the movies in the database.
 
 ### Dependency injection
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](../../../../fundamentals/dependency-injection.md). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
 
-In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Program.cs`:
 
@@ -279,7 +284,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 ---
 
-The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
+The [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 
@@ -297,7 +302,7 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
+For local development, the [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -318,7 +323,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_Constructor)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Test the **Create** page. Enter and submit data.
 
@@ -348,7 +353,7 @@ The `id` can be passed in with a query string, as in the following example:
 
 The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in cases when the `id` value isn't provided.
 
-A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A> method to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync*> method to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie
@@ -375,9 +380,9 @@ This `@model` directive allows access to the movie that the controller passed to
 
 Examine the `Index.cshtml` view and the `Index` method in the Movies controller. Notice how the code creates a `List` object when it calls the `View` method. The code passes this `Movies` list from the `Index` action method to the view:
 
-[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/mvcmovie90/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
+[!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie90/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
-The code returns [problem details](xref:fundamentals/error-handling-api#problem-details-service) if the `Movie` property of the data context is null.
+The code returns [problem details](../../../../fundamentals/error-handling-api.md#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
@@ -394,8 +399,8 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 ## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Globalization and localization](xref:fundamentals/localization)
+* [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
+* [Globalization and localization](../../../../fundamentals/localization.md)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a View](~/tutorials/first-mvc-app/adding-view.md)

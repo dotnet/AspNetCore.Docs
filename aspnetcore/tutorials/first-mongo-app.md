@@ -5,7 +5,6 @@ description: This tutorial demonstrates how to create an ASP.NET Core web API us
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 05/06/2026
-uid: tutorials/first-mongo-app
 ---
 # Create a web API with ASP.NET Core and MongoDB
 
@@ -256,10 +255,10 @@ In the `Program.cs` file, replace the weatherforecast example with the following
 
 The preceding code:
 
-* Uses <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> to help organize all the books related endpoints, and provides a common route prefix of `/books` for all the endpoints within the group.
+* Uses <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup*> to help organize all the books related endpoints, and provides a common route prefix of `/books` for all the endpoints within the group.
 * Contains endpoints to support GET, POST, PUT, and DELETE HTTP requests.
 * Uses the `BooksService` class to run CRUD operations.
-* Calls <xref:Microsoft.AspNetCore.Http.Results.Created%2A> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `Created` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
+* Calls <xref:Microsoft.AspNetCore.Http.Results.Created*> in the `Create` action method to return an [HTTP 201](https://www.rfc-editor.org/rfc/rfc9110#status.201) response. Status code 201 is the standard response for an HTTP POST method that creates a new resource on the server. `Created` also adds a `Location` header to the response. The `Location` header specifies the URI of the newly created book.
 
 ## Configure JSON serialization options
 
@@ -292,7 +291,7 @@ To satisfy the preceding requirements, make the following changes:
 
 # [Visual Studio](#tab/visual-studio)
 
-This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
+This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#use-endpoints-explorer) to test the API.
 
 1. Build and run the app.
 
@@ -428,7 +427,7 @@ This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](xref:tutorials/web-api-help-pages-using-swagger) to test the API.
+This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](web-api-help-pages-using-swagger.md) to test the API.
 
 1. Install Swagger UI by running the following command:
 
@@ -525,9 +524,9 @@ The OpenAPI specification is a document in JSON format that describes the struct
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/10.x/BookStoreApi) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
+* [Create web APIs with ASP.NET Core](../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
 * [Create a minimal web API with ASP.NET Core](/training/modules/interact-api/)
 
 :::moniker-end

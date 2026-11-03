@@ -1,21 +1,21 @@
 :::moniker range=">= aspnetcore-10.0"
 
-*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
+*This section applies to server-side apps that prerender Razor components. Prerendering is covered in [Prerender ASP.NET Core Razor components](../components/prerender.md).*
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
-*This section applies to server-side apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/prerender>.*
+*This section applies to server-side apps that prerender Razor components. Prerendering is covered in [Prerender ASP.NET Core Razor components](../components/prerender.md).*
 
 > [!NOTE]
-> Internal navigation for [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
+> Internal navigation for [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) in Blazor Web Apps doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. If the app adopts interactive routing, perform a full page reload for component examples that demonstrate prerendering behavior. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-*This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in <xref:blazor/components/integration>.*
+*This section applies to server-side apps and hosted Blazor WebAssembly apps that prerender Razor components. Prerendering is covered in [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../components/integration.md).*
 
 :::moniker-end
 
@@ -33,9 +33,9 @@ window.scrollElementIntoView = (element) => {
 }
 ```
 
-Where <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType> calls the JS function in component code, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> and not in any earlier lifecycle method because there's no HTML DOM element until after the component is rendered.
+Where <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType> calls the JS function in component code, the <xref:Microsoft.AspNetCore.Components.ElementReference> is only used in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> and not in any earlier lifecycle method because there's no HTML DOM element until after the component is rendered.
 
-[`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) ([reference source](xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A)) is called to enqueue rerendering of the component with the new state obtained from the JS interop call (for more information, see <xref:blazor/components/rendering>). An infinite loop isn't created because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is only called when `scrollPosition` is `null`.
+[`StateHasChanged`](../components/lifecycle.md#state-changes-statehaschanged) ([reference source](xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*)) is called to enqueue rerendering of the component with the new state obtained from the JS interop call (for more information, see [ASP.NET Core Razor component rendering](../components/rendering.md)). An infinite loop isn't created because <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is only called when `scrollPosition` is `null`.
 
 `PrerenderedInterop.razor`:
 
@@ -69,4 +69,4 @@ Where <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWi
 
 :::moniker-end
 
-The preceding example pollutes the client with a global function. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules).
+The preceding example pollutes the client with a global function. For a better approach in production apps, see [JavaScript isolation in JavaScript modules](../javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).

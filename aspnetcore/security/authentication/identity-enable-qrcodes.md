@@ -3,8 +3,7 @@ title: Enable QR code generation for TOTP authentication
 ai-usage: ai-assisted
 description: Discover how to enable QR code generation for time-based one-time password (TOTP) authenticator apps that work with ASP.NET Core two-factor authentication.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 05/15/2026
-uid: security/authentication/identity-enable-qrcodes
+ms.date: 10/26/2026
 
 # customer intent: As an ASP.NET developer, I want to enable QR code generation for TOTP authenticator apps, so I can support two-factor authentication.
 ---
@@ -27,7 +26,7 @@ The ASP.NET Core web app templates support authenticators but don't provide supp
 
 :::moniker-end
 
-Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](xref:security/authentication/google-logins) or [Facebook](xref:security/authentication/facebook-logins). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](xref:security/authentication/microsoft-logins) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
+Two-factor authentication doesn't happen by using an external authentication provider, such as [Google](social/google-logins.md) or [Facebook](social/facebook-logins.md). External sign ins are protected by whatever mechanism the external authentication provider supports. For example, the [Microsoft](social/microsoft-logins.md) authentication provider requires a hardware key or another 2FA approach. When the default templates require 2FA for both the web app and the external authentication provider, users need to satisfy two 2FA approaches. Requiring two 2FA approaches deviates from established security practices, which typically rely on a single, strong 2FA method for authentication.
 
 If you're working with Blazor in ASP.NET Core 8.0 or later, you can find similar guidance in the following articles:
 
@@ -36,13 +35,13 @@ If you're working with Blazor in ASP.NET Core 8.0 or later, you can find similar
 
 ## Add QR codes to the 2FA configuration page
 
-The following instructions use the _qrcode.js_ file from the [https://davidshimjs.github.io/qrcodejs/](https://davidshimjs.github.io/qrcodejs/) repo.
+The following instructions use the `qrcode.js` file from the [https://davidshimjs.github.io/qrcodejs/](https://davidshimjs.github.io/qrcodejs/) repo.
 
-1. Download the ['qrcode.js' JavaScript library](https://davidshimjs.github.io/qrcodejs/) to the _wwwroot\lib_ folder in your project.
+1. Download the ['qrcode.js' JavaScript library](https://davidshimjs.github.io/qrcodejs/) to the `wwwroot\lib` folder in your project.
 
-1. Follow the instructions in [Scaffold Identity](xref:security/authentication/scaffold-identity) to generate the _/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml_ file.
+1. Follow the instructions in [Scaffold Identity](scaffold-identity.md) to generate the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml` file.
 
-1. In the _/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml_ file, locate the `Scripts` section at the end of the file:
+1. In the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml` file, locate the `Scripts` section at the end of the file:
 
    ```cshtml
    @section Scripts {
@@ -50,7 +49,7 @@ The following instructions use the _qrcode.js_ file from the [https://davidshimj
    }
    ```
 
-1. Create a new JavaScript file named _qr.js_ in the _wwwroot/js_ folder, and add the following code that generates the QR code:
+1. Create a new JavaScript file named `qr.js` in the `wwwroot/js` folder, and add the following code that generates the QR code:
 
    ```javascript
    window.addEventListener("load", () => {
@@ -66,7 +65,7 @@ The following instructions use the _qrcode.js_ file from the [https://davidshimj
 
 1. Update the `Scripts` section to add a reference to the `qrcode.js` library you previously downloaded.
 
-1. Add the _qr.js_ file with the call that generates the QR code:
+1. Add the `qr.js` file with the call that generates the QR code:
 
    ```cshtml
    @section Scripts {
@@ -76,13 +75,18 @@ The following instructions use the _qrcode.js_ file from the [https://davidshimj
    }
    ```
 
-1. Delete the paragraph that links you to these instructions.
+1. In `EnableAuthenticator.cshtml`, remove the placeholder notice that links to these instructions (for example, `<div class="alert alert-info">Learn how to <a href="...">enable QR code generation</a>.</div>`). Scaffolded pages may already include the container elements immediately following the notice; if they are missing from your file, add the `qrCode` and `qrCodeData` container elements required by `qr.js`:
+
+   ```cshtml
+   <div id="qrCode"></div>
+   <div id="qrCodeData" data-url="@Model.AuthenticatorUri"></div>
+   ```
 
 1. Run your app. Confirm you can scan the QR code and validate the code the authenticator provides.
 
 ## Change the site name in the QR code
 
-The site name in the QR code comes from the project name you select when you create your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the _/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml.cs_ file.
+The site name in the QR code comes from the project name you select when you create your project. You can change it by looking for the `GenerateQrCodeUri(string email, string unformattedKey)` method in the `/Areas/Identity/Pages/Account/Manage/EnableAuthenticator.cshtml.cs` file.
 
 Here's the default code from the template:
 

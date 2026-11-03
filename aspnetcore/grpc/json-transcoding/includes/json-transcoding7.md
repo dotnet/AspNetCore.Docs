@@ -1,3 +1,8 @@
+---
+ai-usage: ai-assisted
+ms.date: 10/15/2026
+---
+
 :::moniker range="= aspnetcore-7.0"
 
 [gRPC](https://grpc.io) is a high-performance Remote Procedure Call (RPC) framework. gRPC uses HTTP/2, streaming, Protobuf, and message contracts to create high-performance, real-time services.
@@ -27,7 +32,7 @@ gRPC can still be used to call services.
 1. Add [`google/api/http.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/http.proto) and [`google/api/annotations.proto`](https://github.com/dotnet/aspnetcore/blob/main/src/Grpc/JsonTranscoding/test/testassets/Sandbox/google/api/annotations.proto) files to the `/google/api` directory.
 1. Annotate gRPC methods in your `.proto` files with HTTP bindings and routes:
 
-[!code-protobuf[](~/grpc/json-transcoding/samples/7/GrpcServiceTranscoding/protos/greet.proto?highlight=4,11-13)]
+[!code-protobuf[](~/grpc/json-transcoding/samples/7/GrpcServiceTranscoding/Protos/greet.proto?highlight=4,11-13)]
 
 The `SayHello` gRPC method can now be invoked as gRPC and as a JSON Web API:
 
@@ -53,7 +58,7 @@ info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
 
 gRPC methods must be annotated with an HTTP rule before they support transcoding. The HTTP rule includes information about how to call the gRPC method, such as the HTTP method and route.
 
-[!code-protobuf[](~/grpc/json-transcoding/samples/7/GrpcServiceTranscoding/protos/greet.proto?highlight=3-5&range=9-15)]
+[!code-protobuf[](~/grpc/json-transcoding/samples/7/GrpcServiceTranscoding/Protos/greet.proto?highlight=3-5&range=9-15)]
 
 The proceeding example:
 
@@ -61,7 +66,7 @@ The proceeding example:
 * The method is accessible with `GET` requests and the `/v1/greeter/{name}` route.
 * The `name` field on the request message is bound to a route parameter.
 
-Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](xref:grpc/json-transcoding-binding).
+Many options are available for customizing how a gRPC method binds to a RESTful API. For more information about annotating gRPC methods and customizing JSON, see [Configure HTTP and JSON for gRPC JSON transcoding](../../json-transcoding-binding.md).
 
 ### Streaming methods
 
@@ -111,9 +116,9 @@ Update the default protocol in `appsettings.json`:
 }
 ```
 
-Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
+Alternatively, [configure Kestrel endpoints in startup code](../../../fundamentals/servers/kestrel/endpoints.md).
 
-Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 
 ## gRPC JSON transcoding vs gRPC-Web
 
@@ -151,8 +156,8 @@ For installation and usage of grpc-gateway, see the [grpc-gateway README](https:
 
 ## Related content
 
-* <xref:grpc/json-transcoding-binding>
-* <xref:grpc/browser>
-* <xref:grpc/grpcweb>
+* [Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps](../../json-transcoding-binding.md)
+* [Use gRPC in browser apps](../../browser.md)
+* [gRPC-Web in ASP.NET Core gRPC apps](../../grpcweb.md)
 
 :::moniker-end

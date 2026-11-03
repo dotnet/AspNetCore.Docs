@@ -1,7 +1,7 @@
 :::moniker range="= aspnetcore-7.0"
 
-[`WebApplication`](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
-* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](xref:fundamentals/environments) is `"Development"`.
+[`WebApplication`](../../minimal-apis/webapplication.md) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
+* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](../../environments.md) is `"Development"`.
 * [`UseRouting`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.userouting) is added second if user code didn't already call `UseRouting` and if there are endpoints configured, for example `app.MapGet`.
 * [`UseEndpoints`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.useendpoints) is added at the end of the middleware pipeline if any endpoints are configured.
 * [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) is added immediately after `UseRouting` if user code didn't already call `UseAuthentication` and if [`IAuthenticationSchemeProvider`](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider) can be detected in the service provider. `IAuthenticationSchemeProvider` is added by default when using [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication), and services are detected using [`IServiceProviderIsService`](/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderisservice).
@@ -36,7 +36,7 @@ app.MapGet("/", () => "hello world");
 app.UseEndpoints(e => {});
 ```
 
-In some cases, the default middleware configuration isn't correct for the app and requires modification. For example, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> should be called before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A>. The app needs to call `UseAuthentication` and `UseAuthorization` if `UseCors` is called:
+In some cases, the default middleware configuration isn't correct for the app and requires modification. For example, <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> should be called before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. The app needs to call `UseAuthentication` and `UseAuthorization` if `UseCors` is called:
 
 ```csharp
 app.UseCors();
@@ -44,7 +44,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 ```
 
-If middleware should be run before route matching occurs, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> should be called and the middleware should be placed before the call to `UseRouting`. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> isn't required in this case as it is automatically added as described previously:
+If middleware should be run before route matching occurs, <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> should be called and the middleware should be placed before the call to `UseRouting`. <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> isn't required in this case as it is automatically added as described previously:
 
 ```csharp
 app.Use((context, next) =>

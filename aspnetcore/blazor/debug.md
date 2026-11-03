@@ -3,7 +3,6 @@ title: Debug ASP.NET Core Blazor apps
 description: Learn how to debug Blazor apps, including debugging Blazor WebAssembly with browser developer tools or an integrated development environment (IDE).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/debug
 ---
 # Debug ASP.NET Core apps
 
@@ -28,7 +27,7 @@ Available scenarios for Blazor WebAssembly debugging include:
 * Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging, configured by Visual Studio preferences.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging, configured by Visual Studio preferences.
 
 Unsupported scenarios include:
 
@@ -55,7 +54,7 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging.
 
 :::moniker-end
 
@@ -76,9 +75,9 @@ Unsupported scenarios for Blazor WebAssembly apps include:
 * Resume code execution with a keyboard shortcut in IDEs.
 * In the *Locals* window, observe the values of local variables.
 * See the call stack, including call chains between JavaScript and .NET.
-* Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+* Hit breakpoints during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 * Debug in non-local scenarios (for example, [Windows Subsystem for Linux (WSL)](/windows/wsl/) or [Visual Studio Codespaces](https://visualstudio.microsoft.com/services/github-codespaces/)).
-* Use a [symbol server](xref:test/debug-aspnetcore-source) for debugging.
+* Use a [symbol server](../test/debug-aspnetcore-source.md) for debugging.
 
 :::moniker-end
 
@@ -199,7 +198,7 @@ Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.Gateway`](https
 
 :::moniker range="< aspnetcore-11.0"
 
-Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor WebAssembly apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging*> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 
 :::moniker-end
 
@@ -207,7 +206,7 @@ Standalone Blazor WebAssembly: [`Microsoft.AspNetCore.Components.WebAssembly.Dev
 
 Hosted Blazor WebAssembly:
 
-* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging%2A> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
+* **:::no-loc text="Client":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.DevServer`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.DevServer): Development server for use when building Blazor apps. Calls <xref:Microsoft.AspNetCore.Builder.WebAssemblyNetDebugProxyAppBuilderExtensions.UseWebAssemblyDebugging*> internally to add middleware for debugging Blazor WebAssembly apps inside Chromium developer tools.
 * **:::no-loc text="Server":::** project: [`Microsoft.AspNetCore.Components.WebAssembly.Server`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Server): References an internal package ([`Microsoft.NETCore.BrowserDebugHost.Transport`](https://github.com/dotnet/runtime/blob/main/src/mono/nuget/Microsoft.NETCore.BrowserDebugHost.Transport/Microsoft.NETCore.BrowserDebugHost.Transport.pkgproj)) for assemblies that share the browser debug host.
 
 :::moniker-end
@@ -237,7 +236,7 @@ Breakpoints can also be hit in the server project in statically-rendered and int
 1. In the browser, navigate to the `Weather` page at `/weather`. Wait a few seconds for the debug proxy to load and run. Application execution stops at the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -257,7 +256,7 @@ Breakpoints can also be hit in the server project.
 1. In the browser, navigate to the `Weather` page at `/weather`. Wait a few seconds for the debug proxy to load and run. Application execution stops at the breakpoint.
 1. Select the **Continue** button in the UI or press <kbd>F5</kbd> (**Continue**) to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 ---
 
@@ -276,7 +275,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -287,7 +286,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 ---
 
@@ -304,7 +303,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 1. In Visual Studio, inspect the value of the `currentCount` field in the **Locals** window.
 1. Press <kbd>F5</kbd> to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -316,7 +315,7 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 1. In the browser, navigate to `Counter` page at `/counter`. Wait a few seconds for the debug proxy to load and run. Select the **Click me** button to hit the breakpoint.
 1. Press <kbd>F5</kbd> to continue execution.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 ---
 
@@ -340,20 +339,20 @@ Breakpoints are **not** hit during app startup before the debug proxy is running
 
 You can also debug server code in the **:::no-loc text="Server":::** project:
 
-1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+1. Set a breakpoint in the `Pages/FetchData.razor` page in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>.
 1. Set a breakpoint in the `WeatherForecastController` in the `Get` action method.
 1. Browse to the `Fetch Data` page to hit the first breakpoint in the `FetchData` component just before it issues an HTTP request to the server.
 1. Press <kbd>F5</kbd> to continue execution and then hit the breakpoint on the server in the `WeatherForecastController`.
 1. Press <kbd>F5</kbd> again to let execution continue and see the weather forecast table rendered in the browser.
 
-Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
+Breakpoints are **not** hit during app startup before the debug proxy is running. This includes breakpoints in the `Program` file and breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) of components that are loaded by the first page requested from the app.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
 > [!NOTE]
 > Only browser debugging is supported.
 >
-> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** project of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) during debugging, for example by running the app with [`dotnet watch`](../tutorials/dotnet-watch.md).
 
 Publishing an app disables debugger support. To debug a published, hosted Blazor WebAssembly app, configure debugger support (`DebuggerSupport`) and copy output symbols to the `publish` directory (`CopyOutputSymbolsToPublishDirectory`) in the **:::no-loc text="Client":::** project's project file:
 
@@ -507,7 +506,7 @@ If you're running into errors, the following tips may help:
 * Remove breakpoints:
   * Google Chrome: In the **Debugger** tab, open the developer tools in your browser. In the console, execute `localStorage.clear()` to remove any breakpoints.
   * Microsoft Edge: In the **Application** tab, open **Local storage**. Right-click the site and select **Clear**.
-* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see <xref:security/enforcing-ssl#troubleshoot-certificate-problems-such-as-certificate-not-trusted>.
+* Confirm that you've installed and trusted the ASP.NET Core HTTPS development certificate. For more information, see [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md#troubleshoot-certificate-problems-such-as-certificate-not-trusted).
 * Visual Studio requires the **Enable JavaScript debugging for ASP.NET (Chrome and Edge)** option in **Tools** > **Options** > **Debugging** > **General**. This is the default setting for Visual Studio. If debugging isn't working, confirm that the option is selected.
 * If your environment uses an HTTP proxy, make sure that `localhost` is included in the proxy bypass settings. This can be done by setting the `NO_PROXY` environment variable in either:
   * The `launchSettings.json` file for the project.
@@ -516,9 +515,9 @@ If you're running into errors, the following tips may help:
 
 ### Breakpoints in `OnInitialized{Async}` not hit
 
-The Blazor framework's debugging proxy doesn't launch instantly on app startup, so breakpoints in the [`OnInitialized{Async}` lifecycle methods](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) might not be hit. We recommend adding a delay at the start of the method body to give the debug proxy some time to launch before the breakpoint is hit. You can include the delay based on an [`if` compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to ensure that the delay isn't present for a release build of the app.
+The Blazor framework's debugging proxy doesn't launch instantly on app startup, so breakpoints in the [`OnInitialized{Async}` lifecycle methods](components/lifecycle.md#component-initialization-oninitializedasync) might not be hit. We recommend adding a delay at the start of the method body to give the debug proxy some time to launch before the breakpoint is hit. You can include the delay based on an [`if` compiler directive](/dotnet/csharp/language-reference/preprocessor-directives/preprocessor-if) to ensure that the delay isn't present for a release build of the app.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*>:
 
 ```csharp
 protected override void OnInitialized()
@@ -531,7 +530,7 @@ protected override void OnInitialized()
 }
 ```
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -558,7 +557,7 @@ The `{TIMEOUT}` placeholder in the preceding command is in milliseconds. For exa
 
 ## Control Hot Reload
 
-The `WasmEnableHotReload` MSBuild property enables [Hot Reload](xref:test/hot-reload) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
+The `WasmEnableHotReload` MSBuild property enables [Hot Reload](../test/hot-reload.md) and is set to `true` by default when building in the `Debug` configuration. Hot Reload isn't enabled (set to `false`) when building in any other configuration.
 
 To use a custom configuration name when debugging, for example, `DebugWebAssembly`, set the property to `true` to enable Hot Reload:
 

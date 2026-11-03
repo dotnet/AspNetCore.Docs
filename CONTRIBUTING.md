@@ -142,6 +142,14 @@ Markdown:
 [!code-csharp[](sample/MvcMovie60/Models/Movie.cs?name=snippet_FinalSnippet&highlight=1-3)]
 ```
 
+## Code compilation checks
+
+The **Snippets 5000** workflow runs for pull requests that target `main`. It uses [Snippets5000](https://github.com/dotnet/docs-tools/tree/main/snippets5000) to discover and compile sample projects and solutions affected by changes to code files, Razor files, project files, solution files, or build configuration files such as `global.json` and `snippets.5000.json`. Documentation-only changes don't trigger sample compilation.
+
+Review compilation errors in the workflow logs and fix failures in the affected samples before merging. The workflow runs on Windows with the .NET 11 preview SDK and the .NET 10 SDK and runtime.
+
+To rerun the check manually, select **Actions** > **Snippets 5000** > **Run workflow** and enter the pull request number. The workflow checks out that pull request's merge ref and builds its affected samples.
+
 ## Test changes with DocFX
 
 Test your changes with the [DocFX command-line tool](https://dotnet.github.io/docfx/tutorial/docfx_getting_started.html#2-use-docfx-as-a-command-line-tool), which creates a locally hosted version of the site. DocFX doesn't render style and site extensions created for Microsoft Docs.

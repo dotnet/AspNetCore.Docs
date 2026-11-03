@@ -3,7 +3,6 @@ title: Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 description: Shows how to create a Razor Pages app using Entity Framework Core
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/23/2025
-uid: data/ef-rp/intro
 ---
 # Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8
 
@@ -13,13 +12,13 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 :::moniker range=">= aspnetcore-6.0"
 
-This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu60) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu60) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -59,7 +58,7 @@ The UI style of this site is based on the built-in project templates. The tutori
 
 ### Optional: Build the sample download
 
-This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -263,7 +262,7 @@ The following packages are automatically installed:
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
@@ -343,10 +342,10 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
-* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*>. `OnModelCreating`:
   * Is called when `SchoolContext` has been initialized but before the model has been secured and used to initialize the context.
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
@@ -355,7 +354,7 @@ We hope to [fix this issue](https://github.com/dotnet/Scaffolding/issues/1594) i
 
 ## Program.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -367,21 +366,21 @@ The following highlighted lines were added by the scaffolder:
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A>.
+Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite*>.
 
 [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` or the `appsettings.Development.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` or the `appsettings.Development.json` file.
 
 <a name="dbx"></a>
 
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint%2A> as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint*> as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -402,7 +401,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments) for EF migrations errors.
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md) for EF migrations errors.
 
 ## Create the database
 
@@ -419,7 +418,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 ---
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -536,22 +535,22 @@ For more information, see [Performance considerations (EF)](/ef/core/performance
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end
 
 :::moniker range="= aspnetcore-5.0"
 
-This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -591,7 +590,7 @@ The UI style of this site is based on the built-in project templates. The tutori
 
 ### Optional: Build the sample download
 
-This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+This step is optional. Building the completed app is recommended when you have problems you can't solve. If you run into a problem you can't resolve, compare your code to the [completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu50). [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -779,7 +778,7 @@ The following packages are automatically installed:
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
    dotnet tool install --global dotnet-aspnet-codegenerator
@@ -857,10 +856,10 @@ Because an entity set contains multiple entities, many developers prefer the `DB
 
 The highlighted code:
 
-* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+* Creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
   * An entity set typically corresponds to a database table.
   * An entity corresponds to a row in the table.
-* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A>. `OnModelCreating`:
+* Calls <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*>. `OnModelCreating`:
   * Is called when `SchoolContext` has been initialized but before the model has been secured and used to initialize the context.
   * Is required because later in the tutorial the `Student` entity will have references to the other entities.
   <!-- Review, OnModelCreating needs review -->
@@ -869,7 +868,7 @@ Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services such as the `SchoolContext` are registered with dependency injection during app startup. Components that require these services, such as Razor Pages, are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -885,17 +884,17 @@ Verify the code added by the scaffolder calls `UseSqlite`.
 
 [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-See [Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 <a name="dbx"></a>
 
 ### Add the database exception filter
 
-Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter%2A> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint%2A> as shown in the following code:
+Add <xref:Microsoft.Extensions.DependencyInjection.DatabaseDeveloperPageExceptionFilterServiceExtensions.AddDatabaseDeveloperPageExceptionFilter*> and <xref:Microsoft.AspNetCore.Builder.MigrationsEndPointExtensions.UseMigrationsEndPoint*> as shown in the following code:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -917,7 +916,7 @@ Install-Package Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore
 
 The `Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore` NuGet package provides ASP.NET Core middleware for Entity Framework Core error pages. This middleware helps to detect and diagnose errors with Entity Framework Core migrations.
 
-The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](xref:fundamentals/environments) for EF migrations errors.
+The `AddDatabaseDeveloperPageExceptionFilter` provides helpful error information in the [development environment](../../fundamentals/environments.md) for EF migrations errors.
 
 ## Create the database
 
@@ -925,7 +924,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -1040,7 +1039,7 @@ Enumerating a large table in a view could return a partially constructed HTTP 20
 
 [!code-csharp[Main](intro/samples/cu50/StartupMaxMBsize.cs?name=snippet_ConfigureServices)]
 
-See [Configuration](xref:fundamentals/configuration/index) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
+See [Configuration](../../fundamentals/configuration/index.md) for information on configuration settings like `MyMaxModelBindingCollectionSize`.
 
 Paging is covered later in the tutorial.
 
@@ -1050,22 +1049,22 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](xref:tutorials/razor-pages/model?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](xref:razor-pages/index) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
+This is the first in a series of tutorials that show how to use Entity Framework (EF) Core in an [ASP.NET Core Razor Pages](../../razor-pages/index.md) app. The tutorials build a web site for a fictional Contoso University. The site includes functionality such as student admission, course creation, and instructor assignments. The tutorial uses the code first approach. For information on following this tutorial using the database first approach, see [this Github issue](https://github.com/dotnet/AspNetCore.Docs/issues/16897).
 
-[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](xref:fundamentals/index#how-to-download-a-sample).
+[Download or view the completed app.](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples) [Download instructions](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Prerequisites
 
-* If you're new to Razor Pages, go through the [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start) tutorial series before starting this one.
+* If you're new to Razor Pages, go through the [Get started with Razor Pages](../../tutorials/razor-pages/razor-pages-start.md) tutorial series before starting this one.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -1284,7 +1283,7 @@ remove dotnet tool install --global  below
 
 * Create a *Pages/Students* folder.
 
-* Run the following command to install the [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* Run the following command to install the [aspnet-codegenerator scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
   ```dotnetcli
   dotnet tool install --global dotnet-aspnet-codegenerator
@@ -1346,7 +1345,7 @@ Update `Data/SchoolContext.cs` with the following code:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Data/SchoolContext.cs?highlight=13-22)]
 
-The highlighted code creates a <xref:Microsoft.EntityFrameworkCore.DbSet%601> property for each entity set. In EF Core terminology:
+The highlighted code creates a <xref:Microsoft.EntityFrameworkCore.DbSet`1> property for each entity set. In EF Core terminology:
 
 * An entity set typically corresponds to a database table.
 * An entity corresponds to a row in the table.
@@ -1359,7 +1358,7 @@ Build the project to verify there are no compiler errors.
 
 ## Startup.cs
 
-ASP.NET Core is built with [dependency injection](xref:fundamentals/dependency-injection). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
+ASP.NET Core is built with [dependency injection](../../fundamentals/dependency-injection.md). Services (such as the EF Core database context) are registered with dependency injection during application startup. Components that require these services (such as Razor Pages) are provided these services via constructor parameters. The constructor code that gets a database context instance is shown later in the tutorial.
 
 The scaffolding tool automatically registered the context class with the dependency injection container.
 
@@ -1377,7 +1376,7 @@ The scaffolding tool automatically registered the context class with the depende
 
 ---
 
-The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the connection string from the `appsettings.json` file.
+The name of the connection string is passed in to the context by calling a method on a <xref:Microsoft.EntityFrameworkCore.DbContextOptions> object. For local development, the [ASP.NET Core configuration system](../../fundamentals/configuration/index.md) reads the connection string from the `appsettings.json` file.
 
 ## Create the database
 
@@ -1385,7 +1384,7 @@ Update `Program.cs` to create the database if it doesn't exist:
 
 [!code-csharp[Main](intro/samples/cu30snapshots/1-intro/Program.cs?highlight=1-2,14-18,21-38)]
 
-The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
+The <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*> method takes no action if a database for the context exists. If no database exists, it creates the database and schema. `EnsureCreated` enables the following workflow for handling data model changes:
 
 * Delete the database. Any existing data is lost.
 * Change the data model. For example, add an `EmailAddress` field.
@@ -1488,6 +1487,6 @@ For more information about asynchronous programming in .NET, see [Async Overview
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next tutorial](xref:data/ef-rp/crud)
+> [Next tutorial](crud.md)
 
 :::moniker-end

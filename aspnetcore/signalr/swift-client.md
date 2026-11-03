@@ -1,9 +1,9 @@
 ---
 title: ASP.NET Core SignalR Swift client
+ai-usage: ai-assisted
 description: Overview of the ASP.NET Core SignalR Swift client library.
 ms.custom: devx-track-swift
 ms.date: 03/20/2025
-uid: signalr/swift-client
 ---
 
 # ASP.NET Core SignalR Swift client
@@ -71,7 +71,7 @@ await connection.on("ReceiveMessage") { (user: String, message: String) in
 }
 ```
 
-The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 
@@ -126,7 +126,11 @@ public class ChatHub : Hub
 {
     public async Task TriggerClientResult()
     {
-        var message = await Clients.Client(connectionId).InvokeAsync<string>("ClientResult");
+        using var cancellationTokenSource =
+            new CancellationTokenSource(TimeSpan.FromSeconds(30));
+
+        var message = await Clients.Client(connectionId).InvokeAsync<string>(
+            "ClientResult", cancellationTokenSource.Token);
     }
 }
 ```
@@ -232,11 +236,11 @@ let connection = HubConnectionBuilder()
 
 ## Related content
 
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
-* [.NET client](xref:signalr/dotnet-client)
-* [JavaScript client](xref:signalr/javascript-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Cross-Origin Requests (CORS)](xref:security/cors)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
+* [Hubs](hubs.md)
+* [.NET client](dotnet-client.md)
+* [JavaScript client](javascript-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
+* [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)
