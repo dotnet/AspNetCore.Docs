@@ -24,7 +24,7 @@ By default, the new middleware:
 
 The handler processes GET requests containing `wa=wsignoutcleanup1.0` at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath%2A?displayProperty=nameWithType>, which defaults to `/signin-wsfed`. It calls `SignOutAsync` for the configured `SignOutScheme`. Cleanup messages aren't signed or bound to a session, so the handler can't verify that they came from the identity provider.
 
-In apps that use ASP.NET Core Identity, the default sign-in scheme can be `Identity.External`. To sign out the application cookie when the identity provider initiates sign-out, set `SignOutScheme` to `IdentityConstants.ApplicationScheme` in the options passed to `AddWsFederation`:
+The samples use `AddDefaultIdentity`, which sets `Identity.External` as the default sign-in scheme. WS-Federation defaults `SignOutScheme` to its `SignInScheme`, so a cleanup message in these samples signs out the temporary external cookie rather than the application session. For an Identity app that requires provider-initiated sign-out of the application cookie, set `SignOutScheme` to `IdentityConstants.ApplicationScheme` in the options passed to `AddWsFederation`:
 
 ```csharp
 options.SignOutScheme = IdentityConstants.ApplicationScheme;
@@ -56,7 +56,7 @@ options.Events.OnRemoteSignOut = context =>
 
 This check helps prevent another site from triggering sign-out through the user's browser. It rejects missing `Referer` headers, and the trailing `/` prevents matching look-alike host names. Before enabling the filter, verify that cleanup requests from the identity provider include the expected `Referer`.
 
-If the identity provider sends cleanup requests in a cross-site iframe or image, the browser might omit the authentication cookie because of its `SameSite` setting. If needed, set `SameSite=None` and `Secure` on the cookie deletion response without changing the cookie settings used for normal requests:
+For cleanup requests in a cross-site iframe or image, the browser might reject the cookie-deletion response under its `SameSite` rules. If that occurs, set `SameSite=None` and `Secure` on the deletion response. The cookie handler's `OnSigningOut` event runs before the cookie is deleted, so these settings don't change the attributes used when the app issues the authentication cookie:
 
 ```csharp
 services.ConfigureApplicationCookie(options =>
