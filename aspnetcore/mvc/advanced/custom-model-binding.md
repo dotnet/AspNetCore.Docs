@@ -18,7 +18,7 @@ Model binding allows controller actions to work directly with model types (passe
 
 The default model binders support most of the common .NET Core data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
-<!-- Duplicated in uid: mvc/models/model-binding -->
+<!-- Duplicated in mvc/models/model-binding.md -->
 ## Model binding simple and complex types
 
 Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string using <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend creating a type converter or using `TryParse` for a `string` to `SomeType` conversion that doesn't require external resources or multiple inputs.
