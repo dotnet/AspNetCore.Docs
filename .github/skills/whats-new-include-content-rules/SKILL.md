@@ -81,7 +81,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
   isolation. If any code sample would look counterintuitive or unexplained to a
   reader who has not seen the source notes, restore the missing explanation or
   example from the source.
-* **You MAY combine overlapping content across previews** so the cumulative
+* **You can combine overlapping content across previews** so the cumulative
   article doesn't repeat itself, but only remove text that is genuinely
   redundant — never text that carries unique information or reasoning.
 * **When in doubt, keep it.** Prefer transferring the source wording over
@@ -117,7 +117,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
 
 ### Links — use relative paths for Microsoft Learn
 
-* **Wrong**: `[Breaking changes in .NET]([/dotnet/core/compatibility/breaking-changes](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes))`
+* **Wrong**: `[Breaking changes in .NET](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes)`
 * **Correct**: `[Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes)`
 * Never nest a relative path inside an absolute URL as the href target.
 * For Microsoft Learn cross-references, use relative URLs starting with `/`.
@@ -188,8 +188,8 @@ Before completing, verify:
 
 ## PR description requirements
 
-* The very first line of the PR description must be `Fixes #{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses), followed by a blank line before any other content.
-* When a PR fixes multiple issues, list each issue on its own line at the top of the PR description, followed by a blank line before any other content.
+* Add `Fixes #{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses) to the PR description.
+* When a PR fixes multiple issues, list each issue on its own line.
 * When a PR is related to other issues but doesn't fix them, use `Related: #{ISSUE NUMBER}` on a separate line after the `Fixes` line(s).
 
 ---
