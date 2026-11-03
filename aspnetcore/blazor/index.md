@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor
 description: Explore ASP.NET Core Blazor, a way to build interactive client-side web UI with .NET in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/index
 ---
 # ASP.NET Core Blazor
 
@@ -153,7 +152,7 @@ When a Blazor WebAssembly app is built and run:
 
 The size of the published app, its *payload size*, is a critical performance factor for an app's usability. A large app takes a relatively long time to download to a browser, which diminishes the user experience. Blazor WebAssembly optimizes payload size to reduce download times:
 
-* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](xref:blazor/host-and-deploy/configure-trimmer).
+* Unused code is stripped out of the app when it's published by the [Intermediate Language (IL) Trimmer](host-and-deploy/configure-trimmer.md).
 * HTTP responses are compressed.
 * The .NET runtime and assemblies are cached in the browser.
 
@@ -175,7 +174,7 @@ Hybrid apps use a blend of native and web technologies. A *Blazor Hybrid* app us
 
 ## JavaScript interop
 
-For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can [call into JavaScript code](xref:blazor/js-interop/call-javascript-from-dotnet), and JavaScript code can [call into C# code](xref:blazor/js-interop/call-dotnet-from-javascript).
+For apps that require third-party JavaScript libraries and access to browser APIs, components interoperate with JavaScript. Components are capable of using any library or API that JavaScript is able to use. C# code can [call into JavaScript code](javascript-interoperability/call-javascript-from-dotnet.md), and JavaScript code can [call into C# code](javascript-interoperability/call-dotnet-from-javascript.md).
 
 ## Code sharing and .NET Standard
 

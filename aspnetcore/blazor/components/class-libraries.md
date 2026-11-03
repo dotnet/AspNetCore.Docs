@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover how components can be included in Blazor apps from an external Razor class library (RCL).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/02/2026
-uid: blazor/components/class-libraries
 ---
 # Consume ASP.NET Core Razor components from a Razor class library (RCL)
 
@@ -111,7 +110,7 @@ Alternatively, add a [`@using`](../../mvc/views/razor.md#using) directive and us
 
 :::moniker range=">= aspnetcore-6.0"
 
-For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The app uses CSS imports to reference the RCL's bundled styles. The bundled styles aren't published as a static web asset of the app that consumes the library. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet automatically at build time:
+For library components that use [CSS isolation](css-isolation.md), the component styles are automatically made available to the consuming app. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The app uses CSS imports to reference the RCL's bundled styles. The bundled styles aren't published as a static web asset of the app that consumes the library. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet automatically at build time:
   
 ```css
 @import '_content/ClassLib/ClassLib.bundle.scp.css';
@@ -139,7 +138,7 @@ The background image is also included from the RCL project template and resides 
 To provide additional library component styles from stylesheets in the library's `wwwroot` folder, add stylesheet `<link>` tags to the RCL's consumer, as the next example demonstrates.
 
 > [!IMPORTANT]
-> Generally, library components use [CSS isolation](xref:blazor/components/css-isolation) to bundle and provide component styles. Component styles that rely upon CSS isolation are automatically made available to the app that uses the RCL. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The following example is for providing global stylesheets *outside of CSS isolation*, which usually isn't a requirement for typical apps that consume RCLs.
+> Generally, library components use [CSS isolation](css-isolation.md) to bundle and provide component styles. Component styles that rely upon CSS isolation are automatically made available to the app that uses the RCL. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The following example is for providing global stylesheets *outside of CSS isolation*, which usually isn't a requirement for typical apps that consume RCLs.
 
 The following background image is used in the next example. If you implement the example shown in this section, right-click the image to save it locally.
 
@@ -215,7 +214,7 @@ Standalone Blazor WebAssembly apps:
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-For library components that use [CSS isolation](xref:blazor/components/css-isolation), the component styles are automatically made available to the consuming app. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The app uses CSS imports to reference the RCL's bundled styles. The bundled styles aren't published as a static web asset of the app that consumes the library. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet automatically at build time:
+For library components that use [CSS isolation](css-isolation.md), the component styles are automatically made available to the consuming app. There's no need to manually link or import the library's individual component stylesheets or its bundled CSS file in the app that consumes the library. The app uses CSS imports to reference the RCL's bundled styles. The bundled styles aren't published as a static web asset of the app that consumes the library. For a class library named `ClassLib` and a Blazor app with a `BlazorSample.styles.css` stylesheet, the RCL's stylesheet is imported at the top of the app's stylesheet automatically at build time:
   
 ```css
 @import '_content/ClassLib/ClassLib.bundle.scp.css';
@@ -279,7 +278,7 @@ Open the app's `App` component (`App.razor`). Assign an <xref:System.Reflection.
 AdditionalAssemblies="new[] { typeof(ComponentLibrary.Component1).Assembly }"
 ```
 
-For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
+For more information, see [ASP.NET Core Blazor routing](../fundamentals/routing.md#route-to-components-from-multiple-assemblies).
 
 ## Create an RCL with static assets in the `wwwroot` folder
 
@@ -352,7 +351,7 @@ For more information, see [Reusable Razor UI in class libraries with ASP.NET Cor
 
 ## Supply components and static assets to multiple hosted Blazor apps
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>.
+For more information, see [Multiple hosted ASP.NET Core Blazor WebAssembly apps](../host-and-deploy/webassembly/multiple-hosted-webassembly.md).
 
 :::moniker-end
 
@@ -397,7 +396,7 @@ Blazor enables JavaScript isolation in standard [JavaScript modules](https://dev
 * Imported JavaScript no longer pollutes the global namespace.
 * Consumers of the library and components aren't required to manually import the related JavaScript.
 
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 :::moniker-end
 
@@ -405,7 +404,7 @@ For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#ja
 
 ## Avoid trimming JavaScript-invokable .NET methods
 
-[Runtime relinking](xref:blazor/tooling/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+[Runtime relinking](xref:blazor/tooling/webassembly#runtime-relinking) trims class instance JavaScript-invokable .NET methods unless they're explicitly preserved. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
 
 :::moniker-end
 
@@ -429,8 +428,8 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 * [Use ASP.NET Core APIs in a class library](../../fundamentals/target-aspnetcore.md)
-* [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](xref:blazor/host-and-deploy/configure-trimmer)
-* [CSS isolation support with Razor class libraries](xref:blazor/components/css-isolation#razor-class-library-rcl-support)
+* [Add an XML Intermediate Language (IL) Trimmer configuration file to a library](../host-and-deploy/configure-trimmer.md)
+* [CSS isolation support with Razor class libraries](css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end
 
@@ -438,6 +437,6 @@ Upload the package to NuGet using the [`dotnet nuget push`](/dotnet/core/tools/d
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../../razor-pages/ui-class.md)
 * [Use ASP.NET Core APIs in a class library](../../fundamentals/target-aspnetcore.md)
-* [Add an XML Intermediate Language (IL) Linker configuration file to a library](xref:blazor/host-and-deploy/configure-linker#add-an-xml-linker-configuration-file-to-a-library)
+* [Add an XML Intermediate Language (IL) Linker configuration file to a library](../host-and-deploy/configure-linker.md#add-an-xml-linker-configuration-file-to-a-library)
 
 :::moniker-end

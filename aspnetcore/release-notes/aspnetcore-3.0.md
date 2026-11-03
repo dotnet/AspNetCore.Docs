@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 3.0
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.date: 12/05/2019
 ai-usage: ai-assisted
-uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
 
@@ -27,7 +26,7 @@ Blazor framework supported scenarios:
 * Supply Razor components in Razor class libraries
 * JavaScript interop
 
-For more information, see <xref:blazor/index>.
+For more information, see [ASP.NET Core Blazor](../blazor/index.md).
 
 ### Blazor Server
 

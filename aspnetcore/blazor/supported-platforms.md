@@ -54,7 +54,7 @@ Blazor is supported in the browsers shown in the following table on both mobile 
 
 :::moniker range=">= aspnetcore-6.0"
 
-For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the latest platform Web View control versions:
+For [Blazor Hybrid apps](hybrid/index.md), we test on and support the latest platform Web View control versions:
 
 * [Microsoft Edge `WebView2` on Windows](/microsoft-edge/webview2/)
 * [Chrome on Android](https://play.google.com/store/apps/details?id=com.android.chrome)
@@ -64,5 +64,5 @@ For [Blazor Hybrid apps](xref:blazor/hybrid/index), we test on and support the l
 
 ## Related content
 
-* <xref:blazor/hosting-models>
+* [ASP.NET Core Blazor hosting models](hosting-models.md)
 * [ASP.NET Core SignalR supported platforms](../signalr/supported-platforms.md)

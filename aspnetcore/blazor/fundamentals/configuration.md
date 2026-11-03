@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor configuration
 description: Learn about Blazor app configuration, including app settings, authentication, and logging configuration.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
 
@@ -48,7 +47,7 @@ On the client, configuration is loaded from the following app settings files:
 > [!NOTE]
 > Logging configuration placed into an app settings file in `wwwroot` isn't loaded by default. For more information, see the [Logging configuration](#logging-configuration) section later in this article.
 >
-> In some scenarios, such as with Azure services, it's important to use an environment file name segment that exactly matches the environment name. For example, use the file name `appsettings.Staging.json` with a capital ":::no-loc text="S":::" for the `Staging` environment. For recommended conventions, see the opening remarks of <xref:blazor/fundamentals/environments>.
+> In some scenarios, such as with Azure services, it's important to use an environment file name segment that exactly matches the environment name. For example, use the file name `appsettings.Staging.json` with a capital ":::no-loc text="S":::" for the `Staging` environment. For recommended conventions, see the opening remarks of [ASP.NET Core Blazor environments](environments.md).
 
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate:
 
@@ -369,7 +368,7 @@ The following Razor component retrieves the settings with the [`@inject`](../../
 }
 ```
 
-Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](../components/lifecycle.md#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
 
 :::moniker range=">= aspnetcore-11.0"
 

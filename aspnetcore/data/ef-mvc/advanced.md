@@ -250,7 +250,7 @@ For more information about EF Core, see the [Entity Framework Core documentation
 
 For information on how to deploy a web app, see [Host and deploy ASP.NET Core](../../host-and-deploy/index.md).
 
-For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see <xref:index>.
+For information about other topics related to ASP.NET Core MVC, such as authentication and authorization, see [Overview of ASP.NET Core](../../overview.md).
 
 [!INCLUDE[](~/includes/reliableWAP.md)]
 

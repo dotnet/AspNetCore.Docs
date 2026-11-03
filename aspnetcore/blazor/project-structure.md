@@ -25,7 +25,7 @@ The Blazor Web App template enables both static and interactive server-side rend
 
 The component folder structure of the `.Client` project differs from the Blazor Web App's main project folder structure because the main project is a standard ASP.NET Core project. The main project must take into account other assets for ASP.NET Core projects that are unrelated to Blazor. You're welcome to use whatever component folder structure you wish in the `.Client` project. You're free to mirror the component folder layout of the main project in the `.Client` project if you wish. Note that namespaces might require adjustments for such assets as layout files if you move components into different folders than the project template uses.
 
-More information on components and render modes is found in the <xref:blazor/components/index> and <xref:blazor/components/render-modes> articles.
+More information on components and render modes is found in the [ASP.NET Core Razor components](components/index.md) and [ASP.NET Core Blazor render modes](components/render-modes.md) articles.
 
 Based on the interactive render mode selected at app creation, the `Layout` folder is either in the server project in the `Components` folder or at the root of the `.Client` project. The folder contains the following layout components and stylesheets:
 
@@ -33,11 +33,11 @@ Based on the interactive render mode selected at app creation, the `Layout` fold
 
 :::moniker range=">= aspnetcore-10.0"
 
-* The `MainLayout` component (`MainLayout.razor`) is the app's [layout component](xref:blazor/components/layouts).
+* The `MainLayout` component (`MainLayout.razor`) is the app's [layout component](components/layouts.md).
 * The `MainLayout.razor.css` is the collocated (next to the component) stylesheet for the app's main layout.
-* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. The component includes [`NavLink` components](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which render navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
+* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. The component includes [`NavLink` components](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which render navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
 * The `NavMenu.razor.css` is the collocated stylesheet for the app's navigation menu.
-* The `ReconnectModal` component reflects the server-side connection state in the UI and is included when the app's interactive render mode is either Interactive Server or Interactive Auto. For more information, see <xref:blazor/fundamentals/signalr#reflect-the-server-side-connection-state-in-the-ui>.
+* The `ReconnectModal` component reflects the server-side connection state in the UI and is included when the app's interactive render mode is either Interactive Server or Interactive Auto. For more information, see [ASP.NET Core Blazor SignalR guidance](fundamentals/signalr.md#reflect-the-server-side-connection-state-in-the-ui).
 * The `ReconnectModal.razor.css` is the collocated stylesheet for the `ReconnectModal` component.
 * The `ReconnectModal.razor.js` is the collocated JavaScript file for the `ReconnectModal` component.
 
@@ -45,9 +45,9 @@ Based on the interactive render mode selected at app creation, the `Layout` fold
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
-* The `MainLayout` component (`MainLayout.razor`) is the app's [layout component](xref:blazor/components/layouts).
+* The `MainLayout` component (`MainLayout.razor`) is the app's [layout component](components/layouts.md).
 * The `MainLayout.razor.css` is the collocated (next to the component) stylesheet for the app's main layout.
-* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. The component includes [`NavLink` components](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which render navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
+* The `NavMenu` component (`NavMenu.razor`) implements sidebar navigation. The component includes [`NavLink` components](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which render navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component indicates to the user which component is currently displayed.
 * The `NavMenu.razor.css` is the collocated stylesheet for the app's navigation menu.
 
 :::moniker-end
@@ -64,7 +64,7 @@ The `Components/Pages` folder of the server project contains the app's routable 
 
 :::moniker range=">= aspnetcore-10.0"
 
-The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
+The `NotFound` component (`NotFound.razor`) implements a Not Found page to display when content isn't found for a request path. For more information, see [ASP.NET Core Blazor navigation](fundamentals/navigation.md#not-found-responses).
 
 :::moniker-end
 
@@ -85,7 +85,7 @@ The `Program.cs` file of the server project is the project's entry point that se
 * Services for Razor components are added by calling <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>. <xref:Microsoft.Extensions.DependencyInjection.ServerRazorComponentsBuilderExtensions.AddInteractiveServerComponents*> adds services to support rendering Interactive Server components. <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddInteractiveWebAssemblyComponents*> adds services to support rendering Interactive WebAssembly components.
 * <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> discovers available components and specifies the root component for the app (the first component loaded), which by default is the `App` component (`App.razor`). <xref:Microsoft.AspNetCore.Builder.ServerRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveServerRenderMode*> configures interactive server-side rendering (interactive SSR) for the app. <xref:Microsoft.AspNetCore.Builder.WebAssemblyRazorComponentsEndpointConventionBuilderExtensions.AddInteractiveWebAssemblyRenderMode*> configures the Interactive WebAssembly render mode for the app.
 
-The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](xref:blazor/fundamentals/configuration). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](../fundamentals/index.md#web-root) folder, `wwwroot`. 
+The app settings files (`appsettings.Development.json`, `appsettings.json`) in either the server or `.Client` project provide [configuration settings](fundamentals/configuration.md). In the server project, settings files are at the root of the project. In the `.Client` project, settings files are consumed from the [Web Root](../fundamentals/index.md#web-root) folder, `wwwroot`. 
 
 In the `.Client` project:
 
@@ -134,9 +134,9 @@ Project structure:
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
@@ -146,7 +146,7 @@ Project structure:
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+* `appsettings.json` and environmental app settings files: Provide [configuration settings](fundamentals/configuration.md) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
 
@@ -182,9 +182,9 @@ The Blazor Server template creates the initial files and directory structure for
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
@@ -194,7 +194,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+* `appsettings.json` and environmental app settings files: Provide [configuration settings](fundamentals/configuration.md) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md) and contains the app's startup logic, including service registrations and request processing pipeline configuration:
 
@@ -229,9 +229,9 @@ The Blazor Server template creates the initial files and directory structure for
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
@@ -241,7 +241,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+* `appsettings.json` and environmental app settings files: Provide [configuration settings](fundamentals/configuration.md) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md).
 
@@ -278,8 +278,8 @@ The Blazor Server template creates the initial files and directory structure for
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
 * `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets.
@@ -288,7 +288,7 @@ The Blazor Server template creates the initial files and directory structure for
 
 * `App.razor`: The root component of the app that sets up client-side routing using the <xref:Microsoft.AspNetCore.Components.Routing.Router> component. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component intercepts browser navigation and renders the page that matches the requested address.
 
-* `appsettings.json` and environmental app settings files: Provide [configuration settings](xref:blazor/fundamentals/configuration) for the app.
+* `appsettings.json` and environmental app settings files: Provide [configuration settings](fundamentals/configuration.md) for the app.
 
 * `Program.cs`: The app's entry point that sets up the ASP.NET Core [host](../fundamentals/host/generic-host.md).
 
@@ -319,9 +319,9 @@ The Blazor WebAssembly template creates the initial files and directory structur
 Project structure:
 
 * `Layout` folder: Contains the following layout components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
 
 :::moniker-end
@@ -332,7 +332,7 @@ Project structure:
   * `Counter` component (`Counter.razor`): Implements the Counter page.
   * `Index` component (`Index.razor`): Implements the Home page.
   * `Weather` component (`Weather.razor`): Implements the Weather page.
-  * `NotFound` component (`NotFound.razor`): Implements a Not Found page to display when content isn't found for a request path. For more information, see <xref:blazor/fundamentals/navigation#not-found-responses>.
+  * `NotFound` component (`NotFound.razor`): Implements a Not Found page to display when content isn't found for a request path. For more information, see [ASP.NET Core Blazor navigation](fundamentals/navigation.md#not-found-responses).
 
 :::moniker-end
 
@@ -355,14 +355,14 @@ Project structure:
 
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
-* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](fundamentals/configuration.md) and sample weather data (`sample-data/weather.json`). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
 * `Program.cs`: The app's entry point that sets up the WebAssembly host:
   
   * The `App` component is the root component of the app. The `App` component is specified as the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("#app")`).
-  * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+  * [Services](fundamentals/dependency-injection.md) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -393,13 +393,13 @@ Project structure:
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`) (*ASP.NET Core in .NET 7 or earlier*): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](fundamentals/configuration.md). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -410,7 +410,7 @@ Project structure:
 * `Program.cs`: The app's entry point that sets up the WebAssembly host:
   
   * The `App` component is the root component of the app. The `App` component is specified as the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("#app")`).
-  * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+  * [Services](fundamentals/dependency-injection.md) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -451,13 +451,13 @@ The Blazor WebAssembly template creates the initial files and directory structur
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](fundamentals/configuration.md). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -468,7 +468,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 * `Program.cs`: The app's entry point that sets up the WebAssembly host:
   
   * The `App` component is the root component of the app. The `App` component is specified as the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("#app")`).
-  * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+  * [Services](fundamentals/dependency-injection.md) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -505,13 +505,13 @@ The Blazor WebAssembly template creates the initial files and directory structur
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components and stylesheets:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
   * `MainLayout.razor.css`: Stylesheet for the app's main layout.
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `NavMenu.razor.css`: Stylesheet for the app's navigation menu.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](fundamentals/configuration.md). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>`).
 
@@ -522,7 +522,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 * `Program.cs`: The app's entry point that sets up the WebAssembly host:
   
   * The `App` component is the root component of the app. The `App` component is specified as the `div` DOM element with an `id` of `app` (`<div id="app">Loading...</div>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("#app")`).
-  * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+  * [Services](fundamentals/dependency-injection.md) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -559,11 +559,11 @@ The Blazor WebAssembly template creates the initial files and directory structur
   [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
 
 * `Shared` folder: Contains the following shared components:
-  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](xref:blazor/components/layouts).
-  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
+  * `MainLayout` component (`MainLayout.razor`): The app's [layout component](components/layouts.md).
+  * `NavMenu` component (`NavMenu.razor`): Implements sidebar navigation. Includes the [`NavLink` component](fundamentals/navigation.md#navlink-component) (<xref:Microsoft.AspNetCore.Components.Routing.NavLink>), which renders navigation links to other Razor components. The <xref:Microsoft.AspNetCore.Components.Routing.NavLink> component automatically indicates a selected state when its component is loaded, which helps the user understand which component is currently displayed.
   * `SurveyPrompt` component (`SurveyPrompt.razor`): Blazor survey component.
 
-* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](xref:blazor/fundamentals/configuration). The `index.html` webpage is the root page of the app implemented as an HTML page:
+* `wwwroot` folder: The [Web Root](../fundamentals/index.md#web-root) folder for the app containing the app's public static assets, including `appsettings.json` and environmental app settings files for [configuration settings](fundamentals/configuration.md). The `index.html` webpage is the root page of the app implemented as an HTML page:
   * When any page of the app is initially requested, this page is rendered and returned in the response.
   * The page specifies where the root `App` component is rendered. The component is rendered at the location of the `app` DOM element (`<app>Loading...</app>`).
 
@@ -574,7 +574,7 @@ The Blazor WebAssembly template creates the initial files and directory structur
 * `Program.cs`: The app's entry point that sets up the WebAssembly host:
 
   * The `App` component is the root component of the app. The `App` component is specified as the `app` DOM element (`<app>Loading...</app>` in `wwwroot/index.html`) to the root component collection (`builder.RootComponents.Add<App>("app")`).
-  * [Services](xref:blazor/fundamentals/dependency-injection) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
+  * [Services](fundamentals/dependency-injection.md) are added and configured (for example, `builder.Services.AddSingleton<IMyDependency, MyDependency>()`).
 
 Additional files and folders may appear in an app produced from a Blazor WebAssembly project template when additional options are configured. For example, generating an app with ASP.NET Core Identity includes additional assets for authentication and authorization features.
 
@@ -597,7 +597,7 @@ The project structure of the client-side app in a hosted Blazor Webassembly solu
 
 :::moniker range=">= aspnetcore-10.0"
 
-The Blazor script is served as a static web asset with automatic compression and fingerprinting. For more information, see <xref:blazor/fundamentals/static-files>.
+The Blazor script is served as a static web asset with automatic compression and fingerprinting. For more information, see [ASP.NET Core Blazor static files](fundamentals/static-files.md).
 
 In a Blazor Web App, the Blazor script is located in the `Components/App.razor` file:
 
@@ -725,7 +725,7 @@ In a Blazor WebAssembly app, `<head>` and `<body>` content is located in the `ww
 
 ## Dual Blazor Server/Blazor WebAssembly app
 
-To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](xref:blazor/components/class-libraries) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For common services whose implementations differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
+To create an app that can run as either a Blazor Server app or a Blazor WebAssembly app, one approach is to place all of the app logic and components into a [Razor class library (RCL)](components/class-libraries.md) and reference the RCL from separate Blazor Server and Blazor WebAssembly projects. For common services whose implementations differ based on the hosting model, define the service interfaces in the RCL and implement the services in the Blazor Server and Blazor WebAssembly projects.
 
 :::moniker-end
 
@@ -734,16 +734,16 @@ To create an app that can run as either a Blazor Server app or a Blazor WebAssem
 :::moniker range=">= aspnetcore-7.0"
 
 * <xref:blazor/tooling>
-* <xref:blazor/hosting-models>
+* [ASP.NET Core Blazor hosting models](hosting-models.md)
 * [APIs overview](../fundamentals/apis.md)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 * <xref:blazor/tooling>
-* <xref:blazor/hosting-models>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [ASP.NET Core Blazor hosting models](hosting-models.md)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))
 
 :::moniker-end

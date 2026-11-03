@@ -89,7 +89,7 @@ The **ASP.NET Core Web API (Native AOT)** template (short name `webapiaot`) crea
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, minimizing the app's deployed size.
 * Is configured to listen on HTTP only, as HTTPS traffic is commonly handled by an ingress service in cloud-native deployments.
 * Doesn't include a launch profile for running under IIS or IIS Express.
-* Creates an [`.http` file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
+* Creates an [`.http` file](../../../test/http-files.md) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
 * Adds `PublishAot` to the project file, as shown [earlier in this article](#native-aot-publishing).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for Native AOT compilation.
@@ -212,7 +212,7 @@ The `CreateSlimBuilder` method includes the following features needed for an eff
 * Console logging.
 * Logging configuration.
 
-For a builder that omits the preceding features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8#new-createemptybuilder-method).
+For a builder that omits the preceding features, see [The `CreateEmptyBuilder` method](../../../release-notes/aspnetcore-8.0.md#new-createemptybuilder-method).
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 

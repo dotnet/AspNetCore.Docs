@@ -138,6 +138,6 @@ In the following example:
 For more information on RCLs, see the following articles:
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md)
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md)
 
-For information on Blazor CSS isolation, see <xref:blazor/components/css-isolation>.
+For information on Blazor CSS isolation, see [ASP.NET Core Blazor CSS isolation](../blazor/components/css-isolation.md).

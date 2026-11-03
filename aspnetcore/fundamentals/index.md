@@ -11,7 +11,7 @@ ms.date: 09/04/2026
 
 This article provides an overview of the fundamentals for building ASP.NET Core apps, including dependency injection (DI), configuration, and middleware.
 
-For Blazor fundamentals guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/index>.
+For Blazor fundamentals guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -28,7 +28,7 @@ ASP.NET Core apps created from the framework's project templates contain startup
 
 The following app startup code supports two app types:
 
-* [Blazor Web Apps](xref:blazor/index)
+* [Blazor Web Apps](../blazor/index.md)
 * [Minimal APIs](../tutorials/min-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program11.cs)]
@@ -42,7 +42,7 @@ The following app startup code supports two app types:
 
 The following app startup code supports two app types:
 
-* [Blazor Web Apps](xref:blazor/index)
+* [Blazor Web Apps](../blazor/index.md)
 * [Minimal APIs](../tutorials/min-web-api.md)
 
 [!code-csharp[](~/fundamentals/index/snapshot/Program10.cs)]
@@ -56,7 +56,7 @@ The following app startup code supports two app types:
 
 The following app startup code supports several app types:
 
-* [Blazor Web Apps](xref:blazor/index)
+* [Blazor Web Apps](../blazor/index.md)
 * [Razor Pages](../tutorials/razor-pages/index.md)
 * [MVC controllers with views](../tutorials/first-mvc-app/start-mvc.md)
 * [Minimal APIs](../tutorials/min-web-api.md)
@@ -98,7 +98,7 @@ The following app startup code supports:
 
 :::moniker-end
 
-For more information, see [App startup in ASP.NET Core](startup.md) and <xref:blazor/fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](startup.md) and [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md).
 
 ## Dependency injection (services)
 
@@ -112,7 +112,7 @@ When the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> is instantiat
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-Additional services are added to the DI container with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services?displayProperty=nameWithType>. The following example registers [Blazor](xref:blazor/index) services:
+Additional services are added to the DI container with <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Services?displayProperty=nameWithType>. The following example registers [Blazor](../blazor/index.md) services:
 
 :::moniker-end
 
@@ -135,7 +135,7 @@ builder.Services.AddServerSideBlazor();
 
 :::moniker range=">= aspnetcore-6.0"
 
-The DI framework provides instances of requested services at run time. In Blazor apps, services are often resolved from DI at run time using the [`@inject`](../mvc/views/razor.md#inject) directive in a [Razor component](xref:blazor/components/index) file (`.razor`). In the following example, the component uses the <xref:Microsoft.AspNetCore.Components.NavigationManager> abstraction to get an instance of the navigation manager, which is used for querying and managing URI navigation, to navigate the user to a page of products at `/products` when the button is selected:
+The DI framework provides instances of requested services at run time. In Blazor apps, services are often resolved from DI at run time using the [`@inject`](../mvc/views/razor.md#inject) directive in a [Razor component](../blazor/components/index.md) file (`.razor`). In the following example, the component uses the <xref:Microsoft.AspNetCore.Components.NavigationManager> abstraction to get an instance of the navigation manager, which is used for querying and managing URI navigation, to navigate the user to a page of products at `/products` when the button is selected:
 
 ```razor
 @inject NavigationManager Navigation
@@ -217,7 +217,7 @@ Services are typically resolved from DI using constructor injection. With constr
 
 If the built-in DI container doesn't meet your needs, a third-party IoC container can be used instead.
 
-For more information, see [Dependency injection in ASP.NET Core](dependency-injection.md) and <xref:blazor/fundamentals/dependency-injection>.
+For more information, see [Dependency injection in ASP.NET Core](dependency-injection.md) and [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md).
 
 ## Environments
 
@@ -258,7 +258,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 :::moniker-end
 
-For more information, see [ASP.NET Core runtime environments](environments.md) and <xref:blazor/fundamentals/environments>.
+For more information, see [ASP.NET Core runtime environments](environments.md) and [ASP.NET Core Blazor environments](../blazor/fundamentals/environments.md).
 
 ## Middleware
 
@@ -412,7 +412,7 @@ For managing confidential configuration data such as passwords in the `Developme
 For more information, see the following resources:
 
 * [Configuration in ASP.NET Core](configuration/index.md)
-* <xref:blazor/fundamentals/configuration>
+* [ASP.NET Core Blazor configuration](../blazor/fundamentals/configuration.md)
 * [Azure Key Vault (ASP.NET Core documentation)](../security/key-vault-configuration.md)
 
 ## Logging
@@ -447,7 +447,7 @@ The following example shows how to obtain a logging instance from DI and use it 
 }
 ```
 
-For more information, including routing guidance for Razor Pages and MVC apps, see [Logging in .NET and ASP.NET Core](logging/index.md) and <xref:blazor/fundamentals/logging>.
+For more information, including routing guidance for Razor Pages and MVC apps, see [Logging in .NET and ASP.NET Core](logging/index.md) and [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md).
 
 ## Routing
 
@@ -458,8 +458,8 @@ The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensio
 For more information, see the following resources:
 
 * [Routing in ASP.NET Core](routing.md)
-* <xref:blazor/fundamentals/routing>
-* <xref:blazor/fundamentals/navigation>
+* [ASP.NET Core Blazor routing](../blazor/fundamentals/routing.md)
+* [ASP.NET Core Blazor navigation](../blazor/fundamentals/navigation.md)
 
 ## Handle errors
 
@@ -470,7 +470,7 @@ ASP.NET Core has built-in features for handling errors, such as:
 * Static status code pages
 * Startup exception handling
 
-For more information, see [Handle errors in ASP.NET Core](error-handling.md) and <xref:blazor/fundamentals/handle-errors>.
+For more information, see [Handle errors in ASP.NET Core](error-handling.md) and [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 ## Make HTTP requests
 
@@ -482,7 +482,7 @@ An implementation of <xref:System.Net.Http.IHttpClientFactory> is available for 
 * Manages the pooling and lifetime of underlying <xref:System.Net.Http.HttpClientHandler> instances to avoid common DNS problems that occur when managing `HttpClient` lifetimes manually.
 * Adds a configurable logging experience via <xref:Microsoft.Extensions.Logging.ILogger> for all requests sent through clients created by the factory.
 
-For more information, see [HTTP requests with IHttpClientFactory - ASP.NET Core](http-requests.md) and <xref:blazor/call-web-api>.
+For more information, see [HTTP requests with IHttpClientFactory - ASP.NET Core](http-requests.md) and [Call a web API from an ASP.NET Core Blazor app](../blazor/call-web-api.md).
 
 ## Content root
 
@@ -631,7 +631,7 @@ For problems with Visual Studio Code, ask for support on community support forum
   * <xref:blazor/tutorials/build-a-blazor-app>
   * <xref:blazor/tutorials/movie-database-app/index>
   * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
-* <xref:blazor/fundamentals/index>
+* [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md)
 
 :::moniker-end
 
@@ -640,7 +640,7 @@ For problems with Visual Studio Code, ask for support on community support forum
 * Tutorials
   * <xref:blazor/tutorials/build-a-blazor-app>
   * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
-* <xref:blazor/fundamentals/index>
+* [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md)
 
 :::moniker-end
 
@@ -651,6 +651,6 @@ For problems with Visual Studio Code, ask for support on community support forum
   * [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md)
   * [Get started with ASP.NET Core MVC](../tutorials/first-mvc-app/start-mvc.md)
   * [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md)
-* <xref:blazor/fundamentals/index>
+* [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md)
 
 :::moniker-end

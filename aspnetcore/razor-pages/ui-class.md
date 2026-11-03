@@ -10,7 +10,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range="> aspnetcore-6.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../blazor/components/class-libraries.md), [View components](../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 For information on how to integrate npm and webpack into the build process for a RCL, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 
@@ -23,7 +23,7 @@ For information on how to integrate npm and webpack into the build process for a
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need the library to contain pages and/or views. By default, only Razor components are supported. Select **Create**.
 
-The Razor Class Library template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
+The Razor Class Library template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md).
 
 # [.NET CLI](#tab/net-cli)
 
@@ -163,8 +163,8 @@ When the app is published, the companion assets from all referenced projects and
 
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end
 

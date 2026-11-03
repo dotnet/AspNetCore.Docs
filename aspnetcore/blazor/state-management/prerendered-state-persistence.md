@@ -12,14 +12,14 @@ This article explains how to persist component state across prerendering in Blaz
 
 Without persisting component state, state used during prerendering is lost and must be recreated when the app is fully loaded. If any state is created asynchronously, the UI may flicker as the prerendered UI is replaced with temporary loading content and then fully rendered again.
 
-Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync). When the component then renders interactively, the initial count value is replaced when `OnInitialized` executes a second time.
+Consider the following `PrerenderedCounter1` counter component. The component sets an initial random counter value during prerendering in [`OnInitialized` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync). When the component then renders interactively, the initial count value is replaced when `OnInitialized` executes a second time.
 
 `PrerenderedCounter1.razor`:
 
 :::code language="razor" source="~/../blazor-samples/8.0/BlazorSample_BlazorWebApp/Components/Pages/PrerenderedCounter1.razor":::
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the `PrerenderedCounter1` component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 Run the app and inspect logging from the component. The following is example output.
 
@@ -42,7 +42,7 @@ To persist prerendered state using the <xref:Microsoft.AspNetCore.Components.Per
 
 Use `public` properties because reflection is used by the framework for tasks such as [trimming unused code](xref:blazor/performance/app-download-size#intermediate-language-il-trimming) and [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview).
 
-By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+By default, properties are serialized using the <xref:System.Text.Json?displayProperty=fullName> serializer with default settings and persisted in the prerendered HTML. Serialization isn't trimmer safe and requires preservation of the types used. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../host-and-deploy/configure-trimmer.md).
 
 The following counter component persists counter state during prerendering and retrieves the state to initialize the component:
 
@@ -87,7 +87,7 @@ The following counter component persists counter state during prerendering and r
 When the component executes, `CurrentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      CurrentCount set to 96":::  
@@ -97,8 +97,8 @@ When the component executes, `CurrentCount` is only set once during prerendering
 In the following example that serializes state for multiple components of the same type:
 
 * Public properties annotated with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) are serialized during prerendering.
-* The [`@key` directive attribute](xref:blazor/components/key#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
-* The `Element` property is initialized in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) to avoid null reference exceptions, similarly to how null references are avoided for query parameters and form data.
+* The [`@key` directive attribute](../components/element-component-model-relationships.md#use-of-the-key-directive-attribute) is used to ensure that the state is correctly associated with the component instance.
+* The `Element` property is initialized in the [`OnInitialized` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync) to avoid null reference exceptions, similarly to how null references are avoided for query parameters and form data.
 
 `PersistentChild.razor`:
 
@@ -314,7 +314,7 @@ The following counter component example persists counter state during prerenderi
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter3[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
@@ -336,7 +336,7 @@ The following counter component example persists counter state during prerenderi
 When the component executes, `currentCount` is only set once during prerendering. The value is restored when the component is rerendered. The following is example output.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      currentCount set to 96":::  
@@ -432,7 +432,7 @@ public int? CurrentCount { get; set; }
 Using the preceding serializer with the `PrerenderedCounter2` component (`PrerenderedCounter2.razor`) shown in the [introduction](#aspnet-core-blazor-prerendered-state-persistence) of this article, output similar to the following is logged.
 
 > [!NOTE]
-> If the app adopts [interactive routing](xref:blazor/fundamentals/routing#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
+> If the app adopts [interactive routing](../fundamentals/routing.md#static-versus-interactive-routing) and the page is reached via an internal [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling), prerendering doesn't occur. Therefore, you must perform a full page reload for the component to see the following output. For more information, see the [Interactive routing and prerendering](#interactive-routing-and-prerendering) section.
 
 > :::no-loc text="info: BlazorSample.Components.Pages.PrerenderedCounter2[0]":::  
 > :::no-loc text="      CurrentCount set to 49":::  
@@ -461,11 +461,11 @@ For components embedded into a page or view of a Razor Pages or MVC app, you mus
 
 ## Interactive routing and prerendering
 
-When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. Using per-page/component navigation, internal navigation is handled by [enhanced routing](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling) after the app becomes interactive. "Internal navigation" in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
+When the `Routes` component doesn't define a render mode, the app is using per-page/component interactivity and navigation. Using per-page/component navigation, internal navigation is handled by [enhanced routing](../fundamentals/navigation.md#enhanced-navigation-and-form-handling) after the app becomes interactive. "Internal navigation" in this context means that the URL destination of the navigation event is a Blazor endpoint inside the app.
 
 :::moniker range=">= aspnetcore-10.0"
 
-Blazor supports handling persistent component state during [enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
+Blazor supports handling persistent component state during [enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling). State persisted during enhanced navigation can be read by interactive components on the page.
 
 By default, persistent component state is only loaded by interactive components when they're initially loaded on the page. This prevents important state, such as data in an edited webform, from being overwritten if additional enhanced navigation events to the same page occur after the component is loaded.
 
@@ -525,6 +525,6 @@ If the app performs a full (non-enhanced) navigation to a page utilizing persist
 
 If an interactive circuit has already been established and an enhanced navigation is performed to a page utilizing persistent component state, the state *isn't made available in the existing circuit for the component to use*. There's no prerendering for the internal page request, and the <xref:Microsoft.AspNetCore.Components.PersistentComponentState> service isn't aware that an enhanced navigation has occurred. There's no mechanism to deliver state updates to components that are already running on an existing circuit. The reason for this is that Blazor only supports passing state from the server to the client at the time the runtime initializes, not after the runtime has started.
 
-Disabling enhanced navigation, which reduces performance but also avoids the problem of loading state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for internal page requests, is covered in <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>. Alternatively, update the app to .NET 10 or later, where Blazor supports handling persistent component state when during enhanced navigation.
+Disabling enhanced navigation, which reduces performance but also avoids the problem of loading state with <xref:Microsoft.AspNetCore.Components.PersistentComponentState> for internal page requests, is covered in [ASP.NET Core Blazor navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling). Alternatively, update the app to .NET 10 or later, where Blazor supports handling persistent component state when during enhanced navigation.
 
 :::moniker-end

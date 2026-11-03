@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/httpsys-delegation
 title: YARP HTTP.sys Delegation
 description: YARP HTTP.sys Delegation
 ms.date: 04/03/2025

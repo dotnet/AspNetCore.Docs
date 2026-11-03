@@ -35,7 +35,7 @@ Access the sample app, named `BlazorWebAssemblyEntraGroupsAndRoles`, through the
 
 The sample app includes a `UserClaims` component for displaying a user's claims. The `UserData` component displays the user's basic account properties.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../../fundamentals/index.md#sample-apps))
 
 ## Prerequisite
 

@@ -16,7 +16,7 @@ In general, to deploy an ASP.NET Core app to a hosting environment:
 * Set up a process manager that starts the app when requests arrive and restarts the app after it crashes or the server reboots.
 * For configuration of a reverse proxy, set up a reverse proxy to forward requests to the app.
 
-For Blazor host and deploy guidance, which adds to or supersedes the guidance in this node, see <xref:blazor/host-and-deploy/index>.
+For Blazor host and deploy guidance, which adds to or supersedes the guidance in this node, see [Host and deploy ASP.NET Core Blazor](../blazor/host-and-deploy/index.md).
 
 ## Publish to a folder
 
@@ -108,7 +108,7 @@ Use health checks middleware to perform health checks on an app and its dependen
 ## Additional resources
 
 * [.NET application publishing overview](/dotnet/core/deploying)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 :::moniker-end
@@ -182,7 +182,7 @@ For more information, see [Host ASP.NET Core in Docker containers](docker/index.
 ## Additional resources
 
 * [.NET application publishing overview](/dotnet/core/deploying)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [ASP.NET Hosting](https://dotnet.microsoft.com/apps/aspnet/hosting)
 
 :::moniker-end

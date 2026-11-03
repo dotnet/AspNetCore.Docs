@@ -437,7 +437,7 @@ The preceding approach won't prevent client-side validation of ASP.NET Core Iden
 
 * <xref:System.ComponentModel.DataAnnotations?displayProperty=fullName>
 * [Model Binding](model-binding.md)
-* <xref:blazor/forms/index>
+* [ASP.NET Core Blazor forms overview](../../blazor/forms/index.md)
 
 :::moniker-end
 

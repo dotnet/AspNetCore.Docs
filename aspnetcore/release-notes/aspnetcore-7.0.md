@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 7
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.date: 11/07/2022
-uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core in .NET 7
 
@@ -11,7 +10,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 7 w
 
 ## Rate limiting middleware in ASP.NET Core
 
-The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see [Rate limiting middleware in ASP.NET Core](../performance/rate-limit.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Authentication uses single scheme as DefaultScheme
 
@@ -171,7 +170,7 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0)
+For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -268,8 +267,8 @@ In .NET 7, Blazor supports location changing events and maintaining navigation s
 
 For more information, see the following sections of the *Routing and navigation* article:
 
-* [Navigation options](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#navigation-options)
-* [Handle/prevent location changes](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#handleprevent-location-changes)
+* [Navigation options](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#navigation-options)
+* [Handle/prevent location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#handleprevent-location-changes)
 
 ### Empty Blazor project templates
 
@@ -284,7 +283,7 @@ For more information, see the following articles:
 
 The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom DOM elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
 
-For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
+For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-7.0&preserve-view=true#blazor-custom-elements).
 
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
@@ -369,14 +368,14 @@ Examples:
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
+For more information on the `InputText` component, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md).
 
 <!--
 
 For more information, see the following content in the *Data binding* article:
 
-* [Introduction](xref:blazor/components/data-binding?view=aspnetcore-7.0)
-* [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
+* [Introduction](../blazor/components/data-binding.md?view=aspnetcore-7.0)
+* [Bind across more than two components](../blazor/components/data-binding.md?view=aspnetcore-7.0#bind-across-more-than-two-components)
 
 -->
 
@@ -435,13 +434,13 @@ For more information, see [Developers targeting browser-wasm can use Web Crypto 
 
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
-For more information, see <xref:blazor/forms/validation?view=aspnetcore-7.0#inject-services-into-a-custom-validation-attribute>.
+For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-custom-validation-attribute).
 
 ### `Input*` components outside of an `EditContext`/`EditForm`
 
 The built-in input components are now supported outside of a form in Razor component markup.
 
-For more information, see <xref:blazor/forms/input-components?view=aspnetcore-7.0>.
+For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Project template changes
 
@@ -455,7 +454,7 @@ Several additional changes were made to the Blazor project templates. It isn't f
 
 The new `QuickGrid` component provides a convenient data grid component for most common requirements and as a reference architecture and performance baseline for anyone building Blazor data grid components.
 
-For more information, see <xref:blazor/components/quickgrid>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../blazor/components/quickgrid.md).
 
 Live demo: [QuickGrid for Blazor sample app](https://aspnet.github.io/quickgridsamples/)
 
@@ -468,26 +467,26 @@ Virtualization enhancements in .NET 7:
 
 For more information, see the following sections of the *Virtualization* article:
 
-* [Root-level virtualization](xref:blazor/components/virtualization?view=aspnetcore-7.0#root-level-virtualization)
-* [Control the spacer element tag name](xref:blazor/components/virtualization?view=aspnetcore-7.0#control-the-spacer-element-tag-name)
+* [Root-level virtualization](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#root-level-virtualization)
+* [Control the spacer element tag name](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#control-the-spacer-element-tag-name)
 
 ### `MouseEventArgs` updates
 
 `MovementX` and `MovementY` have been added to `MouseEventArgs`.
 
-For more information, see <xref:blazor/components/event-handling?view=aspnetcore-7.0#built-in-event-arguments>.
+For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md?view=aspnetcore-7.0&preserve-view=true#built-in-event-arguments).
 
 ### New Blazor loading page
 
 The Blazor WebAssembly project template has a new loading UI that shows the progress of loading the app.
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-7.0#loading-progress-indicators>.
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-7.0&preserve-view=true#blazor-webassembly-app-loading-progress).
 
 ### Improved diagnostics for authentication in Blazor WebAssembly
 
 To help diagnose authentication issues in Blazor WebAssembly apps, detailed logging is available.
 
-For more information, see <xref:blazor/fundamentals/logging?view=aspnetcore-7.0#blazor-webassembly-authentication-logging>.
+For more information, see [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md?view=aspnetcore-7.0&preserve-view=true#client-side-authentication-logging).
 
 ### JavaScript interop on WebAssembly
 
@@ -495,8 +494,8 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 
 For more information:
 
-* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
-* <xref:client-side/dotnet-interop/index>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../blazor/javascript-interoperability/import-export-interop.md): Pertains only to Blazor WebAssembly apps.
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](../client-side/dotnet-interop/index.md): Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 
@@ -526,20 +525,20 @@ For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
 
 An option has been added that permits opening external webpages in the browser.
 
-For more information, see <xref:blazor/hybrid/routing?view=aspnetcore-7.0#external-navigation>.
+For more information, see [ASP.NET Core Blazor Hybrid routing and navigation](../blazor/hybrid/routing.md?view=aspnetcore-7.0&preserve-view=true#uri-request-routing-behavior).
 
 ### Security
 
 New guidance is available for Blazor Hybrid security scenarios. For more information, see the following articles:
 
-* <xref:blazor/hybrid/security/index?view=aspnetcore-7.0>
-* <xref:blazor/hybrid/security/security-considerations?view=aspnetcore-7.0>
+* [ASP.NET Core Blazor Hybrid authentication and authorization](../blazor/hybrid/security/index.md?view=aspnetcore-7.0&preserve-view=true)
+* [ASP.NET Core Blazor Hybrid security considerations](../blazor/hybrid/security/security-considerations.md?view=aspnetcore-7.0&preserve-view=true)
 
 ## Performance
 
 ### Output caching middleware
 
-Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](xref:performance/caching/overview#response-caching) in the following ways:
+Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](../performance/caching/overview.md#response-caching) in the following ways:
 
 * The caching behavior is configurable on the server.
 * Cache entries can be programmatically invalidated.
@@ -547,7 +546,7 @@ Output caching is a new middleware that stores responses from a web app and serv
 * Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
 * The cache storage medium is extensible.
 
-For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
+For more information, see [Overview of caching](../performance/caching/overview.md) and [Output caching middleware](../performance/caching/output.md).
 
 ### HTTP/3 improvements
 
@@ -591,7 +590,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0&preserve-view=true#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 

@@ -156,7 +156,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 > var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
 > ```
 >
-> For more information, see <xref:blazor/fundamentals/configuration>.
+> For more information, see [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ## Implement `IEmailSender`
 

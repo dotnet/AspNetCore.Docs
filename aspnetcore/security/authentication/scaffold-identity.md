@@ -527,7 +527,7 @@ Because server-side Blazor apps use Razor Pages Identity pages, the styling of t
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which isn't the primary client-server communication model in Blazor apps. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks.
 
-Because <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>.
+Because <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see [Call a web API from an ASP.NET Core Blazor app](../../blazor/call-web-api.md).
 
 An approach to using Razor components for Identity instead of Razor pages is to build your own custom Identity Razor components, but Microsoft doesn't recommend or support the approach. For additional context, explore the following discussions. In the following discussions, code examples in issue comments and code examples cross-linked in non-Microsoft GitHub repositories aren't supported by Microsoft but might be helpful to some developers:
 

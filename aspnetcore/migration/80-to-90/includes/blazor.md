@@ -1,6 +1,6 @@
 ### Adopt simplified authentication state serialization for Blazor Web Apps
 
-Blazor Web Apps can optionally adopt [simplified authentication state serialization](xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps).
+Blazor Web Apps can optionally adopt [simplified authentication state serialization](../../../release-notes/aspnetcore-9.0.md#simplified-authentication-state-serialization-for-blazor-web-apps).
 
 In the server project:
 
@@ -34,11 +34,11 @@ In the client project (`.Client`):
   + builder.Services.AddAuthenticationStateDeserialization();
   ```
 
-For more information, see <xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps>.
+For more information, see [What's new in ASP.NET Core in .NET 9](../../../release-notes/aspnetcore-9.0.md#simplified-authentication-state-serialization-for-blazor-web-apps).
 
 ### Streaming rendering attribute no longer requires the `true` parameter
 
-In .NET 8, [streaming rendering](xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
+In .NET 8, [streaming rendering](../../../blazor/components/rendering.md?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
 
 ```razor
 @attribute [StreamRendering(true)]

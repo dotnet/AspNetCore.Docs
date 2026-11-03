@@ -3,7 +3,6 @@ title: Build a Windows Presentation Foundation (WPF) Blazor app
 description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
 
@@ -315,4 +314,4 @@ In this tutorial, you learned how to:
 Learn more about Blazor Hybrid apps:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/hybrid/index>
+> [ASP.NET Core Blazor Hybrid](../index.md)

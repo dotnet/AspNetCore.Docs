@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/13/2026
-uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
 
@@ -14,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
+This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](overview.md#output-caching).
 
 The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](../../fundamentals/minimal-apis.md), [Web API with controllers](../../web-api/index.md), [MVC](../../mvc/overview.md), and [Razor Pages](../../razor-pages/index.md). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
@@ -218,7 +217,7 @@ This base policy enables you to use the `tag-all` tag to evict everything in cac
 
 ## Disable resource locking
 
-By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](xref:performance/caching/overview#output-caching).
+By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](overview.md#output-caching).
 
 To disable resource locking, call the [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking*) method while creating a policy, as shown in the following example:
 
@@ -260,7 +259,7 @@ An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides 
 
   * (Optional) The [options.InstanceName](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) property specifies a logical partition for the cache.
 
-  The configuration options are identical to the [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
+  The configuration options are identical to the [Redis-based distributed caching options](distributed.md#distributed-redis-cache).
 
 ### Not recommended: IDistributedCache
 
@@ -270,7 +269,7 @@ The recommended approach is to use the built-in support for Redis or create a cu
 
 ## Related content
 
-* [Overview of caching in ASP.NET Core](xref:performance/caching/overview)
+* [Overview of caching in ASP.NET Core](overview.md)
 * [ASP.NET Core middleware](../../fundamentals/middleware/index.md)
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>

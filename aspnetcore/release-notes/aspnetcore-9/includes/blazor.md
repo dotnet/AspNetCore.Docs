@@ -26,7 +26,7 @@ The template is also available in Visual Studio.
 > [!NOTE]
 > Currently, an exception occurs if Blazor rendering modes are defined at the per-page/component level. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
-For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
+For more information, see [Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../../../blazor/hybrid/tutorials/maui-blazor-web-app.md?view=aspnetcore-9.0&preserve-view=true).
 
 ### Detect rendering location, interactivity, and assigned render mode at runtime
 
@@ -36,7 +36,7 @@ We've introduced a new API designed to simplify the process of querying componen
 * **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
 * **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
-For more information, see <xref:blazor/components/render-modes?view=aspnetcore-9.0#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+For more information, see [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0&preserve-view=true#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime).
 
 ### Improved server-side reconnection experience:
 
@@ -61,7 +61,7 @@ The following enhancements have been made to the default server-side reconnectio
 
 * The styling of the default reconnect UI has been modernized.
 
-For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#adjust-the-server-side-reconnection-retry-count-and-interval>.
+For more information, see [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#adjust-the-server-side-reconnection-retry-count-and-interval).
 
 ### Simplified authentication state serialization for Blazor Web Apps
 
@@ -128,7 +128,7 @@ In the `App` component, use the pattern in the following example:
 
 An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This feature is covered by the reference documentation in <xref:blazor/components/render-modes?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app>.
+This feature is covered by the reference documentation in [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0&preserve-view=true#static-ssr-pages-in-an-interactive-app).
 
 ### Constructor injection
 
@@ -146,7 +146,7 @@ public partial class ConstructorInjection(NavigationManager navigation)
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/dependency-injection?view=aspnetcore-9.0#request-a-service-in-a-component>.
+For more information, see [ASP.NET Core Blazor dependency injection](../../../blazor/fundamentals/dependency-injection.md?view=aspnetcore-9.0&preserve-view=true#request-a-service-in-a-component).
 
 ### Websocket compression for Interactive Server components
 
@@ -166,7 +166,7 @@ Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quot
 
 For more information, see the following resources:
 
-* <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#websocket-compression-for-interactive-server-components>
+* [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#websocket-compression-for-interactive-server-components)
 * <xref:blazor/security/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>
 
 ### Handle keyboard composition events in Blazor
@@ -226,7 +226,7 @@ Trigger JavaScript callbacks either before or after enhanced navigation with new
 * `blazor.addEventListener("enhancednavigationstart", {CALLBACK})`
 * `blazor.addEventListener("enhancednavigationend", {CALLBACK})`
 
-For more information, see <xref:blazor/js-interop/ssr?view=aspnetcore-9.0>.
+For more information, see [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../../../blazor/javascript-interoperability/static-server-rendering.md?view=aspnetcore-9.0&preserve-view=true).
 
 ### Client-side request streaming
 
@@ -234,5 +234,5 @@ Interactive WebAssembly rendering in Blazor now supports client-side request str
 
 For more information, see the following resources:
 
-* <xref:blazor/call-web-api?view=aspnetcore-9.0#client-side-request-streaming>
-* <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>
+* [Call a web API from an ASP.NET Core Blazor app](../../../blazor/call-web-api.md?view=aspnetcore-9.0&preserve-view=true#client-side-request-streaming)
+* [ASP.NET Core Blazor file uploads](../../../blazor/file-uploads.md?view=aspnetcore-9.0&preserve-view=true#file-size-read-and-upload-limits)

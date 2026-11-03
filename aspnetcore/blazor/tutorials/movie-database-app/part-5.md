@@ -199,7 +199,7 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 * [Author Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/authoring.md)
 * [Migrations overview (EF Core documentation)](/ef/core/managing-schemas/migrations/)
 * [nchar and nvarchar (Transact-SQL) (SQL Server documentation)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql#remarks)
-* [Blazor enhanced forms](xref:blazor/forms/index#enhanced-form-handling)
+* [Blazor enhanced forms](../../forms/index.md#enhanced-form-handling)
 
 ## Next steps
 

@@ -30,7 +30,7 @@ To reference ASP.NET Core, add the following `<FrameworkReference>` element to y
 
 ## Include Blazor extensibility
 
-Blazor supports creating [Razor components](xref:blazor/components/index) class libraries for server-side and client-side apps. To support Razor components in a class library, the class library must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
+Blazor supports creating [Razor components](../blazor/components/index.md) class libraries for server-side and client-side apps. To support Razor components in a class library, the class library must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
 
 ### Support server-side and client-side apps
 
@@ -94,7 +94,7 @@ Class libraries are rarely built to only support server-side apps. If the class 
   </ItemGroup>
   ```
 
-For more information on libraries containing Razor components, see <xref:blazor/components/class-libraries>.
+For more information on libraries containing Razor components, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md).
 
 ## Include MVC extensibility
 
@@ -281,6 +281,6 @@ For example, to add the web API client:
 ## Related content
 
 * [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md)
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md)
 * [.NET implementation support](/dotnet/standard/net-standard#net-implementation-support)
 * [.NET support policies](https://dotnet.microsoft.com/platform/support/policy)

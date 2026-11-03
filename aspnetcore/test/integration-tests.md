@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how integration tests ensure that an app's components function correctly at the infrastructure level, including the database, file system, and network.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/23/2026
-uid: test/integration-tests
 zone_pivot_groups: unit-testing-framework
 ---
 # Integration tests in ASP.NET Core
@@ -26,7 +25,7 @@ The sample app is a Razor Pages app and assumes a basic understanding of Razor P
 
 * [Introduction to Razor Pages](../razor-pages/index.md)
 * [Get started with Razor Pages](../tutorials/razor-pages/razor-pages-start.md)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* [Razor Pages unit tests](razor-pages-tests.md)
 
 **For testing SPAs**, we recommend a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
 
@@ -565,7 +564,7 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 ## Related content
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* <xref:test/razor-pages-tests>
+* [Razor Pages unit tests in ASP.NET Core](razor-pages-tests.md)
 * [ASP.NET Core middleware](../fundamentals/middleware/index.md)
 * [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
 * [Basic tests for authentication middleware](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test)

@@ -44,7 +44,7 @@ Disable the trimming property if it prevents your app from running normally:
 
 ## Heap size for some mobile device browsers
 
-When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly/index#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#decrease-maximum-heap-size-for-some-mobile-device-browsers).
 
 ## Runtime relinking
 
@@ -52,10 +52,10 @@ One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .N
 
 Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see <xref:blazor/tooling#net-webassembly-build-tools>.
 
-With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization#invariant-globalization>.
+With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see [ASP.NET Core Blazor globalization and localization](../globalization-localization.md#invariant-globalization).
 
 > [!IMPORTANT]
-> Runtime relinking trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+> Runtime relinking trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
 
 ## Single Instruction, Multiple Data (SIMD)
 

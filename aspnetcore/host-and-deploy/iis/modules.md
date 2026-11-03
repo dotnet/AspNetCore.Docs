@@ -26,10 +26,10 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default files middleware](../../fundamentals/static-files.md#serve-default-documents) |
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
 | **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory-browsing middleware](../../fundamentals/static-files.md#directory-browsing) |
-| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](xref:performance/response-compression) |
+| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](../../performance/response-compression.md) |
 | **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](../../fundamentals/logging/index.md#dotnet-trace-tooling) |
-| **File Caching**<br>`FileCacheModule`                                                            | No  | [Response caching middleware](xref:performance/caching/middleware) |
-| **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response caching middleware](xref:performance/caching/middleware) |
+| **File Caching**<br>`FileCacheModule`                                                            | No  | [Response caching middleware](../../performance/caching/middleware.md) |
+| **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response caching middleware](../../performance/caching/middleware.md) |
 | **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | [ASP.NET Core Logging](../../fundamentals/logging/index.md) |
 | **HTTP Redirection**<br>`HttpRedirectionModule`                                                  | Yes | [URL rewriting middleware](../../fundamentals/url-rewriting.md) |
 | **HTTP Tracing**<br>`TracingModule`                                                              | Yes | |
@@ -42,7 +42,7 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Request Monitor**<br>`RequestMonitorModule`                                                    | Yes | |
 | **URL Rewriting**&#8224;<br>`RewriteModule`                                                      | Yes | [URL rewriting middleware](../../fundamentals/url-rewriting.md) |
 | **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | No  | |
-| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response compression middleware](xref:performance/response-compression) |
+| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response compression middleware](../../performance/response-compression.md) |
 | **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](../../fundamentals/static-files.md) |
 | **Token Caching**<br>`TokenCacheModule`                                                          | Yes | |
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
@@ -62,7 +62,7 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | DefaultAuthentication   | |
 | FileAuthorization       | |
 | FormsAuthentication     | [Cookie authentication middleware](../../security/authentication/cookie.md) |
-| OutputCache             | [Response caching middleware](xref:performance/caching/middleware) |
+| OutputCache             | [Response caching middleware](../../performance/caching/middleware.md) |
 | Profile                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |

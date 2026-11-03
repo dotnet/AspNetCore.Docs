@@ -53,7 +53,7 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
 * [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../../test/troubleshoot.md)
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
@@ -111,7 +111,7 @@ The following timeouts and rate limits aren't enforced when a debugger is attach
 * [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
 * [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../../test/troubleshoot.md)
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
@@ -159,7 +159,7 @@ For more information on building the host, see the *Set up a host* and *Default 
 * [When to use a reverse proxy with the ASP.NET Core Kestrel web server](../when-to-use-a-reverse-proxy.md)
 <a name="host-filtering"></a>
 * [Host filtering with ASP.NET Core Kestrel web server](../host-filtering.md)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../../test/troubleshoot.md)
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)
@@ -1167,7 +1167,7 @@ If possible, it's better for clients to utilize the [Expect: 100-continue](https
 ## Additional resources
 
 * When using UNIX sockets on Linux, the socket is not automatically deleted on app shut down. For more information, see [this GitHub issue](https://github.com/dotnet/aspnetcore/issues/14134).
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../../../../test/troubleshoot.md)
 * [Enforce HTTPS in ASP.NET Core](../../../../security/enforcing-ssl.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](../../../../host-and-deploy/proxy-load-balancer.md)
 * [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host)

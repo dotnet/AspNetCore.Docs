@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Use .NET Hot Reload to apply code changes to a running app without restarting the app and without losing app state.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 09/16/2026
-uid: test/hot-reload
 ---
 # .NET Hot Reload support for ASP.NET Core
 
@@ -16,9 +15,9 @@ Generally, updated code is rerun to take effect with the following conditions:
   * Middleware, unless the code update is to an inline middleware delegate.
   * Configured services.
   * Route creation and configuration, unless the code update is to a route handler delegate (for example, `OnInitialized`).
-* In [Blazor apps](xref:blazor/index), the framework triggers a [Razor component](xref:blazor/components/index) render automatically.
+* In [Blazor apps](../blazor/index.md), the framework triggers a [Razor component](../blazor/components/index.md) render automatically.
 * In MVC and Razor Pages apps, Hot Reload triggers a browser refresh automatically.
-* Removing a Razor [component parameter](xref:blazor/components/index#component-parameters) attribute doesn't cause the component to rerender. The app must be restarted.
+* Removing a Razor [component parameter](../blazor/components/index.md#component-parameters) attribute doesn't cause the component to rerender. The app must be restarted.
 
 For more information on supported scenarios, see [Supported code changes (C# and Visual Basic)](/visualstudio/debugger/supported-code-changes-csharp).
 
@@ -141,7 +140,7 @@ To enable Hot Reload for a custom (non-`Debug`) configuration, set the property 
 </PropertyGroup>
 ```
 
-For more information on controlling Hot Reload in Blazor WebAssembly apps, see <xref:blazor/debug#control-hot-reload>.
+For more information on controlling Hot Reload in Blazor WebAssembly apps, see [Debug ASP.NET Core Blazor apps](../blazor/debug.md#control-hot-reload).
 
 :::moniker-end
 

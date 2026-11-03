@@ -12,7 +12,7 @@ With this tutorial, you'll learn how to create an ASP.Net Core MVC Application a
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
+To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md).
 
 ## Prerequisites
 

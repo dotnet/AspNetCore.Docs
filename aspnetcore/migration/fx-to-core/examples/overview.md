@@ -152,7 +152,7 @@ View the site in the browser. It should render with the expected styles in place
 
 ## Configure bundling and minification
 
-ASP.NET Core is compatible with several open-source bundling and minification solutions such as [WebOptimizer](https://github.com/ligershark/WebOptimizer) and other similar libraries. ASP.NET Core doesn't provide a native bundling and minification solution. For information on configuring bundling and minification, see [Bundling and Minification](xref:client-side/bundling-and-minification).
+ASP.NET Core is compatible with several open-source bundling and minification solutions such as [WebOptimizer](https://github.com/ligershark/WebOptimizer) and other similar libraries. ASP.NET Core doesn't provide a native bundling and minification solution. For information on configuring bundling and minification, see [Bundling and Minification](../../../client-side/bundling-and-minification.md).
 
 ## Solve HTTP 500 errors
 
@@ -168,7 +168,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
@@ -342,7 +342,7 @@ View the site in the browser. It should now load correctly, with the expected st
 
 ## Configure bundling and minification
 
-For information about how to configure bundling and minification, see [Bundling and Minification](xref:client-side/bundling-and-minification).
+For information about how to configure bundling and minification, see [Bundling and Minification](../../../client-side/bundling-and-minification.md).
 
 ## Solve HTTP 500 errors
 
@@ -354,7 +354,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end
@@ -528,7 +528,7 @@ View the site in the browser. It should now load correctly, with the expected st
 
 ## Configure bundling and minification
 
-For information about how to configure bundling and minification, see [Bundling and Minification](xref:client-side/bundling-and-minification).
+For information about how to configure bundling and minification, see [Bundling and Minification](../../../client-side/bundling-and-minification.md).
 
 ## Solve HTTP 500 errors
 
@@ -540,7 +540,7 @@ ASP.NET Core converts unhandled exceptions into HTTP 500 error responses. Normal
 
 ## Additional resources
 
-* <xref:blazor/index>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
 * [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
 
 :::moniker-end

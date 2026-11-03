@@ -35,7 +35,7 @@ The preceding gRPC service:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
 * Expects [dependency injection (DI)](../fundamentals/dependency-injection.md) to provide an instance of `IGreeter`.
-* Can be tested with a mocked `IGreeter` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see <xref:test/integration-tests#introduction-to-integration-tests>.
+* Can be tested with a mocked `IGreeter` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Integration tests in ASP.NET Core](../test/integration-tests.md#introduction-to-integration-tests).
 
 ## Unit test gRPC services
 

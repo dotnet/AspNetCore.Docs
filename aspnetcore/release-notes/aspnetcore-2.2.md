@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core 2.2
 description: Learn about the new features in ASP.NET Core 2.2.
 ms.date: 12/5/2019
-uid: aspnetcore-2.2
 ---
 # What's new in ASP.NET Core 2.2
 
@@ -30,7 +29,7 @@ For more information, see the following resources:
 
 * [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
 * [Route parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (see **Routing** section)
-* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2)
+* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2&preserve-view=true)
 
 ## Health checks
 
@@ -55,14 +54,14 @@ While HTTP/2 preserves HTTP's semantics (for example, HTTP headers and methods),
 
 As a consequence of this change in framing, servers and clients need to negotiate the protocol version used. Application-Layer Protocol Negotiation (ALPN) is a TLS extension that allows the server and client to negotiate the protocol version used as part of their TLS handshake. While it is possible to have prior knowledge between the server and the client on the protocol, all major browsers support ALPN as the only way to establish an HTTP/2 connection.
 
-For more information, see [HTTP/2 support](../fundamentals/servers/index.md?view=aspnetcore-2.2#http2-support).
+For more information, see [HTTP/2 support](../fundamentals/servers/index.md?view=aspnetcore-2.2&preserve-view=true#http2-support).
 
 ## Kestrel configuration
 
 In earlier versions of ASP.NET Core, Kestrel options are configured by calling `UseKestrel`. In 2.2, Kestrel options are configured by calling `ConfigureKestrel` on the host builder. This change resolves an issue with the order of `IServer` registrations for in-process hosting. For more information, see the following resources:
 
 * [Mitigate UseIIS conflict](https://github.com/aspnet/KestrelHttpServer/issues/2760)
-* [Configure Kestrel server options with ConfigureKestrel](../fundamentals/servers/kestrel.md?view=aspnetcore-2.2#kestrel-in-aspnet-core-apps)
+* [Configure Kestrel server options with ConfigureKestrel](../fundamentals/servers/kestrel.md?view=aspnetcore-2.2&preserve-view=true#kestrel-in-aspnet-core-apps)
 
 ## IIS in-process hosting
 
@@ -86,7 +85,7 @@ For more information, see [CORS middleware](../security/cors.md?view=aspnetcore-
 
 ASP.NET Core 2.2 can compress responses with the [Brotli compression format](https://tools.ietf.org/html/rfc7932).
 
-For more information, see [response compression middleware supports Brotli compression](xref:performance/response-compression?view=aspnetcore-2.2#brotli-compression-provider).
+For more information, see [response compression middleware supports Brotli compression](../performance/response-compression.md?view=aspnetcore-2.2&preserve-view=true#brotli-compression-provider).
 
 ## Project templates
 

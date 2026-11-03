@@ -7,7 +7,7 @@ ms.date: 12/05/2019
 
 By [Scott Addie](https://github.com/scottaddie)
 
-In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](xref:aspnetcore-2.0).
+In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](../../release-notes/aspnetcore-2.0.md).
 
 Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code contained within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
 
@@ -15,7 +15,7 @@ Existing ASP.NET Core 1.x applications are based off of version-specific project
 
 ## Prerequisites
 
-Follow the <xref:get-started> tutorial.
+Follow the [Get started with ASP.NET Core](../../get-started.md) tutorial.
 
 <a name="tfm"></a>
 

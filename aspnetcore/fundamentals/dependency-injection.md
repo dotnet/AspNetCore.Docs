@@ -16,15 +16,15 @@ This article provides information on DI in ASP.NET Core web apps. For informatio
 
 Guidance that adds to or supersedes the guidance in this article is found the following articles:
 
-* <xref:blazor/fundamentals/dependency-injection>
+* [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md)
 * [Dependency injection into controllers in ASP.NET Core](../mvc/controllers/dependency-injection.md)
 * [Use DI services to configure options](configuration/options.md#use-di-services-to-configure-options)
 
-Code examples in this article are based on [Blazor](xref:blazor/index). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
+Code examples in this article are based on [Blazor](../blazor/index.md). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true).
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/dependency-injection) ([how to download](index.md#how-to-download-a-sample))
 
-When using the sample code in this article in a local Blazor Web App for demonstration purposes, adopt an [interactive render mode](xref:blazor/components/render-modes).
+When using the sample code in this article in a local Blazor Web App for demonstration purposes, adopt an [interactive render mode](../blazor/components/render-modes.md).
 
 ## Overview of dependency injection
 
@@ -118,7 +118,7 @@ public class MyDependency : IMyDependency
 }
 ```
 
-The app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container, usually either in the `Program` file (.NET 6 or later) or `Startup.ConfigureServices` method (.NET 5 or earlier). The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method registers the service with a scoped lifetime, which is the lifetime of a [Blazor circuit](xref:blazor/hosting-models#blazor-server) (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
+The app registers the `IMyDependency` service with the concrete type `MyDependency` where services are added to the service container, usually either in the `Program` file (.NET 6 or later) or `Startup.ConfigureServices` method (.NET 5 or earlier). The <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> method registers the service with a scoped lifetime, which is the lifetime of a [Blazor circuit](../blazor/hosting-models.md#blazor-server) (.NET 8 or later) or a single request in an MVC or Razor Pages app. [Service lifetimes](#service-lifetimes) are described later in this article.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -271,7 +271,7 @@ For more information, see [App startup in ASP.NET Core](startup.md) and [Access 
 
 For general guidance on service registrations, see [Service registration](/dotnet/core/extensions/dependency-injection/service-registration).
 
-It's common to use multiple implementations when mocking types for testing. For more information, see <xref:test/integration-tests#inject-mock-services>.
+It's common to use multiple implementations when mocking types for testing. For more information, see [Integration tests in ASP.NET Core](../test/integration-tests.md#inject-mock-services).
 
 Registering a service with only an implementation type is equivalent to registering the service with the same implementation and service type:
 
@@ -432,7 +432,7 @@ We recommend that apps follow the naming convention of creating extension method
 
 ## Service lifetimes
 
-For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/extensions/dependency-injection/service-lifetimes). For additional service lifetime guidance that applies to Blazor apps, see <xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope>.
+For general guidance on service lifetimes, see [Service lifetimes](/dotnet/core/extensions/dependency-injection/service-lifetimes). For additional service lifetime guidance that applies to Blazor apps, see [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope).
 
 To use scoped services in middleware, use one of the following approaches:
 
@@ -442,7 +442,7 @@ To use scoped services in middleware, use one of the following approaches:
 For more information, see the following resources:
 
 * [Write custom ASP.NET Core middleware](middleware/write.md#per-request-middleware-dependencies)
-* For more information on using keyed services with Razor components, see <xref:blazor/fundamentals/dependency-injection#service-lifetime>.
+* For more information on using keyed services with Razor components, see [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md#service-lifetime).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -515,7 +515,7 @@ Example use in a Razor componment (`Pages/KeyedServicesExample.razor`) using the
 }
 ```
 
-For more information on using keyed services with Razor components, see <xref:blazor/fundamentals/dependency-injection#inject-keyed-services-into-components>.
+For more information on using keyed services with Razor components, see [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md#inject-keyed-services-into-components).
 
 Example use in a SignalR hub (`Hubs/MyHub1.cs`) with primary constructor injection:
 
@@ -587,11 +587,11 @@ For more information on creating middleware, see [Write custom ASP.NET Core midd
 For more information on constructor injection behavior, see the following resources:
 
 * [Constructor injection behavior](/dotnet/core/extensions/dependency-injection/overview#constructor-injection-behavior)
-* <xref:blazor/fundamentals/dependency-injection#constructor-injection>
+* [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md#constructor-injection)
 
 ## Entity Framework contexts
 
-For guidance on EF Core in server-side Blazor apps, see <xref:blazor/blazor-ef-core>.
+For guidance on EF Core in server-side Blazor apps, see [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../blazor/blazor-ef-core.md).
 
 By default, Entity Framework contexts are added to the service container using the [scoped lifetime](#service-lifetimes) because web app database operations are normally scoped to the client request. To use a different lifetime, specify the lifetime by using an <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> overload. Services of a given lifetime shouldn't use a database context with a lifetime that's shorter than the service's lifetime.
 
@@ -1112,7 +1112,7 @@ Service type | Lifetime
 
 ## Related content
 
-* <xref:blazor/fundamentals/dependency-injection>
+* [ASP.NET Core Blazor dependency injection](../blazor/fundamentals/dependency-injection.md)
 * [Inject services into a SignalR hub](../signalr/hubs.md#inject-services-into-a-hub)
 * [Dependency injection into views in ASP.NET Core](../mvc/views/dependency-injection.md)
 * [Dependency injection into controllers in ASP.NET Core](../mvc/controllers/dependency-injection.md)

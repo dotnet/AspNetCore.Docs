@@ -52,4 +52,4 @@ The Image Tag Helper uses the cache provider on the local web server to store th
 
 ## Related content
 
-* <xref:performance/caching/memory>
+* [Cache in-memory in ASP.NET Core](../../../../performance/caching/memory.md)

@@ -35,11 +35,11 @@ The contents of the browser's address bar are retained:
 * If the user manually reloads the page.
 * *Server-side scenarios only*: If the web server becomes unavailable, and the user is forced to reload the page in order to connect to a different server.
 
-For information on defining URL patterns with the [`@page`](../../mvc/views/razor.md#page) directive, see <xref:blazor/fundamentals/routing>.
+For information on defining URL patterns with the [`@page`](../../mvc/views/razor.md#page) directive, see [ASP.NET Core Blazor routing](../fundamentals/routing.md).
 
 ## In-memory state container service
 
-Nested components typically bind data using *chained bind* as described in <xref:blazor/components/data-binding>. Nested and unnested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
+Nested components typically bind data using *chained bind* as described in [ASP.NET Core Blazor data binding](../components/data-binding.md). Nested and unnested components can share access to data using a registered in-memory state container. A custom state container class can use an assignable <xref:System.Action> to notify components in different parts of the app of state changes. In the following example:
 
 * A pair of components uses a state container to track a property.
 * One component in the following example is nested in the other component, but nesting isn't required for this approach to work.
@@ -161,18 +161,18 @@ services.AddScoped<StateContainer>();
 }
 ```
 
-The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see <xref:blazor/components/component-disposal>.
+The preceding components implement <xref:System.IDisposable>, and the `OnChange` delegates are unsubscribed in the `Dispose` methods, which are called by the framework when the components are disposed. For more information, see [ASP.NET Core Razor component disposal](../components/component-disposal.md).
 
 ## Cascading values and parameters
 
-Use [cascading values and parameters](xref:blazor/components/cascading-values-and-parameters) to manage state by flowing data from an ancestor Razor component to descendent components:
+Use [cascading values and parameters](../components/cascading-values-and-parameters.md) to manage state by flowing data from an ancestor Razor component to descendent components:
 
 * To consume state across many components.
 * If there's just one top-level state object to persist.
 
 :::moniker range=">= aspnetcore-8.0"
 
-Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in <xref:blazor/components/cascading-values-and-parameters#root-level-cascading-values-with-notifications>.
+Root-level cascading values with a <xref:Microsoft.AspNetCore.Components.CascadingValueSource`1> permit Razor component subscriber notifications of changed cascading values. For more information and a working example, see the `NotifyingDalek` example in [ASP.NET Core Blazor cascading values and parameters](../components/cascading-values-and-parameters.md#root-level-cascading-values-with-notifications).
 
 :::moniker-end
 
@@ -184,4 +184,4 @@ When the state management service doesn't call <xref:Microsoft.AspNetCore.Compon
 
 > :::no-loc text="System.InvalidOperationException: 'The current thread is not associated with the Dispatcher. Use InvokeAsync() to switch execution to the Dispatcher when triggering rendering or component state.'":::
 
-For more information and an example of how to address this error, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
+For more information and an example of how to address this error, see [ASP.NET Core Razor component rendering](../components/rendering.md#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system).

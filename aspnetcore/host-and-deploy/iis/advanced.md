@@ -196,7 +196,7 @@ An ASP.NET Core app can be hosted as an [IIS sub-application (sub-app)](/iis/get
 Static asset links within the sub-app should use tilde-slash (`~/`) notation in MVC and Razor Pages. Tilde-slash notation triggers a [Tag Helper](../../mvc/views/tag-helpers/intro.md) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
 
 > [!NOTE]
-> Razor components (`.razor`) shouldn't use tilde-slash notation. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+> Razor components (`.razor`) shouldn't use tilde-slash notation. For more information, see [ASP.NET Core Blazor app base path](../../blazor/host-and-deploy/app-base-path.md).
 
 If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](../../fundamentals/index.md#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 

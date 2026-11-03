@@ -12,7 +12,7 @@ ms.date: 09/02/2026
 
 This article describes how to configure client and server options for ASP.NET Core SignalR.
 
-For Blazor SignalR guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/signalr>.
+For Blazor SignalR guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md).
 
 :::moniker range=">= aspnetcore-8.0"
 

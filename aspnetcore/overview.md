@@ -2,7 +2,6 @@
 title: Overview of ASP.NET Core
 description: Get an overview of ASP.NET Core, a cross-platform, high-performance, open-source framework for building modern, cloud-enabled, Internet-connected apps.
 ms.date: 07/28/2025
-uid: index
 ---
 # Overview of ASP.NET Core
 
@@ -19,7 +18,7 @@ Key features:
 * Integrated [dependency injection](fundamentals/dependency-injection.md).
 * [Environment-based configuration](fundamentals/configuration/index.md).
 * Rich logging, tracing, and runtime metrics.
-* [Blazor](xref:blazor/index): Create rich interactive web UI components using [C#](/dotnet/csharp/)&mdash;no JavaScript required.
+* [Blazor](blazor/index.md): Create rich interactive web UI components using [C#](/dotnet/csharp/)&mdash;no JavaScript required.
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/).
 * [Minimal APIs](fundamentals/minimal-apis.md): Build fast web APIs with minimal code and configuration by fluently declaring API routes and endpoints.
 * [SignalR](xref:signalr/index): Add real-time web functionality.
@@ -37,7 +36,7 @@ Key features:
 * Integrated [dependency injection](fundamentals/dependency-injection.md).
 * [Environment-based configuration](fundamentals/configuration/index.md).
 * Rich logging, tracing, and runtime metrics.
-* [Blazor](xref:blazor/index): Create rich interactive web UI components using [C#](/dotnet/csharp/)&mdash;no JavaScript required.
+* [Blazor](blazor/index.md): Create rich interactive web UI components using [C#](/dotnet/csharp/)&mdash;no JavaScript required.
 * Integrate seamlessly with popular client-side frameworks and libraries, including [Angular](/visualstudio/javascript/tutorial-asp-net-core-with-angular), [React](/visualstudio/javascript/tutorial-asp-net-core-with-react), [Vue](/visualstudio/javascript/tutorial-asp-net-core-with-vue), and [Bootstrap](https://getbootstrap.com/).
 * [SignalR](xref:signalr/index): Add real-time web functionality.
 * [gRPC](grpc/index.md): High performance Remote Procedure Call (RPC) services.
@@ -78,4 +77,4 @@ Key features:
 Are you ready to start your ASP.NET Core learning journey? It's time to build your first web app with ASP.NET Core!
 
 > [!div class="nextstepaction"]
-> <xref:get-started>
+> [Get started with ASP.NET Core](get-started.md)

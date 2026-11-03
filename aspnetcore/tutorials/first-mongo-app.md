@@ -291,7 +291,7 @@ To satisfy the preceding requirements, make the following changes:
 
 # [Visual Studio](#tab/visual-studio)
 
-This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
+This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#use-endpoints-explorer) to test the API.
 
 1. Build and run the app.
 

@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor attribute splatting and arbitrary parameters
 description: Learn how components can capture and render additional attributes in addition to the component's declared parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/attribute-splatting
 ---
 # ASP.NET Core Blazor attribute splatting and arbitrary parameters
 
@@ -76,7 +75,7 @@ Although the preceding example uses fields for the first `<input>` element (`id=
 
 ## Arbitrary attributes
 
-To accept arbitrary attributes, define a [component parameter](xref:blazor/components/index#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
+To accept arbitrary attributes, define a [component parameter](index.md#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
 
 ```razor
 @code {

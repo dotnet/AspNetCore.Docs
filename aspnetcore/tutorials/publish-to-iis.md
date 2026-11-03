@@ -64,7 +64,7 @@ Download the installer using the following link:
 Create any type of ASP.NET Core server-based app.
 
 > [!NOTE]
-> This tutorial is based on hosting a server-side ASP.NET Core app with IIS, including a Blazor Web App. For guidance on hosting and deploying a *standalone Blazor WebAssembly app* with IIS, see <xref:blazor/host-and-deploy/webassembly/iis>.
+> This tutorial is based on hosting a server-side ASP.NET Core app with IIS, including a Blazor Web App. For guidance on hosting and deploying a *standalone Blazor WebAssembly app* with IIS, see [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](../blazor/host-and-deploy/webassembly/iis.md).
 
 ## Publish and deploy the app
 
@@ -122,7 +122,7 @@ To learn more about hosting ASP.NET Core apps on IIS, see the IIS Overview artic
 
 * [ASP.NET Core Module (ANCM) for IIS](../host-and-deploy/aspnet-core-module.md)
 * [ASP.NET Core directory structure](../host-and-deploy/directory-structure.md)
-* <xref:test/troubleshoot-azure-iis>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)
 * [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
 * [WebSockets on IIS](../fundamentals/websockets.md#enabling-websockets-on-iis)
 

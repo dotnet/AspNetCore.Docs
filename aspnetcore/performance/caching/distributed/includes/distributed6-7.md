@@ -235,10 +235,10 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * [SQL Database on Azure](/azure/sql-database/)
 * [Azure Database for PostgreSQL](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
-* <xref:performance/caching/memory>
+* [Cache in-memory in ASP.NET Core](../../memory.md)
 * [Detect changes with change tokens in ASP.NET Core](../../../../fundamentals/change-tokens.md)
-* <xref:performance/caching/response>
-* <xref:performance/caching/middleware>
+* [Response caching in ASP.NET Core](../../response.md)
+* [Response caching middleware in ASP.NET Core](../../middleware.md)
 * [Cache Tag Helper in ASP.NET Core MVC](../../../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
 * [Distributed Cache Tag Helper in ASP.NET Core](../../../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
 * [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)

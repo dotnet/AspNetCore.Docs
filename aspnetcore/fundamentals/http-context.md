@@ -262,7 +262,7 @@ public class EmailController : Controller
 
 ## Access IHttpContextAccessor or HttpContext in Razor components (Blazor)
 
-If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor components (Blazor apps), see <xref:blazor/components/httpcontext>.
+If you want to access the `IHttpContextAccessor` or `HttpContext` in Razor components (Blazor apps), see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../blazor/components/httpcontext.md).
 
 ## Related content
 

@@ -188,7 +188,7 @@ server {
 }
 ```
 
-If the app is a SignalR or Blazor Server app, see [ASP.NET Core SignalR production hosting and scaling](../signalr/scale.md#linux-with-nginx) and <xref:blazor/host-and-deploy/server/index#linux-with-nginx> respectively for more information.
+If the app is a SignalR or Blazor Server app, see [ASP.NET Core SignalR production hosting and scaling](../signalr/scale.md#linux-with-nginx) and [Host and deploy ASP.NET Core server-side Blazor apps](../blazor/host-and-deploy/server/index.md#linux-with-nginx) respectively for more information.
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
@@ -497,7 +497,7 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 [!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 
 > [!NOTE]
-> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly/nginx>.
+> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly with Nginx](../blazor/host-and-deploy/webassembly/nginx.md).
 
 > [!NOTE]
 > The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. If enabled, confirm that the certificate supports the feature. For more information and guidance on enabling OCSP, see the following properties in the [Module ngx_http_ssl_module (Nginx documentation)](http://nginx.org/en/docs/http/ngx_http_ssl_module.html) article:
@@ -547,7 +547,7 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 * [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Linux packages - Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
-* <xref:test/troubleshoot>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
 * [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 

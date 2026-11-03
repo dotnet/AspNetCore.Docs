@@ -22,7 +22,7 @@ A named policy is applied with `[Authorize(Policy = "...")]` (Razor components, 
 
 [Role-based authorization](roles.md) and [claims-based authorization](claims.md) use a requirement, a requirement handler, and a preconfigured authorization policy. These building blocks support the expression of authorization evaluations in code.
 
-This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
+This article uses Razor component examples and focuses on [Blazor](../../blazor/index.md) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance that applies to all releases of ASP.NET Core, see the following resources after reading this article:
 
 * [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
 * [Policy-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/policies.md)

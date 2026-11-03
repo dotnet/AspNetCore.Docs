@@ -21,7 +21,7 @@ Lazy loading shouldn't be used for core runtime assemblies, which might be trimm
 
 :::moniker range=">= aspnetcore-8.0"
 
-Assembly files use the [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly/index#webcil-packaging-format-for-net-assemblies) with a `.wasm` file extension.
+Assembly files use the [Webcil packaging format for .NET assemblies](host-and-deploy/webassembly/index.md#webcil-packaging-format-for-net-assemblies) with a `.wasm` file extension.
 
 Throughout the article, the `{FILE EXTENSION}` placeholder represents "`wasm`".
 
@@ -53,7 +53,7 @@ Include one `BlazorWebAssemblyLazyLoad` item for each assembly. If an assembly h
 
 The Blazor framework automatically registers a singleton service for lazy loading assemblies in client-side Blazor WebAssembly apps, <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. The <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader.LoadAssembliesAsync*?displayProperty=nameWithType> method:
 
-* Uses [JS interop](xref:blazor/js-interop/call-dotnet-from-javascript) to fetch assemblies via a network call.
+* Uses [JS interop](javascript-interoperability/call-dotnet-from-javascript.md) to fetch assemblies via a network call.
 * Loads assemblies into the runtime executing on WebAssembly in the browser.
 
 :::moniker range="< aspnetcore-8.0"
@@ -63,7 +63,7 @@ The Blazor framework automatically registers a singleton service for lazy loadin
 
 :::moniker-end
 
-Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
+Blazor's <xref:Microsoft.AspNetCore.Components.Routing.Router> component designates the assemblies that Blazor searches for routable components and is also responsible for rendering the component for the route where the user navigates. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component's [`OnNavigateAsync` method](fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync) is used in conjunction with lazy loading to load the correct assemblies for endpoints that a user requests.
 
 Logic is implemented inside <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> to determine the assemblies to load with <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader>. Options for how to structure the logic include:
 
@@ -334,25 +334,25 @@ In the following example:
 
 :::moniker-end
 
-For more information, see <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies>.
+For more information, see [ASP.NET Core Blazor routing](fundamentals/routing.md#route-to-components-from-multiple-assemblies).
 
 ## User interaction with `<Navigating>` content
 
 While loading assemblies, which can take several seconds, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring with the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> property.
 
-For more information, see <xref:blazor/fundamentals/routing#user-interaction-with-navigating-content>.
+For more information, see [ASP.NET Core Blazor routing](fundamentals/routing.md#user-interaction-with-navigating-content).
 
 ## Handle cancellations in `OnNavigateAsync`
 
 The <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> object passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback contains a <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext.CancellationToken> that's set when a new navigation event occurs. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback must throw when the cancellation token is set to avoid continuing to run the <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback on an outdated navigation.
 
-For more information, see <xref:blazor/fundamentals/routing#handle-cancellations-in-onnavigateasync>.
+For more information, see [ASP.NET Core Blazor routing](fundamentals/routing.md#handle-cancellations-in-onnavigateasync).
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
 ## `OnNavigateAsync` events and renamed assembly files
 
-The resource loader relies on the assembly names that are defined in the boot manifest file. If [assemblies are renamed](xref:blazor/host-and-deploy/webassembly/index#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the boot manifest file are out of sync.
+The resource loader relies on the assembly names that are defined in the boot manifest file. If [assemblies are renamed](host-and-deploy/webassembly/index.md#change-the-file-name-extension-of-dll-files), the assembly names used in an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> callback and the assembly names in the boot manifest file are out of sync.
 
 To rectify this:
 
@@ -405,7 +405,7 @@ services.AddScoped<LazyAssemblyLoader>();
 
 The demonstration in this section:
 
-* Creates a robot controls assembly (`GrantImaharaRobotControls.{FILE EXTENSION}`) as a [Razor class library (RCL)](xref:blazor/components/class-libraries) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
+* Creates a robot controls assembly (`GrantImaharaRobotControls.{FILE EXTENSION}`) as a [Razor class library (RCL)](components/class-libraries.md) that includes a `Robot` component (`Robot.razor` with a route template of `/robot`).
 * Lazily loads the RCL's assembly to render its `Robot` component when the `/robot` URL is requested by the user.
 
 Create a standalone Blazor WebAssembly app to demonstrate lazy loading of a Razor class library's assembly. Name the project `LazyLoadTest`.
@@ -634,7 +634,7 @@ The following <xref:Microsoft.AspNetCore.Components.Routing.Router> component de
 
 During page transitions, a styled message is displayed to the user with the `<Navigating>` element. For more information, see the [User interaction with `<Navigating>` content](#user-interaction-with-navigating-content) section.
 
-The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>, which results in the router searching the assembly for routable components, where it finds the `Robot` component. The `Robot` component's route is added to the app's route collection. For more information, see the <xref:blazor/fundamentals/routing#route-to-components-from-multiple-assemblies> article and the [Assemblies that include routable components](#assemblies-that-include-routable-components) section of this article.
+The assembly is assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>, which results in the router searching the assembly for routable components, where it finds the `Robot` component. The `Robot` component's route is added to the app's route collection. For more information, see the [ASP.NET Core Blazor routing](fundamentals/routing.md#route-to-components-from-multiple-assemblies) article and the [Assemblies that include routable components](#assemblies-that-include-routable-components) section of this article.
 
 `App.razor`:
 
@@ -818,5 +818,5 @@ When the `Robot` component from the RCL is requested at `/robot`, the `GrantImah
 
 ## Related content
 
-* [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
+* [Handle asynchronous navigation events with `OnNavigateAsync`](fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync)
 * <xref:blazor/performance/index>

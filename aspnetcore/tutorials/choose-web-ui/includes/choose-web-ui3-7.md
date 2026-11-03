@@ -19,7 +19,7 @@ Benefits of using Blazor:
 * Interop with JavaScript.
 * Integrate components with existing MVC, Razor Pages, or JavaScript based apps.
 
-For a complete overview of Blazor, its architecture and benefits, see <xref:blazor/index> and <xref:blazor/hosting-models>. To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
+For a complete overview of Blazor, its architecture and benefits, see [ASP.NET Core Blazor](../../../blazor/index.md) and [ASP.NET Core Blazor hosting models](../../../blazor/hosting-models.md). To get started with your first Blazor app, see [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro).
 
 ## ASP.NET Core Razor Pages
 
@@ -78,15 +78,15 @@ Benefits for MVC or Razor Pages plus Blazor, in addition to MVC or Razor Pages b
 * Prerendering executes Razor components on the server and renders them into a view or page, which improves the perceived load time of the app.
 * Add interactivity to existing views or pages with the [Component Tag Helper](../../../mvc/views/tag-helpers/built-in/component-tag-helper.md).
 
-To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see <xref:blazor/components/integration>.
+To get started with ASP.NET Core MVC or Razor Pages plus Blazor, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../blazor/components/integration.md).
 
 ## Next steps
 
 For more information, see:
 
-* <xref:blazor/index>
-* <xref:blazor/hosting-models>
-* <xref:blazor/components/integration>
+* [ASP.NET Core Blazor](../../../blazor/index.md)
+* [ASP.NET Core Blazor hosting models](../../../blazor/hosting-models.md)
+* [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../../blazor/components/integration.md)
 * [Compare gRPC services with HTTP APIs](../../../grpc/comparison.md)
 
 :::moniker-end

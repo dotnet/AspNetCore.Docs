@@ -78,7 +78,7 @@ To open a documentation GitHub issue for an article of the series, use the **Ope
 
 We welcome feedback on the tutorial's articles, such as bug reports and comments on the article's text, but we're often unable to provide product support. If you run into a problem while following the tutorial, don't immediately open a documentation issue. Check the steps that you've taken against the article and compare your code to the [sample app](#sample-app) before opening an issue because many problems can be traced to missing a step or not following a step correctly.
 
-For general questions about .NET and Blazor beyond the tutorial and reference documentation or to obtain assistance from the .NET community, converse with developers in [public forums](xref:blazor/fundamentals/index#support-requests).
+For general questions about .NET and Blazor beyond the tutorial and reference documentation or to obtain assistance from the .NET community, converse with developers in [public forums](https://stackoverflow.com/questions/tagged/blazor).
 
 ## Next steps
 

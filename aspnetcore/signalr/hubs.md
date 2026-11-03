@@ -405,7 +405,7 @@ public class ChatHub : Hub
 For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 
 * A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-* For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+* For server-side Blazor apps, the factory pattern is recommended. For more information, see [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../blazor/blazor-ef-core.md).
 
 :::moniker-end
 
@@ -476,7 +476,7 @@ When injecting a scoped <xref:Microsoft.EntityFrameworkCore.DbContext>, the fram
 > For database operations, adopting the factory pattern is preferred for overlapping operations within one invocation:
 >
 > * A direct scoped context can run into concurrency issues. Using a factory completely isolates each factory operation.
-> * For server-side Blazor apps, the factory pattern is recommended. For more information, see <xref:blazor/blazor-ef-core>.
+> * For server-side Blazor apps, the factory pattern is recommended. For more information, see [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../blazor/blazor-ef-core.md).
 
 :::moniker-end
 

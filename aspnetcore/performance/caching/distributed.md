@@ -5,7 +5,6 @@ description: Learn how to use an ASP.NET Core distributed cache to improve app p
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/07/2026
 ms.sfi.ropc: t
-uid: performance/caching/distributed
 ---
 # Distributed caching in ASP.NET Core
 
@@ -76,7 +75,7 @@ public static class DistributedCacheExtensions
 `GetAsync<T>` returns the type's default value, such as `null`, when the key isn't in the cache.
 
 > [!TIP]
-> The [`HybridCache` library](xref:performance/caching/hybrid) serializes values for you and adds an in-process primary cache and stampede protection on top of the distributed cache.
+> The [`HybridCache` library](hybrid.md) serializes values for you and adds an in-process primary cache and stampede protection on top of the distributed cache.
 
 ## Establish distributed caching services
 
@@ -93,7 +92,7 @@ Register an implementation of <xref:Microsoft.Extensions.Caching.Distributed.IDi
 
 The distributed Redis cache delivers the best performance and is recommended for production apps. [Redis](https://redis.io/) is an open source in-memory data store, which is often used as a distributed cache. You can configure an [Azure Cache for Redis](/azure/azure-cache-for-redis/cache-overview) for an Azure-hosted ASP.NET Core app, and use an Azure Cache for Redis for local development. For more information, see [Review cache recommendations](#review-cache-recommendations).
 
-An app configures the cache implementation with a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance by calling the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> method. For [output caching](xref:performance/caching/output#cache-storage), use the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisOutputCacheServiceCollectionExtensions.AddStackExchangeRedisOutputCache*> method.
+An app configures the cache implementation with a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance by calling the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*> method. For [output caching](output.md#cache-storage), use the <xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisOutputCacheServiceCollectionExtensions.AddStackExchangeRedisOutputCache*> method.
 
 1. Create an instance of Azure Cache for Redis.
 

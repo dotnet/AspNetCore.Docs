@@ -14,7 +14,7 @@ Apps usually run in the *Development* environment during local development and t
 
 This article describes app runtime environments, how to use the environment to control app behavior, and how to set the environment.
 
-For Blazor environments guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/environments>.
+For Blazor environments guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor environments](../blazor/fundamentals/environments.md).
 
 ## Environments
 
@@ -26,7 +26,7 @@ Although the environment can be any string value, the following environment valu
 
 The `Production` environment is configured to maximize security, performance, and app reliability. Common developer settings and configuration that differ from the `Development` environment include:
 
-* Enabling [caching](xref:performance/caching/memory).
+* Enabling [caching](../performance/caching/memory.md).
 * Bundling and minifying client-side resources, along with potentially serving them from a CDN.
 * Disabling diagnostic error pages and enabling friendly error pages.
 * Enabling production logging and monitoring. For example, logging is enabled for [Azure Application Insights](/azure/application-insights/app-insights-asp-net-core).
@@ -153,7 +153,7 @@ Inject <xref:Microsoft.Extensions.Hosting.IHostEnvironment> into a server-render
 }
 ```
 
-For Blazor Web Apps that require the environment to control client-side rendering, see <xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering>.
+For Blazor Web Apps that require the environment to control client-side rendering, see [Prerender ASP.NET Core Razor components](../blazor/components/prerender.md#client-side-services-fail-to-resolve-during-prerendering).
 
 ## Set the environment in a command shell when the app is run (`dotnet run`)
 
@@ -480,7 +480,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](xref:index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/environments) ([how to download](index.md#how-to-download-a-sample))
 * [App startup in ASP.NET Core](startup.md)
 * [Configuration in ASP.NET Core](configuration/index.md)
-* <xref:blazor/fundamentals/environments>
+* [ASP.NET Core Blazor environments](../blazor/fundamentals/environments.md)

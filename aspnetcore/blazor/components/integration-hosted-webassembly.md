@@ -3,7 +3,6 @@ title: Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted
 description: Learn about Razor component integration scenarios for hosted Blazor WebAssembly apps with MVC or Razor Pages, including prerendering of Razor components on the server.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/integration-hosted-webassembly
 ---
 # Integrate ASP.NET Core Razor components with MVC or Razor Pages in hosted Blazor WebAssembly solutions
 
@@ -138,7 +137,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see [ASP.NET Core Blazor dependency injection](../fundamentals/dependency-injection.md#register-common-services).
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -332,7 +331,7 @@ Additional work might be required depending on the static resources that compone
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](index.md#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
@@ -548,16 +547,16 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
-  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
-  * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
-  * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
+  * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
+  * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
+  * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
+  * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index)
   * [Prerendering with authentication in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* <xref:blazor/host-and-deploy/webassembly/index>
-* [Handle errors: Prerendering](xref:blazor/fundamentals/handle-errors#prerendering)
-* <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](xref:blazor/fundamentals/routing#handle-asynchronous-navigation-events-with-onnavigateasync)
+* [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
+* [Handle errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
+* <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](../fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync)
 
 :::moniker-end
 
@@ -590,7 +589,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
 1. Add `_Host.cshtml` and `_Layout.cshtml` files to the **:::no-loc text="Server":::** project's `Pages` folder. You can obtain the files from a project created from the Blazor Server template using Visual Studio or using the .NET CLI with the `dotnet new blazorserver -o BlazorServer` command in a command shell (the `-o BlazorServer` option creates a folder for the project). After placing the files into the **:::no-loc text="Server":::** project's `Pages` folder, make the following changes to the files.
 
    > [!IMPORTANT]
-   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+   > The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see [Control head content in ASP.NET Core Blazor apps](control-head-content.md#control-head-content-during-prerendering).
 
    Make the following changes to the `_Layout.cshtml` file:
 
@@ -696,7 +695,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    app.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see [ASP.NET Core Blazor dependency injection](../fundamentals/dependency-injection.md#register-common-services).
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -721,7 +720,7 @@ MVC:
 * `Views/_ViewStart.cshtml`
 
 > [!IMPORTANT]
-> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see <xref:blazor/components/control-head-content#control-head-content-during-prerendering>.
+> The use of a layout page (`_Layout.cshtml`) with a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component is required to control `<head>` content, such as the page's title (<xref:Microsoft.AspNetCore.Components.Web.PageTitle> component) and other head elements (<xref:Microsoft.AspNetCore.Components.Web.HeadContent> component). For more information, see [Control head content in ASP.NET Core Blazor apps](control-head-content.md#control-head-content-during-prerendering).
 
 The preceding files can be obtained by generating an app from the ASP.NET Core project templates using:
 
@@ -893,7 +892,7 @@ Additional work might be required depending on the static resources that compone
 
 ### Set child content through a render fragment
 
-The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](xref:blazor/components/index#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
+The [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) doesn't support receiving a [`RenderFragment` delegate for child content](index.md#child-content-render-fragments) (for example, `param-ChildContent="..."`). We recommend creating a Razor component (`.razor`) that references the component you want to render with the child content you want to pass and then invoke the Razor component from the page or view.
 
 ### Ensure that top-level prerendered components aren't trimmed out on publish
 
@@ -1062,14 +1061,14 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
-  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
-  * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
-  * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
+  * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
+  * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
+  * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
+  * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* <xref:blazor/host-and-deploy/webassembly/index>
+* [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
 
 :::moniker-end
 
@@ -1136,7 +1135,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
    + endpoints.MapFallbackToPage("/_Host");
    ```
 
-1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see <xref:blazor/fundamentals/dependency-injection#register-common-services>.
+1. If the **:::no-loc text="Client":::** and **:::no-loc text="Server":::** projects use one or more common services during prerendering, factor the service registrations into a method that can be called from both projects. For more information, see [ASP.NET Core Blazor dependency injection](../fundamentals/dependency-injection.md#register-common-services).
 
 1. Run the **:::no-loc text="Server":::** project. The hosted Blazor WebAssembly app is prerendered by the **:::no-loc text="Server":::** project for clients.
 
@@ -1319,14 +1318,14 @@ Additional work might be required depending on the static resources that compone
 
 * [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
-  * [Component initialization (`OnInitialized{Async}`)](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)
-  * [After component render (`OnAfterRender{Async}`)](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync)
-  * [Stateful reconnection after prerendering](xref:blazor/components/lifecycle#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
-  * [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop)
+  * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
+  * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
+  * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
+  * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
   * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
   * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
-* <xref:blazor/host-and-deploy/webassembly/index>
+* [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
 
 :::moniker-end
 
