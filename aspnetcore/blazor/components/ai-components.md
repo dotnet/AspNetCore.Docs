@@ -191,7 +191,7 @@ Render the generated block in `MessageListContent`:
 
 As the call arguments stream, the generated handler updates `Location` while `HasResult` remains `false`. When the result arrives, it populates `Weather`, sets `HasResult` to `true`, and rerenders the same block as the completed weather card.
 
-![A generated typed tool block rendering a weather result](~/release-notes/aspnetcore-11/static/blazor-ai-tool-block.png)
+![A generated typed tool block rendering a weather result](ai-components/static/blazor-ai-tool-block.png)
 
 When MAF hosts the remote agent, backend tools use its normal tool pipeline and AG-UI transports the call and result to the client. For more information, see [Backend tool rendering with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/backend-tool-rendering).
 
@@ -277,7 +277,7 @@ An app can require the user to approve a consequential tool call, such as schedu
 </ChatPage>
 ```
 
-![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
+![A tool call waiting for human approval](ai-components/static/blazor-ai-tool-approval.png)
 
 For a MAF agent, the server decides which functions require approval, and AG-UI transports the request and decision. For more information, see [Human-in-the-loop with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/human-in-the-loop).
 
@@ -370,7 +370,7 @@ var agent = new UIAgent<RecipeState>(chatClient, options =>
 
 Read the current value from `agent.State.Value` and subscribe to `agent.State.OnChanged` when the surrounding component needs to rerender. State mappers can also handle app-specific `AIContent` from other `IChatClient` implementations.
 
-![Typed agent state rendered as a recipe card](~/release-notes/aspnetcore-11/static/blazor-ai-shared-state.png)
+![Typed agent state rendered as a recipe card](ai-components/static/blazor-ai-shared-state.png)
 
 For the corresponding MAF server configuration, including mapping tool results to state snapshots and deltas, see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
 
@@ -426,7 +426,7 @@ private string ConfirmChanges(bool accepted)
 
 The provisional value is immediately available from `agent.State.Value`, and `HasPendingPredictiveState` indicates that it isn't committed. The callback commits the completed proposal or restores the baseline, and its return value reports the decision to the agent in a follow-up run. If generation fails, is canceled, or ends without a decision, the provisional value is automatically rolled back. The server-side extraction and mapping of streamed tool arguments must be configured explicitly; see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
 
-![An express shipping proposal with accept and reject actions](~/release-notes/aspnetcore-11/static/blazor-ai-predictive-state.png)
+![An express shipping proposal with accept and reject actions](ai-components/static/blazor-ai-predictive-state.png)
 
 ## Persist and restore conversations
 
