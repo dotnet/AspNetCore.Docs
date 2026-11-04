@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core Razor Pages app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: razor-pages/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core Razor Pages
 
@@ -12,14 +11,14 @@ When an identity is created for an app user upon signing into an app, the identi
 
 This article uses Razor Pages examples and focuses on Razor Pages authorization scenarios. For Blazor and MVC guidance, see the following resources:
 
-* <xref:security/authorization/claims>
-* <xref:mvc/security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
+* [Claim-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/claims.md)
 
-Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
+Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 
@@ -35,7 +34,7 @@ The simplest type of claim policy looks for the presence of a claim and doesn't 
 
 :::moniker range=">= aspnetcore-7.0"
 
-Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> (place the call after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>). Registering the policy takes place as part of the Authorization service configuration, typically in the `Program` file:
+Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> (place the call after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>). Registering the policy takes place as part of the Authorization service configuration, typically in the `Program` file:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/7.x/WebAll/Program.cs" id="snippet" highlight="6-7,21":::
 
@@ -43,7 +42,7 @@ Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.Author
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-7.0"
 
-Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> (place the call after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A>). Registering the policy takes place as part of the Authorization service configuration, typically in the `Program` file:
+Build and register the policy and call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> (place the call after the line that calls <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>). Registering the policy takes place as part of the Authorization service configuration, typically in the `Program` file:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/6.x/WebAll/Program.cs" id="snippet" highlight="6-9,23":::
 
@@ -61,7 +60,7 @@ services.AddAuthorization(options =>
 });
 ```
 
-Call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization%2A> in `Startup.Configure` (`Startup.cs`) immediately after <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication%2A> is called:
+Call <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> in `Startup.Configure` (`Startup.cs`) immediately after <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> is called:
 
 ```csharp
 app.UseAuthorization();
@@ -77,9 +76,9 @@ Apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microso
 
 Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods. If you need to implement different authorization rules for different page handlers, adopt either of the following approaches.
 
-* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
+* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](../../../mvc/views/partial.md) for shared content.
 
-* Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
+* Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
 
   The following example demonstrates the approach:
 
@@ -125,7 +124,7 @@ Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNet
   }
   ```
 
-  Alternatively, page handler methods can check claims directly by calling <xref:System.Security.Claims.ClaimsIdentity.HasClaim%2A>:
+  Alternatively, page handler methods can check claims directly by calling <xref:System.Security.Claims.ClaimsIdentity.HasClaim*>:
 
   ```csharp
   public IActionResult OnGet()
@@ -184,7 +183,7 @@ services.AddAuthorization(options =>
 
 ### Add a generic claim check
 
-If the claim value isn't a single value or you need more flexible claim evaluation logic, such as pattern matching, checking the claim issuer, or parsing complex claim values, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion%2A> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim%2A>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
+If the claim value isn't a single value or you need more flexible claim evaluation logic, such as pattern matching, checking the claim issuer, or parsing complex claim values, use <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAssertion*> with <xref:System.Security.Claims.ClaimsPrincipal.HasClaim*>. For example, the following policy requires that the user's `email` claim ends with a specific domain:
 
 :::moniker range=">= aspnetcore-7.0"
 
@@ -229,7 +228,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+For more information, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#use-a-func-to-fulfill-a-policy).
 
 ## Evaluate multiple policies
 
@@ -239,13 +238,13 @@ If multiple policies are applied at the controller and action levels, ***all*** 
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/claims/7.x/WebAll/Pages/X/Salary.cshtml.cs" id="snippet" highlight="1,2":::
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](../../../security/authorization/policies.md).
 
 ## Claim case sensitivity
 
 Claim *values* are compared using [`StringComparison.Ordinal`](xref:System.StringComparison?displayProperty=nameWithType). This means values such as `Admin` (uppercase `A`) and `admin` (lowercase `a`) are always treated as different claim values, regardless of which authentication handler created the identity.
 
-Separately, claim *type* comparison (used to locate claims by type, such as `EmployeeNumber`, `department`, or `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`) may be case-sensitive or case-insensitive depending on the <xref:System.Security.Claims.ClaimsIdentity> implementation. With `Microsoft.IdentityModel` in ASP.NET Core 8.0 or later (used by <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A>, <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect%2A>, <xref:Microsoft.Extensions.DependencyInjection.WsFederationExtensions.AddWsFederation%2A>, and <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp%2A>/<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApi%2A>), <xref:Microsoft.IdentityModel.Tokens.CaseSensitiveClaimsIdentity> is produced during token validation, which uses case-sensitive claim type matching.
+Separately, claim *type* comparison (used to locate claims by type, such as `EmployeeNumber`, `department`, or `http://schemas.microsoft.com/ws/2008/06/identity/claims/role`) may be case-sensitive or case-insensitive depending on the <xref:System.Security.Claims.ClaimsIdentity> implementation. With `Microsoft.IdentityModel` in ASP.NET Core 8.0 or later (used by <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*>, <xref:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect*>, <xref:Microsoft.Extensions.DependencyInjection.WsFederationExtensions.AddWsFederation*>, and <xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApp*>/<xref:Microsoft.Identity.Web.AppBuilderExtension.AddMicrosoftIdentityWebApi*>), <xref:Microsoft.IdentityModel.Tokens.CaseSensitiveClaimsIdentity> is produced during token validation, which uses case-sensitive claim type matching.
 
 The default <xref:System.Security.Claims.ClaimsIdentity> provided by the .NET runtime (used in most cases, including all cookie-based flows) still uses case-insensitive claim type matching.
 

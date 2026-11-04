@@ -3,7 +3,6 @@ title: Routing to controller actions in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how ASP.NET Core MVC uses routing middleware to match URLs of incoming requests and map them to actions.
 ms.date: 02/25/2026
-uid: mvc/controllers/routing
 ---
 # Routing to controller actions in ASP.NET Core
 
@@ -13,7 +12,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
+ASP.NET Core controllers use the Routing [middleware](../../fundamentals/middleware/index.md) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
 * Are defined at startup in `Program.cs` or in attributes.
 * Describe how URL paths are matched to [actions](#action).
@@ -28,8 +27,8 @@ This document:
   * Covers both:
     * [Conventional routing](#cr6) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar6) section.
-  * See [Routing](xref:fundamentals/routing) for advanced routing details.
-* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions.
+  * See [Routing](../../fundamentals/routing.md) for advanced routing details.
+* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions.
 
 <a name="cr6"></a>
 
@@ -39,7 +38,7 @@ The ASP.NET Core MVC template generates [conventional routing](#crd6) code simil
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet&highlight=20-22)]
 
-Use <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> to create a single route. The single route is the `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar6).
+Use <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> to create a single route. The single route is the `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar6).
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet2)]
 
@@ -52,11 +51,11 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](xref:mvc/models/model-binding).
+* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](../models/model-binding.md).
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
 * The `?` character in `{id?}` defines `id` as optional.
-  * Default and optional route parameters don't need to be present in the URL path for a match. For a detailed description of route template syntax, see [Route Template Reference](xref:fundamentals/routing#route-template-reference).
+  * Default and optional route parameters don't need to be present in the URL path for a match. For a detailed description of route template syntax, see [Route Template Reference](../../fundamentals/routing.md#route-template-reference).
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
 
@@ -78,7 +77,7 @@ Using the preceding controller definition and route template, the `HomeControlle
 
 The URL path `/` uses the route template default `Home` controller and `Index` action. The URL path `/Home` uses the route template default `Index` action.
 
-The convenience method <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
+The convenience method <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>:
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet4)]
 
@@ -87,12 +86,12 @@ Replaces:
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet2)]
 
 > [!IMPORTANT]
-> Routing is configured by using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> middleware. To use controllers:
+> Routing is configured by using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> middleware. To use controllers:
 >
-> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> to map [attribute routed](#ar6) controllers.
-> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>, to map both [conventionally routed](#cr6) controllers and [attribute routed](#ar6) controllers.
+> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> to map [attribute routed](#ar6) controllers.
+> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>, to map both [conventionally routed](#cr6) controllers and [attribute routed](#ar6) controllers.
 >
-> Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in `Program.cs` by using `UseRouting` and `UseEndpoints`. For more information, see <xref:fundamentals/routing>.
+> Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in `Program.cs` by using `UseRouting` and `UseEndpoints`. For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd6"></a>
@@ -138,7 +137,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is a useful starting point for UI-based apps.
 * Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) is frequently all that's needed.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
 
@@ -147,7 +146,7 @@ Endpoint routing in ASP.NET Core:
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility. All endpoints are processed at once.
 
-Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
+Enable [Logging](../../fundamentals/logging/index.md) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
 [Attribute routing](#ar6) is explained later in this document.
 
@@ -155,7 +154,7 @@ Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routin
 
 ### Multiple conventional routes
 
-You can configure multiple [conventional routes](#cr6) by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>. When you add these calls, you can define multiple conventions or add conventional routes that are dedicated to a specific [action](#action), such as:
+You can configure multiple [conventional routes](#cr6) by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>. When you add these calls, you can define multiple conventions or add conventional routes that are dedicated to a specific [action](#action), such as:
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_mcr)]
 
@@ -183,14 +182,14 @@ In the preceding example:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
->See [Routing](xref:fundamentals/routing) for reference material on routing.
+>See [Routing](../../fundamentals/routing.md) for reference material on routing.
 
 <a name="cro6"></a>
 
 ### Conventional routing order
 
 Conventional routing only matches a combination of action and controller that the app defines. This approach simplifies cases where conventional routes overlap.
-When you add routes by using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>, the endpoints automatically get an order value based on the order you invoke these methods. Matches from a route that appears earlier in the list have a higher priority. Conventional routing depends on order. In general, place routes with areas earlier because they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch-all route parameters, such as `{*article}`, can make a route too [greedy](xref:fundamentals/routing#greedy). A greedy route matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
+When you add routes by using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>, the endpoints automatically get an order value based on the order you invoke these methods. Matches from a route that appears earlier in the list have a higher priority. Conventional routing depends on order. In general, place routes with areas earlier because they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch-all route parameters, such as `{*article}`, can make a route too [greedy](../../fundamentals/routing.md#greedy). A greedy route matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
 [!INCLUDE[](~/includes/catchall.md)]
 
@@ -224,7 +223,7 @@ To resolve the correct route:
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to routing so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr6), actions often use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr6), actions often use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](../../tutorials/first-mvc-app/controller-methods-views.md#get-post).
 
 If routing can't choose the best candidate, it throws an <xref:System.Reflection.AmbiguousMatchException> and lists the multiple matched endpoints.
 
@@ -259,7 +258,7 @@ Attribute routing uses a set of attributes to map actions directly to route temp
 
 [!code-csharp[](routing/samples/6.x/main/Program.cs?name=snippet_webapi)]
 
-In the preceding code, you call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> to map attribute routed controllers.
+In the preceding code, you call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> to map attribute routed controllers.
 
 In the following example:
 
@@ -285,7 +284,7 @@ The following code applies `[Route("[controller]/[action]")]` to the controller:
 
 In the preceding code, the `Index` method templates must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
 
-See [Route template precedence](xref:fundamentals/routing#rtp) for information on route template selection.
+See [Route template precedence](../../fundamentals/routing.md#rtp) for information on route template selection.
 
 ## Reserved routing names
 
@@ -384,11 +383,11 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](../../web-api/index.md#consumes).
 
- See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
+ See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](../../web-api/index.md#apicontroller-attribute).
 
 ## Route name
 
@@ -473,9 +472,9 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 * The preceding code is an example of poor routing design. It illustrates the `Order` property.
 * The `Order` property only resolves the ambiguity. That template cannot be matched. It's better to remove the `[Route("Home")]` template.
 
-For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](../../razor-pages/razor-pages-conventions.md#route-order).
 
-In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the `AmbiguousMatchException`.
+In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](../../fundamentals/logging/index.md) to see which endpoints caused the `AmbiguousMatchException`.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
@@ -564,7 +563,7 @@ Attribute routes support the same inline syntax as conventional routes to specif
 
 In the preceding code, `[HttpPost("product14/{id:int}")]` applies a route constraint. The `Products14Controller.ShowProduct` action is matched only by URL paths like `/product14/3`. The route template portion `{id:int}` constrains that segment to only integers.
 
-For a detailed description of route template syntax, see [Route Template Reference](xref:fundamentals/routing#route-template-reference).
+For a detailed description of route template syntax, see [Route Template Reference](../../fundamentals/routing.md#route-template-reference).
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
@@ -647,7 +646,7 @@ Attribute routing and conventional routing use the same routing engine.
 
 ## URL generation and ambient values
 
-Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates [hard-coding](https://wikipedia.org/wiki/Hard_coding) URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
+Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates [hard-coding](https://wikipedia.org/wiki/Hard_coding) URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
 
 The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. An instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
 
@@ -710,7 +709,7 @@ If the value `{ d = Donovan }` is added:
 
 * Both of the values `{ c = Carol, d = David }` are ignored.
 * There's no longer a value for `d` and URL generation fails.
-* You must specify the desired values of `c` and `d` to generate a URL.  
+* You must specify the desired values of `c` and `d` to generate a URL.
 
 You might expect to hit this problem with the default route `{controller}/{action}/{id?}`. This problem is rare in practice because `Url.Action` always explicitly specifies a `controller` and `action` value.
 
@@ -755,7 +754,7 @@ The following Razor file generates an HTML link to the `Destination_Route`:
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> provides the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> methods [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) and [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) to generate `<form>` and `<a>` elements respectively. These methods use the [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
 
-TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](xref:mvc/views/working-with-forms).
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](../views/working-with-forms.md).
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the preceding methods.
 
@@ -769,7 +768,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and <xref:Microsoft.AspNetCor
 
 [!code-csharp[](routing/samples/6.x/main/Controllers/CustomerController.cs?name=snippet)]
 
-The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction%2A> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> follow a similar pattern to the methods on `IUrlHelper`.
+The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> follow a similar pattern to the methods on `IUrlHelper`.
 
 <a name="routing-dedicated-ref-label"></a>
 
@@ -781,24 +780,24 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` by using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` are enough to generate a URL by using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
-[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](../../fundamentals/routing.md#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
 <a name="routing-areas-ref-label"></a>
 
 ## Areas
 
-[Areas](xref:mvc/controllers/areas) are an MVC feature used to organize related functionality into a group as a separate:
+[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate:
 
 * Routing namespace for controller actions.
 * Folder structure for views.
 
-Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
+Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](areas.md) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 
 [!code-csharp[](routing/samples/6.x/AreasRouting/Program.cs?name=snippet_)]
 
-In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
 
 When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route generates the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value comes from a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following code:
 
@@ -847,7 +846,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 ## Sample code
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 
@@ -855,7 +854,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core controllers use the Routing [middleware](xref:fundamentals/middleware/index) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
+ASP.NET Core controllers use the Routing [middleware](../../fundamentals/middleware/index.md) to match the URLs of incoming requests and map them to [actions](#action).  Route templates:
 
 * Are defined in startup code or attributes.
 * Describe how URL paths are matched to [actions](#action).
@@ -870,8 +869,8 @@ This document:
   * Covers both:
     * [Conventional routing](#cr) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar) section.
-  * See [Routing](xref:fundamentals/routing) for advanced routing details.
-* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](xref:migration/22-to-30) for instructions. Refer to the [2.2 version of this document](xref:mvc/controllers/routing?view=aspnetcore-2.2) for reference material on the legacy routing system.
+  * See [Routing](../../fundamentals/routing.md) for advanced routing details.
+* Refers to the default routing system added in ASP.NET Core 3.0, called endpoint routing. It's possible to use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions. Refer to the [2.2 version of this document](routing.md?view=aspnetcore-2.2&preserve-view=true) for reference material on the legacy routing system.
 
 <a name="cr"></a>
 
@@ -881,7 +880,7 @@ This document:
 
 [!code-csharp[](routing/samples/3.x/main/StartupDefaultMVC.cs?name=snippet)]
 
-Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> is used to create a single route. The single route is named `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar).
+Inside the call to <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> is used to create a single route. The single route is named `default` route. Most apps with controllers and views use a route template similar to the `default` route. REST APIs should use [attribute routing](#ar).
 
 The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
@@ -892,11 +891,11 @@ The route template `"{controller=Home}/{action=Index}/{id?}"`:
 
   [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
 
-* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](xref:mvc/models/model-binding).
+* `/Products/Details/5` model binds the value of `id = 5` to set the `id` parameter to `5`. For more information, see [Model Binding](../models/model-binding.md).
 * `{controller=Home}` defines `Home` as the default `controller`.
 * `{action=Index}` defines `Index` as the default `action`.
 *  The `?` character in `{id?}` defines `id` as optional.
-  * Default and optional route parameters don't need to be present in the URL path for a match. For a detailed description of route template syntax, see [Route Template Reference](xref:fundamentals/routing#route-template-reference).
+  * Default and optional route parameters don't need to be present in the URL path for a match. For a detailed description of route template syntax, see [Route Template Reference](../../fundamentals/routing.md#route-template-reference).
 * Matches the URL path `/`.
 * Produces the route values `{ controller = Home, action = Index }`.
 
@@ -918,7 +917,7 @@ Using the preceding controller definition and route template, the `HomeControlle
 
 The URL path `/` uses the route template default `Home` controller and `Index` action. The URL path `/Home` uses the route template default `Index` action.
 
-The convenience method <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>:
+The convenience method <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>:
 
 ```csharp
 endpoints.MapDefaultControllerRoute();
@@ -931,10 +930,10 @@ endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}"
 ```
 
 > [!IMPORTANT]
-> Routing is configured by using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>, `MapControllerRoute`, and `MapAreaControllerRoute` middleware. To use controllers:
+> Routing is configured by using the <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, `MapControllerRoute`, and `MapAreaControllerRoute` middleware. To use controllers:
 >
-> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> inside `UseEndpoints` to map [attribute routed](#ar) controllers.
-> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> to map both [conventionally routed](#cr) controllers and [attribute routed](#ar) controllers.
+> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> inside `UseEndpoints` to map [attribute routed](#ar) controllers.
+> * Call <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> or <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> to map both [conventionally routed](#cr) controllers and [attribute routed](#ar) controllers.
 
 <a name="routing-conventional-ref-label"></a>
 <a name="crd"></a>
@@ -980,7 +979,7 @@ Most apps should choose a basic and descriptive routing scheme so that URLs are 
 * Is a useful starting point for UI-based apps.
 * Is the only route template needed for many web UI apps. For larger web UI apps, another route using [Areas](#areas) is frequently all that's needed.
 
-<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute%2A> :
+<xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.MvcAreaRouteBuilderExtensions.MapAreaRoute*> :
 
 * Automatically assign an **order** value to their endpoints based on the order they are invoked.
 
@@ -989,7 +988,7 @@ Endpoint routing in ASP.NET Core 3.0 or later:
 * Doesn't have a concept of routes.
 * Doesn't provide ordering guarantees for the execution of extensibility. All endpoints are processed at once.
 
-Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
+Enable [Logging](../../fundamentals/logging/index.md) to see how the built-in routing implementations, such as <xref:Microsoft.AspNetCore.Routing.Route>, match requests.
 
 [Attribute routing](#ar) is explained later in this document.
 
@@ -997,7 +996,7 @@ Enable [Logging](xref:fundamentals/logging/index) to see how the built-in routin
 
 ### Multiple conventional routes
 
-Multiple [conventional routes](#cr) can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>. Doing so allows defining multiple conventions, or to adding conventional routes that are dedicated to a specific [action](#action), such as:
+Multiple [conventional routes](#cr) can be added inside `UseEndpoints` by adding more calls to <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*> and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>. Doing so allows defining multiple conventions, or to adding conventional routes that are dedicated to a specific [action](#action), such as:
 
 [!code-csharp[](routing/samples/3.x/main/Startup.cs?name=snippet_1)]
 
@@ -1025,14 +1024,14 @@ In the preceding example:
 > * Define a concept called a *route*. `UseRouting` adds route matching to the middleware pipeline. The `UseRouting` middleware looks at the set of endpoints defined in the app, and selects the best endpoint match based on the request.
 > * Provide guarantees about the execution order of extensibility like <xref:Microsoft.AspNetCore.Routing.IRouteConstraint> or <xref:Microsoft.AspNetCore.Mvc.ActionConstraints.IActionConstraint>.
 >
->See [Routing](xref:fundamentals/routing) for reference material on routing.
+>See [Routing](../../fundamentals/routing.md) for reference material on routing.
 
 <a name="cro"></a>
 
 ### Conventional routing order
 
 Conventional routing only matches a combination of action and controller that the app defines. This approach simplifies cases where conventional routes overlap.
-When you add routes by using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute%2A>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute%2A>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A>, the endpoints automatically get an order value based on the order you invoke these methods. Matches from a route that appears earlier in the list have a higher priority. Conventional routing depends on order. In general, place routes with areas earlier because they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch-all route parameters, such as `{*article}`, can make a route too [greedy](xref:fundamentals/routing#greedy). A greedy route matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
+When you add routes by using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>, the endpoints automatically get an order value based on the order you invoke these methods. Matches from a route that appears earlier in the list have a higher priority. Conventional routing depends on order. In general, place routes with areas earlier because they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch-all route parameters, such as `{*article}`, can make a route too [greedy](../../fundamentals/routing.md#greedy). A greedy route matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
 [!INCLUDE[](~/includes/catchall.md)]
 
@@ -1066,7 +1065,7 @@ To resolve the correct route:
 
 The <xref:Microsoft.AspNetCore.Mvc.HttpPostAttribute>, `[HttpPost]`, is provided to routing so that it can choose based on the HTTP method of the request. The `HttpPostAttribute` makes `Edit(int, Product)` a better match than `Edit(int)`.
 
-It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](xref:tutorials/first-mvc-app/controller-methods-views#get-post).
+It's important to understand the role of attributes like `HttpPostAttribute`. Similar attributes are defined for other [HTTP verbs](#verb). In [conventional routing](#cr), it's common for actions to use the same action name when they're part of a show form, submit form workflow. For example, see [Examine the two Edit action methods](../../tutorials/first-mvc-app/controller-methods-views.md#get-post).
 
 If routing can't choose the best candidate, it throws an <xref:System.Reflection.AmbiguousMatchException> and lists the multiple matched endpoints.
 
@@ -1101,7 +1100,7 @@ Attribute routing uses a set of attributes to map actions directly to route temp
 
 [!code-csharp[](routing/samples/3.x/main/StartupAPI.cs?name=snippet)]
 
-In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers%2A> is called inside `UseEndpoints` to map attribute routed controllers.
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllers*> is called inside `UseEndpoints` to map attribute routed controllers.
 
 In the following example:
 
@@ -1127,7 +1126,7 @@ The following code applies `[Route("[controller]/[action]")]` to the controller:
 
 In the preceding code, the `Index` method templates must prepend `/` or `~/` to the route templates. Route templates applied to an action that begin with `/` or `~/` don't get combined with route templates applied to the controller.
 
-See [Route template precedence](xref:fundamentals/routing#rtp) for information on route template selection.
+See [Route template precedence](../../fundamentals/routing.md#rtp) for information on route template selection.
 
 ## Reserved routing names
 
@@ -1226,11 +1225,11 @@ The `Products2ApiController.GetProduct(int)` action:
 * Is run with URL path like `/products2/3`
 * Isn't run with the URL path `/products2`.
 
-The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](xref:web-api/index#consumes).
+The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. For more information, see [Define supported request content types with the Consumes attribute](../../web-api/index.md#consumes).
 
- See [Routing](xref:fundamentals/routing) for a full description of route templates and related options.
+ See [Routing](../../fundamentals/routing.md) for a full description of route templates and related options.
 
-For more information on `[ApiController]`, see [ApiController attribute](xref:web-api/index#apicontroller-attribute).
+For more information on `[ApiController]`, see [ApiController attribute](../../web-api/index.md#apicontroller-attribute).
 
 ## Route name
 
@@ -1315,9 +1314,9 @@ With the preceding code, `/home` runs the `HomeController.Index` endpoint. To ge
 * The preceding code is an example of poor routing design. It illustrates the `Order` property.
 * The `Order` property only resolves the ambiguity. That template cannot be matched. It's better to remove the `[Route("Home")]` template.
 
-For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](xref:razor-pages/razor-pages-conventions#route-order).
+For information on route order with Razor Pages, see [Razor Pages route and app conventions: Route order](../../razor-pages/razor-pages-conventions.md#route-order).
 
-In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](xref:fundamentals/logging/index) to see which endpoints caused the `AmbiguousMatchException`.
+In some cases, an HTTP 500 error is returned with ambiguous routes. Use [logging](../../fundamentals/logging/index.md) to see which endpoints caused the `AmbiguousMatchException`.
 
 <a name="routing-token-replacement-templates-ref-label"></a>
 
@@ -1406,7 +1405,7 @@ Attribute routes support the same inline syntax as conventional routes to specif
 
 In the preceding code, `[HttpPost("product14/{id:int}")]` applies a route constraint. The `Products14Controller.ShowProduct` action is matched only by URL paths like `/product14/3`. The route template portion `{id:int}` constrains that segment to only integers.
 
-For a detailed description of route template syntax, see [Route Template Reference](xref:fundamentals/routing#route-template-reference).
+For a detailed description of route template syntax, see [Route Template Reference](../../fundamentals/routing.md#route-template-reference).
 
 <a name="routing-cust-rt-attr-irt-ref-label"></a>
 
@@ -1487,7 +1486,7 @@ Attribute routing and conventional routing use the same routing engine.
 
 ## URL generation and ambient values
 
-Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](xref:fundamentals/routing) for a detailed description of URL generation.
+Apps can use routing URL generation features to generate URL links to actions. Generating URLs eliminates hardcoding URLs, making code more robust and maintainable. This section focuses on the URL generation features provided by MVC and only cover basics of how URL generation works. See [Routing](../../fundamentals/routing.md) for a detailed description of URL generation.
 
 The <xref:Microsoft.AspNetCore.Mvc.IUrlHelper> interface is the underlying element of infrastructure between MVC and routing for URL generation. An instance of `IUrlHelper` is available through the `Url` property in controllers, views, and view components.
 
@@ -1550,7 +1549,7 @@ If the value `{ d = Donovan }` is added:
 
 * Both of the values `{ c = Carol, d = David }` are ignored.
 * There's no longer a value for `d` and URL generation fails.
-* You must specify the desired values of `c` and `d` to generate a URL.  
+* You must specify the desired values of `c` and `d` to generate a URL.
 
 You might expect to hit this problem with the default route `{controller}/{action}/{id?}`. This problem is rare in practice because `Url.Action` always explicitly specifies a `controller` and `action` value.
 
@@ -1595,7 +1594,7 @@ The following Razor file generates an HTML link to the `Destination_Route`:
 
 <xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper> provides the <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.HtmlHelper> methods [Html.BeginForm](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.BeginForm*) and [Html.ActionLink](xref:Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper.ActionLink*) to generate `<form>` and `<a>` elements respectively. These methods use the [Url.Action](xref:Microsoft.AspNetCore.Mvc.IUrlHelper.Action*) method to generate a URL and they accept similar arguments. The `Url.RouteUrl` companions for `HtmlHelper` are `Html.BeginRouteForm` and `Html.RouteLink` which have similar functionality.
 
-TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](xref:mvc/views/working-with-forms).
+TagHelpers generate URLs through the `form` TagHelper and the `<a>` TagHelper. Both of these use `IUrlHelper` for their implementation. For more information, see [Tag Helpers in forms](../views/working-with-forms.md).
 
 Inside views, the `IUrlHelper` is available through the `Url` property for any ad-hoc URL generation not covered by the preceding methods.
 
@@ -1609,7 +1608,7 @@ The <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and <xref:Microsoft.AspNetCor
 
 [!code-csharp[](routing/samples/3.x/main/Controllers/CustomerController.cs?name=snippet)]
 
-The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction%2A> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> follow a similar pattern to the methods on `IUrlHelper`.
+The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.ControllerBase.RedirectToAction*> and <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> follow a similar pattern to the methods on `IUrlHelper`.
 
 <a name="routing-dedicated-ref-label"></a>
 
@@ -1621,24 +1620,24 @@ The action results factory methods such as <xref:Microsoft.AspNetCore.Mvc.Contro
 
 Using the preceding route definitions, `Url.Action("Index", "Home")` generates the URL path `/` by using the `default` route, but why? You might guess the route values `{ controller = Home, action = Index }` are enough to generate a URL by using `blog`, and the result would be `/blog?action=Index&controller=Home`.
 
-[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](xref:fundamentals/routing#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
+[Dedicated conventional routes](#dcr) rely on a special behavior of default values that don't have a corresponding route parameter that prevents the route from being too [greedy](../../fundamentals/routing.md#greedy) with URL generation. In this case the default values are `{ controller = Blog, action = Article }`, and neither `controller` nor `action` appears as a route parameter. When routing performs URL generation, the values provided must match the default values. URL generation using `blog` fails because the values `{ controller = Home, action = Index }` don't match `{ controller = Blog, action = Article }`. Routing then falls back to try `default`, which succeeds.
 
 <a name="routing-areas-ref-label"></a>
 
 ## Areas
 
-[Areas](xref:mvc/controllers/areas) are an MVC feature used to organize related functionality into a group as a separate:
+[Areas](areas.md) are an MVC feature used to organize related functionality into a group as a separate:
 
 * Routing namespace for controller actions.
 * Folder structure for views.
 
-Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](xref:mvc/controllers/areas) for details about how areas are used with views.
+Using areas allows an app to have multiple controllers with the same name, as long as they have different areas. Using areas creates a hierarchy for the purpose of routing by adding another route parameter, `area` to `controller` and `action`. This section discusses how routing interacts with areas. See [Areas](areas.md) for details about how areas are used with views.
 
 The following example configures MVC to use the default conventional route and an `area` route for an `area` named `Blog`:
 
 [!code-csharp[](routing/samples/3.x/AreasRouting/Startup.cs?name=snippet1)]
 
-In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute%2A> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
+In the preceding code, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*> is called to create the `"blog_route"`. The second parameter, `"Blog"`, is the area name.
 
 When matching a URL path like `/Manage/Users/AddUser`, the `"blog_route"` route generates the route values `{ area = Blog, controller = Users, action = AddUser }`. The `area` route value comes from a default value for `area`. The route created by `MapAreaControllerRoute` is equivalent to the following code:
 
@@ -1687,7 +1686,7 @@ Public methods on a controller, except those with the [NonAction](xref:Microsoft
 ## Sample code
 
 * [!INCLUDE[](~/includes/MyDisplayRouteInfo.md)]
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/routing/samples/3.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 [!INCLUDE[](~/includes/dbg-route.md)]
 

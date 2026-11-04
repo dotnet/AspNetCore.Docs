@@ -2,15 +2,15 @@
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample), [how to run](#sample-app)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](../../index.md#how-to-download-a-sample), [how to run](#sample-app)).
 
 ## SignalR
 
-[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
+[ASP.NET Core SignalR](../../../signalr/introduction.md) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
 For most applications, we recommend SignalR over raw WebSockets. SignalR provides transport fallback for environments where WebSockets isn't available. It also provides a basic remote procedure call app model. And in most scenarios, SignalR has no significant performance disadvantage compared to using raw WebSockets.
 
-For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
+For some apps, [gRPC on .NET](../../../grpc/index.md) provides an alternative to WebSockets.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSoc
   * Windows 8 / Windows Server 2012 or later
   * IIS 8 / IIS 8 Express
   * WebSockets must be enabled. See the [IIS/IIS Express support](#iisiis-express-support) section.  
-* If the app runs on [HTTP.sys](xref:fundamentals/servers/httpsys):
+* If the app runs on [HTTP.sys](../../servers/httpsys.md):
   * Windows 8 / Windows Server 2012 or later
 * For supported browsers, see [Can I use](https://caniuse.com/?search=websockets).
 
@@ -34,8 +34,8 @@ Add the WebSockets middleware in `Program.cs`:
 
 The following settings can be configured:
 
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval%2A> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
-* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval> - How frequently to send "ping" frames to the client to ensure proxies keep the connection open. The default is two minutes.
+* <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/6.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
@@ -60,7 +60,7 @@ System.Net.WebSockets.WebSocketException (0x80004005): The remote party closed t
 Object name: 'HttpResponseStream'.
 ```
 
-If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource%601>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource%601.TrySetResult%2A> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource%601.Task> property during the request, as shown in the following example:
+If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource`1>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource`1.TrySetResult*> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource`1.Task> property during the request, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
 
@@ -117,7 +117,7 @@ The protections provided by CORS don't apply to WebSockets. Browsers do **not**:
 
 However, browsers do send the `Origin` header when issuing WebSocket requests. Applications should be configured to validate these headers to ensure that only WebSockets coming from the expected origins are allowed.
 
-If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins%2A> list for WebSockets to verify.
+If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> list for WebSockets to verify.
 
 :::code language="csharp" source="~/fundamentals/websockets/samples/6.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
 

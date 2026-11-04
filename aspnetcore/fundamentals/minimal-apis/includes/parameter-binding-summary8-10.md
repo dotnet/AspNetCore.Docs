@@ -28,7 +28,7 @@ The following GET route handler uses some of these parameter binding sources:
 
 ---
 
-**Learn more:** For detailed information on parameter binding including advanced scenarios, validation, binding precedence, and troubleshooting, see <xref:fundamentals/minimal-apis/parameter-binding>.
+**Learn more:** For detailed information on parameter binding including advanced scenarios, validation, binding precedence, and troubleshooting, see [Parameter binding in Minimal API applications](../parameter-binding.md).
 
 
 :::moniker-end

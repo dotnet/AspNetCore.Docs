@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 10/09/2026
-uid: fundamentals/servers/kestrel/options
 ---
 # Configure options for the ASP.NET Core Kestrel web server
 
@@ -12,11 +11,11 @@ uid: fundamentals/servers/kestrel/options
 
 :::moniker range=">= aspnetcore-6.0"
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A> in `Program.cs`:
+The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*> in `Program.cs`:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrel":::
 
-Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits%2A?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
 ## General limits
 
@@ -56,9 +55,9 @@ The following example configures `MaxRequestBodySize` for a specific request usi
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IHttpMaxRequestBodySizeFeatureMiddleware":::
 
-If the app attempts to configure the limit on a request after it starts to read the request, an exception is thrown. Use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly%2A?displayProperty=nameWithType> property to check if it's safe to set the `MaxRequestBodySize` property.
+If the app attempts to configure the limit on a request after it starts to read the request, an exception is thrown. Use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature.IsReadOnly?displayProperty=nameWithType> property to check if it's safe to set the `MaxRequestBodySize` property.
 
-When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), IIS sets the limit and Kestrel's request body size limit is disabled.
+When an app runs [out-of-process](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model) behind the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md), IIS sets the limit and Kestrel's request body size limit is disabled.
 
 ### Minimum request body data rate
 
@@ -199,7 +198,7 @@ The following timeout and rate limit options aren't enforced when a debugger is 
 
 The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
 
-To provide more configuration after calling <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A>, use <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>:
+To provide more configuration after calling <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>, use <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*>:
 
 ```csharp
 public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -223,7 +222,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](xref:fundamentals/servers/kestrel/endpoints) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
+> <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](endpoints.md) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
 
 ## General limits
 
@@ -273,7 +272,7 @@ Override the setting on a specific request in middleware:
 
 An exception is thrown if the app configures the limit on a request after the app has started to read the request. There's an `IsReadOnly` property that indicates if the `MaxRequestBodySize` property is in read-only state, meaning it's too late to configure the limit.
 
-When an app runs [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), Kestrel's request body size limit is disabled. IIS already sets the limit.
+When an app runs [out-of-process](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model) behind the [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md), Kestrel's request body size limit is disabled. IIS already sets the limit.
 
 ### Minimum request body data rate
 

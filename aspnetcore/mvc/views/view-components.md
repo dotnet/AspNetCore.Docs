@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how view components are used in ASP.NET Core and how to add them to apps.
 ms.date: 05/04/2026
 monikerRange: '>= aspnetcore-3.1'
-uid: mvc/views/view-components
 ---
 # View components in ASP.NET Core
 
@@ -40,7 +39,7 @@ A view component consists of two parts:
 
 Like controllers, a view component can be a POCO, but most developers take advantage of the methods and properties available by deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>.
 
-When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/integration>.
+When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see [ASP.NET Core Razor components](../../blazor/components/index.md). For information on how to incorporate Razor components into an MVC or Razor Pages app, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../blazor/components/integration.md).
 
 ## Create a view component
 
@@ -54,7 +53,7 @@ Any of the following can create a view component class:
 * Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute.
 * Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents).
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name%2A> property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name> property.
 
 A view component class:
 
@@ -118,7 +117,7 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 
 ## Invoke a view component as a Tag Helper
 
-A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+A View Component can be invoked as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
@@ -137,7 +136,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -226,7 +225,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -285,7 +284,7 @@ The view component's Razor file:
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -311,8 +310,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
+* [Dependency injection into views](dependency-injection.md)
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
@@ -348,7 +347,7 @@ A view component consists of two parts:
 
 Like controllers, a view component can be a POCO, but most developers take advantage of the methods and properties available by deriving from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>.
 
-When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/integration?pivots=server>.
+When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see [ASP.NET Core Razor components](../../blazor/components/index.md). For information on how to incorporate Razor components into an MVC or Razor Pages app, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../blazor/components/integration.md?pivots=server).
 
 ## Create a view component
 
@@ -362,7 +361,7 @@ A view component class can be created by any of the following:
 * Decorating a class with the [`[ViewComponent]`](xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute) attribute, or deriving from a class with the `[ViewComponent]` attribute
 * Creating a class where the name ends with the suffix [`ViewComponent`](xref:Microsoft.AspNetCore.Mvc.ViewComponents)
 
-Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name%2A> property.
+Like controllers, view components must be public, non-nested, and non-abstract classes. The view component name is the class name with the `ViewComponent` suffix removed. It can also be explicitly specified using the <xref:Microsoft.AspNetCore.Mvc.ViewComponentAttribute.Name> property.
 
 A view component class:
 
@@ -426,7 +425,7 @@ The parameters are passed to the `InvokeAsync` method. The `PriorityList` view c
 
 ## Invoke a view component as a Tag Helper
 
-A View Component can be invoked as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+A View Component can be invoked as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexTagHelper.cshtml?name=snippet&highlight=8-9)]
 
@@ -445,7 +444,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+A view component can be registered as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -492,7 +491,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method that can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
@@ -534,7 +533,7 @@ Copy the `Views/Shared/Components/PriorityList/Default.cshtml` file to a view na
 
 [!code-cshtml[](../../mvc/views/view-components/samples/6.x/ViewComponentSample/Views/Shared/Components/PriorityList/PVC.cshtml?highlight=3)]
 
-<!-- TODO zz delete me 
+<!-- TODO zz delete me
 Update `Views/ToDo/Index.cshtml`:
 
 [!code-cshtml[](view-components/samples/6.x/ViewComponentSample/Views/ToDo/IndexFinal.cshtml?name=snippet)]
@@ -593,7 +592,7 @@ The view component's Razor file:
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -619,8 +618,8 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples/6.x) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
+* [Dependency injection into views](dependency-injection.md)
 * [View Components in Razor Pages](https://www.learnrazorpages.com/razor-pages/view-components)
 * [Why You Should Use View Components, not Partial Views, in ASP.NET Core](https://www.telerik.com/blogs/why-you-should-use-view-components-not-partial-views-aspnet-core)
 
@@ -628,7 +627,7 @@ The method signature of `PriorityList.Invoke` is synchronous, but Razor finds an
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/view-components/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## View components
 
@@ -653,7 +652,7 @@ View components are intended anywhere you have reusable rendering logic that's t
 
 A view component consists of two parts: the class (typically derived from <xref:Microsoft.AspNetCore.Mvc.ViewComponent>) and the result it returns (typically a view). Like controllers, a view component can be a [POCO](https://stackoverflow.com/questions/250001/poco-definition), but most developers take advantage of the methods and properties available by deriving from `ViewComponent`.
 
-When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see <xref:blazor/components/index>. For information on how to incorporate Razor components into an MVC or Razor Pages app, see <xref:blazor/components/integration?pivots=server>.
+When considering if view components meet an app's specifications, consider using Razor components instead. Razor components also combine markup with C# code to produce reusable UI units. Razor components are designed for developer productivity when providing client-side UI logic and composition. For more information, see [ASP.NET Core Razor components](../../blazor/components/index.md). For information on how to incorporate Razor components into an MVC or Razor Pages app, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](../../blazor/components/integration.md?pivots=server).
 
 ## Creating a view component
 
@@ -675,7 +674,7 @@ A view component class:
 * Doesn't take part in the controller lifecycle, which means you can't use [filters](../controllers/filters.md) in a view component
 
 To stop a class that has a case-insensitive *ViewComponent* suffix from being treated as a view component, decorate the class with the [[NonViewComponent]](xref:Microsoft.AspNetCore.Mvc.NonViewComponentAttribute) attribute:
- 
+
 ```csharp
 [NonViewComponent]
 public class ReviewComponent
@@ -730,7 +729,7 @@ The parameters will be passed to the `InvokeAsync` method. The `PriorityList` vi
 
 ## Invoking a view component as a Tag Helper
 
-For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](xref:mvc/views/tag-helpers/intro):
+For ASP.NET Core 1.1 and higher, you can invoke a view component as a [Tag Helper](tag-helpers/intro.md):
 
 [!code-cshtml[](view-components/samples/ViewCompFinal/Views/ToDo/IndexTagHelper.cshtml?range=37-38)]
 
@@ -749,7 +748,7 @@ To use a view component as a Tag Helper, register the assembly containing the vi
 @addTagHelper *, MyWebApp
 ```
 
-You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](xref:mvc/views/tag-helpers/intro#managing-tag-helper-scope) for more information on how to register Tag Helpers.
+You can register a view component as a Tag Helper to any file that references the view component. See [Managing Tag Helper Scope](tag-helpers/intro.md#managing-tag-helper-scope) for more information on how to register Tag Helpers.
 
 The `InvokeAsync` method used in this tutorial:
 
@@ -794,7 +793,7 @@ Notes on the code:
 
 * The `[ViewComponent]` attribute in the preceding code tells the view component selector to use:
   * The name `PriorityList` when looking for the views associated with the component
-  * The string "PriorityList" when referencing the class component from a view. 
+  * The string "PriorityList" when referencing the class component from a view.
 * The component uses [dependency injection](../../fundamentals/dependency-injection.md) to make the data context available.
 * `InvokeAsync` exposes a method which can be called from a view, and it can take an arbitrary number of arguments.
 * The `InvokeAsync` method returns the set of `ToDo` items that satisfy the `isDone` and `maxPriority` parameters.
@@ -917,7 +916,7 @@ The view component's Razor file lists the strings passed to the `Invoke` method 
 The view component is invoked in a Razor file (for example, `Views/Home/Index.cshtml`) using one of the following approaches:
 
 * <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper>
-* [Tag Helper](xref:mvc/views/tag-helpers/intro)
+* [Tag Helper](tag-helpers/intro.md)
 
 To use the <xref:Microsoft.AspNetCore.Mvc.IViewComponentHelper> approach, call `Component.InvokeAsync`:
 
@@ -950,6 +949,6 @@ Each parameter in a view component is a required attribute. See [this GitHub iss
 
 ## Additional resources
 
-* [Dependency injection into views](xref:mvc/views/dependency-injection)
+* [Dependency injection into views](dependency-injection.md)
 
 :::moniker-end

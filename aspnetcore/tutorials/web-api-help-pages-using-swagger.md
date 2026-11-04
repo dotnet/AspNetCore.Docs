@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This tutorial provides a walkthrough of adding Swagger to generate documentation and help pages for a web API app.
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 02/23/2026
-uid: tutorials/web-api-help-pages-using-swagger
 ---
 # ASP.NET Core web API documentation with Swagger / OpenAPI
 
@@ -16,8 +15,8 @@ This article covers using **Swagger** tooling — provided by the [Swashbuckle.A
 
 In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support that replaces Swashbuckle as the default. Swashbuckle is no longer included in project templates, but it remains available as a community package you can add manually.
 
-* To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.
-* To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+* To understand the built‑in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).
+* To add Swagger UI for interactive exploration or local ad‑hoc testing alongside the built-in OpenAPI support, see [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 
 The following instructions apply to projects using Swashbuckle or NSwag with ASP.NET Core 8.0 and earlier.
 
@@ -28,8 +27,8 @@ The following instructions apply to projects using Swashbuckle or NSwag with ASP
 
 The two main OpenAPI implementations for .NET are [Swashbuckle](https://github.com/domaindrivendev/Swashbuckle.AspNetCore) and [NSwag](https://github.com/RicoSuter/NSwag), see:
 
-* [Getting Started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-* [Getting Started with NSwag](xref:tutorials/get-started-with-nswag)
+* [Getting Started with Swashbuckle](getting-started-with-swashbuckle.md)
+* [Getting Started with NSwag](getting-started-with-NSwag.md)
 
 ## OpenAPI vs. Swagger
 
@@ -42,7 +41,7 @@ In short:
 
 ## OpenAPI specification (`openapi.json`)
 
-The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](xref:tutorials/get-started-with-swashbuckle#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
+The OpenAPI specification is a document that describes the capabilities of your API. The document is based on the [XML](getting-started-with-swashbuckle.md#xml-comments) and attribute annotations within the controllers and models. It's the core part of the OpenAPI flow and is used to drive tooling such as SwaggerUI. By default, it's named `openapi.json`. Here's an example of an OpenAPI specification, reduced for brevity:
 
 ```json
 {
@@ -145,7 +144,7 @@ Each public action method in your controllers can be tested from the UI. Select 
 
 ## Securing Swagger UI endpoints
 
-Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A) to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
+Call [`MapSwagger().RequireAuthorization`](xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*) to secure the Swagger UI endpoints. The following example secures the swagger endpoints:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/tutorials/webApiSwagger/secureSwagger/Program.cs"  highlight="26":::
 
@@ -159,7 +158,7 @@ curl -i -H "Authorization: Bearer {TOKEN}" https://localhost:{PORT}/swagger/v1/s
 
 where the `{TOKEN}` placeholder is the JWT bearer token and the `{PORT}` placeholder is the port number.
 
-For more information on testing with JWT tokens, see <xref:security/authentication/jwt>.
+For more information on testing with JWT tokens, see [Generate tokens with dotnet user-jwts](../security/authentication/jwt-authn.md).
 
 ## Generate an XML documentation file at compile time
 
@@ -167,8 +166,8 @@ See [GenerateDocumentationFile](/dotnet/core/project-sdk/msbuild-props#generated
 
 ## Next steps
 
-* [Get started with Swashbuckle](xref:tutorials/get-started-with-swashbuckle)
-* [Get started with NSwag](xref:tutorials/get-started-with-nswag)
+* [Get started with Swashbuckle](getting-started-with-swashbuckle.md)
+* [Get started with NSwag](getting-started-with-NSwag.md)
 
 :::moniker-end
 

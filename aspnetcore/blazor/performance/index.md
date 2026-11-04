@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor performance best practices
 description: Guidance on ASP.NET Core Blazor metrics and tracing, improving app performance, and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/index
 ---
 # ASP.NET Core Blazor performance best practices
 
@@ -12,13 +11,13 @@ uid: blazor/performance/index
 Blazor is optimized for high performance in most realistic application UI scenarios. However, the best performance depends on developers adopting the correct patterns and features.
 
 > [!NOTE]
-> The code examples in this node of articles adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
+> The code examples in this node of articles adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later.
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Ahead-of-time (AOT) compilation
 
-Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see <xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation>.
+Ahead-of-time (AOT) compilation compiles a Blazor app's .NET code directly into native WebAssembly for direct execution by the browser. AOT-compiled apps result in larger apps that take longer to download, but AOT-compiled apps usually provide better runtime performance, especially for apps that execute CPU-intensive tasks. For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation).
 
 :::moniker-end
 
@@ -49,7 +48,7 @@ builder.Services.ConfigureOpenTelemetryTracerProvider(tracerProvider =>
 
 ### Performance meters
 
-For more information on the following performance meters, see <xref:metrics/built-in>.
+For more information on the following performance meters, see [ASP.NET Core built-in metrics](../../metrics/built-in.md).
 
 `Microsoft.AspNetCore.Components` meter:
 
@@ -72,7 +71,7 @@ In server-side Blazor apps, additional circuit-specific metrics include:
 
 ### Blazor tracing
 
-For more information on the following tracing activities, see <xref:metrics/built-in>.
+For more information on the following tracing activities, see [ASP.NET Core built-in metrics](../../metrics/built-in.md).
 
 The new activity tracing capabilities use the `Microsoft.AspNetCore.Components` activity source and provide three main types of tracing activities: circuit lifecycle, navigation, and event handling.
 

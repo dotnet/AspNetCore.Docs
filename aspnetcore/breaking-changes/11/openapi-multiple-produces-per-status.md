@@ -6,7 +6,7 @@ ms.date: 06/05/2026
 ---
 # OpenAPI document includes all ProducesResponseType entries per status code
 
-ASP.NET Core 11 changes how MVC's `ApiExplorer` and Minimal API's metadata-collection step handle multiple `[ProducesResponseType]` or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A> declarations for the same status code. Previously, all but one declaration per status code were dropped before the OpenAPI document was generated. Starting in ASP.NET Core 11, all declarations are preserved, and the generated OpenAPI document reflects every declared content type and schema for each status code.
+ASP.NET Core 11 changes how MVC's `ApiExplorer` and Minimal API's metadata-collection step handle multiple `[ProducesResponseType]` or <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*> declarations for the same status code. Previously, all but one declaration per status code were dropped before the OpenAPI document was generated. Starting in ASP.NET Core 11, all declarations are preserved, and the generated OpenAPI document reflects every declared content type and schema for each status code.
 
 ## Version introduced
 
@@ -65,6 +65,6 @@ If you intentionally want the old single-variant shape for a specific endpoint, 
 
 - <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*?displayProperty=fullName>
 - Generated `responses` entries in the OpenAPI document produced by [`AddOpenApi`](/aspnet/core/fundamentals/openapi/aspnetcore-openapi).

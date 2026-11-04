@@ -3,7 +3,6 @@ title: Resource-based authorization in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to implement resource-based authorization in an ASP.NET Core app when an [Authorize] attribute doesn't suffice.
 ms.date: 07/21/2026
-uid: security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core
 
@@ -13,30 +12,30 @@ In an app, a *resource* is typically represented by a C# class that includes dat
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of any method that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
-This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
+This article uses Razor component examples and focuses on [Blazor](../../blazor/index.md) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
 
-* <xref:razor-pages/security/authorization/resource-based>
-* <xref:mvc/security/authorization/resource-based>
+* [Resource-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/resource-based.md)
+* [Resource-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/resource-based.md)
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured document objects to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured document objects to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
 
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](xref:fundamentals/dependency-injection):
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](../../fundamentals/dependency-injection.md):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService AuthorizationService
 ```
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> method overloads. One of the overloads accepts a resource and policy name:
+<xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> has two <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> method overloads. One of the overloads accepts a resource and policy name:
 
 ```csharp
 Task<AuthorizationResult> AuthorizeAsync(
@@ -54,7 +53,7 @@ Task<AuthorizationResult> AuthorizeAsync(
     IEnumerable<IAuthorizationRequirement> requirements);
 ```
 
-In the following example, which is fully explained in the [Create a resource-based handler](#create-a-resource-based-handler) section, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload is invoked to determine whether the current user is allowed access to the document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>):
+In the following example, which is fully explained in the [Create a resource-based handler](#create-a-resource-based-handler) section, the secured resource is loaded into a custom `Document` object. An <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload is invoked to determine whether the current user is allowed access to the document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>):
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -77,7 +76,7 @@ protected override async Task OnParametersSetAsync()
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see <xref:security/authorization/policies#requirements-and-policy-registration>.
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](policies.md#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see [Policy-based authorization in ASP.NET Core](policies.md#requirements-and-policy-registration).
 
 The following demonstration `Document` class is used:
 
@@ -156,9 +155,9 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 :::moniker-end
 
-For more information on creating authorization policies, see <xref:security/authorization/policies>.
+For more information on creating authorization policies, see [Policy-based authorization in ASP.NET Core](policies.md).
 
-The following `AccessDocument` component calls an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> overload to determine whether the current user is allowed to view a document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded%2A) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name%2A>).
+The following `AccessDocument` component calls an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> overload to determine whether the current user is allowed to view a document based on the "`SameAuthorPolicy`" authorization policy. If [`authorizationResult.Succeeded`](xref:Microsoft.AspNetCore.Authorization.AuthorizationResult.Succeeded) is `true`, the user is authorized for the document because they authored the document (`Document.Author` matches the user's <xref:System.Security.Principal.IIdentity.Name>).
 
 `Pages/AccessDocument.razor`:
 
@@ -292,7 +291,7 @@ Where services are registered in the app:
 builder.Services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationCrudHandler>();
 ```
 
-Call the overload of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync%2A> with the operation to return the authorization result.
+Call the overload of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*> with the operation to return the authorization result.
 
 For authorization to *create* a document:
 

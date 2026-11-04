@@ -8,7 +8,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/502
 
 <xref:Microsoft.AspNetCore.ConcurrencyLimiter.ConcurrencyLimiterMiddleware> and its associated methods and types have been marked as obsolete.
 
-If you require rate-limiting capabilities, switch to the newer and more capable rate-limiting middleware that was introduced in .NET 7 (for example, <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A?displayProperty=nameWithType>). The .NET 7 rate-limiting API includes a concurrency limiter and several other rate-limiting algorithms that you can apply to your application.
+If you require rate-limiting capabilities, switch to the newer and more capable rate-limiting middleware that was introduced in .NET 7 (for example, <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter*?displayProperty=nameWithType>). The .NET 7 rate-limiting API includes a concurrency limiter and several other rate-limiting algorithms that you can apply to your application.
 
 ## Version introduced
 
@@ -45,7 +45,7 @@ This change affects [source compatibility](/dotnet/core/compatibility/categories
 
 ## Recommended action
 
-If you're using the older <xref:Microsoft.AspNetCore.ConcurrencyLimiter.ConcurrencyLimiterMiddleware>, we recommend moving to the newer rate-limiting middleware. Here's an example usage of the newer API, <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter%2A?displayProperty=nameWithType>:
+If you're using the older <xref:Microsoft.AspNetCore.ConcurrencyLimiter.ConcurrencyLimiterMiddleware>, we recommend moving to the newer rate-limiting middleware. Here's an example usage of the newer API, <xref:Microsoft.AspNetCore.Builder.RateLimiterApplicationBuilderExtensions.UseRateLimiter*?displayProperty=nameWithType>:
 
 ```csharp
 using Microsoft.AspNetCore.RateLimiting;

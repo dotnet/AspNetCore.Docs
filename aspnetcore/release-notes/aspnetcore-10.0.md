@@ -2,8 +2,7 @@
 title: What's new in ASP.NET Core in .NET 10
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 10.
-ms.date: 04/22/2026
-uid: aspnetcore-10
+ms.date: 10/23/2026
 ---
 # What's new in ASP.NET Core in .NET 10
 
@@ -88,7 +87,7 @@ The following image shows an example of the Authenticated request duration metri
 
 ![Authenticated request duration in the Aspire dashboard](https://github.com/user-attachments/assets/170615e9-ef25-48a1-a482-4933e2e03f03)
 
-For more information, see <xref:metrics/security#microsoftaspnetcoreauthorization>.
+For more information, see [ASP.NET Core built-in authentication and authorization metrics](../metrics/security.md#microsoftaspnetcoreauthorization).
 
 [!INCLUDE[](~/release-notes/aspnetcore-10/includes/identity-metrics.md)]
 

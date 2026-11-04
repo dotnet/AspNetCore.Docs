@@ -3,7 +3,6 @@ title: Development-time IIS support in Visual Studio for ASP.NET Core
 description: Discover support for debugging ASP.NET Core apps when running with IIS on Windows Server.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 02/07/2020
-uid: host-and-deploy/iis/development-time-iis-support
 ---
 # Development-time IIS support in Visual Studio for ASP.NET Core
 
@@ -48,7 +47,7 @@ IIS must have a website configured with the following:
 1. Select **Modify** for the Visual Studio installation that you plan to use for IIS development-time support.
 1. For the **ASP.NET and web development** workload, locate and install the **Development time IIS support** component.
 
-   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
+   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](../aspnet-core-module.md), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 :::moniker-end
 
@@ -58,11 +57,11 @@ IIS must have a website configured with the following:
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md).
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 
@@ -129,7 +128,7 @@ If an untrusted development certificate is used, the browser may require you to 
 ## Additional resources
 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
 
 :::moniker-end
 
@@ -167,17 +166,17 @@ IIS must have a website configured with the following:
 1. Select **Modify** for the Visual Studio installation that you plan to use for IIS development-time support.
 1. For the **ASP.NET and web development** workload, locate and install the **Development time IIS support** component.
 
-   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), which is a native IIS module required to run ASP.NET Core apps with IIS.
+   The component is listed in the **Optional** section under **Development time IIS support** in the **Installation details** panel to the right of the workloads. The component installs the [ASP.NET Core Module](../aspnet-core-module.md), which is a native IIS module required to run ASP.NET Core apps with IIS.
 
 ## Configure the project
 
 ### HTTPS redirection
 
-For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) to the app when it's created.
+For a new project that requires HTTPS, select the checkbox to **Configure for HTTPS** in the **Create a new ASP.NET Core Web Application** window. Selecting the checkbox adds [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) to the app when it's created.
 
-For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see <xref:security/enforcing-ssl>.
+For an existing project that requires HTTPS, use HTTPS Redirection and HSTS middleware in `Startup.Configure`. For more information, see [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md).
 
-For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](xref:security/enforcing-ssl) aren't added to the app. No app configuration is required.
+For a project that uses HTTP, [HTTPS Redirection and HSTS middleware](../../security/enforcing-ssl.md) aren't added to the app. No app configuration is required.
 
 ### IIS launch profile
 
@@ -244,6 +243,6 @@ If an untrusted development certificate is used, the browser may require you to 
 ## Additional resources
 
 * [Getting Started with the IIS Manager in IIS](/iis/get-started/getting-started-with-iis/getting-started-with-the-iis-manager-in-iis-7-and-iis-8)
-* <xref:security/enforcing-ssl>
+* [Enforce HTTPS in ASP.NET Core](../../security/enforcing-ssl.md)
 
 :::moniker-end

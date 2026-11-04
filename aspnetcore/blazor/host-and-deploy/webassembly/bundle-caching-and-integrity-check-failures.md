@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about asset caching for Blazor WebAssembly and how to resolve integrity check failures in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
 ---
 # ASP.NET Core Blazor WebAssembly .NET bundle caching and integrity check failures
 
@@ -29,8 +28,8 @@ When Blazor WebAssembly downloads an app's startup files, it instructs the brows
 
 For more information, see the following sections of the *Fundamentals: Static files* article:
 
-* [Preloaded Blazor framework static assets](xref:blazor/fundamentals/static-files#preloaded-blazor-framework-static-assets)
-* [Fingerprint client-side static assets in standalone Blazor WebAssembly apps](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
+* [Preloaded Blazor framework static assets](../../fundamentals/static-files.md#preloaded-blazor-framework-static-assets)
+* [Fingerprint client-side static assets in standalone Blazor WebAssembly apps](../../fundamentals/static-files.md#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
 
 :::moniker-end
 
@@ -68,7 +67,7 @@ Common reasons why this fails include:
 * Something has changed the contents of the files between the build and delivery of the files to the browser. This might happen:
   * If you or build tools manually modify the build output.
   * If some aspect of the deployment process modified the files. For example if you use a Git-based deployment mechanism, bear in mind that Git transparently converts Windows-style line endings to Unix-style line endings if you commit files on Windows and check them out on Linux. Changing file line endings change the SHA-256 hashes. To avoid this problem, consider [using `.gitattributes` to treat build artifacts as `binary` files](https://git-scm.com/book/en/v2/Customizing-Git-Git-Attributes).
-  * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](xref:client-side/bundling-and-minification#minification) HTML, thereby modifying it. You may need to disable such features.
+  * The web server modifies the file contents as part of serving them. For example, some content distribution networks (CDNs) automatically attempt to [minify](../../../client-side/bundling-and-minification.md#minification) HTML, thereby modifying it. You may need to disable such features.
 * The boot manifest fails to load properly or is improperly cached on the client. Common causes include either of the following: 
   * Misconfigured or malfunctioning custom developer code.
   * One or more misconfigured intermediate caching layers.
@@ -162,7 +161,7 @@ There may be cases where the web server can't be relied upon to return consisten
 
 :::moniker range=">= aspnetcore-10.0"
 
-To disable integrity checks, [manually load client-side boot resources](xref:blazor/fundamentals/startup#load-client-side-boot-resources) and avoid passing the `integrity` parameter to the `fetch` call.
+To disable integrity checks, [manually load client-side boot resources](../../fundamentals/startup.md#load-client-side-boot-resources) and avoid passing the `integrity` parameter to the `fetch` call.
 
 :::moniker-end
 
@@ -179,7 +178,7 @@ To disable integrity checks, add the following to a property group in the Blazor
 :::moniker-end
 
 > [!NOTE]
-> The `BlazorCacheBootResources` property doesn't disable integrity checks for [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app/index). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
+> The `BlazorCacheBootResources` property doesn't disable integrity checks for [Progressive Web Applications (PWAs)](../../progressive-web-app/index.md). For guidance pertaining to PWAs, see the [Disable integrity checking for PWAs](#disable-integrity-checking-for-pwas) section.
 
 We can't provide an exhaustive list of scenarios where disabling integrity checking is required. Servers can answer a request in arbitrary ways outside of the scope of the Blazor framework. The framework permits the preceding approach to make the app runnable at the cost of *losing a guarantee of integrity that the app can provide*. Again, we don't recommend disabling integrity checking, especially for production deployments. Developers should seek to solve the underlying integrity problem that's causing integrity checking to fail.
 
