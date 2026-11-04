@@ -34,7 +34,7 @@ The following chart shows the results of a benchmarking test on the various temp
 
 This article describes support for Native AOT apps in ASP.NET Core, including an overview of publishing and deployment.
 
-For ASP.NET Core Blazor WebAssembly Native AOT guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly).
+For ASP.NET Core Blazor WebAssembly Native AOT guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md).
 
 ## Review ASP.NET Core and Native AOT compatibility
 

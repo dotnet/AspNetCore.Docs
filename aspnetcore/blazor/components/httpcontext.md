@@ -12,7 +12,7 @@ ms.date: 11/11/2025
 
 <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> generally should be avoided with interactive rendering because a valid <xref:Microsoft.AspNetCore.Http.HttpContext> isn't always available.
 
-<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example in statically-rendered root components, and when [using a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) on the server. **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR or code running on the server can't be guaranteed.**
+<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> can be used during static server-side rendering (static SSR), for example in statically-rendered root components, and when [using a token handler for web API calls](../security/additional-scenarios.md#use-a-token-handler-for-web-api-calls) on the server. **We recommend avoiding <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> when static SSR or code running on the server can't be guaranteed.**
 
 <xref:Microsoft.AspNetCore.Http.HttpContext> can be used as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) only in statically-rendered root components or during static SSR for general tasks, such as inspecting and modifying headers or other properties in the `App` component (`App.razor`). The value is `null` during interactive rendering.
 
@@ -47,9 +47,9 @@ For guidance on setting headers before the response starts, see [ASP.NET Core Bl
 
 **Don't use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>/<xref:Microsoft.AspNetCore.Http.HttpContext> directly or indirectly in the Razor components of server-side Blazor apps.** Blazor apps run outside of the ASP.NET Core pipeline context. The <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to be available within the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, and <xref:Microsoft.AspNetCore.Http.HttpContext> isn't guaranteed to hold the context that started the Blazor app.
 
-The recommended approach for passing request state to the Blazor app is through root component parameters during the app's initial rendering. Alternatively, the app can copy the data into a scoped service in the root component's initialization lifecycle event for use across the app. For more information, see <xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
+The recommended approach for passing request state to the Blazor app is through root component parameters during the app's initial rendering. Alternatively, the app can copy the data into a scoped service in the root component's initialization lifecycle event for use across the app. For more information, see [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md#pass-tokens-to-a-server-side-blazor-app).
 
-A critical aspect of server-side Blazor security is that the user attached to a given circuit might become updated at some point after the Blazor circuit is established but the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> ***isn't updated***. For more information on addressing this situation with custom services, see <xref:blazor/security/additional-scenarios#circuit-handler-to-capture-users-for-custom-services>.
+A critical aspect of server-side Blazor security is that the user attached to a given circuit might become updated at some point after the Blazor circuit is established but the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> ***isn't updated***. For more information on addressing this situation with custom services, see [ASP.NET Core Blazor additional server-side security scenarios](../security/additional-scenarios.md#circuit-handler-to-capture-users-for-custom-services).
 
 :::moniker-end
 

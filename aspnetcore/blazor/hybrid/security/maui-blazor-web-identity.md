@@ -60,7 +60,7 @@ In the [Razor directives](../../components/index.md#razor-syntax) at the tops of
 
 ## MAUI app and Blazor Web App routing
 
-The `Routes` component uses an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> to route users based on their authentication status. If a user isn't authenticated, they're redirected to the `Login` page. For more information, see <xref:blazor/security/index#customize-unauthorized-content-with-the-router-component>.
+The `Routes` component uses an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> to route users based on their authentication status. If a user isn't authenticated, they're redirected to the `Login` page. For more information, see [ASP.NET Core Blazor authentication and authorization](../../security/index.md#customize-unauthorized-content-with-the-router-component).
 
 In `MauiBlazorWeb.Web/Components/Routes.razor`:
 
@@ -75,7 +75,7 @@ In `MauiBlazorWeb.Web/Components/Routes.razor`:
 </AuthorizeRouteView>   
 ```
 
-The [`NavMenu` component](xref:blazor/project-structure#blazor-web-app) contains the navigation menu that uses an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to show or hide links based on the user's authentication status.
+The [`NavMenu` component](../../project-structure.md#blazor-web-app) contains the navigation menu that uses an [`AuthorizeView` component](../../security/index.md#authorizeview-component) to show or hide links based on the user's authentication status.
 
 In `MauiBlazorWeb.Web/Components/Layout/NavMenu.razor`:
 
@@ -120,7 +120,7 @@ app.MapAdditionalIdentityEndpoints();
 
 ### Log in from the MAUI client
 
-The `Login` component (`/identity/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) shows the appropriate links based on the user's authentication status.
+The `Login` component (`/identity/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](../../security/index.md#authorizeview-component) shows the appropriate links based on the user's authentication status.
 
 In `MauiBlazorWeb/Components/Pages/Login.razor`:
 
@@ -152,7 +152,7 @@ The MAUI Authentication State Provider also uses the `TokenStorage` class (`Maui
 
 ### MAUI `MauiProgram` file
 
-The MAUI project's `MauiProgram` file (`MauiProgram.cs`) is where the `MauiAuthenticationStateProvider` is registered in the DI container. Authorization core components are also registered, where API such as [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) are defined.
+The MAUI project's `MauiProgram` file (`MauiProgram.cs`) is where the `MauiAuthenticationStateProvider` is registered in the DI container. Authorization core components are also registered, where API such as [`AuthorizeView` component](../../security/index.md#authorizeview-component) are defined.
 
 In `MauiBlazorWeb/MauiProgram.cs`, core functionality is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>:
 

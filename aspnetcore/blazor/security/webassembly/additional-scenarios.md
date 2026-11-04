@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor WebAssembly additional security scenarios
 description: Learn how to configure Blazor WebAssembly for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/additional-scenarios
 ---
 # ASP.NET Core Blazor WebAssembly additional security scenarios
 
@@ -47,7 +46,7 @@ builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>()
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln) based on the [Blazor WebAssembly project template](xref:blazor/project-structure), request URIs are within the app's base URI. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
+For a hosted Blazor [solution](../../tooling.md#visual-studio-solution-file-sln) based on the [Blazor WebAssembly project template](../../project-structure.md), request URIs are within the app's base URI. Therefore, <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> in an app generated from the project template.
 
 :::moniker-end
 
@@ -331,7 +330,7 @@ builder.Services.AddHttpClient("WebAPI",
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
+For a hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 :::moniker-end
 
@@ -392,7 +391,7 @@ In the preceding code:
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following:
+For a hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following:
 
 * The <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`).
 * A URL of the `authorizedUrls` array.
@@ -452,7 +451,7 @@ builder.Services.AddHttpClient<WeatherForecastClient>(
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
+For a hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 :::moniker-end
 
@@ -509,7 +508,7 @@ In the preceding code, the scopes `example.read` and `example.write` are generic
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following:
+For a hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> is assigned to the following:
 
 * The <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`).
 * A URL of the `authorizedUrls` array.
@@ -533,7 +532,7 @@ builder.Services.AddHttpClient("WebAPI.NoAuthenticationClient",
 
 :::moniker range="< aspnetcore-8.0"
 
-For a hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
+For a hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md), <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType> (`new Uri(builder.HostEnvironment.BaseAddress)`) is assigned to the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType>.
 
 :::moniker-end
 
@@ -585,7 +584,7 @@ builder.Services.AddMsalAuthentication(options =>
 The `{CUSTOM SCOPE 1}` and `{CUSTOM SCOPE 2}` placeholders in the preceding example are custom scopes.
 
 > [!NOTE]
-> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
+> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent).
 
 The <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.IAccessTokenProvider.RequestAccessToken*?displayProperty=nameWithType> method provides an overload that allows an app to provision an access token with a given set of scopes.
 
@@ -664,7 +663,7 @@ app.UseCors(policy =>
 
 :::moniker range="< aspnetcore-8.0"
 
-A hosted Blazor solution based on the [Blazor WebAssembly project template](xref:blazor/project-structure) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress`. CORS configuration isn't required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address ***do*** require CORS configuration in the server project.
+A hosted Blazor solution based on the [Blazor WebAssembly project template](../../project-structure.md) uses the same base address for the client and server apps. The client app's <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> is set to a URI of `builder.HostEnvironment.BaseAddress`. CORS configuration isn't required in the default configuration of a hosted Blazor solution. Additional client apps that aren't hosted by the server project and don't share the server app's base address ***do*** require CORS configuration in the server project.
 
 :::moniker-end
 
@@ -781,7 +780,7 @@ The following example shows how to:
 
 During an authentication operation, there are cases where you want to save the app state before the browser is redirected to the IP. This can be the case when you're using a state container and want to restore the state after the authentication succeeds. You can use a custom authentication state object to preserve app-specific state or a reference to it and restore that state after the authentication operation successfully completes. The following example demonstrates the approach.
 
-A state container class is created in the app with properties to hold the app's state values. In the following example, the container is used to maintain the counter value of the default [Blazor project template's](xref:blazor/project-structure) `Counter` component (`Counter.razor`). Methods for serializing and deserializing the container are based on <xref:System.Text.Json>.
+A state container class is created in the app with properties to hold the app's state values. In the following example, the container is used to maintain the counter value of the default [Blazor project template's](../../project-structure.md) `Counter` component (`Counter.razor`). Methods for serializing and deserializing the container are based on <xref:System.Text.Json>.
 
 ```csharp
 using System.Text.Json;
@@ -1160,7 +1159,7 @@ Register the `CustomAccountFactory` for the authentication provider in use. Any 
 
 ### ME-ID security groups and roles with a custom user account class
 
-For an additional example that works with ME-ID security groups and ME-ID Administrator Roles and a custom user account class, see <xref:blazor/security/webassembly/meid-groups-roles>.
+For an additional example that works with ME-ID security groups and ME-ID Administrator Roles and a custom user account class, see [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md).
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -1241,7 +1240,7 @@ public void ConfigureServices(IServiceCollection services)
 
 :::moniker range="< aspnetcore-8.0"
 
-For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see <xref:blazor/security/index#authenticationstateprovider>.
+For more information on the Blazor framework server authentication provider (`ServerAuthenticationStateProvider`), see [ASP.NET Core Blazor authentication and authorization](../index.md#authenticationstateprovider-service).
 
 In the **:::no-loc text="Server":::** project's `Pages/_Host.cshtml` file, replace the `Component` Tag Helper (`<component ... />`) with the following:
 
@@ -1319,7 +1318,7 @@ Make an API call from the client to the server API. From the server, retrieve th
 
 ## Use OpenID Connect (OIDC) v2.0 endpoints
 
-The authentication library and [Blazor project templates](xref:blazor/project-structure) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, ME-ID is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
+The authentication library and [Blazor project templates](../../project-structure.md) use OpenID Connect (OIDC) v1.0 endpoints. To use a v2.0 endpoint, configure the JWT bearer <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority?displayProperty=nameWithType> option. In the following example, ME-ID is configured for v2.0 by appending a `v2.0` segment to the <xref:Microsoft.AspNetCore.Builder.JwtBearerOptions.Authority> property:
 
 ```csharp
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -1359,7 +1358,7 @@ To configure a Blazor WebAssembly app to use the [ASP.NET Core gRPC framework](.
 :::moniker range=">= aspnetcore-8.0"
 
 > [!NOTE]
-> Prerendering is enabled by default in Blazor Web Apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
+> Prerendering is enabled by default in Blazor Web Apps, so you must account for the component rendering first from the server and then from the client. Any prerendered state should flow to the client so that it can be reused. For more information, see [ASP.NET Core Blazor prerendered state persistence](../../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
@@ -1626,6 +1625,6 @@ The preceding example sets redirect URIs with regular string literals. The follo
 
 ## Related content
 
-* <xref:blazor/security/webassembly/graph-api>
+* [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md)
 * [Cookie-based request credentials (*Call web API* article)](../../call-web-api.md#cookie-based-request-credentials)
 * [`HttpClient` and `HttpRequestMessage` with Fetch API request options (*Call web API* article)](../../call-web-api.md#httpclient-and-httprequestmessage-with-fetch-api-request-options)

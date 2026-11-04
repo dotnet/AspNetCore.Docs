@@ -148,11 +148,11 @@ Several project template changes were made for Blazor apps, including the use of
 
 ### Blazor WebAssembly native dependencies support
 
-Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see <xref:blazor/webassembly-native-dependencies>.
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. For more information, see [ASP.NET Core Blazor WebAssembly native dependencies](../blazor/webassembly-native-dependencies.md).
 
 ### WebAssembly Ahead-of-time (AOT) compilation and runtime relinking
 
-Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-6.0&preserve-view=true#ahead-of-time-aot-compilation) and [Runtime relinking](xref:blazor/tooling/webassembly?view=aspnetcore-6.0#runtime-relinking).
+Blazor WebAssembly supports ahead-of-time (AOT) compilation, where you can compile your .NET code directly into WebAssembly. AOT compilation results in runtime performance improvements at the expense of a larger app size. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed. For more information, see [Ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-6.0&preserve-view=true#ahead-of-time-aot-compilation) and [Runtime relinking](../blazor/performance/webassembly-runtime-performance.md?view=aspnetcore-6.0&preserve-view=true#runtime-relinking).
 
 ### Persist prerendered state
 

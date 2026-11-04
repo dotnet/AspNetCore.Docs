@@ -617,7 +617,7 @@ Blazor Server:
 
 :::moniker-end
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 Example 2: Set the <xref:Microsoft.Extensions.Logging.LogLevel.Information> log level with an integer value.
 
@@ -642,7 +642,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -665,7 +665,7 @@ Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -728,7 +728,7 @@ At the top of the Razor component file (`.razor`):
 ```
 
 > [!NOTE]
-> The following example is based on the demonstration in the [SignalR with Blazor tutorial](xref:blazor/tutorials/signalr-blazor). Consult the tutorial for further details.
+> The following example is based on the demonstration in the [SignalR with Blazor tutorial](../tutorials/signalr-blazor.md). Consult the tutorial for further details.
 
 In the component's [`OnInitializedAsync` method](../components/lifecycle.md#component-initialization-oninitializedasync), use <xref:Microsoft.AspNetCore.SignalR.Client.HubConnectionBuilderExtensions.ConfigureLogging*?displayProperty=nameWithType> to add the logging provider and set the minimum log level from configuration:
 

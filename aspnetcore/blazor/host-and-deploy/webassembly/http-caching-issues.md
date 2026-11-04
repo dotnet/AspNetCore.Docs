@@ -38,7 +38,7 @@ Ensure that framework packages line up with the framework version. Using package
 
 ### Verify the presence of correct caching headers
 
-The correct caching headers should be present on responses to resource requests. This includes `ETag`, `Cache-Control`, and other caching headers. The configuration of these headers is dependent on the hosting service or hosting server platform. They are particularly important for assets such as the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and anything the script downloads.
+The correct caching headers should be present on responses to resource requests. This includes `ETag`, `Cache-Control`, and other caching headers. The configuration of these headers is dependent on the hosting service or hosting server platform. They are particularly important for assets such as the [Blazor script](../../project-structure.md#location-of-the-blazor-script) and anything the script downloads.
 
 Incorrect HTTP caching headers may also impact service workers. Service workers rely on caching headers to manage cached resources effectively. Therefore, incorrect or missing headers can disrupt the service worker's functionality.
 
@@ -70,6 +70,6 @@ Alternatively, you can apply a persistent query string with relevant versioning.
 <script src="_framework/blazor.webassembly.js?version=8"></script>
 ```
 
-For the location of the Blazor script `<script>` tag, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+For the location of the Blazor script `<script>` tag, see [ASP.NET Core Blazor project structure](../../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end

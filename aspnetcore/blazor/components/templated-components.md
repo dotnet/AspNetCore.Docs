@@ -325,6 +325,6 @@ Without using the `@key` directive attribute in the `TableTemplate` component, t
 
 ## Related content
 
-* <xref:blazor/performance/rendering#define-reusable-renderfragments-in-code>
+* [ASP.NET Core Blazor rendering performance best practices](../performance/rendering.md#define-reusable-renderfragments-in-code)
 * [Retain element, component, and model relationships in ASP.NET Core Blazor](element-component-model-relationships.md)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

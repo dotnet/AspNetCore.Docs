@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Tips for improving the rendering performance of ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/28/2026
-uid: blazor/performance/rendering
 ---
 # ASP.NET Core Blazor rendering performance best practices
 
@@ -144,6 +143,8 @@ The preceding example performs well if thousands of messages aren't shown at onc
     }
 </div>
 ```
+
+<a id="define-reusable-renderfragments-in-code"></a>
 
 **Define reusable `RenderFragments` in code:** You might be factoring out child components purely as a way of reusing rendering logic. If that's the case, you can create reusable rendering logic without implementing additional components. In any component's `@code` block, define a <xref:Microsoft.AspNetCore.Components.RenderFragment>. Render the fragment from any location as many times as needed:
 

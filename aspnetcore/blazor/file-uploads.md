@@ -45,7 +45,7 @@ To read data from a user-selected file with a <xref:System.IO.Stream> that repre
 
 <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> enforces a maximum size in bytes of its <xref:System.IO.Stream>. Reading one file or multiple files larger than 500 KB results in an exception. This limit prevents developers from accidentally reading large files into memory. The `maxAllowedSize` parameter of <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile.OpenReadStream*> can be used to specify a larger size if required.
 
-Outside of processing a small file, avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
+Outside of processing a small file, avoid reading the incoming file stream directly into memory all at once. For example, don't copy all of the file's bytes into a <xref:System.IO.MemoryStream> or read the entire stream into a byte array all at once. These approaches can result in degraded app performance and potential [Denial of Service (DoS)](security/interactive-server-side-rendering.md#denial-of-service-dos-attacks) risk, especially for server-side components. Instead, consider adopting either of the following approaches:
 
 * Copy the stream directly to a file on disk without reading it into memory. Note that Blazor apps executing code on the server aren't able to access the client's file system directly. 
 * Upload files from the client directly to an external service. For more information, see the [Upload files to an external service](#upload-files-to-an-external-service) section.
@@ -68,7 +68,7 @@ await blobContainerClient.UploadBlobAsync(
     trustedFileName, browserFile.OpenReadStream(maxFileSize));
 ```
 
-<span aria-hidden="true">✔️</span><span class="visually-hidden">Only recommended for small files:</span> The following approach is only **recommended for small files** because the file's <xref:System.IO.Stream> content is read into a <xref:System.IO.MemoryStream> in memory (`memoryStream`), which incurs a performance penalty and [DoS](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk. For an example that demonstrates this technique to save a thumbnail image with an <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> to a database using [Entity Framework Core (EF Core)](/ef/core/), see the [Save small files directly to a database with EF Core](#save-small-files-directly-to-a-database-with-ef-core) section later in this article.
+<span aria-hidden="true">✔️</span><span class="visually-hidden">Only recommended for small files:</span> The following approach is only **recommended for small files** because the file's <xref:System.IO.Stream> content is read into a <xref:System.IO.MemoryStream> in memory (`memoryStream`), which incurs a performance penalty and [DoS](security/interactive-server-side-rendering.md#denial-of-service-dos-attacks) risk. For an example that demonstrates this technique to save a thumbnail image with an <xref:Microsoft.AspNetCore.Components.Forms.IBrowserFile> to a database using [Entity Framework Core (EF Core)](/ef/core/), see the [Save small files directly to a database with EF Core](#save-small-files-directly-to-a-database-with-ef-core) section later in this article.
 
 ```csharp
 using var memoryStream = new MemoryStream();
@@ -1129,9 +1129,9 @@ Many ASP.NET Core apps use [Entity Framework Core (EF Core)](/ef/core/) to manag
 
 The following pattern:
 
-* Is based on the [Blazor movie database tutorial app](xref:blazor/tutorials/movie-database-app/index).
+* Is based on the [Blazor movie database tutorial app](tutorials/movie-database-app/index.md).
 * Can be enhanced with additional code for file size and content type [validation feedback](forms/validation.md).
-* Incurs a performance penalty and [DoS](xref:blazor/security/interactive-server-side-rendering#denial-of-service-dos-attacks) risk. Carefully weigh the risk when reading any file into memory and consider alternative approaches, especially for larger files. Alternative approaches include saving files directly to disk or a third-party service for antivirus/antimalware checks, further processing, and serving to clients.
+* Incurs a performance penalty and [DoS](security/interactive-server-side-rendering.md#denial-of-service-dos-attacks) risk. Carefully weigh the risk when reading any file into memory and consider alternative approaches, especially for larger files. Alternative approaches include saving files directly to disk or a third-party service for antivirus/antimalware checks, further processing, and serving to clients.
 
 For the following example to work in a Blazor Web App (.NET 8 or later), the component must adopt an [interactive render mode](fundamentals/index.md#static-and-interactive-rendering-concepts) (for example, `@rendermode InteractiveServer`) to call `HandleSelectedThumbnail` on an `InputFile` component file change (`OnChange` parameter/event). Blazor Server app components are always interactive and don't require a render mode.
 

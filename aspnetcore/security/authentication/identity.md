@@ -24,7 +24,7 @@ Identity is typically configured using a SQL Server database to store user names
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see [Next Steps](#next).
 
-For more information on Identity in Blazor apps, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation.
+For more information on Identity in Blazor apps, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md) and the articles that follow it in the Blazor documentation.
 
 ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/active-directory/develop/). Microsoft identity platform is:
 
@@ -81,7 +81,7 @@ Identity Razor components are described individually in the documentation for sp
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-For more information, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supersedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
+For more information, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md) and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supersedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
 
 ## Create a Razor Pages app with authentication
 
@@ -340,7 +340,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 
 ## Next Steps
 
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md)
 * [ASP.NET Core Identity source code](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
 * [How to work with Roles in ASP.NET Core Identity](https://www.yogihosting.com/aspnet-core-identity-roles/)
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/7114 -->

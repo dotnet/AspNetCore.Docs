@@ -3,7 +3,6 @@ title: Account confirmation and password recovery in ASP.NET Core Blazor WebAsse
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -12,7 +11,7 @@ uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-a
 This article explains how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 
 > [!NOTE]
-> This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see <xref:blazor/security/account-confirmation-and-password-recovery>.
+> This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see [Account confirmation and password recovery in ASP.NET Core Blazor](../../account-confirmation-and-password-recovery.md).
 
 ## Namespaces and article code examples
 
@@ -21,7 +20,7 @@ The namespaces used by the examples in this article are:
 * `Backend` for the backend server web API project ("server project" in this article).
 * `BlazorWasmAuth` for the front-end client standalone Blazor WebAssembly app ("client project" in this article).
 
-These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneWithIdentity` sample solution in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples). For more information, see <xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps>.
+These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneWithIdentity` sample solution in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples). For more information, see [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](index.md#sample-apps).
 
 If you aren't using the `BlazorWebAssemblyStandaloneWithIdentity` sample solution, change the namespaces in the code examples to use the namespaces of your projects.
 
@@ -314,7 +313,7 @@ Password recovery is a two-step process:
 1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in the server project. A message in the UI instructs the user to check their email for a reset code.
 1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email address, password reset code, and new password.
 
-The preceding steps are demonstrated by the following implementation guidance for the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
+The preceding steps are demonstrated by the following implementation guidance for the [sample solution](index.md#sample-apps).
 
 In the client project, add the following method signatures to the `IAccountManagement` class (`Identity/IAccountManagement.cs`):
 

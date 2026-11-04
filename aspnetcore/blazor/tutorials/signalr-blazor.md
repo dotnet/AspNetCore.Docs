@@ -3,7 +3,6 @@ title: Use ASP.NET Core SignalR with Blazor
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tutorials/signalr-blazor
 ---
 # Use ASP.NET Core SignalR with Blazor
 
@@ -306,7 +305,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -316,7 +315,7 @@ Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence o
 
 To configure Visual Studio Code debugging assets, see:
 
-* <xref:blazor/tooling?pivots=linux-macos> (use the guidance for the *Linux / macOS* operating system regardless of platform)
+* [Tooling for ASP.NET Core Blazor](../tooling.md?pivots=linux-macos) (use the guidance for the *Linux / macOS* operating system regardless of platform)
 * [Debug ASP.NET Core Blazor apps](../debug.md)
 
 # [.NET CLI](#tab/net-cli)
@@ -327,7 +326,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -363,7 +362,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
+In a command shell from the [solution's](../tooling.md#visual-studio-solution-file-sln) folder, execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -531,7 +530,7 @@ Follow the guidance for your tooling:
 In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](../tooling.md#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 >
@@ -542,12 +541,12 @@ In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` projec
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](../tooling.md#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
 >
@@ -558,7 +557,7 @@ Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kb
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command to change the directory to the `Server` project folder:
+In a command shell from the [solution's](../tooling.md#visual-studio-solution-file-sln) folder, execute the following command to change the directory to the `Server` project folder:
 
 ```dotnetcli
 cd Server
@@ -610,7 +609,7 @@ For detailed guidance on the SignalR and Blazor frameworks, see the following re
 ## Related content
 
 * [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](../../signalr/authn-and-authz.md#bearer-token-authentication)
-* [Secure a SignalR hub in Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
+* [Secure a SignalR hub in Blazor WebAssembly apps](../security/webassembly/index.md#secure-a-signalr-hub)
 * [SignalR cross-origin negotiation for authentication](../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)
 * [SignalR configuration](../host-and-deploy/server/index.md#signalr-configuration)
 * [Debug ASP.NET Core Blazor apps](../debug.md)

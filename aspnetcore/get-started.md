@@ -167,7 +167,7 @@ In this tutorial, you learned how to:
 
 This tutorial shows how to create and run an ASP.NET Core web app using the .NET CLI.
 
-For Blazor tutorials, see <xref:blazor/tutorials/index>.
+For Blazor tutorials, see [ASP.NET Core Blazor tutorials](blazor/tutorials/index.md).
 
 You'll learn how to:
 
@@ -255,7 +255,7 @@ To learn more about the fundamentals of ASP.NET Core, see the following:
 
 App type | Scenario | Tutorials
 -------- | -------- | ---------
-Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
+Web app | New server and client web development with Blazor | [Build a Blazor todo list app](blazor/tutorials/build-a-blazor-app.md) and [Build a Blazor movie database app (Overview)](blazor/tutorials/movie-database-app/index.md)
 Web API | Server-based data processing with Minimal APIs | [Tutorial: Create a Minimal API with ASP.NET Core](tutorials/min-web-api.md)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | [Create a .NET gRPC client and server in ASP.NET Core](tutorials/grpc/grpc-start.md)
 Real-time app | Server/client bidirectional communication | [Get started with ASP.NET Core SignalR](tutorials/signalr.md)
@@ -266,7 +266,7 @@ Real-time app | Server/client bidirectional communication | [Get started with AS
 
 App type | Scenario | Tutorials
 -------- | -------- | ---------
-Web app | New server and client web development with Blazor | <xref:blazor/tutorials/build-a-blazor-app> and <xref:blazor/tutorials/movie-database-app/index>
+Web app | New server and client web development with Blazor | [Build a Blazor todo list app](blazor/tutorials/build-a-blazor-app.md) and [Build a Blazor movie database app (Overview)](blazor/tutorials/movie-database-app/index.md)
 Web API | Server-based data processing | [Tutorial: Create a controller-based web API with ASP.NET Core](tutorials/first-web-api.md)
 Remote Procedure Call (RPC) app | Contract-first services using Protocol Buffers | [Create a .NET gRPC client and server in ASP.NET Core](tutorials/grpc/grpc-start.md)
 Real-time app | Server/client bidirectional communication | [Get started with ASP.NET Core SignalR](tutorials/signalr.md)

@@ -69,7 +69,7 @@ New APIs make it easier to add authentication to an existing Blazor Web App. Whe
 
 These providers flow the user's authentication state to the browser. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized.
 
-The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence?view=aspnetcore-9.0) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. 
+The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-9.0&preserve-view=true) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance.
 
 This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
@@ -78,10 +78,10 @@ This works well if you've started from the Blazor Web App project template and s
 
 By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to include all claims.
 
-For more information, see the following sections of <xref:blazor/security/index?view=aspnetcore-9.0>:
+For more information, see the following sections of [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true):
 
-* [Blazor Identity UI (Individual Accounts)](xref:blazor/security/index?view=aspnetcore-9.0#blazor-identity-ui-individual-accounts)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index?view=aspnetcore-9.0#manage-authentication-state-in-blazor-web-apps)
+* [Blazor Identity UI (Individual Accounts)](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#blazor-identity-ui-individual-accounts)
+* [Manage authentication state in Blazor Web Apps](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#manage-authentication-state-in-blazor-web-apps)
 
 ### Add static server-side rendering (SSR) pages to a globally-interactive Blazor Web App
 
@@ -152,7 +152,7 @@ For more information, see [ASP.NET Core Blazor dependency injection](../../../bl
 
 By default, Interactive Server components enable compression for [WebSocket connections](../../../fundamentals/websockets.md) and set a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) directive set to `'self'` ([MDN's CSP reference guidance](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)), which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
-Compression can be disabled by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Compression can be disabled by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](../../../blazor/security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 .AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
@@ -167,7 +167,7 @@ Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quot
 For more information, see the following resources:
 
 * [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#websocket-compression-for-interactive-server-components)
-* <xref:blazor/security/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>
+* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../../blazor/security/interactive-server-side-rendering.md?view=aspnetcore-9.0&preserve-view=true#interactive-server-components-with-websocket-compression-enabled)
 
 ### Handle keyboard composition events in Blazor
 

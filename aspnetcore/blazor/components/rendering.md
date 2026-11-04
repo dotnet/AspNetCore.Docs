@@ -35,7 +35,7 @@ Components inherited from <xref:Microsoft.AspNetCore.Components.ComponentBase> s
 
 In most cases, <xref:Microsoft.AspNetCore.Components.ComponentBase> conventions result in the correct subset of component rerenders after an event occurs. Developers aren't usually required to provide manual logic to tell the framework which components to rerender and when to rerender them. The overall effect of the framework's conventions is that the component receiving an event rerenders itself, which recursively triggers rerendering of descendant components whose parameter values may have changed.
 
-For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see <xref:blazor/performance/rendering>.
+For more information on the performance implications of the framework's conventions and how to optimize an app's component hierarchy for rendering, see [ASP.NET Core Blazor rendering performance best practices](../performance/rendering.md).
 
 ::: moniker range=">= aspnetcore-8.0"
 
@@ -75,7 +75,7 @@ Non-streaming `NavigationManager.NotFound` content rendering uses (in order):
 
 :::moniker range=">= aspnetcore-8.0"
 
-The following example is based on the `Weather` component in an app created from the [Blazor Web App project template](xref:blazor/project-structure#blazor-web-app). The call to <xref:System.Threading.Tasks.Task.Delay*?displayProperty=nameWithType> simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
+The following example is based on the `Weather` component in an app created from the [Blazor Web App project template](../project-structure.md#blazor-web-app). The call to <xref:System.Threading.Tasks.Task.Delay*?displayProperty=nameWithType> simulates retrieving weather data asynchronously. The component initially renders placeholder content ("`Loading...`") without waiting for the asynchronous delay to complete. When the asynchronous delay completes and the weather data content is generated, the content is streamed to the response and patched into the weather forecast table.
 
 `Weather.razor`:
 
@@ -169,7 +169,7 @@ Even if <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*> is ov
 
 ::: moniker-end
 
-For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*>, see <xref:blazor/performance/rendering#avoid-unnecessary-rendering-of-component-subtrees>.
+For more information on performance best practices pertaining to <xref:Microsoft.AspNetCore.Components.ComponentBase.ShouldRender*>, see [ASP.NET Core Blazor rendering performance best practices](../performance/rendering.md#avoid-unnecessary-rendering-of-component-subtrees).
 
 ## `StateHasChanged`
 
@@ -337,7 +337,7 @@ For approaches to manage state, see the following resources:
 
 * [Bind across more than two components](data-binding.md#bind-across-more-than-two-components) using data bindings.
 * [Pass data across a component hierarchy](cascading-values-and-parameters.md#pass-data-across-a-component-hierarchy) using cascading values and parameters.
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service) section of the *State management* overview.
+* [In-memory state container service](../state-management/index.md#in-memory-state-container-service) section of the *State management* overview.
 
 For the state manager approach, C# events are outside the Blazor rendering pipeline. Call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> on other components you wish to rerender in response to the state manager's events.
 

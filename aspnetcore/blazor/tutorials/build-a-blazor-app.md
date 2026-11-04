@@ -3,7 +3,6 @@ title: Build a Blazor todo list app
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tutorials/build-a-blazor-app
 ---
 # Build a Blazor todo list app
 

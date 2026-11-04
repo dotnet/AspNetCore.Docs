@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor app download size performance best practices
 description: Tips for reducing app download size in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/app-download-size
 ---
 # ASP.NET Core Blazor app download size performance best practices
 
@@ -13,7 +12,7 @@ uid: blazor/performance/app-download-size
 
 ## Runtime relinking
 
-For information on how runtime relinking minimizes an app's download size, see <xref:blazor/tooling/webassembly#runtime-relinking>.
+For information on how runtime relinking minimizes an app's download size, see [ASP.NET Core Blazor WebAssembly runtime performance](webassembly-runtime-performance.md#runtime-relinking).
 
 :::moniker-end
 
@@ -47,7 +46,7 @@ dotnet publish -c Release
 
 *This section only applies to client-side Blazor scenarios.*
 
-Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+Load assemblies at runtime when the assemblies are required by a route. For more information, see [Lazy load assemblies in ASP.NET Core Blazor WebAssembly](../webassembly-lazy-load-assemblies.md).
 
 ## Compression
 
@@ -82,7 +81,7 @@ Adopting [invariant globalization](../globalization-localization.md#invariant-gl
 ```
 
 > [!NOTE]
-> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance/app-download-size#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+> [`<BlazorEnableTimeZoneSupport>`](app-download-size.md#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
 
 :::moniker-end
 

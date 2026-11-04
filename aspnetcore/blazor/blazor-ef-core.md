@@ -29,7 +29,7 @@ This guidance applies to the **`Server`** project of a hosted Blazor WebAssembly
 
 ## Secure authentication flow required for production apps
 
-This article pertains to the use of a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see the articles in the [Blazor *Security and Identity* node](xref:blazor/security/index).
+This article pertains to the use of a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor apps, see the articles in the [Blazor *Security and Identity* node](security/index.md).
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
@@ -42,7 +42,7 @@ For Microsoft Azure services, we recommend using *managed identities*. Managed i
 
 ## Build a Blazor movie database app tutorial
 
-For a tutorial experience building an app that uses EF Core for database operations, see <xref:blazor/tutorials/movie-database-app/index>. The tutorial shows you how to create a Blazor Web App that can display and manage movies in a movie database.
+For a tutorial experience building an app that uses EF Core for database operations, see [Build a Blazor movie database app (Overview)](tutorials/movie-database-app/index.md). The tutorial shows you how to create a Blazor Web App that can display and manage movies in a movie database.
 
 :::moniker-end
 
@@ -223,7 +223,7 @@ public void Dispose() => Context?.Dispose();
 
 ## Enable sensitive data logging
 
-<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](xref:blazor/security/index#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
+<xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> includes application data in exception messages and framework logging. The logged data can include the values assigned to properties of entity instances and parameter values for commands sent to the database. Logging data with <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> is a **security risk**, as it may expose passwords and other [Personally Identifiable Information (PII)](security/index.md#personally-identifiable-information-pii) when it logs SQL statements executed against the database.
 
 We recommend only enabling <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging*> for local development and testing:
 
@@ -245,4 +245,4 @@ else
 
 * [EF Core documentation](/ef/)
 * [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples)
-* [Blazor *Security and Identity* node articles](xref:blazor/security/index)
+* [Blazor *Security and Identity* node articles](security/index.md)

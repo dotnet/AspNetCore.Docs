@@ -425,7 +425,7 @@ The main difference is allocated bytes, and as a consequence, fewer Gen 0 collec
 
 ## Related content
 
-* [ASP.NET Core Blazor performance best practices](xref:blazor/performance/index)
+* [ASP.NET Core Blazor performance best practices](../blazor/performance/index.md)
 * [Garbage collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer (blog)](https://devblogs.microsoft.com/premier-developer/understanding-different-gc-modes-with-concurrency-visualizer/)
 * [Large Object Heap Uncovered (blog)](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)

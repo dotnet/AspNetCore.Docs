@@ -31,7 +31,7 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 To set up prerendering for a hosted Blazor WebAssembly app:
 
-1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/tooling) with the hosted option:
+1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](../tooling.md) with the hosted option:
 
    * Visual Studio: In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
    * Visual Studio Code/.NET CLI command shell: `dotnet new blazorwasm -ho` (use the `-ho|--hosted` option). Use the `-o|--output {LOCATION}` option to create a folder for the solution and set the solution's project namespaces. In this article's examples, the solution is named `BlazorHosted` (`dotnet new blazorwasm -ho -o BlazorHosted`).
@@ -121,7 +121,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      ```
 
      > [!IMPORTANT]
-     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see [ASP.NET Core Blazor WebAssembly additional security scenarios](../security/webassembly/additional-scenarios.md#prerendering-with-authentication).
 
 1. In the `Program.cs` file of the **:::no-loc text="Server":::** project, change the fallback endpoint from the `index.html` file to the `_Host.cshtml` page:
 
@@ -545,15 +545,15 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Additional Blazor WebAssembly resources
 
-* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
+* [Prerendering support with assembly lazy loading](../webassembly-lazy-load-assemblies.md#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
-  * [General aspects](xref:blazor/security/index)
-  * [Prerendering with authentication in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+  * [General aspects](../security/index.md)
+  * [Prerendering with authentication in hosted Blazor WebAssembly apps](../security/webassembly/additional-scenarios.md#prerendering-with-authentication)
 * [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
 * [Handle errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
 * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](../fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync)
@@ -570,7 +570,7 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 To set up prerendering for a hosted Blazor WebAssembly app:
 
-1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/tooling) with the hosted option:
+1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](../tooling.md) with the hosted option:
 
    * Visual Studio: In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
    * Visual Studio Code/.NET CLI command shell: `dotnet new blazorwasm -ho` (use the `-ho|--hosted` option). Use the `-o|--output {LOCATION}` option to create a folder for the solution and set the solution's project namespaces. In this article's examples, the solution is named `BlazorHosted` (`dotnet new blazorwasm -ho -o BlazorHosted`).
@@ -679,7 +679,7 @@ To set up prerendering for a hosted Blazor WebAssembly app:
      ```
 
      > [!IMPORTANT]
-     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see <xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication>.
+     > Prerendering isn't supported for authentication endpoints (`/authentication/` path segment). For more information, see [ASP.NET Core Blazor WebAssembly additional security scenarios](../security/webassembly/additional-scenarios.md#prerendering-with-authentication).
 
 1. In endpoint mapping of the **:::no-loc text="Server":::** project in `Program.cs`, change the fallback from the `index.html` file to the `_Host.cshtml` page:
 
@@ -1059,15 +1059,15 @@ The persisted prerendered state is transferred to the client, where it's used to
 
 ## Additional Blazor WebAssembly resources
 
-* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
+* [Prerendering support with assembly lazy loading](../webassembly-lazy-load-assemblies.md#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
-  * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+  * [General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
+  * [Prerendering with authentication](../security/webassembly/additional-scenarios.md#prerendering-with-authentication)
 * [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
 
 :::moniker-end
@@ -1082,7 +1082,7 @@ Prerendering can improve [Search Engine Optimization (SEO)](https://developer.mo
 
 To set up prerendering for a hosted Blazor WebAssembly app:
 
-1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](xref:blazor/tooling) with the hosted option:
+1. Host the Blazor WebAssembly app in an ASP.NET Core app. A standalone Blazor WebAssembly app can be added to an ASP.NET Core solution, or you can use a hosted Blazor WebAssembly app created from the [Blazor WebAssembly project template](../tooling.md) with the hosted option:
 
    * Visual Studio: In the **Additional information** dialog, select the **ASP.NET Core Hosted** checkbox when creating the Blazor WebAssembly app. In this article's examples, the solution is named `BlazorHosted`.
    * Visual Studio Code/.NET CLI command shell: `dotnet new blazorwasm -ho` (use the `-ho|--hosted` option). Use the `-o|--output {LOCATION}` option to create a folder for the solution and set the solution's project namespaces. In this article's examples, the solution is named `BlazorHosted` (`dotnet new blazorwasm -ho -o BlazorHosted`).
@@ -1316,21 +1316,21 @@ Additional work might be required depending on the static resources that compone
 
 ## Additional Blazor WebAssembly resources
 
-* [Prerendering support with assembly lazy loading](xref:blazor/webassembly-lazy-load-assemblies#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
+* [Prerendering support with assembly lazy loading](../webassembly-lazy-load-assemblies.md#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering): Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly apps (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see *Persist prerendered state* section of this article.
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
 * Authentication and authorization subjects that pertain to prerendering
-  * [General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
-  * [Prerendering with authentication](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+  * [General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
+  * [Prerendering with authentication](../security/webassembly/additional-scenarios.md#prerendering-with-authentication)
 * [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-Integrating Razor components into Razor Pages or MVC apps in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
+Integrating Razor components into Razor Pages or MVC apps in a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln) is supported in ASP.NET Core in .NET 5 or later. Select a .NET 5 or later version of this article.
 
 :::moniker-end

@@ -63,7 +63,7 @@ Don't place a `<script>` tag in a component file (`.razor`) because the `<script
 
 *The approach in this section isn't generally recommended.*
 
-Place the JavaScript (JS) tags (`<script>...</script>`) in the [`<head>` element markup](xref:blazor/project-structure#location-of-head-and-body-content):
+Place the JavaScript (JS) tags (`<script>...</script>`) in the [`<head>` element markup](../project-structure.md#location-of-head-and-body-content):
 
 ```html
 <head>
@@ -96,7 +96,7 @@ In component markup, scripts can be loaded via a [`HeadContent` component](../co
 
 ## Load a script in `<body>` markup
 
-Place the JavaScript tags (`<script>...</script>`) inside the [closing `</body>` element](xref:blazor/project-structure#location-of-head-and-body-content) after the Blazor script reference:
+Place the JavaScript tags (`<script>...</script>`) inside the [closing `</body>` element](../project-structure.md#location-of-head-and-body-content) after the Blazor script reference:
 
 ```html
 <body>
@@ -111,7 +111,7 @@ Place the JavaScript tags (`<script>...</script>`) inside the [closing `</body>`
 </body>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -125,7 +125,7 @@ For more information on RCLs, see [Consume ASP.NET Core Razor components from a 
 
 ### Load a script from an external JavaScript file (`.js`)
 
-Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the [closing `</body>` element](xref:blazor/project-structure#location-of-head-and-body-content) after the Blazor script reference:
+Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`src`) path inside the [closing `</body>` element](../project-structure.md#location-of-head-and-body-content) after the Blazor script reference:
 
 ```html
 <body>
@@ -138,7 +138,7 @@ Place the JavaScript (JS) tags (`<script>...</script>`) with a script source (`s
 
 For the placeholders in the preceding example:
 
-* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 * The `{SCRIPT PATH AND FILE NAME (.js)}` placeholder is the path and script file name under `wwwroot`.
 
 In the following example of the preceding `<script>` tag, the `scripts.js` file is in the `wwwroot/js` folder of the app:

@@ -641,16 +641,16 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](../state-management/protected-browser-storage.md#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
-* [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
+* [Authentication and authorization: General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
 * [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](../security/interactive-server-side-rendering.md#cross-site-scripting-xss)
 * <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice* when prerendering: [Handle asynchronous navigation events with `OnNavigateAsync`](../fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync)
 
 :::moniker-end
@@ -1160,16 +1160,16 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](../state-management/protected-browser-storage.md#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
-* [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
+* [Authentication and authorization: General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
 * [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](../security/interactive-server-side-rendering.md#cross-site-scripting-xss)
 
 :::moniker-end
 
@@ -1592,16 +1592,16 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](../state-management/protected-browser-storage.md#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
-* [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
+* [Authentication and authorization: General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
 * [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](../security/interactive-server-side-rendering.md#cross-site-scripting-xss)
 
 :::moniker-end
 
@@ -2022,15 +2022,15 @@ To resolve the problem, use ***either*** of the following approaches:
 
 ## Additional Blazor Server resources
 
-* [State management: Protected browser storage: Handle prerendering](xref:blazor/state-management/protected-browser-storage#handle-prerendering)
+* [State management: Protected browser storage: Handle prerendering](../state-management/protected-browser-storage.md#handle-prerendering)
 * Razor component lifecycle subjects that pertain to prerendering
   * [Component initialization (`OnInitialized{Async}`)](lifecycle.md#component-initialization-oninitializedasync)
   * [After component render (`OnAfterRender{Async}`)](lifecycle.md#after-component-render-onafterrenderasync)
   * [Stateful reconnection after prerendering](lifecycle.md#stateful-reconnection-after-prerendering)
   * [Prerendering with JavaScript interop](lifecycle.md#prerendering-with-javascript-interop)
-* [Authentication and authorization: General aspects](xref:blazor/security/index#aspnet-core-blazor-authentication-and-authorization)
+* [Authentication and authorization: General aspects](../security/index.md#aspnet-core-blazor-authentication-and-authorization)
 * [Handle Errors: Prerendering](../fundamentals/handle-errors.md#prerendering)
 * [Host and deploy ASP.NET Core server-side Blazor apps](../host-and-deploy/server/index.md)
-* [Threat mitigation: Cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss)
+* [Threat mitigation: Cross-site scripting (XSS)](../security/interactive-server-side-rendering.md#cross-site-scripting-xss)
 
 :::moniker-end

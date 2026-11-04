@@ -204,7 +204,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator blazor -h
 ```
 
-For an example that uses the `blazor` generator, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example that uses the `blazor` generator, see [Build a Blazor movie database app (Overview)](../../blazor/tutorials/movie-database-app/index.md).
 
 For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../blazor/components/quickgrid.md#quickgrid-scaffolder).
 

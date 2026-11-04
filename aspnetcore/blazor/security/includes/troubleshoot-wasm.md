@@ -97,7 +97,7 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 
 ### Run the `Server` app
 
-When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
+When testing and troubleshooting a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
 
 :::moniker-end
 

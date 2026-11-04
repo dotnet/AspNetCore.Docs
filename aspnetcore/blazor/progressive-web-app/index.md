@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor Progressive Web Application (PWA)
 description: Learn how to build a Blazor Progressive Web Application (PWA) that use modern browser features to behave like a desktop app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/progressive-web-app/index
 ---
 # ASP.NET Core Blazor Progressive Web Application (PWA)
 
@@ -333,7 +332,7 @@ The `AssetUrl` metadata specifies the base-relative URL that the browser should 
 
 ## Push notifications
 
-Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The mechanism is independent of Blazor WebAssembly, and the server can send push notifications at any time, even when the user isn't actively using the app. For more information, see <xref:blazor/progressive-web-app/push-notifications>.
+Like any other PWA, a Blazor WebAssembly PWA can receive push notifications from a backend server. The mechanism is independent of Blazor WebAssembly, and the server can send push notifications at any time, even when the user isn't actively using the app. For more information, see [Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)](push-notifications.md).
 
 ## Caveats for offline PWAs
 

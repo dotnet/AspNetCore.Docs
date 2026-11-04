@@ -22,7 +22,7 @@ The following `JsCollocation1` component loads a script via a [`HeadContent` com
 > [!IMPORTANT]
 > If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages` in .NET 8 or later or `Pages` in .NET 7 or earlier). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
 
-Add the following script after the Blazor script ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)):
+Add the following script after the Blazor script ([location of the Blazor start script](../../project-structure.md#location-of-the-blazor-script)):
 
 ```html
 <script src="{PATH}/JsCollocation1.razor.js"></script>
@@ -153,7 +153,7 @@ export function showPrompt2(message) {
 ```
 
 > [!IMPORTANT]
-> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
+> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](../../project-structure.md#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
 Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](../../javascript-interoperability/import-export-interop.md), see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../javascript-interoperability/import-export-interop.md#razor-class-library-rcl-collocated-js-is-unsupported).
 

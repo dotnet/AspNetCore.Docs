@@ -3,7 +3,6 @@ title: Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 description: Discover how to lazy load assemblies in Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 11/11/2025
-uid: blazor/webassembly-lazy-load-assemblies
 ---
 # Lazy load assemblies in ASP.NET Core Blazor WebAssembly
 
@@ -59,7 +58,7 @@ The Blazor framework automatically registers a singleton service for lazy loadin
 :::moniker range="< aspnetcore-8.0"
 
 > [!NOTE]
-> Guidance for *hosted* Blazor WebAssembly [solutions](xref:blazor/tooling#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
+> Guidance for *hosted* Blazor WebAssembly [solutions](tooling.md#visual-studio-solution-file-sln) is covered in the [Lazy load assemblies in a hosted Blazor WebAssembly solution](#lazy-load-assemblies-in-a-hosted-blazor-webassembly-solution) section.
 
 :::moniker-end
 
@@ -365,7 +364,7 @@ To rectify this:
 
 ## Lazy load assemblies in a hosted Blazor WebAssembly solution
 
-The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **:::no-loc text="Server":::** project.
+The framework's lazy loading implementation supports lazy loading with prerendering in a hosted Blazor WebAssembly [solution](tooling.md#visual-studio-solution-file-sln). During prerendering, all assemblies, including those marked for lazy loading, are assumed to be loaded. Manually register the <xref:Microsoft.AspNetCore.Components.WebAssembly.Services.LazyAssemblyLoader> service in the **:::no-loc text="Server":::** project.
 
 :::moniker-end
 
@@ -819,4 +818,4 @@ When the `Robot` component from the RCL is requested at `/robot`, the `GrantImah
 ## Related content
 
 * [Handle asynchronous navigation events with `OnNavigateAsync`](fundamentals/routing.md#handle-asynchronous-navigation-events-with-onnavigateasync)
-* <xref:blazor/performance/index>
+* [ASP.NET Core Blazor performance best practices](performance/index.md)

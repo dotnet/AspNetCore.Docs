@@ -13,7 +13,7 @@ This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint w
 
 :::moniker range=">= aspnetcore-11.0"
 
-You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
 Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
@@ -25,7 +25,7 @@ Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.Authoriza
 
 * SignalR hubs and hub methods
 * MVC controllers and actions
-* Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components
+* Blazor's [`AuthorizeView`](../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components
 
 Support for the preceding is available for apps that target .NET 11 or later.
 

@@ -1075,7 +1075,7 @@ When implementing authentication:
 
 :::moniker range=">= aspnetcore-7.0"
 
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
 * [ASP.NET Core Blazor Hybrid security considerations](security-considerations.md)
 * Entra ID documentation for .NET MAUI
   * [Tutorial: Register and configure .NET MAUI mobile app in an external tenant](/entra/external-id/customers/tutorial-mobile-app-maui-sign-in-prepare-tenant)
@@ -1089,7 +1089,7 @@ When implementing authentication:
 
 :::moniker range="< aspnetcore-7.0"
 
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
 * [ASP.NET Core Blazor Hybrid security considerations](security-considerations.md)
 
 :::moniker-end
