@@ -188,9 +188,9 @@ Before completing, verify:
 
 ## PR description requirements
 
-* Add `Fixes #{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses) to the PR description.
+* In the PR description, add `Fixes #<issue number>` when the PR fixes the issue, where the `<issue number>` placeholder is the number of the issue. If the PR only addresses the issue as a partial fix and the issue shouldn't be closed when the PR merges, add `Addresses #<issue number>` to the description, where the `<issue number>` placeholder is the number of the issue.
 * When a PR fixes multiple issues, list each issue on its own line.
-* When a PR is related to other issues but doesn't fix them, use `Related: #{ISSUE NUMBER}` on a separate line after the `Fixes` line(s).
+* When a PR is related to other issues but doesn't fix them, use `Related: #<issue number>` on a separate line after the `Fixes` line(s), where the `<issue number>` placeholder is the number of the issue.
 
 ---
 
