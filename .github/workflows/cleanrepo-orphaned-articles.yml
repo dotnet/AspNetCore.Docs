@@ -26,7 +26,7 @@ jobs:
       # Call clean repo
       - name: Clean repo
         id: clean-repo-step
-        uses: dotnet/docs-tools/cleanrepo@a92cd3283e8a81d00b7c5daa6cc604dd2f9abc53 # main
+        uses: dotnet/docs-tools/cleanrepo@1792e4913167146272afc4d7ad9b7e2bf1701495 # main
         with:
           function: "FindOrphanedArticles"
           docfx_directory: "aspnetcore"
