@@ -216,7 +216,7 @@ var setAccentColor = AIFunctionFactory.Create(
 
 var agent = new UIAgent(
     chatClient,
-    options => options.RegisterUIAction(setAccentColor))
+    options => options.RegisterUIAction(setAccentColor));
 ```
 
 Place a `BlockRenderer<UIActionBlock>` in `MessageListContent` to handle the function call requested by the agent. For example, the renderer can use a component that automatically invokes the function and displays its progress:
@@ -432,7 +432,7 @@ The provisional value is immediately available from `agent.State.Value`, and `Ha
 
 An `IConversationThread` stores completed turns so a UI can rebuild its conversation after the component or app restarts. A thread can also retain protocol metadata, such as the `threadId` and previous `runId` used to continue a server-owned AG-UI conversation.
 
-Pass the thread when constructing `UIAgent`, then call `UIAgent.RestoreAsync` or `AgentContext.RestoreAsync` to explicitly replay the stored updates into content blocks and typed state ([[Blazor] Add shared agent and UI state:
+Pass the thread when constructing `UIAgent`, then call `UIAgent.RestoreAsync` or `AgentContext.RestoreAsync` to explicitly replay the stored updates into content blocks and typed state:
 
 ```csharp
 var agent = new UIAgent(
