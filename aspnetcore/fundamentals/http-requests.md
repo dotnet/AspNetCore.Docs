@@ -119,7 +119,7 @@ The configuration for a typed client can also be specified during its registrati
 
 ### Generated clients
 
-The `IHttpClientFactory` interface can be used in combination with third-party libraries such as [Refit](https://github.com/reactiveui/refit). Refit is a REST library for .NET that converts REST APIs into live interfaces. Call the `AddRefitClient` method to generate a dynamic implementation of an interface. The method uses `HttpClient` to make the external HTTP calls.
+The `IHttpClientFactory` interface can be used in combination with third-party libraries such as [Refit](https://github.com/reactiveui/refit). Refit is a REST library for .NET that converts C# interfaces into HTTP clients. Call the `AddRefitClient` method to generate a dynamic implementation of an interface. The method uses `HttpClient` to make the external HTTP calls.
 
 A custom interface represents the external API:
 
