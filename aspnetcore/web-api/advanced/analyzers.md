@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the ASP.NET Core MVC web API analyzers package.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/06/2026
-uid: web-api/advanced/analyzers
 ---
 # Use web API analyzers
 
@@ -15,7 +14,7 @@ uid: web-api/advanced/analyzers
 
 :::moniker-end
 
-ASP.NET Core provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](xref:web-api/advanced/conventions).
+ASP.NET Core provides an MVC analyzers package intended for use with web API projects. The analyzers work with controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute>, while building on [web API conventions](conventions.md).
 
 The analyzers package notifies you of any controller action that:
 
@@ -36,7 +35,7 @@ The analyzers are included in the .NET SDK. To enable the analyzer in your proje
 
 ## Analyzers for web API conventions
 
-OpenAPI documents contain status codes and response types that an action may return. In ASP.NET Core MVC, attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> are used to document an action. <xref:tutorials/web-api-help-pages-using-swagger> goes into further detail on documenting your web API.
+OpenAPI documents contain status codes and response types that an action may return. In ASP.NET Core MVC, attributes such as <xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute> and <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute> are used to document an action. [ASP.NET Core web API documentation with Swagger / OpenAPI](../../tutorials/web-api-help-pages-using-swagger.md) goes into further detail on documenting your web API.
 
 One of the analyzers in the package inspects controllers annotated with <xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute> and identifies actions that don't entirely document their responses. Consider the following example:
 
@@ -52,6 +51,6 @@ Analyzers don't work with library projects or projects referencing `Sdk="Microso
 
 ## Related content
 
-* <xref:web-api/advanced/conventions>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:web-api/index>
+* [Use web API conventions](conventions.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../../tutorials/web-api-help-pages-using-swagger.md)
+* [Create web APIs with ASP.NET Core](../index.md)

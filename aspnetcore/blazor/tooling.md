@@ -3,7 +3,6 @@ title: Tooling for ASP.NET Core Blazor
 description: Learn about the tools available to build Blazor apps and how to use them.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tooling
 zone_pivot_groups: tooling
 ---
 # Tooling for ASP.NET Core Blazor
@@ -75,13 +74,13 @@ Select **Next**.
 
 Install the latest version of [Visual Studio Code](https://code.visualstudio.com/Download) for your platform.
 
-Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
+Install the [C# Dev Kit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit). For more information, see [Debug ASP.NET Core Blazor apps](debug.md#visual-studio-code-prerequisites).
 
 If you're new to VS Code, see the [VS Code documentation](https://code.visualstudio.com/docs). If you're new to the .NET SDK, see [What is the .NET SDK?](/dotnet/core/sdk) and the associated articles in the .NET SDK documentation.
 
 Create a new project:
 
-* Open VS Code. 
+* Open VS Code.
 
 * Go to the **Explorer** view and select the **Create .NET Project** button. Alternatively, you can bring up the **Command Palette** using <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, and then type "`.NET`" and find and select the **.NET: New Project** command.
 
@@ -202,9 +201,9 @@ An example `.vscode/tasks.json` file with a **:::no-loc text="Server":::** proje
 ```
 
 > [!NOTE]
-> Only [browser debugging](xref:blazor/debug#debug-in-the-browser) is supported at this time.
+> Only [browser debugging](debug.md#debug-blazor-webassembly-with-google-chrome-or-microsoft-edge) is supported at this time.
 >
-> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](xref:tutorials/dotnet-watch).
+> You can't automatically rebuild the backend **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly solution during debugging, for example by running the app with [`dotnet watch run`](../tutorials/dotnet-watch.md).
 
 :::moniker-end
 
@@ -242,9 +241,9 @@ Example for a project folder of :::no-loc text="Server"::: and that spawns Micro
 In the preceding argument:
 
 * The `{SERVER APP FOLDER}` placeholder is the **:::no-loc text="Server":::** project's folder, typically ":::no-loc text="Server":::".
-* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](xref:blazor/project-structure).
+* The `{PROJECT NAME}` placeholder is the app's name, typically based on the solution's name followed by "`.Server`" in an app generated from the [Blazor project template](project-structure.md).
 
-The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](xref:blazor/tutorials/signalr-blazor) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
+The following example from the [tutorial for using SignalR with a Blazor WebAssembly app](tutorials/signalr-blazor.md) uses a project folder name of :::no-loc text="Server"::: and a project name of `BlazorWebAssemblySignalRApp.Server`:
 
 ```json
 ...
@@ -500,10 +499,10 @@ For more information, see the following resources:
 > [!NOTE]
 > The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
-> * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
-> * <xref:aspnetcore-8#new-blazor-web-app-template>
-> * <xref:blazor/project-structure#blazor-web-app>
-> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
+> * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
+> * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
+> * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 
@@ -517,10 +516,10 @@ The Blazor framework provides project templates for creating new apps. The templ
 > [!NOTE]
 > The "Hosted" Blazor WebAssembly project template option isn't available in .NET 8 or later. To create a hosted Blazor WebAssembly app, a **Framework** option earlier than .NET 8 must be selected with the **ASP.NET Core Hosted** checkbox. However, we recommend a Blazor Web App for all new Blazor development in .NET 8 or later. For more information, see the following resources:
 >
-> * <xref:blazor/index#build-a-full-stack-web-app-with-blazor>
-> * <xref:aspnetcore-8#new-blazor-web-app-template>
-> * <xref:blazor/project-structure#blazor-web-app>
-> * <xref:migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app>
+> * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
+> * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
+> * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 
@@ -538,17 +537,17 @@ The Blazor framework provides project templates for creating new apps. The templ
 
 :::moniker-end
 
-For more information on Blazor project templates, see <xref:blazor/project-structure>.
+For more information on Blazor project templates, see [ASP.NET Core Blazor project structure](project-structure.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
 Rendering terms and concepts used in the following subsections are introduced in the following sections of the *Fundamentals* overview article:
 
-* [Client and server rendering concepts](xref:blazor/fundamentals/index#client-and-server-rendering-concepts)
-* [Static and interactive rendering concepts](xref:blazor/fundamentals/index#static-and-interactive-rendering-concepts)
-* [Render modes](xref:blazor/fundamentals/index#render-modes)
+* [Client and server rendering concepts](fundamentals/index.md#client-and-server-rendering-concepts)
+* [Static and interactive rendering concepts](fundamentals/index.md#static-and-interactive-rendering-concepts)
+* [Render modes](fundamentals/index.md#render-modes)
 
-Detailed guidance on render modes is provided by the <xref:blazor/components/render-modes> article.
+Detailed guidance on render modes is provided by the [ASP.NET Core Blazor render modes](components/render-modes.md) article.
 
 ### Interactive render mode
 
@@ -579,7 +578,7 @@ To include sample pages and a layout based on Bootstrap styling, use the **Inclu
 
 ### Additional guidance on template options
 
-* <xref:blazor/components/render-modes>
+* [ASP.NET Core Blazor render modes](components/render-modes.md)
 * The *.NET default templates for dotnet new* article in the .NET documentation:
   * [`blazor`](/dotnet/core/tools/dotnet-new-sdk-templates#blazor)
   * [`blazorwasm`](/dotnet/core/tools/dotnet-new-sdk-templates#blazorwasm)
@@ -649,13 +648,13 @@ builder.AddBlazorClientServiceDefaults();
 
 * [Visual Studio](https://visualstudio.microsoft.com)
 * [Visual Studio Code](https://code.visualstudio.com)
-* <xref:blazor/tooling/webassembly>
+* [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md)
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * [.NET SDK](/dotnet/core/sdk)
-* <xref:test/hot-reload>
-* <xref:blazor/hosting-models>
-* <xref:blazor/project-structure>
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor hosting models](hosting-models.md)
+* [.NET Hot Reload support for ASP.NET Core](../test/hot-reload.md)
+* [ASP.NET Core Blazor project structure](project-structure.md)
+* [ASP.NET Core Blazor Hybrid tutorials](hybrid/tutorials/index.md)
 
 :::moniker-end
 
@@ -665,7 +664,7 @@ builder.AddBlazorClientServiceDefaults();
 * [Visual Studio Code](https://code.visualstudio.com)
 * [.NET command-line interface (CLI)](/dotnet/core/tools/)
 * [.NET SDK](/dotnet/core/sdk)
-* <xref:blazor/hosting-models>
-* <xref:blazor/project-structure>
+* [ASP.NET Core Blazor hosting models](hosting-models.md)
+* [ASP.NET Core Blazor project structure](project-structure.md)
 
 :::moniker-end

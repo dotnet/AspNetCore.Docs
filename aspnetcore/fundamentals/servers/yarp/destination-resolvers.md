@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/destination-resolvers
 title: YARP Extensibility Destination Resolvers
 description: YARP Extensibility Destination Resolvers
 ms.date: 2/6/2025

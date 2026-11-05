@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core in .NET 7
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 7.
 ms.date: 11/07/2022
-uid: aspnetcore-7
 ---
 # What's new in ASP.NET Core in .NET 7
 
@@ -11,11 +10,11 @@ This article highlights the most significant changes in ASP.NET Core in .NET 7 w
 
 ## Rate limiting middleware in ASP.NET Core
 
-The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see <xref:performance/rate-limit?view=aspnetcore-7.0&preserve-view=true>.
+The `Microsoft.AspNetCore.RateLimiting` middleware provides rate limiting middleware. Apps configure rate limiting policies and then attach the policies to endpoints. For more information, see [Rate limiting middleware in ASP.NET Core](../performance/rate-limit.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Authentication uses single scheme as DefaultScheme
 
-As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](xref:security/authentication/index#defaultscheme).
+As part of the work to simplify authentication, when there's only a single authentication scheme registered, it's automatically used as the <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme> and doesn't need to be specified. For more information, see [DefaultScheme](../security/authentication/index.md#defaultscheme).
 
 ## MVC and Razor pages
 
@@ -29,7 +28,7 @@ Nullable page or view models are supported to improve the experience when using 
 
 ### Bind with `IParsable<T>.TryParse` in MVC and API Controllers
 
-The [`IParsable<TSelf>.TryParse`](/dotnet/api/system.iparsable-1.tryparse#system-iparsable-1-tryparse(system-string-system-iformatprovider-0@)) API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](xref:mvc/models/model-binding#itp7).
+The <xref:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)?displayProperty=nameWithType> API supports binding controller action parameter values. For more information, see [Bind with `IParsable<T>.TryParse`](../mvc/models/model-binding.md#bind-with-iparsablettryparse).
 
 ### Customize the cookie consent value
 
@@ -37,13 +36,13 @@ In ASP.NET Core versions earlier than 7, the cookie consent validation uses the 
 
 [!code-csharp[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Program.cs?name=snippet_2&highlight=8)]
 
-For more information, see [Customize the cookie consent value](xref:security/gdpr#customize-the-cookie-consent-value).
+For more information, see [Customize the cookie consent value](../security/gdpr.md#customize-the-cookie-consent-value).
 
 ## API controllers
 
 ### Parameter binding with DI in API controllers
 
-Parameter binding for API controller actions binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for API controller actions binds parameters through [dependency injection](../fundamentals/dependency-injection.md) when the type is configured as a service. This means it's no longer required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Controllers/MyController.cs?name=snippet)]
 
@@ -71,7 +70,7 @@ The following code configures validation to use the [`NewtonsoftJsonValidationMe
 
 :::code language="csharp" source="~/mvc/models/validation/samples/7.x/ValidationJSON/Program.cs" id="snippet" highlight="5-8":::
 
-For more information, see [Use JSON property names in validation errors](xref:mvc/models/validation?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
+For more information, see [Use JSON property names in validation errors](../mvc/models/validation.md?view=aspnetcore-7.0&preserve-view=true#use-json-property-names-in-validation-errors)
 
 ## Minimal APIs
 
@@ -89,7 +88,7 @@ Filters can be helpful in the following scenarios:
 * Logging information about the request and response.
 * Validating that a request is targeting a supported API version.
 
-For more information, see <xref:fundamentals/minimal-apis/min-api-filters>
+For more information, see [Filters in Minimal API apps](../fundamentals/minimal-apis/min-api-filters.md)
 
 ### Bind arrays and string values from headers and query strings
 
@@ -97,9 +96,9 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 [!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
 
-Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#bindar).
+Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#bindar).
 
-For more information, see [Add endpoint summary or description](xref:fundamentals/minimal-apis#add-endpoint-summary-or-description).
+For more information, see [Add endpoint summary or description](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true#add-endpoint-summary-or-description).
 
 ### Bind the request body as a `Stream` or `PipeReader`
 
@@ -110,7 +109,7 @@ The request body can bind as a [`Stream`](/dotnet/api/system.io.stream) or [`Pip
 
 For example, the data might be enqueued to [Azure Queue storage](/azure/storage/queues/storage-queues-introduction) or stored in [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction).
 
-For more information, see [Bind the request body as a `Stream` or `PipeReader`](xref:fundamentals/minimal-apis#rbs)
+For more information, see [Bind the request body as a `Stream` or `PipeReader`](../fundamentals/minimal-apis.md#rbs)
 
 ### New Results.Stream overloads
 
@@ -118,7 +117,7 @@ We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.resul
 
 [!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
-For more information, see [Stream examples](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#stream7)
+For more information, see [Stream examples](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#stream7)
 
 ### Typed results for Minimal APIs
 
@@ -136,7 +135,7 @@ The following code uses the [`Ok<TValue>`](/dotnet/api/microsoft.aspnetcore.http
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
-For more information, see [`IResult` implementation types](xref:fundamentals/minimal-apis/test-min-api#iit7).
+For more information, see [`IResult` implementation types](../fundamentals/minimal-apis/test-min-api.md#iit7).
 
 ### New HttpResult interfaces
 
@@ -147,9 +146,9 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
-* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
-For more information, see [IHttpResult interfaces](xref:fundamentals/minimal-apis/responses#httpresultinterfaces7).
+For more information, see [IHttpResult interfaces](../fundamentals/minimal-apis/responses.md#httpresultinterfaces7).
 
 ### OpenAPI improvements for Minimal APIs
 
@@ -169,9 +168,9 @@ The [`WithOpenApi`](https://github.com/dotnet/aspnetcore/blob/8a4b4deb09c04134f2
 
 #### Provide endpoint descriptions and summaries
 
-Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription%2A> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary%2A> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
+Minimal APIs now support annotating operations with descriptions and summaries for OpenAPI spec generation. You can call extension methods <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithDescription*> and <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.WithSummary*> or use attributes [[EndpointDescription]](xref:Microsoft.AspNetCore.Http.EndpointDescriptionAttribute) and [[EndpointSummary]](xref:Microsoft.AspNetCore.Http.EndpointSummaryAttribute)).
 
-For more information, see [OpenAPI in Minimal API apps](xref:fundamentals/openapi/aspnetcore-openapi?view=aspnetcore-7.0)
+For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true)
 
 ### File uploads using IFormFile and IFormFileCollection
 
@@ -185,7 +184,7 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 
 ### `[AsParameters]` attribute enables parameter binding for argument lists
 
-The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](xref:fundamentals/minimal-apis?view=aspnetcore-7.0&preserve-view=true#asparam7).
+The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) enables parameter binding for argument lists. For more information, see [Parameter binding for argument lists with `[AsParameters]`](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#asparam7).
 
 ## Minimal APIs and API controllers
 
@@ -193,7 +192,7 @@ The [`[AsParameters]` attribute](xref:Microsoft.AspNetCore.Http.AsParametersAttr
 
 The problem details service implements the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> interface, which supports creating [Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc7807.html).
 
-For more information, see [Problem details service](xref:fundamentals/error-handling-api#pds7).
+For more information, see [Problem details service](../fundamentals/error-handling-api.md#problem-details).
 
 ### Route groups
 
@@ -207,24 +206,24 @@ gRPC JSON transcoding is an extension for ASP.NET Core that creates RESTful JSON
 
 * Apps to call gRPC services with familiar HTTP concepts.
 * ASP.NET Core gRPC apps to support both gRPC and RESTful JSON APIs without replicating functionality.
-* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](xref:tutorials/get-started-with-swashbuckle).
+* Experimental support for generating OpenAPI from transcoded RESTful APIs by integrating with [Swashbuckle](../tutorials/getting-started-with-swashbuckle.md).
 
-For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](xref:grpc/json-transcoding?view=aspnetcore-7.0).
+For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](../grpc/json-transcoding.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### gRPC health checks in ASP.NET Core
 
 The [gRPC health checking protocol](https://github.com/grpc/grpc/blob/master/doc/health-checking.md) is a standard for reporting the health of gRPC server apps. An app exposes health checks as a gRPC service. They are typically used with an external monitoring service to check the status of an app.
 
-gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](xref:host-and-deploy/health-checks) are reported to callers.
+gRPC ASP.NET Core has added built-in support for gRPC health checks with the [`Grpc.AspNetCore.HealthChecks`](https://www.nuget.org/packages/Grpc.AspNetCore.HealthChecks) package. Results from [.NET health checks](../host-and-deploy/health-checks.md) are reported to callers.
 
-For more information, see <xref:grpc/health-checks>.
+For more information, see [gRPC health checks in ASP.NET Core](../grpc/health-checks.md).
 
 ### Improved call credentials support
 
 Call credentials are the recommended way to configure a gRPC client to send an auth token to the server. gRPC clients support two new features to make call credentials easier to use:
 
 * Support for call credentials with plaintext connections. Previously, a gRPC call only sent call credentials if the connection was secured with TLS. A new setting on `GrpcChannelOptions`, called `UnsafeUseInsecureChannelCallCredentials`, allows this behavior to be customized. There are security implications to not securing a connection with TLS.
-* A new method called `AddCallCredentials` is available with the [gRPC client factory](xref:grpc/clientfactory). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
+* A new method called `AddCallCredentials` is available with the [gRPC client factory](../grpc/clientfactory.md). `AddCallCredentials` is a quick way to configure call credentials for a gRPC client and integrates well with dependency injection (DI).
 
 The following code configures the gRPC client factory to send `Authorization` metadata:
 
@@ -244,7 +243,7 @@ builder.Services
     });
 ```
 
-For more information, see [Configure a bearer token with the gRPC client factory](xref:grpc/authn-and-authz#bearer-token-with-grpc-client-factory).
+For more information, see [Configure a bearer token with the gRPC client factory](../grpc/authn-and-authz.md#bearer-token-with-grpc-client-factory).
 
 ## SignalR
 
@@ -252,13 +251,13 @@ For more information, see [Configure a bearer token with the gRPC client factory
 
 The server now supports requesting a result from a client. This requires the server to use `ISingleClientProxy.InvokeAsync` and the client to return a result from its `.On` handler. Strongly-typed hubs can also return values from interface methods.
 
-For more information, see [Client results](xref:signalr/hubs?view=aspnetcore-7.0#client-results)
+For more information, see [Client results](../signalr/hubs.md?view=aspnetcore-7.0&preserve-view=true#request-client-results)
 
 ### Dependency injection for SignalR hub methods
 
 SignalR hub methods now support injecting services through dependency injection (DI).
 
-Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](xref:signalr/hubs?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
+Hub constructors can accept services from DI as parameters, which can be stored in properties on the class for use in a hub method. For more information, see [Inject services into a hub](../signalr/hubs.md?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-hub)
 
 ## Blazor
 
@@ -268,8 +267,8 @@ In .NET 7, Blazor supports location changing events and maintaining navigation s
 
 For more information, see the following sections of the *Routing and navigation* article:
 
-* [Navigation options](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#navigation-options)
-* [Handle/prevent location changes](xref:blazor/fundamentals/routing?view=aspnetcore-7.0#handleprevent-location-changes)
+* [Navigation options](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#navigation-options)
+* [Handle/prevent location changes](../blazor/fundamentals/navigation.md?view=aspnetcore-7.0&preserve-view=true#handleprevent-location-changes)
 
 ### Empty Blazor project templates
 
@@ -277,14 +276,14 @@ Blazor has two new project templates for starting from a blank slate. The new **
 
 For more information, see the following articles:
 
-* <xref:blazor/tooling?view=aspnetcore-7.0>
-* <xref:blazor/project-structure?view=aspnetcore-7.0>
+* [Tooling for ASP.NET Core Blazor](../blazor/tooling.md?view=aspnetcore-7.0&preserve-view=true)
+* [ASP.NET Core Blazor project structure](../blazor/project-structure.md?view=aspnetcore-7.0&preserve-view=true)
 
 ### Blazor custom elements
 
 The [`Microsoft.AspNetCore.Components.CustomElements`](https://www.nuget.org/packages/microsoft.aspnetcore.components.customelements) package enables building [standards based custom DOM elements](https://html.spec.whatwg.org/multipage/custom-elements.html#custom-elements) using Blazor.
 
-For more information, see <xref:blazor/components/index?view=aspnetcore-7.0#blazor-custom-elements>.
+For more information, see [ASP.NET Core Razor components](../blazor/components/js-spa-frameworks.md?view=aspnetcore-7.0&preserve-view=true#blazor-custom-elements).
 
 ### Bind modifiers (`@bind:after`, `@bind:get`, `@bind:set`)
 
@@ -369,14 +368,14 @@ Examples:
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
+For more information on the `InputText` component, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md).
 
 <!--
 
 For more information, see the following content in the *Data binding* article:
 
-* [Introduction](xref:blazor/components/data-binding?view=aspnetcore-7.0)
-* [Bind across more than two components](xref:blazor/components/data-binding?view=aspnetcore-7.0#bind-across-more-than-two-components)
+* [Introduction](../blazor/components/data-binding.md?view=aspnetcore-7.0)
+* [Bind across more than two components](../blazor/components/data-binding.md?view=aspnetcore-7.0#bind-across-more-than-two-components)
 
 -->
 
@@ -399,8 +398,8 @@ New in .NET 7, Blazor WebAssembly supports creating dynamic authentication reque
 
 For more information, see the following articles:
 
-* <xref:blazor/security/webassembly/index?view=aspnetcore-7.0#customize-authentication>
-* <xref:blazor/security/webassembly/additional-scenarios?view=aspnetcore-7.0#custom-authentication-request-scenarios>
+* [Secure ASP.NET Core Blazor WebAssembly](../blazor/security/webassembly/index.md?view=aspnetcore-7.0&preserve-view=true#customize-authentication)
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](../blazor/security/webassembly/additional-scenarios.md?view=aspnetcore-7.0&preserve-view=true#custom-authentication-request-scenarios)
 
 ### Blazor WebAssembly debugging improvements
 
@@ -435,13 +434,13 @@ For more information, see [Developers targeting browser-wasm can use Web Crypto 
 
 You can now inject services into custom validation attributes. Blazor sets up the `ValidationContext` so that it can be used as a service provider.
 
-For more information, see <xref:blazor/forms/validation?view=aspnetcore-7.0#inject-services-into-a-custom-validation-attribute>.
+For more information, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md?view=aspnetcore-7.0&preserve-view=true#inject-services-into-a-custom-validation-attribute).
 
 ### `Input*` components outside of an `EditContext`/`EditForm`
 
 The built-in input components are now supported outside of a form in Razor component markup.
 
-For more information, see <xref:blazor/forms/input-components?view=aspnetcore-7.0>.
+For more information, see [ASP.NET Core Blazor input components](../blazor/forms/input-components.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Project template changes
 
@@ -449,13 +448,13 @@ When .NET 6 was released last year, the HTML markup of the `_Host` page (`Pages/
 
 In .NET 7, the HTML markup has been recombined with the `_Host` page in project templates.
 
-Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see <xref:migration/60-to-70#blazor>.
+Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see [Migrate from ASP.NET Core in .NET 6 to .NET 7](../migration/60-to-70.md#blazor).
 
 ### Experimental `QuickGrid` component
 
 The new `QuickGrid` component provides a convenient data grid component for most common requirements and as a reference architecture and performance baseline for anyone building Blazor data grid components.
 
-For more information, see <xref:blazor/components/quickgrid>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../blazor/components/quickgrid.md).
 
 Live demo: [QuickGrid for Blazor sample app](https://aspnet.github.io/quickgridsamples/)
 
@@ -468,26 +467,26 @@ Virtualization enhancements in .NET 7:
 
 For more information, see the following sections of the *Virtualization* article:
 
-* [Root-level virtualization](xref:blazor/components/virtualization?view=aspnetcore-7.0#root-level-virtualization)
-* [Control the spacer element tag name](xref:blazor/components/virtualization?view=aspnetcore-7.0#control-the-spacer-element-tag-name)
+* [Root-level virtualization](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#root-level-virtualization)
+* [Control the spacer element tag name](../blazor/components/virtualization.md?view=aspnetcore-7.0&preserve-view=true#control-the-spacer-element-tag-name)
 
 ### `MouseEventArgs` updates
 
 `MovementX` and `MovementY` have been added to `MouseEventArgs`.
 
-For more information, see <xref:blazor/components/event-handling?view=aspnetcore-7.0#built-in-event-arguments>.
+For more information, see [ASP.NET Core Blazor event handling](../blazor/components/event-handling.md?view=aspnetcore-7.0&preserve-view=true#built-in-event-arguments).
 
 ### New Blazor loading page
 
 The Blazor WebAssembly project template has a new loading UI that shows the progress of loading the app.
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-7.0#loading-progress-indicators>.
+For more information, see [ASP.NET Core Blazor startup](../blazor/fundamentals/startup.md?view=aspnetcore-7.0&preserve-view=true#blazor-webassembly-app-loading-progress).
 
 ### Improved diagnostics for authentication in Blazor WebAssembly
 
 To help diagnose authentication issues in Blazor WebAssembly apps, detailed logging is available.
 
-For more information, see <xref:blazor/fundamentals/logging?view=aspnetcore-7.0#blazor-webassembly-authentication-logging>.
+For more information, see [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md?view=aspnetcore-7.0&preserve-view=true#client-side-authentication-logging).
 
 ### JavaScript interop on WebAssembly
 
@@ -495,8 +494,8 @@ JavaScript `[JSImport]`/`[JSExport]` interop API is a new low-level mechanism fo
 
 For more information:
 
-* <xref:blazor/js-interop/import-export-interop>: Pertains only to Blazor WebAssembly apps.
-* <xref:client-side/dotnet-interop/index>: Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../blazor/javascript-interoperability/import-export-interop.md): Pertains only to Blazor WebAssembly apps.
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](../client-side/dotnet-interop/index.md): Pertains only to JavaScript apps that don't depend on the Blazor UI component model.
 
 ### Conditional registration of the authentication state provider
 
@@ -518,7 +517,7 @@ New features in the `wasm-tools` workload for .NET 7 that help improve performan
 * [WebAssembly Single Instruction, Multiple Data (SIMD)](https://wikipedia.org/wiki/Single_instruction,_multiple_data) support (only with AOT, not supported by Apple Safari)
 * WebAssembly exception handling support
 
-For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
+For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../blazor/webassembly-build-tools-and-aot.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Blazor Hybrid
 
@@ -526,20 +525,20 @@ For more information, see <xref:blazor/tooling/webassembly?view=aspnetcore-7.0>.
 
 An option has been added that permits opening external webpages in the browser.
 
-For more information, see <xref:blazor/hybrid/routing?view=aspnetcore-7.0#external-navigation>.
+For more information, see [ASP.NET Core Blazor Hybrid routing and navigation](../blazor/hybrid/routing.md?view=aspnetcore-7.0&preserve-view=true#uri-request-routing-behavior).
 
 ### Security
 
 New guidance is available for Blazor Hybrid security scenarios. For more information, see the following articles:
 
-* <xref:blazor/hybrid/security/index?view=aspnetcore-7.0>
-* <xref:blazor/hybrid/security/security-considerations?view=aspnetcore-7.0>
+* [ASP.NET Core Blazor Hybrid authentication and authorization](../blazor/hybrid/security/index.md?view=aspnetcore-7.0&preserve-view=true)
+* [ASP.NET Core Blazor Hybrid security considerations](../blazor/hybrid/security/security-considerations.md?view=aspnetcore-7.0&preserve-view=true)
 
 ## Performance
 
 ### Output caching middleware
 
-Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](xref:performance/caching/overview#response-caching) in the following ways:
+Output caching is a new middleware that stores responses from a web app and serves them from a cache rather than computing them every time. Output caching differs from [response caching](../performance/caching/overview.md#response-caching) in the following ways:
 
 * The caching behavior is configurable on the server.
 * Cache entries can be programmatically invalidated.
@@ -547,7 +546,7 @@ Output caching is a new middleware that stores responses from a web app and serv
 * Cache revalidation means the server can return a `304 Not Modified` HTTP status code instead of a cached response body.
 * The cache storage medium is extensible.
 
-For more information, see [Overview of caching](xref:performance/caching/overview) and [Output caching middleware](xref:performance/caching/output).
+For more information, see [Overview of caching](../performance/caching/overview.md) and [Output caching middleware](../performance/caching/output.md).
 
 ### HTTP/3 improvements
 
@@ -556,7 +555,7 @@ This release:
 * Makes HTTP/3 fully supported by ASP.NET Core, it's no longer experimental.
 * Improves Kestrel's support for HTTP/3. The two main areas of improvement are feature parity with HTTP/1.1 and HTTP/2, and performance.
 * Provides full support for <xref:Microsoft.AspNetCore.Hosting.ListenOptionsHttpsExtensions.UseHttps(Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions,System.Security.Cryptography.X509Certificates.X509Certificate2)> with HTTP/3. Kestrel offers advanced options for configuring connection certificates, such as hooking into [Server Name Indication (SNI)](https://wikipedia.org/wiki/Server_Name_Indication).
-* Adds support for HTTP/3 on [HTTP.sys](xref:fundamentals/servers/httpsys) and [IIS](xref:host-and-deploy/iis/modules).
+* Adds support for HTTP/3 on [HTTP.sys](../fundamentals/servers/httpsys.md) and [IIS](../host-and-deploy/iis/modules.md).
 
 The following example shows how to use an SNI callback to resolve TLS options:
 
@@ -591,11 +590,11 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](xref:fundamentals/websockets?view=aspnetcore-7.0#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0&preserve-view=true#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 
-Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue%601> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
+Kestrel uses <xref:System.Collections.Concurrent.ConcurrentQueue`1> for many purposes. One purpose is scheduling I/O operations in Kestrel's default Socket transport. Partitioning the `ConcurrentQueue` based on the associated socket reduces contention and increases throughput on machines with many CPU cores.
 
 Profiling on high core machines on .NET 6 showed significant contention in one of Kestrel's other `ConcurrentQueue` instances, the `PinnedMemoryPool` that Kestrel uses to cache byte buffers.
 
@@ -617,9 +616,9 @@ The [`ServerReady`](https://github.com/dotnet/aspnetcore/blob/main/src/Hosting/H
 
 ### Shadow copying in IIS
 
-Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
+Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](../host-and-deploy/aspnet-core-module.md) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](../host-and-deploy/app-offline.md).
 
-For more information, see [Shadow copying in IIS](xref:host-and-deploy/iis/advanced?view=aspnetcore-7.0#shadow-copy).
+For more information, see [Shadow copying in IIS](../host-and-deploy/iis/advanced.md?view=aspnetcore-7.0&preserve-view=true#shadow-copy).
 
 ## Miscellaneous
 
@@ -673,7 +672,7 @@ The Angular project template has been updated to Angular 14. The React project t
 
 ### Manage JSON Web Tokens in development with dotnet user-jwts
 
-The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](xref:security/authentication/jwt?view=aspnetcore-7.0&preserve-view=true).
+The new `dotnet user-jwts` command line tool can create and manage app specific local [JSON Web Tokens](https://jwt.io/introduction) (JWTs). For more information, see [Manage JSON Web Tokens in development with dotnet user-jwts](../security/authentication/jwt-authn.md?view=aspnetcore-7.0&preserve-view=true).
 
 ### Support for additional request headers in W3CLogger
 
@@ -687,17 +686,17 @@ services.AddW3CLogging(logging =>
 });
 ```
 
-For more information, see [W3CLogger options](xref:fundamentals/w3c-logger/index#w3clogger-options-1).
+For more information, see [W3CLogger options](../fundamentals/w3c-logger/index.md#w3clogger-options-1).
 
 ### Request decompression
 
-The new [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true):
+The new [Request decompression middleware](../fundamentals/middleware/request-decompression.md?view=aspnetcore-7.0&preserve-view=true):
 
 * Enables API endpoints to accept requests with compressed content.
 * Uses the [`Content-Encoding`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Encoding) HTTP header to automatically identify and decompress requests which contain compressed content.
 * Eliminates the need to write code to handle compressed requests.
 
-For more information, see [Request decompression middleware](xref:fundamentals/middleware/request-decompression?view=aspnetcore-7.0&preserve-view=true).
+For more information, see [Request decompression middleware](../fundamentals/middleware/request-decompression.md?view=aspnetcore-7.0&preserve-view=true).
 
 ## Breaking changes
 

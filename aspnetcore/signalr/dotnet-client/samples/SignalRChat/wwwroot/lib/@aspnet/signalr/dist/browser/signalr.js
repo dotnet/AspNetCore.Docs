@@ -1,4 +1,4 @@
-/** 
+/**
  * @overview ASP.NET Core SignalR JavaScript Client.
  * @version 1.0.3.
  * @license
@@ -1305,9 +1305,9 @@ var Promise$2 = function () {
   /**
     `finally` will be invoked regardless of the promise's fate just as native
     try/catch/finally behaves
-  
+
     Synchronous example:
-  
+
     ```js
     findAuthor() {
       if (Math.random() > 0.5) {
@@ -1315,7 +1315,7 @@ var Promise$2 = function () {
       }
       return new Author();
     }
-  
+
     try {
       return findAuthor(); // succeed or fail
     } catch(error) {
@@ -1325,9 +1325,9 @@ var Promise$2 = function () {
       // doesn't affect the return value
     }
     ```
-  
+
     Asynchronous example:
-  
+
     ```js
     findAuthor().catch(function(reason){
       return findOtherAuther();
@@ -1335,7 +1335,7 @@ var Promise$2 = function () {
       // author was either found, or not
     });
     ```
-  
+
     @method finally
     @param {Function} callback
     @return {Promise}
@@ -2332,7 +2332,7 @@ var ITransport_2 = ITransport.TransferFormat;
 
 var AbortController_1 = createCommonjsModule(function (module, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
-// Rough polyfill of https://developer.mozilla.org/en-US/docs/Web/API/AbortController
+// Rough polyfill of https://developer.mozilla.org/docs/Web/API/AbortController
 // We don't actually ever use the API being polyfilled, we always use the polyfill because
 // it's a very new API right now.
 // Not exported from index.

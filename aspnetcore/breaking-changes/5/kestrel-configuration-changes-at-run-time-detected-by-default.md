@@ -48,7 +48,7 @@ public class Program
 
 ## New behavior
 
-Kestrel reacts to configuration changes at runtime by default. To support that change, <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> calls `KestrelServerOptions.Configure(IConfiguration, bool)` with `reloadOnChange: true` by default.
+Kestrel reacts to configuration changes at runtime by default. To support that change, <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> calls `KestrelServerOptions.Configure(IConfiguration, bool)` with `reloadOnChange: true` by default.
 
 ## Reason for change
 
@@ -92,7 +92,7 @@ It's also important to make sure the configuration source supports reloading. Fo
 
 ## Affected APIs
 
-<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A?displayProperty=nameWithType>
+<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*?displayProperty=nameWithType>
 
 <!--
 

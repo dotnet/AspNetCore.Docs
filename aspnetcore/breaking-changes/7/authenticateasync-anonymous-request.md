@@ -14,11 +14,11 @@ Remote authentication providers like OpenIdConnect, WsFederation, and OAuth have
 
 ## Previous behavior
 
-Previously, when <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> was called on a remote authentication provider and there was no current user, the call failed with a message similar to `OpenIdConnect was not authenticated. Failure message: Not authenticated`.
+Previously, when <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*> was called on a remote authentication provider and there was no current user, the call failed with a message similar to `OpenIdConnect was not authenticated. Failure message: Not authenticated`.
 
 ## New behavior
 
-Starting in .NET 7, <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A> returns <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.NoResult?displayProperty=nameWithType>, an anonymous identity.
+Starting in .NET 7, <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*> returns <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.NoResult?displayProperty=nameWithType>, an anonymous identity.
 
 ## Type of breaking change
 
@@ -33,8 +33,8 @@ The previous behavior:
 
 ## Recommended action
 
-If you have code that directly invokes <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A>, check it to ensure it properly handles <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.NoResult?displayProperty=nameWithType> and anonymous or empty <xref:System.Security.Claims.ClaimsIdentity> instances.
+If you have code that directly invokes <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*>, check it to ensure it properly handles <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.NoResult?displayProperty=nameWithType> and anonymous or empty <xref:System.Security.Claims.ClaimsIdentity> instances.
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*?displayProperty=fullName>

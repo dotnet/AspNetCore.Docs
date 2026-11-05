@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about memory management in Kestrel, including automatic eviction from memory pools and using memory pool metrics.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/29/2026
-uid: fundamentals/servers/kestrel/memory-management
 ---
 
 # Memory management in Kestrel
@@ -23,7 +22,7 @@ This automatic eviction feature reduces overall memory usage and helps applicati
 
 The default memory pool used by the ASP.NET Core server implementations includes metrics, which can be used to monitor and analyze memory usage patterns. The metrics are under the name `"Microsoft.AspNetCore.MemoryPool"`.
 
-For information about metrics and how to use them, see <xref:metrics/overview>.
+For information about metrics and how to use them, see [ASP.NET Core metrics](../../../metrics/overview.md).
 
 ## Manage memory pools
 

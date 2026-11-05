@@ -1,6 +1,6 @@
 ### ASP.NET Core Identity metrics
 
-[ASP.NET Core Identity](xref:security/authentication/identity) observability has been improved in .NET 10 with metrics. Metrics are counters, histograms, and gauges that provide time-series measurements of system or application behavior.
+[ASP.NET Core Identity](../../../security/authentication/identity.md) observability has been improved in .NET 10 with metrics. Metrics are counters, histograms, and gauges that provide time-series measurements of system or application behavior.
 
 For example, use the new ASP.NET Core Identity metrics to observe:
 
@@ -22,4 +22,4 @@ The new metrics are in the `Microsoft.AspNetCore.Identity` meter:
 * `aspnetcore.identity.sign_in.two_factor_clients_remembered`
 * `aspnetcore.identity.sign_in.two_factor_clients_forgotten`
 
-For more information about using metrics in ASP.NET Core, see <xref:metrics/overview>.
+For more information about using metrics in ASP.NET Core, see [ASP.NET Core metrics](../../../metrics/overview.md).

@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization for YARP routes.
 ms.date: 09/18/2026
 ms.topic: concept-article
-uid: fundamentals/servers/yarp/authn-authz
 ---
 
 # YARP authentication and authorization
@@ -67,7 +66,7 @@ app.UseAuthorization();
 app.MapReverseProxy();
 ```
 
-See <xref:security/authentication/index> for setting up your preferred type of authentication.
+See [Overview of ASP.NET Core Authentication](../../../security/authentication/index.md) for setting up your preferred type of authentication.
 
 ### Special values
 
@@ -75,7 +74,7 @@ In addition to custom policy names, YARP supports two special values for a route
 
 #### `default`
 
-The `default` value uses the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy%2A?displayProperty=nameWithType>. By default, this policy requires an authenticated user.
+The `default` value uses the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.DefaultPolicy?displayProperty=nameWithType>. By default, this policy requires an authenticated user.
 
 #### `anonymous`
 
@@ -83,7 +82,7 @@ The `anonymous` value allows anonymous access to the route regardless of the con
 
 #### Fallback policy
 
-The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy%2A?displayProperty=nameWithType> is used for a route that doesn't specify an authorization parameter. By default, the fallback policy is `null`, so such a route doesn't require authorization. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> is used for a route that doesn't specify an authorization parameter. By default, the fallback policy is `null`, so such a route doesn't require authorization. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#default-and-fallback-policies).
 
 ## Flowing Credentials
 
@@ -103,10 +102,10 @@ These authentication types are often bound to a specific connection. They are no
 
 ### Client Certificates
 
-Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](xref:fundamentals/servers/yarp/transforms#clientcert) transform.
+Client certificates are a TLS feature and are negotiated as part of a connection. See [these docs](/aspnet/core/security/authentication/certauth) for additional information. The certificate can be forwarded to the destination server as an HTTP header using the [ClientCert](transforms-request.md#clientcert) transform.
 
 ### Swapping authentication types
 
 Authentication types like Windows that don't flow naturally to the destination server will need to be converted in the proxy to an alternate form. For example a JWT bearer token can be created with the user information and set on the proxy request.
 
-These swaps can be performed using [custom request transforms](xref:fundamentals/servers/yarp/transforms#from-code). Detailed examples can be developed for specific scenarios if there is enough community interest. We need more community feedback on how you want to convert and flow identity information.
+These swaps can be performed using [custom request transforms](transforms.md#from-code). Detailed examples can be developed for specific scenarios if there is enough community interest. We need more community feedback on how you want to convert and flow identity information.

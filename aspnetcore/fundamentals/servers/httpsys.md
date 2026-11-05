@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 07/29/2026
-uid: fundamentals/servers/httpsys
 ---
 # HTTP.sys web server implementation in ASP.NET Core
 
@@ -14,14 +13,14 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.co
 
 :::moniker range=">= aspnetcore-10.0"
 
-[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](xref:fundamentals/servers/index) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](xref:fundamentals/servers/kestrel) server and offers some features that Kestrel doesn't provide.
+[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](index.md) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](kestrel.md) server and offers some features that Kestrel doesn't provide.
 
 > [!IMPORTANT]
-> HTTP.sys isn't compatible with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) and can't be used with IIS or IIS Express.
+> HTTP.sys isn't compatible with the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) and can't be used with IIS or IIS Express.
 
 HTTP.sys supports the following features:
 
-* [Windows Authentication](xref:security/authentication/windowsauth)
+* [Windows Authentication](../../security/authentication/windowsauth.md)
 * Port sharing
 * HTTPS with SNI
 * HTTP/2 over TLS (Windows 10 or later)
@@ -37,7 +36,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](../index.md#how-to-download-a-sample))
 
 ## When to use HTTP.sys
 
@@ -47,7 +46,7 @@ HTTP.sys is useful for deployments where:
 
   ![HTTP.sys communicates directly with the Internet](httpsys/_static/httpsys-to-internet.png)
 
-* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](xref:fundamentals/servers/index#kestrel-vs-httpsys)
+* An internal deployment requires a feature not available in Kestrel. For more information, see [Kestrel vs. HTTP.sys](index.md#kestrel-vs-httpsys)
 
   ![HTTP.sys communicates directly with the internal network](httpsys/_static/httpsys-to-internal.png)
 
@@ -61,7 +60,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 * [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) connection
 * TLS 1.2 or later connection
 
-If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol%2A) reports `HTTP/2`.
+If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
 HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the connection falls back to HTTP/1.1. In a future release of Windows, HTTP/2 configuration flags will be available, including the ability to disable HTTP/2 with HTTP.sys.
 
@@ -130,7 +129,7 @@ Apps that use asynchronous I/O and that may have more than one write outstanding
 
 ### Configure the ASP.NET Core app to use HTTP.sys
 
-Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys%2A> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
+Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
 :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
 
@@ -318,7 +317,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 ## Proxy server and load balancer scenarios
 
-For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md).
 
 <a name="ihsrtf8"></a>
 
@@ -336,7 +335,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
-[IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp%2A) retrieves the timestamp for the provided timing type:
+[IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*) retrieves the timestamp for the provided timing type:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
@@ -374,8 +373,8 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 ## Related content
 
-* [Enable Windows Authentication with HTTP.sys](xref:security/authentication/windowsauth#httpsys)
+* [Enable Windows Authentication with HTTP.sys](../../security/authentication/windowsauth.md#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
 * [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
-* [The host](xref:fundamentals/index#host)
-* <xref:test/troubleshoot>
+* [The host](../index.md#host)
+* [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)

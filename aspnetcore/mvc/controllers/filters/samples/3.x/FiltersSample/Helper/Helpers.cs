@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Encodings.Web;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiltersSample.Helper
 {
@@ -16,7 +17,7 @@ namespace FiltersSample.Helper
 
             return new ContentResult()
             {
-                Content = content,
+                Content = HtmlEncoder.Default.Encode(content),
                 ContentType = "text/html"
             };
         }

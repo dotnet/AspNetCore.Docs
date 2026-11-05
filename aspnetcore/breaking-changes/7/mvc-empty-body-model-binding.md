@@ -7,7 +7,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/484
 
 # MVC's detection of an empty body in model binding changed
 
-The mechanism to detect an empty request body during MVC model binding now uses <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody%2A?displayProperty=nameWithType>. This property is set to:
+The mechanism to detect an empty request body during MVC model binding now uses <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody?displayProperty=nameWithType>. This property is set to:
 
 * `true`:
   * For `HTTP/1.x` requests with a non-zero `Content-Length` request header or a `Transfer-Encoding: chunked` request header.
@@ -55,7 +55,7 @@ The following example JSON shows the previous exception formatted as a <xref:Mic
 
 ## New behavior
 
-Deserialization is no longer attempted if <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody%2A?displayProperty=nameWithType> is `false`. The following example <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response shows how the error message returned to clients indicates that the request body is empty:
+Deserialization is no longer attempted if <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody?displayProperty=nameWithType> is `false`. The following example <xref:Microsoft.AspNetCore.Mvc.ProblemDetails> response shows how the error message returned to clients indicates that the request body is empty:
 
 ```json
 {
@@ -80,7 +80,7 @@ This change affects [binary compatibility](/dotnet/core/compatibility/categories
 
 ## Reason for change
 
-To align with other parts of the framework that use <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody%2A?displayProperty=nameWithType> and to fix [Optional `[FromBody]` Model Binding is not working (dotnet/aspnetcore #29570)](https://github.com/dotnet/aspnetcore/issues/29570).
+To align with other parts of the framework that use <xref:Microsoft.AspNetCore.Http.Features.IHttpRequestBodyDetectionFeature.CanHaveBody?displayProperty=nameWithType> and to fix [Optional `[FromBody]` Model Binding is not working (dotnet/aspnetcore #29570)](https://github.com/dotnet/aspnetcore/issues/29570).
 
 ## Recommended action
 

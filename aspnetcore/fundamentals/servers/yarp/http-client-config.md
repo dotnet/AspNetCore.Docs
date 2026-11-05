@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/http-client-config
 title: YARP HTTP Client Configuration
 description: YARP HTTP Client Configuration
 ms.date: 11/01/2025
@@ -22,7 +21,7 @@ The configuration is represented differently if you're using the [IConfiguration
 These types are focused on defining serializable configuration. The code based configuration model is described below in the "Code Configuration" section.
 
 ### HttpClient
-HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig) and represented by the following configuration schema. If you need a more granular approach, use a <!--check link--> [custom implementation](xref:fundamentals/servers/yarp/http-client-config#custom-iforwarderhttpclientfactory) of `IForwarderHttpClientFactory`.
+HTTP client configuration is based on [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig) and represented by the following configuration schema. If you need a more granular approach, use a <!--check link--> [custom implementation](http-client-config.md#custom-iforwarderhttpclientfactory) of `IForwarderHttpClientFactory`.
 
 <!-- original linke [custom implementation](https://microsoft.github.io/reverse-proxy/articles/http-client-config.html#custom-iforwarderhttpclientfactory) -->
 ```json
@@ -165,7 +164,7 @@ The below example shows 2 samples of HTTP client and request configurations for 
 ## Code Configuration
 HTTP client configuration uses the type [HttpClientConfig](xref:Yarp.ReverseProxy.Configuration.HttpClientConfig).
 
-The following is an example of `HttpClientConfig` using [code based](xref:fundamentals/servers/yarp/config-providers) configuration. An instance of `HttpClientConfig` is assigned to the [ClusterConfig.HttpClient](xref:Yarp.ReverseProxy.Configuration.ClusterConfig) property before passing the cluster array to `LoadFromMemory` method.
+The following is an example of `HttpClientConfig` using [code based](config-providers.md) configuration. An instance of `HttpClientConfig` is assigned to the [ClusterConfig.HttpClient](xref:Yarp.ReverseProxy.Configuration.ClusterConfig) property before passing the cluster array to `LoadFromMemory` method.
 
 ```csharp
 var routes = new[]

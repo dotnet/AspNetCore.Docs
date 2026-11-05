@@ -3,7 +3,6 @@ title: Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Sto
 description: Learn how to host and deploy standalone Blazor WebAssembly using Microsoft Azure Storage.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/webassembly/azure-storage
 ---
 # Host and deploy ASP.NET Core standalone Blazor WebAssembly with Azure Storage
 

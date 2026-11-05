@@ -13,7 +13,7 @@ When cached data is distributed, the data:
 
 Distributed cache configuration is implementation specific. This article describes how to configure SQL Server,  Redis, and Postgres distributed caches. Third party implementations are also available, such as [NCache](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache)). Regardless of which implementation is selected, the app interacts with the cache using the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/distributed/samples/) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -85,7 +85,7 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 [!code-csharp[](~/performance/caching/distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
-> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString*> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName*> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName*>) are typically stored outside of source control (for example, stored by the [Secret Manager](xref:security/app-secrets) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
+> A <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control (for example, stored by the [Secret Manager](../../../../security/app-secrets.md) or in `appsettings.json`/`appsettings.{Environment}.json` files). The connection string may contain credentials that should be kept out of source control systems.
 
 ### Distributed Redis Cache
 
@@ -94,8 +94,8 @@ The sample app implements <xref:Microsoft.Extensions.Caching.SqlServer.SqlServer
 An app configures the cache implementation using a <xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCache> instance (<xref:Microsoft.Extensions.DependencyInjection.StackExchangeRedisCacheServiceCollectionExtensions.AddStackExchangeRedisCache*>).
 
   1. Create an Azure Cache for Redis.
-  1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](xref:fundamentals/configuration/index).
-     * Local development: Save the connection string with [Secret Manager](xref:security/app-secrets#secret-manager).
+  1. Copy the Primary connection string (StackExchange.Redis) to [Configuration](../../../../fundamentals/configuration/index.md).
+     * Local development: Save the connection string with [Secret Manager](../../../../security/app-secrets.md#secret-manager).
      * Azure: Save the connection string in a secure store such as [Azure Key Vault](/azure/key-vault/general/overview)
 
 The following code enables the Azure Cache for Redis:
@@ -200,9 +200,9 @@ To configure NCache:
 
 ## Use the distributed cache
 
-To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, request an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> from any constructor in the app. The instance is provided by [dependency injection (DI)](xref:fundamentals/dependency-injection).
+To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> interface, request an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> from any constructor in the app. The instance is provided by [dependency injection (DI)](../../../../fundamentals/dependency-injection.md).
 
-When the sample app starts, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is injected into `Startup.Configure`. The current time is cached using <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (for more information, see [Generic Host: IHostApplicationLifetime](xref:fundamentals/host/generic-host#ihostapplicationlifetime)):
+When the sample app starts, <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> is injected into `Startup.Configure`. The current time is cached using <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> (for more information, see [Generic Host: IHostApplicationLifetime](../../../../fundamentals/host/generic-host.md#ihostapplicationlifetime)):
 
 [!code-csharp[](~/performance/caching/distributed/samples/3.x/DistCacheSample/Startup.cs?name=snippet_Configure&highlight=10)]
 
@@ -240,12 +240,12 @@ When SQL Server is used as a distributed cache backing store, use of the same da
 * [SQL Database on Azure](/azure/sql-database/)
 * [Azure Database for PostgreSQL](/azure/postgresql/)
 * [ASP.NET Core IDistributedCache Provider for NCache in Web Farms](http://www.alachisoft.com/ncache/aspnet-core-idistributedcache-ncache.html) ([NCache on GitHub](https://github.com/Alachisoft/NCache))
-* <xref:performance/caching/memory>
-* <xref:fundamentals/change-tokens>
-* <xref:performance/caching/response>
-* <xref:performance/caching/middleware>
-* <xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper>
-* <xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper>
-* <xref:host-and-deploy/web-farm>
+* [Cache in-memory in ASP.NET Core](../../memory.md)
+* [Detect changes with change tokens in ASP.NET Core](../../../../fundamentals/change-tokens.md)
+* [Response caching in ASP.NET Core](../../response.md)
+* [Response caching middleware in ASP.NET Core](../../middleware.md)
+* [Cache Tag Helper in ASP.NET Core MVC](../../../../mvc/views/tag-helpers/built-in/cache-tag-helper.md)
+* [Distributed Cache Tag Helper in ASP.NET Core](../../../../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

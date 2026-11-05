@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/412
 ---
 # SignalR: UseSignalR and UseConnections methods removed
 
-In ASP.NET Core 3.0, SignalR adopted endpoint routing. As part of that change, the <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A>, <xref:Microsoft.AspNetCore.Builder.ConnectionsAppBuilderExtensions.UseConnections%2A>, and some related methods were marked as obsolete. In ASP.NET Core 5.0, those obsolete methods were removed. For the full list of methods, see [Affected APIs](#affected-apis).
+In ASP.NET Core 3.0, SignalR adopted endpoint routing. As part of that change, the <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR*>, <xref:Microsoft.AspNetCore.Builder.ConnectionsAppBuilderExtensions.UseConnections*>, and some related methods were marked as obsolete. In ASP.NET Core 5.0, those obsolete methods were removed. For the full list of methods, see [Affected APIs](#affected-apis).
 
 For discussion on this issue, see [dotnet/aspnetcore#20082](https://github.com/dotnet/aspnetcore/issues/20082).
 
@@ -20,7 +20,7 @@ SignalR hubs and connection handlers could be registered in the middleware pipel
 
 ## New behavior
 
-SignalR hubs and connection handlers should be registered within <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints%2A> using the <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A> and <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnectionHandler%2A> extension methods on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
+SignalR hubs and connection handlers should be registered within <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> using the <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*> and <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnectionHandler*> extension methods on <xref:Microsoft.AspNetCore.Routing.IEndpointRouteBuilder>.
 
 ## Reason for change
 
@@ -52,11 +52,11 @@ In general, your previous `MapHub` and `MapConnectionHandler` calls can be trans
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Builder.ConnectionsAppBuilderExtensions.UseConnections%2A?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR%2A?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnections%2A?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnectionHandler%2A?displayProperty=nameWithType>
-- <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub%2A?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Builder.ConnectionsAppBuilderExtensions.UseConnections*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Builder.SignalRAppBuilderExtensions.UseSignalR*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnections*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.Http.Connections.ConnectionsRouteBuilder.MapConnectionHandler*?displayProperty=nameWithType>
+- <xref:Microsoft.AspNetCore.SignalR.HubRouteBuilder.MapHub*?displayProperty=nameWithType>
 
 <!--
 
