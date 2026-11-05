@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: concept-article
 ms.date: 03/01/2025
-uid: fundamentals/aot/rdg
 ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
@@ -25,7 +24,7 @@ The ASP.NET Core Request Delegate Generator (RDG) is a compile-time source gener
 The RDG:
 
 * Is a [source generator](/dotnet/csharp/roslyn-sdk/source-generators-overview).
-* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions>, such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch%2A>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut%2A>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete%2A>.
+* Turns each `Map` method into a <xref:Microsoft.AspNetCore.Http.RequestDelegate> associated with the specific route. `Map` methods include the methods in the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions>, such as <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPost*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPatch*>, <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapPut*>, and <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapDelete*>.
 
 When publishing and Native AOT is ***not*** enabled:
 
@@ -78,4 +77,4 @@ Minimal APIs are optimized for using <xref:System.Text.Json>, which requires usi
 
 ## Diagnostics for unsupported RDG scenarios
 
-When the app is built, the RDG emits diagnostics for scenarios that aren't supported by Native AOT. The diagnostics are emitted as warnings and don't prevent the app from building. For the list of diagnostics, see [ASP.NET Core Request Delegate Generator diagnostics](xref:fundamentals/aot/request-delegate-generator/rdg-ids).
+When the app is built, the RDG emits diagnostics for scenarios that aren't supported by Native AOT. The diagnostics are emitted as warnings and don't prevent the app from building. For the list of diagnostics, see [ASP.NET Core Request Delegate Generator diagnostics](rdg-ids.md).

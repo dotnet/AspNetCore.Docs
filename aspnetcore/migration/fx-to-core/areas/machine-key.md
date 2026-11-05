@@ -6,14 +6,13 @@ monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/10/2025
 ms.reviewer: tasou
 ms.topic: concept-article
-uid: migration/fx-to-core/areas/machine-key
 ---
 
 # Migrate ASP.NET machineKey by using System.Web adapters
 
 [!INCLUDE[](~/migration/fx-to-core/includes/uses-systemweb-adapters.md)]
 
-In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapters host so that both apps can share a compatible data protection configuration. For full background on replacing `<machineKey>`, see <xref:security/data-protection/compatibility/replacing-machinekey>.
+In the ASP.NET Framework app, configure `<machineKey>` and the System.Web adapters host so that both apps can share a compatible data protection configuration. For full background on replacing `<machineKey>`, see [Replace the ASP.NET machineKey in ASP.NET Core](../../../security/data-protection/compatibility/replacing-machinekey.md).
 
 This guidance builds on the `System.Web` adapters hosting model so that data protection services are registered in the host dependency injection (DI) container and made available throughout the ASP.NET Framework app. By integrating with the host DI provided by the adapters, existing ASP.NET Framework components can resolve `IDataProtectionProvider`, `IDataProtector`, and related types.
 
@@ -23,7 +22,7 @@ Both the ASP.NET Framework app and the ASP.NET Core app must use a shared applic
 * Configure `PersistKeysToFileSystem` to point to the same key repository location that both apps can read and write.
 
 > [!NOTE]
-> The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in <xref:security/data-protection/configuration/overview> and <xref:security/data-protection/introduction>.
+> The directory used with `PersistKeysToFileSystem` is the backing store for the shared data protection keys. In production, use a durable, shared store (such as a UNC share, Redis, or Azure Blob Storage) and follow the key management guidance in [Configure ASP.NET Core Data Protection](../../../security/data-protection/configuration/overview.md) and [ASP.NET Core Data Protection Overview](../../../security/data-protection/introduction.md).
 
 ## Configure the ASP.NET Framework app
 

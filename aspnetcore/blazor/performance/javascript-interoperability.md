@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor JavaScript interoperability (JS interop) performance 
 description: Tips for improving JS interop performance in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/js-interop
 ---
 # ASP.NET Core Blazor JavaScript interoperability (JS interop) performance best practices
 
@@ -109,6 +108,6 @@ function jsInteropCall() {
 
 JavaScript `[JSImport]`/`[JSExport]` interop for Blazor WebAssembly apps offers improved performance and stability over the JS interop API in framework releases prior to ASP.NET Core in .NET 7.
 
-For more information, see <xref:blazor/js-interop/import-export-interop>.
+For more information, see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../javascript-interoperability/import-export-interop.md).
 
 :::moniker-end

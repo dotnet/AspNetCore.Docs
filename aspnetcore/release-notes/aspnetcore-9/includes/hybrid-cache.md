@@ -133,4 +133,4 @@ else.
 
 `HybridCache` supports older .NET runtimes, down to .NET Framework 4.7.2 and .NET Standard 2.0.
 
-For more information about `HybridCache`, see <xref:performance/caching/hybrid>
+For more information about `HybridCache`, see [HybridCache library in ASP.NET Core](../../../performance/caching/hybrid.md)

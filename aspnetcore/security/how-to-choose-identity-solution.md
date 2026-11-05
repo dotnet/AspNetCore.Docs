@@ -4,25 +4,24 @@ description: A guide to help choose the right identity management solution for a
 ms.reviewer: jeliknes
 ms.topic: how-to
 ms.date: 07/21/2026
-uid: security/how-to-choose-identity
 ---
 # Choose an identity management solution
 
-Most web apps support authentication to ensure that users are who they claim to be. A *user* might be a person or another app. Management of access ensures users are only able to see and modify the information they're authorized to see and modify. For example, an end user shouldn't have access to the administrative section of a website. Identity management solutions are built to handle the requirements of authentication and authorization-related tasks. To learn more about identity management, see [What is identity and access management?](/azure/active-directory/fundamentals/introduction-identity-access-management). Many [identity management solutions for .NET web apps](xref:security/identity-management-solutions) are available, each with different capabilities and requirements to use or install. This article provides guidance on how to choose the right solution.
+Most web apps support authentication to ensure that users are who they claim to be. A *user* might be a person or another app. Management of access ensures users are only able to see and modify the information they're authorized to see and modify. For example, an end user shouldn't have access to the administrative section of a website. Identity management solutions are built to handle the requirements of authentication and authorization-related tasks. To learn more about identity management, see [What is identity and access management?](/azure/active-directory/fundamentals/introduction-identity-access-management). Many [identity management solutions for .NET web apps](identity-management-solutions.md) are available, each with different capabilities and requirements to use or install. This article provides guidance on how to choose the right solution.
 
 ## Basic identity management with ASP.NET Core Identity
 
-ASP.NET Core includes the built-in [ASP.NET Core Identity](xref:security/authentication/identity) authentication provider. The provider includes the APIs, UI, and backend database configuration to support managing user identities, storing user credentials, and granting or revoking permissions. Additional features include:
+ASP.NET Core includes the built-in [ASP.NET Core Identity](authentication/identity.md) authentication provider. The provider includes the APIs, UI, and backend database configuration to support managing user identities, storing user credentials, and granting or revoking permissions. Additional features include:
 
-* [External logins](xref:security/authentication/social/index)
-* [Multi-factor authentication (MFA)](xref:security/authentication/mfa)
-* [Password management](xref:security/authentication/accconfirm)
+* [External logins](authentication/social/index.md)
+* [Multi-factor authentication (MFA)](authentication/mfa.md)
+* [Password management](authentication/accconfirm.md)
 * Account lockout and reactivation
 * Authenticator apps
 
 For most scenarios, this may be the only provider needed. In other scenarios, a server or service that manages authentication and identity may be beneficial.
 
-For more information, see <xref:security/authentication/identity>.
+For more information, see [Introduction to Identity on ASP.NET Core](authentication/identity.md).
 
 ## Determine if an OIDC server is needed
 
@@ -55,7 +54,7 @@ For apps that don't share logins with other apps, the simplest way to quickly se
 * Containers run in a host like Docker.
 * Web-based services you integrate with to manage identity.
 
-Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](xref:security/identity-management-solutions) for a list of available options. It's possible that your organization already uses an identity provider. In that case, it may make sense to use the existing provider instead of going with a different solution. All of the major solutions provide documentation for configuring ASP.NET Core to use their product or service.
+Some solutions are free and open source, while others are commercially licensed. See [identity management solutions](identity-management-solutions.md) for a list of available options. It's possible that your organization already uses an identity provider. In that case, it may make sense to use the existing provider instead of going with a different solution. All of the major solutions provide documentation for configuring ASP.NET Core to use their product or service.
 
 ## Disconnected scenarios
 
@@ -99,7 +98,7 @@ The following table lists some of the things to consider when choosing your iden
 |**Maintenance**|Installed products require a dedicated resource to ensure all security patches are applied in a timely fashion and to manage upgrades. The upgrade and patch process for containers is usually lower-friction and involves simply installing the provided container image.|The service provider maintains their cloud-based solution, including applying needed patches and handling upgrades.|
 |**User credentials storage**|You are responsible for data governance and handling breaches.|Managing the risks associated with handling user credentials, and complying with regulations. is delegated to the service provider.|
 
-For more information about available options, see [Identity management solutions for ASP.NET Core](xref:security/identity-management-solutions).
+For more information about available options, see [Identity management solutions for ASP.NET Core](identity-management-solutions.md).
 
 ## Next steps
 

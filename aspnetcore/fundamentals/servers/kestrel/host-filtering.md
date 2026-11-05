@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about using host filtering with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 05/04/2020
-uid: fundamentals/servers/kestrel/host-filtering
 ---
 
 # Host filtering with ASP.NET Core Kestrel web server
@@ -13,7 +12,7 @@ uid: fundamentals/servers/kestrel/host-filtering
 
 While Kestrel supports configuration based on prefixes such as `http://example.com:5000`, Kestrel largely ignores the host name. Host `localhost` is a special case used for binding to loopback addresses. Any host other than an explicit IP address binds to all public IP addresses. `Host` headers aren't validated.
 
-As a workaround, use host-filtering middleware. The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering%2A>:
+As a workaround, use host-filtering middleware. The middleware is added by <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>, which calls <xref:Microsoft.AspNetCore.Builder.HostFilteringServicesExtensions.AddHostFiltering*>:
 
 [!code-csharp[](samples/snapshot/2.x/KestrelSample/Program.cs?name=snippet_Program&highlight=9)]
 
@@ -28,6 +27,6 @@ Host-filtering middleware is disabled by default. To enable the middleware, defi
 ```
 
 > [!NOTE]
-> [Forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded headers middleware and host-filtering middleware have similar functionality for different scenarios. Setting `AllowedHosts` with forwarded headers middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with host-filtering middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
+> [Forwarded headers middleware](../../../host-and-deploy/proxy-load-balancer.md) also has an <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.AllowedHosts> option. Forwarded headers middleware and host-filtering middleware have similar functionality for different scenarios. Setting `AllowedHosts` with forwarded headers middleware is appropriate when the `Host` header isn't preserved while forwarding requests with a reverse proxy server or load balancer. Setting `AllowedHosts` with host-filtering middleware is appropriate when Kestrel is used as a public-facing edge server or when the `Host` header is directly forwarded.
 >
-> For more information on forwarded headers middleware, see <xref:host-and-deploy/proxy-load-balancer>.
+> For more information on forwarded headers middleware, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md).

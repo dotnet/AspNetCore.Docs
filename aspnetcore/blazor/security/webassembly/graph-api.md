@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use the Microsoft Graph SDK/API with Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/09/2026
-uid: blazor/security/webassembly/graph-api
 zone_pivot_groups: blazor-graph-api
 ---
 # Use Graph API with ASP.NET Core Blazor WebAssembly
@@ -17,21 +16,21 @@ Two approaches are covered:
 
 * **Graph SDK**: The [Microsoft Graph SDK](/graph/sdks/sdks-overview) simplifies building high-quality, efficient, and resilient apps that access Microsoft Graph. Select the **Graph SDK** button at the top of this article to adopt this approach.
 
-* **Named HttpClient with Graph API**: A [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
+* **Named HttpClient with Graph API**: A [named `HttpClient`](../../call-web-api.md#named-httpclient-with-ihttpclientfactory) can issue [Microsoft Graph API](/graph/use-the-api) requests directly to Microsoft Graph. Select the **Named HttpClient with Graph API** button at the top of this article to adopt this approach.
 
 The guidance in this article isn't meant to replace the [Microsoft Graph documentation](/graph/) and Azure security guidance in other Microsoft documentation sets. Assess the security guidance in the [Related content](#related-content) section of this article before implementing Microsoft Graph in a production environment. Follow Microsoft's best practices to limit the vulnerabilities of your apps.
 
 Additional approaches for working with Microsoft Graph and Blazor WebAssembly are provided by the following Microsoft Graph and Azure samples:
 
-* [Microsoft Graph sample Blazor WebAssembly app](https://github.com/microsoftgraph/msgraph-sample-blazor-clientside): The sample adopts a factory-based approach with the [Microsoft Graph SDK](/graph/sdks/sdks-overview) to obtain Office 365 data. The sample uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. If you need to use the default <xref:System.Net.Http.HttpClient> with the base address of the app (`BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)`) for other purposes, for example to load data from the web root of the app, consider refactoring the Graph client factory to use a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
-* [ASP.NET Core in .NET 8 Blazor WebAssembly | standalone app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-docs-code-dotnet/tree/main/spa-blazor-wasm): The sample is a [Progressive Web Application (PWA)](xref:blazor/progressive-web-app/index) that uses an authorization message handler and <xref:System.Net.Http.HttpClient> to obtain Graph data. As with the preceding sample, this sample also uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. Instead of using the Microsoft Graph SDK, the sample retrieves user account data as JSON via a [Microsoft Graph API](/graph/use-the-api) request in a component. This is a similar technique to the **Named HttpClient with Graph API** approach in this article (use the button at the top of this article to see the guidance), except that this article's guidance uses a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
+* [Microsoft Graph sample Blazor WebAssembly app](https://github.com/microsoftgraph/msgraph-sample-blazor-clientside): The sample adopts a factory-based approach with the [Microsoft Graph SDK](/graph/sdks/sdks-overview) to obtain Office 365 data. The sample uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. If you need to use the default <xref:System.Net.Http.HttpClient> with the base address of the app (`BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)`) for other purposes, for example to load data from the web root of the app, consider refactoring the Graph client factory to use a [named `HttpClient`](../../call-web-api.md#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
+* [ASP.NET Core in .NET 8 Blazor WebAssembly | standalone app | user sign-in, protected web API access (Microsoft Graph) | Microsoft identity platform](https://github.com/Azure-Samples/ms-identity-docs-code-dotnet/tree/main/spa-blazor-wasm): The sample is a [Progressive Web Application (PWA)](../../progressive-web-app/index.md) that uses an authorization message handler and <xref:System.Net.Http.HttpClient> to obtain Graph data. As with the preceding sample, this sample also uses a default <xref:System.Net.Http.HttpClient> to make Graph client requests. Instead of using the Microsoft Graph SDK, the sample retrieves user account data as JSON via a [Microsoft Graph API](/graph/use-the-api) request in a component. This is a similar technique to the **Named HttpClient with Graph API** approach in this article (use the button at the top of this article to see the guidance), except that this article's guidance uses a [named `HttpClient`](../../call-web-api.md#named-httpclient-with-ihttpclientfactory) dedicated to Graph requests.
 
 To provide feedback on either of the preceding two samples, open an issue on the sample's GitHub repository. If you're opening an issue for the Azure sample, provide a link to the sample in your opening comment because the Azure sample repository (`Azure-Samples`) contains many samples. Describe the problem in detail and include sample code as needed. Place a minimal app into GitHub that reproduces the problem or error. Be sure to remove Azure account configuration data from the sample before you commit it to the public repository.
 
-To provide feedback or seek assistance with this article or ASP.NET Core, see <xref:blazor/fundamentals/index#support-requests>. 
+To seek assistance with this article or ASP.NET Core, see [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor).
 
 > [!IMPORTANT]
-> The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](xref:blazor/call-web-api) to securely access Microsoft Graph and return data to the client-side Blazor app from your server-based web API. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
+> The scenarios described in this article apply to using Microsoft Entra (ME-ID) as the identity provider, not AAD B2C. Using Microsoft Graph with a client-side Blazor WebAssembly app and the AAD B2C identity provider isn't supported at this time because the app would require a client secret, which can't be secured in the client-side Blazor app. For an AAD B2C standalone Blazor WebAssembly app use Graph API, create a backend server (web) API to access Graph API on behalf of users. The client-side app authenticates and authorizes users to [call the web API](../../call-web-api.md) to securely access Microsoft Graph and return data to the client-side Blazor app from your server-based web API. The client secret is safely maintained in the server-based web API, not in the Blazor app on the client. **Never store a client secret in a client-side Blazor app.**
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
@@ -51,13 +50,13 @@ The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .N
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker-end
 
@@ -110,7 +109,7 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
 }
 ```
 
-In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -120,7 +119,7 @@ Add the following `GraphClientExtensions` class to the standalone app. The scope
 
 :::moniker range="< aspnetcore-8.0"
 
-Add the following `GraphClientExtensions` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). The scopes are provided to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method.
+Add the following `GraphClientExtensions` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln). The scopes are provided to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method.
 
 :::moniker-end
 
@@ -201,7 +200,7 @@ internal static class GraphClientExtensions
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method. The following code defaults to the Version 1.0 Microsoft Graph base address and `User.Read` scopes if these settings aren't found in the app settings file:
 
@@ -264,7 +263,7 @@ Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.r
 > [!TIP]
 > To add users to an app, see the [Assign users to an app registration with or without app roles](#assign-users-to-an-app-registration-with-or-without-app-roles) section.
 
-When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#cookies-and-site-data>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#cookies-and-site-data).
 
 ## Customize user claims using the Graph SDK
 
@@ -363,7 +362,7 @@ var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
 
-In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication*> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory*> that adds an account claims principal factory with the `CustomAccountFactory`.
 
 If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
@@ -429,7 +428,7 @@ Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.r
 </div>
 ```
 
-When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#cookies-and-site-data>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#cookies-and-site-data).
 
 :::zone-end
 
@@ -444,13 +443,13 @@ The Microsoft Graph SDK for use in Blazor apps is called the *Microsoft Graph .N
 
 :::moniker range=">= aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+The Graph SDK examples require the following package references in the standalone Blazor WebAssembly app or the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly solution. The first two packages are already referenced if the app has been enabled for MSAL authentication, for example when creating the app by following the guidance in [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker-end
 
@@ -500,7 +499,7 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
 }
 ```
 
-In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -510,7 +509,7 @@ Add the following `GraphClientExtensions` class to the standalone app. The scope
 
 :::moniker range="< aspnetcore-8.0"
 
-Add the following `GraphClientExtensions` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). The scopes are provided to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. The <xref:Microsoft.Graph.IHttpProvider.OverallTimeout?displayProperty=nameWithType> is extended from the default value of 100 seconds to 300 seconds to give the <xref:System.Net.Http.HttpClient> more time to receive a response from Microsoft Graph.
+Add the following `GraphClientExtensions` class to the standalone app or **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln). The scopes are provided to the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions.Scopes> property of the <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.AccessTokenRequestOptions> in the `AuthenticateRequestAsync` method. The <xref:Microsoft.Graph.IHttpProvider.OverallTimeout?displayProperty=nameWithType> is extended from the default value of 100 seconds to 300 seconds to give the <xref:System.Net.Http.HttpClient> more time to receive a response from Microsoft Graph.
 
 :::moniker-end
 
@@ -612,7 +611,7 @@ internal static class GraphClientExtensions
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 In the `Program` file, add the Graph client services and configuration with the `AddGraphClient` extension method:
 
@@ -674,7 +673,7 @@ Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.r
 > [!TIP]
 > To add users to an app, see the [Assign users to an app registration with or without app roles](#assign-users-to-an-app-registration-with-or-without-app-roles) section.
 
-When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#cookies-and-site-data>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#cookies-and-site-data).
 
 ## Customize user claims using the Graph SDK
 
@@ -763,7 +762,7 @@ var scopes = builder.Configuration.GetSection("MicrosoftGraph:Scopes")
 builder.Services.AddGraphClient(baseUrl, scopes);
 ```
 
-In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication*> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory*> that adds an account claims principal factory with the `CustomAccountFactory`.
 
 If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap the custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
@@ -829,7 +828,7 @@ Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.r
 </div>
 ```
 
-When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#cookies-and-site-data>.
+When testing with the Graph SDK locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#cookies-and-site-data).
 
 :::zone-end
 
@@ -890,7 +889,7 @@ The following is an example of a complete `wwwroot/appsettings.json` configurati
 }
 ```
 
-In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.
+In the preceding example, the `{TENANT ID}` placeholder is the Directory (tenant) ID, and the `{CLIENT ID}` placeholder is the Application (client) ID. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).
 
 Create the following `GraphAuthorizationMessageHandler` class and project configuration in the `Program` file for working with Graph API. The base URL and scopes are provided to the handler from configuration.
 
@@ -940,11 +939,11 @@ builder.Services.AddHttpClient("GraphAPI",
     .AddHttpMessageHandler<GraphAuthorizationMessageHandler>();
 ```
 
-In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
+In the preceding example, the `GraphAuthorizationMessageHandler` <xref:System.Net.Http.DelegatingHandler> is registered as a transient service for <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>. Transient registration is recommended for <xref:System.Net.Http.IHttpClientFactory>, which manages its own DI scopes. For more information, see the following resources:
 
-* [Utility base component classes to manage a DI scope](xref:blazor/fundamentals/dependency-injection#utility-base-component-classes-to-manage-a-di-scope)
-* [Detect client-side transient disposables](xref:blazor/fundamentals/dependency-injection#detect-client-side-transient-disposables)
-* [`DelegatingHandler` instances](xref:fundamentals/http-requests#outgoing-request-middleware)
+* [Utility base component classes to manage a DI scope](../../fundamentals/dependency-injection.md#utility-base-component-classes-to-manage-a-di-scope)
+* [Detect client-side transient disposables](../../fundamentals/dependency-injection.md#detect-client-side-transient-disposables)
+* [`DelegatingHandler` instances](../../../fundamentals/http-requests.md#outgoing-request-middleware)
 
 A trailing slash (`/`) on the base address is required. In the preceding code, the third argument to `string.Join` is `string.Empty` to ensure the trailing slash is present: `https://graph.microsoft.com/v1.0/`.
 
@@ -1048,7 +1047,7 @@ builder.Services.AddMsalAuthentication(options =>
 ```
 
 > [!IMPORTANT]
-> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>.
+> See the [`DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`](#defaultaccesstokenscopes-versus-additionalscopestoconsent) section for an explanation on why the preceding code uses <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> to add the scopes rather than <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
 When the preceding changes are made to the app, the user flow adopts the following sequence:
 
@@ -1057,7 +1056,7 @@ When the preceding changes are made to the app, the user flow adopts the followi
 1. The user accesses a component page that requests Graph API data for the first time.
 1. Graph API user data is returned.
 
-When testing with the Graph API locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#troubleshoot).
 
 ## Customize user claims using a named `HttpClient`
 
@@ -1149,7 +1148,7 @@ The MSAL authentication is configured to use the custom user account factory. St
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 ```
 
-In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication%2A> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory%2A> that adds an account claims principal factory with the `CustomAccountFactory`.
+In the `Program` file, find the call to the <xref:Microsoft.Extensions.DependencyInjection.MsalWebAssemblyServiceCollectionExtensions.AddMsalAuthentication*> extension method. Update the code to the following, which includes a call to <xref:Microsoft.Extensions.DependencyInjection.RemoteAuthenticationBuilderExtensions.AddAccountClaimsPrincipalFactory*> that adds an account claims principal factory with the `CustomAccountFactory`.
 
 If the app uses a custom user account class that extends <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount>, swap your app's custom user account class for <xref:Microsoft.AspNetCore.Components.WebAssembly.Authentication.RemoteUserAccount> in the following code.
 
@@ -1164,7 +1163,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
         CustomAccountFactory>();
 ```
 
-The preceding example is for an app that uses ME-ID authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](xref:blazor/security/webassembly/additional-scenarios#customize-the-user-with-a-payload-claim) section of the <xref:blazor/security/webassembly/additional-scenarios> article.
+The preceding example is for an app that uses ME-ID authentication with MSAL. Similar patterns exist for OIDC and API authentication. For more information, see the examples in the [Customize the user with a payload claim](additional-scenarios.md#customize-the-user-with-a-payload-claim) section of the [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md) article.
 
 You can use the following `UserClaims` component to study the user's claims after the user authenticates with ME-ID:
 
@@ -1217,7 +1216,7 @@ Add a link to the component's page in the `NavMenu` component (`Layout/NavMenu.r
 </div>
 ```
 
-When testing with the Graph API locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph API locally, we recommend using a new InPrivate/incognito browser session for each test to prevent lingering cookies from interfering with testing. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#troubleshoot).
 
 :::zone-end
 
@@ -1245,7 +1244,7 @@ To assign users to the app *without app roles*:
 
 To assign users to the app *with app roles*:
 
-1. Add roles to the app's registration in the Azure portal following the guidance in <xref:blazor/security/webassembly/meid-groups-roles#app-roles>.
+1. Add roles to the app's registration in the Azure portal following the guidance in [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md#app-roles).
 1. In the ME-ID area of the Azure portal, open **Enterprise applications**.
 1. Select the app from the list.
 1. Select **Users and groups**.
@@ -1255,28 +1254,28 @@ To assign users to the app *with app roles*:
 
 ## `DefaultAccessTokenScopes` versus `AdditionalScopesToConsent`
 
-The examples in this article provision Graph API scopes with <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A>. 
+The examples in this article provision Graph API scopes with <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes>, not <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent>.
 
-<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> isn't used because it's unable to provision Graph API scopes for users when they sign in to the app for the first time with MSAL via the Azure consent UI. When the user attempts to access Graph API for the first time with the Graph SDK, they're confronted with an exception:
+<xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't used because it's unable to provision Graph API scopes for users when they sign in to the app for the first time with MSAL via the Azure consent UI. When the user attempts to access Graph API for the first time with the Graph SDK, they're confronted with an exception:
 
 > :::no-loc text="Microsoft.Graph.Models.ODataErrors.ODataError: Access token is empty.":::
 
-After a user provisions Graph API scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A>, the app can use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> for a subsequent user sign in. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph scopes or adding new delegated Graph API scopes to the app.
+After a user provisions Graph API scopes provided via <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes>, the app can use <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> for a subsequent user sign in. However, changing app code makes no sense for a production app that requires the periodic addition of new users with delegated Graph scopes or adding new delegated Graph API scopes to the app.
 
 The preceding discussion of how to provision scopes for Graph API access when the user first signs into the app only applies to:
 
 * Apps that adopt the Graph SDK.
 * Apps that use a named <xref:System.Net.Http.HttpClient> for Graph API access that asks users to consent to Graph scopes on their first sign in to the app.
 
-When using a named <xref:System.Net.Http.HttpClient> that doesn't ask users to consent to Graph scopes on their first sign in, users are redirected to the Azure consent UI for Graph API scopes consent *when they first request access to Graph API* via the <xref:System.Net.Http.DelegatingHandler> of the preconfigured, named <xref:System.Net.Http.HttpClient>. When Graph scopes aren't consented initially with the named <xref:System.Net.Http.HttpClient> approach, neither <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes%2A> nor <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent%2A> are called by the app. For more information, see the [named `HttpClient` coverage in this article](?pivots=named-client-graph-api).
+When using a named <xref:System.Net.Http.HttpClient> that doesn't ask users to consent to Graph scopes on their first sign in, users are redirected to the Azure consent UI for Graph API scopes consent *when they first request access to Graph API* via the <xref:System.Net.Http.DelegatingHandler> of the preconfigured, named <xref:System.Net.Http.HttpClient>. When Graph scopes aren't consented initially with the named <xref:System.Net.Http.HttpClient> approach, neither <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.DefaultAccessTokenScopes> nor <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> are called by the app. For more information, see the [named `HttpClient` coverage in this article](?pivots=named-client-graph-api).
 
 :::moniker range="< aspnetcore-8.0"
 
 ## Hosted Blazor WebAssembly solutions
 
-The examples in this article pertain to using the Graph SDK or a named <xref:System.Net.Http.HttpClient> with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of the solution via web API, and then the **:::no-loc text="Server":::** app uses the Graph SDK/API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. Although this is a supported approach, it isn't covered by this article. If you wish to adopt this approach:
+The examples in this article pertain to using the Graph SDK or a named <xref:System.Net.Http.HttpClient> with Graph API directly from a standalone Blazor WebAssembly app or directly from the **:::no-loc text="Client":::** app of a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln). An additional scenario that isn't covered by this article is for a **:::no-loc text="Client":::** app of a hosted solution to call the **:::no-loc text="Server":::** app of the solution via web API, and then the **:::no-loc text="Server":::** app uses the Graph SDK/API to call Microsoft Graph and return data to the **:::no-loc text="Client":::** app. Although this is a supported approach, it isn't covered by this article. If you wish to adopt this approach:
 
-* Follow the guidance in <xref:blazor/call-web-api> for the web API aspects on issuing requests to the **:::no-loc text="Server":::** app from the **:::no-loc text="Client":::** app and returning data to the **:::no-loc text="Client":::** app.
+* Follow the guidance in [Call a web API from an ASP.NET Core Blazor app](../../call-web-api.md) for the web API aspects on issuing requests to the **:::no-loc text="Server":::** app from the **:::no-loc text="Client":::** app and returning data to the **:::no-loc text="Client":::** app.
 * Follow the guidance in the primary [Microsoft Graph documentation](/graph/) to use the Graph SDK with a typical ASP.NET Core app, which in this scenario is the **:::no-loc text="Server":::** app of the solution. If you use the Blazor WebAssembly project template to the create the hosted Blazor WebAssembly solution (**ASP.NET Core Hosted**/`-h|--hosted`) with organizational authorization (single organization/`SingleOrg` or multiple organization/`MultiOrg`) and the Microsoft Graph option (**Microsoft identity platform** > **Connected Services** > **Add Microsoft Graph permissions** in Visual Studio or the `--calls-graph` option with the .NET CLI `dotnet new` command), the **:::no-loc text="Server":::** app of the solution is configured to use the Graph SDK when the solution is created from the project template.
 
 :::moniker-end

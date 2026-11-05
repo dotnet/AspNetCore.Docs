@@ -81,7 +81,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
   isolation. If any code sample would look counterintuitive or unexplained to a
   reader who has not seen the source notes, restore the missing explanation or
   example from the source.
-* **You MAY combine overlapping content across previews** so the cumulative
+* **You can combine overlapping content across previews** so the cumulative
   article doesn't repeat itself, but only remove text that is genuinely
   redundant — never text that carries unique information or reasoning.
 * **When in doubt, keep it.** Prefer transferring the source wording over
@@ -101,7 +101,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
 ### Use `<xref:>` for API references — not inline code
 
 * **Wrong**: `` `AddOpenApi()` ``
-* **Correct**: `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>`
+* **Correct**: `<xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>`
 * **Wrong**: `` `BadHttpRequestException` ``
 * **Correct**: `<xref:Microsoft.AspNetCore.Http.BadHttpRequestException>`
 * When referencing an API type or method, use `<xref:fully.qualified.name>`
@@ -117,7 +117,7 @@ release notes. Reformat and de-duplicate, but do not summarize away information.
 
 ### Links — use relative paths for Microsoft Learn
 
-* **Wrong**: `[Breaking changes in .NET]([/dotnet/core/compatibility/breaking-changes](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes))`
+* **Wrong**: `[Breaking changes in .NET](https://learn.microsoft.com/dotnet/core/compatibility/breaking-changes)`
 * **Correct**: `[Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes)`
 * Never nest a relative path inside an absolute URL as the href target.
 * For Microsoft Learn cross-references, use relative URLs starting with `/`.
@@ -188,30 +188,9 @@ Before completing, verify:
 
 ## PR description requirements
 
-* The very first line of the PR description must be `Fixes dotnet/AspNetCore.Docs#{ISSUE NUMBER}` (where `{ISSUE NUMBER}` is the number of the issue this PR addresses), followed by a blank line before any other content.
-* When a PR fixes multiple issues, list each issue on its own line at the top of the PR description, each using the `Fixes dotnet/AspNetCore.Docs#{ISSUE NUMBER}` format, followed by a blank line before any other content.
-* When a PR is related to other issues but doesn't fix them, use `Related: dotnet/AspNetCore.Docs#{ISSUE NUMBER}` on a separate line after the `Fixes` line(s).
-* Examples:
-  * Single issue:
-    ```
-    Fixes dotnet/AspNetCore.Docs#10000
-
-    Summary of changes...
-    ```
-  * Multiple issues fixed:
-    ```
-    Fixes dotnet/AspNetCore.Docs#10000
-    Fixes dotnet/AspNetCore.Docs#10001
-
-    Summary of changes...
-    ```
-  * Fixing one issue and related to another:
-    ```
-    Fixes dotnet/AspNetCore.Docs#10000
-    Related: dotnet/AspNetCore.Docs#10001
-
-    Summary of changes...
-    ```
+* In the PR description, add `Fixes #<issue number>` when the PR fixes the issue, where the `<issue number>` placeholder is the number of the issue. If the PR only addresses the issue as a partial fix and the issue shouldn't be closed when the PR merges, add `Addresses #<issue number>` to the description, where the `<issue number>` placeholder is the number of the issue.
+* When a PR fixes multiple issues, list each issue on its own line.
+* When a PR is related to other issues but doesn't fix them, use `Related: #<issue number>` on a separate line after the `Fixes` line(s), where the `<issue number>` placeholder is the number of the issue.
 
 ---
 
@@ -222,7 +201,7 @@ Before completing, verify:
 
 `Microsoft.AspNetCore.OpenApi` now supports OpenAPI 3.2.0 through an updated dependency on `Microsoft.OpenApi` 3.3.1. This update includes breaking changes from the underlying library. For more information, see the [Microsoft.OpenApi upgrade guide](https://github.com/microsoft/OpenAPI.NET/blob/main/docs/upgrade-guide-3.md).
 
-To generate an OpenAPI 3.2.0 document, specify the version when calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+To generate an OpenAPI 3.2.0 document, specify the version when calling <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
 
 ```csharp
 builder.Services.AddOpenApi(options =>

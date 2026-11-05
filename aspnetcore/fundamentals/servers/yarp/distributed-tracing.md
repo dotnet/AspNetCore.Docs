@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/distributed-tracing
 title: YARP Distributed tracing
 description: YARP Distributed tracing
 ms.date: 05/15/2026

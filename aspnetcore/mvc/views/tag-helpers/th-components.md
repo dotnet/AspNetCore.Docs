@@ -3,7 +3,6 @@ title: Tag Helper Components in ASP.NET Core
 description: Learn what Tag Helper Components are and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.0'
 ms.date: 06/12/2019
-uid: mvc/views/tag-helpers/th-components
 ---
 # Tag Helper Components in ASP.NET Core
 
@@ -13,7 +12,7 @@ A Tag Helper Component is a Tag Helper that allows you to conditionally modify o
 
 ASP.NET Core includes two built-in Tag Helper Components: `head` and `body`. They're located in the <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers> namespace and can be used in both MVC and Razor Pages. Tag Helper Components don't require registration with the app in `_ViewImports.cshtml`.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/tag-helpers/th-components/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Use cases
 
@@ -35,8 +34,8 @@ In the preceding code:
 * `AddressStyleTagHelperComponent` implements <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent>. The abstraction:
   * Allows initialization of the class with a <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext>.
   * Enables the use of Tag Helper Components to add or modify HTML elements.
-* The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order*> property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
-* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.ProcessAsync*> compares the execution context's <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.TagName*> property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
+* The <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.Order> property defines the order in which the Components are rendered. `Order` is necessary when there are multiple usages of Tag Helper Components in an app.
+* <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperComponent.ProcessAsync*> compares the execution context's <xref:Microsoft.AspNetCore.Razor.TagHelpers.TagHelperContext.TagName> property value to `head`. If the comparison evaluates to true, the content of the `_style` field is injected into the HTML `<head>` element.
 
 ### Inject into HTML body element
 
@@ -60,7 +59,7 @@ A Tag Helper Component must be added to the app's Tag Helper Components collecti
 
 ### Registration via services container
 
-If the Tag Helper Component class isn't managed with <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>, it must be registered with the [dependency injection (DI)](xref:fundamentals/dependency-injection) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](xref:fundamentals/dependency-injection#lifetime-and-registration-options):
+If the Tag Helper Component class isn't managed with <xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.ITagHelperComponentManager>, it must be registered with the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) system. The following `Startup.ConfigureServices` code registers the `AddressStyleTagHelperComponent` and `AddressScriptTagHelperComponent` classes with a [transient lifetime](../../../fundamentals/dependency-injection.md#lifetime-and-registration-options):
 
 [!code-csharp[](th-components/samples/RazorPagesSample/Startup.cs?name=snippet_ConfigureServices&highlight=12-15)]
 
@@ -149,6 +148,6 @@ For example, the `if` statement evaluates to true when processing the following 
 
 ## Related content
 
-* <xref:fundamentals/dependency-injection>
-* <xref:mvc/views/dependency-injection>
-* <xref:mvc/views/tag-helpers/builtin-th/Index>
+* [Dependency injection in ASP.NET Core](../../../fundamentals/dependency-injection.md)
+* [Dependency injection into views in ASP.NET Core](../dependency-injection.md)
+* [ASP.NET Core built-in Tag Helpers](built-in/index.md)

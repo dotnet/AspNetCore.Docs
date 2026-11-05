@@ -3,7 +3,6 @@ title: Get started with ASP.NET Core MVC
 description: Learn how to get started with ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/start-mvc
 ---
 # Get started with ASP.NET Core MVC
 
@@ -23,7 +22,7 @@ At the end of the series, you'll have an app that manages, validates, and displa
 > * Work with a database.
 > * Add search and validation.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/sample) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mvc-app/start-mvc/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Prerequisites
 
@@ -127,7 +126,7 @@ The following image shows the app:
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/kestrel)
+  * Starts [Kestrel](../../fundamentals/servers/kestrel.md)
   * Launches a browser.
   * Navigates to `https://localhost:<port#>`.
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to map claims, perform claims transformations, and customize claims in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/26/2026
-uid: security/authentication/claims
 
 # customer intent: As an ASP.NET developer, I want to work with claims in my ASP.NET Core app, so I can map claims, do transformations, and make customizations.
 ---
@@ -20,7 +19,7 @@ This article describes how to configure and map claims by using an [OpenID Conne
 
 * Set name and role claims
 * Reset the claims namespaces
-* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A> method
+* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*> method
 
 ## Map claims with OpenID Connect authentication
 
@@ -102,12 +101,12 @@ builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 
 Refer to the following document:
 
-[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+[Add claims to Identity using IUserClaimsPrincipalFactory](add-user-data.md#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
 -->
 
 ## Map claims from external identity providers
 
-If you want to map claims from external identity providers for your app, see [Persist other claims and tokens from external providers in ASP.NET Core](xref:security/authentication/social/additional-claims).
+If you want to map claims from external identity providers for your app, see [Persist other claims and tokens from external providers in ASP.NET Core](social/additional-claims.md).
 
 :::moniker-end
 
@@ -119,7 +118,7 @@ This article covers the following areas:
 * How to configure and map claims using an [OpenID Connect](https://openid.net/developers/how-connect-works/) client
 * Set the name and role claim
 * Reset the claims namespaces
-* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>
+* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*>
 
 ## Mapping claims using OpenID Connect authentication
 
@@ -246,13 +245,13 @@ public void ConfigureServices(IServiceCollection services)
 
 Refer to the following document:
 
-[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+[Add claims to Identity using IUserClaimsPrincipalFactory](add-user-data.md#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
 
 ## Map claims from external identity providers
 
 Refer to the following document:
 
-[Persist additional claims and tokens from external providers in ASP.NET Core](xref:security/authentication/social/additional-claims)
+[Persist additional claims and tokens from external providers in ASP.NET Core](social/additional-claims.md)
 
 :::moniker-end
 

@@ -3,7 +3,6 @@ title: Share controllers, views, Razor Pages and more with Application Parts in 
 ai-usage: ai-assisted
 description: Share controllers, view, Razor Pages and more with Application Parts in ASP.NET Core
 ms.date: 11/11/2019
-uid: mvc/extensibility/app-parts
 ---
 
 # Share controllers, views, Razor Pages and more with Application Parts
@@ -12,7 +11,7 @@ uid: mvc/extensibility/app-parts
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
@@ -34,7 +33,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
+Use a [Razor class library](../../razor-pages/ui-class.md) to include views in the assembly.
 
 ### Prevent loading resources
 
@@ -60,7 +59,7 @@ Application feature providers examine application parts and provide features for
 * <xref:Microsoft.AspNetCore.Mvc.Razor.Compilation.ViewsFeatureProvider>
 * `internal class` [RazorCompiledItemFeatureProvider](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Razor/src/ApplicationParts/RazorCompiledItemFeatureProvider.cs#L14)
 
-Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider%601>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
+Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
 
 ### Display available features
 
@@ -102,7 +101,7 @@ HTTP 404 errors are not uncommon when developing with application parts. These e
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/app-parts) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 An *Application Part* is an abstraction over the resources of an app. Application Parts allow ASP.NET Core to discover controllers, view components, tag helpers, Razor Pages, razor compilation sources, and more. <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPart> is an Application part. `AssemblyPart` encapsulates an assembly reference and exposes types and compilation references.
 
@@ -124,7 +123,7 @@ The preceding two code samples load the `SharedController` from an assembly. The
 
 ### Include views
 
-Use a [Razor class library](xref:razor-pages/ui-class) to include views in the assembly.
+Use a [Razor class library](../../razor-pages/ui-class.md) to include views in the assembly.
 
 ### Prevent loading resources
 
@@ -147,7 +146,7 @@ Application feature providers examine application parts and provide features for
 * [Tag Helpers](xref:Microsoft.AspNetCore.Mvc.Razor.TagHelpers.TagHelperFeatureProvider)
 * [View Components](xref:Microsoft.AspNetCore.Mvc.ViewComponents.ViewComponentFeatureProvider)
 
-Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider%601>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
+Feature providers inherit from <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.IApplicationFeatureProvider`1>, where `T` is the type of the feature. Feature providers can be implemented for any of the previously listed feature types. The order of feature providers in the `ApplicationPartManager.FeatureProviders` can impact run time behavior. Later added providers can react to actions taken by earlier added providers.
 
 ### Display available features
 

@@ -3,7 +3,6 @@ title: Use gRPC in browser apps
 description: Learn the options available to make ASP.NET Core gRPC services callable from browser apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 08/04/2022
-uid: grpc/browser
 ---
 # Use gRPC in browser apps
 
@@ -13,7 +12,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 It's not possible to directly call a gRPC service from a browser. gRPC uses HTTP/2 features, and no browser provides the level of control required over web requests to support a gRPC client.
 
-gRPC on ASP.NET Core offers two browser-compatible solutions, gRPC-Web and gRPC JSON transcoding.
+gRPC on ASP.NET Core offers two browser-compatible solutions: [gRPC-Web](#grpc-web) and [gRPC JSON transcoding](#grpc-json-transcoding).
 
 ## gRPC-Web
 
@@ -23,7 +22,7 @@ gRPC-Web allows browser apps to call gRPC services with the gRPC-Web client and 
 * Requires the browser app to generate a gRPC client from a `.proto` file.
 * Allows browser apps to benefit from the high-performance and low network usage of binary messages.
 
-.NET has built-in support for gRPC-Web. For more information, see <xref:grpc/grpcweb>.
+.NET has built-in support for gRPC-Web. For more information, see [gRPC-Web in ASP.NET Core gRPC apps](grpcweb.md).
 
 ## gRPC JSON transcoding
 
@@ -33,12 +32,12 @@ gRPC JSON transcoding allows browser apps to call gRPC services as if they were 
 * RESTful APIs are automatically created from gRPC services by annotating the `.proto` file with HTTP metadata.
 * Allows an app to support both gRPC and JSON web APIs without duplicating the effort of building separate services for both.
 
-.NET has built-in support for creating JSON web APIs from gRPC services. For more information, see <xref:grpc/json-transcoding>.
+.NET has built-in support for creating JSON web APIs from gRPC services. For more information, see [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md).
 
 > [!NOTE]
 > gRPC JSON transcoding requires .NET 7 or later.
 
 ## Related content
 
-* <xref:grpc/grpcweb>
-* <xref:grpc/json-transcoding>
+* [gRPC-Web in ASP.NET Core gRPC apps](grpcweb.md)
+* [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md)

@@ -4,19 +4,18 @@ ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 03/11/2026
-uid: mvc/security/authorization/iard
 ---
 # Custom authorization policies with `IAuthorizationRequirementData` in ASP.NET Core MVC
 
-This article provides a demonstration on how to use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> to define custom authorization policies in ASP.NET Core MVC. For general guidance on this subject, see <xref:security/authorization/iard>.
+This article provides a demonstration on how to use <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> to define custom authorization policies in ASP.NET Core MVC. For general guidance on this subject, see [Custom authorization policies with `IAuthorizationRequirementData`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md).
 
 ## Sample app
 
-The MVC sample for this article is the [`AuthRequirementsData` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](xref:index#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+The MVC sample for this article is the [`AuthRequirementsData` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
 ## Demonstration
 
-Test the sample with [`dotnet user-jwts`](xref:security/authentication/jwt) and curl.
+Test the sample with [`dotnet user-jwts`](../../../security/authentication/jwt-authn.md) and curl.
 
 From the project's folder in a command shell, execute the following command to create a JWT bearer token with a birth date claim that makes the user over 21 years old:
 

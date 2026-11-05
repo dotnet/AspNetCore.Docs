@@ -76,8 +76,8 @@ Update your code to use the replacement APIs as listed in the following table.
 ## Affected APIs
 
 - <xref:Microsoft.AspNetCore.Components.Routing.Router.PreferExactMatches?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.AddDataAnnotationsValidation%2A?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.AddDataAnnotationsValidation*?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Components.Forms.EditContextDataAnnotationsExtensions.EnableDataAnnotationsValidation*?displayProperty=fullName>
 - `Microsoft.AspNetCore.Components.Forms.RemoteBrowserFileStreamOptions`
 - `Microsoft.AspNetCore.Components.Web.WebEventCallbackFactoryEventArgsExtensions`
 - `Microsoft.AspNetCore.Components.RenderTree.WebRenderer.RendererId` (init accessor)
