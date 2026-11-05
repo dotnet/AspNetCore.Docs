@@ -5,13 +5,12 @@ description: Learn how to publish an ASP.NET Core app to Azure App Service using
 monikerRange: '>= aspnetcore-7.0'
 ms.custom: devx-track-csharp, sfi-image-nochange
 ms.date: 02/03/2023
-uid: tutorials/publish-to-azure-webapp-using-vs
 ---
 # Publish an ASP.NET Core app to Azure with Visual Studio
 
 [!INCLUDE [Azure App Service Preview Notice](../includes/azure-apps-preview-notice.md)]
 
-To troubleshoot an App Service deployment issue, see <xref:test/troubleshoot-azure-iis>.
+To troubleshoot an App Service deployment issue, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md).
 
 ## Set up
 
@@ -196,5 +195,5 @@ When you have finished testing the app, go to the [Azure portal](https://portal.
 * [Azure App Service](/azure/app-service/app-service-web-overview)
 * [Azure resource groups](/azure/azure-resource-manager/resource-group-overview#resource-groups)
 * [Azure SQL Database](/azure/sql-database/)
-* <xref:host-and-deploy/visual-studio-publish-profiles>
-* <xref:test/troubleshoot-azure-iis>
+* [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)

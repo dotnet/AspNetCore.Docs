@@ -3,7 +3,6 @@ title: Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 description: Learn how to secure Blazor WebAssembly apps with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-identity/index
 ---
 # Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -15,7 +14,7 @@ Standalone Blazor WebAssembly apps can be secured with ASP.NET Core Identity by 
 
 Instead of using the default UI provided by ASP.NET Core Identity for SPA and Blazor apps, which is based on Razor Pages, call <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in a backend API to add JSON API endpoints for registering and logging in users with ASP.NET Core Identity. Identity API endpoints also support advanced features, such as two-factor authentication and email verification.
 
-In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see <xref:blazor/call-web-api>.
+In the following examples, `httpClient` is an instance of <xref:System.Net.Http.HttpClient>. For more information, see [Call a web API from an ASP.NET Core Blazor app](../../../call-web-api.md).
 
 On the client, call the `/register` endpoint to register a user with their email address and password:
 
@@ -83,8 +82,8 @@ At this point, you must provide custom code to parse the <xref:Microsoft.AspNetC
 
 Scenarios covered by the Blazor documentation set:
 
-* [Account confirmation, password management, and recovery codes](xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery)
-* [Two-factor authentication (2FA) with a TOTP authenticator app](xref:blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps)
+* [Account confirmation, password management, and recovery codes](account-confirmation-and-password-recovery.md)
+* [Two-factor authentication (2FA) with a TOTP authenticator app](qrcodes-for-authenticator-apps.md)
 
 For information on additional Identity scenarios provided by the API, see [Use Identity to secure a Web API backend for SPAs](../../../../security/authentication/identity-api-authorization.md):
 
@@ -104,7 +103,7 @@ In this article, sample apps serve as a reference for standalone Blazor WebAssem
 
 Access the sample apps through the latest version folder from the repository's root with the following link. The samples are provided for .NET 8 or later. See the `README` file in the `BlazorWebAssemblyStandaloneWithIdentity` folder for steps on how to run the sample apps.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../../../fundamentals/index.md#sample-apps))
 
 ## Backend web API app packages and code
 
@@ -120,7 +119,7 @@ The app uses the following NuGet packages:
 
 If your app is to use a different EF Core database provider than the in-memory provider, don't create a package reference in your app for `Microsoft.EntityFrameworkCore.InMemory`.
 
-In the app's project file (`.csproj`), [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) is configured.
+In the app's project file (`.csproj`), [invariant globalization](../../../globalization-localization.md#invariant-globalization) is configured.
 
 ### Sample app code
 
@@ -129,7 +128,7 @@ In the app's project file (`.csproj`), [invariant globalization](xref:blazor/glo
 * `Backend` app (`BackendUrl`): `https://localhost:7211`
 * `BlazorWasmAuth` app (`FrontendUrl`): `https://localhost:7171`
 
-The [`Backend.http` file](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/Backend/Backend.http) can be used for testing the weather data request. Note that the `BlazorWasmAuth` app must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+The [`Backend.http` file](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/Backend/Backend.http) can be used for testing the weather data request. Note that the `BlazorWasmAuth` app must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see [Use .http files in Visual Studio 2022](../../../../test/http-files.md).
 
 The following setup and configuration is found in the app's [`Program` file](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/Backend/Program.cs). 
 
@@ -151,17 +150,17 @@ A [Cross-Origin Resource Sharing (CORS)](../../../../security/cors.md) policy is
 
 :::moniker range=">= aspnetcore-9.0"
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../../../fundamentals/openapi/overview.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-Services and endpoints for [Swagger/OpenAPI](xref:tutorials/web-api-help-pages-using-swagger) are included for web API documentation and development testing. For more information on NSwag, see <xref:tutorials/get-started-with-nswag>.
+Services and endpoints for [Swagger/OpenAPI](../../../../tutorials/web-api-help-pages-using-swagger.md) are included for web API documentation and development testing. For more information on NSwag, see [Get started with NSwag and ASP.NET Core](../../../../tutorials/getting-started-with-NSwag.md).
 
 :::moniker-end
 
-User role claims are sent from a [Minimal API](xref:fundamentals/apis) at the `/roles` endpoint.
+User role claims are sent from a [Minimal API](../../../../fundamentals/apis.md) at the `/roles` endpoint.
 
 Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.
 
@@ -213,9 +212,9 @@ The [`CookieHandler` class (`Identity/CookieHandler.cs`)](https://github.com/dot
 
 The [`wwwroot/appsettings.file`](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/wwwroot/appsettings.json) provides backend and frontend URL endpoints.
 
-The [`App` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/App.razor) exposes the authentication state as a cascading parameter. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter>.
+The [`App` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/App.razor) exposes the authentication state as a cascading parameter. For more information, see [ASP.NET Core Blazor authentication and authorization](../../index.md#expose-the-authentication-state-as-a-cascading-parameter).
 
-The [`MainLayout` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/MainLayout.razor) and [`NavMenu` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/NavMenu.razor) use the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to selectively display content based on the user's authentication status.
+The [`MainLayout` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/MainLayout.razor) and [`NavMenu` component](https://github.com/dotnet/blazor-samples/blob/main/8.0/BlazorWebAssemblyStandaloneWithIdentity/BlazorWasmAuth/Components/Layout/NavMenu.razor) use the [`AuthorizeView` component](../../index.md#authorizeview-component) to selectively display content based on the user's authentication status.
 
 The following components handle common user authentication tasks, making use of `IAccountManagement` services:
 
@@ -239,9 +238,9 @@ Call <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProv
 > [!WARNING]
 > The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component selectively displays UI content depending on whether the user is authorized. All content within a Blazor WebAssembly app placed in an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component is discoverable without authentication, so sensitive content should be obtained from a backend server-based web API after authentication succeeds. For more information, see the following resources:
 >
-> * <xref:blazor/security/index#authorizeview-component>
-> * <xref:blazor/call-web-api>
-> * <xref:blazor/security/webassembly/additional-scenarios>
+> * [ASP.NET Core Blazor authentication and authorization](../../index.md#authorizeview-component)
+> * [Call a web API from an ASP.NET Core Blazor app](../../../call-web-api.md)
+> * [ASP.NET Core Blazor WebAssembly additional security scenarios](../additional-scenarios.md)
 
 ## Test user seeding demonstration
 
@@ -264,7 +263,7 @@ Role claims aren't sent back from the `manage/info` endpoint to create user clai
 
 In the `CookieAuthenticationStateProvider`, a roles request is made to the `/roles` endpoint of the `Backend` server API project. The response is read into a string by calling <xref:System.Net.Http.HttpContent.ReadAsStringAsync>. <xref:System.Text.Json.JsonSerializer.Deserialize*?displayProperty=nameWithType> deserializes the string into a custom `RoleClaim` array. Finally, the claims are added to the user's claims collection.
 
-In the `Backend` server API's `Program` file, a [Minimal API](xref:fundamentals/apis) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType> are [selected](xref:System.Linq.Enumerable.Select*) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json*?displayProperty=nameWithType>.
+In the `Backend` server API's `Program` file, a [Minimal API](../../../../fundamentals/apis.md) manages the `/roles` endpoint. Claims of <xref:System.Security.Claims.ClaimsIdentity.RoleClaimType> are [selected](xref:System.Linq.Enumerable.Select*) into an [anonymous type](/dotnet/csharp/fundamentals/types/anonymous-types) and serialized for return to the `BlazorWasmAuth` project with <xref:Microsoft.AspNetCore.Http.TypedResults.Json*?displayProperty=nameWithType>.
 
 The roles endpoint requires authorization by calling <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>. If you decide not to use Minimal APIs in favor of controllers for secure server API endpoints, be sure to set the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on controllers or actions.
 
@@ -302,7 +301,7 @@ Furthermore, the endpoint is protected by authorization (<xref:Microsoft.AspNetC
 
 The `BlazorWasmAuth` client app is simply required to pass an empty object `{}` in the body of the request.
 
-Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
+Outside of the logout endpoint, [antiforgery mitigation](../../../../security/anti-request-forgery.md) is only required when submitting form data to the server encoded as `application/x-www-form-urlencoded`, `multipart/form-data`, or `text/plain`. Blazor manages CSRF mitigation for forms in most cases. For more information, see [ASP.NET Core Blazor authentication and authorization](../../index.md#antiforgery-support) and [ASP.NET Core Blazor forms overview](../../../forms/index.md#antiforgery-support).
 
 Requests to other server API endpoints (web API) with `application/json`-encoded content and [CORS](../../../../security/cors.md) enabled doesn't require CSRF protection. This is why no CSRF protection is required for the `Backend` app's data processing (`/data-processing`) endpoint. The roles (`/roles`) endpoint doesn't need CSRF protection because it's a GET endpoint that doesn't modify any state.
 
@@ -310,7 +309,7 @@ Requests to other server API endpoints (web API) with `application/json`-encoded
 
 ### Logging
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see <xref:blazor/fundamentals/logging>.
+To enable debug or trace logging for Blazor WebAssembly authentication, see [ASP.NET Core Blazor logging](../../../fundamentals/logging.md).
 
 ### Common errors
 
@@ -428,5 +427,5 @@ To troubleshoot problems with user claims, the following `UserClaims` component 
 
 ## Related content
 
-* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Client-side SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
+* [`AuthenticationStateProvider` service](../../index.md#authenticationstateprovider-service)
+* [Client-side SignalR cross-origin negotiation for authentication](../../../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)

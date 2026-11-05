@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/session-affinity
 title: YARP Session Affinity
 description: YARP Session Affinity
 ms.date: 2/6/2025

@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor app base path
 description: Learn about the app base path in ASP.NET Core Blazor apps, including configuration guidance.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/app-base-path
 ---
 # ASP.NET Core Blazor app base path
 
@@ -85,7 +84,7 @@ app.MapBlazorHub("base/path/_blazor");
 
 The benefit of using <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> is that you can map patterns, such as `"{tenant}"` and not just concrete paths.
 
-You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](xref:fundamentals/middleware/index#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
+You can also map the SignalR hub when the app is in a virtual folder with a [branched middleware pipeline](../../fundamentals/middleware/index.md#branch-the-middleware-pipeline). In the following example, requests to `/base/path/` are handled by Blazor's SignalR hub:
 
 ```csharp
 app.Map("/base/path", subapp => {
@@ -116,11 +115,11 @@ If the app is a hosted Blazor WebAssembly app:
   * Adjust the path of <xref:Microsoft.AspNetCore.Builder.ComponentsWebAssemblyApplicationBuilderExtensions.UseBlazorFrameworkFiles*> (for example, `app.UseBlazorFrameworkFiles("/base/path");`).
   * Configure calls to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> (for example, `app.UseStaticFiles("/base/path");`).
 * In the **:::no-loc text="Client":::** project:
-  * Configure [`<StaticWebAssetBasePath>`](xref:blazor/fundamentals/static-files#static-web-asset-base-path) in the project file to match the path for serving static web assets (for example, `<StaticWebAssetBasePath>base/path</StaticWebAssetBasePath>
+  * Configure [`<StaticWebAssetBasePath>`](../fundamentals/static-files.md#static-web-asset-base-path) in the project file to match the path for serving static web assets (for example, `<StaticWebAssetBasePath>base/path</StaticWebAssetBasePath>
 `).
   * Configure the `<base>` tag, per the guidance in the [Configure the app base path](#configure-the-app-base-path) section.
 
-For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see <xref:blazor/host-and-deploy/webassembly/multiple-hosted-webassembly>, where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
+For an example of hosting multiple Blazor WebAssembly apps in a hosted Blazor WebAssembly solution, see [Multiple hosted ASP.NET Core Blazor WebAssembly apps](webassembly/multiple-hosted-webassembly.md), where approaches are explained for domain/port hosting and subpath hosting of multiple Blazor WebAssembly client apps.
 
 :::moniker-end
 
@@ -134,23 +133,23 @@ To provide configuration for the Blazor app's base path of `https://www.contoso.
 
 By configuring the app base path, a component that isn't in the root directory can construct URLs relative to the app's root path. Components at different levels of the directory structure can build links to other resources at locations throughout the app. The app base path is also used to intercept selected hyperlinks where the `href` target of the link is within the app base path URI space. The <xref:Microsoft.AspNetCore.Components.Routing.Router> component handles the internal navigation.
 
-Place the `<base>` tag in `<head>` markup ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
+Place the `<base>` tag in `<head>` markup ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)) before any elements with attribute values that are URLs, such as the `href` attributes of `<link>` elements.
 
 :::moniker range=">= aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
+In many hosting scenarios, the relative URL path to the app is the root of the app. When the app runs at `/`, the `BasePath` component (`<BasePath />`) renders `<base href="/" />` automatically in [`<head>` content](../project-structure.md#location-of-head-and-body-content). For any other deployment path, the component emits a `<base>` element that matches the current request's path base.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content).
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is `/` configured as `<base href="/" />` in [`<head>` content](../project-structure.md#location-of-head-and-body-content).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+In many hosting scenarios, the relative URL path to the app is the root of the app. In these default cases, the app's relative URL base path is the following in [`<head>` content](../project-structure.md#location-of-head-and-body-content):
 
 * Blazor Server: `~/` configured as `<base href="~/" />`.
 * Blazor WebAssembly: `/` configured as `<base href="/" />`.
@@ -164,7 +163,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
 :::moniker range=">= aspnetcore-11.0"
 
-  * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+  * Option 1: Use the `BasePath` component to set the app's base path ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
     ```razor
     <BasePath />
@@ -176,7 +175,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
 :::moniker range="< aspnetcore-11.0"
 
-  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)):
+  * Option 1: Use the `<base>` tag to set the app's base path ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)):
 
     ```html
     <base href="/CoolApp/">
@@ -214,7 +213,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 
     [!INCLUDE[](~/includes/default-launch-profile-for-dotnet-cli.md)]
     
-    For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+    For more information on the `launchSettings.json` file, see [ASP.NET Core runtime environments](../../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson). For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
 * Standalone Blazor WebAssembly (`wwwroot/index.html`):
 
@@ -243,7 +242,7 @@ In many hosting scenarios, the relative URL path to the app is the root of the a
 :::moniker-end
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> as described in the <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before the path is rewritten by <xref:Microsoft.AspNetCore.Builder.UsePathBaseExtensions.UsePathBase*> as described in the [ASP.NET Core middleware](../../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 Don't prefix links throughout the app with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation:
 
@@ -251,12 +250,12 @@ Don't prefix links throughout the app with a forward slash. Either avoid the use
 * <span aria-hidden="true">✔️</span> Correct: `<a href="account">`
 * <span aria-hidden="true">✔️</span> Correct: `<a href="./account">`
 
-In [Blazor WebAssembly web API requests with the `HttpClient` service](xref:blazor/call-web-api?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) don't prefix URLs with a forward slash (`/`):
+In [Blazor WebAssembly web API requests with the `HttpClient` service](../call-web-api.md?pivots=webassembly), confirm that JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions>) don't prefix URLs with a forward slash (`/`):
 
 * <span aria-hidden="true">❌</span> Incorrect: `var rsp = await client.GetFromJsonAsync("/api/Account");`
 * <span aria-hidden="true">✔️</span> Correct: `var rsp = await client.GetFromJsonAsync("api/Account");`
 
-Don't prefix [Navigation Manager](xref:blazor/fundamentals/navigation#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
+Don't prefix [Navigation Manager](../fundamentals/navigation.md#uri-and-navigation-state-helpers) relative links with a forward slash. Either avoid the use of a path segment separator or use dot-slash (`./`) relative path notation (`Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager>):
 
 * <span aria-hidden="true">❌</span> Incorrect: `Navigation.NavigateTo("/other");`
 * <span aria-hidden="true">✔️</span> Correct: `Navigation.NavigateTo("other");`
@@ -265,7 +264,7 @@ Don't prefix [Navigation Manager](xref:blazor/fundamentals/navigation#uri-and-na
 In typical configurations for Azure/IIS hosting, additional configuration usually isn't required. In some non-IIS hosting and reverse proxy hosting scenarios, additional static file middleware configuration might be required:
 
 * To serve static files correctly (for example, `app.UseStaticFiles("/CoolApp");`).
-* To serve the Blazor script (`_framework/blazor.*.js`). For more information, see <xref:blazor/fundamentals/static-files>.
+* To serve the Blazor script (`_framework/blazor.*.js`). For more information, see [ASP.NET Core Blazor static files](../fundamentals/static-files.md).
 
 For a Blazor WebAssembly app with a non-root relative URL path (for example, `<base href="/CoolApp/">`), the app fails to find its resources *when run locally*. To overcome this problem during local development and testing, you can supply a *path base* argument that matches the `href` value of the `<base>` tag at runtime. **Don't include a trailing slash.** To pass the path base argument when running the app locally, execute the `dotnet watch` (or `dotnet run`) command from the app's directory with the `--pathbase` option:
 
@@ -295,11 +294,11 @@ Using `CoolApp` as the example:
 
 Using either `dotnet watch` (or `dotnet run`) with the `--pathbase` option or a launch profile configuration that sets the base path, the Blazor WebAssembly app responds locally at `http://localhost:port/CoolApp`.
 
-For more information on the `launchSettings.json` file, see <xref:fundamentals/environments#development-and-launchsettingsjson>. For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
+For more information on the `launchSettings.json` file, see [ASP.NET Core runtime environments](../../fundamentals/environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson). For additional information on Blazor app base paths and hosting, see [`<base href="/" />` or base-tag alternative for Blazor MVC integration (dotnet/aspnetcore #43191)](https://github.com/dotnet/aspnetcore/issues/43191#issuecomment-1212156106).
 
 ## Obtain the app base path from configuration
 
-The following guidance explains how to obtain the path for the `<base>` tag from an app settings file for different [environments](xref:blazor/fundamentals/environments).
+The following guidance explains how to obtain the path for the `<base>` tag from an app settings file for different [environments](../fundamentals/environments.md).
 
 Add the app settings file to the app. The following example is for the `Staging` environment (`appsettings.Staging.json`):
 
@@ -309,7 +308,7 @@ Add the app settings file to the app. The following example is for the `Staging`
 }
 ```
 
-In a server-side Blazor app, load the base path from configuration in [`<head>` content](xref:blazor/project-structure#location-of-head-and-body-content):
+In a server-side Blazor app, load the base path from configuration in [`<head>` content](../project-structure.md#location-of-head-and-body-content):
 
 ```razor
 @inject IConfiguration Config
@@ -339,7 +338,7 @@ In a client-side Blazor WebAssembly app:
   - <base href="..." />
   ```
 
-* Supply the app base path via a [`HeadContent` component](xref:blazor/components/control-head-content#control-head-content-in-a-razor-component) in the `App` component (`App.razor`):
+* Supply the app base path via a [`HeadContent` component](../components/control-head-content.md#control-head-content-in-a-razor-component) in the `App` component (`App.razor`):
 
   ```razor
   @inject IConfiguration Config
@@ -357,5 +356,5 @@ If there's no configuration value to load, for example in non-staging environmen
 
 The examples in this section focus on supplying the app base path from app settings, but the approach of reading the path from <xref:Microsoft.Extensions.Configuration.IConfiguration> is valid for any configuration provider. For more information, see the following resources:
 
-* <xref:blazor/fundamentals/configuration>
-* <xref:fundamentals/configuration/index>
+* [ASP.NET Core Blazor configuration](../fundamentals/configuration.md)
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)

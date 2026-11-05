@@ -22,7 +22,7 @@ Other scenarios where a custom policy provider is useful include:
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app uses seeded accounts to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
 
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
@@ -228,7 +228,7 @@ The following component uses the strongly-typed [custom `MinimumAgeAuthorizeAttr
 
 :::code language="razor" source="~/../AspNetCore.Docs.Samples/security/authorization/BlazorWebAppAuthorization/Components/Pages/PassMinimumAge21PolicyWithAttribute.razor":::
 
-The same approach is useful for securing [Minimal API endpoints](xref:fundamentals/minimal-apis#authorization):
+The same approach is useful for securing [Minimal API endpoints](../../fundamentals/minimal-apis.md#authorization):
 
 ```csharp
 app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () => 
@@ -239,5 +239,5 @@ app.MapGet("/must-be-21", [MinimumAgeAuthorize(21)] () =>
 
 * [Complete custom 'IAuthorizationPolicyProvider' sample (`dotnet/aspnetcore` GitHub repository)](https://github.com/dotnet/aspnetcore/tree/v3.1.3/src/Security/samples/CustomPolicyProvider)
 * [Policy-based authorization in ASP.NET Core](policies.md)
-* <xref:razor-pages/security/authorization/policies>
-* <xref:mvc/security/authorization/policies>
+* [Policy-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/policies.md)
+* [Policy-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/policies.md)

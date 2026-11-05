@@ -15,14 +15,14 @@ When the app is published, the framework automatically moves the script to the w
 
 No change is required to the script's relative URL, as Blazor takes care of placing the JS file in published static assets for you.
 
-This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load a function, which is the recommended approach for most production apps. Calling JS from .NET is fully covered in <xref:blazor/js-interop/call-javascript-from-dotnet>, where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in <xref:blazor/components/component-disposal>.
+This section and the following examples are primarily focused on explaining JS file collocation. The first example demonstrates a collocated JS file with an ordinary JS function. The second example demonstrates the use of a module to load a function, which is the recommended approach for most production apps. Calling JS from .NET is fully covered in [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../../javascript-interoperability/call-javascript-from-dotnet.md), where there are further explanations of the Blazor JS API with additional examples. Component disposal, which is present in the second example, is covered in [ASP.NET Core Razor component disposal](../../components/component-disposal.md).
 
-The following `JsCollocation1` component loads a script via a [`HeadContent` component](xref:blazor/components/control-head-content) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>. The `{PATH}` placeholder is the path to the component.
+The following `JsCollocation1` component loads a script via a [`HeadContent` component](../../components/control-head-content.md) and calls a JS function with <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>. The `{PATH}` placeholder is the path to the component.
 
 > [!IMPORTANT]
 > If you use the following code for a demonstration in a test app, change the `{PATH}` placeholder to the path of the component (example: `Components/Pages` in .NET 8 or later or `Pages` in .NET 7 or earlier). In a Blazor Web App (.NET 8 or later), the component requires an interactive render mode applied either globally to the app or to the component definition.
 
-Add the following script after the Blazor script ([location of the Blazor start script](xref:blazor/project-structure#location-of-the-blazor-script)):
+Add the following script after the Blazor script ([location of the Blazor start script](../../project-structure.md#location-of-the-blazor-script)):
 
 ```html
 <script src="{PATH}/JsCollocation1.razor.js"></script>
@@ -142,7 +142,7 @@ The following `JsCollocation2` component's `OnAfterRenderAsync` method loads a J
 }
 ```
 
-In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../../javascript-interoperability/index.md#javascript-interop-calls-without-a-circuit).
 
 `{PATH}/JsCollocation2.razor.js`:
 
@@ -153,9 +153,9 @@ export function showPrompt2(message) {
 ```
 
 > [!IMPORTANT]
-> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
+> Don't place a `<script>` tag for `JsCollocation2.razor.js` after the [Blazor script](../../project-structure.md#location-of-the-blazor-script) because the module is loaded and cached automatically when the [dynamic `import()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/import) is invoked.
 
-Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](xref:blazor/js-interop/import-export-interop), see <xref:blazor/js-interop/import-export-interop#razor-class-library-rcl-collocated-js-is-unsupported>.
+Use of scripts and modules for collocated JS in a Razor class library (RCL) is only supported for Blazor's JS interop mechanism based on the <xref:Microsoft.JSInterop.IJSRuntime> interface. If you're implementing [JavaScript `[JSImport]`/`[JSExport]` interop](../../javascript-interoperability/import-export-interop.md), see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../javascript-interoperability/import-export-interop.md#razor-class-library-rcl-collocated-js-is-unsupported).
 
 For scripts or modules provided by a Razor class library (RCL) using <xref:Microsoft.JSInterop.IJSRuntime>-based JS interop, the following path is used:
 

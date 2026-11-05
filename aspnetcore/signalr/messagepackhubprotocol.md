@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Add MessagePack Hub Protocol to ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/02/2026
-uid: signalr/messagepackhubprotocol
 ---
 # Use MessagePack Hub Protocol in SignalR for ASP.NET Core
 
 :::moniker range=">= aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -182,14 +181,14 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -377,14 +376,14 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -560,14 +559,14 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
-This article assumes the reader is familiar with the topics covered in <xref:tutorials/signalr>.
+This article assumes the reader is familiar with the topics covered in [Get started with ASP.NET Core SignalR](../tutorials/signalr.md).
 
 ## What is MessagePack?
 
@@ -743,7 +742,7 @@ Depending on the MessagePack version targeted by the .NET release, the MessagePa
 
 ## Additional resources
 
-* <xref:signalr/dotnet-client>
-* <xref:signalr/javascript-client>
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
 
 :::moniker-end

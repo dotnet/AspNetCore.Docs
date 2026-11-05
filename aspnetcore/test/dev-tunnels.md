@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use dev tunnels in Visual Studio with ASPNET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 02/03/2023
-uid: test/tunnels
 ---
 # How to use dev tunnels in Visual Studio 2022 with ASP.NET Core apps
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn foundational concepts of the Blazor application framework.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/04/2026
-uid: blazor/fundamentals/index
 ---
 # ASP.NET Core Blazor fundamentals
 
@@ -23,9 +22,9 @@ Razor components are either *statically* rendered or *interactively* rendered.
 *Interactive*/*interactivity* or *interactive rendering* means that the component has the capacity to process .NET events and binding via C# code. The .NET events and binding are either processed on the server by the ASP.NET Core runtime or in the browser on the client by the WebAssembly-based Blazor runtime.
 
 > [!IMPORTANT]
-> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article in a Blazor Web App, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by <xref:blazor/components/render-modes> in the *Components* section, which appears later in the Blazor documentation set.
+> When using a Blazor Web App, most of the Blazor documentation example components ***require*** interactivity to function and demonstrate the concepts covered by the articles. When you test an example component provided by an article in a Blazor Web App, make sure that either the app adopts global interactivity or the component adopts an interactive render mode. More information on this subject is provided by [ASP.NET Core Blazor render modes](../components/render-modes.md) in the *Components* section, which appears later in the Blazor documentation set.
 
-More information on these concepts and how to control static and interactive rendering is found in the <xref:blazor/components/render-modes> article later in the Blazor documentation.
+More information on these concepts and how to control static and interactive rendering is found in the [ASP.NET Core Blazor render modes](../components/render-modes.md) article later in the Blazor documentation.
 
 :::moniker-end
 
@@ -48,7 +47,7 @@ The term *rendering* means to produce the HTML markup that browsers display.
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
-*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
+*Razor* refers to how components are usually written in the form of a [Razor](../../mvc/views/razor.md) markup page for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity. Razor files use the `.razor` file extension.
 
 Although some Blazor developers and online resources use the term "Blazor components," the documentation avoids that term and universally uses "Razor components" or "components."
 
@@ -60,16 +59,16 @@ Blazor documentation adopts several conventions for showing and discussing compo
 * Project code, file paths and names, project template names, and other specialized terms are in United States English and usually code-fenced.
 * Components are usually referred to by their C# class name (Pascal case) followed by the word "component." For example, a typical file upload component is referred to as the "`FileUpload` component."
 * Usually, a component's C# class name is the same as its file name.
-* Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in <xref:blazor/fundamentals/routing>.
+* Routable components usually set their relative URLs to the component's class name in kebab-case. For example, a `FileUpload` component includes routing configuration to reach the rendered component at the relative URL `/file-upload`. Routing and navigation is covered in [ASP.NET Core Blazor routing](routing.md).
 * When multiple versions of a component are used, they're numbered sequentially. For example, the `FileUpload3` component is reached at `/file-upload-3`.
-* [Razor directives](xref:mvc/views/razor#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order.
+* [Razor directives](../../mvc/views/razor.md#directives) at the top of a component definition (`.razor file`) are placed in the following order: `@page`, `@rendermode` (.NET 8 or later), `@using` statements, other directives in alphabetical order.
 * Although not required for `private` members, access modifiers are used in article examples and sample apps. For example, `private` is stated for declaring a field named `maxAllowedFiles` as `private int maxAllowedFiles = 3;`.
-* [Component parameter](xref:blazor/components/index#component-parameters) values lead with a [Razor reserved `@` symbol](xref:mvc/views/razor#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
+* [Component parameter](../components/index.md#component-parameters) values lead with a [Razor reserved `@` symbol](../../mvc/views/razor.md#razor-syntax), but it isn't required. Literals (for example, boolean values), keywords (for example, `this`), and `null` as component parameter values aren't prefixed with `@`, but this is also merely a documentation convention. Your own code can prefix literals with `@` if you wish.
 * C# classes use the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) and avoid prefixing fields with an underscore (`_`) that are assigned to in constructors, which differs from the [ASP.NET Core framework engineering guidelines](https://github.com/dotnet/aspnetcore/wiki/Engineering-guidelines).
 * In examples that use [primary constructors (C# 12 or later)](/dotnet/csharp/whats-new/tutorials/primary-constructors), primary constructor parameters are typically used directly by class members.
 In article examples, code lines are split to reduce horizontal scrolling. These breaks don't affect execution but can be removed when pasting into your project.
 
-Additional information on Razor component syntax is provided in the *Razor syntax* section of <xref:blazor/components/index#razor-syntax>.
+Additional information on Razor component syntax is provided in the *Razor syntax* section of [ASP.NET Core Razor components](../components/index.md#razor-syntax).
 
 The following is an example counter component and part of an app created from a Blazor project template. Detailed components coverage is found in the *Components* articles later in the documentation. The following example demonstrates component concepts seen in the *Fundamentals* articles before reaching the *Components* articles later in the documentation.
 
@@ -126,7 +125,7 @@ The preceding `Counter` component:
 
 ## Render modes
 
-Articles in the *Fundamentals* node make reference to the concept of *render modes*. This subject is covered in detail in the <xref:blazor/components/render-modes> article in the *Components* node, which appears after the *Fundamentals* node of articles.
+Articles in the *Fundamentals* node make reference to the concept of *render modes*. This subject is covered in detail in the [ASP.NET Core Blazor render modes](../components/render-modes.md) article in the *Components* node, which appears after the *Fundamentals* node of articles.
 
 For the early references in this node of articles to render mode concepts, merely note the following at this time:
 
@@ -145,7 +144,7 @@ Interactive Auto | Interactive SSR using Blazor Server initially and then CSR on
 
 &dagger;Client-side rendering (CSR) is assumed to be interactive. "*Interactive* client-side rendering" and "*interactive* CSR" aren't used by the industry or in the Blazor documentation.
 
-The preceding information on render modes is all that you need to know to understand the *Fundamentals* node articles. If you're new to Blazor and reading Blazor articles in order down the table of contents, you can delay consuming in-depth information on render modes until you reach the <xref:blazor/components/render-modes> article in the *Components* node.
+The preceding information on render modes is all that you need to know to understand the *Fundamentals* node articles. If you're new to Blazor and reading Blazor articles in order down the table of contents, you can delay consuming in-depth information on render modes until you reach the [ASP.NET Core Blazor render modes](../components/render-modes.md) article in the *Components* node.
 
 :::moniker-end
 
@@ -157,7 +156,7 @@ A curated list of specific .NET APIs that are supported on the browser for Blazo
 
 For more information, see the following resources:
 
-* [Class libraries: Client-side browser compatibility analyzer](xref:blazor/components/class-libraries#client-side-browser-compatibility-analyzer)
+* [Class libraries: Client-side browser compatibility analyzer](../components/class-libraries.md#client-side-browser-compatibility-analyzer)
 * [Annotating APIs as unsupported on specific platforms (`dotnet/designs` GitHub repository](https://github.com/dotnet/designs/blob/main/accepted/2020/platform-exclusion/platform-exclusion.md#build-configuration-for-platforms)
 
 ## Sample apps
@@ -176,14 +175,14 @@ Samples apps in the repository:
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
-* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
-* Blazor Web App with OIDC (<xref:blazor/security/blazor-web-app-oidc>)
-* Blazor Web App with Entra (<xref:blazor/security/blazor-web-app-entra>)
-* Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
-* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
-* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
+* Blazor Web App Movies tutorial sample ([Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md))
+* Blazor Web App with SignalR ([Use ASP.NET Core SignalR with Blazor](../tutorials/signalr-blazor.md))
+* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs ([Call a web API from an ASP.NET Core Blazor app](../call-web-api.md))
+* Blazor Web App with OIDC ([Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../security/blazor-web-app-with-oidc.md))
+* Blazor Web App with Entra ([Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../security/blazor-web-app-with-entra.md))
+* Blazor WebAssembly scopes-enabled logging ([ASP.NET Core Blazor logging](logging.md#client-side-log-scopes))
+* Blazor WebAssembly with ASP.NET Core Identity ([Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../security/webassembly/standalone-with-identity/index.md))
+* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) ([Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../hybrid/tutorials/maui-blazor-web-app.md))
 * Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
 :::moniker-end
@@ -194,13 +193,13 @@ Samples apps in the repository:
 
 * Blazor Web App
 * Blazor WebAssembly
-* Blazor Web App Movies tutorial sample (<xref:blazor/tutorials/movie-database-app/index>)
-* Blazor Web App with SignalR (<xref:blazor/tutorials/signalr-blazor>)
-* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs (<xref:blazor/call-web-api>)
-* Blazor Web App with OIDC (BFF and non-BFF patterns) (<xref:blazor/security/blazor-web-app-oidc>)
-* Blazor WebAssembly scopes-enabled logging (<xref:blazor/fundamentals/logging#client-side-log-scopes>)
-* Blazor WebAssembly with ASP.NET Core Identity (<xref:blazor/security/webassembly/standalone-with-identity/index>)
-* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) (<xref:blazor/hybrid/tutorials/maui-blazor-web-app>)
+* Blazor Web App Movies tutorial sample ([Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md))
+* Blazor Web App with SignalR ([Use ASP.NET Core SignalR with Blazor](../tutorials/signalr-blazor.md))
+* Two Blazor Web Apps and a Blazor WebAssembly app for calling web (server) APIs ([Call a web API from an ASP.NET Core Blazor app](../call-web-api.md))
+* Blazor Web App with OIDC (BFF and non-BFF patterns) ([Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../security/blazor-web-app-with-oidc.md))
+* Blazor WebAssembly scopes-enabled logging ([ASP.NET Core Blazor logging](logging.md#client-side-log-scopes))
+* Blazor WebAssembly with ASP.NET Core Identity ([Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../security/webassembly/standalone-with-identity/index.md))
+* .NET MAUI Blazor Hybrid app with a Blazor Web App and a shared UI provided by a Razor class library (RCL) ([Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../hybrid/tutorials/maui-blazor-web-app.md))
 * Additional samples (see the [Blazor samples GitHub repository README file](https://github.com/dotnet/blazor-samples))
 
 :::moniker-end

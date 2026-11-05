@@ -5,7 +5,6 @@ description: Learn how to set up Nginx as a reverse proxy on Ubuntu, RHEL and SU
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content, sfi-ropc-nochange
 ms.date: 10/07/2026
-uid: host-and-deploy/linux-nginx
 ---
 # Host ASP.NET Core on Linux with Nginx
 
@@ -53,7 +52,7 @@ At any point in the future after upgrading the shared framework, restart the ASP
 
 Configure the app for a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd).
 
-If the app is run locally in the [`Development` environment](xref:fundamentals/environments#configure-services-and-middleware-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
+If the app is run locally in the [`Development` environment](../fundamentals/environments.md#control-code-execution-by-environment) and isn't configured by the server to make secure HTTPS connections, adopt either of the following approaches:
 
 * Configure the app to handle secure local connections. For more information, see the [HTTPS configuration](#https-configuration) section.
 
@@ -68,11 +67,11 @@ If the app is run locally in the [`Development` environment](xref:fundamentals/e
     }
     ```
 
-    For more information, see <xref:fundamentals/environments#configure-services-and-middleware-by-environment>.
+    For more information, see [ASP.NET Core runtime environments](../fundamentals/environments.md#control-code-execution-by-environment).
 
   * Remove `https://localhost:5001` (if present) from the `applicationUrl` property in the `Properties/launchSettings.json` file.
 
-For more information on configuration by environment, see <xref:fundamentals/environments>.
+For more information on configuration by environment, see [ASP.NET Core runtime environments](../fundamentals/environments.md).
 
 Run [dotnet publish](/dotnet/core/tools/dotnet-publish) from the `Development` environment to package an app into a directory (for example, `bin/Release/{TARGET FRAMEWORK MONIKER}/publish`, where the `{TARGET FRAMEWORK MONIKER}` placeholder is the [Target Framework Moniker (TFM)](/dotnet/standard/frameworks)) that can run on the server:
 
@@ -102,9 +101,9 @@ Kestrel is great for serving dynamic content from ASP.NET Core. However, the web
 
 For the purposes of this guide, a single instance of Nginx is used. It runs on the same server, alongside the HTTP server. Based on requirements, a different setup may be chosen.
 
-Because requests are forwarded by reverse proxy, use the [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) package, which is automatically included in ASP.NET Core apps via the [shared framework's `Microsoft.AspNetCore.App` metapackage](xref:fundamentals/metapackage-app). The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
+Because requests are forwarded by reverse proxy, use the [forwarded headers middleware](proxy-load-balancer.md) from the [`Microsoft.AspNetCore.HttpOverrides`](https://www.nuget.org/packages/Microsoft.AspNetCore.HttpOverrides) package, which is automatically included in ASP.NET Core apps via the [shared framework's `Microsoft.AspNetCore.App` metapackage](../fundamentals/metapackage-app.md). The middleware updates the `Request.Scheme`, using the `X-Forwarded-Proto` header, so that redirect URIs and other security policies work correctly.
 
-Forwarded headers middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-order).
+Forwarded headers middleware should run before other middleware. This ordering ensures that the middleware relying on forwarded headers information can consume the header values for processing. To run forwarded headers middleware after diagnostics and error handling middleware, see [forwarded headers middleware order](proxy-load-balancer.md#forwarded-headers-middleware-order).
 
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
@@ -116,7 +115,7 @@ Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the st
 
 :::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_all":::
 
-For more information, see <xref:host-and-deploy/proxy-load-balancer>.
+For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
 ### Install Nginx
 
@@ -189,7 +188,7 @@ server {
 }
 ```
 
-If the app is a SignalR or Blazor Server app, see <xref:signalr/scale#linux-with-nginx> and <xref:blazor/host-and-deploy/server/index#linux-with-nginx> respectively for more information.
+If the app is a SignalR or Blazor Server app, see [ASP.NET Core SignalR production hosting and scaling](../signalr/scale.md#linux-with-nginx) and [Host and deploy ASP.NET Core server-side Blazor apps](../blazor/host-and-deploy/server/index.md#linux-with-nginx) respectively for more information.
 
 When no `server_name` matches, Nginx uses the default server. If no default server is defined, the first server in the configuration file is the default server. As a best practice, add a specific default server that returns a status code of 444 in your configuration file. A default server configuration example is:
 
@@ -201,7 +200,7 @@ server {
 }
 ```
 
-With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://127.0.0.1:5000/`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+With the preceding configuration file and default server, Nginx accepts public traffic on port 80 with host header `example.com` or `*.example.com`. Requests not matching these hosts won't get forwarded to Kestrel. Nginx forwards the matching requests to Kestrel at `http://127.0.0.1:5000/`. For more information, see [How nginx processes a request](https://nginx.org/docs/http/request_processing.html). To change Kestrel's IP/port, see [Kestrel: Endpoint configuration](../fundamentals/servers/kestrel/endpoints.md).
 
 > [!WARNING]
 > Failure to specify a proper [server_name directive](https://nginx.org/docs/http/server_names.html) exposes your app to security vulnerabilities. Subdomain wildcard binding (for example, `*.example.com`) doesn't pose this security risk if you control the entire parent domain (as opposed to `*.com`, which is vulnerable). For more information, see [RFC 9110: HTTP Semantics (Section 7.2: Host and :authority)](https://www.rfc-editor.org/rfc/rfc9110#field.host).
@@ -286,7 +285,7 @@ Some values (for example, SQL connection strings) must be escaped for the config
 systemd-escape "<value-to-escape>"
 ```
 
-Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](xref:fundamentals/configuration/index#environment-variables) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
+Colon (`:`) separators aren't supported in environment variable names. Use a double underscore (`__`) in place of a colon. The [Environment Variables configuration provider](../fundamentals/configuration/index.md#environment-variables-configuration-provider) converts double-underscores into colons when environment variables are read into configuration. In the following example, the connection string key `ConnectionStrings:DefaultConnection` is set into the service definition file as `ConnectionStrings__DefaultConnection`:
 
 ```console
 Environment=ConnectionStrings__DefaultConnection={Connection String}
@@ -339,13 +338,13 @@ sudo journalctl -fu kestrel-helloapp.service --since "2016-10-18" --until "2016-
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](../fundamentals/middleware/index.md), including authentication middleware (for example, cookie middleware) and cross-site request forgery (CSRF) protections. Even if Data Protection APIs aren't called by user code, data protection should be configured to create a persistent cryptographic [key store](../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This may include [CSRF tokens](../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](../fundamentals/app-state.md#tempdata).
 
 To configure data protection to persist and encrypt the key ring, see:
 
@@ -450,8 +449,8 @@ The [dotnet run](/dotnet/core/tools/dotnet-run) command uses the app's `Properti
 
 Configure the app to use a certificate in development for the `dotnet run` command or development environment (<kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>F5</kbd> in Visual Studio Code) using one of the following approaches:
 
-* [Replace the default certificate from configuration](xref:fundamentals/servers/kestrel/endpoints#configuration) (*Recommended*)
-* [KestrelServerOptions.ConfigureHttpsDefaults](xref:fundamentals/servers/kestrel/endpoints#configurehttpsdefaultsactionhttpsconnectionadapteroptions)
+* [Replace the default certificate from configuration](../fundamentals/servers/kestrel/endpoints.md#configuration) (*Recommended*)
+* [KestrelServerOptions.ConfigureHttpsDefaults](../fundamentals/servers/kestrel/endpoints.md#configurehttpsdefaults)
 
 **Configure the reverse proxy for secure (HTTPS) client connections**
 
@@ -498,7 +497,7 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 [!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 
 > [!NOTE]
-> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see <xref:blazor/host-and-deploy/webassembly/nginx>.
+> Blazor WebAssembly apps require a larger `burst` parameter value to accommodate the larger number of requests made by an app. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly with Nginx](../blazor/host-and-deploy/webassembly/nginx.md).
 
 > [!NOTE]
 > The preceding example disables Online Certificate Status Protocol (OCSP) Stapling. If enabled, confirm that the certificate supports the feature. For more information and guidance on enabling OCSP, see the following properties in the [Module ngx_http_ssl_module (Nginx documentation)](http://nginx.org/en/docs/http/ngx_http_ssl_module.html) article:
@@ -548,8 +547,8 @@ After upgrading the shared framework on the server, restart the ASP.NET Core app
 
 * [Prerequisites for .NET on Linux](/dotnet/core/linux-prerequisites)
 * [Nginx: Linux packages - Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
-* <xref:test/troubleshoot>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Troubleshoot and debug ASP.NET Core projects](../test/troubleshoot.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md)
 * [NGINX: Using the Forwarded header](https://www.nginx.com/resources/wiki/start/topics/examples/forwarded/)
 
 :::moniker-end

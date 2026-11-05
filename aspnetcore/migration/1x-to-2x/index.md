@@ -2,13 +2,12 @@
 title: Migrate from ASP.NET Core 1.x to 2.0
 description: This article outlines the prerequisites and most common steps for migrating an ASP.NET Core 1.x project to ASP.NET Core 2.0.
 ms.date: 12/05/2019
-uid: migration/1x-to-2x/index
 ---
 # Migrate from ASP.NET Core 1.x to 2.0
 
 By [Scott Addie](https://github.com/scottaddie)
 
-In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](xref:aspnetcore-2.0).
+In this article, we walk you through updating an existing ASP.NET Core 1.x project to ASP.NET Core 2.0. Migrating your application to ASP.NET Core 2.0 enables you to take advantage of [many new features and performance improvements](../../release-notes/aspnetcore-2.0.md).
 
 Existing ASP.NET Core 1.x applications are based off of version-specific project templates. As the ASP.NET Core framework evolves, so do the project templates and the starter code contained within them. In addition to updating the ASP.NET Core framework, you need to update the code for your application.
 
@@ -16,7 +15,7 @@ Existing ASP.NET Core 1.x applications are based off of version-specific project
 
 ## Prerequisites
 
-Follow the <xref:get-started> tutorial.
+Follow the [Get started with ASP.NET Core](../../get-started.md) tutorial.
 
 <a name="tfm"></a>
 
@@ -49,7 +48,7 @@ If your solution relies upon a [global.json](/dotnet/core/tools/global-json) fil
 
 The `.csproj` file in a 1.x project lists each NuGet package used by the project.
 
-In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](xref:fundamentals/metapackage) reference in the `.csproj` file replaces the collection of packages:
+In an ASP.NET Core 2.0 project targeting .NET Core 2.0, a single [metapackage](../../fundamentals/metapackage.md) reference in the `.csproj` file replaces the collection of packages:
 
 [!code-xml[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App.csproj?range=8-10)]
 
@@ -97,7 +96,7 @@ In 2.0 projects, the `Main` method of `Program.cs` has been simplified:
 
 [!code-csharp[](../1x-to-2x/samples/AspNetCoreDotNetCore2App/AspNetCoreDotNetCore2App/Program.cs?highlight=8-11)]
 
-The adoption of this new 2.0 pattern is highly recommended and is required for product features like [Entity Framework (EF) Core Migrations](xref:data/ef-mvc/migrations) to work. For example, running `Update-Database` from the Package Manager Console window or `dotnet ef database update` from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:
+The adoption of this new 2.0 pattern is highly recommended and is required for product features like [Entity Framework (EF) Core Migrations](../../data/ef-mvc/migrations.md) to work. For example, running `Update-Database` from the Package Manager Console window or `dotnet ef database update` from the command line (on projects converted to ASP.NET Core 2.0) generates the following error:
 
 ```
 Unable to create an object of type '<Context>'. Add an implementation of 'IDesignTimeDbContextFactory<Context>' to the project, or see https://go.microsoft.com/fwlink/?linkid=851728 for additional patterns supported at design time.
@@ -123,7 +122,7 @@ To remove the default providers added by `WebHostBuilder.CreateDefaultBuilder`, 
 
 The configuration used by the `CreateDefaultBuilder` method in the preceding code snippet can be seen [here](https://github.com/aspnet/MetaPackages/blob/rel/2.0.0/src/Microsoft.AspNetCore/WebHost.cs#L152).
 
-For more information, see [Configuration in ASP.NET Core](xref:fundamentals/configuration/index).
+For more information, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 <a name="db-init-code"></a>
 
@@ -151,7 +150,7 @@ As of 2.0, it's bad practice to do anything in `BuildWebHost` except build and c
 
 ## Review Razor view compilation setting
 
-Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](xref:mvc/views/view-compilation) is enabled by default in ASP.NET Core 2.0.
+Faster application startup time and smaller published bundles are of utmost importance to you. For these reasons, [Razor view compilation](../../mvc/views/view-compilation.md) is enabled by default in ASP.NET Core 2.0.
 
 Setting the `MvcRazorCompileOnPublish` property to true is no longer required. Unless you're disabling view compilation, the property may be removed from the `.csproj` file.
 
@@ -179,13 +178,13 @@ ASP.NET Core 1.1 projects created in Visual Studio 2017 added Application Insigh
 
     [!code-cshtml[](../1x-to-2x/samples/AspNetCoreDotNetCore1App/AspNetCoreDotNetCore1App/Views/Shared/_Layout.cshtml?range=1,19&dedent=4)]
 
-If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](xref:fundamentals/metapackage) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
+If you are using the Application Insights SDK directly, continue to do so. The 2.0 [metapackage](../../fundamentals/metapackage.md) includes the latest version of Application Insights, so a package downgrade error appears if you're referencing an older version.
 
 <a name="auth-and-identity"></a>
 
 ## Adopt authentication/Identity improvements
 
-ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x).
+ASP.NET Core 2.0 has a new authentication model and a number of significant changes to ASP.NET Core Identity. If you created your project with Individual User Accounts enabled, or if you have manually added authentication or Identity, see [Migrate Authentication and Identity to ASP.NET Core 2.0](identity-2x.md).
 
 ## Related content
 

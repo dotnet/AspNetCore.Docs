@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/ab-testing
 title: YARP A/B Testing and Rolling Upgrades
 description: YARP A/B Testing and Rolling Upgrades
 ms.date: 2/6/2025
