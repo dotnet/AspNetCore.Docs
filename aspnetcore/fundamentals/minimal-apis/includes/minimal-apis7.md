@@ -213,7 +213,7 @@ For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](
 <!--
 # Differences between Minimal APIs and APIs with controllers
 
-Moved to uid: tutorials/min-web-api
+Moved to tutorials/min-web-api.md
 -->
 
 ## See also
