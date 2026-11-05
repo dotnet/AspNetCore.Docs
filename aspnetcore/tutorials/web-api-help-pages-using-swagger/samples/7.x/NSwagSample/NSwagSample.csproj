@@ -20,7 +20,6 @@
   <!-- </snippet_GenerateDocumentationFileWithNoWarn> -->
 
   <ItemGroup>
-    <Compile Remove="Snippets/**/*.cs" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.20" />
     <PackageReference Include="NSwag.AspNetCore" Version="14.0.2" />
   </ItemGroup>
