@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: OpenAPI XML documentation comments in ASP.NET Core enrich generated API documents automatically. Learn how to enable, customize, and disable XML comment support.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 08/19/2026
-uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 # OpenAPI XML documentation comment support in ASP.NET Core
 
@@ -235,6 +234,6 @@ Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar 
 
 * [Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
 * The source generator implementation can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
-* <xref:fundamentals/openapi/aspnetcore-openapi>
-* <xref:fundamentals/openapi/using-openapi-documents>
-* <xref:fundamentals/openapi/openapi-tools>
+* [Generate OpenAPI documents](aspnetcore-openapi.md)
+* [Use the generated OpenAPI documents](using-openapi-documents.md)
+* [.NET OpenAPI tool command reference and installation](openapi-tools.md)

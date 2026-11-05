@@ -14,16 +14,16 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com
 
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning article. You should be familiar with:
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)
 
 :::moniker range=">= aspnetcore-8.0"
 
 For Blazor guidance, which adds to or supersedes the guidance in this article, see the following resources:
 
-* <xref:blazor/security/account-confirmation-and-password-recovery>
-* <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>
+* [Account confirmation and password recovery in ASP.NET Core Blazor](../../blazor/security/account-confirmation-and-password-recovery.md)
+* [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../../blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md)
 
 :::moniker-end
 
@@ -60,7 +60,7 @@ After registration completes, you're redirected to the `/Identity/Account/Regist
 
 1. Select the **Personal data** tab, and then select **Delete**.
 
-The `Click here to confirm your account` link displays because the [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) interface isn't yet implemented and registered with the [dependency injection container](xref:fundamentals/dependency-injection). For more information, see the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L71-L74).
+The `Click here to confirm your account` link displays because the [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) interface isn't yet implemented and registered with the [dependency injection container](../../fundamentals/dependency-injection.md). For more information, see the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L71-L74).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -96,7 +96,7 @@ The contents of the _secrets.json_ file aren't encrypted. The following markup s
 }
 ```
 
-For more information, see the [Options pattern](xref:fundamentals/configuration/options) and <xref:fundamentals/configuration/index>.
+For more information, see the [Options pattern](../../fundamentals/configuration/options.md) and [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 ### Install SendGrid
 
@@ -314,7 +314,7 @@ The contents of the `secrets.json` file aren't encrypted. The following markup s
 }
 ```
 
-For more information, see the [Options pattern](xref:fundamentals/configuration/options) and [configuration](xref:fundamentals/configuration/index).
+For more information, see the [Options pattern](../../fundamentals/configuration/options.md) and [configuration](../../fundamentals/configuration/index.md).
 
 ### Install SendGrid
 
@@ -460,6 +460,6 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Related content
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)

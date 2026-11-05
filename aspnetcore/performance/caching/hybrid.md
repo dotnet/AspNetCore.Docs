@@ -5,11 +5,10 @@ description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/06/2026
-uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](xref:performance/caching/overview#hybridcache).
+This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](overview.md#hybridcache).
 
 ## Get the library
 
@@ -21,7 +20,7 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
+Add the `HybridCache` service to the [dependency injection (DI)](../../fundamentals/dependency-injection.md) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
@@ -190,7 +189,7 @@ For more information, see the [HybridCache serialization sample app](https://git
 
 ## Cache storage
 
-By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
+By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](distributed.md), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
 
 > [!NOTE]
 > When invalidating cache entries by key or by tags, they're invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
@@ -249,7 +248,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 * **Trimming**
 
-  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
+  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see [ASP.NET Core support for Native AOT](../../fundamentals/native-aot.md).
 
 If you set up serialization and trimming correctly, `HybridCache` behaves the same way in Native AOT as in regular ASP.NET Core apps.
 

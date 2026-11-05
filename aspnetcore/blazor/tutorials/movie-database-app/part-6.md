@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 6 - Add search)
 description: This part of the Blazor movie database app tutorial explains how to add a search feature to filter movies by title.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-6
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 6 - Add search)
@@ -200,5 +199,5 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database-app/part-5)
-> [Next: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
+> [Previous: Add validation](part-5.md)
+> [Next: Add a new field](part-7.md)

@@ -2,10 +2,8 @@
 title: Rate limiting middleware samples
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
-ms.date: 10/30/2026
-uid: performance/rate-limit-sample
+ms.date: 11/05/2026
 ---
-
 # Rate limiter samples
 
 The following samples aren't production quality, they're examples on how to use the limiters.

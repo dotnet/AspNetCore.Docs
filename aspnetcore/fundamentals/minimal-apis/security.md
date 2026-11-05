@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization in Minimal API apps, explore concepts, define policies, and run development tests.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 04/28/2026
-uid: fundamentals/minimal-apis/security
 
 # customer intent: As an ASP.NET developer, I want to use authentication and authorization in Minimal API apps, so I can manage user access to my apps.
 ---
@@ -22,7 +21,7 @@ This article describes the support for authentication and authorization in Minim
 
 Authentication is the process of determining a user's identity while authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core.
 
-* The authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, handles all authentication and is used by authentication [middleware](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
+* The authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, handles all authentication and is used by authentication [middleware](../middleware/index.md#middleware-added-automatically-by-webapplication).
 * The authorization service, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, manages all authorization and is used by the authorization middleware.
 
 ### Authentication service
@@ -53,7 +52,7 @@ By default, the [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapp
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
 
-In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
+In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](../middleware/index.md#middleware-added-automatically-by-webapplication).
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 
@@ -153,5 +152,5 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 
 * [The authentication service (`IAuthenticationService`)](xref:Microsoft.AspNetCore.Authentication.IAuthenticationService)
 * [The authorization service (`IAuthorizationService`)](xref:Microsoft.AspNetCore.Authorization.IAuthorizationService)
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../middleware/index.md)
 * [Generate tokens with dotnet user-jwts](../../security/authentication/jwt-authn.md)

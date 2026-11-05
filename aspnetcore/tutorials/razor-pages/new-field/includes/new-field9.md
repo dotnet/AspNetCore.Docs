@@ -94,7 +94,7 @@ The `Update-Database` command tells the framework to apply the schema changes to
 
 <a name="ssox"></a>
 
-Delete all the records in the database, the initializer will seed the database and include the `Rating` field. Deleting can be done with the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+Delete all the records in the database, the initializer will seed the database and include the `Rating` field. Deleting can be done with the delete links in the browser or from [Sql Server Object Explorer](../../sql.md#ssox) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
@@ -102,7 +102,7 @@ Another option is to delete the database and use migrations to re-create the dat
 1. Right-click on the database, and select **Delete**.
 1. Check **Close existing connections**.
 1. Select **OK**.
-1. In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+1. In the [PMC](../../new-field.md#pmc), update the database:
 
    ```powershell
    Update-Database
@@ -166,7 +166,7 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:tutorials/razor-pages/search)
-> [Next: Add Validation](xref:tutorials/razor-pages/validation)
+> [Previous: Add Search](../../search.md)
+> [Next: Add Validation](../../validation.md)
 
 :::moniker-end

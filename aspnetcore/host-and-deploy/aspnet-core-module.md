@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the ASP.NET Core Module (ANCM) for hosting ASP.NET Core apps with IIS.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/20/2026
-uid: host-and-deploy/aspnet-core-module
 ---
 
 # ASP.NET Core Module (ANCM) for IIS
@@ -15,17 +14,17 @@ uid: host-and-deploy/aspnet-core-module
 
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline, allowing ASP.NET Core applications to work with IIS. Run ASP.NET Core apps with IIS by either:
 
-* Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](xref:host-and-deploy/iis/in-process-hosting).
-* Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](xref:host-and-deploy/iis/out-of-process-hosting).
+* Hosting an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](iis/in-process-hosting.md).
+* Forwarding web requests to a backend ASP.NET Core app running the Kestrel server, called the [out-of-process hosting model](iis/out-of-process-hosting.md).
 
 There are trade-offs between each of the hosting models. By default, the in-process hosting model is used due to better performance and diagnostics.
 
 For more information and configuration guidance, see the following topics:
-* <xref:fundamentals/servers/index>
+* [Web server implementations in ASP.NET Core](../fundamentals/servers/index.md)
 
 ## Install ASP.NET Core Module (ANCM)
 
-The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+The ASP.NET Core Module (ANCM) is installed with the .NET Core Runtime from the [.NET Core Hosting Bundle](iis/hosting-bundle.md). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -33,9 +32,9 @@ Download the installer using the following link:
 
 [Current .NET Core Hosting Bundle installer (direct download)](https://dotnet.microsoft.com/permalink/dotnetcore-current-windows-runtime-bundle-installer)
 
-For more information, including installing an earlier version of the module, see <xref:host-and-deploy/iis/hosting-bundle>.
+For more information, including installing an earlier version of the module, see [Hosting Bundle](iis/hosting-bundle.md).
 
-For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see <xref:tutorials/publish-to-iis>.
+For a tutorial experience on publishing an ASP.NET Core app to an IIS server, see [Publish an ASP.NET Core app to IIS](../tutorials/publish-to-iis.md).
 
 :::moniker-end
 
@@ -44,7 +43,7 @@ For a tutorial experience on publishing an ASP.NET Core app to an IIS server, se
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
-* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
+* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](../fundamentals/servers/kestrel.md), called the [out-of-process hosting model](#out-of-process-hosting-model).
 
 Supported Windows versions:
 
@@ -53,7 +52,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 ## Hosting models
 
@@ -63,7 +62,7 @@ ASP.NET Core apps default to the in-process hosting model.
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -73,7 +72,7 @@ The following characteristics apply when hosting in-process:
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [`app_offline.htm` file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a WebSocket connection may delay app shut down.
+* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [`app_offline.htm` file in the deployment](iis/index.md#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a WebSocket connection may delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
 
@@ -114,9 +113,9 @@ In-process hosting is set with `InProcess`, which is the default value.
 
 The value of `<AspNetCoreHostingModel>` is case insensitive, so `inprocess` and `outofprocess` are valid values.
 
-[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+[Kestrel](../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [`CreateDefaultBuilder`](../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
@@ -131,7 +130,7 @@ For IIS Express, the module doesn't recycle the worker process but instead trigg
 
 `Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -141,7 +140,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -192,7 +191,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications> pr
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the `LogFiles` folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -215,7 +214,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 
 Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
 
-The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables in `web.config`. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -231,7 +230,7 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 ```
 
 > [!NOTE]
-> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. This approach sets the environment in `web.config` when the project is published:
+> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (`.pubxml`)](visual-studio-publish-profiles.md) or project file. This approach sets the environment in `web.config` when the project is published:
 >
 > ```xml
 > <PropertyGroup>
@@ -268,9 +267,9 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (`.log`) to the last segment of the `stdoutLogFile` path (typically `stdout`) delimited by underscores. If the `stdoutLogFile` path ends with `stdout`, a log for an app with a PID of 1934 created on February 5, 2018 at 19:42:32 has the file name `stdout_20180205194132_1934.log`.
 
@@ -289,7 +288,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](../fundamentals/logging/index.md#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 
@@ -450,7 +449,7 @@ The files can be found by searching for `aspnetcore` in the `applicationHost.con
 The ASP.NET Core Module (ANCM) is a native IIS module that plugs into the IIS pipeline to either:
 
 * Host an ASP.NET Core app inside of the IIS worker process (`w3wp.exe`), called the [in-process hosting model](#in-process-hosting-model).
-* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](xref:fundamentals/servers/kestrel), called the [out-of-process hosting model](#out-of-process-hosting-model).
+* Forward web requests to a backend ASP.NET Core app running the [Kestrel server](../fundamentals/servers/kestrel.md), called the [out-of-process hosting model](#out-of-process-hosting-model).
 
 Supported Windows versions:
 
@@ -459,7 +458,7 @@ Supported Windows versions:
 
 When hosting in-process, the module uses an in-process server implementation for IIS, called IIS HTTP Server (`IISHttpServer`).
 
-When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](xref:fundamentals/servers/httpsys).
+When hosting out-of-process, the module only works with Kestrel. The module doesn't function with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 ## Hosting models
 
@@ -481,7 +480,7 @@ If the `<AspNetCoreHostingModel>` property isn't present in the file, the defaul
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../fundamentals/servers/kestrel.md) server. For in-process, [CreateDefaultBuilder](../fundamentals/host/web-host.md#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
@@ -491,7 +490,7 @@ The following characteristics apply when hosting in-process:
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](xref:host-and-deploy/iis/index#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection might delay app shut down.
+* When using [Web Deploy](/iis/publish/using-web-deploy/introduction-to-web-deploy) or manually placing an [app_offline.htm file in the deployment](iis/index.md#locked-deployment-files), the app might not shut down immediately if there's an open connection. For example, a websocket connection might delay app shut down.
 
 * The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool.
 
@@ -531,9 +530,9 @@ To configure an app for out-of-process hosting, use either of the following appr
 
 The value is case insensitive, so `inprocess` and `outofprocess` are valid values.
 
-[Kestrel](xref:fundamentals/servers/kestrel) server is used instead of IIS HTTP Server (`IISHttpServer`).
+[Kestrel](../fundamentals/servers/kestrel.md) server is used instead of IIS HTTP Server (`IISHttpServer`).
 
-For out-of-process, [CreateDefaultBuilder](xref:fundamentals/host/web-host#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
+For out-of-process, [CreateDefaultBuilder](../fundamentals/host/web-host.md#set-up-a-host) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> to:
 
 * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
 * Configure the host to capture startup errors.
@@ -548,7 +547,7 @@ For IIS Express, the module doesn't recycle the worker process but instead trigg
 
 `Process.GetCurrentProcess().ProcessName` reports `w3wp`/`iisexpress` (in-process) or `dotnet` (out-of-process).
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -558,7 +557,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle). The ASP.NET Core Module is forward and backward compatible with [in-support releases of .NET](https://dotnet.microsoft.com/platform/support/policy/dotnet-core#lifecycle).
 
 [!INCLUDE[](~/includes/announcements.md)]
 
@@ -609,7 +608,7 @@ The <xref:System.Configuration.SectionInformation.InheritInChildApplications> pr
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -632,7 +631,7 @@ For information on IIS sub-application configuration, see <xref:host-and-deploy/
 
 Environment variables can be specified for the process in the `processPath` attribute. Specify an environment variable with the `<environmentVariable>` child element of an `<environmentVariables>` collection element. Environment variables set in this section take precedence over system environment variables.
 
-The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the `web.config` file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -648,7 +647,7 @@ The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` c
 ```
 
 > [!NOTE]
-> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles) or project file. This approach sets the environment in `web.config` when the project is published:
+> An alternative to setting the environment directly in `web.config` is to include the `<EnvironmentName>` property in the [publish profile (.pubxml)](visual-studio-publish-profiles.md) or project file. This approach sets the environment in `web.config` when the project is published:
 >
 > ```xml
 > <PropertyGroup>
@@ -685,9 +684,9 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (`.log`) to the last segment of the `stdoutLogFile` path (typically `stdout`) delimited by underscores. If the `stdoutLogFile` path ends with `stdout`, a log for an app with a PID of 1934 created on 2/5/2018 at 19:42:32 has the file name `stdout_20180205194132_1934.log`.
 
@@ -851,7 +850,7 @@ Supported Windows versions:
 * Windows 7 or later
 * Windows Server 2008 R2 or later
 
-The module only works with Kestrel. The module is incompatible with [HTTP.sys](xref:fundamentals/servers/httpsys).
+The module only works with Kestrel. The module is incompatible with [HTTP.sys](../fundamentals/servers/httpsys.md).
 
 Because ASP.NET Core apps run in a process separate from the IIS worker process, the module also handles process management. The module starts the process for the ASP.NET Core app when the first request arrives and restarts the app if it crashes. This is essentially the same behavior as seen with ASP.NET 4.x apps that run in-process in IIS that are managed by the [Windows Process Activation Service (WAS)](/iis/manage/provisioning-and-managing-iis/features-of-the-windows-process-activation-service-was).
 
@@ -861,11 +860,11 @@ The following diagram illustrates the relationship between IIS, the ASP.NET Core
 
 Requests arrive from the web to the kernel-mode HTTP.sys driver. The driver routes the requests to IIS on the website's configured port, usually 80 (HTTP) or 443 (HTTPS). The module forwards the requests to Kestrel on a random port for the app, which isn't port 80 or 443.
 
-The module specifies the port via an environment variable at startup, and the [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
+The module specifies the port via an environment variable at startup, and the [IIS integration middleware](iis/index.md#enable-the-iisintegration-components) configures the server to listen on `http://localhost:{port}`. Additional checks are performed, and requests that don't originate from the module are rejected. The module doesn't support HTTPS forwarding, so requests are forwarded over HTTP even if received by IIS over HTTPS.
 
 After Kestrel picks up the request from the module, the request is pushed into the ASP.NET Core middleware pipeline. The middleware pipeline handles the request and passes it on as an `HttpContext` instance to the app's logic. Middleware added by IIS Integration updates the scheme, remote IP, and pathbase to account for forwarding the request to Kestrel. The app's response is passed back to IIS, which pushes it back out to the HTTP client that initiated the request.
 
-Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see <xref:host-and-deploy/iis/modules>.
+Many native modules, such as Windows Authentication, remain active. To learn more about IIS modules active with the ASP.NET Core Module, see [IIS modules with ASP.NET Core](iis/modules.md).
 
 The ASP.NET Core Module can also:
 
@@ -875,7 +874,7 @@ The ASP.NET Core Module can also:
 
 ## How to install and use the ASP.NET Core Module (ANCM)
 
-For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle).
+For instructions on how to install the ASP.NET Core Module, see [Install the .NET Core Hosting Bundle](iis/index.md#install-the-net-hosting-bundle).
 
 ## Configuration with web.config
 
@@ -916,7 +915,7 @@ The following *web.config* is published for a [self-contained deployment](/dotne
 
 When an app is deployed to [Azure App Service](https://azure.microsoft.com/products/app-service/), the `stdoutLogFile` path is set to `\\?\%home%\LogFiles\stdout`. The path saves stdout logs to the *LogFiles* folder, which is a location automatically created by the service.
 
-For information on IIS sub-application configuration, see <xref:host-and-deploy/iis/index#sub-applications>.
+For information on IIS sub-application configuration, see [Host ASP.NET Core on Windows with IIS](iis/index.md#sub-applications).
 
 ### Attributes of the aspNetCore element
 
@@ -941,7 +940,7 @@ Environment variables can be specified for the process in the `processPath` attr
 > [!WARNING]
 > Environment variables set in this section conflict with system environment variables set with the same name. If an environment variable is set in both the *web.config* file and at the system level in Windows, the value from the *web.config* file becomes appended to the system environment variable value (for example, `ASPNETCORE_ENVIRONMENT: Development;Development`), which prevents the app from starting.
 
-The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the *web.config* file in order to force the [Developer Exception Page](xref:fundamentals/error-handling) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
+The following example sets two environment variables. `ASPNETCORE_ENVIRONMENT` configures the app's environment to `Development`. A developer might temporarily set this value in the *web.config* file in order to force the [Developer Exception Page](../fundamentals/error-handling.md) to load when debugging an app exception. `CONFIG_DIR` is an example of a user-defined environment variable, where the developer has written code that reads the value on startup to form a path for loading the app's configuration file.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -974,9 +973,9 @@ The ASP.NET Core Module redirects stdout and stderr console output to disk if th
 
 Logs aren't rotated, unless process recycling/restart occurs. It's the responsibility of the hoster to limit the disk space the logs consume.
 
-Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](xref:host-and-deploy/iis/development-time-iis-support), not while debugging locally and running the app with IIS Express.
+Using the stdout log is only recommended for troubleshooting app startup issues when hosting on IIS or when using [development-time support for IIS with Visual Studio](iis/development-time-iis-support.md), not while debugging locally and running the app with IIS Express.
 
-Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+Don't use the stdout log for general app logging purposes. For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../fundamentals/logging/index.md#third-party-logging-providers).
 
 A timestamp and file extension are added automatically when the log file is created. The log file name is composed by appending the timestamp, process ID, and file extension (*.log*) to the last segment of the `stdoutLogFile` path (typically *stdout*) delimited by underscores. If the `stdoutLogFile` path ends with *stdout*, a log for an app with a PID of 1934 created on 2/5/2018 at 19:42:32 has the file name *stdout_20180205194132_1934.log*.
 
@@ -992,7 +991,7 @@ The following sample `aspNetCore` element configures stdout logging at the relat
 
 When publishing an app for Azure App Service deployment, the Web SDK sets the `stdoutLogFile` value to `\\?\%home%\LogFiles\stdout`. The `%home` environment variable is predefined for apps hosted by Azure App Service.
 
-To create logging filter rules, see the [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
+To create logging filter rules, see the [Apply log filter rules in code](../fundamentals/logging/index.md#apply-log-filter-rules-in-code) section of the ASP.NET Core logging documentation.
 
 For more information on path formats, see [File path formats on Windows systems](/dotnet/standard/io/file-path-formats).
 
@@ -1068,7 +1067,7 @@ The files can be found by searching for *aspnetcore* in the *applicationHost.con
 
 ## Related content
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/azure-apps/index>
+* [Host ASP.NET Core on Windows with IIS](iis/index.md)
+* [Deploy ASP.NET Core apps to Azure App Service](azure-apps/index.md)
 * [ASP.NET Core Module reference source [default branch (main)]](https://github.com/dotnet/aspnetcore/tree/main/src/Servers/IIS/AspNetCoreModuleV2): Use the **Branch** drop down list to select a specific release (for example, `release/3.1`).
-* <xref:host-and-deploy/iis/modules>
+* [IIS modules with ASP.NET Core](iis/modules.md)

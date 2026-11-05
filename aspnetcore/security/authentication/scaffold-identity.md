@@ -25,11 +25,11 @@ Although the scaffolder generates the necessary C# code to scaffold Identity int
 
 After running the Identity scaffolder, inspect the changes. Use GitHub or another source control system that shows file changes with a revert changes feature.
 
-Services are required when using [two-factor authentication (2FA)](xref:blazor/security/qrcodes-for-authenticator-apps), [account confirmation and password recovery](xref:blazor/security/account-confirmation-and-password-recovery), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
+Services are required when using [two-factor authentication (2FA)](../../blazor/security/qrcodes-for-authenticator-apps.md), [account confirmation and password recovery](../../blazor/security/account-confirmation-and-password-recovery.md), and other security features with Identity. Services or service stubs aren't generated when scaffolding Identity. Services to enable these features must be added manually.
 
 ## Razor Pages and MVC Identity scaffolding
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Customized Identity code overrides the default implementation provided by the Identity RCL. To gain full control of the UI and not use the default RCL, see the [Create full Identity UI source](#create-full-identity-ui-source) section.
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to generate.
 
@@ -97,7 +97,7 @@ The following commands assume you're using a SQL Server database and the SQL Ser
    These commands add:
 
    * [Command-line interface (CLI) tools](/ef/core/cli/dotnet) for Entity Framework Core
-   * The [aspnet-codegenerator](xref:fundamentals/tools/dotnet-aspnet-codegenerator) scaffolding tool
+   * The [aspnet-codegenerator](../../fundamentals/tools/dotnet-aspnet-codegenerator.md) scaffolding tool
    * Design time tools for Entity Framework Core
    * The SQLite and SQL Server providers with the Entity Framework Core package as a dependency
    * [Microsoft.VisualStudio.Web.CodeGeneration.Design](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
@@ -170,7 +170,7 @@ The update database command runs the `Up` method migrations that aren't applied 
 
 Client-side Blazor apps (Standalone Blazor WebAssembly) use their own Identity UI approaches and can't use ASP.NET Core Identity scaffolding.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Scaffold Identity into a Razor project without existing authorization
 
@@ -381,7 +381,7 @@ To prevent publishing static Identity assets to the web root, see [Introduction 
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -527,7 +527,7 @@ Because server-side Blazor apps use Razor Pages Identity pages, the styling of t
 
 ASP.NET Core Identity is designed to work in the context of HTTP request and response communication, which isn't the primary client-server communication model in Blazor apps. ASP.NET Core apps that use ASP.NET Core Identity for user management should use Razor Pages instead of Razor components for Identity-related UI, such as user registration, login, logout, and other user management tasks.
 
-Because <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see <xref:blazor/call-web-api>.
+Because <xref:Microsoft.AspNetCore.Identity.SignInManager`1> and <xref:Microsoft.AspNetCore.Identity.UserManager`1> aren't supported in Razor components, we recommend using web API to manage Identity actions from Razor components via a server-side Identity-enabled ASP.NET Core app. For guidance on creating web APIs for Blazor apps, see [Call a web API from an ASP.NET Core Blazor app](../../blazor/call-web-api.md).
 
 An approach to using Razor components for Identity instead of Razor pages is to build your own custom Identity Razor components, but Microsoft doesn't recommend or support the approach. For additional context, explore the following discussions. In the following discussions, code examples in issue comments and code examples cross-linked in non-Microsoft GitHub repositories aren't supported by Microsoft but might be helpful to some developers:
 
@@ -552,7 +552,7 @@ Client-side Blazor apps use their own Identity UI approaches and can't use ASP.N
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Create full Identity UI source
 <!-- remove AllowAreas  #23280 -->
@@ -650,7 +650,7 @@ To prevent publishing static Identity assets to the web root, see [Introduction 
 
 :::moniker range="< aspnetcore-6.0"
 
-ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
+ASP.NET Core provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). Applications that include Identity can apply the scaffolder to selectively add the source code contained in the Identity RCL. You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL. To gain full control of the UI and not use the default RCL, see the section [Create full Identity UI source](#create-full-identity-ui-source).
 
 Applications that do **not** include authentication can apply the scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
@@ -714,7 +714,7 @@ before dotnet ef database update
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ### Migrations, UseAuthentication, and layout
 
@@ -749,7 +749,7 @@ dotnet aspnet-codegenerator identity -dc RPauth.Data.ApplicationDbContext --file
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ## Scaffold Identity into an MVC project without existing authorization
 
@@ -775,7 +775,7 @@ Optional: Add the login partial (`_LoginPartial`) to the `Views/Shared/_Layout.c
 
 Move the `Pages/Shared/_LoginPartial.cshtml` file to `Views/Shared/_LoginPartial.cshtml`.
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 [!INCLUDE[](~/includes/scaffold-identity/migrations.md)]
 
@@ -801,7 +801,7 @@ dotnet aspnet-codegenerator identity -dc MvcAuth.Data.ApplicationDbContext  --fi
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg.md)]
 
-Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Identity is configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ### Migrations
 
@@ -826,7 +826,7 @@ The Identity pages layout and styles can be modified to produce pages that use s
 
 [!INCLUDE[](~/includes/scaffold-identity/id-scaffold-dlg-auth.md)]
 
-Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](xref:fundamentals/configuration/platform-specific-configuration).
+Some Identity options are configured in `Areas/Identity/IdentityHostingStartup.cs`. For more information, see [`IHostingStartup`](../../fundamentals/host/platform-specific-configuration.md).
 
 ## Client-side Blazor apps
 
@@ -834,7 +834,7 @@ Client-side Blazor apps use their own Identity UI approaches and can't use ASP.N
 
 The Blazor framework doesn't include Razor component versions of Identity UI pages. Identity UI Razor components can be custom built or obtained from unsupported third-party sources.
 
-For more information, see the [Blazor Security and Identity articles](xref:blazor/security/index).
+For more information, see the [Blazor Security and Identity articles](../../blazor/security/index.md).
 
 ## Create full Identity UI source
 <!-- remove AllowAreas  #23280 -->

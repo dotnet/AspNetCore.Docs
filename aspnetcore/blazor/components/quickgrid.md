@@ -3,8 +3,7 @@ title: ASP.NET Core Blazor `QuickGrid` component
 ai-usage: ai-assisted
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/17/2026
-uid: blazor/components/quickgrid
+ms.date: 11/02/2026
 ---
 # ASP.NET Core Blazor `QuickGrid` component
 
@@ -50,10 +49,10 @@ To implement a `QuickGrid` component:
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize>: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemSize> defines an expected height in pixels for each row, allowing the virtualization mechanism to fetch the correct number of items to match the display size and to ensure accurate scrolling.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemKey>: Optionally defines a value for `@key` on each rendered row. Typically, this is used to specify a unique identifier, such as a primary key value, for each data item. This allows the grid to preserve the association between row elements and data items based on their unique identifiers, even when the `TGridItem` instances are replaced by new copies (for example, after a new query against the underlying data store). If not set, the `@key` is the `TGridItem` instance.
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OverscanCount>: Defines how many additional items to render before and after the visible region to reduce rendering frequency during scrolling. While higher values can improve scroll smoothness by rendering more items off-screen, a higher value can also result in an increase in initial load times. Finding a balance based on your data set size and user experience requirements is recommended. The default value is `3`. Only available when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>.
-* `InitialItemIndex`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
-* `ScrollToItemAsync`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#scroll-to-a-specific-item>.
-* `AnchorMode`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `InitialItemIndex`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](virtualization.md#scroll-to-a-specific-item).
+* `ScrollToItemAsync`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](virtualization.md#scroll-to-a-specific-item).
+* `AnchorMode`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](virtualization.md#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
+* `ItemComparer`: Only applicable when using <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize>. A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](virtualization.md#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
 * <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Pagination>: Optionally links this `TGridItem` instance with a <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> model, causing the grid to fetch and render only the current page of data. This is normally used in conjunction with a <xref:Microsoft.AspNetCore.Components.QuickGrid.Paginator> component or some other UI logic that displays and updates the supplied <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> instance. <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState> includes API for interacting with the current zero-based page index, the number of items on each page, the zero-based index of the last page, and the total number of items across all pages.
 * In the QuickGrid child content (<xref:Microsoft.AspNetCore.Components.RenderFragment>), specify <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2>s, which represent `TGridItem` columns whose cells display values:
   * <xref:Microsoft.AspNetCore.Components.QuickGrid.PropertyColumn`2.Property>: Defines the value to be displayed in this column's cells.
@@ -120,7 +119,7 @@ For example, add the following component to render a grid.
 
 :::moniker range="< aspnetcore-11.0"
 
-For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes) to enable interactive features, such as paging and sorting.
+For Blazor Web Apps, the `QuickGrid` component must adopt an [interactive render mode](render-modes.md#render-modes) to enable interactive features, such as paging and sorting.
 
 :::moniker-end
 
@@ -152,7 +151,7 @@ The `QuickGrid` component can page data from the data source.
 
 :::moniker range="< aspnetcore-11.0"
 
-The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+The `QuickGrid` component can page data from the data source. In Blazor Web Apps, paging requires the component to adopt an [interactive render mode](render-modes.md#render-modes).
 
 :::moniker-end
 
@@ -185,6 +184,20 @@ To provide a UI for pagination, add a [`Paginator` component](xref:Microsoft.Asp
 ```
 
 In the running app, page through the items using a rendered `Paginator` component.
+
+<!-- UPDATE 11.0 - Hold for December servicing release
+
+:::moniker range=">= aspnetcore-11.0"
+
+The `Paginator` component supports passing custom attributes to its rendered navigation element (`<nav>`). In the following example, the [`aria-label` attribute](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) and value are passed:
+
+```razor
+<Paginator State="@pagination" aria-label="Orders page" />
+```
+
+:::moniker-end
+
+-->
 
 :::moniker range="< aspnetcore-11.0"
 
@@ -366,7 +379,7 @@ The feature includes built-in CSS styling that applies a pointer cursor to click
 
 ##### Event propagation from interactive cell content
 
-The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](xref:blazor/components/event-handling#stop-event-propagation):
+The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](event-handling.md#stop-event-propagation):
 
 ```razor
 <QuickGrid Items="@people.AsQueryable()" 
@@ -405,7 +418,7 @@ The `QuickGrid` component can sort items by columns. Selecting a header navigate
 
 :::moniker range="< aspnetcore-11.0"
 
-The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](xref:blazor/components/render-modes#render-modes).
+The `QuickGrid` component can sort items by columns. In Blazor Web Apps, sorting requires the component to adopt an [interactive render mode](render-modes.md#render-modes).
 
 :::moniker-end
 
@@ -560,7 +573,7 @@ In `Details.razor`:
 
 :::moniker range="< aspnetcore-11.0"
 
-* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync*?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> and [`GetUriWithQueryParameter`](xref:blazor/fundamentals/navigation#query-strings).
+* Pages the `QuickGrid` component by calling <xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.SetCurrentPageIndexAsync*?displayProperty=nameWithType> on component initialization, setting the page index with the value of `Page` (page number) minus one (`-1`). The `page` query string parameter is removed after setting the page index using <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> and [`GetUriWithQueryParameter`](../fundamentals/navigation.md#query-strings).
 * Opens the preceding `Details` component with the current page number, the page index incremented by one (`+1`), to make the value a one-based index (<xref:Microsoft.AspNetCore.Components.QuickGrid.PaginationState.CurrentPageIndex>) in the query string. A one-based index for the `page` query string parameter matches the rendered `Paginator` component's rendered one-based page number in the UI.
 
 `ScifiCharacters.razor`:
@@ -623,7 +636,7 @@ In `Details.razor`:
 
 ## Apply row styles
 
-Apply styles to rows using [CSS isolation](xref:blazor/components/css-isolation), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-component).
+Apply styles to rows using [CSS isolation](css-isolation.md), which can include styling empty rows for `QuickGrid` components that [page data with a `Paginator` component](#page-items-with-a-paginator-component).
 
 Wrap the `QuickGrid` component in a wrapper block element, for example a `<div>`:
 
@@ -662,7 +675,7 @@ Alternatively, use the following CSS styling approach:
 }
 ```
 
-For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see <xref:blazor/components/css-isolation#child-component-support>.
+For more information on using `::deep` [pseudo-elements](https://developer.mozilla.org/docs/Web/CSS/Pseudo-elements) with CSS isolation, see [ASP.NET Core Blazor CSS isolation](css-isolation.md#child-component-support).
 
 ## Custom attributes and styles
 
@@ -731,7 +744,7 @@ The following example closes the column options UI as soon as the title filter i
 
 ## Entity Framework Core (EF Core) data source
 
-Use the factory pattern to resolve an EF Core database context that provides data to a `QuickGrid` component. For more information on why the factory pattern is recommended, see <xref:blazor/blazor-ef-core>.
+Use the factory pattern to resolve an EF Core database context that provides data to a `QuickGrid` component. For more information on why the factory pattern is recommended, see [ASP.NET Core Blazor with Entity Framework Core (EF Core)](../blazor-ef-core.md).
 
 A database context factory (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1>) is injected into the component with the `@inject` directive. The factory approach requires disposal of the database context, so the component implements the <xref:System.IAsyncDisposable> interface with the `@implements` directive. The item provider for the `QuickGrid` component is a `DbSet<T>` obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory.
 
@@ -817,7 +830,7 @@ The following example filters movies by a movie title entered in a search box. T
 
 For a working example, see the following resources:
 
-* [Build a Blazor movie database app tutorial](xref:blazor/tutorials/movie-database-app/index)
+* [Build a Blazor movie database app tutorial](../tutorials/movie-database-app/index.md)
 * [Blazor movie database sample app](https://github.com/dotnet/blazor-samples): Select the latest version folder in the repository. The sample folder for the tutorial's project is named `BlazorWebAppMovies`.
 
 ## Display name support
@@ -936,7 +949,7 @@ The <xref:Microsoft.AspNetCore.Components.QuickGrid.GridItemsProvider`1> convert
 }
 ```
 
-For more information on calling web APIs, see <xref:blazor/call-web-api>.
+For more information on calling web APIs, see [Call a web API from an ASP.NET Core Blazor app](../call-web-api.md).
 
 ## QuickGrid scaffolder
 
@@ -989,7 +1002,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding
@@ -1041,7 +1054,7 @@ dotnet add package Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdap
 The preceding commands add:
 
 * [Command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* [`aspnet-codegenerator` scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator)
+* [`aspnet-codegenerator` scaffolding tool](../../fundamentals/tools/dotnet-aspnet-codegenerator.md)
 * Design time tools for EF Core
 * The SQLite and SQL Server providers with the EF Core package as a dependency
 * [`Microsoft.VisualStudio.Web.CodeGeneration.Design`](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.CodeGeneration.Design) for scaffolding.
@@ -1069,7 +1082,7 @@ dotnet aspnet-codegenerator blazor -h
 
 ---
 
-For an example use of the QuickGrid scaffolder, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example use of the QuickGrid scaffolder, see [Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md).
 
 <!-- UPDATE 12.0 - PU work tracked by https://github.com/dotnet/aspnetcore/issues/58716.
                    We will continue to show this for now. The PU plans to look at it
@@ -1085,7 +1098,7 @@ This scenario is scheduled for improvement in an upcoming release of ASP.NET Cor
 
 In the meantime, you can address the problem using an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider> with a cancellation token. The cancellation token prevents concurrent queries by cancelling the previous request when a new request is issued.
 
-Consider the following example, which is based on the movie database `Index` component for the <xref:blazor/tutorials/movie-database-app/index> tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](xref:blazor/tutorials/movie-database-app/index#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
+Consider the following example, which is based on the movie database `Index` component for the [Build a Blazor movie database app (Overview)](../tutorials/movie-database-app/index.md) tutorial. The simpler version scaffolded into the app can be seen in the article's [sample app](../tutorials/movie-database-app/index.md#sample-app). The `Index` component scaffolded into the app is replaced by the following component.
 
 `Components/Pages/MoviePages/Index.razor`:
 

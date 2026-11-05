@@ -3,17 +3,16 @@ title: ASP.NET Core Blazor synchronization context
 description: Learn about Blazor's synchronization context, how to avoid thread-blocking calls, and how to invoke component methods externally.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/sync-context
 ---
 # ASP.NET Core Blazor synchronization context
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution. A component's [lifecycle methods](xref:blazor/components/lifecycle) and event callbacks raised by Blazor are executed on the synchronization context.
+Blazor uses a synchronization context (<xref:System.Threading.SynchronizationContext>) to enforce a single logical thread of execution. A component's [lifecycle methods](lifecycle.md) and event callbacks raised by Blazor are executed on the synchronization context.
 
 Blazor's server-side synchronization context attempts to emulate a single-threaded environment so that it closely matches the WebAssembly model in the browser, which is single threaded. This emulation is scoped only to an individual circuit, meaning two different circuits can run in parallel. At any given point in time within a circuit, work is performed on exactly one thread, which yields the impression of a single logical thread. No two operations execute concurrently within the same circuit.
 
-A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](xref:blazor/components/lifecycle) or [component disposal methods](xref:blazor/components/component-disposal) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
+A single logical thread of execution doesn't imply a single asynchronous control flow. A component is re-entrant at any point where it awaits an incomplete <xref:System.Threading.Tasks.Task>. [Lifecycle methods](lifecycle.md) or [component disposal methods](component-disposal.md) may be called before the asynchronous control flow resumes after awaiting a <xref:System.Threading.Tasks.Task> to complete. Therefore, a component must ensure that it's in a valid state before awaiting a potentially incomplete <xref:System.Threading.Tasks.Task>. In particular, a component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> return. If either of these methods return an incomplete <xref:System.Threading.Tasks.Task>, they must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering.
 
 Another implication of re-entrant components is that a method can't defer a <xref:System.Threading.Tasks.Task> until after the method returns by passing it to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType>. Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType> may only defer the <xref:System.Threading.Tasks.Task> until the next [`await` operator](/dotnet/csharp/language-reference/operators/await) is reached.
 
@@ -190,15 +189,15 @@ In the preceding example:
 :::moniker range=">= aspnetcore-6.0"
 
 * The timer is initiated outside of Blazor's synchronization context with `_ = Task.Run(Timer.Start)`.
-* `NotifierService` invokes the component's `OnNotify` method. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see <xref:blazor/components/rendering>.
-* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/component-disposal>.
+* `NotifierService` invokes the component's `OnNotify` method. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see [ASP.NET Core Razor component rendering](rendering.md).
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-* `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see <xref:blazor/components/rendering>.
-* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see <xref:blazor/components/component-disposal>.
+* `NotifierService` invokes the component's `OnNotify` method outside of Blazor's synchronization context. `InvokeAsync` is used to switch to the correct context and enqueue a rerender. For more information, see [ASP.NET Core Razor component rendering](rendering.md).
+* The component implements <xref:System.IDisposable>. The `OnNotify` delegate is unsubscribed in the `Dispose` method, which is called by the framework when the component is disposed. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
 :::moniker-end
 
@@ -215,10 +214,10 @@ To dispatch caught exceptions from the background `TimerService` to the componen
 
 ## Handle caught exceptions outside of a Razor component's lifecycle
 
-Use <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries), can process the exceptions.
+Use <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> in a Razor component to process exceptions thrown outside of the component's lifecycle call stack. This permits the component's code to treat exceptions as though they're lifecycle method exceptions. Thereafter, Blazor's error handling mechanisms, such as [error boundaries](../fundamentals/handle-errors.md#error-boundaries), can process the exceptions.
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](xref:blazor/components/index#component-classes), use <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync*?displayProperty=nameWithType>.
+> <xref:Microsoft.AspNetCore.Components.ComponentBase.DispatchExceptionAsync*?displayProperty=nameWithType> is used in Razor component files (`.razor`) that inherit from <xref:Microsoft.AspNetCore.Components.ComponentBase>. When creating components that [implement <xref:Microsoft.AspNetCore.Components.IComponent> directly](index.md#component-classes), use <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync*?displayProperty=nameWithType>.
 
 To handle caught exceptions outside of a Razor component's lifecycle, pass the exception to <xref:Microsoft.AspNetCore.Components.RenderHandle.DispatchExceptionAsync*> and await the result:
 
@@ -235,7 +234,7 @@ catch (Exception ex)
 
 A common scenario for the preceding approach is when a component starts an asynchronous operation but doesn't await a <xref:System.Threading.Tasks.Task>, often called the *fire and forget* pattern because the method is *fired* (started) and the result of the method is *forgotten* (thrown away). If the operation fails, you may want the component to treat the failure as a component lifecycle exception for any of the following goals:
 
-* Put the component into a faulted state, for example, to trigger an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+* Put the component into a faulted state, for example, to trigger an [error boundary](../fundamentals/handle-errors.md#error-boundaries).
 * Terminate the circuit if there's no error boundary.
 * Trigger the same logging that occurs for lifecycle exceptions.
 
@@ -296,13 +295,13 @@ private void SendReport()
 }
 ```
 
-For a working demonstration, implement the timer notification example in [Invoke component methods externally to update state](xref:blazor/components/sync-context#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
+For a working demonstration, implement the timer notification example in [Invoke component methods externally to update state](synchronization-context.md#invoke-component-methods-externally-to-update-state). In a Blazor app, add the following files from the timer notification example and register the services in the `Program` file as the section explains:
 
 * `TimerService.cs`
 * `NotifierService.cs`
 * `Notifications.razor`
 
-The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries).
+The example uses a timer outside of a Razor component's lifecycle, where an unhandled exception normally isn't processed by Blazor's error handling mechanisms, such as an [error boundary](../fundamentals/handle-errors.md#error-boundaries).
 
 First, change the code in `TimerService.cs` to create an artificial exception outside of the component's lifecycle. In the `while` loop of `TimerService.cs`, throw an exception when the `elapsedCount` reaches a value of two:
 
@@ -313,7 +312,7 @@ if (elapsedCount == 2)
 }
 ```
 
-Place an [error boundary](xref:blazor/fundamentals/handle-errors#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
+Place an [error boundary](../fundamentals/handle-errors.md#error-boundaries) in the app's main layout. Replace the `<article>...</article>` markup with the following markup.
 
 In `MainLayout.razor`:
 

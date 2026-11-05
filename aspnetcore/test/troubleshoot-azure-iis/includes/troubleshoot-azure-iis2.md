@@ -45,7 +45,7 @@ Perform the following steps:
    * When the app is hosted by IIS, confirm that the app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
 1. Confirm that all of the app's files and folders are deployed by comparing the deployment on the hosting system to the contents of the project's *publish* folder.
 
-For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+For more information on the layout of a published ASP.NET Core app, see [ASP.NET Core directory structure](../../../host-and-deploy/directory-structure.md). For more information on the *web.config* file, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#configuration-with-webconfig).
 
 ### 500 Internal Server Error
 
@@ -59,22 +59,22 @@ This error also may occur when the .NET Core Hosting Bundle isn't installed or i
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) fails to find the .NET Core CLR and find the in-process request handler (*aspnetcorev2_inprocess.dll*). Check that:
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) fails to find the .NET Core CLR and find the in-process request handler (*aspnetcorev2_inprocess.dll*). Check that:
 
-* The app targets either the [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) NuGet package or the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app).
+* The app targets either the [Microsoft.AspNetCore.Server.IIS](https://www.nuget.org/packages/Microsoft.AspNetCore.Server.IIS) NuGet package or the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md).
 * The version of the ASP.NET Core shared framework that the app targets is installed on the target machine.
 
 ### 500.0 Out-Of-Process Handler Load Failure
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) fails to find the out-of-process hosting request handler. Make sure the *aspnetcorev2_outofprocess.dll* is present in a subfolder next to *aspnetcorev2.dll*.
 
 ### 502.5 Process Failure
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
 A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine. The *shared framework* is the set of assemblies (`.dll` files) that are installed on the machine and referenced by a metapackage such as `Microsoft.AspNetCore.App`. The metapackage reference can specify a minimum required version.
 
@@ -104,11 +104,11 @@ Confirm that there isn't a conflict between a `<Platform>` MSBuild property in t
 
 ### Connection reset
 
-If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
+If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](../../../fundamentals/logging/index.md) can help troubleshoot these types of errors.
 
 ### Default startup limits
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](../../../host-and-deploy/aspnet-core-module.md#attributes-of-the-aspnetcore-element).
 
 ## Troubleshoot on Azure App Service
 
@@ -214,23 +214,23 @@ Disable stdout logging when troubleshooting is complete:
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For more information, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
 >
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### ASP.NET Core Module debug log (Azure App Service)
 
 The ASP.NET Core Module debug log provides additional, deeper logging from the ASP.NET Core Module. To enable and view stdout logs:
 
 1. To enable the enhanced diagnostic log, perform either of the following:
-   * Follow the instructions in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
-   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
+   * Follow the instructions in [Enhanced diagnostic logs](../../../host-and-deploy/iis/logging-and-diagnostics.md#enhanced-diagnostic-logs) to configure the app for an enhanced diagnostic logging. Redeploy the app.
+   * Add the `<handlerSettings>` shown in [Enhanced diagnostic logs](../../../host-and-deploy/iis/logging-and-diagnostics.md#enhanced-diagnostic-logs) to the live app's *web.config* file using the Kudu console:
      1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
      1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
-     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs). Select the **Save** button.
+     1. Open the folders to the path **site** > **wwwroot**. Edit the *web.config* file by selecting the pencil button. Add the `<handlerSettings>` section as shown in [Enhanced diagnostic logs](../../../host-and-deploy/iis/logging-and-diagnostics.md#enhanced-diagnostic-logs). Select the **Save** button.
 1. Open **Advanced Tools** in the **Development Tools** area. Select the **Go&rarr;** button. The Kudu console opens in a new browser tab or window.
 1. Using the navigation bar at the top of the page, open **Debug console** and select **CMD**.
 1. Open the folders to the path **site** > **wwwroot**. If you didn't supply a path for the *aspnetcore-debug.log* file, the file appears in the list. If you supplied a path, navigate to the location of the log file.
@@ -243,12 +243,12 @@ To disable the enhanced debug log, perform either of the following:
 * Remove the `<handlerSettings>` from the *web.config* file locally and redeploy the app.
 * Use the Kudu console to edit the *web.config* file and remove the `<handlerSettings>` section. Save the file.
 
-For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
+For more information, see [Log creation and redirection with the ASP.NET Core Module](../../../host-and-deploy/iis/logging-and-diagnostics.md#enhanced-diagnostic-logs).
 
 > [!WARNING]
 > Failure to disable the debug log can lead to app or server failure. There's no limit on log file size. Only use debug logging to troubleshoot app startup problems.
 >
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### Slow or non-responding app (Azure App Service)
 
@@ -303,7 +303,7 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ## Troubleshoot on IIS
 
@@ -341,7 +341,7 @@ If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contain
 To enable and view stdout logs:
 
 1. Navigate to the site's deployment folder on the hosting system.
-1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
+1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](../../../host-and-deploy/directory-structure.md) topic.
 1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*.
 1. Ensure your application pool's identity has write permissions to the *logs* folder.
 1. Save the updated *web.config* file.
@@ -355,12 +355,12 @@ Disable stdout logging when troubleshooting is complete:
 1. Set **stdoutLogEnabled** to `false`.
 1. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For more information, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### ASP.NET Core Module debug log (IIS)
 
@@ -377,11 +377,11 @@ Add the following handler settings to the app's *web.config* file to enable ASP.
 
 Confirm that the path specified for the log exists and that the app pool's identity has write permissions to the location.
 
-For more information, see <xref:host-and-deploy/iis/logging-and-diagnostics#enhanced-diagnostic-logs>.
+For more information, see [Log creation and redirection with the ASP.NET Core Module](../../../host-and-deploy/iis/logging-and-diagnostics.md#enhanced-diagnostic-logs).
 
 ### Enable the Developer Exception Page
 
-The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
+The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](../../../fundamentals/error-handling.md) to appear when the app is run.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -395,11 +395,11 @@ The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](x
 </aspNetCore>
 ```
 
-Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommended for use on staging and testing servers that aren't exposed to the Internet. Remove the environment variable from the *web.config* file after troubleshooting. For information on setting environment variables in *web.config*, see [environmentVariables child element of aspNetCore](xref:host-and-deploy/aspnet-core-module#setting-environment-variables).
+Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommended for use on staging and testing servers that aren't exposed to the Internet. Remove the environment variable from the *web.config* file after troubleshooting. For information on setting environment variables in *web.config*, see [environmentVariables child element of aspNetCore](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables).
 
 ### Obtain data from an app
 
-If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md#obtain-data-from-an-app).
 
 ### Slow or nonresponding app (IIS)
 
@@ -411,13 +411,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Create a folder to hold crash dump files at `c:\dumps`. The app pool must have write access to the folder.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](../../../host-and-deploy/iis/index.md#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\EnableDumps w3wp.exe c:\dumps
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\EnableDumps dotnet.exe c:\dumps
@@ -425,13 +425,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](../../../host-and-deploy/iis/index.md#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\DisableDumps w3wp.exe
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\DisableDumps dotnet.exe
@@ -464,10 +464,10 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ## Additional resources
 
-* <xref:test/troubleshoot>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-* <xref:fundamentals/error-handling>
-* <xref:host-and-deploy/aspnet-core-module>
+* [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../../../host-and-deploy/azure-iis-errors-reference.md)
+* [Handle errors in ASP.NET Core](../../../fundamentals/error-handling.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md)
 
 ### Azure documentation
 
@@ -539,7 +539,7 @@ Perform the following steps:
    * When the app is hosted by IIS, confirm that the app is deployed to the IIS **Physical path** shown in **IIS Manager**'s **Basic Settings**.
 1. Confirm that all of the app's files and folders are deployed by comparing the deployment on the hosting system to the contents of the project's *publish* folder.
 
-For more information on the layout of a published ASP.NET Core app, see <xref:host-and-deploy/directory-structure>. For more information on the *web.config* file, see <xref:host-and-deploy/aspnet-core-module#configuration-with-webconfig>.
+For more information on the layout of a published ASP.NET Core app, see [ASP.NET Core directory structure](../../../host-and-deploy/directory-structure.md). For more information on the *web.config* file, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#configuration-with-webconfig).
 
 ### 500 Internal Server Error
 
@@ -553,7 +553,7 @@ This error also may occur when the .NET Core Hosting Bundle isn't installed or i
 
 The worker process fails. The app doesn't start.
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) attempts to start the worker process but it fails to start. The cause of a process startup failure can usually be determined from entries in the Application Event Log and the ASP.NET Core Module stdout log.
 
 A common failure condition is the app is misconfigured due to targeting a version of the ASP.NET Core shared framework that isn't present. Check which versions of the ASP.NET Core shared framework are installed on the target machine. The *shared framework* is the set of assemblies (`.dll` files) that are installed on the machine and referenced by a metapackage such as `Microsoft.AspNetCore.App`. The metapackage reference can specify a minimum required version.
 
@@ -583,11 +583,11 @@ Confirm that there isn't a conflict between a `<Platform>` MSBuild property in t
 
 ### Connection reset
 
-If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](xref:fundamentals/logging/index) can help troubleshoot these types of errors.
+If an error occurs after the headers are sent, it's too late for the server to send a **500 Internal Server Error** when an error occurs. This often happens when an error occurs during the serialization of complex objects for a response. This type of error appears as a *connection reset* error on the client. [Application logging](../../../fundamentals/logging/index.md) can help troubleshoot these types of errors.
 
 ### Default startup limits
 
-The [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](xref:host-and-deploy/aspnet-core-module#attributes-of-the-aspnetcore-element).
+The [ASP.NET Core Module](../../../host-and-deploy/aspnet-core-module.md) is configured with a default *startupTimeLimit* of 120 seconds. When left at the default value, an app may take up to two minutes to start before the module logs a process failure. For information on configuring the module, see [Attributes of the aspNetCore element](../../../host-and-deploy/aspnet-core-module.md#attributes-of-the-aspnetcore-element).
 
 ## Troubleshoot on Azure App Service
 
@@ -693,12 +693,12 @@ Disable stdout logging when troubleshooting is complete:
 1. Set **stdoutLogEnabled** to `false`.
 1. Select **Save** to save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For more information, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created. Only use stdout logging to troubleshoot app startup problems.
 >
-> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For general logging in an ASP.NET Core app after startup, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### Slow or nonresponding app (Azure App Service)
 
@@ -753,7 +753,7 @@ For more information, see [Enable diagnostics logging for web apps in Azure App 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ## Troubleshoot on IIS
 
@@ -791,7 +791,7 @@ If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contain
 To enable and view stdout logs:
 
 1. Navigate to the site's deployment folder on the hosting system.
-1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](xref:host-and-deploy/directory-structure) topic.
+1. If the *logs* folder isn't present, create the folder. For instructions on how to enable MSBuild to create the *logs* folder in the deployment automatically, see the [Directory structure](../../../host-and-deploy/directory-structure.md) topic.
 1. Edit the *web.config* file. Set **stdoutLogEnabled** to `true` and change the **stdoutLogFile** path to point to the *logs* folder (for example, `.\logs\stdout`). `stdout` in the path is the log file name prefix. A timestamp, process id, and file extension are added automatically when the log is created. Using `stdout` as the file name prefix, a typical log file is named *stdout_20180205184032_5412.log*.
 1. Ensure your application pool's identity has write permissions to the *logs* folder.
 1. Save the updated *web.config* file.
@@ -805,16 +805,16 @@ Disable stdout logging when troubleshooting is complete:
 1. Set **stdoutLogEnabled** to `false`.
 1. Save the file.
 
-For more information, see <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For more information, see [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 > [!WARNING]
 > Failure to disable the stdout log can lead to app or server failure. There's no limit on log file size or the number of log files created.
 >
-> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](xref:fundamentals/logging/index#third-party-logging-providers).
+> For routine logging in an ASP.NET Core app, use a logging library that limits log file size and rotates logs. For more information, see [third-party logging providers](../../../fundamentals/logging/index.md#third-party-logging-providers).
 
 ### Enable the Developer Exception Page
 
-The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](xref:host-and-deploy/aspnet-core-module#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](xref:fundamentals/error-handling) to appear when the app is run.
+The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables) to run the app in the `Development` environment. As long as the environment isn't overridden in app startup by `UseEnvironment` on the host builder, setting the environment variable allows the [Developer Exception Page](../../../fundamentals/error-handling.md) to appear when the app is run.
 
 ```xml
 <aspNetCore processPath="dotnet"
@@ -827,11 +827,11 @@ The `ASPNETCORE_ENVIRONMENT` [environment variable can be added to web.config](x
 </aspNetCore>
 ```
 
-Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommended for use on staging and testing servers that aren't exposed to the Internet. Remove the environment variable from the *web.config* file after troubleshooting. For information on setting environment variables in *web.config*, see [environmentVariables child element of aspNetCore](xref:host-and-deploy/aspnet-core-module#setting-environment-variables).
+Setting the environment variable for `ASPNETCORE_ENVIRONMENT` is only recommended for use on staging and testing servers that aren't exposed to the Internet. Remove the environment variable from the *web.config* file after troubleshooting. For information on setting environment variables in *web.config*, see [environmentVariables child element of aspNetCore](../../../host-and-deploy/aspnet-core-module.md#setting-environment-variables).
 
 ### Obtain data from an app
 
-If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see <xref:test/troubleshoot#obtain-data-from-an-app>.
+If an app is capable of responding to requests, obtain request, connection, and additional data from the app using terminal inline middleware. For more information and sample code, see [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md#obtain-data-from-an-app).
 
 ### Slow or nonresponding app (IIS)
 
@@ -843,13 +843,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Create a folder to hold crash dump files at `c:\dumps`. The app pool must have write access to the folder.
 1. Run the [EnableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/EnableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](../../../host-and-deploy/iis/index.md#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\EnableDumps w3wp.exe c:\dumps
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\EnableDumps dotnet.exe c:\dumps
@@ -857,13 +857,13 @@ Obtain and analyze a dump from [Windows Error Reporting (WER)](/windows/desktop/
 
 1. Run the app under the conditions that cause the crash to occur.
 1. After the crash has occurred, run the [DisableDumps PowerShell script](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/test/troubleshoot-azure-iis/scripts/DisableDumps.ps1):
-   * If the app uses the [in-process hosting model](xref:host-and-deploy/iis/index#in-process-hosting-model), run the script for *w3wp.exe*:
+   * If the app uses the [in-process hosting model](../../../host-and-deploy/iis/index.md#in-process-hosting-model), run the script for *w3wp.exe*:
 
      ```console
      .\DisableDumps w3wp.exe
      ```
 
-   * If the app uses the [out-of-process hosting model](xref:host-and-deploy/iis/index#out-of-process-hosting-model), run the script for *dotnet.exe*:
+   * If the app uses the [out-of-process hosting model](../../../host-and-deploy/iis/index.md#out-of-process-hosting-model), run the script for *dotnet.exe*:
 
      ```console
      .\DisableDumps dotnet.exe
@@ -896,10 +896,10 @@ A functioning app may fail immediately after upgrading either the .NET Core SDK 
 
 ## Additional resources
 
-* <xref:test/troubleshoot>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-* <xref:fundamentals/error-handling>
-* <xref:host-and-deploy/aspnet-core-module>
+* [Troubleshoot and debug ASP.NET Core projects](../../troubleshoot.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../../../host-and-deploy/azure-iis-errors-reference.md)
+* [Handle errors in ASP.NET Core](../../../fundamentals/error-handling.md)
+* [ASP.NET Core Module (ANCM) for IIS](../../../host-and-deploy/aspnet-core-module.md)
 
 ### Azure documentation
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: mvc/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core MVC
 
@@ -13,11 +12,11 @@ When an identity is created for an app user upon signing into an app, the identi
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
 * [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
-* <xref:razor-pages/security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/claims.md)
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 
