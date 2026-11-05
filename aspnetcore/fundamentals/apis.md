@@ -46,9 +46,9 @@ Minimal APIs support the configuration and customization needed to scale to mult
 
 Getting started with Minimal APIs:
 
-* **Tutorial**: <xref:tutorials/min-web-api>
-* **Quick reference**: <xref:fundamentals/minimal-apis>
-* **Examples**: For a full list of common scenarios with code examples, see <xref:fundamentals/minimal-apis>.
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* [Minimal APIs quick reference](minimal-apis.md)
+* **Examples**: For a full list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md).
 
 ## Controller-based APIs - Alternative approach
 
@@ -85,17 +85,17 @@ Both API projects refer to the following class:
 
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
-* [Application parts](xref:mvc/extensibility/app-parts) or the [application model](xref:mvc/controllers/application-model)
+* [Application parts](../mvc/advanced/app-parts.md) or the [application model](../mvc/controllers/application-model.md)
 * [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
 
 Most of the preceding features can be implemented in Minimal APIs with custom solutions, but controllers provide them natively.
 
 ## Related content
 
-* <xref:tutorials/min-web-api>
-* <xref:fundamentals/minimal-apis>
-* <xref:web-api/index>
-* <xref:tutorials/first-web-api>
+* [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
+* [Minimal APIs quick reference](minimal-apis.md)
+* [Create web APIs with ASP.NET Core](../web-api/index.md)
+* [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md)
 
 :::moniker-end
 
