@@ -3,7 +3,7 @@ title: Security considerations for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/09/2026
+ms.date: 11/04/2026
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
 
@@ -880,7 +880,7 @@ When origin validation fails, the middleware returns `403 Forbidden`. Note that 
 
 ### WebSocket connection limits
 
-WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Since WebSocket connections are long-lived, they can accumulate and exhaust server resources. An explicit limit can be set:
+WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Monitor connection counts and expected traffic before deciding whether to set a limit. A limit that's too low or an unexpected traffic surge can reject legitimate connections. See the [edge server guidance](#edge-server-direct-internet-exposure). If needed, configure an explicit limit:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);

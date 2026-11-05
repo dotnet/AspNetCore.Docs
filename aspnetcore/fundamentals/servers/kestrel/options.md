@@ -3,7 +3,7 @@ title: Configure options for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
 description: Learn about configuring options for Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 10/09/2026
+ms.date: 11/04/2026
 ---
 # Configure options for the ASP.NET Core Kestrel web server
 
@@ -11,11 +11,11 @@ ms.date: 10/09/2026
 
 :::moniker range=">= aspnetcore-6.0"
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments. To configure Kestrel configuration options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*> in `Program.cs`:
+Kestrel provides configurable limits for connection counts, request sizes, and timeouts. Review the defaults and your app's requirements before changing them. To configure Kestrel options, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*> in `Program.cs`:
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_ConfigureKestrel":::
 
-Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+Configure limits with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits?displayProperty=nameWithType> property. This property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
 ## General limits
 
@@ -28,6 +28,10 @@ Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelSer
 This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 ### Maximum client connections
+
+Both connection limits default to `null` (unlimited). Don't set a connection cap solely because an app is internet-facing. Monitor active and rejected connections and consider expected traffic before deciding whether a limit is appropriate. A limit that's too low or an unexpected traffic surge can cause legitimate connections to be rejected.
+
+The value `100` in the following examples demonstrates configuration syntax, not a recommended production limit. Connection limits aren't a substitute for upstream DDoS protection. For more information, see [Edge server guidance](security-considerations.md?view=aspnetcore-10.0#edge-server-direct-internet-exposure).
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections> gets or sets the maximum number of open connections:
 
@@ -196,7 +200,7 @@ The following timeout and rate limit options aren't enforced when a debugger is 
 
 :::moniker range="< aspnetcore-6.0"
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
+Kestrel provides configurable limits for connection counts, request sizes, and timeouts. Review the defaults and your app's requirements before changing them.
 
 To provide more configuration after calling <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>, use <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*>:
 
@@ -213,7 +217,7 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+Configure limits with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
 
 The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
 
@@ -225,6 +229,8 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 > <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> and [endpoint configuration](endpoints.md) are configurable from configuration providers. Remaining Kestrel configuration must be configured in C# code.
 
 ## General limits
+
+The connection caps of `100` in the following code samples are illustrative, not recommended production limits. Both connection limits default to `null` (unlimited). Monitor connection counts and expected traffic before choosing a limit. A limit that's too low or an unexpected traffic surge can reject legitimate connections.
 
 ### Keep-alive timeout
 
@@ -239,7 +245,7 @@ Gets or sets the [keep-alive timeout](https://www.rfc-editor.org/rfc/rfc9112.htm
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections><br>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
-The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
+If your app requires a connection limit, the following code demonstrates how to configure one. The value `100` is illustrative, not a recommended production limit:
 
 :::code language="csharp" source="samples/5.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="3":::
 

@@ -830,7 +830,7 @@ For more information, see the [IIS](#iis) section.
 
 ### Connection failure
 
-A connection error and a reset server connection probably indicate that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits might also require adjustment.
+A connection error and a reset server connection probably indicate that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits are unlimited by default. If you've configured a connection limit, check whether it's rejecting connections before adjusting it.
 
 ### Null Reference Exception with IFormFile
 
@@ -1565,7 +1565,7 @@ For more information, see the [IIS](#iis) section.
 
 ### Connection failure
 
-A connection error and a reset server connection probably indicates that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits may also require adjustment.
+A connection error and a reset server connection probably indicates that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits are unlimited by default. If you've configured a connection limit, check whether it's rejecting connections before adjusting it.
 
 ### Null Reference Exception with IFormFile
 
@@ -2295,7 +2295,7 @@ For more information, see the [IIS](#iis) section.
 
 ### Connection failure
 
-A connection error and a reset server connection probably indicates that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits may also require adjustment.
+A connection error and a reset server connection probably indicates that the uploaded file exceeds Kestrel's maximum request body size. For more information, see the [Kestrel maximum request body size](#kestrel-maximum-request-body-size) section. Kestrel client connection limits are unlimited by default. If you've configured a connection limit, check whether it's rejecting connections before adjusting it.
 
 ### Null Reference Exception with IFormFile
 
