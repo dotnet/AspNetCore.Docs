@@ -226,7 +226,7 @@ Some apps may be configured to emit multiple OpenAPI documents. Multiple OpenAPI
 
 ### Customizing run-time behavior during build-time document generation
 
-Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](xref:fundamentals/dependency-injection) or reads from configuration. In some scenarios, it's necessary to restrict the code paths that will run when the apps entry point is being invoked from build-time document generation. These scenarios include:
+Build-time OpenAPI document generation functions by launching the apps entrypoint with a mock server implementation. A mock server is required to produce accurate OpenAPI documents because all information in the OpenAPI document can't be statically analyzed. Because the apps entrypoint is invoked, any logic in the apps startup is invoked. This includes code that injects services into the [DI container](../../dependency-injection.md) or reads from configuration. In some scenarios, it's necessary to restrict the code paths that will run when the apps entry point is being invoked from build-time document generation. These scenarios include:
 
 * Not reading from certain configuration strings.
 * Not registering database-related services.

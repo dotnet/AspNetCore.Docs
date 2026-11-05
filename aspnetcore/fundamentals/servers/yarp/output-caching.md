@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/output-caching
 title: YARP Output Caching
 description: YARP Output Caching
 ms.date: 2/6/2025

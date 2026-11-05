@@ -2,7 +2,6 @@
 title: Use the LibMan CLI with ASP.NET Core
 description: Learn how to use the LibMan CLI in an ASP.NET Core project.
 ms.date: 01/11/2024
-uid: client-side/libman/libman-cli
 ---
 # Use the LibMan CLI with ASP.NET Core
 
@@ -562,5 +561,5 @@ The following options are available for the `libman cache` command:
 ## Related content
 
 * [Install a Global Tool](/dotnet/core/tools/global-tools#install-a-global-tool)
-* <xref:client-side/libman/libman-vs>
+* [Use LibMan with ASP.NET Core in Visual Studio](libman-vs.md)
 * [LibMan GitHub repository](https://github.com/aspnet/LibraryManager)

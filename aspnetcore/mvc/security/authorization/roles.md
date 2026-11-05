@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to restrict ASP.NET Core MVC controller and action access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/24/2026
-uid: mvc/security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core MVC
 
@@ -15,7 +14,7 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:razor-pages/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/roles.md)
 
 ## Add Role services to Identity
 
@@ -350,7 +349,7 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../../blazor/security/blazor-web-app-with-windows-authentication.md). Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
@@ -363,7 +362,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 ## Related content
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:razor-pages/security/authorization/roles>
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](../../../blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md)
+* [Role-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

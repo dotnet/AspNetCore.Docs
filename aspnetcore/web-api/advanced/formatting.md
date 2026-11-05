@@ -104,7 +104,7 @@ To configure an app to respect browser accept headers, set the <xref:Microsoft.A
 
 ### Configure formatters
 
-Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
+Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](../../mvc/models/model-binding.md). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -142,7 +142,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -160,7 +160,7 @@ To configure output serialization options for specific actions, use `JsonResult`
 
 ### Specify a format
 
-To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
+To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](../../mvc/controllers/filters.md), `[Produces]` can be applied at the action, controller, or global scope:
 
 :::code language="csharp" source="formatting/samples/6.x/ResponseFormattingSample/Snippets/Controllers/TodoItemsController.cs" id="snippet_ClassDeclaration" highlight="3":::
 
@@ -169,7 +169,7 @@ The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) fi
 * Forces all actions within the controller to return JSON-formatted responses for POCOs (Plain Old CLR Objects) or <xref:Microsoft.AspNetCore.Mvc.ObjectResult> and its derived types.
 * Return JSON-formatted responses even if other formatters are configured and the client specifies a different format.
 
-For more information, see [Filters](xref:mvc/controllers/filters).
+For more information, see [Filters](../../mvc/controllers/filters.md).
 
 ### Special case formatters
 
@@ -209,7 +209,7 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end
 
@@ -217,7 +217,7 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ASP.NET Core MVC has support for formatting response data. Response data can be formatted using specific formats or in response to client requested format.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Format-specific Action Results
 
@@ -302,7 +302,7 @@ To configure an app to honor browser accept headers, set
 
 ### Configure formatters
 
-Apps that need to support additional formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
+Apps that need to support additional formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](../../mvc/models/model-binding.md). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -366,7 +366,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -401,7 +401,7 @@ public IActionResult Get()
 
 ### Specify a format
 
-To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
+To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](../../mvc/controllers/filters.md), `[Produces]` can be applied at the action, controller, or global scope:
 
 :::code language="csharp" source="formatting/samples/3.x/ResponseFormattingSample/Controllers/WeatherForecastController.cs" id="snippet":::
 
@@ -410,7 +410,7 @@ The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) fi
 * Forces all actions within the controller to return JSON-formatted responses for POCOs (Plain Old CLR Objects) or <xref:Microsoft.AspNetCore.Mvc.ObjectResult> and its derived types.
 * If other formatters are configured and the client specifies a different format, JSON is returned.
 
-For more information, see [Filters](xref:mvc/controllers/filters).
+For more information, see [Filters](../../mvc/controllers/filters.md).
 
 ### Special case formatters
 
@@ -536,7 +536,7 @@ To configure an app to respect browser accept headers, set the <xref:Microsoft.A
 
 ## Configure formatters
 
-Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](xref:mvc/models/model-binding). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
+Apps that need to support extra formats can add the appropriate NuGet packages and configure support. There are separate formatters for input and output. Input formatters are used by [Model Binding](../../mvc/models/model-binding.md). Output formatters are used to format responses. For information on creating a custom formatter, see [Custom Formatters](custom-formatters.md).
 
 ### Add XML format support
 
@@ -568,7 +568,7 @@ In the preceding code, the call to `AddNewtonsoftJson` configures the following 
 * <xref:Microsoft.AspNetCore.Mvc.JsonResult>
 * [JSON Patch](../jsonpatch.md)
 * <xref:Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper>
-* [TempData](xref:fundamentals/app-state#tempdata)
+* [TempData](../../fundamentals/app-state.md#tempdata)
 
 Some features may not work well with `System.Text.Json`-based formatters and require a reference to the `Newtonsoft.Json`-based formatters. Continue using the `Newtonsoft.Json`-based formatters when the app:
 
@@ -592,7 +592,7 @@ The following action method calls <xref:Microsoft.AspNetCore.Mvc.ControllerBase.
 
 A `ProblemDetails` response is always camelCase, even when the app sets the format to PascalCase. `ProblemDetails` follows [RFC 7807](https://tools.ietf.org/html/rfc7807#appendix-A), which specifies lowercase.
 
-When the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied to a controller class, the controller creates a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response when [Model Validation](xref:mvc/models/validation) fails. This response includes a dictionary that uses the model's property names as error keys, unchanged. For example, the following model includes a single property that requires validation:
+When the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute is applied to a controller class, the controller creates a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> response when [Model Validation](../../mvc/models/validation.md) fails. This response includes a dictionary that uses the model's property names as error keys, unchanged. For example, the following model includes a single property that requires validation:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Models/SampleModel.cs" id="snippet_Class":::
 
@@ -622,7 +622,7 @@ By default, `NewtonsoftJsonValidationMetadataProvider` formats property names as
 
 ## Specify a format
 
-To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](xref:mvc/controllers/filters), `[Produces]` can be applied at the action, controller, or global scope:
+To restrict the response formats, apply the [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) filter. Like most [Filters](../../mvc/controllers/filters.md), `[Produces]` can be applied at the action, controller, or global scope:
 
 :::code language="csharp" source="formatting/samples/7.x/ResponseFormattingSample/Snippets/Controllers/TodoItemsController.cs" id="snippet_ClassDeclaration" highlight="3":::
 
@@ -631,7 +631,7 @@ The preceding [`[Produces]`](xref:Microsoft.AspNetCore.Mvc.ProducesAttribute) fi
 * Forces all actions within the controller to return JSON-formatted responses for POCOs (Plain Old CLR Objects) or <xref:Microsoft.AspNetCore.Mvc.ObjectResult> and its derived types.
 * Return JSON-formatted responses even if other formatters are configured and the client specifies a different format.
 
-For more information, see [Filters](xref:mvc/controllers/filters).
+For more information, see [Filters](../../mvc/controllers/filters.md).
 
 ## Special case formatters
 
@@ -671,6 +671,6 @@ Built-in features provide a limited range of polymorphic serialization but no su
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/formatting/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end

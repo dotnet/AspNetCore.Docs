@@ -2,13 +2,13 @@ The *Developer Exception Page* displays detailed information about unhandled req
 
 ASP.NET Core apps enable the developer exception page by default when both:
 
-* Running in the [`Development` environment](xref:fundamentals/environments).
+* Running in the [`Development` environment](../fundamentals/environments.md).
 * The app was created with the current templates, that is, by using <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>.
 
 Apps created using earlier templates, that is, by using <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*?displayProperty=nameWithType>, can enable the developer exception page by calling [`app.UseDeveloperExceptionPage`](xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage(Microsoft.AspNetCore.Builder.IApplicationBuilder)).
 
 > [!WARNING]
-> Don't enable the Developer Exception Page **unless the app is running in the `Development` environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see <xref:fundamentals/environments>.
+> Don't enable the Developer Exception Page **unless the app is running in the `Development` environment**. Don't share detailed exception information publicly when the app runs in production. For more information on configuring environments, see [ASP.NET Core runtime environments](../fundamentals/environments.md).
 
 The Developer Exception Page can include the following information about the exception and the request:
 
@@ -18,7 +18,7 @@ The Developer Exception Page can include the following information about the exc
 * Headers
 * Endpoint metadata, if any
 
-The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](xref:fundamentals/logging/index) for complete error information.
+The Developer Exception Page isn't guaranteed to provide any information. Use [Logging](../fundamentals/logging/index.md) for complete error information.
 
 The following image shows a sample developer exception page with animation to show the tabs and the information displayed:
 

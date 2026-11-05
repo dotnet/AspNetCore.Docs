@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to test ASP.NET Core middleware with TestServer.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/18/2022
-uid: test/middleware
 ---
 # Test ASP.NET Core middleware
 

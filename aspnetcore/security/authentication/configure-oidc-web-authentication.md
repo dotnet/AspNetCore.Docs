@@ -82,7 +82,7 @@ builder.Services.AddAuthentication(options =>
 });
 ```
 
-For details on the different OpenID Connect options, see <xref:blazor/security/blazor-web-app-oidc>.
+For details on the different OpenID Connect options, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md).
 
 For the different claims mapping possibilities, see [Map, customize, transform claims in ASP.NET Core](claims.md).
 
@@ -360,7 +360,7 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-For more information, see [Logging](xref:fundamentals/logging/index#configuration).
+For more information, see [Logging](../../fundamentals/logging/index.md#configure-logging).
 
 > [!NOTE]
 > You may want to lower the configured log level to see all the required logs.
@@ -375,7 +375,7 @@ For more information, see [Map, customize, transform claims in ASP.NET Core](cla
 
 ## Blazor OpenID Connect
 
-For more information, see <xref:blazor/security/blazor-web-app-oidc>.
+For more information, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md).
 
 ## Standards
 

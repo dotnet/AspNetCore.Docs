@@ -2,7 +2,6 @@
 title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
 description: Part 4 of Razor Pages and Entity Framework tutorial series.
 ms.date: 07/22/2019
-uid: data/ef-rp/migrations
 ---
 
 # Part 4, Razor Pages with EF Core migrations in ASP.NET Core
@@ -320,5 +319,5 @@ Solution: Run `dotnet ef database update`
 The next tutorial builds out the data model, adding entity properties and new entities.
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/sort-filter-page)
-> [Next tutorial](xref:data/ef-rp/complex-data-model)
+> [Previous tutorial](sort-filter-page.md)
+> [Next tutorial](complex-data-model.md)
