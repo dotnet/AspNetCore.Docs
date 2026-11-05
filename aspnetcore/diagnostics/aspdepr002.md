@@ -4,7 +4,6 @@ description: Learn about the obsoletions that generate compile-time warning ASPD
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/03/2026
-uid: diagnostics/aspdepr002
 f1_keywords:
   - aspdepr002
 ---

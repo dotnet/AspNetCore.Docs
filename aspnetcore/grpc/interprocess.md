@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use gRPC for inter-process communication.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 07/07/2026
-uid: grpc/interprocess
 ---
 # Inter-process communication with gRPC
 
@@ -28,7 +27,7 @@ An ASP.NET Core gRPC server is usually created from the gRPC template. The proje
 
 The `Microsoft.NET.SDK.Web` SDK value automatically adds a reference to the ASP.NET Core framework. The reference allows the app to use ASP.NET Core types required to host a server.
 
-It's also possible to add a server to existing non-ASP.NET Core projects, such as Windows Services, WPF apps, or WinForms apps. See [Host gRPC in non-ASP.NET Core projects](xref:grpc/aspnetcore#host-grpc-in-non-aspnet-core-projects) for more information.
+It's also possible to add a server to existing non-ASP.NET Core projects, such as Windows Services, WPF apps, or WinForms apps. See [Host gRPC in non-ASP.NET Core projects](aspnetcore.md#host-grpc-in-non-aspnet-core-projects) for more information.
 
 ## Inter-process communication (IPC) transports
 
@@ -80,7 +79,7 @@ Transport security is one option for securing a server. IPC transports, such as 
 * Named pipes supports securing a pipe with the [Windows access control model](/windows/win32/ipc/named-pipe-security-and-access-rights). Access rights can be configured in .NET when a server is started using the <xref:System.IO.Pipes.PipeSecurity> class.
 * Unix domain sockets support securing a socket with file permissions.
 
-Another option for securing an IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](xref:security/authentication/certauth). RPC calls made by client apps without the required certificate fail with an unauthorized response.
+Another option for securing an IPC server is to use authentication and authorization built into ASP.NET Core. For example, the server could be configured to require [certificate authentication](../security/authentication/certauth.md). RPC calls made by client apps without the required certificate fail with an unauthorized response.
 
 ### Validate the server in the IPC client app
 
@@ -136,8 +135,8 @@ await pipeClient.ConnectAsync();
 
 The client and server must be configured to use an inter-process communication (IPC) transport. For more information about configuring Kestrel and <xref:System.Net.Http.SocketsHttpHandler> to use IPC:
 
-* [Inter-process communication with gRPC and Unix domain sockets](xref:grpc/interprocess-uds)
-* [Inter-process communication with gRPC and Named pipes](xref:grpc/interprocess-namedpipes)
+* [Inter-process communication with gRPC and Unix domain sockets](interprocess-uds.md)
+* [Inter-process communication with gRPC and Named pipes](interprocess-namedpipes.md)
 
 > [!NOTE]
 > Built-in support for Named pipes in ASP.NET Core requires .NET 8 or later.

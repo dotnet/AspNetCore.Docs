@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 07/06/2026
-uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
 
@@ -13,15 +12,15 @@ uid: tutorials/get-started-with-nswag
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. NSwag isn't included by default, but you can add it manually as a community package to ASP.NET Core projects targeting .NET 9 or later.
 >
-> • To understand the built-in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
-> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.  
-> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see <xref:tutorials/min-web-api>. It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
+> • To understand the built-in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).
+> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
+> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md). It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
 >
 > The following instructions apply when using NSwag with .NET versions earlier than 9.
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 
@@ -218,7 +217,7 @@ The Swagger UI now clearly documents the expected HTTP response codes (and the [
 
 :::image source="web-api-help-pages-using-swagger/_static/v6-nswag-swagger-post.png" alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../web-api/advanced/conventions.md).
 
 ### Redoc
 
@@ -240,7 +239,7 @@ Run the application and navigate to `http://localhost:<port>/redoc` to view the 
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 
@@ -444,17 +443,17 @@ Manually add the highlighted lines to the `.csproj` file:
 
 ### Data annotations
 
-Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult%601), it can only infer the return type defined by `T`. You can't automatically infer other possible return types.
+Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflection), and the recommended return type for web API actions is [ActionResult\<T>](xref:Microsoft.AspNetCore.Mvc.ActionResult`1), it can only infer the return type defined by `T`. You can't automatically infer other possible return types.
 
 Consider the following example:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
 
-The preceding action returns `ActionResult<T>`. Inside the action, it's returning <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute%2A>. Since the controller has the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute, a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A> response is possible, too. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses). Use data annotations to tell clients which HTTP status codes this action is known to return. Mark the action with the following attributes:
+The preceding action returns `ActionResult<T>`. Inside the action, it's returning <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute*>. Since the controller has the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute, a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> response is possible, too. For more information, see [Automatic HTTP 400 responses](../web-api/index.md#automatic-http-400-responses). Use data annotations to tell clients which HTTP status codes this action is known to return. Mark the action with the following attributes:
 
 [!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
 
-In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../web-api/advanced/conventions.md).
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. As a recommendation, mark all actions with these attributes.
 

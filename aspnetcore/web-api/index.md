@@ -3,7 +3,6 @@ title: Create web APIs with ASP.NET Core
 description: Learn the basics of creating a web API in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/06/2026
-uid: web-api/index
 ---
 # Create web APIs with ASP.NET Core
 
@@ -11,7 +10,7 @@ uid: web-api/index
 
 ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. Controllers are activated and disposed on a per request basis.
 
-This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
+This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md).
 
 :::moniker-end
 :::moniker range=">= aspnetcore-10.0"
@@ -27,7 +26,7 @@ A controller-based web API consists of one or more controller classes that deriv
 
 Web API controllers should typically derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> rather from <xref:Microsoft.AspNetCore.Mvc.Controller>. `Controller` derives from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and adds support for views, so it's for handling web pages, not web API requests. If the same controller must support views and web APIs, derive from `Controller`.
 
-The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> returns a 201 status code:
+The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> returns a 201 status code:
 
 [!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
 
@@ -35,11 +34,11 @@ The following table contains examples of methods in `ControllerBase`.
 
 |Method   |Notes    |
 |---------|---------|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Returns 400 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A>|Returns 404 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile%2A>|Returns a file.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>|Invokes [model binding](xref:mvc/models/model-binding).|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A>|Invokes [model validation](xref:mvc/models/validation).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>|Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes [model binding](../mvc/models/model-binding.md).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*>|Invokes [model validation](../mvc/models/validation.md).|
 
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
@@ -97,7 +96,7 @@ The `[ApiController]` attribute makes attribute routing a requirement. For examp
 
 [!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute%2A>.
+Actions are inaccessible via [conventional routes](../mvc/controllers/routing.md#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*>.
 
 ## Automatic HTTP 400 responses
 
@@ -135,13 +134,13 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://datatracker.ietf.org/doc/html/rfc7807).
 
-To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
+To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem*> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
-The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger%601> to log information about an automatic 400 response:
+The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_l400&highlight=3-23)]
 
@@ -162,8 +161,8 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Request header |
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
-|[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
-|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](xref:fundamentals/minimal-apis#asparam7) |
+|[`[FromServices]`](../mvc/controllers/dependency-injection.md#action-injection-with-fromservices) | The request service injected as an action parameter |
+|[`[AsParameters]`](xref:Microsoft.AspNetCore.Http.AsParametersAttribute) | [Method parameters](../fundamentals/minimal-apis.md#asparam7) |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -213,7 +212,7 @@ When an action has more than one parameter bound from the request body, an excep
 
 ### FromServices inference notes
 
-Parameter binding binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding binds parameters through [dependency injection](../fundamentals/dependency-injection.md) when the type is configured as a service. This means it's not required to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](index/samples/7.x/ApiController/Controllers/MyController.cs?name=snippet)]
 
@@ -270,7 +269,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
@@ -278,7 +277,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 ## Define supported request content types with the [Consumes] attribute
 
-By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
+By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](../mvc/models/model-binding.md#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
 The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
@@ -300,13 +299,13 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:web-api/action-return-types>
-* <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:mvc/controllers/routing>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
@@ -314,7 +313,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 :::moniker range="= aspnetcore-6.0"
 
-ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see <xref:tutorials/min-web-api>.
+ASP.NET Core supports creating web APIs using controllers or using Minimal APIs. *Controllers* in a web API are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This article shows how to use controllers for handling web API requests. For information on creating web APIs without controllers, see [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md).
 
 ## ControllerBase class
 
@@ -324,7 +323,7 @@ A controller-based web API consists of one or more controller classes that deriv
 
 Web API controllers should typically derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> rather from <xref:Microsoft.AspNetCore.Mvc.Controller>. `Controller` derives from <xref:Microsoft.AspNetCore.Mvc.ControllerBase> and adds support for views, so it's for handling web pages, not web API requests. If the same controller must support views and web APIs, derive from `Controller`.
 
-The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction%2A> returns a 201 status code:
+The `ControllerBase` class provides many properties and methods that are useful for handling HTTP requests. For example, <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtAction*> returns a 201 status code:
 
 [!code-csharp[](index/samples/6.x/Controllers/PetsController.cs?name=snippet_400And201&highlight=10)]
 
@@ -332,11 +331,11 @@ The following table contains examples of methods in `ControllerBase`.
 
 |Method   |Notes    |
 |---------|---------|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Returns 400 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A>|Returns 404 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile%2A>|Returns a file.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>|Invokes [model binding](xref:mvc/models/model-binding).|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A>|Invokes [model validation](xref:mvc/models/validation).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>|Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes [model binding](../mvc/models/model-binding.md).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*>|Invokes [model validation](../mvc/models/validation.md).|
 
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
@@ -394,7 +393,7 @@ The `[ApiController]` attribute makes attribute routing a requirement. For examp
 
 [!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute%2A>.
+Actions are inaccessible via [conventional routes](../mvc/controllers/routing.md#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*>.
 
 ## Automatic HTTP 400 responses
 
@@ -442,13 +441,13 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
 
-To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
+To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem*> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
-The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger%601> to log information about an automatic 400 response:
+The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_l400&highlight=3-23)]
 
@@ -469,7 +468,7 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Request header |
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
-|[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
+|[`[FromServices]`](../mvc/controllers/dependency-injection.md#action-injection-with-fromservices) | The request service injected as an action parameter |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -549,7 +548,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`:
 
 [!code-csharp[](index/samples/6.x/Program.cs?name=snippet_d400D6&highlight=11)]
 
@@ -557,7 +556,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 ## Define supported request content types with the [Consumes] attribute
 
-By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
+By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](../mvc/models/model-binding.md#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
 The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
@@ -575,17 +574,17 @@ The `[Consumes]` attribute also allows an action to influence its selection base
 
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
 
-The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`.
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:web-api/action-return-types>
-* <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:mvc/controllers/routing>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
@@ -595,7 +594,7 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ASP.NET Core supports creating RESTful services, also known as web APIs, using C#. To handle requests, a web API uses controllers. *Controllers* in a web API are classes that derive from `ControllerBase`. This article shows how to use controllers for handling web API requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/index/samples). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 
 ## ControllerBase class
 
@@ -613,11 +612,11 @@ Here are some more examples of methods that `ControllerBase` provides.
 
 |Method   |Notes    |
 |---------|---------|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Returns 400 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A>|Returns 404 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile%2A>|Returns a file.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>|Invokes [model binding](xref:mvc/models/model-binding).|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A>|Invokes [model validation](xref:mvc/models/validation).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>|Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes [model binding](../mvc/models/model-binding.md).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*>|Invokes [model validation](../mvc/models/validation.md).|
 
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 
@@ -684,7 +683,7 @@ The `[ApiController]` attribute makes attribute routing a requirement. For examp
 
 [!code-csharp[](index/samples/3.x/Controllers/WeatherForecastController.cs?name=snippet_ControllerSignature&highlight=2)]
 
-Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute%2A> in `Startup.Configure`.
+Actions are inaccessible via [conventional routes](../mvc/controllers/routing.md#conventional-routing) defined by `UseEndpoints`, <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*>, or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
 
 ## Automatic HTTP 400 responses
 
@@ -732,13 +731,13 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
 
-To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
+To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem*> method instead of <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
 ### Log automatic 400 responses
 
-To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory%2A> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
+To log automatic 400 responses, set the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.InvalidModelStateResponseFactory> delegate property to perform custom processing in `Startup.ConfigureServices`. By default, `InvalidModelStateResponseFactory` uses <xref:Microsoft.AspNetCore.Mvc.Infrastructure.ProblemDetailsFactory> to create an instance of <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails>.
 
-The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger%601> to log information about an automatic 400 response:
+The following example shows how to retrieve an instance of <xref:Microsoft.Extensions.Logging.ILogger`1> to log information about an automatic 400 response:
 
 [!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_AutomaticBadRequestLogging)]
 
@@ -759,7 +758,7 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Request header |
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
-|[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
+|[`[FromServices]`](../mvc/controllers/dependency-injection.md#action-injection-with-fromservices) | The request service injected as an action parameter |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -839,7 +838,7 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
 
 [!code-csharp[](index/samples/3.x/Startup.cs?name=snippet_ConfigureApiBehaviorOptions&highlight=2,7)]
@@ -848,7 +847,7 @@ The automatic creation of a `ProblemDetails` for error status codes is disabled 
 
 ## Define supported request content types with the [Consumes] attribute
 
-By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
+By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](../mvc/models/model-binding.md#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
 The [[Consumes]](xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
@@ -870,12 +869,12 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 
 ## Additional resources
 
-* <xref:web-api/action-return-types>
-* <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:mvc/controllers/routing>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
@@ -890,11 +889,11 @@ Here are some more examples of methods that `ControllerBase` provides:
 
 |Method   |Notes    |
 |---------|---------|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest%2A>| Returns 400 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A>|Returns 404 status code.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile%2A>|Returns a file.|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync%2A>|Invokes [model binding](xref:mvc/models/model-binding).|
-|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel%2A>|Invokes [model validation](xref:mvc/models/validation).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*>| Returns 400 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*>|Returns 404 status code.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.PhysicalFile*>|Returns a file.|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryUpdateModelAsync*>|Invokes [model binding](../mvc/models/model-binding.md).|
+|<xref:Microsoft.AspNetCore.Mvc.ControllerBase.TryValidateModel*>|Invokes [model validation](../mvc/models/validation.md).|
 
 For a list of all available methods and properties, see <xref:Microsoft.AspNetCore.Mvc.ControllerBase>.
 ## Attributes
@@ -918,12 +917,12 @@ The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) at
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
 * [Problem details for error status codes](#problem-details-for-error-status-codes)
-The *Problem details for error status codes* feature requires a [compatibility version](xref:mvc/compatibility-version) of 2.2 or later. The other features require a compatibility version of 2.1 or later.
+The *Problem details for error status codes* feature requires a [compatibility version](../mvc/compatibility-version.md) of 2.2 or later. The other features require a compatibility version of 2.1 or later.
 * [Attribute routing requirement](#attribute-routing-requirement)
 * [Automatic HTTP 400 responses](#automatic-http-400-responses)
 * [Binding source parameter inference](#binding-source-parameter-inference)
 * [Multipart/form-data request inference](#multipartform-data-request-inference)
-These features require a [compatibility version](xref:mvc/compatibility-version) of 2.1 or later.
+These features require a [compatibility version](../mvc/compatibility-version.md) of 2.1 or later.
 ### Attribute on specific controllers
 The `[ApiController]` attribute can be applied to specific controllers, as in the following example from the project template:
 [!code-csharp[](index/samples/2.x/2.2/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=2)]
@@ -932,7 +931,7 @@ One approach to using the attribute on more than one controller is to create a c
 [!code-csharp[](index/samples/2.x/2.2/Controllers/MyControllerBase.cs?name=snippet_MyControllerBase)]
 [!code-csharp[](index/samples/2.x/2.2/Controllers/PetsController.cs?name=snippet_Inherit)]
 ### Attribute on an assembly
-If [compatibility version](xref:mvc/compatibility-version) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
+If [compatibility version](../mvc/compatibility-version.md) is set to 2.2 or later, the `[ApiController]` attribute can be applied to an assembly. Annotation in this manner applies web API behavior to all controllers in the assembly. There's no way to opt out for individual controllers. Apply the assembly-level attribute to the namespace declaration surrounding the `Startup` class:
 ```csharp
 [assembly: ApiController]
 namespace WebApiSample
@@ -950,7 +949,7 @@ The `[ApiController]` attribute makes attribute routing a requirement. For examp
 
 [!code-csharp[](index/samples/2.x/2.2/Controllers/ValuesController.cs?name=snippet_ControllerSignature&highlight=1)]
 
-Actions are inaccessible via [conventional routes](xref:mvc/controllers/routing#conventional-routing) defined by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc%2A> or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute%2A> in `Startup.Configure`.
+Actions are inaccessible via [conventional routes](../mvc/controllers/routing.md#conventional-routing) defined by <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvc*> or <xref:Microsoft.AspNetCore.Builder.MvcApplicationBuilderExtensions.UseMvcWithDefaultRoute*> in `Startup.Configure`.
 
 ## Automatic HTTP 400 responses
 
@@ -998,7 +997,7 @@ The `ValidationProblemDetails` type:
 * Provides a machine-readable format for specifying errors in web API responses.
 * Complies with the [RFC 7807 specification](https://tools.ietf.org/html/rfc7807).
 
-To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem%2A> method instead of <xref:System.Web.Http.ApiController.BadRequest%2A>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
+To make automatic and custom responses consistent, call the <xref:Microsoft.AspNetCore.Mvc.ControllerBase.ValidationProblem*> method instead of <xref:System.Web.Http.ApiController.BadRequest*>. `ValidationProblem` returns a <xref:Microsoft.AspNetCore.Mvc.ValidationProblemDetails> object as well as the automatic response.
 
 ### Log automatic 400 responses
 
@@ -1021,7 +1020,7 @@ A binding source attribute defines the location at which an action parameter's v
 |[`[FromHeader]`](xref:Microsoft.AspNetCore.Mvc.FromHeaderAttribute) | Request header |
 |[`[FromQuery]`](xref:Microsoft.AspNetCore.Mvc.FromQueryAttribute)   | Request query string parameter |
 |[`[FromRoute]`](xref:Microsoft.AspNetCore.Mvc.FromRouteAttribute)   | Route data from the current request |
-|[`[FromServices]`](xref:mvc/controllers/dependency-injection#action-injection-with-fromservices) | The request service injected as an action parameter |
+|[`[FromServices]`](../mvc/controllers/dependency-injection.md#action-injection-with-fromservices) | The request service injected as an action parameter |
 
 > [!WARNING]
 > Don't use `[FromRoute]` when values might contain `%2f` (that is `/`). `%2f` won't be unescaped to `/`. Use `[FromQuery]` if the value might contain `%2f`.
@@ -1085,13 +1084,13 @@ The `NotFound` method produces an HTTP 404 status code with a `ProblemDetails` b
 
 ### Disable ProblemDetails response
 
-The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors%2A> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
+The automatic creation of a `ProblemDetails` for error status codes is disabled when the <xref:Microsoft.AspNetCore.Mvc.ApiBehaviorOptions.SuppressMapClientErrors> property is set to `true`. Add the following code in `Startup.ConfigureServices`:
 
 <a name="consumes"></a>
 
 ## Define supported request content types with the [Consumes] attribute
 
-By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](xref:mvc/models/model-binding#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
+By default, an action supports all available request content types. For example, if an app is configured to support both JSON and XML [input formatters](../mvc/models/model-binding.md#input-formatters), an action supports multiple content types, including `application/json` and `application/xml`.
 
 The [[Consumes]](<xref:Microsoft.AspNetCore.Mvc.ConsumesAttribute>) attribute allows an action to limit the supported request content types. Apply the `[Consumes]` attribute to an action or controller, specifying one or more content types:
 
@@ -1104,13 +1103,13 @@ In the preceding code, the `CreateProduct` action specifies the content type `ap
 The `[Consumes]` attribute also allows an action to influence its selection based on an incoming request's content type by applying a type constraint. Consider the following example:
 [!code-csharp[](index/samples/3.x/Controllers/ConsumesController.cs?name=snippet_Class)]
 In the preceding code, `ConsumesController` is configured to handle requests sent to the `https://localhost:5001/api/Consumes` URL. Both of the controller's actions, `PostJson` and `PostForm`, handle POST requests with the same URL. Without the `[Consumes]` attribute applying a type constraint, an ambiguous match exception is thrown.
-The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`. 
+The `[Consumes]` attribute is applied to both actions. The `PostJson` action handles requests sent with a `Content-Type` header of `application/json`. The `PostForm` action handles requests sent with a `Content-Type` header of `application/x-www-form-urlencoded`.
 ## Additional resources
-* <xref:web-api/action-return-types>
-* <xref:fundamentals/error-handling-api>
-* <xref:web-api/advanced/custom-formatters>
-* <xref:web-api/advanced/formatting>
-* <xref:tutorials/web-api-help-pages-using-swagger>
-* <xref:mvc/controllers/routing>
+* [Controller action return types in ASP.NET Core web API](action-return-types.md)
+* [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
+* [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
+* [Format response data in ASP.NET Core Web API](advanced/formatting.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
+* [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 :::moniker-end

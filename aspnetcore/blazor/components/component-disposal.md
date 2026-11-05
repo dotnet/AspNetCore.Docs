@@ -3,7 +3,6 @@ title: ASP.NET Core Razor component disposal
 description: Learn about ASP.NET Core Razor component component disposal with IDisposable and IAsyncDisposable.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/component-disposal
 ---
 # ASP.NET Core Razor component disposal
 
@@ -11,21 +10,21 @@ uid: blazor/components/component-disposal
 
 This article explains the ASP.NET Core Razor component disposal process with <xref:System.IDisposable> and <xref:System.IAsyncDisposable>.
 
-If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) or [`OnParametersSetAsync`](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
+If a component implements <xref:System.IDisposable> or <xref:System.IAsyncDisposable>, the framework calls for resource disposal when the component is removed from the UI. Don't rely on the exact timing of when these methods are executed. For example, <xref:System.IAsyncDisposable> can be triggered before or after an asynchronous <xref:System.Threading.Tasks.Task> awaited in [`OnInitalizedAsync`](lifecycle.md#component-initialization-oninitializedasync) or [`OnParametersSetAsync`](lifecycle.md#after-parameters-are-set-onparameterssetasync) is called or completes. Also, object disposal code shouldn't assume that objects created during initialization or other lifecycle methods exist.
 
 Components shouldn't need to implement <xref:System.IDisposable> and <xref:System.IAsyncDisposable> simultaneously. If both are implemented, the framework only executes the asynchronous overload.
 
 Developer code must ensure that <xref:System.IAsyncDisposable> implementations don't take a long time to complete.
 
-For more information, see the introductory remarks of <xref:blazor/components/sync-context>.
+For more information, see the introductory remarks of [ASP.NET Core Blazor synchronization context](synchronization-context.md).
 
 ## Disposal of JavaScript interop object references
 
-Examples throughout the [JavaScript (JS) interop articles](xref:blazor/js-interop/index) demonstrate typical object disposal patterns:
+Examples throughout the [JavaScript (JS) interop articles](../javascript-interoperability/index.md) demonstrate typical object disposal patterns:
 
-* When calling JS from .NET, as described in <xref:blazor/js-interop/call-javascript-from-dotnet>, dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/<xref:Microsoft.JSInterop.Implementation.JSObjectReference> either from .NET or from JS to avoid leaking JS memory.
+* When calling JS from .NET, as described in [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md), dispose any created <xref:Microsoft.JSInterop.IJSObjectReference>/<xref:Microsoft.JSInterop.IJSInProcessObjectReference>/<xref:Microsoft.JSInterop.Implementation.JSObjectReference> either from .NET or from JS to avoid leaking JS memory.
 
-* When calling .NET from JS, as described in <xref:blazor/js-interop/call-dotnet-from-javascript>, dispose any created <xref:Microsoft.JSInterop.DotNetObjectReference> either from .NET or from JS to avoid leaking .NET memory.
+* When calling .NET from JS, as described in [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md), dispose any created <xref:Microsoft.JSInterop.DotNetObjectReference> either from .NET or from JS to avoid leaking .NET memory.
 
 JS interop object references are implemented as a map keyed by an identifier on the side of the JS interop call that creates the reference. When object disposal is initiated from either the .NET or JS side, Blazor removes the entry from the map, and the object can be garbage collected as long as no other strong reference to the object is present.
 
@@ -33,17 +32,17 @@ At a minimum, always dispose objects created on the .NET side to avoid leaking .
 
 ## DOM cleanup tasks during component disposal
 
-For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
+For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../javascript-interoperability/index.md#dom-cleanup-tasks-during-component-disposal).
 
-For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> when a circuit is disconnected, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>. For general JavaScript interop error handling guidance, see the *JavaScript interop* section in <xref:blazor/fundamentals/handle-errors#javascript-interop>.
+For guidance on <xref:Microsoft.JSInterop.JSDisconnectedException> when a circuit is disconnected, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../javascript-interoperability/index.md#javascript-interop-calls-without-a-circuit). For general JavaScript interop error handling guidance, see the *JavaScript interop* section in [Handle errors in ASP.NET Core Blazor apps](../fundamentals/handle-errors.md#javascript-interop).
 
 ## Synchronous `IDisposable`
 
-For synchronous disposal tasks, use <xref:System.IDisposable.Dispose%2A?displayProperty=nameWithType>.
+For synchronous disposal tasks, use <xref:System.IDisposable.Dispose*?displayProperty=nameWithType>.
 
 The following component:
 
-* Implements <xref:System.IDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Implements <xref:System.IDisposable> with the [`@implements`](../../mvc/views/razor.md#implements) Razor directive.
 * Disposes of `obj`, which is a type that implements <xref:System.IDisposable>.
 * A null check is performed because `obj` is created in a lifecycle method (not shown).
 
@@ -62,7 +61,7 @@ The following component:
 }
 ```
 
-If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose%2A> is called. The following example appears in the <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system> article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
+If a single object requires disposal, a lambda can be used to dispose of the object when <xref:System.IDisposable.Dispose*> is called. The following example appears in the [ASP.NET Core Razor component rendering](rendering.md#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system) article and demonstrates the use of a lambda expression for the disposal of a <xref:System.Timers.Timer>.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -113,9 +112,9 @@ If a single object requires disposal, a lambda can be used to dispose of the obj
 :::moniker-end
 
 > [!NOTE]
-> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see <xref:blazor/components/rendering#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system>.
+> In the preceding example, the call to <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is wrapped by a call to <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType> because the callback is invoked outside of Blazor's synchronization context. For more information, see [ASP.NET Core Razor component rendering](rendering.md#receiving-a-call-from-something-external-to-the-blazor-rendering-and-event-handling-system).
 
-If the object is created in a lifecycle method, such as [`OnInitialized{Async}`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
+If the object is created in a lifecycle method, such as [`OnInitialized{Async}`](lifecycle.md#component-initialization-oninitializedasync), check for `null` before calling `Dispose`.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -172,11 +171,11 @@ For more information, see:
 
 ## Asynchronous `IAsyncDisposable`
 
-For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync%2A?displayProperty=nameWithType>.
+For asynchronous disposal tasks, use <xref:System.IAsyncDisposable.DisposeAsync*?displayProperty=nameWithType>.
 
 The following component:
 
-* Implements <xref:System.IAsyncDisposable> with the [`@implements`](xref:mvc/views/razor#implements) Razor directive.
+* Implements <xref:System.IAsyncDisposable> with the [`@implements`](../../mvc/views/razor.md#implements) Razor directive.
 * Disposes of `obj`, which is an unmanaged type that implements <xref:System.IAsyncDisposable>.
 * A null check is performed because `obj` is created in a lifecycle method (not shown).
 
@@ -200,15 +199,15 @@ The following component:
 
 For more information, see:
 
-* <xref:blazor/components/sync-context>
+* [ASP.NET Core Blazor synchronization context](synchronization-context.md)
 * [Cleaning up unmanaged resources (.NET documentation)](/dotnet/standard/garbage-collection/unmanaged)
 * [Null-conditional operators ?. and ?[]](/dotnet/csharp/language-reference/operators/member-access-operators#null-conditional-operators--and-)
 
 ## Assignment of `null` to disposed objects
 
-Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>. Rare cases for assigning `null` include the following:
+Usually, there's no need to assign `null` to disposed objects after calling <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>. Rare cases for assigning `null` include the following:
 
-* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>, assign `null` after disposal to gracefully skip further calls to <xref:System.IDisposable.Dispose%2A>/<xref:System.IAsyncDisposable.DisposeAsync%2A>.
+* If the object's type is poorly implemented and doesn't tolerate repeat calls to <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>, assign `null` after disposal to gracefully skip further calls to <xref:System.IDisposable.Dispose*>/<xref:System.IAsyncDisposable.DisposeAsync*>.
 * If a long-lived process continues to hold a reference to a disposed object, assigning `null` allows the [garbage collector](/dotnet/standard/garbage-collection/fundamentals) to free the object in spite of the long-lived process holding a reference to it.
 
 These are unusual scenarios. For objects that are implemented correctly and behave normally, there's no point in assigning `null` to disposed objects. In the rare cases where an object must be assigned `null`, we recommend documenting the reason and seeking a solution that prevents the need to assign `null`.
@@ -216,11 +215,11 @@ These are unusual scenarios. For objects that are implemented correctly and beha
 ## `StateHasChanged`
 
 > [!NOTE]
-> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> in `Dispose` and `DisposeAsync` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
+> Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in `Dispose` and `DisposeAsync` isn't supported. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> might be invoked as part of tearing down the renderer, so requesting UI updates at that point isn't supported.
 
 ## Event handlers
 
-Always unsubscribe event handlers from .NET events. The following [Blazor form](xref:blazor/forms/index) examples show how to unsubscribe an event handler in the `Dispose` method.
+Always unsubscribe event handlers from .NET events. The following [Blazor form](../forms/index.md) examples show how to unsubscribe an event handler in the `Dispose` method.
 
 Private field and lambda approach:
 
@@ -287,7 +286,7 @@ Private method approach:
 }
 ```
 
-For more information on the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component and forms, see <xref:blazor/forms/index> and the other forms articles in the *Forms* node.
+For more information on the <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component and forms, see [ASP.NET Core Blazor forms overview](../forms/index.md) and the other forms articles in the *Forms* node.
 
 ## Anonymous functions, methods, and expressions
 
@@ -329,7 +328,7 @@ protected override void OnInitialized()
 }
 ```
 
-The full example of the preceding code with anonymous lambda expressions appears in the <xref:blazor/forms/validation-advanced#validator-components> article.
+The full example of the preceding code with anonymous lambda expressions appears in the [ASP.NET Core Blazor advanced form validation](../forms/validation-advanced.md#validator-components) article.
 
 For more information, see [Cleaning up unmanaged resources](/dotnet/standard/garbage-collection/unmanaged) and the topics that follow it on implementing the `Dispose` and `DisposeAsync` methods.
 
@@ -339,5 +338,5 @@ Trap <xref:Microsoft.JSInterop.JSDisconnectedException> in potential cases where
 
 For more information, see the following resources:
 
-* [JavaScript isolation in JavaScript modules](xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules)
-* [JavaScript interop calls without a circuit](xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit)
+* [JavaScript isolation in JavaScript modules](../javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules)
+* [JavaScript interop calls without a circuit](../javascript-interoperability/index.md#javascript-interop-calls-without-a-circuit)

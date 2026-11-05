@@ -10,7 +10,7 @@ Previously, memory allocated by the pool would remain reserved, even when not in
 
 Metrics have been added to the default memory pool used by our server implementations. The new metrics are under the name `"Microsoft.AspNetCore.MemoryPool"`.
 
-For information about metrics and how to use them, see <xref:metrics/overview>.
+For information about metrics and how to use them, see [ASP.NET Core metrics](../../../metrics/overview.md).
 
 #### Manage memory pools
 

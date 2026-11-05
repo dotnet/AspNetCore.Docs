@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/grpc
 title: YARP Proxying gRPC
 description: YARP Proxying gRPC
 ms.date: 04/12/2025
@@ -17,7 +16,7 @@ ai-usage: ai-assisted
 
 gRPC requires HTTP/2 for most scenarios. HTTP/1.1 and HTTP/2 are enabled by default on ASP.NET Core servers (YARP's front end) but they require https (TLS) for HTTP/2 so YARP needs to be listening on a `https://` URL.
 
-HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings. For more information, see <xref:grpc/aspnetcore#server-options>.
+HTTP/2 over http (non-TLS) is only supported on Kestrel and requires specific settings. For more information, see [gRPC services with ASP.NET Core](../../../grpc/aspnetcore.md#server-options).
 
 This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 
@@ -36,7 +35,7 @@ This shows configuring Kestrel to use HTTP/2 over http (non-TLS):
 
 ## Configure YARP's Outgoing Protocols
 
-YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see <xref:fundamentals/servers/yarp/http-client-config#httprequest>.
+YARP automatically negotiates HTTP/1.1 or HTTP/2 for outgoing proxy requests, but only for https (TLS). HTTP/2 over http (non-TLS) requires additional settings. Note that outgoing protocols are independent of incoming ones. E.g. https can be used for the incoming connection and http for the outgoing one, this is called TLS termination. For configuration details, see [YARP HTTP Client Configuration](http-client-config.md#httprequest).
 
 The following shows how to configure the outgoing proxy request to use HTTP/2:
 

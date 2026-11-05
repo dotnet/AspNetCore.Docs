@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor JavaScript interoperability (JS interop)
 description: Learn how to interact with JavaScript in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/js-interop/index
 ---
 # ASP.NET Core Blazor JavaScript interoperability (JS interop)
 
@@ -13,16 +12,16 @@ A Blazor app can invoke JavaScript (JS) functions from .NET methods and .NET met
 
 Further JS interop guidance is provided in the following articles:
 
-* <xref:blazor/js-interop/call-javascript-from-dotnet>
-* <xref:blazor/js-interop/call-dotnet-from-javascript>
-* <xref:blazor/performance/js-interop>
+* [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md)
+* [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](call-dotnet-from-javascript.md)
+* [ASP.NET Core Blazor JavaScript interoperability (JS interop) performance best practices](../performance/javascript-interoperability.md)
 
 :::moniker range=">= aspnetcore-7.0"
 
 > [!NOTE]
 > JavaScript `[JSImport]`/`[JSExport]` interop API is available for client-side components in ASP.NET Core in .NET 7 or later.
 >
-> For more information, see <xref:blazor/js-interop/import-export-interop>.
+> For more information, see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](import-export-interop.md).
 
 :::moniker-end
 
@@ -34,7 +33,7 @@ Further JS interop guidance is provided in the following articles:
      blazor/includes/compression-with-untrusted-data.md because the
      text is used in a warning format in two articles. -->
 
-With compression, which is enabled by default, avoid creating secure (authenticated/authorized) interactive server-side components that render data from untrusted sources. Untrusted sources include route parameters, query strings, data from JS interop, and any other source of data that a third-party user can control (databases, external services). For more information, see <xref:blazor/fundamentals/signalr#websocket-compression-for-interactive-server-components> and <xref:blazor/security/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>.
+With compression, which is enabled by default, avoid creating secure (authenticated/authorized) interactive server-side components that render data from untrusted sources. Untrusted sources include route parameters, query strings, data from JS interop, and any other source of data that a third-party user can control (databases, external services). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#websocket-compression-for-interactive-server-components) and [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled).
 
 :::moniker-end
 
@@ -58,7 +57,7 @@ This guidance not only applies to your own JS interop code but also to any JS li
 
 In a few documentation examples, JS interop is used to mutate an element *purely for demonstration purposes* as part of an example. In those cases, a warning appears in the text.
 
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#capture-references-to-elements>.
+For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md#capture-references-to-elements).
 
 ## JavaScript class with a field of type function
 
@@ -165,11 +164,11 @@ export function addHandlers() {
 }
 ```
 
-In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#javascript-interop-calls-without-a-circuit).
 
 For more information, see the following resources:
 
-* <xref:blazor/js-interop/javascript-location>
+* [JavaScript location in ASP.NET Core Blazor apps](location-of-javascript.md)
 * [Introduction to events (MDN documentation)](https://developer.mozilla.org/docs/Learn/JavaScript/Building_blocks/Events#inline_event_handlers_%E2%80%94_dont_use_these)
 
 ## Asynchronous JavaScript calls
@@ -180,14 +179,14 @@ JS interop calls are asynchronous, regardless of whether the called code is sync
 
 For more information, see the following articles:
 
-* <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>
-* <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-client-side-components>
+* [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md#synchronous-js-interop-in-client-side-components)
+* [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](call-dotnet-from-javascript.md#synchronous-js-interop-in-client-side-components)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>.
+For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md#synchronous-js-interop-in-client-side-components).
 
 :::moniker-end
 
@@ -199,7 +198,7 @@ Blazor uses <xref:System.Text.Json?displayProperty=fullName> for serialization w
 * Global default serialization isn't customizable to avoid breaking existing component libraries, impacts on performance and security, and reductions in reliability.
 * Serializing .NET member names results in lowercase JSON key names.
 * JSON is deserialized as <xref:System.Text.Json.JsonElement> C# instances, which permit mixed casing. Internal casting for assignment to C# model properties works as expected in spite of any case differences between JSON key names and C# property names.
-* Complex framework types might be [trimmed away by the IL Trimmer on publish](xref:blazor/host-and-deploy/configure-trimmer#failure-to-preserve-types-used-by-a-published-app) and not present for JS interop or JSON serialization/deserialization. We recommend creating custom types for types that the IL Trimmer trims away.
+* Complex framework types might be [trimmed away by the IL Trimmer on publish](../host-and-deploy/configure-trimmer.md#failure-to-preserve-types-used-by-a-published-app) and not present for JS interop or JSON serialization/deserialization. We recommend creating custom types for types that the IL Trimmer trims away.
 * Blazor always relies on [reflection for JSON serialization](/dotnet/standard/serialization/system-text-json/reflection-vs-source-generation), including when using C# [source generation](/dotnet/csharp/roslyn-sdk/source-generators-overview). Setting `JsonSerializerIsReflectionEnabledByDefault` to `false` in the app's project file results in an error when serialization is attempted.
 
 <xref:System.Text.Json.Serialization.JsonConverter> API is available for custom serialization. Properties can be annotated with a [`[JsonConverter]` attribute](xref:System.Text.Json.Serialization.JsonConverterAttribute) to override default serialization for an existing data type.
@@ -212,13 +211,13 @@ For more information, see the following resources in the .NET documentation:
 
 :::moniker range=">= aspnetcore-6.0"
 
-Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#byte-array-support>.
+Blazor supports optimized byte array JS interop that avoids encoding/decoding byte arrays into Base64. The app can apply custom serialization and pass the resulting bytes. For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md#byte-array-support).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-7.0"
 
-Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see <xref:blazor/js-interop/call-javascript-from-dotnet#unmarshalled-javascript-interop>.
+Blazor supports unmarshalled JS interop when a high volume of .NET objects are rapidly serialized or when large .NET objects or many .NET objects must be serialized. For more information, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](call-javascript-from-dotnet.md#unmarshalled-javascript-interop).
 
 :::moniker-end
 
@@ -234,7 +233,7 @@ The [`MutationObserver`](https://developer.mozilla.org/docs/Web/API/MutationObse
 In the following example, the `DOMCleanup` component:
 
 * Contains a `<div>` with an `id` of `cleanupDiv`. The `<div>` element is removed from the DOM along with the rest of the component's DOM markup when the component is removed from the DOM.
-* Loads the `DOMCleanup` JS class from the `DOMCleanup.razor.js` file and calls its `createObserver` function to set up the `MutationObserver` callback. These tasks are accomplished in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync).
+* Loads the `DOMCleanup` JS class from the `DOMCleanup.razor.js` file and calls its `createObserver` function to set up the `MutationObserver` callback. These tasks are accomplished in the [`OnAfterRenderAsync` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync).
 
 `DOMCleanup.razor`:
 
@@ -277,7 +276,7 @@ In the following example, the `DOMCleanup` component:
 }
 ```
 
-In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see <xref:blazor/js-interop/index#javascript-interop-calls-without-a-circuit>.
+In the preceding example, <xref:Microsoft.JSInterop.JSDisconnectedException> is trapped during module disposal in case Blazor's SignalR circuit is lost. If the preceding code is used in a Blazor WebAssembly app, there's no SignalR connection to lose, so you can remove the `try`-`catch` block and leave the line that disposes the module (`await module.DisposeAsync();`). For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](index.md#javascript-interop-calls-without-a-circuit).
 
 In the following example, the `MutationObserver` callback is executed each time a DOM change occurs. Execute your cleanup code when the `if` statement confirms that the target element (`cleanupDiv`) was removed (`if (targetRemoved) { ... }`). It's important to disconnect and delete the `MutationObserver` to avoid a memory leak after your cleanup code executes.
 
@@ -329,13 +328,13 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 :::moniker range=">= aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync%2A>
-  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor%2A>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync%2A>
-  * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync%2A>
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.InvokeConstructorAsync*>
+  * <xref:Microsoft.JSInterop.IJSInProcessObjectReference.InvokeConstructor*>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.GetValueAsync*>
+  * <xref:Microsoft.JSInterop.IJSObjectReference.SetValueAsync*>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
@@ -343,9 +342,9 @@ JavaScript (JS) interop calls can't be issued after Blazor's SignalR circuit is 
 :::moniker range="< aspnetcore-10.0"
 
 * JS interop method calls
-  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync%2A?displayProperty=nameWithType>
-  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync%2A?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.IJSRuntime.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeAsync*?displayProperty=nameWithType>
+  * <xref:Microsoft.JSInterop.JSRuntimeExtensions.InvokeVoidAsync*?displayProperty=nameWithType>
 * `Dispose`/`DisposeAsync` calls on any <xref:Microsoft.JSInterop.IJSObjectReference>.
 
 :::moniker-end
@@ -379,14 +378,14 @@ If you must clean up your own JS objects or execute other JS code on the client 
 
 For more information, see the following articles:
 
-* <xref:blazor/fundamentals/handle-errors#javascript-interop>: The *JavaScript interop* section discusses error handling in JS interop scenarios.
-* <xref:blazor/components/component-disposal>: The article describes how to implement disposal patterns in Razor components.
+* [Handle errors in ASP.NET Core Blazor apps](../fundamentals/handle-errors.md#javascript-interop): The *JavaScript interop* section discusses error handling in JS interop scenarios.
+* [ASP.NET Core Razor component disposal](../components/component-disposal.md): The article describes how to implement disposal patterns in Razor components.
 
 ## Cached JavaScript files
 
-JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](xref:fundamentals/index#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
+JavaScript (JS) files and other static assets aren't generally cached on clients during development in the [`Development` environment](../../fundamentals/index.md#environments). During development, static asset requests include the [`Cache-Control` header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) with a value of [`no-cache`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#cacheability) or [`max-age`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control#expiration) with a value of zero (`0`).
 
-During production in the [`Production` environment](xref:fundamentals/index#environments), JS files are usually cached by clients.
+During production in the [`Production` environment](../../fundamentals/index.md#environments), JS files are usually cached by clients.
 
 To disable client-side caching in browsers, developers usually adopt one of the following approaches:
 
@@ -397,19 +396,19 @@ To disable client-side caching in browsers, developers usually adopt one of the 
 
 For more information, see:
 
-* <xref:blazor/fundamentals/environments>
-* <xref:performance/caching/response>
+* [Response caching in ASP.NET Core](../../performance/caching/response.md)
+* [ASP.NET Core Blazor environments](../fundamentals/environments.md)
 
 ## Size limits on JavaScript interop calls
 
 *This section only applies to interactive components in server-side apps. For client-side components, the framework doesn't impose a limit on the size of JavaScript (JS) interop inputs and outputs.*
 
-For interactive components in server-side apps, JS interop calls passing data from the client to the server are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information on the size limit, error messages, and guidance on dealing with message size limits, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+For interactive components in server-side apps, JS interop calls passing data from the client to the server are limited in size by the maximum incoming SignalR message size permitted for hub methods, which is enforced by <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize?displayProperty=nameWithType> (default: 32 KB). JS to .NET SignalR messages larger than <xref:Microsoft.AspNetCore.SignalR.HubOptions.MaximumReceiveMessageSize> throw an error. The framework doesn't impose a limit on the size of a SignalR message from the hub to a client. For more information on the size limit, error messages, and guidance on dealing with message size limits, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#maximum-receive-message-size).
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Determine where the app is running
 
-If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType> to determine if the component is executing in the context of browser on WebAssembly.
+If it's relevant for the app to know where code is running for JS interop calls, use <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType> to determine if the component is executing in the context of browser on WebAssembly.
 
 :::moniker-end

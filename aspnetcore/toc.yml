@@ -2,15 +2,15 @@ items:
   - name: ASP.NET Core documentation
     href: index.yml
   - name: Overview
-    uid: index
+    href: overview.md
   - name: Get started
-    uid: get-started
+    href: get-started.md
   - name: What's new
     items:
       - name: ASP.NET Core 11
         items:
           - name: What's new in 11
-            uid: aspnetcore-11
+            href: release-notes/aspnetcore-11.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -56,7 +56,7 @@ items:
       - name: ASP.NET Core 10
         items:
           - name: What's new in 10
-            uid: aspnetcore-10
+            href: release-notes/aspnetcore-10.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -82,7 +82,7 @@ items:
       - name: ASP.NET Core 9
         items:
           - name: What's new in 9
-            uid: aspnetcore-9
+            href: release-notes/aspnetcore-9.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -102,7 +102,7 @@ items:
       - name: ASP.NET Core 8
         items:
           - name: What's new in 8
-            uid: aspnetcore-8
+            href: release-notes/aspnetcore-8.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -128,7 +128,7 @@ items:
       - name: ASP.NET Core 7
         items:
           - name: What's new in 7
-            uid: aspnetcore-7
+            href: release-notes/aspnetcore-7.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -166,7 +166,7 @@ items:
       - name: ASP.NET Core 6
         items:
           - name: What's new in 6
-            uid: aspnetcore-6.0
+            href: release-notes/aspnetcore-6.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -224,7 +224,7 @@ items:
       - name: ASP.NET Core 5
         items:
           - name: What's new in 5
-            uid: aspnetcore-5.0
+            href: release-notes/aspnetcore-5.0.md
           - name: Breaking changes
             items:
               - name: Overview
@@ -302,155 +302,155 @@ items:
               - name: CSV content type changed to standards-compliant
                 href: breaking-changes/5/static-files-csv-content-type-changed.md
       - name: What's new in 3.1
-        uid: aspnetcore-3.1
+        href: release-notes/aspnetcore-3.1.md
       - name: What's new in 3.0
-        uid: aspnetcore-3.0
+        href: release-notes/aspnetcore-3.0.md
       - name: What's new in 2.2
-        uid: aspnetcore-2.2
+        href: release-notes/aspnetcore-2.2.md
       - name: What's new in 2.1
-        uid: aspnetcore-2.1
+        href: release-notes/aspnetcore-2.1.md
       - name: What's new in 2.0
-        uid: aspnetcore-2.0
+        href: release-notes/aspnetcore-2.0.md
       - name: What's new in 1.1
-        uid: aspnetcore-1.1
+        href: release-notes/aspnetcore-1.1.md
   - name: Tutorials
     displayName: tutorial
     items:
       - name: Web apps
         items:
           - name: Choose an ASP.NET Core UI
-            uid: tutorials/choose-web-ui
+            href: tutorials/choose-web-ui.md
           - name: Razor Pages
             displayName: tutorial
             items:
               - name: Overview
-                uid: tutorials/razor-pages/index
+                href: tutorials/razor-pages/index.md
               - name: Get started
-                uid: tutorials/razor-pages/razor-pages-start
+                href: tutorials/razor-pages/razor-pages-start.md
               - name: Add a model
-                uid: tutorials/razor-pages/model
+                href: tutorials/razor-pages/model.md
               - name: Scaffolding
-                uid: tutorials/razor-pages/page
+                href: tutorials/razor-pages/page.md
               - name: Work with a database
-                uid: tutorials/razor-pages/sql
+                href: tutorials/razor-pages/sql.md
               - name: Update the pages
-                uid: tutorials/razor-pages/da1
+                href: tutorials/razor-pages/da1.md
               - name: Add search
-                uid: tutorials/razor-pages/search
+                href: tutorials/razor-pages/search.md
               - name: Add a new field
-                uid: tutorials/razor-pages/new-field
+                href: tutorials/razor-pages/new-field.md
               - name: Add validation
-                uid: tutorials/razor-pages/validation
+                href: tutorials/razor-pages/validation.md
           - name: MVC
             displayName: tutorial
             items:
               - name: Get started
-                uid: tutorials/first-mvc-app/start-mvc
+                href: tutorials/first-mvc-app/start-mvc.md
               - name: Add a controller
-                uid: tutorials/first-mvc-app/adding-controller
+                href: tutorials/first-mvc-app/adding-controller.md
               - name: Add a view
-                uid: tutorials/first-mvc-app/adding-view
+                href: tutorials/first-mvc-app/adding-view.md
               - name: Add a model
-                uid: tutorials/first-mvc-app/adding-model
+                href: tutorials/first-mvc-app/adding-model.md
               - name: Work with a database
-                uid: tutorials/first-mvc-app/working-with-sql
+                href: tutorials/first-mvc-app/working-with-sql.md
               - name: Controller actions and views
-                uid: tutorials/first-mvc-app/controller-methods-views
+                href: tutorials/first-mvc-app/controller-methods-views.md
               - name: Add search
-                uid: tutorials/first-mvc-app/search
+                href: tutorials/first-mvc-app/search.md
               - name: Add a new field
-                uid: tutorials/first-mvc-app/new-field
+                href: tutorials/first-mvc-app/new-field.md
               - name: Add validation
-                uid: tutorials/first-mvc-app/validation
+                href: tutorials/first-mvc-app/validation.md
               - name: Examine Details and Delete
-                uid: tutorials/first-mvc-app/details
+                href: tutorials/first-mvc-app/details.md
           - name: Blazor
-            uid: blazor/tutorials/index
+            href: blazor/tutorials/index.md
       - name: APIs
         items:
         - name: Minimal APIs
           items:
           - name: Create a minimal web API
             displayName: API tutorial
-            uid: tutorials/min-web-api
+            href: tutorials/min-web-api.md
         - name: Controller-based APIs
           items:
           - name: Create a controller-based web API
             displayName: API tutorial
-            uid: tutorials/first-web-api
+            href: tutorials/first-web-api.md
           - name: Web API with MongoDB
             displayName: API tutorial
-            uid: tutorials/first-mongo-app
+            href: tutorials/first-mongo-app.md
           - name: Web API with JavaScript
             displayName: tutorial
-            uid: tutorials/web-api-javascript
+            href: tutorials/web-api-javascript.md
           - name: Backend for mobile
             displayName: tutorial
-            uid: mobile/native-mobile-backend
+            href: mobile/native-mobile-backend.md
           - name: Publish to Azure API Management
             displayName: tutorial
-            uid: tutorials/publish-to-azure-api-management-using-vs
+            href: tutorials/publish-to-azure-api-management-using-vs.md
       - name: Real-time web apps
         items:
           - name: SignalR with JavaScript
             displayName: tutorial
-            uid: tutorials/signalr
+            href: tutorials/signalr.md
           - name: SignalR with TypeScript
             displayName: tutorial
-            uid: tutorials/signalr-typescript-webpack
+            href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
             displayName: tutorial
-            uid: blazor/tutorials/signalr-blazor
+            href: blazor/tutorials/signalr-blazor.md
       - name: Remote Procedure Call apps
         items:
           - name: Get started with a gRPC service
-            uid: tutorials/grpc/grpc-start
+            href: tutorials/grpc/grpc-start.md
       - name: Data access
         items:
           - name: EF Core with Razor Pages
             displayName: tutorial
             items:
               - name: Get started
-                uid: data/ef-rp/intro
+                href: data/ef-rp/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-rp/crud
+                href: data/ef-rp/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-rp/sort-filter-page
+                href: data/ef-rp/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-rp/migrations
+                href: data/ef-rp/migrations.md
               - name: Create a complex data model
-                uid: data/ef-rp/complex-data-model
+                href: data/ef-rp/complex-data-model.md
               - name: Read related data
-                uid: data/ef-rp/read-related-data
+                href: data/ef-rp/read-related-data.md
               - name: Update related data
-                uid: data/ef-rp/update-related-data
+                href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-rp/concurrency
+                href: data/ef-rp/concurrency.md
           - name: EF Core with MVC
             displayName: tutorial
             items:
               - name: Overview
-                uid: data/ef-mvc/index
+                href: data/ef-mvc/index.md
               - name: Get started
-                uid: data/ef-mvc/intro
+                href: data/ef-mvc/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-mvc/crud
+                href: data/ef-mvc/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-mvc/sort-filter-page
+                href: data/ef-mvc/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-mvc/migrations
+                href: data/ef-mvc/migrations.md
               - name: Create a complex data model
-                uid: data/ef-mvc/complex-data-model
+                href: data/ef-mvc/complex-data-model.md
               - name: Read related data
-                uid: data/ef-mvc/read-related-data
+                href: data/ef-mvc/read-related-data.md
               - name: Update related data
-                uid: data/ef-mvc/update-related-data
+                href: data/ef-mvc/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-mvc/concurrency
+                href: data/ef-mvc/concurrency.md
               - name: Inheritance
-                uid: data/ef-mvc/inheritance
+                href: data/ef-mvc/inheritance.md
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
+                href: data/ef-mvc/advanced.md
       - name: Learn modules
         items:
           - name: Web apps >>
@@ -485,559 +485,559 @@ items:
   - name: Fundamentals
     items:
       - name: Overview
-        uid: fundamentals/index
+        href: fundamentals/index.md
       - name: App start up
-        uid: fundamentals/startup
+        href: fundamentals/startup.md
       - name: Dependency injection (services)
-        uid: fundamentals/dependency-injection
+        href: fundamentals/dependency-injection.md
       - name: Native AOT
         items:
           - name: Overview
             displayName: native, aot
-            uid: fundamentals/native-aot
+            href: fundamentals/native-aot.md
           - name: Tutorial
             displayName: native, aot
-            uid: fundamentals/native-aot-tutorial
+            href: fundamentals/aot/native-aot-tutorial.md
           - name: Request Delegate Generator
             displayName: aot, RDG, Request Delegate Generator
-            uid: fundamentals/aot/rdg
+            href: fundamentals/aot/request-delegate-generator/rdg.md
       - name: Middleware
         items:
           - name: Middleware overview
-            uid: fundamentals/middleware/index
+            href: fundamentals/middleware/index.md
           - name: Rate limiting middleware
-            uid: performance/rate-limit
+            href: performance/rate-limit.md
           - name: Rate limiting samples
-            uid: performance/rate-limit-sample
+            href: performance/rate-limit-samples.md
           - name: Test middleware
-            uid: test/middleware
+            href: test/middleware.md
           - name: Response caching middleware
-            uid: performance/caching/middleware
+            href: performance/caching/middleware.md
           - name: Write middleware
-            uid: fundamentals/middleware/write
+            href: fundamentals/middleware/write.md
           - name: Request and response operations
             displayName: middleware
-            uid: fundamentals/middleware/request-response
+            href: fundamentals/middleware/request-response.md
           - name: Request decompression
             displayName: request decompression middleware
-            uid: fundamentals/middleware/request-decompression
+            href: fundamentals/middleware/request-decompression.md
           - name: Factory-based middleware
-            uid: fundamentals/middleware/extensibility
+            href: fundamentals/middleware/extensibility.md
           - name: Factory-based middleware with third-party container
-            uid: fundamentals/middleware/extensibility-third-party-container
+            href: fundamentals/middleware/extensibility-third-party-container.md
       - name: Host
         items:
           - name: WebApplication and WebApplicationBuilder
-            uid: fundamentals/minimal-apis/webapplication
+            href: fundamentals/minimal-apis/webapplication.md
           - name: Generic Host
-            uid: fundamentals/host/generic-host
+            href: fundamentals/host/generic-host.md
           - name: Web Host
-            uid: fundamentals/host/web-host
+            href: fundamentals/host/web-host.md
       - name: Configuration
-        uid: fundamentals/configuration/index
+        href: fundamentals/configuration/index.md
       - name: Options
-        uid: fundamentals/configuration/options
+        href: fundamentals/configuration/options.md
       - name: Environments (dev, stage, prod)
-        uid: fundamentals/environments
+        href: fundamentals/environments.md
       - name: Logging and monitoring
         items:
           - name: Logging
-            uid: fundamentals/logging/index
+            href: fundamentals/logging/index.md
           - name: HTTP logging
-            uid: fundamentals/http-logging/index
+            href: fundamentals/http-logging/index.md
           - name: Enrich HTTP request logs in ASP.NET Core
-            uid: fundamentals/http-logging/http-log-enricher
+            href: fundamentals/http-logging/http-log-enricher.md
           - name: W3C logger
-            uid: fundamentals/w3c-logger/index
+            href: fundamentals/w3c-logger/index.md
           - name: Health checks
             displayName: logging, monitoring
-            uid: host-and-deploy/health-checks
+            href: host-and-deploy/health-checks.md
           - name: Metrics
             displayName: logging, monitoring
-            uid: metrics/overview
+            href: metrics/overview.md
       - name: HttpContext
-        uid: fundamentals/use-httpcontext
+        href: fundamentals/use-http-context.md
       - name: Routing
-        uid: fundamentals/routing
+        href: fundamentals/routing.md
       - name: Handle errors
-        uid: fundamentals/error-handling
+        href: fundamentals/error-handling.md
       - name: Make HTTP requests
         displayName: httpclient, httpclientfactory
-        uid: fundamentals/http-requests
+        href: fundamentals/http-requests.md
       - name: Static files
-        uid: fundamentals/static-files
+        href: fundamentals/static-files.md
       - name: Validation
-        uid: fundamentals/validation
+        href: fundamentals/validation.md
   - name: Web apps
     items:
       - name: Choose an ASP.NET Core UI
-        uid: tutorials/choose-web-ui
+        href: tutorials/choose-web-ui.md
       - name: Razor Pages
         items:
           - name: Architecture and concepts
-            uid: razor-pages/index
+            href: razor-pages/index.md
           - name: Tutorial
             items:
               - name: Overview
-                uid: tutorials/razor-pages/index
+                href: tutorials/razor-pages/index.md
               - name: Get started
-                uid: tutorials/razor-pages/razor-pages-start
+                href: tutorials/razor-pages/razor-pages-start.md
               - name: Add a model
-                uid: tutorials/razor-pages/model
+                href: tutorials/razor-pages/model.md
               - name: Scaffolding
-                uid: tutorials/razor-pages/page
+                href: tutorials/razor-pages/page.md
               - name: Work with a database
-                uid: tutorials/razor-pages/sql
+                href: tutorials/razor-pages/sql.md
               - name: Update the pages
-                uid: tutorials/razor-pages/da1
+                href: tutorials/razor-pages/da1.md
               - name: Add search
-                uid: tutorials/razor-pages/search
+                href: tutorials/razor-pages/search.md
               - name: Add a new field
-                uid: tutorials/razor-pages/new-field
+                href: tutorials/razor-pages/new-field.md
               - name: Add validation
-                uid: tutorials/razor-pages/validation
+                href: tutorials/razor-pages/validation.md
           - name: Filters
-            uid: razor-pages/filter
+            href: razor-pages/filter.md
           - name: Route and app conventions
-            uid: razor-pages/razor-pages-conventions
+            href: razor-pages/razor-pages-conventions.md
           - name: Security and Identity
             items:
               - name: Authorization
                 items:
                   - name: Simple authorization
-                    uid: razor-pages/security/authorization/simple
+                    href: razor-pages/security/authorization/simple.md
                   - name: Authorization conventions
-                    uid: razor-pages/security/authorization/conventions
+                    href: razor-pages/security/authorization/conventions.md
                   - name: Role-based authorization
-                    uid: razor-pages/security/authorization/roles
+                    href: razor-pages/security/authorization/roles.md
                   - name: Claim-based authorization
-                    uid: razor-pages/security/authorization/claims
+                    href: razor-pages/security/authorization/claims.md
                   - name: Policy-based authorization
-                    uid: razor-pages/security/authorization/policies
+                    href: razor-pages/security/authorization/policies.md
                   - name: Resource-based authorization
-                    uid: razor-pages/security/authorization/resource-based
+                    href: razor-pages/security/authorization/resource-based.md
       - name: MVC
         items:
           - name: Overview
-            uid: mvc/overview
+            href: mvc/overview.md
           - name: Tutorial
             items:
               - name: Get started
-                uid: tutorials/first-mvc-app/start-mvc
+                href: tutorials/first-mvc-app/start-mvc.md
               - name: Add a controller
-                uid: tutorials/first-mvc-app/adding-controller
+                href: tutorials/first-mvc-app/adding-controller.md
               - name: Add a view
-                uid: tutorials/first-mvc-app/adding-view
+                href: tutorials/first-mvc-app/adding-view.md
               - name: Add a model
-                uid: tutorials/first-mvc-app/adding-model
+                href: tutorials/first-mvc-app/adding-model.md
               - name: Work with a database
-                uid: tutorials/first-mvc-app/working-with-sql
+                href: tutorials/first-mvc-app/working-with-sql.md
               - name: Controller actions and views
-                uid: tutorials/first-mvc-app/controller-methods-views
+                href: tutorials/first-mvc-app/controller-methods-views.md
               - name: Add search
-                uid: tutorials/first-mvc-app/search
+                href: tutorials/first-mvc-app/search.md
               - name: Add a new field
-                uid: tutorials/first-mvc-app/new-field
+                href: tutorials/first-mvc-app/new-field.md
               - name: Add validation
-                uid: tutorials/first-mvc-app/validation
+                href: tutorials/first-mvc-app/validation.md
               - name: Examine the Details and Delete methods
-                uid: tutorials/first-mvc-app/details
+                href: tutorials/first-mvc-app/details.md
           - name: Views
-            uid: mvc/views/overview
+            href: mvc/views/overview.md
           - name: Partial views
-            uid: mvc/views/partial
+            href: mvc/views/partial.md
           - name: Controllers
-            uid: mvc/controllers/actions
+            href: mvc/controllers/actions.md
           - name: Routing
-            uid: mvc/controllers/routing
+            href: mvc/controllers/routing.md
           - name: Dependency injection - controllers
-            uid: mvc/controllers/dependency-injection
+            href: mvc/controllers/dependency-injection.md
           - name: Dependency injection - views
-            uid: mvc/views/dependency-injection
+            href: mvc/views/dependency-injection.md
           - name: Unit test
-            uid: mvc/controllers/testing
+            href: mvc/controllers/testing.md
           - name: Security and Identity
             items:
               - name: Authorization
                 items:
                   - name: Simple authorization
-                    uid: mvc/security/authorization/simple
+                    href: mvc/security/authorization/simple.md
                   - name: Custom authorization with IAuthorizationRequirementData
-                    uid: mvc/security/authorization/iard
+                    href: mvc/security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata-in-mvc.md
                   - name: Role-based authorization
-                    uid: mvc/security/authorization/roles
+                    href: mvc/security/authorization/roles.md
                   - name: Claim-based authorization
-                    uid: mvc/security/authorization/claims
+                    href: mvc/security/authorization/claims.md
                   - name: Policy-based authorization
-                    uid: mvc/security/authorization/policies
+                    href: mvc/security/authorization/policies.md
                   - name: Resource-based authorization
-                    uid: mvc/security/authorization/resource-based
+                    href: mvc/security/authorization/resource-based.md
                   - name: View-based authorization
-                    uid: mvc/security/authorization/views
+                    href: mvc/security/authorization/views.md
       - name: Blazor
         items:
           - name: Overview
-            uid: blazor/index
+            href: blazor/index.md
           - name: Supported platforms
-            uid: blazor/supported-platforms
+            href: blazor/supported-platforms.md
           - name: Tooling
-            uid: blazor/tooling
+            href: blazor/tooling.md
           - name: WebAssembly tooling and AOT
-            uid: blazor/tooling/webassembly
+            href: blazor/webassembly-build-tools-and-aot.md
           - name: Hosting models
-            uid: blazor/hosting-models
+            href: blazor/hosting-models.md
           - name: Tutorials
             items:
               - name: Overview
-                uid: blazor/tutorials/index
+                href: blazor/tutorials/index.md
               - name: Build your first Blazor app
                 href: https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro
               - name: Build a Blazor todo list app
-                uid: blazor/tutorials/build-a-blazor-app
+                href: blazor/tutorials/build-a-blazor-app.md
               - name: Build a Blazor movie database app
                 items:
                   - name: Overview
-                    uid: blazor/tutorials/movie-database-app/index
+                    href: blazor/tutorials/movie-database-app/index.md
                   - name: Create a Blazor Web App
-                    uid: blazor/tutorials/movie-database-app/part-1
+                    href: blazor/tutorials/movie-database-app/part-1.md
                   - name: Add and scaffold a model
-                    uid: blazor/tutorials/movie-database-app/part-2
+                    href: blazor/tutorials/movie-database-app/part-2.md
                   - name: Learn about Razor components
-                    uid: blazor/tutorials/movie-database-app/part-3
+                    href: blazor/tutorials/movie-database-app/part-3.md
                   - name: Work with a database
-                    uid: blazor/tutorials/movie-database-app/part-4
+                    href: blazor/tutorials/movie-database-app/part-4.md
                   - name: Add validation
-                    uid: blazor/tutorials/movie-database-app/part-5
+                    href: blazor/tutorials/movie-database-app/part-5.md
                   - name: Add search
-                    uid: blazor/tutorials/movie-database-app/part-6
+                    href: blazor/tutorials/movie-database-app/part-6.md
                   - name: Add a new field
-                    uid: blazor/tutorials/movie-database-app/part-7
+                    href: blazor/tutorials/movie-database-app/part-7.md
                   - name: Add interactivity
-                    uid: blazor/tutorials/movie-database-app/part-8
+                    href: blazor/tutorials/movie-database-app/part-8.md
               - name: SignalR with Blazor
-                uid: blazor/tutorials/signalr-blazor
+                href: blazor/tutorials/signalr-blazor.md
               - name: Learn modules
                 href: /training/paths/build-web-apps-with-blazor/
           - name: Blazor Hybrid
             items:
               - name: Overview
-                uid: blazor/hybrid/index
+                href: blazor/hybrid/index.md
               - name: Tutorials
                 items:
                   - name: Overview
-                    uid: blazor/hybrid/tutorials/index
+                    href: blazor/hybrid/tutorials/index.md
                   - name: Build your first app
                     href: /dotnet/maui/get-started/first-app
                   - name: .NET MAUI with Blazor Web App
-                    uid: blazor/hybrid/tutorials/maui-blazor-web-app
+                    href: blazor/hybrid/tutorials/maui-blazor-web-app.md
                   - name: Windows Forms
-                    uid: blazor/hybrid/tutorials/windows-forms
+                    href: blazor/hybrid/tutorials/windows-forms.md
                   - name: WPF
-                    uid: blazor/hybrid/tutorials/wpf
+                    href: blazor/hybrid/tutorials/wpf.md
               - name: Routing and navigation
-                uid: blazor/hybrid/routing
+                href: blazor/hybrid/routing.md
               - name: Static files
-                uid: blazor/hybrid/static-files
+                href: blazor/hybrid/static-files.md
               - name: Browser developer tools
-                uid: blazor/hybrid/developer-tools
+                href: blazor/hybrid/developer-tools.md
               - name: Reuse Razor components
-                uid: blazor/hybrid/reuse-razor-components
+                href: blazor/hybrid/reuse-razor-components.md
               - name: Class libraries
-                uid: blazor/hybrid/class-libraries
+                href: blazor/hybrid/class-libraries.md
               - name: Class libraries best practices
-                uid: blazor/hybrid/class-libraries-best-practices
+                href: blazor/hybrid/class-libraries-best-practices.md
               - name: Root component parameters
-                uid: blazor/hybrid/root-component-parameters
+                href: blazor/hybrid/root-component-parameters.md
               - name: Security and Identity
                 items:
                   - name: Overview
-                    uid: blazor/hybrid/security/index
+                    href: blazor/hybrid/security/index.md
                   - name: Security considerations
-                    uid: blazor/hybrid/security/security-considerations
+                    href: blazor/hybrid/security/security-considerations.md
                   - name: .NET MAUI with Blazor Web App and Identity sample
-                    uid: blazor/hybrid/security/maui-blazor-web-identity
+                    href: blazor/hybrid/security/maui-blazor-web-identity.md
               - name: Publish
-                uid: blazor/hybrid/publish/index
+                href: blazor/hybrid/publish/index.md
               - name: Troubleshoot
-                uid: blazor/hybrid/troubleshoot
+                href: blazor/hybrid/troubleshoot.md
           - name: Project structure
-            uid: blazor/project-structure
+            href: blazor/project-structure.md
           - name: Fundamentals
             items:
               - name: Overview
-                uid: blazor/fundamentals/index
+                href: blazor/fundamentals/index.md
               - name: Routing
-                uid: blazor/fundamentals/routing
+                href: blazor/fundamentals/routing.md
               - name: Navigation
-                uid: blazor/fundamentals/navigation
+                href: blazor/fundamentals/navigation.md
               - name: Configuration
-                uid: blazor/fundamentals/configuration
+                href: blazor/fundamentals/configuration.md
               - name: Dependency injection
-                uid: blazor/fundamentals/dependency-injection
+                href: blazor/fundamentals/dependency-injection.md
               - name: Startup
-                uid: blazor/fundamentals/startup
+                href: blazor/fundamentals/startup.md
               - name: Environments
-                uid: blazor/fundamentals/environments
+                href: blazor/fundamentals/environments.md
               - name: Logging
-                uid: blazor/fundamentals/logging
+                href: blazor/fundamentals/logging.md
               - name: Handle errors
-                uid: blazor/fundamentals/handle-errors
+                href: blazor/fundamentals/handle-errors.md
               - name: SignalR
-                uid: blazor/fundamentals/signalr
+                href: blazor/fundamentals/signalr.md
               - name: Static files
-                uid: blazor/fundamentals/static-files
+                href: blazor/fundamentals/static-files.md
           - name: Components
             items:
               - name: Overview
-                uid: blazor/components/index
+                href: blazor/components/index.md
               - name: Render modes
-                uid: blazor/components/render-modes
+                href: blazor/components/render-modes.md
               - name: Prerender components
-                uid: blazor/components/prerender
+                href: blazor/components/prerender.md
               - name: IHttpContextAccessor and HttpContext
-                uid: blazor/components/httpcontext
+                href: blazor/components/httpcontext.md
               - name: Generic type support
-                uid: blazor/components/generic-type-support
+                href: blazor/components/generic-type-support.md
               - name: Synchronization context
-                uid: blazor/components/sync-context
+                href: blazor/components/synchronization-context.md
               - name: Preserve relationships with @key
-                uid: blazor/components/key
+                href: blazor/components/element-component-model-relationships.md
               - name: Overwriting parameters
-                uid: blazor/components/overwriting-parameters
+                href: blazor/components/overwriting-parameters.md
               - name: Attribute splatting and arbitrary parameters
-                uid: blazor/components/attribute-splatting
+                href: blazor/components/splat-attributes-and-arbitrary-parameters.md
               - name: Layouts
-                uid: blazor/components/layouts
+                href: blazor/components/layouts.md
               - name: Sections
-                uid: blazor/components/sections
+                href: blazor/components/sections.md
               - name: Control <head> content
-                uid: blazor/components/control-head-content
+                href: blazor/components/control-head-content.md
               - name: Cascading values and parameters
-                uid: blazor/components/cascading-values-and-parameters
+                href: blazor/components/cascading-values-and-parameters.md
               - name: Event handling
-                uid: blazor/components/event-handling
+                href: blazor/components/event-handling.md
               - name: Data binding
-                uid: blazor/components/data-binding
+                href: blazor/components/data-binding.md
               - name: Lifecycle
-                uid: blazor/components/lifecycle
+                href: blazor/components/lifecycle.md
               - name: Component disposal
-                uid: blazor/components/component-disposal
+                href: blazor/components/component-disposal.md
               - name: Virtualization
-                uid: blazor/components/virtualization
+                href: blazor/components/virtualization.md
               - name: Rendering
-                uid: blazor/components/rendering
+                href: blazor/components/rendering.md
               - name: Templated components
-                uid: blazor/components/templated-components
+                href: blazor/components/templated-components.md
               - name: CSS isolation
-                uid: blazor/components/css-isolation
+                href: blazor/components/css-isolation.md
               - name: Dynamically-rendered components
-                uid: blazor/components/dynamiccomponent
+                href: blazor/components/dynamiccomponent.md
               - name: QuickGrid component
-                uid: blazor/components/quickgrid
+                href: blazor/components/quickgrid.md
               - name: Integrate with MVC/Razor Pages
-                uid: blazor/components/integration
+                href: blazor/components/integration.md
               - name: Integrate with MVC/Razor Pages (hosted WebAssembly)
-                uid: blazor/components/integration-hosted-webassembly
+                href: blazor/components/integration-hosted-webassembly.md
               - name: Class libraries
-                uid: blazor/components/class-libraries
+                href: blazor/components/class-libraries.md
               - name: Class libraries with static SSR
-                uid: blazor/components/class-libraries-with-static-ssr
+                href: blazor/components/class-libraries-and-static-server-side-rendering.md
               - name: Return component HTML from a web API
-                uid: blazor/components/return-component-html-from-a-web-api
+                href: blazor/components/return-component-html-from-a-web-api.md
               - name: JavaScript apps and SPA frameworks
-                uid: blazor/components/js-spa-frameworks
+                href: blazor/components/js-spa-frameworks.md
               - name: Components outside of ASP.NET Core
-                uid: blazor/components/render-outside-of-aspnetcore
+                href: blazor/components/render-components-outside-of-aspnetcore.md
               - name: Built-in components
-                uid: blazor/components/built-in-components
+                href: blazor/components/built-in-components.md
           - name: Globalization and localization
-            uid: blazor/globalization-localization
+            href: blazor/globalization-localization.md
           - name: Forms
             items:
               - name: Overview
-                uid: blazor/forms/index
+                href: blazor/forms/index.md
               - name: Input components
-                uid: blazor/forms/input-components
+                href: blazor/forms/input-components.md
               - name: Binding
-                uid: blazor/forms/binding
+                href: blazor/forms/binding.md
               - name: Validation
-                uid: blazor/forms/validation
+                href: blazor/forms/validation.md
               - name: Advanced validation
-                uid: blazor/forms/validation-advanced
+                href: blazor/forms/validation-advanced.md
               - name: Client-side validation (static SSR)
-                uid: blazor/forms/validation-client-side
+                href: blazor/forms/validation-client-side.md
               - name: Troubleshoot
-                uid: blazor/forms/troubleshoot
+                href: blazor/forms/troubleshoot.md
           - name: File uploads
-            uid: blazor/file-uploads
+            href: blazor/file-uploads.md
           - name: File downloads
-            uid: blazor/file-downloads
+            href: blazor/file-downloads.md
           - name: JavaScript interop
             items:
               - name: Overview
-                uid: blazor/js-interop/index
+                href: blazor/javascript-interoperability/index.md
               - name: JavaScript location
-                uid: blazor/js-interop/javascript-location
+                href: blazor/javascript-interoperability/location-of-javascript.md
               - name: Call JS from .NET
-                uid: blazor/js-interop/call-javascript-from-dotnet
+                href: blazor/javascript-interoperability/call-javascript-from-dotnet.md
               - name: Call .NET from JS
-                uid: blazor/js-interop/call-dotnet-from-javascript
+                href: blazor/javascript-interoperability/call-dotnet-from-javascript.md
               - name: JSImport/JSExport interop
-                uid: blazor/js-interop/import-export-interop
+                href: blazor/javascript-interoperability/import-export-interop.md
               - name: Static server rendering
-                uid: blazor/js-interop/ssr
+                href: blazor/javascript-interoperability/static-server-rendering.md
           - name: Call a web API
-            uid: blazor/call-web-api
+            href: blazor/call-web-api.md
           - name: Images and documents
-            uid: blazor/images-and-documents
+            href: blazor/images-and-documents.md
           - name: Security and Identity
             items:
               - name: Overview
-                uid: blazor/security/index
+                href: blazor/security/index.md
               - name: Authentication state
-                uid: blazor/security/authentication-state
+                href: blazor/security/authentication-state.md
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
-                    uid: blazor/security/webassembly/index
+                    href: blazor/security/webassembly/index.md
                   - name: Standalone with Identity
                     items:
                       - name: Overview
-                        uid: blazor/security/webassembly/standalone-with-identity/index
+                        href: blazor/security/webassembly/standalone-with-identity/index.md
                       - name: Account confirmation and password recovery
-                        uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
+                        href: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md
                       - name: QR codes with TOTP
-                        uid: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps
+                        href: blazor/security/webassembly/standalone-with-identity/qrcodes-for-authenticator-apps.md
                   - name: Standalone with Authentication library
-                    uid: blazor/security/webassembly/standalone-with-authentication-library
+                    href: blazor/security/webassembly/standalone-with-authentication-library.md
                   - name: Standalone with Microsoft Accounts
-                    uid: blazor/security/webassembly/standalone-with-microsoft-accounts
+                    href: blazor/security/webassembly/standalone-with-microsoft-accounts.md
                   - name: Standalone with ME-ID
-                    uid: blazor/security/webassembly/standalone-with-microsoft-entra-id
+                    href: blazor/security/webassembly/standalone-with-microsoft-entra-id.md
                   - name: Standalone with AAD B2C
-                    uid: blazor/security/webassembly/standalone-with-azure-active-directory-b2c
+                    href: blazor/security/webassembly/standalone-with-azure-active-directory-b2c.md
                   - name: Hosted with ME-ID
-                    uid: blazor/security/webassembly/hosted-with-microsoft-entra-id
+                    href: blazor/security/webassembly/hosted-with-microsoft-entra-id.md
                   - name: Hosted with AAD B2C
-                    uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
+                    href: blazor/security/webassembly/hosted-with-azure-active-directory-b2c.md
                   - name: Hosted with Identity Server
-                    uid: blazor/security/webassembly/hosted-with-identity-server
+                    href: blazor/security/webassembly/hosted-with-identity-server.md
                   - name: Additional scenarios
-                    uid: blazor/security/webassembly/additional-scenarios
+                    href: blazor/security/webassembly/additional-scenarios.md
                   - name: ME-ID groups and roles
-                    uid: blazor/security/webassembly/meid-groups-roles
+                    href: blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md
                   - name: ME-ID groups and roles
-                    uid: blazor/security/webassembly/meid-groups-roles-net5to7
+                    href: blazor/security/webassembly/microsoft-entra-id-groups-and-roles-net-5-to-7.md
                   - name: Graph API
-                    uid: blazor/security/webassembly/graph-api
+                    href: blazor/security/webassembly/graph-api.md
               - name: Blazor Web App with Entra
-                uid: blazor/security/blazor-web-app-entra
+                href: blazor/security/blazor-web-app-with-entra.md
               - name: Blazor Web App with OIDC
-                uid: blazor/security/blazor-web-app-oidc
+                href: blazor/security/blazor-web-app-with-oidc.md
               - name: Blazor Web App with Windows Auth
-                uid: blazor/security/blazor-web-app-windows-authentication
+                href: blazor/security/blazor-web-app-with-windows-authentication.md
               - name: Static server-side rendering threats
-                uid: blazor/security/static-server-side-rendering
+                href: blazor/security/static-server-side-rendering.md
               - name: Interactive server-side rendering threats
-                uid: blazor/security/interactive-server-side-rendering
+                href: blazor/security/interactive-server-side-rendering.md
               - name: Account confirmation and password recovery
-                uid: blazor/security/account-confirmation-and-password-recovery
+                href: blazor/security/account-confirmation-and-password-recovery.md
               - name: QR codes with TOTP
-                uid: blazor/security/qrcodes-for-authenticator-apps
+                href: blazor/security/qrcodes-for-authenticator-apps.md
               - name: Content Security Policy
-                uid: blazor/security/content-security-policy
+                href: blazor/security/content-security-policy.md
               - name: EU General Data Protection Regulation (GDPR) support
-                uid: blazor/security/gdpr
+                href: blazor/security/gdpr.md
               - name: Server-side and Blazor Web App additional scenarios
-                uid: blazor/security/additional-scenarios
+                href: blazor/security/additional-scenarios.md
           - name: State management
             items:
               - name: Overview
-                uid: blazor/state-management/index
+                href: blazor/state-management/index.md
               - name: Prerendered state persistence
-                uid: blazor/state-management/prerendered-state-persistence
+                href: blazor/state-management/prerendered-state-persistence.md
               - name: Server
-                uid: blazor/state-management/server
+                href: blazor/state-management/server.md
               - name: WebAssembly
-                uid: blazor/state-management/webassembly
+                href: blazor/state-management/webassembly.md
               - name: Protected browser storage
-                uid: blazor/state-management/protected-browser-storage
+                href: blazor/state-management/protected-browser-storage.md
           - name: Debug
-            uid: blazor/debug
+            href: blazor/debug.md
           - name: Lazy load assemblies with WebAssembly
-            uid: blazor/webassembly-lazy-load-assemblies
+            href: blazor/webassembly-lazy-load-assemblies.md
           - name: WebAssembly native dependencies
-            uid: blazor/webassembly-native-dependencies
+            href: blazor/webassembly-native-dependencies.md
           - name: Blazor with .NET on Web Workers
-            uid: blazor/blazor-web-workers
+            href: blazor/blazor-with-dotnet-on-web-workers.md
           - name: Performance
             items:
               - name: Overview
-                uid: blazor/performance/index
+                href: blazor/performance/index.md
               - name: Rendering speed
-                uid: blazor/performance/rendering
+                href: blazor/performance/rendering.md
               - name: App download size
-                uid: blazor/performance/app-download-size
+                href: blazor/performance/app-download-size.md
               - name: JavaScript interop
-                uid: blazor/performance/js-interop
+                href: blazor/performance/javascript-interoperability.md
               - name: WebAssembly runtime performance
-                uid: blazor/performance/webassembly-runtime-performance
+                href: blazor/performance/webassembly-runtime-performance.md
               - name: WebAssembly browser developer tools diagnostics
-                uid: blazor/performance/webassembly-browser-developer-tools
+                href: blazor/performance/webassembly-browser-developer-tools-diagnostics.md
               - name: WebAssembly Event Pipe diagnostics
-                uid: blazor/performance/webassembly-event-pipe
+                href: blazor/performance/webassembly-event-pipe-diagnostics.md
           - name: Test components
-            uid: blazor/test
+            href: blazor/test.md
           - name: Progressive Web Applications
             items:
               - name: Overview
-                uid: blazor/progressive-web-app/index
+                href: blazor/progressive-web-app/index.md
               - name: Push notifications
-                uid: blazor/progressive-web-app/push-notifications
+                href: blazor/progressive-web-app/push-notifications.md
           - name: Host and deploy
             items:
               - name: Overview
-                uid: blazor/host-and-deploy/index
+                href: blazor/host-and-deploy/index.md
               - name: App base path
-                uid: blazor/host-and-deploy/app-base-path
+                href: blazor/host-and-deploy/app-base-path.md
               - name: Server
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/server/index
+                    href: blazor/host-and-deploy/server/index.md
                   - name: Memory management
-                    uid: blazor/host-and-deploy/server/memory-management
+                    href: blazor/host-and-deploy/server/memory-management.md
               - name: Blazor WebAssembly
                 items:
                   - name: Overview
-                    uid: blazor/host-and-deploy/webassembly/index
+                    href: blazor/host-and-deploy/webassembly/index.md
                   - name: Deploy to IIS
-                    uid: blazor/host-and-deploy/webassembly/iis
+                    href: blazor/host-and-deploy/webassembly/iis.md
                   - name: Deploy to Azure Static Web Apps
-                    uid: blazor/host-and-deploy/webassembly/azure-static-web-apps
+                    href: blazor/host-and-deploy/webassembly/azure-static-web-apps.md
                   - name: Deploy to Azure Storage
-                    uid: blazor/host-and-deploy/webassembly/azure-storage
+                    href: blazor/host-and-deploy/webassembly/azure-storage.md
                   - name: Deploy to Nginx
-                    uid: blazor/host-and-deploy/webassembly/nginx
+                    href: blazor/host-and-deploy/webassembly/nginx.md
                   - name: Deploy to Apache
-                    uid: blazor/host-and-deploy/webassembly/apache
+                    href: blazor/host-and-deploy/webassembly/apache.md
                   - name: Deploy to GitHub Pages
-                    uid: blazor/host-and-deploy/webassembly/github-pages
+                    href: blazor/host-and-deploy/webassembly/github-pages.md
                   - name: Bundle caching and integrity check failures
-                    uid: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures
+                    href: blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md
                   - name: HTTP caching issues
-                    uid: blazor/host-and-deploy/webassembly/http-caching-issues
+                    href: blazor/host-and-deploy/webassembly/http-caching-issues.md
                   - name: Multiple hosted WebAssembly apps
-                    uid: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly
+                    href: blazor/host-and-deploy/webassembly/multiple-hosted-webassembly.md
                   - name: Deployment layout
-                    uid: blazor/host-and-deploy/webassembly/deployment-layout
+                    href: blazor/host-and-deploy/webassembly/deployment-layout.md
               - name: Configure the Linker
-                uid: blazor/host-and-deploy/configure-linker
+                href: blazor/host-and-deploy/configure-linker.md
               - name: Configure the Trimmer
-                uid: blazor/host-and-deploy/configure-trimmer
+                href: blazor/host-and-deploy/configure-trimmer.md
           - name: Blazor with EF Core
-            uid: blazor/blazor-ef-core
+            href: blazor/blazor-ef-core.md
           - name: Advanced scenarios
-            uid: blazor/advanced-scenarios
+            href: blazor/advanced-scenarios.md
       - name: Client-side development
         items:
           - name: Single Page Apps
@@ -1051,84 +1051,84 @@ items:
               - name: JavaScript and TypeScript in Visual Studio >>
                 href: /visualstudio/javascript/javascript-in-visual-studio
               - name: Overview of SPAs
-                uid: spa/intro
+                href: client-side/spa/intro.md
               - name: Angular
-                uid: spa/angular
+                href: client-side/spa/angular.md
               - name: React
-                uid: spa/react
+                href: client-side/spa/react.md
               - name: JavaScript Services
-                uid: client-side/spa-services
+                href: client-side/spa-services.md
           - name: LibMan
             items:
               - name: Overview
-                uid: client-side/libman/index
+                href: client-side/libman/index.md
               - name: CLI
-                uid: client-side/libman/libman-cli
+                href: client-side/libman/libman-cli.md
               - name: Visual Studio
-                uid: client-side/libman/libman-vs
+                href: client-side/libman/libman-vs.md
           - name: WebAssembly JS interop
             items:
               - name: Overview
-                uid: client-side/dotnet-interop/index
+                href: client-side/dotnet-interop/index.md
               - name: JS interop (WebAssembly Browser App)
-                uid: client-side/dotnet-interop/wasm-browser-app
+                href: client-side/dotnet-interop/wasm-browser-app.md
           - name: .NET on Web Workers
-            uid: client-side/dotnet-on-webworkers
+            href: client-side/dotnet-on-webworkers.md
           - name: Grunt
-            uid: client-side/using-grunt
+            href: client-side/using-grunt.md
           - name: Bundle and minify
-            uid: client-side/bundling-and-minification
+            href: client-side/bundling-and-minification.md
           - name: Browser Link
-            uid: client-side/using-browserlink
+            href: client-side/using-browserlink.md
       - name: Session and state management
-        uid: fundamentals/app-state
+        href: fundamentals/app-state.md
       - name: Layout
-        uid: mvc/views/layout
+        href: mvc/views/layout.md
       - name: Razor syntax
-        uid: mvc/views/razor
+        href: mvc/views/razor.md
       - name: Razor class libraries
-        uid: razor-pages/ui-class
+        href: razor-pages/ui-class.md
       - name: Tag Helpers
-        uid: mvc/views/tag-helpers/builtin-th/Index
+        href: mvc/views/tag-helpers/built-in/index.md
         items:
           - name: Overview
-            uid: mvc/views/tag-helpers/intro
+            href: mvc/views/tag-helpers/intro.md
           - name: Create Tag Helpers
-            uid: mvc/views/tag-helpers/authoring
+            href: mvc/views/tag-helpers/authoring.md
           - name: Use Tag Helpers in forms
-            uid: mvc/views/working-with-forms
+            href: mvc/views/working-with-forms.md
           - name: Tag Helper Components
-            uid: mvc/views/tag-helpers/th-components
+            href: mvc/views/tag-helpers/th-components.md
           - name: Built-in Tag Helpers
             items:
               - name: Anchor
-                uid: mvc/views/tag-helpers/builtin-th/anchor-tag-helper
+                href: mvc/views/tag-helpers/built-in/anchor-tag-helper.md
               - name: Cache
-                uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
+                href: mvc/views/tag-helpers/built-in/cache-tag-helper.md
               - name: Component
-                uid: mvc/views/tag-helpers/builtin-th/component-tag-helper
+                href: mvc/views/tag-helpers/built-in/component-tag-helper.md
               - name: Distributed Cache
-                uid: mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper
+                href: mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md
               - name: Environment
-                uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
+                href: mvc/views/tag-helpers/built-in/environment-tag-helper.md
               - name: Form
                 href: mvc/views/working-with-forms.md#the-form-tag-helper
               - name: Form Action
                 href: mvc/views/working-with-forms.md#the-form-action-tag-helper
               - name: Image
-                uid: mvc/views/tag-helpers/builtin-th/image-tag-helper
+                href: mvc/views/tag-helpers/built-in/image-tag-helper.md
               - name: Input
                 href: mvc/views/working-with-forms.md#the-input-tag-helper
               - name: Label
                 href: mvc/views/working-with-forms.md#the-label-tag-helper
               - name: Link
-                uid: mvc/views/tag-helpers/builtin-th/link-tag-helper
+                href: mvc/views/tag-helpers/built-in/link-tag-helper.md
               - name: Partial
-                uid: mvc/views/tag-helpers/builtin-th/partial-tag-helper
+                href: mvc/views/tag-helpers/built-in/partial-tag-helper.md
               - name: Persist Component State
-                uid: mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper
+                href: mvc/views/tag-helpers/built-in/persist-component-state.md
               - name: Script
-                uid: mvc/views/tag-helpers/builtin-th/script-tag-helper
+                href: mvc/views/tag-helpers/built-in/script-tag-helper.md
               - name: Select
                 href: mvc/views/working-with-forms.md#the-select-tag-helper
               - name: Textarea
@@ -1140,129 +1140,129 @@ items:
       - name: Advanced
         items:
           - name: Application parts
-            uid: mvc/extensibility/app-parts
+            href: mvc/advanced/app-parts.md
           - name: Application model
-            uid: mvc/controllers/application-model
+            href: mvc/controllers/application-model.md
           - name: Areas
-            uid: mvc/controllers/areas
+            href: mvc/controllers/areas.md
           - name: Filters
-            uid: mvc/controllers/filters
+            href: mvc/controllers/filters.md
           - name: Razor SDK
-            uid: razor-pages/sdk
+            href: razor-pages/sdk.md
           - name: Razor breaking changes since .NET 8
             href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%208.md
           - name: Razor breaking changes since .NET 9
             href: ../_razor/docs/Compiler%20Breaking%20Changes%20-%20DotNet%209.md
           - name: View components
-            uid: mvc/views/view-components
+            href: mvc/views/view-components.md
           - name: View compilation
-            uid: mvc/views/view-compilation
+            href: mvc/views/view-compilation.md
           - name: Display and Editor Templates
-            uid: mvc/views/display-templates
+            href: mvc/views/display-templates.md
           - name: Upload files
-            uid: mvc/models/file-uploads
+            href: mvc/models/file-uploads.md
           - name: Web SDK
-            uid: razor-pages/web-sdk
+            href: razor-pages/web-sdk.md
           - name: Code generator tool (scaffolding)
             displayName: aspnet-codegenerator
-            uid: fundamentals/tools/dotnet-aspnet-codegenerator
+            href: fundamentals/tools/dotnet-aspnet-codegenerator.md
   - name: APIs
     items:
       - name: Overview
-        uid: fundamentals/apis
+        href: fundamentals/apis.md
       - name: "Tutorial: Create a Minimal API"
-        uid: tutorials/min-web-api
+        href: tutorials/min-web-api.md
       - name: Minimal APIs quick reference
-        uid: fundamentals/minimal-apis
+        href: fundamentals/minimal-apis.md
       - name: WebApplication and WebApplicationBuilder
-        uid: fundamentals/minimal-apis/webapplication
+        href: fundamentals/minimal-apis/webapplication.md
       - name: Route Handlers
-        uid: fundamentals/minimal-apis/route-handlers
+        href: fundamentals/minimal-apis/route-handlers.md
       - name: Parameter binding
-        uid: fundamentals/minimal-apis/parameter-binding
+        href: fundamentals/minimal-apis/parameter-binding.md
       - name: Create responses
-        uid: fundamentals/minimal-apis/responses
+        href: fundamentals/minimal-apis/responses.md
       - name: Filters
-        uid: fundamentals/minimal-apis/min-api-filters
+        href: fundamentals/minimal-apis/min-api-filters.md
       - name: Unit and integration tests
-        uid: fundamentals/minimal-apis/test-min-api
+        href: fundamentals/minimal-apis/test-min-api.md
       - name: Handle JSON Patch requests
-        uid: web-api/jsonpatch
+        href: web-api/jsonpatch.md
       - name: Handle errors
-        uid: fundamentals/error-handling-api
+        href: fundamentals/error-handling-api.md
       - name: Authentication and authorization
-        uid: fundamentals/minimal-apis/security
+        href: fundamentals/minimal-apis/security.md
       - name: OpenAPI
         items:
           - name: Overview
-            uid: fundamentals/openapi/overview
+            href: fundamentals/openapi/overview.md
           - name: Generate OpenAPI documents
-            uid: fundamentals/openapi/aspnetcore-openapi
+            href: fundamentals/openapi/aspnetcore-openapi.md
           - name: Include OpenAPI metadata
-            uid: fundamentals/openapi/include-metadata
+            href: fundamentals/openapi/include-metadata.md
           - name: XML doc comment support
-            uid: fundamentals/openapi/aspnet-openapi-xml
+            href: fundamentals/openapi/openapi-comments.md
           - name: Customize OpenAPI documents
-            uid: fundamentals/openapi/customize-openapi
+            href: fundamentals/openapi/customize-openapi.md
           - name: Use OpenAPI documents
-            uid: fundamentals/openapi/using-openapi-documents
+            href: fundamentals/openapi/using-openapi-documents.md
           - name: OpenAPI tools
-            uid: fundamentals/openapi/openapi-tools
+            href: fundamentals/openapi/openapi-tools.md
           - name: Swagger / NSwag
             items:
               - name: Overview
-                uid: tutorials/web-api-help-pages-using-swagger
+                href: tutorials/web-api-help-pages-using-swagger.md
               - name: Get started with Swashbuckle
-                uid: tutorials/get-started-with-swashbuckle
+                href: tutorials/getting-started-with-swashbuckle.md
               - name: Get started with NSwag
-                uid: tutorials/get-started-with-nswag
+                href: tutorials/getting-started-with-NSwag.md
       - name: Controller-based APIs
         items:
         - name: Overview
-          uid: web-api/index
+          href: web-api/index.md
         - name: Tutorials
           items:
             - name: Create a web API with controllers
-              uid: tutorials/first-web-api
+              href: tutorials/first-web-api.md
             - name: Web API with MongoDB
-              uid: tutorials/first-mongo-app
+              href: tutorials/first-mongo-app.md
         - name: Action return types
-          uid: web-api/action-return-types
+          href: web-api/action-return-types.md
         - name: Format response data
-          uid: web-api/advanced/formatting
+          href: web-api/advanced/formatting.md
         - name: Custom formatters
-          uid: web-api/advanced/custom-formatters
+          href: web-api/advanced/custom-formatters.md
         - name: Analyzers
-          uid: web-api/advanced/analyzers
+          href: web-api/advanced/analyzers.md
         - name: Conventions
-          uid: web-api/advanced/conventions
+          href: web-api/advanced/conventions.md
         - name: Test with HttpRepl
           items:
             - name: Overview
-              uid: web-api/http-repl
+              href: web-api/http-repl/index.md
             - name: Telemetry
-              uid: web-api/http-repl/telemetry
+              href: web-api/http-repl/telemetry.md
   - name: Real-time apps
     displayName: signalr
     items:
       - name: Overview
-        uid: signalr/introduction
+        href: signalr/introduction.md
       - name: Supported platforms
-        uid: signalr/supported-platforms
+        href: signalr/supported-platforms.md
         displayName: signalr
       - name: Tutorials
         items:
           - name: SignalR with JavaScript
-            uid: tutorials/signalr
+            href: tutorials/signalr.md
           - name: SignalR with TypeScript
-            uid: tutorials/signalr-typescript-webpack
+            href: tutorials/signalr-typescript-webpack.md
           - name: SignalR with Blazor
-            uid: blazor/tutorials/signalr-blazor
+            href: blazor/tutorials/signalr-blazor.md
       - name: Samples
         displayName: signalr
         items:
           - name: AI-powered group chat
-            uid: tutorials/ai-powered-group-chat
+            href: tutorials/ai-powered-group-chat/ai-powered-group-chat.md
             displayName: signalr
           - name: SignalR samples repository
             href: https://github.com/aspnet/SignalR-samples
@@ -1271,91 +1271,91 @@ items:
         displayName: signalr
         items:
           - name: Hubs
-            uid: signalr/hubs
+            href: signalr/hubs.md
             displayName: signalr
           - name: Send from outside a hub
-            uid: signalr/hubcontext
+            href: signalr/hubcontext.md
             displayName: signalr
           - name: Users and groups
-            uid: signalr/groups
+            href: signalr/groups.md
             displayName: signalr
           - name: API design considerations
-            uid: signalr/api-design
+            href: signalr/api-design.md
             displayName: signalr
           - name: Hub filters
-            uid: signalr/hub-filters
+            href: signalr/hub-filters.md
             displayName: signalr
       - name: Clients
         displayName: signalr
         items:
           - name: Overview
-            uid: signalr/client-features
+            href: signalr/client-features.md
             displayName: signalr
           - name: .NET client
-            uid: signalr/dotnet-client
+            href: signalr/dotnet-client.md
             displayName: signalr
           - name: .NET API reference
             href: /dotnet/api/microsoft.aspnetcore.signalr.client
             displayName: signalr
           - name: Java client
-            uid: signalr/java-client
+            href: signalr/java-client.md
             displayName: signalr
           - name: Java API reference
             href: /java/api/com.microsoft.signalr
             displayName: signalr
           - name: JavaScript client
-            uid: signalr/javascript-client
+            href: signalr/javascript-client.md
             displayName: signalr
           - name: JavaScript API reference
             href: /javascript/api/@microsoft/signalr/
             displayName: signalr
           - name: Swift client
-            uid: signalr/swift-client
+            href: signalr/swift-client.md
             displayName: signalr
       - name: Host and scale
         displayName: signalr
         items:
           - name: Overview
             displayName: signalr
-            uid: signalr/scale
+            href: signalr/scale.md
           - name: Azure App Service
-            uid: signalr/publish-to-azure-web-app
+            href: signalr/publish-to-azure-web-app.md
             displayName: signalr
           - name: Redis backplane
             displayName: signalr
-            uid: signalr/redis-backplane
+            href: signalr/redis-backplane.md
           - name: SignalR with background services
-            uid: signalr/background-services
+            href: signalr/background-services.md
       - name: Configuration
-        uid: signalr/configuration
+        href: signalr/configuration.md
         displayName: signalr
       - name: IHttpContextAccessor and HttpContext
-        uid: signalr/httpcontext
+        href: signalr/httpcontext.md
         displayName: signalr
       - name: Authentication and authorization
-        uid: signalr/authn-and-authz
+        href: signalr/authn-and-authz.md
         displayName: signalr
       - name: Security considerations
-        uid: signalr/security
+        href: signalr/security.md
         displayName: signalr
       - name: MessagePack Hub Protocol
-        uid: signalr/messagepackhubprotocol
+        href: signalr/messagepackhubprotocol.md
         displayName: signalr
       - name: Streaming
-        uid: signalr/streaming
+        href: signalr/streaming.md
         displayName: signalr
       - name: Compare SignalR and SignalR Core
-        uid: signalr/version-differences
+        href: signalr/version-differences.md
         displayName: signalr
       - name: WebSockets
         displayName: signalr
-        uid: fundamentals/websockets
+        href: fundamentals/websockets.md
       - name: Logging and diagnostics
         displayName: signalr
-        uid: signalr/diagnostics
+        href: signalr/diagnostics.md
       - name: Troubleshooting
         displayName: signalr
-        uid: signalr/troubleshoot
+        href: signalr/troubleshoot.md
       - name: Specifications
         displayName: signalr, specs
         items:
@@ -1366,366 +1366,366 @@ items:
   - name: Remote Procedure Call apps
     items:
       - name: Overview
-        uid: grpc/index
+        href: grpc/index.md
       - name: Tutorials
         items:
           - name: Get started with a gRPC service
-            uid: tutorials/grpc/grpc-start
+            href: tutorials/grpc/grpc-start.md
       - name: gRPC services with C#
         items:
           - name: Overview
-            uid: grpc/basics
+            href: grpc/basics.md
           - name: Create services
-            uid: grpc/services
+            href: grpc/services.md
           - name: Create Protobuf messages
-            uid: grpc/protobuf
+            href: grpc/protobuf.md
           - name: Version services
-            uid: grpc/versioning
+            href: grpc/versioning.md
           - name: Test services
-            uid: grpc/test-services
+            href: grpc/test-services.md
       - name: Call gRPC services with C#
         items:
           - name: Overview
-            uid: grpc/client
+            href: grpc/client.md
           - name: Client factory integration
-            uid: grpc/clientfactory
+            href: grpc/clientfactory.md
           - name: Deadlines and cancellation
-            uid: grpc/deadlines-cancellation
+            href: grpc/deadlines-cancellation.md
           - name: Transient fault handling
-            uid: grpc/retries
+            href: grpc/retries.md
           - name: Client-side load balancing
-            uid: grpc/loadbalancing
+            href: grpc/loadbalancing.md
           - name: .NET Standard 2.0 support
-            uid: grpc/netstandard
+            href: grpc/netstandard.md
           - name: Mock client in tests
-            uid: grpc/test-client
+            href: grpc/test-client.md
       - name: gRPC services with ASP.NET Core
-        uid: grpc/aspnetcore
+        href: grpc/aspnetcore.md
       - name: Supported platforms
-        uid: grpc/supported-platforms
+        href: grpc/supported-platforms.md
       - name: Use gRPC in browser apps
         items:
           - name: Overview
-            uid: grpc/browser
+            href: grpc/browser.md
           - name: gRPC-Web
-            uid: grpc/grpcweb
+            href: grpc/grpcweb.md
           - name: gRPC JSON transcoding
             items:
               - name: Overview
-                uid: grpc/json-transcoding
+                href: grpc/json-transcoding.md
               - name: HTTP rules and JSON
-                uid: grpc/json-transcoding-binding
+                href: grpc/json-transcoding-binding.md
       - name: Configuration
-        uid: grpc/configuration
+        href: grpc/configuration.md
       - name: Authentication and authorization
-        uid: grpc/authn-and-authz
+        href: grpc/authn-and-authz.md
       - name: Error handling
-        uid: grpc/error-handling
+        href: grpc/error-handling.md
       - name: gRPC interceptors
-        uid: grpc/interceptors
+        href: grpc/interceptors.md
       - name: Logging and diagnostics
-        uid: grpc/diagnostics
+        href: grpc/diagnostics.md
       - name: Security considerations
-        uid: grpc/security
+        href: grpc/security.md
       - name: Performance best practices
-        uid: grpc/performance
+        href: grpc/performance.md
       - name: Native AOT
-        uid: grpc/native-aot
+        href: grpc/native-aot.md
       - name: Inter-process communication
         items:
           - name: Overview
-            uid: grpc/interprocess
+            href: grpc/interprocess.md
           - name: Unix domain sockets
-            uid: grpc/interprocess-uds
+            href: grpc/interprocess-uds.md
           - name: Named pipes
-            uid: grpc/interprocess-namedpipes
+            href: grpc/interprocess-namedpipes.md
       - name: Code-first services and clients
-        uid: grpc/code-first
+        href: grpc/code-first.md
       - name: gRPC health checks
-        uid: grpc/health-checks
+        href: grpc/health-checks.md
       - name: Manage Protobuf references with dotnet-grpc
-        uid: grpc/dotnet-grpc
+        href: grpc/dotnet-grpc.md
       - name: Test services with gRPCurl and gRPCui
-        uid: grpc/test-tools
+        href: grpc/test-tools.md
       - name: Migrate from C-core to gRPC for .NET
-        uid: grpc/migration
+        href: grpc/migration.md
       - name: Why migrate WCF to ASP.NET Core gRPC
-        uid: grpc/wcf
+        href: grpc/why-migrate-wcf-to-dotnet-grpc.md
       - name: Compare gRPC services with HTTP APIs
-        uid: grpc/comparison
+        href: grpc/comparison.md
       - name: Samples
         href: https://github.com/grpc/grpc-dotnet/tree/master/examples
       - name: Troubleshoot
-        uid: grpc/troubleshoot
+        href: grpc/troubleshoot.md
   - name: Servers
     items:
       - name: Overview
         displayName: kestrel, iis, http.sys, httpsys, servers
-        uid: fundamentals/servers/index
+        href: fundamentals/servers/index.md
       - name: HTTP.sys
         displayName: deploy, publish, server, httpsys
-        uid: fundamentals/servers/httpsys
+        href: fundamentals/servers/httpsys.md
       - name: Kestrel
         items:
           - name: Overview
             displayName: deploy, publish, server, kestrel
-            uid: fundamentals/servers/kestrel
+            href: fundamentals/servers/kestrel.md
           - name: Endpoints
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/endpoints
+            href: fundamentals/servers/kestrel/endpoints.md
           - name: Options
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/options
+            href: fundamentals/servers/kestrel/options.md
           - name: Diagnostics
             displayName: diagnostics
-            uid: fundamentals/servers/kestrel/diagnostics
+            href: fundamentals/servers/kestrel/diagnostics.md
           - name: Memory management
             displayName: memory, pool, kestrel
-            uid: fundamentals/servers/kestrel/memory-management
+            href: fundamentals/servers/kestrel/memory-management.md
           - name: HTTP/2
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/http2
+            href: fundamentals/servers/kestrel/http2.md
           - name: HTTP/3
             displayName: HTTP/3, kestrel
-            uid: fundamentals/servers/kestrel/http3
+            href: fundamentals/servers/kestrel/http3.md
           - name: Connection middleware
             displayName: connection, middleware, kestrel
-            uid: fundamentals/servers/kestrel/connection-middleware
+            href: fundamentals/servers/kestrel/connection-middleware.md
           - name: When to use a reverse proxy
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy
+            href: fundamentals/servers/kestrel/when-to-use-a-reverse-proxy.md
           - name: Host filtering
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/host-filtering
+            href: fundamentals/servers/kestrel/host-filtering.md
           - name: Request draining
             displayName: deploy, publish, server, Kestrel
-            uid: fundamentals/servers/kestrel/request-draining
+            href: fundamentals/servers/kestrel/request-draining.md
           - name: Security considerations
             displayName: deploy, publish, server, Kestrel, security
-            uid: fundamentals/servers/kestrel/security-considerations
+            href: fundamentals/servers/kestrel/security-considerations.md
       - name: IIS
         items:
           - name: Overview
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/index
+            href: host-and-deploy/iis/index.md
           - name: ASP.NET Core Module
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/aspnet-core-module
+            href: host-and-deploy/aspnet-core-module.md
           - name: In-process hosting
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/in-process-hosting
+            href: host-and-deploy/iis/in-process-hosting.md
           - name: Out-of-process hosting
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/out-of-process-hosting
+            href: host-and-deploy/iis/out-of-process-hosting.md
           - name: Hosting Bundle
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/hosting-bundle
+            href: host-and-deploy/iis/hosting-bundle.md
           - name: web.config file
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/web-config
+            href: host-and-deploy/iis/web-config.md
           - name: IIS support in Visual Studio
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/development-time-iis-support
+            href: host-and-deploy/iis/development-time-iis-support.md
           - name: IIS Modules
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/modules
+            href: host-and-deploy/iis/modules.md
           - name: Logging and diagnostics
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/logging-and-diagnostics
+            href: host-and-deploy/iis/logging-and-diagnostics.md
           - name: Troubleshoot
             displayName: deploy, publish, server, iis
-            uid: test/troubleshoot-azure-iis
+            href: test/troubleshoot-azure-iis.md
           - name: Errors reference
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/azure-iis-errors-reference
+            href: host-and-deploy/azure-iis-errors-reference.md
           - name: Advanced configuration
             displayName: deploy, publish, server, iis, ancm, aspnetcoremodule
-            uid: host-and-deploy/iis/advanced
+            href: host-and-deploy/iis/advanced.md
           - name: Transform web.config
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/transform-webconfig
+            href: host-and-deploy/iis/transform-webconfig.md
           - name: HTTP/2
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/protocols
+            href: host-and-deploy/iis/protocols.md
           - name: HTTP/3
             displayName: deploy, publish, server, iis
-            uid: host-and-deploy/iis/http3
+            href: host-and-deploy/iis/http3.md
       - name: YARP
         items:
           - name: YARP Overview
-            uid: fundamentals/servers/yarp/overview
+            href: fundamentals/servers/yarp/yarp-overview.md
           - name: Get started with YARP
-            uid: fundamentals/servers/yarp/getting-started
+            href: fundamentals/servers/yarp/getting-started.md
           - name: Configuration
             items:
             - name: Configuration Files
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-files
+              href: fundamentals/servers/yarp/config-files.md
             - name: Configuration Providers
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-providers
+              href: fundamentals/servers/yarp/config-providers.md
             - name: Configuration Filters
               displayName: yarp
-              uid: fundamentals/servers/yarp/config-filters
+              href: fundamentals/servers/yarp/config-filters.md
             - name: HTTP client configuration
               displayName: yarp
-              uid: fundamentals/servers/yarp/http-client-config
+              href: fundamentals/servers/yarp/http-client-config.md
           - name: Proxy Features
             items:
               - name: Header Routing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/header-routing
+                href: fundamentals/servers/yarp/header-routing.md
               - name: Query Parameter Routing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/queryparameter-routing
+                href: fundamentals/servers/yarp/queryparameter-routing.md
               - name: Transforms
                 items:
                   - name: Transforms Overview
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms
+                    href: fundamentals/servers/yarp/transforms.md
                   - name: Request Transforms
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms-request
+                    href: fundamentals/servers/yarp/transforms-request.md
                   - name: Response Transforms
                     displayName: yarp
-                    uid: fundamentals/servers/yarp/transforms-response
+                    href: fundamentals/servers/yarp/transforms-response.md
               - name: Load Balancing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/load-balancing
+                href: fundamentals/servers/yarp/load-balancing.md
               - name: Session Affinity
                 displayName: yarp
-                uid: fundamentals/servers/yarp/session-affinity
+                href: fundamentals/servers/yarp/session-affinity.md
               - name: Destinations Health Checks
                 displayName: yarp
-                uid: fundamentals/servers/yarp/dests-health-checks
+                href: fundamentals/servers/yarp/dests-health-checks.md
               - name: Rate Limiting
                 displayName: yarp
-                uid: fundamentals/servers/yarp/rate-limiting
+                href: fundamentals/servers/yarp/rate-limiting.md
               - name: Timeouts
                 displayName: yarp
-                uid: fundamentals/servers/yarp/timeouts
+                href: fundamentals/servers/yarp/timeouts.md
               - name: Authentication and Authorization
                 displayName: yarp
-                uid: fundamentals/servers/yarp/authn-authz
+                href: fundamentals/servers/yarp/authn-authz.md
               - name: Output Caching
                 displayName: yarp
-                uid: fundamentals/servers/yarp/output-caching
+                href: fundamentals/servers/yarp/output-caching.md
               - name: Distributed Tracing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/distributed-tracing
+                href: fundamentals/servers/yarp/distributed-tracing.md
               - name: A/B Testing
                 displayName: yarp
-                uid: fundamentals/servers/yarp/ab-testing
+                href: fundamentals/servers/yarp/ab-testing.md
           - name: Protocols and Guidance
             items:
               - name: Header Guidelines
                 displayName: yarp
-                uid: fundamentals/servers/yarp/header-guidelines
+                href: fundamentals/servers/yarp/header-guidelines.md
               - name: HTTPS & TLS
                 displayName: yarp
-                uid: fundamentals/servers/yarp/https-tls
+                href: fundamentals/servers/yarp/https-tls.md
               - name: Proxying gRPC
                 displayName: yarp
-                uid: fundamentals/servers/yarp/grpc
+                href: fundamentals/servers/yarp/grpc.md
               - name: HTTP/3
                 displayName: yarp
-                uid: fundamentals/servers/yarp/http3
+                href: fundamentals/servers/yarp/http3.md
               - name: Cross-Origin Requests (CORS)
                 displayName: yarp
-                uid: fundamentals/servers/yarp/cors
+                href: fundamentals/servers/yarp/cors.md
               - name: Let's Encrypt
                 displayName: yarp
-                uid: fundamentals/servers/yarp/lets-encrypt
+                href: fundamentals/servers/yarp/lets-encrypt.md
               - name: WebSockets and SPDY
                 displayName: yarp
-                uid: fundamentals/servers/yarp/websockets
+                href: fundamentals/servers/yarp/websockets.md
           - name: Extensibility
             items:
             - name: Overview
               displayName: yarp
-              uid: fundamentals/servers/yarp/extensibility
+              href: fundamentals/servers/yarp/extensibility.md
             - name: Middleware
               displayName: yarp
-              uid: fundamentals/servers/yarp/middleware
+              href: fundamentals/servers/yarp/middleware.md
             - name: Direct Forwarding
               displayName: yarp
-              uid: fundamentals/servers/yarp/direct-forwarding
+              href: fundamentals/servers/yarp/direct-forwarding.md
             - name: Destination Resolvers
               displayName: yarp
-              uid: fundamentals/servers/yarp/destination-resolvers
+              href: fundamentals/servers/yarp/destination-resolvers.md
             - name: Request and Response Transform Extensibility
               displayName: yarp
-              uid: fundamentals/servers/yarp/transform-extensibility
+              href: fundamentals/servers/yarp/extensibility-transforms.md
           - name: Deployment options
             items:
             - name: HTTP.sys Delegation
               displayName: yarp
-              uid: fundamentals/servers/yarp/httpsys-delegation
+              href: fundamentals/servers/yarp/httpsys-delegation.md
             - name: Service Fabric Integration
               displayName: yarp
-              uid: fundamentals/servers/yarp/service-fabric-int
+              href: fundamentals/servers/yarp/service-fabric-int.md
             - name: YARP Kubernetes Ingress Controller
               displayName: yarp
-              uid: fundamentals/servers/yarp/kubernetes-ingress
+              href: fundamentals/servers/yarp/kubernetes-ingress.md
           - name: Troubleshooting
             items:
             - name: Diagnosing proxy issues
               displayName: yarp
-              uid: fundamentals/servers/yarp/diagnosing-yarp-issues
+              href: fundamentals/servers/yarp/diagnosing-yarp-issues.md
   - name: Metrics
     items:
       - name: Overview
         displayName: logging, monitoring
-        uid: metrics/overview
+        href: metrics/overview.md
       - name: Built-in metrics
-        uid: metrics/built-in
+        href: metrics/built-in.md
       - name: HTTP metrics
-        uid: metrics/http
+        href: metrics/http.md
       - name: Diagnostics metrics
-        uid: metrics/diagnostics
+        href: metrics/diagnostics.md
       - name: Blazor (Razor components) metrics
-        uid: metrics/blazor
+        href: metrics/blazor.md
       - name: Authentication and authorization metrics
-        uid: metrics/security
+        href: metrics/security.md
   - name: Test
     items:
       - name: .NET Hot Reload
         displayName: test
-        uid: test/hot-reload
+        href: test/hot-reload.md
       - name: Visual Studio dev tunnels
         displayName: test, tunnels
-        uid: test/tunnels
+        href: test/dev-tunnels.md
       - name: Visual Studio .http files
         displayName: test, .rest, REST, HTTP
-        uid: test/http-files
+        href: test/http-files.md
       - name: HttpRepl
         items:
           - name: Overview
             displayName: test, httprepl
-            uid: web-api/http-repl
+            href: web-api/http-repl/index.md
           - name: Telemetry
             displayName: test, httprepl
-            uid: web-api/http-repl/telemetry
+            href: web-api/http-repl/telemetry.md
       - name: Test Minimal API
-        uid: fundamentals/minimal-apis/test-min-api
+        href: fundamentals/minimal-apis/test-min-api.md
       - name: Blazor tests
-        uid: blazor/test
+        href: blazor/test.md
       - name: Razor Pages unit tests
-        uid: test/razor-pages-tests
+        href: test/razor-pages-tests.md
       - name: MVC controllers unit tests
-        uid: mvc/controllers/testing
+        href: mvc/controllers/testing.md
       - name: Integration tests
-        uid: test/integration-tests
+        href: test/integration-tests.md
       - name: Load and stress testing
-        uid: test/loadtests
+        href: test/load-tests.md
       - name: Test middleware
-        uid: test/middleware
+        href: test/middleware.md
       - name: .localhost top-level domain
-        uid: test/localhost-tld
+        href: test/localhost-tld.md
   - name: Debug
     items:
       - name: Debug with Visual Studio
-        uid: test/debug-aspnetcore-source
+        href: test/debug-aspnetcore-source.md
       - name: Remote debugging
         href: /visualstudio/debugger/remote-debugging-azure
       - name: Snapshot debugging in Azure
@@ -1737,148 +1737,148 @@ items:
   - name: Troubleshoot
     items:
       - name: Troubleshoot and debug
-        uid: test/troubleshoot
+        href: test/troubleshoot.md
       - name: Troubleshoot Azure and IIS
-        uid: test/troubleshoot-azure-iis
+        href: test/troubleshoot-azure-iis.md
       - name: Azure and IIS errors reference
-        uid: host-and-deploy/azure-iis-errors-reference
+        href: host-and-deploy/azure-iis-errors-reference.md
   - name: Code analysis
     items:
       - name: Overview
         displayName: code analysis
-        uid: diagnostics/code-analysis
+        href: diagnostics/code-analysis.md
       - name: ASP0000
-        uid: diagnostics/asp0000
+        href: diagnostics/asp0000.md
       - name: ASP0001
-        uid: diagnostics/asp0001
+        href: diagnostics/asp0001.md
       - name: ASP0003
-        uid: diagnostics/asp0003
+        href: diagnostics/asp0003.md
       - name: ASP0004
-        uid: diagnostics/asp0004
+        href: diagnostics/asp0004.md
       - name: ASP0005
-        uid: diagnostics/asp0005
+        href: diagnostics/asp0005.md
       - name: ASP0006
-        uid: diagnostics/asp0006
+        href: diagnostics/asp0006.md
       - name: ASP0007
-        uid: diagnostics/asp0007
+        href: diagnostics/asp0007.md
       - name: ASP0008
-        uid: diagnostics/asp0008
+        href: diagnostics/asp0008.md
       - name: ASP0009
-        uid: diagnostics/asp0009
+        href: diagnostics/asp0009.md
       - name: ASP0010
-        uid: diagnostics/asp0010
+        href: diagnostics/asp0010.md
       - name: ASP0011
-        uid: diagnostics/asp0011
+        href: diagnostics/asp0011.md
       - name: ASP0012
-        uid: diagnostics/asp0012
+        href: diagnostics/asp0012.md
       - name: ASP0013
-        uid: diagnostics/asp0013
+        href: diagnostics/asp0013.md
       - name: ASP0014
-        uid: diagnostics/asp0014
+        href: diagnostics/asp0014.md
       - name: ASP0015
-        uid: diagnostics/asp0015
+        href: diagnostics/asp0015.md
       - name: ASP0016
-        uid: diagnostics/asp0016
+        href: diagnostics/asp0016.md
       - name: ASP0017
-        uid: diagnostics/asp0017
+        href: diagnostics/asp0017.md
       - name: ASP0018
-        uid: diagnostics/asp0018
+        href: diagnostics/asp0018.md
       - name: ASP0019
-        uid: diagnostics/asp0019
+        href: diagnostics/asp0019.md
       - name: ASP0020
-        uid: diagnostics/asp0020
+        href: diagnostics/asp0020.md
       - name: ASP0021
-        uid: diagnostics/asp0021
+        href: diagnostics/asp0021.md
       - name: ASP0022
-        uid: diagnostics/asp0022
+        href: diagnostics/asp0022.md
       - name: ASP0023
-        uid: diagnostics/asp0023
+        href: diagnostics/asp0023.md
       - name: ASP0024
-        uid: diagnostics/asp0024
+        href: diagnostics/asp0024.md
       - name: ASP0025
-        uid: diagnostics/asp0025
+        href: diagnostics/asp0025.md
       - name: ASP0026
-        uid: diagnostics/asp0026
+        href: diagnostics/asp0026.md
       - name: ASP0027
-        uid: diagnostics/asp0027
+        href: diagnostics/asp0027.md
       - name: ASP0028
-        uid: diagnostics/asp0028
+        href: diagnostics/asp0028.md
       - name: ASP0033
-        uid: diagnostics/asp0033
+        href: diagnostics/asp0033.md
       - name: ASP0034
-        uid: diagnostics/asp0034
+        href: diagnostics/asp0034.md
       - name: ASP0035
-        uid: diagnostics/asp0035
+        href: diagnostics/asp0035.md
       - name: ASP0036
-        uid: diagnostics/asp0036
+        href: diagnostics/asp0036.md
       - name: ASP0037
-        uid: diagnostics/asp0037
+        href: diagnostics/asp0037.md
       - name: ASP0038
-        uid: diagnostics/asp0038
+        href: diagnostics/asp0038.md
       - name: BL0001
-        uid: diagnostics/bl0001
+        href: diagnostics/bl0001.md
       - name: BL0002
-        uid: diagnostics/bl0002
+        href: diagnostics/bl0002.md
       - name: BL0003
-        uid: diagnostics/bl0003
+        href: diagnostics/bl0003.md
       - name: BL0004
-        uid: diagnostics/bl0004
+        href: diagnostics/bl0004.md
       - name: BL0005
-        uid: diagnostics/bl0005
+        href: diagnostics/bl0005.md
       - name: BL0006
-        uid: diagnostics/bl0006
+        href: diagnostics/bl0006.md
       - name: BL0007
-        uid: diagnostics/bl0007
+        href: diagnostics/bl0007.md
       - name: BL0008
-        uid: diagnostics/bl0008
+        href: diagnostics/bl0008.md
       - name: MVC1000
-        uid: diagnostics/mvc1000
+        href: diagnostics/mvc1000.md
       - name: MVC1001
-        uid: diagnostics/mvc1001
+        href: diagnostics/mvc1001.md
       - name: MVC1002
-        uid: diagnostics/mvc1002
+        href: diagnostics/mvc1002.md
       - name: MVC1003
-        uid: diagnostics/mvc1003
+        href: diagnostics/mvc1003.md
       - name: MVC1004
-        uid: diagnostics/mvc1004
+        href: diagnostics/mvc1004.md
       - name: MVC1005
-        uid: diagnostics/mvc1005
+        href: diagnostics/mvc1005.md
       - name: MVC1006
-        uid: diagnostics/mvc1006
+        href: diagnostics/mvc1006.md
   - name: RDG diagnostics
     items:
       - name: Overview
         displayName: aot, rdg diagnostics
-        uid: fundamentals/aot/request-delegate-generator/rdg-ids
+        href: fundamentals/aot/request-delegate-generator/rdg-ids.md
       - name: RDG002
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg002
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg002.md
       - name: RDG004
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg004
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg004.md
       - name: RDG005
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg005
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg005.md
       - name: RDG006
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg006
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg006.md
       - name: RDG007
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg007
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg007.md
       - name: RDG008
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg008
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg008.md
       - name: RDG009
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg009
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg009.md
       - name: RDG010
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg010
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg010.md
       - name: RDG011
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg011
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg011.md
       - name: RDG012
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg012
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg012.md
       - name: RDG013
-        uid: fundamentals/aot/request-delegate-generator/diagnostics/rdg013
+        href: fundamentals/aot/request-delegate-generator/diagnostics/rdg013.md
   - name: ASPDEPR diagnostics
     items:
       - name: Overview
         displayName: aspdepr diagnostics
-        uid: diagnostics/aspdepr-ids
+        href: diagnostics/aspdepr-ids.md
       - name: ASPDEPR002
-        uid: diagnostics/aspdepr002
+        href: diagnostics/aspdepr002.md
   - name: Data access
     items:
       - name: Tutorials
@@ -1886,49 +1886,49 @@ items:
           - name: EF Core with Razor Pages
             items:
               - name: Get started
-                uid: data/ef-rp/intro
+                href: data/ef-rp/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-rp/crud
+                href: data/ef-rp/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-rp/sort-filter-page
+                href: data/ef-rp/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-rp/migrations
+                href: data/ef-rp/migrations.md
               - name: Create a complex data model
-                uid: data/ef-rp/complex-data-model
+                href: data/ef-rp/complex-data-model.md
               - name: Read related data
-                uid: data/ef-rp/read-related-data
+                href: data/ef-rp/read-related-data.md
               - name: Update related data
-                uid: data/ef-rp/update-related-data
+                href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-rp/concurrency
+                href: data/ef-rp/concurrency.md
           - name: EF Core with MVC
             items:
               - name: Overview
-                uid: data/ef-mvc/index
+                href: data/ef-mvc/index.md
               - name: Get started
-                uid: data/ef-mvc/intro
+                href: data/ef-mvc/intro.md
               - name: Create, Read, Update, and Delete
-                uid: data/ef-mvc/crud
+                href: data/ef-mvc/crud.md
               - name: Sort, filter, page, and group
-                uid: data/ef-mvc/sort-filter-page
+                href: data/ef-mvc/sort-filter-page.md
               - name: Migrations
-                uid: data/ef-mvc/migrations
+                href: data/ef-mvc/migrations.md
               - name: Create a complex data model
-                uid: data/ef-mvc/complex-data-model
+                href: data/ef-mvc/complex-data-model.md
               - name: Read related data
-                uid: data/ef-mvc/read-related-data
+                href: data/ef-mvc/read-related-data.md
               - name: Update related data
-                uid: data/ef-mvc/update-related-data
+                href: data/ef-mvc/update-related-data.md
               - name: Handle concurrency conflicts
-                uid: data/ef-mvc/concurrency
+                href: data/ef-mvc/concurrency.md
               - name: Inheritance
-                uid: data/ef-mvc/inheritance
+                href: data/ef-mvc/inheritance.md
               - name: Advanced topics
-                uid: data/ef-mvc/advanced
+                href: data/ef-mvc/advanced.md
       - name: Scaffold a data model with dotnet scaffold in RP
-        uid: data/dotnet-scaffold-rp
+        href: data/scaffold_RP.md
       - name: EF 6 with ASP.NET Core
-        uid: data/entity-framework-6
+        href: data/entity-framework-6.md
       - name: Azure SQL Database with Azure App Service
         href: /azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore
       - name: Azure Storage with Visual Studio
@@ -1946,16 +1946,16 @@ items:
     items:
       - name: Overview
         displayName: azure, deploy, publish
-        uid: host-and-deploy/index
+        href: host-and-deploy/index.md
       - name: Azure App Service
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: azure, deploy, publish
-            uid: host-and-deploy/azure-apps/index
+            href: host-and-deploy/azure-apps/index.md
           - name: Publish with Visual Studio
             displayName: azure, deploy, publish
-            uid: tutorials/publish-to-azure-webapp-using-vs
+            href: tutorials/publish-to-azure-webapp-using-vs.md
           - name: Publish with Visual Studio for Mac
             displayName: azure, deploy, publish
             href: /visualstudio/mac/publish-app-svc?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
@@ -1967,13 +1967,13 @@ items:
             href: /azure/devops/pipelines/get-started-yaml
           - name: ASP.NET Core Module (ANCM) for IIS
             displayName: azure, deploy, publish
-            uid: host-and-deploy/aspnet-core-module
+            href: host-and-deploy/aspnet-core-module.md
           - name: Troubleshoot
             displayName: azure, deploy, publish
-            uid: test/troubleshoot-azure-iis
+            href: test/troubleshoot-azure-iis.md
           - name: Errors reference
             displayName: azure, deploy, publish
-            uid: host-and-deploy/azure-iis-errors-reference
+            href: host-and-deploy/azure-iis-errors-reference.md
       - name: DevOps
         items:
           - name: Overview
@@ -1996,22 +1996,22 @@ items:
             href: /dotnet/architecture/devops-for-aspnet-developers/next-steps
       - name: Publish to IIS tutorial
         displayName: deploy
-        uid: tutorials/publish-to-iis
+        href: tutorials/publish-to-iis.md
       - name: Windows service
         displayName: deploy, publish
-        uid: host-and-deploy/windows-service
+        href: host-and-deploy/windows-service.md
       - name: Linux with Nginx
         displayName: deploy, publish
-        uid: host-and-deploy/linux-nginx
+        href: host-and-deploy/linux-nginx.md
       - name: Docker
         displayName: deploy, publish
         items:
           - name: Overview
             displayName: deploy, publish, docker
-            uid: host-and-deploy/docker/index
+            href: host-and-deploy/docker/index.md
           - name: Build Docker images
             displayName: deploy, publish, docker
-            uid: host-and-deploy/docker/building-net-docker-images
+            href: host-and-deploy/docker/building-net-docker-images.md
           - name: Visual Studio Tools
             displayName: deploy, publish, docker
             href: /visualstudio/containers/add-container-support
@@ -2023,83 +2023,83 @@ items:
             href: https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/README.md
       - name: Proxy and load balancer configuration
         displayName: deploy, publish
-        uid: host-and-deploy/proxy-load-balancer
+        href: host-and-deploy/proxy-load-balancer.md
       - name: Scaling apps on Azure
         displayName: azure, deploy, publish, scale
-        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
+        href: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md
       - name: Web farm
         displayName: deploy, publish
-        uid: host-and-deploy/web-farm
+        href: host-and-deploy/web-farm.md
       - name: Visual Studio publish profiles
         displayName: deploy, publish
-        uid: host-and-deploy/visual-studio-publish-profiles
+        href: host-and-deploy/visual-studio-publish-profiles.md
       - name: Visual Studio for Mac publish to folder
         displayName: deploy, publish
         href: /visualstudio/mac/publish-folder?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Directory structure
         displayName: deploy, publish
-        uid: host-and-deploy/directory-structure
+        href: host-and-deploy/directory-structure.md
   - name: Security and Identity
     displayName: authentication, authorization
     items:
       - name: Overview
-        uid: security/index
+        href: security/index.md
       - name: Authentication
         items:
           - name: Overview
-            uid: security/authentication/index
+            href: security/authentication/index.md
           - name: Choose an identity solution
-            uid: security/how-to-choose-identity
+            href: security/how-to-choose-identity-solution.md
           - name: ASP.NET Core Identity
             items:
               - name: Overview
-                uid: security/authentication/identity
+                href: security/authentication/identity.md
               - name: Identity with SPA
-                uid: security/authentication/identity/spa
+                href: security/authentication/identity-api-authorization.md
               - name: Scaffold Identity
-                uid: security/authentication/scaffold-identity
+                href: security/authentication/scaffold-identity.md
               - name: Add custom user data to Identity
-                uid: security/authentication/add-user-data
+                href: security/authentication/add-user-data.md
               - name: Customize Identity
-                uid: security/authentication/customize_identity_model
+                href: security/authentication/customize-identity-model.md
               - name: Configure Identity
-                uid: security/authentication/identity-configuration
+                href: security/authentication/identity-configuration.md
               - name: Custom storage providers for Identity
-                uid: security/authentication/identity-custom-storage-providers
+                href: security/authentication/identity-custom-storage-providers.md
               - name: Account confirmation and password recovery
-                uid: security/authentication/accconfirm
+                href: security/authentication/accconfirm.md
               - name: Enable QR code generation in Identity
-                uid: security/authentication/identity-enable-qrcodes
+                href: security/authentication/identity-enable-qrcodes.md
               - name: Two-factor authentication with SMS
-                uid: security/authentication/2fa
+                href: security/authentication/2fa.md
               - name: Passkeys (WebAuthn)
                 items:
                   - name: Overview
-                    uid: security/authentication/passkeys/index
+                    href: security/authentication/passkeys/index.md
                   - name: Blazor
-                    uid: security/authentication/passkeys/blazor
+                    href: security/authentication/passkeys/blazor.md
               - name: External authentication providers
                 items:
                   - name: Overview
-                    uid: security/authentication/social/index
+                    href: security/authentication/social/index.md
                   - name: Google authentication
-                    uid: security/authentication/google-logins
+                    href: security/authentication/social/google-logins.md
                   - name: Facebook authentication
-                    uid: security/authentication/facebook-logins
+                    href: security/authentication/social/facebook-logins.md
                   - name: Microsoft authentication
-                    uid: security/authentication/microsoft-logins
+                    href: security/authentication/social/microsoft-logins.md
                   - name: Twitter authentication
-                    uid: security/authentication/twitter-logins
+                    href: security/authentication/social/twitter-logins.md
                   - name: Other providers
-                    uid: security/authentication/otherlogins
+                    href: security/authentication/social/other-logins.md
                   - name: Additional claims
-                    uid: security/authentication/social/additional-claims
+                    href: security/authentication/social/additional-claims.md
               - name: Individual user accounts
-                uid: security/authentication/individual
+                href: security/authentication/individual.md
           - name: Azure
             items:
               - name: Overview
-                uid: security/authentication/azure-active-directory/index
+                href: security/authentication/azure-active-directory/index.md
               - name: Secure ASP.NET Core apps with Microsoft identity web
                 href: https://github.com/AzureAD/microsoft-identity-web/wiki
               - name: Secure ASP.NET Core apps with Microsoft identity platform
@@ -2117,7 +2117,7 @@ items:
                   - name: Web API that calls other web APIs
                     href: /azure/active-directory/develop/scenario-web-api-call-api-overview
                   - name: Integrate Azure AD B2C into a web app
-                    uid: security/authentication/azure-ad-b2c
+                    href: security/authentication/azure-ad-b2c.md
               - name: Samples
                 items:
                   - name: Enable your Web Apps to sign-in users and call APIs with the Microsoft identity platform for developers
@@ -2127,409 +2127,409 @@ items:
                   - name: Web API with Azure AD B2C
                     href: /azure/active-directory-b2c/enable-authentication-web-api
           - name: Configure cookie authentication
-            uid: security/authentication/cookie
+            href: security/authentication/cookie.md
           - name: API endpoint authentication behavior
-            uid: security/authentication/api-endpoint-auth
+            href: security/authentication/api-endpoint-auth.md
           - name: Configure OIDC web authentication
-            uid: security/authentication/configure-oidc-web-authentication
+            href: security/authentication/configure-oidc-web-authentication.md
           - name: Configure JWT bearer authentication
-            uid: security/authentication/configure-jwt-bearer-authentication
+            href: security/authentication/configure-jwt-bearer-authentication.md
           - name: Configure certificate authentication
-            uid: security/authentication/certauth
+            href: security/authentication/certauth.md
           - name: Configure Windows authentication
-            uid: security/authentication/windowsauth
+            href: security/authentication/windowsauth.md
           - name: Configure WS-Federation authentication
-            uid: security/authentication/ws-federation
+            href: security/authentication/ws-federation.md
           - name: Configure social authentication
-            uid: security/authentication/social/social-without-identity
+            href: security/authentication/social/social-without-identity.md
           - name: Policy schemes
-            uid: security/authentication/policyschemes
+            href: security/authentication/policyschemes.md
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
-            uid: security/authentication/jwt
+            href: security/authentication/jwt-authn.md
           - name: Map, customize, and transform claims
-            uid: security/authentication/claims
+            href: security/authentication/claims.md
           - name: Community OSS authentication options
-            uid: security/authentication/community
+            href: security/authentication/community.md
           - name: Identity management solutions
-            uid: security/identity-management-solutions
+            href: security/identity-management-solutions.md
           - name: Multi-factor authentication
-            uid: security/authentication/mfa
+            href: security/authentication/mfa.md
       - name: Authorization
         items:
           - name: Overview
-            uid: security/authorization/introduction
+            href: security/authorization/introduction.md
           - name: Create a web app with authorization
-            uid: security/authorization/secure-data
+            href: security/authorization/secure-data.md
           - name: Simple authorization
-            uid: security/authorization/simple
+            href: security/authorization/simple.md
           - name: Require authenticated users by default
             href: security/authorization/policies.md#require-global-user-authentication
           - name: Custom authorization with IAuthorizationRequirementData
-            uid: security/authorization/iard
+            href: security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md
           - name: Role-based authorization
-            uid: security/authorization/roles
+            href: security/authorization/roles.md
           - name: Claim-based authorization
-            uid: security/authorization/claims
+            href: security/authorization/claims.md
           - name: Policy-based authorization
-            uid: security/authorization/policies
+            href: security/authorization/policies.md
           - name: Authorization policy providers
-            uid: security/authorization/custom-authorization-policy-providers
+            href: security/authorization/custom-authorization-policy-providers.md
           - name: Customize the behavior of AuthorizationMiddleware
-            uid: security/authorization/authorizationmiddlewareresulthandler
+            href: security/authorization/customizingauthorizationmiddlewareresponse.md
           - name: Dependency injection in requirement handlers
-            uid: security/authorization/dependencyinjection
+            href: security/authorization/dependencyinjection.md
           - name: Resource-based authorization
-            uid: security/authorization/resource-based
+            href: security/authorization/resource-based.md
           - name: Authorize with a specific scheme
-            uid: security/authorization/authorize-with-a-specific-scheme
+            href: security/authorization/authorize-with-a-specific-scheme.md
       - name: Data protection
         displayName: encryption
         items:
           - name: Overview
-            uid: security/data-protection/introduction
+            href: security/data-protection/introduction.md
           - name: Data protection APIs
-            uid: security/data-protection/using-data-protection
+            href: security/data-protection/using-data-protection.md
           - name: Consumer APIs
             items:
               - name: Overview
-                uid: security/data-protection/consumer-apis/overview
+                href: security/data-protection/consumer-apis/overview.md
               - name: Purpose strings
-                uid: security/data-protection/consumer-apis/purpose-strings
+                href: security/data-protection/consumer-apis/purpose-strings.md
               - name: Purpose hierarchy and multi-tenancy
-                uid: security/data-protection/consumer-apis/purpose-strings-multitenancy
+                href: security/data-protection/consumer-apis/purpose-strings-multitenancy.md
               - name: Hash passwords
-                uid: security/data-protection/consumer-apis/password-hashing
+                href: security/data-protection/consumer-apis/password-hashing.md
               - name: Limit the lifetime of protected payloads
-                uid: security/data-protection/consumer-apis/limited-lifetime-payloads
+                href: security/data-protection/consumer-apis/limited-lifetime-payloads.md
               - name: Unprotect payloads whose keys have been revoked
-                uid: security/data-protection/consumer-apis/dangerous-unprotect
+                href: security/data-protection/consumer-apis/dangerous-unprotect.md
           - name: Configuration
             items:
               - name: Overview
-                uid: security/data-protection/configuration/index
+                href: security/data-protection/configuration/index.md
               - name: Configure data protection
-                uid: security/data-protection/configuration/overview
+                href: security/data-protection/configuration/overview.md
               - name: Default settings
-                uid: security/data-protection/configuration/default-settings
+                href: security/data-protection/configuration/default-settings.md
               - name: Machine-wide policy
-                uid: security/data-protection/configuration/machine-wide-policy
+                href: security/data-protection/configuration/machine-wide-policy.md
               - name: Non-DI aware scenarios
-                uid: security/data-protection/configuration/non-di-scenarios
+                href: security/data-protection/configuration/non-di-scenarios.md
           - name: Extensibility APIs
             items:
               - name: Overview
-                uid: security/data-protection/extensibility/index
+                href: security/data-protection/extensibility/index.md
               - name: Core cryptography extensibility
-                uid: security/data-protection/extensibility/core-crypto
+                href: security/data-protection/extensibility/core-crypto.md
               - name: Key management extensibility
-                uid: security/data-protection/extensibility/key-management
+                href: security/data-protection/extensibility/key-management.md
               - name: Miscellaneous APIs
-                uid: security/data-protection/extensibility/misc-apis
+                href: security/data-protection/extensibility/misc-apis.md
           - name: Implementation
             items:
               - name: Overview
-                uid: security/data-protection/implementation/index
+                href: security/data-protection/implementation/index.md
               - name: Authenticated encryption details
-                uid: security/data-protection/implementation/authenticated-encryption-details
+                href: security/data-protection/implementation/authenticated-encryption-details.md
               - name: Subkey derivation and authenticated encryption
-                uid: security/data-protection/implementation/subkeyderivation
+                href: security/data-protection/implementation/subkeyderivation.md
               - name: Context headers
-                uid: security/data-protection/implementation/context-headers
+                href: security/data-protection/implementation/context-headers.md
               - name: Key management
-                uid: security/data-protection/implementation/key-management
+                href: security/data-protection/implementation/key-management.md
               - name: Key storage providers
-                uid: security/data-protection/implementation/key-storage-providers
+                href: security/data-protection/implementation/key-storage-providers.md
               - name: Key encryption at rest
-                uid: security/data-protection/implementation/key-encryption-at-rest
+                href: security/data-protection/implementation/key-encryption-at-rest.md
               - name: Key immutability and settings
-                uid: security/data-protection/implementation/key-immutability
+                href: security/data-protection/implementation/key-immutability.md
               - name: Key storage format
-                uid: security/data-protection/implementation/key-storage-format
+                href: security/data-protection/implementation/key-storage-format.md
               - name: Ephemeral data protection providers
-                uid: security/data-protection/implementation/key-storage-ephemeral
+                href: security/data-protection/implementation/key-storage-ephemeral.md
           - name: Compatibility
             items:
               - name: Overview
-                uid: security/data-protection/compatibility/index
+                href: security/data-protection/compatibility/index.md
               - name: Replace machineKey in ASP.NET
-                uid: security/data-protection/compatibility/replacing-machinekey
+                href: security/data-protection/compatibility/replacing-machinekey.md
       - name: Secrets management
         items:
           - name: Protect secrets in development
             displayName: password, connection string, API key
-            uid: security/app-secrets
+            href: security/app-secrets.md
           - name: Manage JWTs in development
             displayName: jwt, JSON WEB Token
-            uid: security/authentication/jwt
+            href: security/authentication/jwt-authn.md
           - name: Azure Key Vault Configuration Provider
             displayName: password, connection string, API key, secrets
-            uid: security/key-vault-configuration
+            href: security/key-vault-configuration.md
       - name: Enforce HTTPS
-        uid: security/enforcing-ssl
+        href: security/enforcing-ssl.md
       - name: Host Docker with HTTPS
-        uid: security/docker-https
+        href: security/docker-https.md
       - name: Docker Compose with HTTPS
-        uid: security/docker-compose-https
+        href: security/docker-compose-https.md
       - name: EU General Data Protection Regulation (GDPR) support
-        uid: security/gdpr
+        href: security/gdpr.md
       - name: Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks
-        uid: security/anti-request-forgery
+        href: security/anti-request-forgery.md
       - name: Prevent open redirect attacks
-        uid: security/preventing-open-redirects
+        href: security/preventing-open-redirects.md
       - name: Prevent Cross-Site Scripting (XSS)
-        uid: security/cross-site-scripting
+        href: security/cross-site-scripting.md
       - name: Enable Cross-Origin Requests (CORS)
-        uid: security/cors
+        href: security/cors.md
       - name: Share cookies among apps
-        uid: security/cookie-sharing
+        href: security/cookie-sharing.md
       - name: SameSite cookies
-        uid: security/samesite
+        href: security/samesite.md
       - name: SameSite samples
         items:
           - name: Razor Pages 2.1 SameSite cookie sample
-            uid: security/samesite/rp21
+            href: security/samesite/rp21.md
           - name: Razor Pages 3.1 SameSite cookie sample
-            uid: security/samesite/rp31
+            href: security/samesite/rp31.md
           - name: MVC SameSite cookie sample
-            uid: security/samesite/mvc21
+            href: security/samesite/mvc21.md
       - name: IP safelist
-        uid: security/ip-safelist
+        href: security/ip-safelist.md
       - name: Application security - OWASP
         href: https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html
   - name: Performance
     items:
       - name: Overview
-        uid: performance/overview
+        href: performance/overview.md
       - name: Best practices
         displayName: performance
-        uid: fundamentals/best-practices
+        href: fundamentals/best-practices.md
       - name: Caching
         items:
           - name: Overview
             displayName: cache, caching
-            uid: performance/caching/overview
+            href: performance/caching/overview.md
           - name: In-memory cache
             displayName: caching
-            uid: performance/caching/memory
+            href: performance/caching/memory.md
           - name: Distributed caching
             displayName: cache
-            uid: performance/caching/distributed
+            href: performance/caching/distributed.md
           - name: Hybrid cache
             displayName: caching
-            uid: performance/caching/hybrid
+            href: performance/caching/hybrid.md
           - name: Output caching
             displayName: cache
-            uid: performance/caching/output
+            href: performance/caching/output.md
           - name: Response caching
             displayName: cache
-            uid: performance/caching/response
+            href: performance/caching/response.md
           - name: Response caching middleware
             displayName: cache
-            uid: performance/caching/middleware
+            href: performance/caching/middleware.md
       - name: Rate limiting middleware
-        uid: performance/rate-limit
+        href: performance/rate-limit.md
       - name: Timeouts middleware
-        uid: performance/timeouts
+        href: performance/timeouts.md
       - name: Memory and GC
-        uid: performance/memory
+        href: performance/memory.md
       - name: Scaling apps on Azure
         displayName: azure, deploy, publish, scale
-        uid: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps
+        href: host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md
       - name: Object reuse with ObjectPool
-        uid: performance/ObjectPool
+        href: performance/ObjectPool.md
       - name: Response compression
-        uid: performance/response-compression
+        href: performance/response-compression.md
       - name: Diagnostic tools
-        uid: performance/diagnostic-tools
+        href: performance/diagnostic-tools.md
       - name: Load and stress testing
-        uid: test/loadtests
+        href: test/load-tests.md
       - name: Event counters
         href: /dotnet/core/diagnostics/event-counter-perf
   - name: Globalization and localization
     items:
       - name: Overview
         displayName: globalization, localization
-        uid: fundamentals/localization
+        href: fundamentals/localization.md
       - name: Make an app's content localizable
         displayName: globalization, localization
-        uid: fundamentals/localization/make-content-localizable
+        href: fundamentals/localization/make-content-localizable.md
       - name: Provide resources
         displayName: globalization, localization
-        uid: fundamentals/localization/provide-resources
+        href: fundamentals/localization/provide-resources.md
       - name: Select language/culture
         displayName: globalization, localization
-        uid: fundamentals/localization/select-language-culture
+        href: fundamentals/localization/select-language-culture.md
       - name: Portable Object localization
-        uid: fundamentals/portable-object-localization
+        href: fundamentals/portable-object-localization.md
       - name: Extensibility
-        uid: fundamentals/localization-extensibility
+        href: fundamentals/localization-extensibility.md
       - name: Troubleshoot
-        uid: fundamentals/troubleshoot-aspnet-core-localization
+        href: fundamentals/troubleshoot-aspnet-core-localization.md
   - name: Advanced
     items:
       - name: Model binding
-        uid: mvc/models/model-binding
+        href: mvc/models/model-binding.md
       - name: Custom model binding
-        uid: mvc/advanced/custom-model-binding
+        href: mvc/advanced/custom-model-binding.md
       - name: Model validation
-        uid: mvc/models/validation
+        href: mvc/models/validation.md
       - name: Compatibility version
-        uid: mvc/compatibility-version
+        href: mvc/compatibility-version.md
       - name: Write middleware
-        uid: fundamentals/middleware/write
+        href: fundamentals/middleware/write.md
       - name: Request and response operations
         displayName: middleware
-        uid: fundamentals/middleware/request-response
+        href: fundamentals/middleware/request-response.md
       - name: Request decompression
         displayName: request decompression middleware
-        uid: fundamentals/middleware/request-decompression
+        href: fundamentals/middleware/request-decompression.md
       - name: URL rewriting
-        uid: fundamentals/url-rewriting
+        href: fundamentals/url-rewriting.md
       - name: File providers
-        uid: fundamentals/file-providers
+        href: fundamentals/file-providers.md
       - name: Request-feature interfaces
-        uid: fundamentals/request-features
+        href: fundamentals/request-features.md
       - name: Access HttpContext
-        uid: fundamentals/httpcontext
+        href: fundamentals/http-context.md
       - name: Change tokens
-        uid: fundamentals/change-tokens
+        href: fundamentals/change-tokens.md
       - name: Open Web Interface for .NET (OWIN)
-        uid: fundamentals/owin
+        href: fundamentals/owin.md
       - name: Background tasks with hosted services
-        uid: fundamentals/host/hosted-services
+        href: fundamentals/host/hosted-services.md
       - name: Hosting startup assemblies
-        uid: fundamentals/configuration/platform-specific-configuration
+        href: fundamentals/host/platform-specific-configuration.md
       - name: ASP.NET Core in class libraries
         displayName: shared framework
-        uid: fundamentals/target-aspnetcore
+        href: fundamentals/target-aspnetcore.md
       - name: Microsoft.AspNetCore.App metapackage
-        uid: fundamentals/metapackage-app
+        href: fundamentals/metapackage-app.md
       - name: Microsoft.AspNetCore.All metapackage
-        uid: fundamentals/metapackage
+        href: fundamentals/metapackage.md
       - name: High performance logging
         displayName: loggermessage
         href: /dotnet/core/extensions/high-performance-logging?toc=/aspnet/core/toc.json&bc=/aspnet/core/breadcrumb/toc.json
       - name: Use a file watcher
-        uid: tutorials/dotnet-watch
+        href: tutorials/dotnet-watch.md
       - name: Factory-based middleware
-        uid: fundamentals/middleware/extensibility
+        href: fundamentals/middleware/extensibility.md
       - name: Factory-based middleware with third-party container
-        uid: fundamentals/middleware/extensibility-third-party-container
+        href: fundamentals/middleware/extensibility-third-party-container.md
   - name: Migration and updates
     items:
       - name: Overview
         displayName: migrate, migration
-        uid: migration/index
+        href: migration/index.md
       - name: Version updates
         items:
           - name: 10 to 11
             displayName: migrate, migration
-            uid: migration/100-to-110
+            href: migration/100-to-110.md
           - name: 9 to 10
             displayName: migrate, migration
-            uid: migration/90-to-100
+            href: migration/90-to-100.md
           - name: 8 to 9
             displayName: migrate, migration
-            uid: migration/80-to-90
+            href: migration/80-to-90.md
           - name: 7 to 8
             displayName: migrate, migration
-            uid: migration/70-to-80
+            href: migration/70-to-80.md
           - name: 6 to 7
             displayName: migrate, migration
-            uid: migration/60-to-70
+            href: migration/60-to-70.md
           - name: 5 to 6
             displayName: migrate, migration
-            uid: migration/50-to-60
+            href: migration/50-to-60.md
           - name: 3.1/5.0 Code to 6
             displayName: migrate, migration
-            uid: migration/50-to-60-samples
+            href: migration/50-to-60-samples.md
           - name: 3.1 to 6 LTS
             displayName: migrate, migration, LTS
-            uid: migration/31-to-60
+            href: migration/31-to-60.md
           - name: Older versions
             items:
               - name: 3.1 to 5.0
                 displayName: migrate, migration
-                uid: migration/31-to-50
+                href: migration/31-to-50.md
               - name: 3.0 to 3.1
                 displayName: migrate, migration
-                uid: migration/30-to-31
+                href: migration/30-to-31.md
               - name: 2.2 to 3.0
                 displayName: migrate, migration
-                uid: migration/22-to-30
+                href: migration/22-to-30.md
               - name: 2.1 to 2.2
                 displayName: migrate, migration
-                uid: migration/21-to-22
+                href: migration/21-to-22.md
               - name: Logging 2.1 to 2.2 or 3.0
                 displayName: migrate, migration
-                uid: migration/logging-nonaspnetcore
+                href: migration/Logging-nonaspnetcore.md
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                uid: migration/20-to-21
+                href: migration/20-to-21.md
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
                   - name: Overview
-                    uid: migration/1x-to-2x/index
+                    href: migration/1x-to-2x/index.md
                   - name: Authentication and Identity
-                    uid: migration/1x-to-2x/identity-2x
+                    href: migration/1x-to-2x/identity-2x.md
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
           - name: Overview
-            uid: migration/fx-to-core/index
+            href: migration/fx-to-core/index.md
           - name: Get started
-            uid: migration/fx-to-core/start
+            href: migration/fx-to-core/start.md
           - name: Tooling
-            uid: migration/fx-to-core/tooling
+            href: migration/fx-to-core/tooling.md
           - name: Incremental migration
             displayName: migrate, migration
             items:
             - name: System.Web adapters
-              uid: migration/fx-to-core/systemweb-adapters
+              href: migration/fx-to-core/inc/systemweb-adapters.md
             - name: Remote app setup
-              uid: migration/fx-to-core/inc/remote-app-setup
+              href: migration/fx-to-core/inc/remote-app-setup.md
             - name: A/B Testing endpoints
-              uid: migration/fx-to-core/inc/ab-testing
+              href: migration/fx-to-core/inc/ab-testing.md
             - name: Blazor support with YARP
-              uid: migration/fx-to-core/inc/blazor
+              href: migration/fx-to-core/inc/blazor.md
           - name: Technology Areas
             items:
             - name: Overview
-              uid: migration/fx-to-core/areas
+              href: migration/fx-to-core/areas/index.md
             - name: HttpApplicationHost
-              uid: migration/fx-to-core/areas/hosting
+              href: migration/fx-to-core/areas/hosting.md
             - name: HttpContext
-              uid: migration/fx-to-core/areas/http-context
+              href: migration/fx-to-core/areas/http-context.md
             - name: HTTP Modules
-              uid: migration/fx-to-core/areas/http-modules
+              href: migration/fx-to-core/areas/http-modules.md
             - name: HTTP Handlers
-              uid: migration/fx-to-core/areas/http-handlers
+              href: migration/fx-to-core/areas/http-handlers.md
             - name: Machine Key
-              uid: migration/fx-to-core/areas/machine-key
+              href: migration/fx-to-core/areas/machine-key.md
             - name: Session
-              uid: migration/fx-to-core/areas/session
+              href: migration/fx-to-core/areas/session.md
             - name: Authentication
-              uid: migration/fx-to-core/areas/authentication
+              href: migration/fx-to-core/areas/authentication.md
             - name: Membership
-              uid: migration/fx-to-core/areas/membership
+              href: migration/fx-to-core/areas/membership.md
             - name: OWIN
-              uid: migration/fx-to-core/areas/owin
+              href: migration/fx-to-core/areas/owin.md
             - name: Web API
-              uid: migration/fx-to-core/areas/webapi
+              href: migration/fx-to-core/areas/webapi.md
             - name: ClaimsPrincipal.Current
-              uid: migration/fx-to-core/areas/claimsprincipal-current
+              href: migration/fx-to-core/areas/claimsprincipal-current.md
             - name: Miscellaneous
-              uid: migration/fx-to-core/areas/misc
+              href: migration/fx-to-core/areas/misc.md
           - name: Example Migration
             items:
             - name: Overview
-              uid: migration/fx-to-core/examples/overview
+              href: migration/fx-to-core/examples/overview.md
             - name: Configuration
-              uid: migration/fx-to-core/examples/configuration
+              href: migration/fx-to-core/examples/configuration.md
             - name: Identity
-              uid: migration/fx-to-core/examples/identity
+              href: migration/fx-to-core/examples/identity.md
   - name: API reference
     href: /dotnet/api/
   - name: Contribute

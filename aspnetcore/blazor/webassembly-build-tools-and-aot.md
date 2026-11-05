@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about the WebAssembly build tools and how to compile a Blazor WebAssembly app ahead of deployment with ahead-of-time (AOT) compilation.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/tooling/webassembly
 ---
 # ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation
 
@@ -63,7 +62,7 @@ Without enabling AOT compilation, Blazor WebAssembly apps run on the browser usi
 
 :::moniker-end
 
-For guidance on installing the .NET WebAssembly build tools, see <xref:blazor/tooling/webassembly>.
+For guidance on installing the .NET WebAssembly build tools, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md).
 
 To enable WebAssembly AOT compilation, add the `<RunAOTCompilation>` property set to `true` to the Blazor WebAssembly app's project file:
 
@@ -95,7 +94,7 @@ The size of an AOT-compiled Blazor WebAssembly app is generally larger than the 
 
 ## Performance
 
-For performance guidance, see <xref:blazor/performance/webassembly-runtime-performance>:
+For performance guidance, see [ASP.NET Core Blazor WebAssembly runtime performance](performance/webassembly-runtime-performance.md):
 
 * Heap size for some mobile device browsers
 * Runtime relinking
@@ -135,6 +134,6 @@ For more information, see the following resources:
 
 ## Related content
 
-* <xref:blazor/performance/webassembly-runtime-performance>
-* <xref:blazor/webassembly-native-dependencies>
-* [Webcil packaging format for .NET assemblies](xref:blazor/host-and-deploy/webassembly/index#webcil-packaging-format-for-net-assemblies)
+* [ASP.NET Core Blazor WebAssembly runtime performance](performance/webassembly-runtime-performance.md)
+* [ASP.NET Core Blazor WebAssembly native dependencies](webassembly-native-dependencies.md)
+* [Webcil packaging format for .NET assemblies](host-and-deploy/webassembly/index.md#webcil-packaging-format-for-net-assemblies)

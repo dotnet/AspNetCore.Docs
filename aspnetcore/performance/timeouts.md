@@ -3,7 +3,6 @@ title: Request timeouts middleware in ASP.NET Core
 description: Learn how to configure and use request timeout middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/25/2023
-uid: performance/timeouts
 ---
 # Request timeouts middleware in ASP.NET Core
 
@@ -19,22 +18,22 @@ This article explains how to configure the timeout middleware. The timeout middl
 
 Request timeouts are in the <xref:Microsoft.AspNetCore.Http.Timeouts> namespace.
 
-***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](xref:fundamentals/servers/kestrel/options#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
+***Note:*** When an app is running in debug mode, the timeout middleware doesn't trigger. This behavior is the same as for [Kestrel timeouts](../fundamentals/servers/kestrel/options.md#behavior-with-debugger-attached). To test timeouts, run the app without the debugger attached.
 
 ## Add the middleware to the app
 
-Add the request timeouts middleware to the service collection by calling <xref:Microsoft.Extensions.DependencyInjection.RequestTimeoutsIServiceCollectionExtensions.AddRequestTimeouts%2A>.
+Add the request timeouts middleware to the service collection by calling <xref:Microsoft.Extensions.DependencyInjection.RequestTimeoutsIServiceCollectionExtensions.AddRequestTimeouts*>.
 
-Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts%2A>.
+Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIApplicationBuilderExtensions.UseRequestTimeouts*>.
 
 > [!NOTE]
-> * In apps that explicitly call <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting%2A>, `UseRequestTimeouts` must be called after `UseRouting`.
+> * In apps that explicitly call <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, `UseRequestTimeouts` must be called after `UseRouting`.
 
 Adding the middleware to the app doesn't automatically start triggering timeouts. Timeout limits have to be explicitly configured.
 
 ## Configure one endpoint or page
 
-For Minimal API apps, configure an endpoint to timeout by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout%2A>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
+For Minimal API apps, configure an endpoint to timeout by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout*>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="20,24":::
 
@@ -42,7 +41,7 @@ For apps with controllers, apply the `[RequestTimeout]` attribute to the action 
 
 ## Configure multiple endpoints or pages
 
-Create named *policies* to specify timeout configuration that applies to multiple endpoints. Add a policy by calling <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutOptions.AddPolicy%2A>:
+Create named *policies* to specify timeout configuration that applies to multiple endpoints. Add a policy by calling <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutOptions.AddPolicy*>:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies" highlight="4":::
 
@@ -80,7 +79,7 @@ The `RequestTimeoutPolicy` class has a <xref:Microsoft.AspNetCore.Http.Timeouts.
 
 ## Disable timeouts
 
-To disable all timeouts including the default global timeout, use the [`[DisableRequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.DisableRequestTimeoutAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.DisableRequestTimeout%2A> extension method:
+To disable all timeouts including the default global timeout, use the [`[DisableRequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.DisableRequestTimeoutAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.DisableRequestTimeout*> extension method:
 
 :::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyattr" highlight="1":::
 
@@ -95,6 +94,6 @@ To cancel a timeout that has already been started, use the <xref:Microsoft.AspNe
 ## See also
 
 * <xref:Microsoft.AspNetCore.Http.Timeouts>
-* <xref:fundamentals/middleware/index>
+* [ASP.NET Core middleware](../fundamentals/middleware/index.md)
 
 :::moniker-end

@@ -3,7 +3,6 @@ title: Custom Model Binding in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
 ms.date: 02/23/2026
-uid: mvc/advanced/custom-model-binding
 ---
 # Custom Model Binding in ASP.NET Core
 
@@ -13,18 +12,18 @@ By [Kirk Larkin](https://twitter.com/serpent5)
 
 Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/custom-model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/custom-model-binding/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Default model binder limitations
 
 The default model binders support most of the common .NET Core data types and should meet most developers' needs. They expect to bind text-based input from the request directly to model types. You might need to transform the input prior to binding it. For example, when you have a key that can be used to look up model data. You can use a custom model binder to fetch data based on the key.
 
-<!-- Duplicated in uid: mvc/models/model-binding -->
+<!-- Duplicated in mvc/models/model-binding.md -->
 ## Model binding simple and complex types
 
 Model binding uses specific definitions for the types it operates on. A *simple type* is converted from a single string using <xref:System.ComponentModel.TypeConverter> or a `TryParse` method. A *complex type* is converted from multiple input values. The framework determines the difference based on the existence of a `TypeConverter` or `TryParse`. We recommend creating a type converter or using `TryParse` for a `string` to `SomeType` conversion that doesn't require external resources or multiple inputs.
 
-See [Simple types](xref:mvc/models/model-binding#simp7) for a list of types that the model binder can convert from strings.
+For a list of types that the model binder can convert from strings, see [Simple types](../models/model-binding.md#simple-types).
 
 Before creating your own custom model binder, it's worth reviewing how existing model binders are implemented. Consider the <xref:Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinder> which can be used to convert base64-encoded strings into byte arrays. The byte arrays are often stored as files or database BLOB fields.
 
@@ -127,7 +126,7 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](../controllers/filters.md) or logic within the action method itself should handle the failure.
 * Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 * Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 
@@ -138,7 +137,7 @@ By [Steve Smith](https://ardalis.com/)
 
 Model binding allows controller actions to work directly with model types (passed in as method arguments), rather than HTTP requests. Mapping between incoming request data and application models is handled by model binders. Developers can extend the built-in model binding functionality by implementing custom model binders (though typically, you don't need to write your own provider).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/custom-model-binding/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/advanced/custom-model-binding/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Default model binder limitations
 
@@ -248,7 +247,7 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 Custom model binders:
 
-* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](xref:mvc/controllers/filters) or logic within the action method itself should handle the failure.
+* Shouldn't attempt to set status codes or return results (for example, 404 Not Found). If model binding fails, an [action filter](../controllers/filters.md) or logic within the action method itself should handle the failure.
 * Are most useful for eliminating repetitive code and cross-cutting concerns from action methods.
 * Typically shouldn't be used to convert a string into a custom type, a <xref:System.ComponentModel.TypeConverter> is usually a better option.
 

@@ -2,7 +2,6 @@
 title: Use ASP.NET Core APIs in a class library
 description: Learn how to use ASP.NET Core APIs in a class library.
 ms.date: 12/16/2019
-uid: fundamentals/target-aspnetcore
 ---
 # Use ASP.NET Core APIs in a class library
 
@@ -21,7 +20,7 @@ As preview releases of ASP.NET Core are made available, breaking changes are pos
 
 ## Use the ASP.NET Core shared framework
 
-With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
+With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](../migration/22-to-30.md#remove-obsolete-package-references).
 
 As of .NET Core 3.0, projects using the `Microsoft.NET.Sdk.Web` MSBuild SDK implicitly reference the shared framework. Projects using the `Microsoft.NET.Sdk` or `Microsoft.NET.Sdk.Razor` SDK must reference ASP.NET Core to use ASP.NET Core APIs in the shared framework.
 
@@ -31,7 +30,7 @@ To reference ASP.NET Core, add the following `<FrameworkReference>` element to y
 
 ## Include Blazor extensibility
 
-Blazor supports creating [Razor components](xref:blazor/components/index) class libraries for server-side and client-side apps. To support Razor components in a class library, the class library must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+Blazor supports creating [Razor components](../blazor/components/index.md) class libraries for server-side and client-side apps. To support Razor components in a class library, the class library must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
 
 ### Support server-side and client-side apps
 
@@ -95,7 +94,7 @@ Class libraries are rarely built to only support server-side apps. If the class 
   </ItemGroup>
   ```
 
-For more information on libraries containing Razor components, see <xref:blazor/components/class-libraries>.
+For more information on libraries containing Razor components, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md).
 
 ## Include MVC extensibility
 
@@ -109,7 +108,7 @@ This section doesn't discuss multi-targeting to support multiple versions of MVC
 
 ### Razor views or Razor Pages
 
-A project that includes [Razor views](xref:mvc/views/overview) or [Razor Pages](xref:razor-pages/index) must use the [Microsoft.NET.Sdk.Razor SDK](xref:razor-pages/sdk).
+A project that includes [Razor views](../mvc/views/overview.md) or [Razor Pages](../razor-pages/index.md) must use the [Microsoft.NET.Sdk.Razor SDK](../razor-pages/sdk.md).
 
 If the project targets .NET Core 3.x, it requires:
 
@@ -142,7 +141,7 @@ If the project targets .NET Standard instead, a [Microsoft.AspNetCore.Mvc](https
 
 ### Tag Helpers
 
-A project that includes [Tag Helpers](xref:mvc/views/tag-helpers/intro) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
+A project that includes [Tag Helpers](../mvc/views/tag-helpers/intro.md) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-basic-library.csproj)]
 
@@ -152,7 +151,7 @@ If targeting .NET Standard (to support versions earlier than ASP.NET Core 3.x), 
 
 ### View components
 
-A project that includes [View components](xref:mvc/views/view-components) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
+A project that includes [View components](../mvc/views/view-components.md) should use the `Microsoft.NET.Sdk` SDK. If targeting .NET Core 3.x, add a `<FrameworkReference>` element for the shared framework. For example:
 
 [!code-xml[](target-aspnetcore/samples/single-tfm/netcoreapp3.1-basic-library.csproj)]
 
@@ -257,7 +256,7 @@ The following multi-targeted project file supports this Tag Helper scenario:
 
 ## Use an API removed from the shared framework
 
-To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For a list of packages removed from the shared framework in ASP.NET Core 3.1, see [Remove obsolete package references](xref:migration/22-to-30#remove-obsolete-package-references).
+To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For a list of packages removed from the shared framework in ASP.NET Core 3.1, see [Remove obsolete package references](../migration/22-to-30.md#remove-obsolete-package-references).
 
 For example, to add the web API client:
 
@@ -281,7 +280,7 @@ For example, to add the web API client:
 
 ## Related content
 
-* <xref:razor-pages/ui-class>
-* <xref:blazor/components/class-libraries>
+* [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md)
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md)
 * [.NET implementation support](/dotnet/standard/net-standard#net-implementation-support)
 * [.NET support policies](https://dotnet.microsoft.com/platform/support/policy)

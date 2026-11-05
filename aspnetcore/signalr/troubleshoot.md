@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: ASP.NET Core SignalR connection troubleshooting.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 03/25/2026
-uid: signalr/troubleshoot
 ---
 # Troubleshoot connection errors
 
@@ -63,11 +62,11 @@ Possible solution:
 
 Http status code 405 - Method Not Allowed
 
-* The app doesn't have [CORS](xref:signalr/security#cross-origin-resource-sharing) enabled
+* The app doesn't have [CORS](security.md#cross-origin-resource-sharing) enabled
 
 ### Response code 0
 
-Http status code 0 - Usually a [CORS](xref:signalr/security#cross-origin-resource-sharing) issue, no status code is given
+Http status code 0 - Usually a [CORS](security.md#cross-origin-resource-sharing) issue, no status code is given
 
 ```log
 Cross-Origin Request Blocked: The Same Origin Policy disallows reading the remote resource at http://localhost:5000/default/negotiate?negotiateVersion=1. (Reason: CORS header 'Access-Control-Allow-Origin' missing).
@@ -97,7 +96,7 @@ This is often caused by having an access token that is over 4k.
 
 ### Transient network failures
 
-Transient network failures may close the SignalR connection. The server may interpret the closed connection as a graceful client disconnect. To get more info on why a client disconnected in those cases [gather logs from the client and server](xref:signalr/diagnostics).
+Transient network failures may close the SignalR connection. The server may interpret the closed connection as a graceful client disconnect. To get more info on why a client disconnected in those cases [gather logs from the client and server](diagnostics.md).
 
 ## Related content
 

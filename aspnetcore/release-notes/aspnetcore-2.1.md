@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core 2.1
 description: Learn about the new features in ASP.NET Core 2.1.
 ms.date: 02/06/2023
-uid: aspnetcore-2.1
 ---
 # What's new in ASP.NET Core 2.1
 
@@ -21,7 +20,7 @@ ASP.NET Core SignalR includes a number of improvements:
 * A new streaming response model.
 * Support for clients based on bare WebSockets.
 
-For more information, see [ASP.NET Core SignalR](xref:signalr/introduction).
+For more information, see [ASP.NET Core SignalR](../signalr/introduction.md).
 
 ## Razor class libraries
 
@@ -30,19 +29,19 @@ ASP.NET Core 2.1 makes it easier to build and include Razor-based UI in a librar
 * The app startup time is significantly faster.
 * Fast updates to Razor views and pages at runtime are still available as part of an iterative development workflow.
 
-For more information, see <xref:razor-pages/ui-class>.
+For more information, see [Reusable Razor UI in class libraries with ASP.NET Core](../razor-pages/ui-class.md).
 
 ## Identity UI library & scaffolding
 
-ASP.NET Core 2.1 provides [ASP.NET Core Identity](xref:security/authentication/identity) as a [Razor class library](xref:razor-pages/ui-class). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
+ASP.NET Core 2.1 provides [ASP.NET Core Identity](../security/authentication/identity.md) as a [Razor class library](../razor-pages/ui-class.md). Apps that include Identity can apply the new Identity scaffolder to selectively add the source code contained in the Identity Razor class library (RCL). You might want to generate source code so you can modify the code and change the behavior. For example, you could instruct the scaffolder to generate the code used in registration. Generated code takes precedence over the same code in the Identity RCL.
 
 Apps that do **not** include authentication can apply the Identity scaffolder to add the RCL Identity package. You have the option of selecting Identity code to be generated.
 
-For more information, see [Scaffold Identity in ASP.NET Core projects](xref:security/authentication/scaffold-identity).
+For more information, see [Scaffold Identity in ASP.NET Core projects](../security/authentication/scaffold-identity.md).
 
 ## HTTPS
 
-With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don't use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](xref:security/gdpr) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl).
+With the increased focus on security and privacy, enabling HTTPS for web apps is important. HTTPS enforcement is becoming increasingly strict on the web. Sites that don't use HTTPS are considered insecure. Browsers (Chromium, Mozilla) are starting to enforce that web features must be used from a secure context. [GDPR](../security/gdpr.md) requires the use of HTTPS to protect user privacy. While using HTTPS in production is critical, using HTTPS in development can help prevent issues in deployment (for example, insecure links). ASP.NET Core 2.1 includes a number of improvements that make it easier to use HTTPS in development and to configure HTTPS in production. For more information, see [Enforce HTTPS](../security/enforcing-ssl.md).
 
 ### On by default
 
@@ -57,18 +56,18 @@ Run `dotnet dev-certs https --trust` to trust the certificate.
 
 Web apps typically need to listen on both HTTP and HTTPS, but then redirect all HTTP traffic to HTTPS. In 2.1, specialized HTTPS redirection middleware that intelligently redirects based on the presence of configuration or bound server ports has been introduced.
 
-Use of HTTPS can be further enforced using [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol). HSTS instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
+Use of HTTPS can be further enforced using [HTTP Strict Transport Security (HSTS) protocol](../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol). HSTS instructs browsers to always access the site via HTTPS. ASP.NET Core 2.1 adds HSTS middleware that supports options for max age, subdomains, and the HSTS preload list.
 
 ### Configuration for production
 
 In production, HTTPS must be explicitly configured. In 2.1, default configuration schema for configuring HTTPS for Kestrel has been added. Apps can be configured to use:
 
-* Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+* Multiple endpoints including the URLs. For more information, see [Kestrel web server implementation: Endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration).
 * The certificate to use for HTTPS either from a file on disk or from a certificate store.
 
 ## GDPR
 
-ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](xref:security/gdpr). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
+ASP.NET Core provides APIs and templates to help meet some of the [EU General Data Protection Regulation (GDPR)](https://gdpr.eu) requirements. For more information, see [GDPR support in ASP.NET Core](../security/gdpr.md). A [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/live/aspnetcore/security/gdpr/samples) shows how to use and lets you test most of the GDPR extension points and APIs added to the ASP.NET Core 2.1 templates.
 
 ## Integration tests
 
@@ -76,7 +75,7 @@ A new package is introduced that streamlines test creation and execution. The [M
 
 * Copies the dependency file (*\*.deps*) from the tested app into the test project's *bin* folder.
 * Sets the content root to the tested app's project root so that static files and pages/views are found when the tests are executed.
-* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
+* Provides the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> class to streamline bootstrapping the tested app with <xref:Microsoft.AspNetCore.TestHost.TestServer>.
 
 The following test uses [xUnit](https://github.com/xunit/xunit) to check that the Index page loads with a success status code and with the correct Content-Type header:
 
@@ -105,13 +104,13 @@ public class BasicTests
 }
 ```
 
-For more information, see the [Integration tests](xref:test/integration-tests) topic.
+For more information, see the [Integration tests](../test/integration-tests.md) topic.
 
 ## [ApiController], ActionResult\<T>
 
 ASP.NET Core 2.1 adds new programming conventions that make it easier to build clean and descriptive web APIs. `ActionResult<T>` is a new type added to allow an app to return either a response type or any other action result (similar to IActionResult), while still indicating the response type. The `[ApiController]` attribute has also been added as the way to opt in to Web API-specific conventions and behaviors.
 
-For more information, see [Build Web APIs with ASP.NET Core](xref:web-api/index).
+For more information, see [Build Web APIs with ASP.NET Core](../web-api/index.md).
 
 ## IHttpClientFactory
 
@@ -120,17 +119,17 @@ ASP.NET Core 2.1 includes a new `IHttpClientFactory` service that makes it easie
 * Makes registering of instances of `HttpClient` per named client more intuitive.
 * Implements a Polly handler that allows Polly policies to be used for Retry, CircuitBreakers, etc.
 
-For more information, see [Initiate HTTP Requests](xref:fundamentals/http-requests).
+For more information, see [Initiate HTTP Requests](../fundamentals/http-requests.md).
 
 ## Kestrel libuv transport configuration
 
-With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Libuv transport configuration](xref:fundamentals/servers/kestrel#libuv-transport-configuration).
+With the release of ASP.NET Core 2.1, Kestrel's default transport is no longer based on Libuv but instead based on managed sockets. For more information, see [Kestrel web server implementation: Libuv transport configuration](../fundamentals/servers/kestrel.md#libuv-transport-configuration).
 
 ## Generic host builder
 
 The Generic Host Builder (`HostBuilder`) has been introduced. This builder can be used for apps that don't process HTTP requests (Messaging, background tasks, etc.).
 
-For more information, see [.NET Generic Host](xref:fundamentals/host/generic-host).
+For more information, see [.NET Generic Host](../fundamentals/host/generic-host.md).
 
 ## Updated SPA templates
 
@@ -140,8 +139,8 @@ The Angular template is based on the Angular CLI, and the React template is base
 
 For more information, see:
 
-* <xref:spa/angular>
-* <xref:spa/react>
+* [Use Angular with ASP.NET Core](../client-side/spa/angular.md)
+* [Use React with ASP.NET Core](../client-side/spa/react.md)
 
 ## Razor Pages search for Razor assets
 
@@ -153,17 +152,17 @@ In 2.1, Razor Pages search for Razor assets (such as layouts and partials) in th
 
 ## Razor Pages in an area
 
-Razor Pages now support [areas](xref:mvc/controllers/areas). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
+Razor Pages now support [areas](../mvc/controllers/areas.md). To see an example of areas, create a new Razor Pages web app with individual user accounts. A Razor Pages web app with individual user accounts includes */Areas/Identity/Pages*.
 
 ## MVC compatibility version
 
-The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion%2A> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
+The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.SetCompatibilityVersion*> method allows an app to opt-in or opt-out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later.
 
-For more information, see <xref:mvc/compatibility-version>.
+For more information, see [Compatibility version for ASP.NET Core MVC](../mvc/compatibility-version.md).
 
 ## Migrate from 2.0 to 2.1
 
-See [Migrate from ASP.NET Core 2.0 to 2.1](xref:migration/20-to-21).
+See [Migrate from ASP.NET Core 2.0 to 2.1](../migration/20-to-21.md).
 
 ## Breaking changes
 

@@ -3,7 +3,6 @@ title: Dependency injection into controllers in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how ASP.NET Core MVC controllers request their dependencies explicitly via their constructors with dependency injection in ASP.NET Core.
 ms.date: 10/23/2026
-uid: mvc/controllers/dependency-injection
 ---
 # Dependency injection into controllers in ASP.NET Core
 
@@ -11,9 +10,9 @@ uid: mvc/controllers/dependency-injection
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
-ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](xref:fundamentals/dependency-injection). DI makes apps easier to test and maintain.
+ASP.NET Core MVC controllers request dependencies explicitly via constructors. ASP.NET Core has built-in support for [dependency injection (DI)](../../fundamentals/dependency-injection.md). DI makes apps easier to test and maintain.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/dependency-injection/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Constructor injection
 
@@ -29,7 +28,7 @@ Add the service to the service container:
 
 [!code-csharp[](~/mvc/controllers/dependency-injection/samples/3.1/ControllerDI/Startup1.cs?name=snippet&highlight=3)]
 
-For more information on <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>, see [DI service lifetimes](xref:fundamentals/dependency-injection#service-lifetimes).
+For more information on <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>, see [DI service lifetimes](../../fundamentals/dependency-injection.md#service-lifetimes).
 
 The following code displays a greeting to the user based on the time of day:
 
@@ -78,7 +77,7 @@ public class WeatherForecastController : ControllerBase
 
 ## Access settings from a controller
 
-Accessing app or configuration settings from within a controller is a common pattern. The *options pattern* described in <xref:fundamentals/configuration/options> is the preferred approach to manage settings. Generally, don't directly inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into a controller.
+Accessing app or configuration settings from within a controller is a common pattern. The *options pattern* described in [Options pattern in ASP.NET Core](../../fundamentals/configuration/options.md) is the preferred approach to manage settings. Generally, don't directly inject <xref:Microsoft.Extensions.Configuration.IConfiguration> into a controller.
 
 Create a class that represents the options. For example:
 
@@ -115,13 +114,13 @@ Registering controllers as services enables:
 * Injecting services into controllers using any registered constructor, since the DI container selects the constructor.
 
 > [!NOTE]
-> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See <xref:mvc/extensibility/app-parts#prevent-loading-resources> for details.
+> Configure the `ApplicationPartManager` **before** calling `AddControllersAsServices`. See [Share controllers, views, Razor Pages and more with Application Parts in ASP.NET Core](../advanced/app-parts.md#prevent-loading-resources) for details.
 
 ## Related content
 
-* See <xref:mvc/controllers/testing> to learn how to make code easier to test by explicitly requesting dependencies in controllers.
+* See [Test controller logic in ASP.NET Core](testing.md) to learn how to make code easier to test by explicitly requesting dependencies in controllers.
 * [Keyed service dependency injection container support](https://andrewlock.net/exploring-the-dotnet-8-preview-keyed-services-dependency-injection-support/)
-* [Replace the default dependency injection container with a third party implementation](xref:fundamentals/dependency-injection#default-service-container-replacement).
+* [Replace the default dependency injection container with a third party implementation](../../fundamentals/dependency-injection.md#default-service-container-replacement).
 
 :::moniker-end
 
