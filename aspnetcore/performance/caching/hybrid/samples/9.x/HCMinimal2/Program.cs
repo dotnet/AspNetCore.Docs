@@ -16,6 +16,7 @@
 namespace HCMinimal;
 using HCMinimal;
 using System.Text;
+using System.Text.Encodings.Web;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.DependencyInjection;
@@ -91,13 +92,19 @@ public class Program
             // the cache entry directly from the secondary cache to see how it was serialized.
 
             html += "<h1>SomeMessage</h1>";
-            html += $"<p>{someMessage.Name} {someMessage.Id} {someMessage.Time}</p>";
-            html += $"<p>{await someService.GetL2CacheEntryAsync(ID)}</p>";
+            html += $"<p>{HtmlEncoder.Default.Encode(someMessage.Name ?? string.Empty)} " +
+                $"{someMessage.Id} " +
+                $"{HtmlEncoder.Default.Encode(someMessage.Time ?? string.Empty)}</p>";
+            html += $"<p>{HtmlEncoder.Default.Encode(
+                await someService.GetL2CacheEntryAsync(ID))}</p>";
 
             // We expect to see Protobuf serialization for the Protobuf type.
             html += "<h1>SomeProtobufMessage</h1>";
-            html += $"<p>{someProtobufMessage.Name} {someProtobufMessage.Id} {someProtobufMessage.Time}</p>";
-            html += $"<p>{await someService.GetL2ProtobufCacheEntryAsync(ID)}</p>";
+            html += $"<p>{HtmlEncoder.Default.Encode(someProtobufMessage.Name)} " +
+                $"{someProtobufMessage.Id} " +
+                $"{HtmlEncoder.Default.Encode(someProtobufMessage.Time)}</p>";
+            html += $"<p>{HtmlEncoder.Default.Encode(
+                await someService.GetL2ProtobufCacheEntryAsync(ID))}</p>";
 
             await context.Response.WriteAsync(html);
 

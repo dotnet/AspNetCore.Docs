@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: This guide demonstrates the recommended pattern for creating Razor class libraries (RCLs) that combine .NET MAUI and Razor functionality.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 01/05/2026
-uid: blazor/hybrid/class-libraries-best-practices
 ---
 # Combine Blazor Hybrid with .NET MAUI and Razor class libraries (RCLs)
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains the recommended pattern for creating [Razor class libraries (RCLs)](xref:blazor/components/class-libraries) that combine .NET MAUI and Razor functionality. The architecture explained in this article is adopted by the [.NET MAUI Blazor Hybrid and Web solution template](xref:blazor/hybrid/tutorials/maui-blazor-web-app).
+This article explains the recommended pattern for creating [Razor class libraries (RCLs)](../components/class-libraries.md) that combine .NET MAUI and Razor functionality. The architecture explained in this article is adopted by the [.NET MAUI Blazor Hybrid and Web solution template](tutorials/maui-blazor-web-app.md).
 
 RCLs should adopt *host-agnostic design*, where libraries are reusable UI component packages that work across different platforms, app types, Blazor hosting models (Blazor Server, Blazor WebAssembly, Blazor Hybrid/MAUI), and static server-side rendering. To maintain this flexibility, RCLs shouldn't depend on specific hosting infrastructure or platform APIs:
 
@@ -418,7 +417,7 @@ builder.Services.AddSingleton<IDeviceInfoService, MauiDeviceInfoService>();
 
 ## Related content
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../components/class-libraries.md)
 * [.NET MAUI Class Libraries](/dotnet/maui/platform-integration/)
 * [.NET MAUI Dependency Injection](/dotnet/maui/fundamentals/dependency-injection)
-* <xref:blazor/hybrid/reuse-razor-components>
+* [Reuse Razor components in ASP.NET Core Blazor Hybrid apps](reuse-razor-components.md)

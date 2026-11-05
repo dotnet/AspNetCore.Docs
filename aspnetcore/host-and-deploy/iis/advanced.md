@@ -4,7 +4,6 @@ description: Advanced configuration with the ASP.NET Core Module and Internet In
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-image-nochange
 ms.date: 10/06/2026
-uid: host-and-deploy/iis/advanced
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
@@ -98,13 +97,13 @@ When the path to the shared configuration isn't on the same machine as the IIS i
 
 ## Data protection
 
-The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](xref:fundamentals/middleware/index), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
+The [ASP.NET Core Data Protection stack](../../security/data-protection/introduction.md) is used by several ASP.NET Core [middlewares](../../fundamentals/middleware/index.md), including middleware used in authentication. Even if Data Protection APIs aren't called by user code, data protection should be configured with a deployment script or in user code to create a persistent cryptographic [key store](../../security/data-protection/implementation/key-management.md). If data protection isn't configured, the keys are held in memory and discarded when the app restarts.
 
 If the Data Protection key ring is stored in memory when the app restarts:
 
 * All cookie-based authentication tokens are invalidated.
 * Users are required to sign in again on their next request.
-* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](xref:fundamentals/app-state#tempdata).
+* Any data protected with the key ring can no longer be decrypted. This might include [CSRF tokens](../../security/anti-request-forgery.md#aspnet-core-antiforgery-configuration) and [ASP.NET Core MVC TempData cookies](../../fundamentals/app-state.md#tempdata).
 
 To configure data protection under IIS to persist the key ring, use **one** of the following approaches:
 
@@ -158,7 +157,7 @@ Enable the **Web Server (IIS)** server role and establish role services.
    To enable Windows Authentication, expand the following nodes: **Web Server** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
-   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **Web Server** > **Application Development**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](../../fundamentals/websockets.md).
 
 1. Proceed through the **Confirmation** step to install the web server role and services. A server/IIS restart isn't required after installing the **Web Server (IIS)** role.
 
@@ -180,7 +179,7 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
    To enable Windows Authentication, expand the following nodes: **World Wide Web Services** > **Security**. Select the **Windows Authentication** feature. For more information, see [Windows Authentication `<windowsAuthentication>`](/iis/configuration/system.webServer/security/authentication/windowsAuthentication/) and [Configure Windows authentication](../../security/authentication/windowsauth.md).
 
    **WebSockets (Optional)**  
-   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](xref:fundamentals/websockets).
+   WebSockets is supported with ASP.NET Core 1.1 or later. To enable WebSockets, expand the following nodes: **World Wide Web Services** > **Application Development Features**. Select the **WebSocket Protocol** feature. For more information, see [WebSockets](../../fundamentals/websockets.md).
 
 1. If the IIS installation requires a restart, restart the system.
 
@@ -194,12 +193,12 @@ Enable the **IIS Management Console** and **World Wide Web Services**.
 
 An ASP.NET Core app can be hosted as an [IIS sub-application (sub-app)](/iis/get-started/planning-your-iis-architecture/understanding-sites-applications-and-virtual-directories-on-iis#applications). The sub-app's path becomes part of the root app's URL.
 
-Static asset links within the sub-app should use tilde-slash (`~/`) notation in MVC and Razor Pages. Tilde-slash notation triggers a [Tag Helper](xref:mvc/views/tag-helpers/intro) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
+Static asset links within the sub-app should use tilde-slash (`~/`) notation in MVC and Razor Pages. Tilde-slash notation triggers a [Tag Helper](../../mvc/views/tag-helpers/intro.md) to prepend the sub-app's pathbase to the rendered relative link. For a sub-app at `/subapp_path`, an image linked with `src="~/image.png"` is rendered as `src="/subapp_path/image.png"`. The root app's static file middleware doesn't process the static file request. The sub-app's static file middleware processes the request.
 
 > [!NOTE]
-> Razor components (`.razor`) shouldn't use tilde-slash notation. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+> Razor components (`.razor`) shouldn't use tilde-slash notation. For more information, see [ASP.NET Core Blazor app base path](../../blazor/host-and-deploy/app-base-path.md).
 
-If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](xref:fundamentals/index#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
+If a static asset's `src` attribute is set to an absolute path (for example, `src="/image.png"`), the link is rendered without the sub-app's pathbase. The root app's static file middleware attempts to serve the asset from the root app's [web root](../../fundamentals/index.md#web-root), which results in a *404 - Not Found* response unless the static asset is available from the root app.
 
 To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
@@ -213,7 +212,7 @@ To host an ASP.NET Core app as a sub-app under another ASP.NET Core app:
 
 The assignment of a separate app pool to the sub-app is a requirement when using the in-process hosting model.
 
-For more information on the in-process hosting model and configuring the ASP.NET Core Module, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process hosting model and configuring the ASP.NET Core Module, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 ## Application Pools
 
@@ -269,12 +268,12 @@ For more information, see the [icacls](/windows-server/administration/windows-co
   * TLS 1.2 or later connection.
 * Out-of-process
   * Windows Server 2016/Windows 10 or later; IIS 10 or later.
-  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](xref:fundamentals/servers/kestrel) uses HTTP/1.1.
+  * Public-facing edge server connections use HTTP/2, but the reverse proxy connection to the [Kestrel server](../../fundamentals/servers/kestrel.md) uses HTTP/1.1.
   * TLS 1.2 or later connection.
 
 For an in-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`. For an out-of-process deployment when an HTTP/2 connection is established, [`HttpRequest.Protocol`](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/1.1`.
 
-For more information on the in-process and out-of-process hosting models, see <xref:host-and-deploy/aspnet-core-module>.
+For more information on the in-process and out-of-process hosting models, see [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md).
 
 HTTP/2 is enabled by default. Connections fall back to HTTP/1.1 if an HTTP/2 connection isn't established. For more information on HTTP/2 configuration with IIS deployments, see [HTTP/2 on IIS](/iis/get-started/whats-new-in-iis-10/http2-on-iis).
 
@@ -288,8 +287,8 @@ For an ASP.NET Core app that targets the .NET Framework, OPTIONS requests aren't
 
 When hosted in IIS by the ASP.NET Core Module version 2:
 
-* [**Application Initialization Module**](#application-initialization-module): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) or [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) can be configured to start automatically on a worker process restart or server restart.
-* [**Idle Timeout**](#idle-timeout): App's hosted [in-process](xref:host-and-deploy/iis/in-process-hosting) can be configured not to time out during periods of inactivity.
+* [**Application Initialization Module**](#application-initialization-module): App's hosted [in-process](in-process-hosting.md) or [out-of-process](out-of-process-hosting.md) can be configured to start automatically on a worker process restart or server restart.
+* [**Idle Timeout**](#idle-timeout): App's hosted [in-process](in-process-hosting.md) can be configured not to time out during periods of inactivity.
 
 ### Application Initialization Module
 
@@ -346,10 +345,10 @@ To prevent the app from idling, set the app pool's idle timeout using IIS Manage
 1. The default **Idle Time-out (minutes)** is `20` minutes. Set the **Idle Time-out (minutes)** to `0` (zero). Select **OK**.
 1. Recycle the worker process.
 
-To prevent apps hosted [out-of-process](xref:host-and-deploy/iis/out-of-process-hosting) from timing out, use either of the following approaches:
+To prevent apps hosted [out-of-process](out-of-process-hosting.md) from timing out, use either of the following approaches:
 
 * Ping the app from an external service in order to keep it running.
-* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](xref:host-and-deploy/windows-service).
+* If the app only hosts background services, avoid IIS hosting and use a [Windows Service to host the ASP.NET Core app](../windows-service.md).
 
 ### Application Initialization Module and Idle Timeout additional resources
 
@@ -415,7 +414,7 @@ When deploying apps to servers with [Web Deploy](/iis/install/installing-publish
 
 ## Create the IIS site
 
-1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see <xref:host-and-deploy/directory-structure>.
+1. On the hosting system, create a folder to contain the app's published folders and files. In a following step, the folder's path is provided to IIS as the physical path to the app. For more information on an app's deployment folder and file layout, see [ASP.NET Core directory structure](../directory-structure.md).
 
 1. In IIS Manager, open the server's node in the **Connections** panel. Right-click the **Sites** folder. Select **Add Website** from the contextual menu.
 
@@ -451,7 +450,7 @@ For more information, see [Configure Windows authentication](../../security/auth
 
 ## Shadow copy
 
-Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](xref:host-and-deploy/aspnet-core-module) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](xref:host-and-deploy/iis/app-offline).
+Shadow copying app assemblies to the [ASP.NET Core Module (ANCM)](../aspnet-core-module.md) for IIS can provide a better end user experience than stopping the app by deploying an [app offline file](../app-offline.md).
 
 When an ASP.NET Core app is running on Windows, the binaries are locked so that they can't be modified or replaced. Shadow copying enables the app assemblies to be updated while the app is running by making a copy of the assemblies.
 

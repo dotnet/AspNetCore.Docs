@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor app download size performance best practices
 description: Tips for reducing app download size in ASP.NET Core Blazor apps and avoiding common performance problems.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/app-download-size
 ---
 # ASP.NET Core Blazor app download size performance best practices
 
@@ -13,7 +12,7 @@ uid: blazor/performance/app-download-size
 
 ## Runtime relinking
 
-For information on how runtime relinking minimizes an app's download size, see <xref:blazor/tooling/webassembly#runtime-relinking>.
+For information on how runtime relinking minimizes an app's download size, see [ASP.NET Core Blazor WebAssembly runtime performance](webassembly-runtime-performance.md#runtime-relinking).
 
 :::moniker-end
 
@@ -29,13 +28,13 @@ For migration guidance, see [How to migrate from `Newtonsoft.Json` to `System.Te
 
 :::moniker range=">= aspnetcore-5.0"
 
-Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see <xref:blazor/host-and-deploy/configure-trimmer>.
+Trimming unused assemblies from a Blazor WebAssembly app reduces the app's size by removing unused code in the app's binaries. For more information, see [Configure the Trimmer for ASP.NET Core Blazor](../host-and-deploy/configure-trimmer.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
 
-[Linking a Blazor WebAssembly app](xref:blazor/host-and-deploy/configure-linker) reduces the app's size by trimming unused code in the app's binaries. The Intermediate Language (IL) Linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
+[Linking a Blazor WebAssembly app](../host-and-deploy/configure-linker.md) reduces the app's size by trimming unused code in the app's binaries. The Intermediate Language (IL) Linker is only enabled when building in `Release` configuration. To benefit from this, publish the app for deployment using the [`dotnet publish`](/dotnet/core/tools/dotnet-publish) command with the [-c|--configuration](/dotnet/core/tools/dotnet-publish#options) option set to `Release`:
 
 ```dotnetcli
 dotnet publish -c Release
@@ -47,7 +46,7 @@ dotnet publish -c Release
 
 *This section only applies to client-side Blazor scenarios.*
 
-Load assemblies at runtime when the assemblies are required by a route. For more information, see <xref:blazor/webassembly-lazy-load-assemblies>.
+Load assemblies at runtime when the assemblies are required by a route. For more information, see [Lazy load assemblies in ASP.NET Core Blazor WebAssembly](../webassembly-lazy-load-assemblies.md).
 
 ## Compression
 
@@ -55,7 +54,7 @@ Load assemblies at runtime when the assemblies are required by a route. For more
 
 When a Blazor WebAssembly app is published, the output is statically compressed during publish to reduce the app's size and remove the overhead for runtime compression. Blazor relies on the server to perform content negotiation and serve statically-compressed files.
 
-After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in <xref:blazor/host-and-deploy/webassembly/index#compression>.
+After an app is deployed, verify that the app serves compressed files. Inspect the **Network** tab in a browser's [developer tools](https://developer.mozilla.org/docs/Glossary/Developer_Tools) and verify that the files are served with `Content-Encoding: br` (Brotli compression) or `Content-Encoding: gz` (Gzip compression). If the host isn't serving compressed files, follow the instructions in [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#compression).
 
 ## Disable unused features
 
@@ -63,7 +62,7 @@ After an app is deployed, verify that the app serves compressed files. Inspect t
 
 Blazor WebAssembly's runtime includes the following .NET features that can be disabled for a smaller payload size.
 
-Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to [support the invariant culture](xref:blazor/globalization-localization#invariant-globalization), which is based on the `en-US` culture. Apply the `<InvariantGlobalization>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
+Blazor WebAssembly carries globalization resources required to display values, such as dates and currency, in the user's culture. If the app doesn't require localization, you may configure the app to [support the invariant culture](../globalization-localization.md#invariant-globalization), which is based on the `en-US` culture. Apply the `<InvariantGlobalization>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -73,7 +72,7 @@ Blazor WebAssembly carries globalization resources required to display values, s
 
 :::moniker range=">= aspnetcore-8.0"
 
-Adopting [invariant globalization](xref:blazor/globalization-localization#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
+Adopting [invariant globalization](../globalization-localization.md#invariant-globalization) only results in using non-localized timezone names. To trim timezone code and data from the app, apply the `<InvariantTimezone>` MSBuild property with a value of `true` in the app's project file (`.csproj`):
 
 ```xml
 <PropertyGroup>
@@ -82,7 +81,7 @@ Adopting [invariant globalization](xref:blazor/globalization-localization#invari
 ```
 
 > [!NOTE]
-> [`<BlazorEnableTimeZoneSupport>`](xref:blazor/performance/app-download-size#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
+> [`<BlazorEnableTimeZoneSupport>`](app-download-size.md#disable-unused-features) overrides an earlier `<InvariantTimezone>` setting. We recommend removing the `<BlazorEnableTimeZoneSupport>` setting.
 
 :::moniker-end
 

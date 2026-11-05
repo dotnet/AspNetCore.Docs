@@ -24,7 +24,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -51,7 +51,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](../../../../razor-pages/ui-class.md). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -98,13 +98,13 @@ Services are added in `Program.cs`. The typical pattern is to call methods in th
 
 :::code language="csharp" source="../samples/WebApp6x/Program.cs" id="snippet_":::
 
-The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 The template-generated app doesn't use [authorization](../../../authorization/secure-data.md). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
-For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](../../../../fundamentals/startup.md).
 
 <!-- Start here for .NET 6 -->
 
@@ -190,13 +190,13 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](../../../../release-notes/aspnetcore-3.0.md#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](../../../../migration/fx-to-core/examples/identity.md).
 
 ## Setting password strength
 
@@ -240,10 +240,10 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Create an ASP.NET Core app with user data protected by authorization](../../../authorization/secure-data.md)
 * [Add, download, and delete user data to Identity in an ASP.NET Core project](../../add-user-data.md)
 * [Enable QR code generation for TOTP authentication](../../identity-enable-qrcodes.md)
-* <xref:migration/fx-to-core/examples/identity>
+* [Migrate Authentication and Identity to ASP.NET Core](../../../../migration/fx-to-core/examples/identity.md)
 * [Account confirmation and password recovery](../../accconfirm.md)
 * [Two-factor authentication with SMS in ASP.NET Core](../../2fa.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -273,7 +273,7 @@ In this topic, you learn how to use Identity to register, log in, and log out a 
 
 [!INCLUDE[](~/includes/IdentityServer4.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -302,7 +302,7 @@ dotnet new webapp --auth Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](../../identity.md) as a [Razor class library](../../../../razor-pages/ui-class.md). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * /Identity/Account/Login
 * /Identity/Account/Logout
@@ -350,9 +350,9 @@ Services are added in `ConfigureServices`. The typical pattern is to call all th
 
 :::code language="csharp" source="../samples/WebApp3/Startup.cs" id="snippet_configureservices" highlight="11-99":::
 
-The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding highlighted code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp3/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -362,9 +362,9 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 :::code language="csharp" source="../samples/WebApp5x/Startup.cs" id="snippet_configureservices" highlight="12-99":::
 
-The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](../../../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../../../fundamentals/middleware/index.md) to the request pipeline.
 
 :::code language="csharp" source="../samples/WebApp5x/Startup.cs" id="snippet_configure" highlight="19":::
 
@@ -374,7 +374,7 @@ Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilder
 
 The template-generated app doesn't use [authorization](../../../authorization/secure-data.md). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, `UseAuthorization`, and `UseEndpoints` must be called in the order shown in the preceding code.
 
-For more information on `IdentityOptions` and `Startup`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+For more information on `IdentityOptions` and `Startup`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](../../../../fundamentals/startup.md).
 
 ## Scaffold Register, Login, LogOut, and RegisterConfirmation
 
@@ -458,13 +458,13 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](../../../../release-notes/aspnetcore-3.0.md#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](../../../../migration/fx-to-core/examples/identity.md).
 
 ## Setting password strength
 
@@ -497,9 +497,9 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Create an ASP.NET Core app with user data protected by authorization](../../../authorization/secure-data.md)
 * [Add, download, and delete user data to Identity in an ASP.NET Core project](../../add-user-data.md)
 * [Enable QR code generation for TOTP authentication](../../identity-enable-qrcodes.md)
-* <xref:migration/fx-to-core/examples/identity>
+* [Migrate Authentication and Identity to ASP.NET Core](../../../../migration/fx-to-core/examples/identity.md)
 * [Account confirmation and password recovery](../../accconfirm.md)
 * [Two-factor authentication with SMS in ASP.NET Core](../../2fa.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../../host-and-deploy/web-farm.md)
 
 :::moniker-end

@@ -2,8 +2,7 @@
 title: Request Features in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-ms.date: 10/30/2026
-uid: fundamentals/request-features
+ms.date: 11/05/2026
 ---
 # Request Features in ASP.NET Core
 
@@ -141,13 +140,13 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
    
 <xref:Microsoft.AspNetCore.Http.Features.IServiceProvidersFeature>: Provides access to an <xref:System.IServiceProvider> with scoped request services.
 
-<xref:Microsoft.AspNetCore.Http.Features.ISessionFeature>: Defines `ISessionFactory` and <xref:Microsoft.AspNetCore.Http.ISession> abstractions for supporting user sessions. `ISessionFeature` is implemented by the <xref:Microsoft.AspNetCore.Session.SessionMiddleware> (see <xref:fundamentals/app-state>).
+<xref:Microsoft.AspNetCore.Http.Features.ISessionFeature>: Defines `ISessionFactory` and <xref:Microsoft.AspNetCore.Http.ISession> abstractions for supporting user sessions. `ISessionFeature` is implemented by the <xref:Microsoft.AspNetCore.Session.SessionMiddleware> (see [Session in ASP.NET Core](app-state.md)).
 
 <xref:Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature>: Defines an API for retrieving client certificates.
 
 :::moniker range=">= aspnetcore-11.0"
 
-`ITlsConnectionFeature` also defines `TryGetChannelBindingBytes(ChannelBindingKind, out ReadOnlyMemory<byte>)`, which lets app code retrieve an [RFC 5929](https://www.rfc-editor.org/rfc/rfc5929) TLS channel binding token for the current connection, such as the endpoint token requested with `ChannelBindingKind.Endpoint`. Channel binding lets an authentication layer bind credentials to the underlying TLS channel, which helps mitigate credential-relay attacks as part of Extended Protection for Authentication (EPA). Kestrel retrieves the token from `SslStream.TransportContext.GetChannelBinding`, and HTTP.sys exposes it by default. For more information, see [HttpSys enables TLS channel binding token exposure by default](/aspnet/core/breaking-changes/11/httpsys-channel-binding-token-enabled) and [Negotiate authentication uses TLS channel binding](xref:aspnetcore-11#negotiate-authentication-uses-tls-channel-binding). The method returns `false` when a token isn't available for the requested `ChannelBindingKind`.
+`ITlsConnectionFeature` also defines `TryGetChannelBindingBytes(ChannelBindingKind, out ReadOnlyMemory<byte>)`, which lets app code retrieve an [RFC 5929](https://www.rfc-editor.org/rfc/rfc5929) TLS channel binding token for the current connection, such as the endpoint token requested with `ChannelBindingKind.Endpoint`. Channel binding lets an authentication layer bind credentials to the underlying TLS channel, which helps mitigate credential-relay attacks as part of Extended Protection for Authentication (EPA). Kestrel retrieves the token from `SslStream.TransportContext.GetChannelBinding`, and HTTP.sys exposes it by default. For more information, see [HttpSys enables TLS channel binding token exposure by default](/aspnet/core/breaking-changes/11/httpsys-channel-binding-token-enabled) and [Negotiate authentication uses TLS channel binding](../release-notes/aspnetcore-11.md#negotiate-authentication-uses-tls-channel-binding). The method returns `false` when a token isn't available for the requested `ChannelBindingKind`.
 
 :::moniker-end
 
@@ -161,5 +160,5 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 
 ## Related content
 
-* <xref:fundamentals/servers/index>
-* <xref:fundamentals/middleware/index>
+* [Web server implementations in ASP.NET Core](servers/index.md)
+* [ASP.NET Core middleware](middleware/index.md)

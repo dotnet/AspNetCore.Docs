@@ -12,7 +12,7 @@ ms.date: 09/02/2026
 
 This article describes how to configure client and server options for ASP.NET Core SignalR.
 
-For Blazor SignalR guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/signalr>.
+For Blazor SignalR guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -52,11 +52,11 @@ var connection = new HubConnectionBuilder()
 
 #### Switch to Newtonsoft.Json
 
-If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson).
+If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 
-MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](xref:signalr/messagepackhubprotocol).
+MessagePack serialization can be configured by providing a delegate to the <xref:Microsoft.Extensions.DependencyInjection.MsgPackProtocolDependencyInjectionExtensions.AddMessagePackProtocol*> call. For more information, see [MessagePack in SignalR](messagepackhubprotocol.md).
 
 > [!NOTE]
 > It's not possible to configure MessagePack serialization in the JavaScript client at this time.
@@ -74,7 +74,7 @@ The following table describes options for configuring SignalR hubs.
 | `EnableDetailedErrors` | `false` | When this option is enabled (`true`), detailed exception messages are returned to clients when an exception is thrown in a hub method. The default is `false` because these exception messages can contain sensitive information. |
 | `StreamBufferCapacity` | 10 | The maximum number of items that can be buffered for client upload streams. When this limit is reached, the processing of invocations is blocked until the server processes stream items. |
 | `MaximumReceiveMessageSize` | 32 KB | The maximum size of a single incoming hub message. Increasing the value might increase the risk of [Denial of service (DoS) attacks](https://developer.mozilla.org/docs/Glossary/Denial_of_Service). |
-| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. Note that this limit doesn't apply to streaming hub invocations. For more information, see <xref:signalr/hubs#limit-per-connection-streaming-invocations>.|
+| `MaximumParallelInvocationsPerClient` | 1 | The maximum number of hub methods that each client can call in parallel before queueing. Note that this limit doesn't apply to streaming hub invocations. For more information, see [Use hubs in ASP.NET Core SignalR](hubs.md#limit-per-connection-streaming-invocations).|
 | `DisableImplicitFromServicesParameters` | `false` | Hub method arguments are resolved from dependency injection, if possible. |
 | `StatefulReconnectBufferSize` | 100,000 bytes | The maximum number of bytes buffered per connection when stateful reconnect is enabled. This option has no effect unless `AllowStatefulReconnects` is enabled on the hub endpoint. For more information, see [Configure stateful reconnect](#configure-stateful-reconnect). |
 
@@ -168,10 +168,10 @@ In the .NET client and JavaScript client, the client options are configured on t
 
 ### Configure logging
 
-Logging is configured in the .NET client by using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. For more information, see the [Logging in ASP.NET Core](xref:fundamentals/logging/index) documentation.
+Logging is configured in the .NET client by using the `ConfigureLogging` method. Logging providers and filters can be registered in the same way as they are on the server. For more information, see the [Logging in ASP.NET Core](../fundamentals/logging/index.md) documentation.
 
 > [!NOTE]
-> To register logging providers, you must install the necessary packages. For more information, see the full list of [Built-in logging providers](xref:fundamentals/logging/index#built-in-logging-providers).
+> To register logging providers, you must install the necessary packages. For more information, see the full list of [Built-in logging providers](../fundamentals/logging/index.md#built-in-logging-providers).
 
 For example, to enable Console logging, install the `Microsoft.Extensions.Logging.Console` NuGet package. Call the `AddConsole` extension method:
 
@@ -218,7 +218,7 @@ The following table lists the available log levels. The value you provide to `co
 > [!NOTE]
 > To disable logging entirely, specify `signalR.LogLevel.None` in the `configureLogging` method.
 
-For more information on logging, see <xref:signalr/diagnostics>.
+For more information on logging, see [Logging and diagnostics in ASP.NET Core SignalR](diagnostics.md).
 
 The SignalR Java client uses the [Simple Logging Facade for Java (SLF4J)](https://www.slf4j.org/) library for logging. It's a high-level logging API that allows users of the library to choose their own specific logging implementation by bringing in a specific logging dependency. The following code snippet shows how to use `java.util.logging` with the SignalR Java client.
 
@@ -513,12 +513,12 @@ HubConnection hubConnection = HubConnectionBuilder.create("https://example.com/c
 
 ## Related content
 
-* <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
-* <xref:signalr/messagepackhubprotocol>
-* <xref:signalr/supported-platforms>
+* [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)
+* [Use MessagePack Hub Protocol in SignalR for ASP.NET Core](messagepackhubprotocol.md)
+* [ASP.NET Core SignalR supported platforms](supported-platforms.md)
 
 :::moniker-end
 

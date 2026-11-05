@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 monikerRange: '>= aspnetcore-8.0'
 ms.topic: concept-article
 ms.date: 03/01/2025
-uid: fundamentals/aot/rdg
 ai-usage: ai-assisted
 ---
 # Turn Map methods into request delegates with the ASP.NET Core Request Delegate Generator
@@ -78,4 +77,4 @@ Minimal APIs are optimized for using <xref:System.Text.Json>, which requires usi
 
 ## Diagnostics for unsupported RDG scenarios
 
-When the app is built, the RDG emits diagnostics for scenarios that aren't supported by Native AOT. The diagnostics are emitted as warnings and don't prevent the app from building. For the list of diagnostics, see [ASP.NET Core Request Delegate Generator diagnostics](xref:fundamentals/aot/request-delegate-generator/rdg-ids).
+When the app is built, the RDG emits diagnostics for scenarios that aren't supported by Native AOT. The diagnostics are emitted as warnings and don't prevent the app from building. For the list of diagnostics, see [ASP.NET Core Request Delegate Generator diagnostics](rdg-ids.md).

@@ -1,8 +1,8 @@
 :::moniker range=">= aspnetcore-8.0"
 
-[WebApplication](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
+[WebApplication](../../minimal-apis/webapplication.md) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
 
-* [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [HostingEnvironment](xref:fundamentals/environments) is `"Development"`.
+* [UseDeveloperExceptionPage](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [HostingEnvironment](../../environments.md) is `"Development"`.
 
 * [UseRouting](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.userouting) is added second, if the user code didn't already call `UseRouting` and endpoints are configured, for example `app.MapGet`.
 

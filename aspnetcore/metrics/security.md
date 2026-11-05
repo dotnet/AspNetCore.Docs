@@ -5,13 +5,12 @@ description: Learn about built-in authentication and authorization metrics for A
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 08/05/2026
 ms.topic: reference
-uid: metrics/security
 ---
 # ASP.NET Core built-in authentication and authorization metrics
 
 This article describes the built-in authentication and authorization metrics for ASP.NET Core produced using the <xref:System.Diagnostics.Metrics?displayProperty=nameWithType> API. These metrics cover authorization attempts and authentication operations. They're available in ASP.NET Core 10.0 or later.
 
-For an overview of all built-in metrics reference pages and how to read this reference, see <xref:metrics/built-in>. For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see <xref:metrics/overview>.
+For an overview of all built-in metrics reference pages and how to read this reference, see [ASP.NET Core built-in metrics](built-in.md). For information on how to collect, report, enrich, and test with ASP.NET Core metrics, see [ASP.NET Core metrics](overview.md).
 
 ## `Microsoft.AspNetCore.Authorization`
 
@@ -100,8 +99,8 @@ Attribute | Type | Description | Examples | Presence
 
 ## Related content
 
-* <xref:metrics/built-in>
-* <xref:metrics/http>
-* <xref:metrics/diagnostics>
-* <xref:metrics/blazor>
-* <xref:metrics/overview>
+* [ASP.NET Core built-in metrics](built-in.md)
+* [ASP.NET Core built-in HTTP metrics](http.md)
+* [ASP.NET Core built-in diagnostics metrics](diagnostics.md)
+* [ASP.NET Core built-in Blazor (Razor components) metrics](blazor.md)
+* [ASP.NET Core metrics](overview.md)

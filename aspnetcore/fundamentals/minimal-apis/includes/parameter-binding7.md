@@ -67,7 +67,7 @@ Attributes can be used to explicitly declare where parameters are bound from.
 
 ### Parameter binding with dependency injection
 
-Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](../../dependency-injection.md) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 [!code-csharp[](~/release-notes/aspnetcore-7/samples/ApiController/Program.cs?name=snippet_min)]
 
@@ -320,7 +320,7 @@ You can also implement validation within your custom binding logic:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/7.0/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/7.0/CustomBindingExample) ([how to download](../../index.md#how-to-download-a-sample))
 
 ### Binding failures
 
