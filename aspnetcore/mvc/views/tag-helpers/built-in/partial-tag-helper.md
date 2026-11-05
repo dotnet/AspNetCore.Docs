@@ -55,7 +55,7 @@ The partial view is bound to the associated page model's `Product` property:
 [!code-csharp[](samples/TagHelpersBuiltIn/Pages/Product.cshtml.cs?highlight=8)]
 
 > [!NOTE]
-> When `for` is used, the Partial Tag Helper sets <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.HtmlFieldPrefix%2A> to include the property expression name (for example, `Product`). Consequently, form Tag Helpers (such as `asp-for="Name"`) within the partial view generate prefixed HTML `name` attributes (such as `name="Product.Name"`). This ensures form field values bind correctly back to the nested complex property on HTTP POST form submission.
+> When `for` is used, the Partial Tag Helper sets <xref:Microsoft.AspNetCore.Mvc.ViewFeatures.TemplateInfo.HtmlFieldPrefix> to include the property expression name (for example, `Product`). Consequently, form Tag Helpers (such as `asp-for="Name"`) within the partial view generate prefixed HTML `name` attributes (such as `name="Product.Name"`). This ensures form field values bind correctly back to the nested complex property on HTTP POST form submission.
 
 ## model
 
