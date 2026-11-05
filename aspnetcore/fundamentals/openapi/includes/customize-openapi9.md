@@ -90,6 +90,7 @@ For example, the following operation transformer adds `500` as a response status
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_operationtransformer1)]
 
+
 ## Use schema transformers
 
 Schemas are the data models that are used in request and response bodies in an OpenAPI document. Schema transformers are useful when a modification:
