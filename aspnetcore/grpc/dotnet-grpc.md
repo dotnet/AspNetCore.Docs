@@ -3,13 +3,12 @@ title: Manage Protobuf references with dotnet-grpc
 description: Learn about adding, updating, removing, and listing Protobuf references with the dotnet-grpc global tool.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 10/17/2019
-uid: grpc/dotnet-grpc
 ---
 # Manage Protobuf references with dotnet-grpc
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-`dotnet-grpc` is a .NET Global Tool for managing [Protobuf (`.proto`)](xref:grpc/basics#proto-file) references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
+`dotnet-grpc` is a .NET Global Tool for managing [Protobuf (`.proto`)](basics.md#proto-file) references within a .NET gRPC project. The tool can be used to add, refresh, remove, and list Protobuf references.
 
 ## Installation
 
@@ -164,6 +163,6 @@ dotnet-grpc list [options]
 
 ## Related content
 
-* <xref:grpc/index>
-* <xref:grpc/basics>
-* <xref:grpc/aspnetcore>
+* [Overview for gRPC on .NET](index.md)
+* [gRPC Services with C#](basics.md)
+* [gRPC services with ASP.NET Core](aspnetcore.md)

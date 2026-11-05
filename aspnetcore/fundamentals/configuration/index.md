@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use the Configuration API to configure app settings in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/09/2026
-uid: fundamentals/configuration/index
 ---
 # Configuration in ASP.NET Core
 
@@ -21,14 +20,14 @@ App configuration in ASP.NET Core is performed using one or more [configuration 
 
 This article provides information on configuration in ASP.NET Core. For information on using configuration in non-ASP.NET Core apps, see [.NET Configuration](/dotnet/core/extensions/configuration).
 
-For additional Blazor configuration guidance, which adds to or supersedes the guidance here, see <xref:blazor/fundamentals/configuration>.
+For additional Blazor configuration guidance, which adds to or supersedes the guidance here, see [ASP.NET Core Blazor configuration](../../blazor/fundamentals/configuration.md).
 
 This article primarily pertains to app configuration. Other types of configuration, such as launch settings files and the `web.config` file, are mentioned here, but their primary documentation is elsewhere:
 
-* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see <xref:fundamentals/environments#development>. Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
-* `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see <xref:host-and-deploy/iis/index> and <xref:host-and-deploy/aspnet-core-module>.
+* Launch settings files (`launch.json`/`launchSettings.json`), which are tooling configuration files for the `Development` environment. For more information, see [ASP.NET Core runtime environments](../environments.md#set-the-environment-with-the-launch-settings-file-launchsettingsjson). Some details on launch settings are covered by this article in the [Launch settings override environment variable settings](#launch-settings-override-environment-variable-settings) section.
+* `web.config`, which is a server configuration file for [Internet Information Services (IIS)](https://www.iis.net/). For more information, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md) and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md).
 
-For more information on migrating app configuration from earlier versions of ASP.NET, see <xref:migration/fx-to-core/examples/configuration>.
+For more information on migrating app configuration from earlier versions of ASP.NET, see [Migrate configuration to ASP.NET Core](../../migration/fx-to-core/examples/configuration.md).
 
 [!INCLUDE[](~/includes/managed-identities-conn-strings.md)]
 
@@ -56,25 +55,25 @@ Technical Contact: @Config["TechnicalContactEmail"]
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. Host configuration key-value pairs are included in the app's configuration. Although you can perform some app configuration with host configuration providers, we only recommend performing configuration that's necessary for the host in host configuration.
 
-App configuration is the highest priority. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see <xref:fundamentals/index#host>.
+App configuration is the highest priority. For more information on how the configuration providers are used when the host is built and how configuration sources affect host configuration, see [ASP.NET Core fundamentals overview](../index.md#host).
 
 ## Default app configuration sources
 
 :::moniker range=">= aspnetcore-6.0"
 
-ASP.NET Core web apps call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults:
+ASP.NET Core web apps call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> class with preconfigured defaults:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-For more information, see <xref:fundamentals/host/generic-host#default-builder-settings>.
+For more information, see [.NET Generic Host in ASP.NET Core](../host/generic-host.md#configure-default-builder-settings).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Apps created from an ASP.NET Core web app project template call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class with preconfigured defaults:
+Apps created from an ASP.NET Core web app project template call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*?displayProperty=nameWithType> to initialize a new instance of the <xref:Microsoft.Extensions.Hosting.HostBuilder> class with preconfigured defaults:
 
 ```csharp
 Host.CreateDefaultBuilder(args)
@@ -86,15 +85,15 @@ Default app configuration is loaded in the following order, from highest to lowe
 
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
 1. Environment variables ***not*** prefixed by `ASPNETCORE_` or `DOTNET_` using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
-1. [User secrets](xref:security/app-secrets) when the app runs in the `Development` environment using the [File Configuration Provider](#file-configuration-provider).
-1. [Environmental app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments), using the [JSON Configuration Provider](#json-configuration-provider). For example, `appsettings.Production.json` is used in production, and `appsettings.Development.json` is used during development.
+1. [User secrets](../../security/app-secrets.md) when the app runs in the `Development` environment using the [File Configuration Provider](#file-configuration-provider).
+1. [Environmental app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](../environments.md), using the [JSON Configuration Provider](#json-configuration-provider). For example, `appsettings.Production.json` is used in production, and `appsettings.Development.json` is used during development.
 1. [General app settings file configuration](#app-settings-file-configuration-appsettingsjson-appsettingsenvironmentjson) via `appsettings.json` using the [JSON Configuration Provider](#json-configuration-provider).
 1. Fallback [host configuration](#default-host-configuration-sources).
 
 :::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
-> We don't recommend calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A> more than once solely for the purpose of obtaining configuration values at runtime. We recommend using a <xref:Microsoft.Extensions.Configuration.ConfigurationManager> (for example: `builder.Configuration`, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration%2A?displayProperty=nameWithType>) or using a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> from the appropriate configuration source.
+> We don't recommend calling <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*> more than once solely for the purpose of obtaining configuration values at runtime. We recommend using a <xref:Microsoft.Extensions.Configuration.ConfigurationManager> (for example: `builder.Configuration`, <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration?displayProperty=nameWithType>) or using a <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> from the appropriate configuration source.
 
 :::moniker-end
 
@@ -112,7 +111,7 @@ Default host configuration sources from highest to lowest priority when applied 
 1. `DOTNET_`-prefixed environment variables using the [Environment Variables Configuration Provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment Variables Configuration Provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 
-Default host configuration sources from highest to lowest priority applied to either the [Generic Host](xref:fundamentals/host/generic-host) or [Web Host](xref:fundamentals/host/web-host):
+Default host configuration sources from highest to lowest priority applied to either the [Generic Host](../host/generic-host.md) or [Web Host](../host/web-host.md):
 
 1. `ASPNETCORE_`-prefixed environment variables using the [Environment Variables Configuration Provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider).
 1.  Command-line arguments using the [Command-line Configuration Provider](#command-line).
@@ -120,22 +119,22 @@ Default host configuration sources from highest to lowest priority applied to ei
 
 For more information on host configuration, see the following resources:
 
-* [Generic Host](xref:fundamentals/host/generic-host): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](xref:migration/50-to-60#new-hosting-model).
-* [Web Host](xref:fundamentals/host/web-host): Required for ASP.NET Core apps that target releases prior to .NET 6 and only maintained by the framework for backward compatibility in .NET 6 or later.
+* [Generic Host](../host/generic-host.md): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](../../migration/50-to-60.md#new-hosting-model).
+* [Web Host](../host/web-host.md): Required for ASP.NET Core apps that target releases prior to .NET 6 and only maintained by the framework for backward compatibility in .NET 6 or later.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-Default host configuration sources from highest to lowest priority for the [Web Host](xref:fundamentals/host/web-host):
+Default host configuration sources from highest to lowest priority for the [Web Host](../host/web-host.md):
 
 * Host configuration
   * Environment variables prefixed with `DOTNET_` (for example, `DOTNET_ENVIRONMENT`) using the [Environment Variables Configuration Provider](xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider). The prefix (`DOTNET_`) is stripped when the configuration key-value pairs are loaded.
   * Command-line arguments using the [Command-line Configuration Provider](#command-line).
-* Web Host default configuration (<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A>)
+* Web Host default configuration (<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*>)
   * Kestrel is used as the web server and configured using the app's configuration providers.
-  * Add [host-filtering middleware](xref:fundamentals/servers/kestrel/host-filtering).
-  * Add [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
+  * Add [host-filtering middleware](../servers/kestrel/host-filtering.md).
+  * Add [forwarded headers middleware](../../host-and-deploy/proxy-load-balancer.md#forwarded-headers) if the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`.
   * Enable IIS integration.
 
 :::moniker-end
@@ -144,39 +143,39 @@ Default host configuration sources from highest to lowest priority for the [Web 
 
 The following variables are set early in host builder initialization and can't be influenced by app configuration:
 
-* [Application name](xref:fundamentals/minimal-apis#change-the-content-root-application-name-and-environment).
-* [Environment name](xref:fundamentals/environments).
-* [Content root](xref:fundamentals/index#content-root).
-* [Web root](xref:fundamentals/index#web-root).
-* Whether to scan for [hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration) and which assemblies to scan for.
-* Variables read by app and library code from <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration%2A?displayProperty=nameWithType> in <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration%2A?displayProperty=nameWithType> callbacks.
+* [Application name](../minimal-apis.md#change-the-content-root-application-name-and-environment).
+* [Environment name](../environments.md).
+* [Content root](../index.md#content-root).
+* [Web root](../index.md#web-root).
+* Whether to scan for [hosting startup assemblies](../host/platform-specific-configuration.md) and which assemblies to scan for.
+* Variables read by app and library code from <xref:Microsoft.Extensions.Hosting.HostBuilderContext.Configuration?displayProperty=nameWithType> in <xref:Microsoft.Extensions.Hosting.IHostBuilder.ConfigureAppConfiguration*?displayProperty=nameWithType> callbacks.
 
 Other host settings are read from app configuration instead of host configuration.
 
 `URLS` is one of the many common host settings that isn't bootstrapped by host configuration. `URLS` is read later from app configuration. Host configuration is a fallback for app configuration, so host configuration can be used to set `URLS`, but the value is overridden by any configuration source that sets `URLS` in app configuration, such as app settings files (`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the environment name, or `appsettings.json`).
 
-For more information, see [Change the content root, app name, and environment](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](xref:migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
+For more information, see [Change the content root, app name, and environment](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
 
 ## Security and user secrets
 
 Configuration data guidelines:
 
-* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](xref:security/app-secrets) tool can be used to store secrets in development.
+* Never store passwords or other sensitive data in configuration provider code or in plain text configuration files. The [Secret Manager](../../security/app-secrets.md) tool can be used to store secrets in development.
 * Don't use production secrets in development or test environments.
 * Specify secrets outside of the project so that they can't be accidentally committed to a source code repository.
-* Production apps should use the most secure authentication flow available. For more information, see [Secure authentication flows](xref:security/index#secure-authentication-flows).
+* Production apps should use the most secure authentication flow available. For more information, see [Secure authentication flows](../../security/index.md#secure-authentication-flows).
 
 The User Secrets file configuration source of the [default configuration sources](#default-app-configuration-sources) is registered after the JSON configuration sources for app settings files. Therefore, user secrets keys take precedence over keys in `appsettings.json` and `appsettings.{ENVIRONMENT}.json`.
 
 For more information on storing passwords or other sensitive data:
 
-* <xref:fundamentals/environments>
-* <xref:security/app-secrets>: Includes advice on using environment variables to store sensitive data. The Secret Manager tool uses the [File Configuration Provider](#file-configuration-provider) to store user secrets in a JSON file on the local system.
-* [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see <xref:security/key-vault-configuration>.
+* [ASP.NET Core runtime environments](../environments.md)
+* [Safe storage of app secrets in development](../../security/app-secrets.md): Includes advice on using environment variables to store sensitive data. The Secret Manager tool uses the [File Configuration Provider](#file-configuration-provider) to store user secrets in a JSON file on the local system.
+* [Azure Key Vault](https://azure.microsoft.com/services/key-vault/) safely stores app secrets for ASP.NET Core apps. For more information, see [Azure Key Vault configuration provider](../../security/key-vault-configuration.md).
 
 ## Access configuration with Dependency Injection (DI)
 
-Configuration can be injected into services using [Dependency Injection (DI)](xref:fundamentals/dependency-injection) by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service. In the following example, the configuration value stored for the configuration key represented by the `{KEY}` placeholder is assigned to `value`. If the key isn't found, `null` is assigned to `value`:
+Configuration can be injected into services using [Dependency Injection (DI)](../dependency-injection.md) by resolving the <xref:Microsoft.Extensions.Configuration.IConfiguration> service. In the following example, the configuration value stored for the configuration key represented by the `{KEY}` placeholder is assigned to `value`. If the key isn't found, `null` is assigned to `value`:
 
 ```csharp
 public class CustomService(IConfiguration config)
@@ -190,14 +189,14 @@ public class CustomService(IConfiguration config)
 
 ## Access configuration in the `Program` file
 
-The following code accesses configuration in the `Program` file using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration%2A?displayProperty=nameWithType> (`builder.Configuration`):
+The following code accesses configuration in the `Program` file using <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Configuration?displayProperty=nameWithType> (`builder.Configuration`):
 
 ```csharp
 var defaultConnectionString = 
    builder.Configuration.GetValue<string>("ConnectionStrings:DefaultConnection");
 ```
 
-After the app is built (after the line `var app = builder.Build();`), use <xref:Microsoft.AspNetCore.Builder.WebApplication.Configuration%2A?displayProperty=nameWithType> (`app.Configuration`):
+After the app is built (after the line `var app = builder.Build();`), use <xref:Microsoft.AspNetCore.Builder.WebApplication.Configuration?displayProperty=nameWithType> (`app.Configuration`):
 
 ```csharp
 var defaultLogLevel = app.Configuration.GetValue<string>("Logging:LogLevel:Default");
@@ -278,7 +277,7 @@ Configuration keys:
 * Hierarchical keys
   * Within the Configuration API, a colon separator (`:`) works on all platforms.
   * In environment variables, a colon separator doesn't work on all platforms. A double underscore (`__`) is supported by all platforms and is automatically converted into a colon (`:`) when the configuration is read by the app.
-  * In Azure Key Vault, hierarchical keys use double dashes (`--`) as a separator. The [Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) automatically replaces the double dashes (`--`) with a colon (`:`) when the secrets are loaded into the app's configuration.
+  * In Azure Key Vault, hierarchical keys use double dashes (`--`) as a separator. The [Azure Key Vault Configuration Provider](../../security/key-vault-configuration.md) automatically replaces the double dashes (`--`) with a colon (`:`) when the secrets are loaded into the app's configuration.
 * The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder> supports binding arrays to objects using array indices in configuration keys. Array binding is described in the [Bind an array](#bind-an-array) section.
 
 Configuration values are strings. Null values can't be stored in configuration or bound to objects.
@@ -288,7 +287,7 @@ Configuration values are strings. Null values can't be stored in configuration o
 The Configuration API reads hierarchical configuration data by flattening the hierarchical data with the use of a delimiter in the configuration keys, which are usually colons (`:`). Double underscores (`__`) are usually used with environment variable configuration for cross-platform support.
 
 > [!NOTE]
-> In complex app configuration scenarios, it's best to group and read related hierarchical configuration data using the [options pattern](xref:fundamentals/configuration/options).
+> In complex app configuration scenarios, it's best to group and read related hierarchical configuration data using the [options pattern](options.md).
 
 Consider the following hierarchical configuration data:
 
@@ -312,9 +311,9 @@ Key (colon delimiter) | Key (double-underscore delimiter)
 `AllowedHosts` | `AllowedHosts`
 
 > [!NOTE]
-> In complex app configuration scenarios, we recommend grouping and reading related hierarchical configuration data using the [Options pattern](xref:fundamentals/configuration/options).
+> In complex app configuration scenarios, we recommend grouping and reading related hierarchical configuration data using the [Options pattern](options.md).
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection%2A> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A> methods are available to isolate sections and children of a section in the configuration data. These methods are described where [`GetSection`, `GetChildren`, and `Exists` are covered](#work-with-sections-get-a-sections-children-and-determine-if-a-section-exists).
+<xref:Microsoft.Extensions.Configuration.ConfigurationSection.GetSection*> and <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*> methods are available to isolate sections and children of a section in the configuration data. These methods are described where [`GetSection`, `GetChildren`, and `Exists` are covered](#work-with-sections-get-a-sections-children-and-determine-if-a-section-exists).
 
 When the element structure includes an array, the array index should be treated as an additional element name in the path. Consider the following hierarchical configuration data as an array.
 
@@ -397,7 +396,7 @@ The following table shows the configuration providers available to ASP.NET Core 
 
 Provider | Provides configuration from&hellip;
 --- | ---
-[Azure Key Vault Configuration Provider](xref:security/key-vault-configuration) | Azure Key Vault
+[Azure Key Vault Configuration Provider](../../security/key-vault-configuration.md) | Azure Key Vault
 [Azure App Configuration Provider](/azure/azure-app-configuration/quickstart-aspnet-core-app) | Azure App Configuration
 [Command-line Configuration Provider](#command-line) | Command-line parameters
 [Custom configuration provider](#custom-configuration-provider) | Custom source
@@ -405,7 +404,7 @@ Provider | Provides configuration from&hellip;
 [File Configuration Provider](#file-configuration-provider) | INI, JSON, and XML files
 [Key-Per-File Configuration Provider](#key-per-file-configuration-provider) | Directory files
 [Memory Configuration Provider](#memory-configuration-provider) | In-memory collections
-[User secrets](xref:security/app-secrets) | File in the user profile directory
+[User secrets](../../security/app-secrets.md) | File in the user profile directory
 
 Configuration sources are read in the order that their configuration providers are specified. Order configuration providers in code to suit the priorities for the underlying configuration sources that the app requires.
 
@@ -413,7 +412,7 @@ A typical sequence of configuration providers is:
 
 1. General app settings via `appsettings.json`.
 1. Environmental app settings via `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's environment (examples: `Development`, `Production`).
-1. [User secrets](xref:security/app-secrets).
+1. [User secrets](../../security/app-secrets.md).
 1. Environment variables using the [Environment Variables Configuration Provider](#environment-variables-configuration-provider).
 1. Command-line arguments using the [Command-line Configuration Provider](#command-line).
 
@@ -421,7 +420,7 @@ A common practice is to add the Command-line Configuration Provider last in a se
 
 The preceding sequence of providers is used in the [default configuration](#default-app-configuration-sources).
 
-To inspect the app's configuration providers, [inject](xref:fundamentals/dependency-injection) <xref:Microsoft.Extensions.Configuration.IConfiguration>, cast it to <xref:Microsoft.Extensions.Configuration.IConfigurationRoot>, and read the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Providers%2A> property.
+To inspect the app's configuration providers, [inject](../dependency-injection.md) <xref:Microsoft.Extensions.Configuration.IConfiguration>, cast it to <xref:Microsoft.Extensions.Configuration.IConfigurationRoot>, and read the <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Providers> property.
 
 In the following `ConfigurationProviders` Razor component displays the enabled configuration providers in the order that they're added to the app.
 
@@ -498,7 +497,7 @@ Consider the following `appsettings.json` file:
 }
 ```
 
-[Inject](xref:fundamentals/dependency-injection) an instance of <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration values.
+[Inject](../dependency-injection.md) an instance of <xref:Microsoft.Extensions.Configuration.IConfiguration> to read configuration values.
 
 The following `AppSettingsConfiguration` Razor component reads the default database connection string and default logging level configuration. <xref:Microsoft.Extensions.Configuration.IConfiguration> is injected at the top of the component and used to read configuration values. A colon (`:`) separator is used in string-typed configuration keys to locate the appropriate JSON properties. For example, the JSON structure for the default connection string (`DefaultConnection`) object is nested under the connection strings (`ConnectionStrings`) object, so the string notation to access the default connection string uses a colon to separate `DefaultConnection` and `ConnectionStrings` in the order that the objects appear in the app settings file: `ConnectionStrings:DefaultConnection`.
 
@@ -540,7 +539,7 @@ public class AppSettingsPageModel(IConfiguration config) : PageModel
 The default <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> instances load configuration in the following order:
 
 1. `appsettings.json`
-1. `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](xref:fundamentals/environments) (examples: `appsettings.Production.json`, `appsettings.Development.json`). The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName%2A?displayProperty=nameWithType>.
+1. `appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [environment](../environments.md) (examples: `appsettings.Production.json`, `appsettings.Development.json`). The environment version of the file is loaded based on the <xref:Microsoft.Extensions.Hosting.IHostingEnvironment.EnvironmentName?displayProperty=nameWithType>.
 
 `appsettings.{ENVIRONMENT}.json` values override keys in `appsettings.json`.
 
@@ -569,7 +568,7 @@ For other IDEs, check the IDE's documentation and product support channels to de
 
 The [default Environment Variables Configuration Provider](#default-app-configuration-sources) (<xref:Microsoft.Extensions.Configuration.EnvironmentVariables.EnvironmentVariablesConfigurationProvider>) loads configuration from environment variables that aren't prefixed with `ASPNETCORE_` or `DOTNET_`. For more information on `ASPNETCORE_` and `DOTNET_` environment variables, see the [Default host configuration sources](#default-host-configuration-sources) section and [`DOTNET_` environment variables (.NET Core documentation)](/dotnet/core/tools/dotnet-environment-variables).
 
-Using the default Environment Variables Configuration Provider, the app loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and [user secrets](xref:security/app-secrets). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and user secrets.
+Using the default Environment Variables Configuration Provider, the app loads configuration from environment variable key-value pairs after reading `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and [user secrets](../../security/app-secrets.md). Therefore, key values read from the environment override values read from `appsettings.json`, `appsettings.{ENVIRONMENT}.json`, and user secrets.
 
 [!INCLUDE[](~/includes/environmentVarableColon.md)]
 
@@ -583,7 +582,7 @@ For guidance on setting environment variables in a command shell on Windows or i
 
 ::: moniker range=">= aspnetcore-6.0"
 
-You can add a configuration provider for custom-prefixed environment variables. In the `Program` file, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> with a string to specify a prefix after <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> is called. The provider is added after the [default configuration providers](#default-app-configuration-sources), thus the added provider has a higher priority, including over environment variables of the same name without the prefix.
+You can add a configuration provider for custom-prefixed environment variables. In the `Program` file, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix after <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> is called. The provider is added after the [default configuration providers](#default-app-configuration-sources), thus the added provider has a higher priority, including over environment variables of the same name without the prefix.
 
 In the following example, environment variables are added with the `CustomPrefix_` prefix:
 
@@ -595,7 +594,7 @@ builder.Configuration.AddEnvironmentVariables(prefix: "CustomPrefix_");
 
 ::: moniker range="< aspnetcore-6.0"
 
-You can add a configuration provider for custom-prefixed environment variables. In the `Program` file, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A> with a string to specify a prefix on the <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> of <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration%2A>. The provider is added after the [default configuration providers](#default-app-configuration-sources), thus the added provider has a higher priority, including over environment variables of the same name without the prefix.
+You can add a configuration provider for custom-prefixed environment variables. In the `Program` file, call <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*> with a string to specify a prefix on the <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> of <xref:Microsoft.Extensions.Hosting.HostBuilder.ConfigureAppConfiguration*>. The provider is added after the [default configuration providers](#default-app-configuration-sources), thus the added provider has a higher priority, including over environment variables of the same name without the prefix.
 
 In the following example, environment variables are added with the `CustomPrefix_` prefix:
 
@@ -644,7 +643,7 @@ For [Azure App Service](https://azure.microsoft.com/services/app-service/) app s
 
 ### Connection string prefixes
 
-The Configuration API has special processing rules for connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the following table are loaded into the app with the [default configuration](#default-app-configuration-sources) or when no prefix is supplied to <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables%2A>.
+The Configuration API has special processing rules for connection string environment variables. These connection strings are involved in configuring Azure connection strings for the app environment. Environment variables with the prefixes shown in the following table are loaded into the app with the [default configuration](#default-app-configuration-sources) or when no prefix is supplied to <xref:Microsoft.Extensions.Configuration.EnvironmentVariablesExtensions.AddEnvironmentVariables*>.
 
 :::moniker range="< aspnetcore-10.0"
 
@@ -711,7 +710,7 @@ Environment variable key | Converted configuration key | Provider configuration 
 Using the [default configuration sources](#default-app-configuration-sources), the <xref:Microsoft.Extensions.Configuration.CommandLine.CommandLineConfigurationProvider> loads configuration from command-line argument key-value pairs after the following configuration sources:
 
 * `appsettings.json` and `appsettings.{ENVIRONMENT}.json` files.
-* [App secrets](xref:security/app-secrets) in the `Development` environment.
+* [App secrets](../../security/app-secrets.md) in the `Development` environment.
 * Environment variables.
 
 By default, configuration values set on the command-line override configuration values set by all of the other configuration providers.
@@ -744,7 +743,7 @@ Argument conventions:
 
 ### Switch mappings
 
-Switch mappings allow *key* name replacement logic via a dictionary of switch replacements passed to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> method.
+Switch mappings allow *key* name replacement logic via a dictionary of switch replacements passed to the <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method.
 
 When the switch mappings dictionary is used, the dictionary is checked for a key that matches the key provided by a command-line argument. If the command-line key is found in the dictionary, the dictionary value is passed back to set the key-value pair into the app's configuration. A switch mapping is required for any command-line key prefixed with a single dash (`-`).
 
@@ -753,7 +752,7 @@ Switch mappings dictionary key rules:
 * Switches must start with a single dash (`-`) or double dash (`--`).
 * The switch mappings dictionary must not contain duplicate keys.
 
-In the following example, a switch mapping dictionary (`switchMappings`) is passed to <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> in the app's `Program` file:
+In the following example, a switch mapping dictionary (`switchMappings`) is passed to <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> in the app's `Program` file:
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -795,13 +794,13 @@ The following [`dotnet run`](/dotnet/core/tools/dotnet-run) commands demonstrate
 
 ::: moniker range=">= aspnetcore-6.0"
 
-For apps that use switch mappings, the call to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> shouldn't pass arguments. The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A>. The solution isn't to pass the arguments to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A> but instead to allow the <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> method to process both the arguments and the switch-mapping dictionary.
+For apps that use switch mappings, the call to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> shouldn't pass arguments. The <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*>. The solution isn't to pass the arguments to <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> but instead to allow the <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method to process both the arguments and the switch-mapping dictionary.
 
 ::: moniker-end
 
 ::: moniker range="< aspnetcore-6.0"
 
-For apps that use switch mappings, the call to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> shouldn't pass arguments. The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A>. The solution isn't to pass the arguments to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> but instead to allow the <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine%2A> method to process both the arguments and the switch-mapping dictionary.
+For apps that use switch mappings, the call to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> shouldn't pass arguments. The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> call doesn't include mapped switches, and there's no way to pass the switch-mapping dictionary to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*>. The solution isn't to pass the arguments to <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> but instead to allow the <xref:Microsoft.Extensions.Configuration.IConfigurationBuilder> method's <xref:Microsoft.Extensions.Configuration.CommandLineConfigurationExtensions.AddCommandLine*> method to process both the arguments and the switch-mapping dictionary.
 
 ::: moniker-end
 
@@ -846,7 +845,7 @@ Default=Information
 Microsoft=Warning
 ```
 
-Load the configuration by calling <xref:Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile%2A>. The following example creates a configuration source for each of the preceding files. The non-environmental file reloads configuration if the file is changed (`reloadOnChange` parameter, default: `false`). The environmental version of the file specifies that the file is optional (`optional` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
+Load the configuration by calling <xref:Microsoft.Extensions.Configuration.IniConfigurationExtensions.AddIniFile*>. The following example creates a configuration source for each of the preceding files. The non-environmental file reloads configuration if the file is changed (`reloadOnChange` parameter, default: `false`). The environmental version of the file specifies that the file is optional (`optional` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -880,7 +879,7 @@ Host.CreateDefaultBuilder(args)
 
 The <xref:Microsoft.Extensions.Configuration.Json.JsonConfigurationProvider> loads configuration from JSON file key-value pairs. The following example demonstrates how to use the provider. Overloads can specify whether the file is optional and if the configuration is reloaded on file changes.
 
-Call <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile%2A> with the file path (or file name if the file is at the root of the app). The following makes the file optional (`optional` parameter, default: `false`) and specifies that the configuration is reloaded if the file is changed (`reloadOnChange` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
+Call <xref:Microsoft.Extensions.Configuration.JsonConfigurationExtensions.AddJsonFile*> with the file path (or file name if the file is at the root of the app). The following makes the file optional (`optional` parameter, default: `false`) and specifies that the configuration is reloaded if the file is changed (`reloadOnChange` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -944,7 +943,7 @@ The <xref:Microsoft.Extensions.Configuration.Xml.XmlConfigurationProvider> loads
 </configuration>
 ```
 
-Load the configuration by calling <xref:Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile%2A>. The following example creates a configuration source for each of the preceding files. The non-environmental file reloads configuration if the file is changed (`reloadOnChange` parameter, default: `false`). The environmental version of the file specifies that the file is optional (`optional` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
+Load the configuration by calling <xref:Microsoft.Extensions.Configuration.XmlConfigurationExtensions.AddXmlFile*>. The following example creates a configuration source for each of the preceding files. The non-environmental file reloads configuration if the file is changed (`reloadOnChange` parameter, default: `false`). The environmental version of the file specifies that the file is optional (`optional` parameter, default: `false`). If you want to specify reloading the file on change (`reloadOnChange: true`), then you must also specify whether or not the file is optional (`optional`).
 
 ::: moniker range=">= aspnetcore-6.0"
 
@@ -1018,7 +1017,7 @@ The previous configuration loads the following keys with `value`:
 
 The <xref:Microsoft.Extensions.Configuration.KeyPerFile.KeyPerFileConfigurationProvider> uses a directory's files as configuration key-value pairs. The key is the file name. The value contains the file's contents. The Key-Per-File Configuration Provider is used in Docker hosting scenarios.
 
-To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile%2A> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
+To activate key-per-file configuration, call the <xref:Microsoft.Extensions.Configuration.KeyPerFileConfigurationBuilderExtensions.AddKeyPerFile*> extension method on an instance of <xref:Microsoft.Extensions.Configuration.ConfigurationBuilder>. The `directoryPath` to the files must be an absolute path.
 
 Overloads permit specifying:
 
@@ -1093,11 +1092,11 @@ Host.CreateDefaultBuilder(args)
 
 ## Kestrel endpoint configuration
 
-Kestrel-specific endpoint configuration overrides all [cross-server](xref:fundamentals/servers/index) endpoint configurations. Cross-server endpoint configurations include:
+Kestrel-specific endpoint configuration overrides all [cross-server](../servers/index.md) endpoint configurations. Cross-server endpoint configurations include:
 
-* [`UseUrls`](xref:fundamentals/host/web-host#server-urls).
-* `--urls` on the [command line](xref:fundamentals/configuration/index#command-line).
-* The `ASPNETCORE_URLS` [environment variable](xref:fundamentals/configuration/index#environment-variables).
+* [`UseUrls`](../host/web-host.md#server-urls).
+* `--urls` on the [command line](index.md#command-line).
+* The `ASPNETCORE_URLS` [environment variable](index.md#environment-variables-configuration-provider).
 
 Consider the following Kestrel configuration section in an `appsettings.json` file:
 
@@ -1128,7 +1127,7 @@ In the preceding environment variable, "`Https`" is the name of the Kestrel-spec
 
 ## Extract a single value from configuration with type conversion (`GetValue`)
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue%2A?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type:
+<xref:Microsoft.Extensions.Configuration.ConfigurationBinder.GetValue*?displayProperty=nameWithType> extracts a single value from configuration with a specified key and converts it to the specified type:
 
 ```csharp
 var number = Config.GetValue<int>("NumberKey", 99);
@@ -1170,7 +1169,7 @@ A configuration provider is added for `subsection.json` by calling [`AddJsonFile
 
 ### `GetSection`
 
-<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType> returns a configuration subsection with the specified subsection key.
+<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*?displayProperty=nameWithType> returns a configuration subsection with the specified subsection key.
 
 The following code returns values for `section1`, where `Config` is an injected <xref:Microsoft.Extensions.Configuration.IConfiguration>:
 
@@ -1188,16 +1187,16 @@ var value1 = subsection["key0"];
 var value2 = subsection["key1"];
 ```
 
-<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> never returns `null`. If a matching section isn't found, an empty <xref:Microsoft.Extensions.Configuration.IConfigurationSection> is returned.
+<xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> never returns `null`. If a matching section isn't found, an empty <xref:Microsoft.Extensions.Configuration.IConfigurationSection> is returned.
 
-When <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A> returns a matching section, <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Value> isn't populated. A <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Key> and <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Path> are returned when the section exists.
+When <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*> returns a matching section, <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Value> isn't populated. A <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Key> and <xref:Microsoft.Extensions.Configuration.IConfigurationSection.Path> are returned when the section exists.
 
 ### `GetChildren` and `Exists`
 
 The following code calls:
 
-* <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists%2A?displayProperty=nameWithType> to verify that `section2` exists.
-* <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren%2A?displayProperty=nameWithType> and returns values for the subsections of `section2`.
+* <xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.Exists*?displayProperty=nameWithType> to verify that `section2` exists.
+* <xref:Microsoft.Extensions.Configuration.IConfiguration.GetChildren*?displayProperty=nameWithType> and returns values for the subsections of `section2`.
 
 ```csharp
 var section = Config.GetSection("section2");
@@ -1236,7 +1235,7 @@ spaces at the ends of the lines when editing the following content.
 
 ## Bind an array
 
-The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
+The <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> supports binding arrays to objects using array indices in configuration keys. Any array format that exposes a numeric key segment is capable of array binding to a [POCO](https://wikipedia.org/wiki/Plain_Old_CLR_Object) class array.
 
 `array.json`:
 
@@ -1447,7 +1446,7 @@ public class EFConfigurationSource : IConfigurationSource
 }
 ```
 
-Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer, <xref:System.StringComparer.OrdinalIgnoreCase%2A?displayProperty=nameWithType>.
+Create the custom configuration provider by inheriting from <xref:Microsoft.Extensions.Configuration.ConfigurationProvider>. The configuration provider initializes the database when it's empty. Since configuration keys are case-insensitive, the dictionary used to initialize the database is created with the case-insensitive comparer, <xref:System.StringComparer.OrdinalIgnoreCase?displayProperty=nameWithType>.
 
 `EFConfigurationProvider/EFConfigurationProvider.cs`:
 
@@ -1629,13 +1628,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
         });
 ```
 
-For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](xref:fundamentals/startup#configure-services-without-a-startup-class).
+For an example of accessing configuration using startup convenience methods, see [App startup: Convenience methods](../startup.md#configure-services-without-a-startup-class).
 
 ::: moniker-end
 
 ## Add configuration from an external assembly
 
-An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows adding enhancements to an app at startup from an external assembly outside of the app's `Startup` class. For more information, see [Use hosting startup assemblies in ASP.NET Core](../host/platform-specific-configuration.md).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1647,7 +1646,7 @@ The [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8/run
 
 ## Related content
 
-* <xref:blazor/fundamentals/configuration>
+* [ASP.NET Core Blazor configuration](../../blazor/fundamentals/configuration.md)
 * [Configuration source code](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Configuration)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:fundamentals/configuration/options>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/configuration) ([how to download](../index.md#how-to-download-a-sample))
+* [Options pattern in ASP.NET Core](options.md)

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: "HTTP/3 support in Kestrel: Discover how to configure ASP.NET Core for HTTP/3, improve performance, and optimize your web server setup."
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 04/14/2026
-uid: fundamentals/servers/kestrel/http3
 ---
 
 # Use HTTP/3 with the ASP.NET Core Kestrel web server
@@ -66,11 +65,11 @@ The preceding code configures port 5001 to:
 
 Because not all routers, firewalls, and proxies properly support HTTP/3, configure HTTP/3 together with HTTP/1.1 and HTTP/2. Specify [`HttpProtocols.Http1AndHttp2AndHttp3`](xref:Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http1AndHttp2AndHttp3) as an endpoint's supported protocols.
 
-For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+For more information, see [Configure endpoints for Kestrel web server](endpoints.md).
 
 ## Configure QuicTransportOptions
 
-Configure QUIC transport options by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic%2A> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
+Configure QUIC transport options by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderQuicExtensions.UseQuic*> extension method on <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
 
 :::code language="csharp" source="samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_UseQuicWithOptions" highlight="3-8":::
 

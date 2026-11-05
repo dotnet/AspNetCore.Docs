@@ -1,6 +1,6 @@
 ### Logging
 
-To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of <xref:blazor/fundamentals/logging> with the article version selector set to ASP.NET Core in .NET 7 or later.
+To enable debug or trace logging for Blazor WebAssembly authentication, see the *Client-side authentication logging* section of [ASP.NET Core Blazor logging](../../fundamentals/logging.md) with the article version selector set to ASP.NET Core in .NET 7 or later.
 
 ### Common errors
 
@@ -97,7 +97,7 @@ A functioning app may fail immediately after upgrading either the .NET SDK on th
 
 ### Run the `Server` app
 
-When testing and troubleshooting a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
+When testing and troubleshooting a hosted Blazor WebAssembly [solution](../../tooling.md#visual-studio-solution-file-sln), make sure that you're running the app from the **`Server`** project.
 
 :::moniker-end
 

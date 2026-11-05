@@ -3,7 +3,6 @@ title: Troubleshoot ASP.NET Core Blazor Hybrid
 description: Learn how to troubleshoot issues in ASP.NET Core Blazor Hybrid with BlazorWebView logging.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor Hybrid
 
@@ -41,13 +40,13 @@ services.AddLogging(logging =>
 
 After configuring components to write log information, configure where the loggers should write log information.
 
-The **Debug** logging providers write the output [using `Debug` statements](xref:fundamentals/logging/index#debug).
+The **Debug** logging providers write the output [using `Debug` statements](../../fundamentals/logging/index.md#debug).
 
 To configure the **Debug** logging provider, add a reference to the [`Microsoft.Extensions.Logging.Debug`](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Debug) NuGet package.
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging%2A> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug%2A> extension method:
+Register the provider inside the call to <xref:Microsoft.Extensions.DependencyInjection.LoggingServiceCollectionExtensions.AddLogging*> added in the previous step by calling the <xref:Microsoft.Extensions.Logging.DebugLoggerFactoryExtensions.AddDebug*> extension method:
 
 ```csharp
 services.AddLogging(logging =>
@@ -64,4 +63,4 @@ When the app is run from Visual Studio with debugging enabled, the debug output 
 ## Related content
 
 * [Logging in C# and .NET](/dotnet/core/extensions/logging)
-* <xref:fundamentals/logging/index#debug>
+* [Logging in .NET and ASP.NET Core](../../fundamentals/logging/index.md#debug)

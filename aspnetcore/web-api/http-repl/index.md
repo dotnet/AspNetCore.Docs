@@ -3,7 +3,6 @@ title: Test web APIs with the HttpRepl
 description: Learn how to use the HttpRepl .NET Global Tool to browse and test an ASP.NET Core web API.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/17/2023
-uid: web-api/http-repl
 ---
 # Test web APIs with the HttpRepl
 
@@ -23,7 +22,7 @@ The following [HTTP verbs](https://github.com/microsoft/api-guidelines/blob/vNex
 * [POST](#test-http-post-requests)
 * [PUT](#test-http-put-requests)
 
-To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/http-repl/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+To follow along, [view or download the sample ASP.NET Core web API](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/http-repl/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Prerequisites
 

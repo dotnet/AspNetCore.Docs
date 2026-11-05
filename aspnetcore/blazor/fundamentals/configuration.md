@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor configuration
 description: Learn about Blazor app configuration, including app settings, authentication, and logging configuration.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/fundamentals/configuration
 ---
 # ASP.NET Core Blazor configuration
 
@@ -18,17 +17,17 @@ This guidance applies to client-side project configuration in a Blazor Web App o
 Default behavior in Blazor Web Apps:
 
 * For server-side configuration:
-  * See <xref:fundamentals/configuration/index> for guidance.
+  * See [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md) for guidance.
   * Only configuration in the project's root app settings files is loaded.
   * The remainder of this article only applies to client-side configuration in the `.Client` project. 
 * For client-side configuration (`.Client` project), configuration is loaded from the following app settings files:
   * `wwwroot/appsettings.json`.
-  * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+  * `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 In standalone Blazor WebAssembly apps, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
-* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 :::moniker-end
 
@@ -36,26 +35,26 @@ In standalone Blazor WebAssembly apps, configuration is loaded from the followin
 
 This guidance applies to the **`Client`** project of a hosted Blazor WebAssembly solution or a Blazor WebAssembly app.
 
-For server-side ASP.NET Core app configuration in the **`Server`** project of a hosted Blazor WebAssembly solution, see <xref:fundamentals/configuration/index>.
+For server-side ASP.NET Core app configuration in the **`Server`** project of a hosted Blazor WebAssembly solution, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 On the client, configuration is loaded from the following app settings files:
 
 * `wwwroot/appsettings.json`.
-* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments).
+* `wwwroot/appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md).
 
 :::moniker-end
 
 > [!NOTE]
 > Logging configuration placed into an app settings file in `wwwroot` isn't loaded by default. For more information, see the [Logging configuration](#logging-configuration) section later in this article.
 >
-> In some scenarios, such as with Azure services, it's important to use an environment file name segment that exactly matches the environment name. For example, use the file name `appsettings.Staging.json` with a capital ":::no-loc text="S":::" for the `Staging` environment. For recommended conventions, see the opening remarks of <xref:blazor/fundamentals/environments>.
+> In some scenarios, such as with Azure services, it's important to use an environment file name segment that exactly matches the environment name. For example, use the file name `appsettings.Staging.json` with a capital ":::no-loc text="S":::" for the `Staging` environment. For recommended conventions, see the opening remarks of [ASP.NET Core Blazor environments](environments.md).
 
 Other configuration providers registered by the app can also provide configuration, but not all providers or provider features are appropriate:
 
-* [Azure Key Vault configuration provider](xref:security/key-vault-configuration): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
+* [Azure Key Vault configuration provider](../../security/key-vault-configuration.md): The provider isn't supported for managed identity and application ID (client ID) with client secret scenarios. Application ID with a client secret isn't recommended for any ASP.NET Core app, especially client-side apps because the client secret can't be secured client-side to access the Azure Key Vault service.
 * [Azure App configuration provider](/azure/azure-app-configuration/quickstart-aspnet-core-app): The provider isn't appropriate for a client-side app because the app doesn't run on a server in Azure.
 
-For more information on configuration providers, see <xref:fundamentals/configuration/index>.
+For more information on configuration providers, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 > [!WARNING]
 > Configuration and settings files in the web root (`wwwroot` folder) are visible to users on the client, and users can tamper with the data. **Don't store app secrets, credentials, or any other sensitive data in any web root file.**
@@ -149,7 +148,7 @@ using var stream = await response.Content.ReadAsStreamAsync();
 builder.Configuration.AddJsonStream(stream);
 ```
 
-The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress%2A?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
+The preceding example sets the base address with `builder.HostEnvironment.BaseAddress` (<xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment.BaseAddress?displayProperty=nameWithType>), which gets the base address for the app and is typically derived from the `<base>` tag's `href` value in the host page.
 
 ## Memory Configuration Source
 
@@ -219,7 +218,7 @@ Inject an <xref:Microsoft.Extensions.Configuration.IConfiguration> instance into
 
 :::moniker-end
 
-Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection%2A?displayProperty=nameWithType>. The following example obtains the `wheels` section for the configuration in the preceding example:
+Obtain a section of the configuration in C# code with <xref:Microsoft.Extensions.Configuration.IConfiguration.GetSection*?displayProperty=nameWithType>. The following example obtains the `wheels` section for the configuration in the preceding example:
 
 ```razor
 @code {
@@ -247,7 +246,7 @@ Provide ***public*** authentication configuration in an app settings file.
 }
 ```
 
-Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind%2A?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](xref:blazor/security/webassembly/standalone-with-authentication-library):
+Load the configuration for an Identity provider with <xref:Microsoft.Extensions.Configuration.ConfigurationBinder.Bind*?displayProperty=nameWithType> in the `Program` file. The following example loads configuration for an [OIDC provider](../security/webassembly/standalone-with-authentication-library.md):
 
 ```csharp
 builder.Services.AddOidcAuthentication(options =>
@@ -297,16 +296,16 @@ var hostname = builder.Configuration["HostName"];
 
 ## Cached configuration
 
-Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](xref:blazor/progressive-web-app/index), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
+Configuration files are cached for offline use. With [Progressive Web Applications (PWAs)](../progressive-web-app/index.md), you can only update configuration files when creating a new deployment. Editing configuration files between deployments has no effect because:
 
 * Users have cached versions of the files that they continue to use.
 * The PWA's `service-worker.js` and `service-worker-assets.js` files must be rebuilt on compilation, which signal to the app on the user's next online visit that the app has been redeployed.
 
-For more information on how background updates are handled by PWAs, see <xref:blazor/progressive-web-app/index#background-updates>.
+For more information on how background updates are handled by PWAs, see [ASP.NET Core Blazor Progressive Web Application (PWA)](../progressive-web-app/index.md#background-updates).
 
 ## Options configuration
 
-[Options configuration](xref:fundamentals/configuration/options) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
+[Options configuration](../../fundamentals/configuration/options.md) uses API in the [`Microsoft.Extensions.Options.ConfigurationExtensions`](https://www.nuget.org/packages/Microsoft.Extensions.Options.ConfigurationExtensions) NuGet package.
 
 Example:
 
@@ -334,7 +333,7 @@ builder.Services.Configure<OptionsExample>(
     builder.Configuration.GetSection("OptionsExample"));
 ```
 
-The following Razor component retrieves the settings with the [`@inject`](xref:mvc/views/razor#inject) directive or [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute).
+The following Razor component retrieves the settings with the [`@inject`](../../mvc/views/razor.md#inject) directive or [`[Inject]` attribute](xref:Microsoft.AspNetCore.Components.InjectAttribute).
 
 `Options.razor`:
 
@@ -369,7 +368,7 @@ The following Razor component retrieves the settings with the [`@inject`](xref:m
 }
 ```
 
-Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot%601> and <xref:Microsoft.Extensions.Options.IOptionsMonitor%601> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](xref:blazor/components/lifecycle#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
+Not all of the ASP.NET Core Options features are supported in Razor components. For example, <xref:Microsoft.Extensions.Options.IOptionsSnapshot`1> and <xref:Microsoft.Extensions.Options.IOptionsMonitor`1> configuration is supported, but recomputing option values for these interfaces isn't supported outside of reloading the app by either requesting the app in a new browser tab or selecting the browser's reload button. Merely calling [`StateHasChanged`](../components/lifecycle.md#state-changes-statehaschanged) doesn't update snapshot or monitored option values when the underlying configuration changes.
 
 :::moniker range=">= aspnetcore-11.0"
 

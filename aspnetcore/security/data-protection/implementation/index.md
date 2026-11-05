@@ -2,24 +2,23 @@
 title: ASP.NET Core Data Protection implementation
 description: Discover the various ASP.NET Core Data Protection implementation topics.
 ms.date: 10/14/2016
-uid: security/data-protection/implementation/index
 ---
 # ASP.NET Core Data Protection implementation
 
-* [Authenticated encryption details](xref:security/data-protection/implementation/authenticated-encryption-details)
+* [Authenticated encryption details](authenticated-encryption-details.md)
 
-* [Subkey Derivation and Authenticated Encryption](xref:security/data-protection/implementation/subkeyderivation)
+* [Subkey Derivation and Authenticated Encryption](subkeyderivation.md)
 
-* [Context headers](xref:security/data-protection/implementation/context-headers)
+* [Context headers](context-headers.md)
 
-* [Key Management](xref:security/data-protection/implementation/key-management)
+* [Key Management](key-management.md)
 
-* [Key Storage Providers](xref:security/data-protection/implementation/key-storage-providers)
+* [Key Storage Providers](key-storage-providers.md)
 
-* [Key Encryption At Rest](xref:security/data-protection/implementation/key-encryption-at-rest)
+* [Key Encryption At Rest](key-encryption-at-rest.md)
 
-* [Key immutability and settings](xref:security/data-protection/implementation/key-immutability)
+* [Key immutability and settings](key-immutability.md)
 
-* [Key Storage Format](xref:security/data-protection/implementation/key-storage-format)
+* [Key Storage Format](key-storage-format.md)
 
-* [Ephemeral data protection providers](xref:security/data-protection/implementation/key-storage-ephemeral)
+* [Ephemeral data protection providers](key-storage-ephemeral.md)

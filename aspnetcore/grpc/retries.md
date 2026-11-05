@@ -3,7 +3,6 @@ title: Transient fault handling with gRPC retries
 description: Learn how to make resilient, fault tolerant gRPC calls with retries in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 03/18/2021
-uid: grpc/retries
 ---
 # Transient fault handling with gRPC retries
 
@@ -95,7 +94,7 @@ Calls are retried when:
 A gRPC call becomes committed in two scenarios:
 
 * The client receives response headers. Response headers are sent by the server when `ServerCallContext.WriteResponseHeadersAsync` is called, or when the first message is written to the server response stream.
-* The client's outgoing message (or messages if streaming) has exceeded the client's maximum buffer size. `MaxRetryBufferSize` and `MaxRetryBufferPerCallSize` are [configured on the channel](xref:grpc/configuration#configure-client-options).
+* The client's outgoing message (or messages if streaming) has exceeded the client's maximum buffer size. `MaxRetryBufferSize` and `MaxRetryBufferPerCallSize` are [configured on the channel](configuration.md#configure-client-options).
 
 Committed calls won't retry, regardless of the status code or the previous number of attempts.
 
@@ -186,5 +185,5 @@ The following table describes options for configuring gRPC hedging policies.
 
 ## Related content
 
-* <xref:grpc/client>
+* [Call gRPC services with the .NET client](client.md)
 * [Retry general guidance - Best practices for cloud applications](/azure/architecture/best-practices/transient-faults)

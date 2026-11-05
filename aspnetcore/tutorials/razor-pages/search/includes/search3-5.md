@@ -36,7 +36,7 @@ If the `SearchString` property is not null or empty, the movies query is modifie
 The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). Lambdas are used in method-based [LINQ](/dotnet/csharp/programming-guide/concepts/linq/) queries as arguments to standard query operator methods such as the [Where](/dotnet/csharp/programming-guide/concepts/linq/query-syntax-and-method-syntax-in-linq) method or `Contains`. LINQ queries are not executed when they're defined or when they're modified by calling a method, such as `Where`, `Contains`, or `OrderBy`. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated over or the `ToListAsync` method is called. See [Query Execution](/dotnet/csharp/linq/get-started/introduction-to-linq-queries#deferred) for more information.
 
 > [!NOTE]
-> The <xref:System.Data.Objects.DataClasses.EntityCollection%601.Contains%2A> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
+> The <xref:System.Data.Objects.DataClasses.EntityCollection`1.Contains*> method is run on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
 * [This GitHub issue](https://github.com/dotnet/efcore/issues/11414).
 * [This GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
@@ -55,7 +55,7 @@ The preceding route constraint allows searching the title as route data (a URL s
 
 ![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/g2.png)
 
-The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
+The ASP.NET Core runtime uses [model binding](../../../../mvc/models/model-binding.md) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
 
 However, users cannot be expected to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
@@ -63,10 +63,10 @@ Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
-The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
+The HTML `<form>` tag uses the following [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md):
 
-* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
-* [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)
+* [Form Tag Helper](../../../../mvc/views/working-with-forms.md#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
+* [Input Tag Helper](../../../../mvc/views/working-with-forms.md#the-input-tag-helper)
 
 Save the changes and test the filter.
 
@@ -97,7 +97,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Update the pages](xref:tutorials/razor-pages/da1)
-> [Next: Add a new field](xref:tutorials/razor-pages/new-field)
+> [Previous: Update the pages](../../da1.md)
+> [Next: Add a new field](../../new-field.md)
 
 :::moniker-end

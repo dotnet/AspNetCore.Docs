@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/cors
 title: YARP Cross-Origin Requests (CORS)
 description: YARP Cross-Origin Requests (CORS)
 ms.date: 2/6/2025

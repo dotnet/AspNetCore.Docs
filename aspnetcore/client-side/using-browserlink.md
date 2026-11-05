@@ -3,7 +3,6 @@ title: Browser link in ASP.NET Core
 description: Explains how browser link is a Visual Studio feature that links the Development environment with one or more web browsers.
 monikerRange: '>= aspnetcore-1.1'
 ms.date: 06/05/2024
-uid: client-side/using-browserlink
 ---
 # Browser link in ASP.NET Core
 
@@ -22,7 +21,7 @@ Browser link is a Visual Studio feature. It creates a communication channel betw
 
 ## Runtime compilation vs. hot reload
 
-Use browser Link with [runtime compilation](xref:mvc/views/view-compilation) or [hot reload](xref:test/hot-reload) to see the effect of run-time changes in Razor (`.cshtml`) files. We recommend hot reload.
+Use browser Link with [runtime compilation](../mvc/views/view-compilation.md) or [hot reload](../test/hot-reload.md) to see the effect of run-time changes in Razor (`.cshtml`) files. We recommend hot reload.
 
 ## How to use browser link
 
@@ -83,7 +82,7 @@ When CSS hot reload is enabled, connected browsers are automatically refreshed w
 
 ## How it works
 
-browser link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser. When browser link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. browser link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
+browser link uses [SignalR](../signalr/introduction.md) to create a communication channel between Visual Studio and the browser. When browser link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. browser link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
 
 ```html
     <!-- Visual Studio browser link -->

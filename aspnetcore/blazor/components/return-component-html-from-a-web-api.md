@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to return HTML (as a string) from a web API (Minimal API) using the RazorComponentResult class.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 07/31/2026
-uid: blazor/components/return-component-html-from-a-web-api
 ---
 # Return Razor component HTML from a web API in ASP.NET Core Blazor
 
@@ -64,7 +63,7 @@ app.MapGet("/user/{id:int}", (int id) =>
 
 ## Consume the API and read the component HTML from the `RazorComponentResult`
 
-In the app's `Program` file, set up HTTP client services. The following example assumes that the web API responds to requests at `https://localhost:7286` using a [named `HttpClient`](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory):
+In the app's `Program` file, set up HTTP client services. The following example assumes that the web API responds to requests at `https://localhost:7286` using a [named `HttpClient`](../call-web-api.md#named-httpclient-with-ihttpclientfactory):
 
 ```csharp
 builder.Services.AddHttpClient("WebAPI", client =>

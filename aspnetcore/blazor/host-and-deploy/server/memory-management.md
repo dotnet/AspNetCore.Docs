@@ -3,7 +3,6 @@ title: Manage memory in deployed ASP.NET Core server-side Blazor apps
 description: Learn how to manage memory use in deployed ASP.NET Core server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/server/memory-management
 ---
 # Manage memory in deployed ASP.NET Core server-side Blazor apps
 
@@ -67,7 +66,7 @@ Adopt any of the following strategies to reduce an app's memory usage:
 
 ## Heap size for some mobile device browsers
 
-When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly/index#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly](../webassembly/index.md#decrease-maximum-heap-size-for-some-mobile-device-browsers).
 
 ##  Additional actions and considerations
 
@@ -75,4 +74,4 @@ When building a Blazor app that runs on the client and targets mobile device bro
 * You can examine the statistics on how memory in your app is behaving using `dotnet-counters`. For more information see [Investigate performance counters (dotnet-counters)](/dotnet/core/diagnostics/dotnet-counters).
 * Even when a GC is triggered, .NET holds on to the memory instead of returning it to the OS immediately, as it's likely that it will reuse the memory the near future. This avoids committing and decommitting memory constantly, which is expensive. You'll see this reflected if you use `dotnet-counters` because you'll see the GCs happen and the amount of used memory go down to 0 (zero), but you won't see the working set counter decrease, which is the sign that .NET is holding on to the memory to reuse it. For more information on project file (`.csproj`) settings to control this behavior, see [Runtime configuration options for garbage collection](/dotnet/core/runtime-config/garbage-collector).
 * Server GC doesn't trigger garbage collections until it determines it's absolutely necessary to do so to avoid freezing your app and considers that your app is the only thing running on the machine, so it can use all the memory in the system. If the system has 50 GB, the garbage collector seeks to use the full 50 GB of available memory before it triggers a Gen 2 collection.
-* For information on disconnected circuit retention configuration, see <xref:blazor/fundamentals/signalr#server-side-circuit-handler-options>.
+* For information on disconnected circuit retention configuration, see [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md#server-side-circuit-handler-options).

@@ -3,7 +3,6 @@ title: Reusable Razor UI in class libraries with ASP.NET Core
 ai-usage: ai-assisted
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
 ms.date: 11/19/2023
-uid: razor-pages/ui-class
 ---
 # Create reusable UI using the Razor class library project in ASP.NET Core
 
@@ -11,7 +10,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range="> aspnetcore-6.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../blazor/components/class-libraries.md), [View components](../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 For information on how to integrate npm and webpack into the build process for a RCL, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 
@@ -24,7 +23,7 @@ For information on how to integrate npm and webpack into the build process for a
 * Name the library (for example, "RazorClassLib"), > **Create**. To avoid a file name collision with the generated view library, ensure the library name doesn't end in `.Views`.
 * Select **Support pages and views** if you need the library to contain pages and/or views. By default, only Razor components are supported. Select **Create**.
 
-The Razor Class Library template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see <xref:blazor/components/class-libraries>.
+The Razor Class Library template defaults to Razor component development by default. The **Support pages and views** option supports pages and views. For more information on RCL support in Blazor, see [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md).
 
 # [.NET CLI](#tab/net-cli)
 
@@ -137,11 +136,11 @@ To include TypeScript files in an RCL:
 
 The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and without a `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
-The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in:
+The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](../fundamentals/static-files.md) enabled in:
 
 [!code-csharp[](~/razor-pages/ui-class/samples/7/MvcProgram.cs?highlight=15)]
 
-When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets%2A> on the host builder in `Program.cs`:
+When running the consuming app from build output (`dotnet run`), static web assets are enabled by default in the `Development` environment. To support assets in other environments when running from build output, call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*> on the host builder in `Program.cs`:
 
 [!code-csharp[](~/razor-pages/ui-class/samples/7/cli/WebApp1/Program.cs?name=snippet1&highlight=3-4)]
 
@@ -162,10 +161,10 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end
 
