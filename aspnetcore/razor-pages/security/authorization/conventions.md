@@ -3,13 +3,12 @@ title: Razor Pages authorization conventions in ASP.NET Core
 description: Learn how to control access to pages with conventions that authorize users and allow anonymous users to access pages or folders of pages.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 03/25/2026
-uid: razor-pages/security/authorization/conventions
 ---
 # Razor Pages authorization conventions in ASP.NET Core
 
-One way to control access in a Razor Pages app is to use authorization conventions at startup. These conventions allow the app to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this article automatically apply [authorization filters](xref:mvc/controllers/filters#authorization-filters) to control access.
+One way to control access in a Razor Pages app is to use authorization conventions at startup. These conventions allow the app to authorize users and allow anonymous users to access individual pages or folders of pages. The conventions described in this article automatically apply [authorization filters](../../../mvc/controllers/filters.md#authorization-filters) to control access.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/RazorPagesAuthorization) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/RazorPagesAuthorization) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 The sample app uses [cookie authentication without ASP.NET Core Identity](../../../security/authentication/cookie.md). To use ASP.NET Core Identity, follow the guidance in [Introduction to Identity on ASP.NET Core](../../../security/authentication/identity.md).
 
@@ -44,7 +43,7 @@ options.Conventions.AuthorizePage("/Contact", "AtLeast21");
 ```
 
 > [!NOTE]
-> An <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see <xref:razor-pages/filter#authorize-filter-attribute>.
+> An <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> can be applied to a page model class with the `[Authorize]` filter attribute. For more information, see [Filter methods for Razor Pages in ASP.NET Core](../../filter.md#authorize-filter-attribute).
 
 ## Require authorization to access a folder of pages
 
@@ -176,5 +175,5 @@ Requiring authorization on the Private page fails. When both the <xref:Microsoft
 
 ## Related content
 
-* <xref:razor-pages/razor-pages-conventions>
+* [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md)
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection>

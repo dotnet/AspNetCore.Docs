@@ -3,7 +3,6 @@ title: Enable QR code generation for TOTP authenticator apps in an ASP.NET Core 
 description: Discover how to enable QR code generation for TOTP authenticator apps that work with ASP.NET Core Blazor Web App two-factor authentication.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/qrcodes-for-authenticator-apps
 ---
 # Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App
 
@@ -13,7 +12,7 @@ This article explains how to configure an ASP.NET Core Blazor Web App for two-fa
 
 For an introduction to 2FA with TOTP authenticator apps, see [Enable QR code generation for TOTP authentication](../../security/authentication/identity-enable-qrcodes.md).
 
-The guidance in this article relies upon either creating the app with **Individual Accounts** for the new app's **Authentication type** or [scaffolding Identity into an existing app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-blazor-project). For guidance on using the .NET CLI instead of Visual Studio for scaffolding Identity into an existing app, see <xref:fundamentals/tools/dotnet-aspnet-codegenerator>.
+The guidance in this article relies upon either creating the app with **Individual Accounts** for the new app's **Authentication type** or [scaffolding Identity into an existing app](../../security/authentication/scaffold-identity.md#scaffold-identity-into-a-blazor-project). For guidance on using the .NET CLI instead of Visual Studio for scaffolding Identity into an existing app, see [ASP.NET Core code generator tool (`aspnet-codegenerator`)](../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 > [!WARNING]
 > TOTP codes should be kept secret because they can be used to authenticate multiple times before they expire.

@@ -17,7 +17,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 gRPC supports [.NET native ahead-of-time (AOT)](/dotnet/core/deploying/native-aot/) in .NET 8. Native AOT enables publishing gRPC client and server apps as small, fast native executables.
 
 > [!WARNING]
-> In .NET 8, not all ASP.NET Core features are compatible with Native AOT. For more information, see [ASP.NET Core and Native AOT compatibility](xref:fundamentals/native-aot#aspnet-core-and-native-aot-compatibility).
+> In .NET 8, not all ASP.NET Core features are compatible with Native AOT. For more information, see [ASP.NET Core and Native AOT compatibility](../fundamentals/native-aot.md#aspnet-core-and-native-aot-compatibility).
 
 ## Get started
 
@@ -55,9 +55,9 @@ Apps published with Native AOT have:
 * Reduced startup time
 * Reduce memory demand
 
-For more information and examples of the benefits that Native AOT provides, see [Benefits of using Native AOT with ASP.NET Core](xref:fundamentals/native-aot#benefits-of-using-native-aot-with-aspnet-core).
+For more information and examples of the benefits that Native AOT provides, see [Benefits of using Native AOT with ASP.NET Core](../fundamentals/native-aot.md).
 
 ## Related content
 
-* <xref:fundamentals/native-aot>
+* [ASP.NET Core support for Native AOT](../fundamentals/native-aot.md)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)

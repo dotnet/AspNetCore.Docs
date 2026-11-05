@@ -3,7 +3,6 @@ title: Control head content in ASP.NET Core Blazor apps
 description: Learn how to control head content in Blazor apps, including how to set the page title from a component.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/components/control-head-content
 ---
 # Control `<head>` content in ASP.NET Core Blazor apps
 
@@ -53,7 +52,7 @@ The following example sets the page's title and description using Razor.
 
 When Razor components are prerendered, the use of a layout page (`_Layout.cshtml`) is required to control `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.PageTitle> and <xref:Microsoft.AspNetCore.Components.Web.HeadContent> components. The reason for this requirement is that components that control `<head>` content must be rendered before the layout with the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component. **This order of rendering is required to control head content.**
 
-If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
+If the shared `_Layout.cshtml` file doesn't have a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) for a <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component, add it to the `<head>` elements.
 
 In a **required**, shared `_Layout.cshtml` file of a Blazor Server app or Razor Pages/MVC app that embeds components into pages or views:
 
@@ -71,7 +70,7 @@ In a **required**, shared `_Layout.cshtml` file of a prerendered hosted Blazor W
 
 ## Set a page title for components via a layout
 
-Set the page title in a [layout component](xref:blazor/components/layouts):
+Set the page title in a [layout component](layouts.md):
 
 ```razor
 @inherits LayoutComponentBase
@@ -102,7 +101,7 @@ In a Blazor Web App created from the project template, the <xref:Microsoft.AspNe
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Host.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Host.cshtml`:
 
 ```cshtml
 <head>
@@ -115,7 +114,7 @@ In Blazor Server apps created from the Blazor Server project template, a [Compon
 
 :::moniker range="< aspnetcore-7.0"
 
-In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
+In Blazor Server apps created from the Blazor Server project template, a [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) renders `<head>` content for the <xref:Microsoft.AspNetCore.Components.Web.HeadOutlet> component in `Pages/_Layout.cshtml`:
 
 ```cshtml
 <head>
@@ -175,8 +174,8 @@ In Blazor apps created from a Blazor project template, the `NotFound` component 
 
 ## Related content
 
-* [Control headers in C# code at startup](xref:blazor/fundamentals/startup#control-headers-in-c-code)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Control headers in C# code at startup](../fundamentals/startup.md#control-headers-in-c-code)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 Mozilla MDN Web Docs documentation:
 

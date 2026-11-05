@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/15/2026
-uid: blazor/fundamentals/navigation
 ---
 # ASP.NET Core Blazor navigation
 
@@ -121,7 +120,7 @@ The following HTML markup is rendered:
 > }
 > ```
 >
-> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](xref:blazor/components/index#child-content-render-fragments), not just the `NavLink` component.
+> Using an index variable in this scenario is a requirement for **any** child component that uses a loop variable in its [child content](../components/index.md#child-content-render-fragments), not just the `NavLink` component.
 >
 > Alternatively, use a `foreach` loop with <xref:System.Linq.Enumerable.Range*?displayProperty=nameWithType>:
 >
@@ -145,7 +144,7 @@ Use <xref:Microsoft.AspNetCore.Components.NavigationManager> to manage URIs and 
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
-<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p>
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> | Called to handle scenarios where a requested resource isn't found. For more information, see the [Not Found responses](#not-found-responses) section.
@@ -161,7 +160,7 @@ Member | Description
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
-<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> | Navigates to the specified URI. If `forceLoad` is `false`:<ul><li>And enhanced navigation is available at the current URL, Blazor's enhanced navigation is activated.</li><li>Otherwise, Blazor performs a full-page reload for the requested URL.</li></ul>If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side interactive router.</li></ul><p>For more information, see the [Enhanced navigation and form handling](#enhanced-navigation-and-form-handling) section.</p><p>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.</p>
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri*> | Converts a relative URI into an absolute URI.
@@ -176,7 +175,7 @@ Member | Description
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
-<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri*> | Converts a relative URI into an absolute URI.
@@ -191,7 +190,7 @@ Member | Description
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
-<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>If `replace` is `true`, the current URI in the browser history is replaced instead of pushing a new URI onto the history stack.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed. For more information, see the [Location changes](#location-changes) section.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri*> | Converts a relative URI into an absolute URI.
@@ -205,7 +204,7 @@ Member | Description
 Member | Description
 --- | ---
 <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri> | Gets the current absolute URI.
-<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)).
+<xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> | Gets the base URI (with a trailing slash) that can be prepended to relative URI paths to produce an absolute URI. Typically, <xref:Microsoft.AspNetCore.Components.NavigationManager.BaseUri> corresponds to the `href` attribute on the document's `<base>` element ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)).
 <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> | Navigates to the specified URI. If `forceLoad` is `true`:<ul><li>Client-side routing is bypassed.</li><li>The browser is forced to load the new page from the server, whether or not the URI is normally handled by the client-side router.</li></ul>
 <xref:Microsoft.AspNetCore.Components.NavigationManager.LocationChanged> | An event that fires when the navigation location has changed.
 <xref:Microsoft.AspNetCore.Components.NavigationManager.ToAbsoluteUri*> | Converts a relative URI into an absolute URI.
@@ -256,7 +255,7 @@ The following component:
 }
 ```
 
-For more information on component disposal, see <xref:blazor/components/component-disposal>.
+For more information on component disposal, see [ASP.NET Core Razor component disposal](../components/component-disposal.md).
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -291,16 +290,16 @@ You can use the `<BlazorDisableThrowNavigationException>` MSBuild property set t
 
 * **Static server-side rendering (static SSR)**: Calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> sets the HTTP status code to 404. If Not Found content is configured through `Router.NotFoundPage` or `NotFoundEventArgs.Path`, the router renders Not Found content.
 
-* **Global interactive rendering**: Signals the Blazor router ([`Router` component](xref:blazor/fundamentals/routing#route-templates)) to render Not Found content.
+* **Global interactive rendering**: Signals the Blazor router ([`Router` component](routing.md#route-templates)) to render Not Found content.
 
 * **Per-page/component interactive rendering**: Behaves the same as static server-side rendering (static SSR) during prerendering on the server, while interactive Not Found behavior no-ops.
 
-* **Streaming rendering**: If [enhanced navigation](xref:blazor/fundamentals/routing?view=aspnetcore-10.0#enhanced-navigation-and-form-handling) is active, [streaming rendering](xref:blazor/components/rendering#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
+* **Streaming rendering**: If [enhanced navigation](navigation.md#enhanced-navigation-and-form-handling) is active, [streaming rendering](../components/rendering.md#streaming-rendering) renders Not Found content without reloading the page. When enhanced navigation is blocked, the framework redirects to Not Found content with a page refresh.
 
 > [!NOTE]
 > The following discussion mentions that a Not Found Razor component can be assigned to the `Router` component's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage> parameter. The parameter works in concert with <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> and is described in more detail later in this section.
 
-Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
+Streaming rendering can only render components that have a route, such as a <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> assignment (`NotFoundPage="..."`) or a [status code pages re-execution middleware page assignment](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) (<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*>). `DefaultNotFound` 404 content ("`Not found`" plain text) doesn't have a route, so it can't be used during streaming rendering.
 
 > [!NOTE]
 > The Not Found render fragment (`<NotFound>...</NotFound>`) isn't supported in .NET 10 or later.
@@ -312,7 +311,7 @@ Streaming rendering can only render components that have a route, such as a <xre
 * A status code pages re-execution middleware page, if configured.
 * No action if none of the preceding approaches are adopted.
 
-[Status code pages re-execution middleware](xref:fundamentals/error-handling#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
+[Status code pages re-execution middleware](../../fundamentals/error-handling.md#usestatuscodepageswithreexecute) with <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePagesWithReExecute*> takes precedence for browser-based address routing problems, such as an incorrect URL typed into the browser's address bar or selecting a link that has no endpoint in the app.
 
 When a component is rendered statically (static SSR) and <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called, the 404 status code is set on the response:
 
@@ -480,7 +479,7 @@ If you don't want to use <xref:Microsoft.AspNetCore.Builder.StatusCodePagesExten
 
 If you use both approaches in your app, the Not Found path specified in the `OnNotFoundEvent` handler takes precedence over the path configured in the re-execution middleware.
 
-In the following example for components that adopt [interactive server-side rendering (interactive SSR)](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), custom content is rendered depending on where <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound*> is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component in the following example, a different message states that the user isn't found.
+In the following example for components that adopt [interactive server-side rendering (interactive SSR)](index.md#client-and-server-rendering-concepts), custom content is rendered depending on where <xref:Microsoft.AspNetCore.Components.NavigationManager.OnNotFound*> is called. If the event is triggered by the following `Movie` component when a movie isn't found on component initialization, a custom message states that the requested movie isn't found. If the event is triggered by the `User` component in the following example, a different message states that the user isn't found.
 
 The following `NotFoundContext` service manages the context and the message for when content isn't found by components.
 
@@ -679,7 +678,7 @@ Blazor Web Apps are capable of two types of routing for page navigation and form
 Enhanced navigation is available when:
 
 * The Blazor Web App script (`blazor.web.js`) is used, not the Blazor Server script (`blazor.server.js`) or Blazor WebAssembly script (`blazor.webassembly.js`).
-* The feature isn't [explicitly disabled](xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling).
+* The feature isn't [explicitly disabled](startup.md#disable-enhanced-navigation-and-form-handling).
 * The destination URL is within the internal base URI space (the app's base path) and the link to the page doesn't have the `data-enhance-nav` attribute set to `false`.
 
 If server-side routing and enhanced navigation are enabled, [location changing handlers](#location-changes) are only invoked for programmatic navigation initiated from an interactive runtime. In future releases, additional types of navigation, such as following a link, may also invoke location changing handlers.
@@ -777,9 +776,9 @@ Once Blazor has started on the client, you can use the `enhancedload` event to l
 Blazor.addEventListener('enhancedload', () => console.log('Enhanced update!'));
 ```
 
-To disable enhanced navigation and form handling globally, see <xref:blazor/fundamentals/startup#disable-enhanced-navigation-and-form-handling>.
+To disable enhanced navigation and form handling globally, see [ASP.NET Core Blazor startup](startup.md#disable-enhanced-navigation-and-form-handling).
 
-Enhanced navigation with [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr) requires special attention when loading JavaScript. For more information, see <xref:blazor/js-interop/ssr>.
+Enhanced navigation with [static server-side rendering (static SSR)](../components/render-modes.md#static-server-side-rendering-static-ssr) requires special attention when loading JavaScript. For more information, see [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md).
 
 :::moniker-end
 
@@ -815,7 +814,7 @@ Passing `https://localhost:8001/segment` in `inputURI` results in the following 
 
 ## Navigation history state
 
-The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's [History API](https://developer.mozilla.org/docs/Web/API/History_API) to maintain navigation history state associated with each location change made by the app. Maintaining history state is particularly useful in external redirect scenarios, such as when [authenticating users with external identity providers](xref:blazor/security/webassembly/index#customize-authorization). For more information, see the [Navigation options](#navigation-options) section.
+The <xref:Microsoft.AspNetCore.Components.NavigationManager> uses the browser's [History API](https://developer.mozilla.org/docs/Web/API/History_API) to maintain navigation history state associated with each location change made by the app. Maintaining history state is particularly useful in external redirect scenarios, such as when [authenticating users with external identity providers](../security/webassembly/index.md#customize-authentication). For more information, see the [Navigation options](#navigation-options) section.
 
 ## Navigation options
 
@@ -885,7 +884,7 @@ Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Compo
 Use the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute) with the [`[Parameter]` attribute](xref:Microsoft.AspNetCore.Components.ParameterAttribute) to specify that a component parameter of a *routable* component comes from the query string.
 
 > [!NOTE]
-> Component parameters can only receive query parameter values in routable components with an [`@page`](xref:mvc/views/razor#page) directive.
+> Component parameters can only receive query parameter values in routable components with an [`@page`](../../mvc/views/razor.md#page) directive.
 >
 > Only routable components directly receive query parameters in order to avoid subverting top-down information flow and to make parameter processing order clear, both by the framework and by the app. This design avoids subtle bugs in app code that was written assuming a specific parameter processing order. You're free to define custom cascading parameters or directly assign to regular component parameters in order to pass query parameter values to non-routable components.
 
@@ -1217,13 +1216,13 @@ The query string of a request is obtained from the <xref:Microsoft.AspNetCore.Co
 var query = new Uri(Navigation.Uri).Query;
 ```
 
-To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](xref:blazor/js-interop/call-javascript-from-dotnet):
+To parse a query string's parameters, one approach is to use [`URLSearchParams`](https://developer.mozilla.org/docs/Web/API/URLSearchParams) with [JavaScript (JS) interop](../javascript-interoperability/call-javascript-from-dotnet.md):
 
 ```javascript
 export createQueryString = (string queryString) => new URLSearchParams(queryString);
 ```
 
-For more information on JavaScript isolation with JavaScript modules, see <xref:blazor/js-interop/call-javascript-from-dotnet#javascript-isolation-in-javascript-modules>.
+For more information on JavaScript isolation with JavaScript modules, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md#javascript-isolation-in-javascript-modules).
 
 :::moniker-end
 
@@ -1424,17 +1423,17 @@ Add the following `FragmentRouting` component to the app.
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangingContext.CancellationToken>: Gets a <xref:System.Threading.CancellationToken> to determine if the navigation was canceled, for example, to determine if the user triggered a different navigation.
 * <xref:Microsoft.AspNetCore.Components.Routing.LocationChangingContext.PreventNavigation*>: Called to prevent the navigation from continuing.
 
-A component can register multiple location changing handlers in the [`OnAfterRender{Async}` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync). Navigation invokes all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> handlers are invoked:
+A component can register multiple location changing handlers in the [`OnAfterRender{Async}` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync). Navigation invokes all of the location changing handlers registered across the entire app (across multiple components), and any internal navigation executes them all in parallel. In addition to <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> handlers are invoked:
 
 * When selecting internal links, which are links that point to URLs under the app's base path.
 * When navigating using the forward and back buttons in a browser.
 
 Handlers are only executed for internal navigation within the app. If the user selects a link that navigates to a different site or changes the address bar to a different site manually, location changing handlers aren't executed.
 
-Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see <xref:blazor/components/component-disposal>.
+Implement <xref:System.IDisposable> and dispose registered handlers to unregister them. For more information, see [ASP.NET Core Razor component disposal](../components/component-disposal.md).
 
 > [!IMPORTANT]
-> Don't attempt to execute DOM cleanup tasks via JavaScript (JS) interop when handling location changes. Use the [`MutationObserver` pattern](https://developer.mozilla.org/docs/Web/API/MutationObserver) in JS on the client. For more information, see <xref:blazor/js-interop/index#dom-cleanup-tasks-during-component-disposal>.
+> Don't attempt to execute DOM cleanup tasks via JavaScript (JS) interop when handling location changes. Use the [`MutationObserver` pattern](https://developer.mozilla.org/docs/Web/API/MutationObserver) in JS on the client. For more information, see [ASP.NET Core Blazor JavaScript interoperability (JS interop)](../javascript-interoperability/index.md#dom-cleanup-tasks-during-component-disposal).
 
 In the following example, a location changing handler is registered for navigation events.
 
@@ -1503,7 +1502,7 @@ The [`NavigationLock` component](xref:Microsoft.AspNetCore.Components.Routing.Na
 In the following `NavLock` component:
 
 * An attempt to follow the link to Microsoft's website must be confirmed by the user before the navigation to `https://www.microsoft.com` succeeds.
-* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangingContext.PreventNavigation*> is called to prevent navigation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](xref:blazor/js-interop/call-javascript-from-dotnet) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
+* <xref:Microsoft.AspNetCore.Components.Routing.LocationChangingContext.PreventNavigation*> is called to prevent navigation from occurring if the user declines to confirm the navigation via a [JavaScript (JS) interop call](../javascript-interoperability/call-javascript-from-dotnet.md) that spawns the [JS `confirm` dialog](https://developer.mozilla.org/docs/Web/API/Window/confirm).
 
 `NavLock.razor`:
 
@@ -1603,6 +1602,6 @@ The preceding example doesn't include the following pages in the rendered list o
 
 :::moniker range=">= aspnetcore-8.0"
 
-For an demonstration of the preceding code in a sample app, obtain the [**Blazor Web App** or **Blazor WebAssembly** sample app](xref:blazor/fundamentals/index#sample-apps).
+For an demonstration of the preceding code in a sample app, obtain the [**Blazor Web App** or **Blazor WebAssembly** sample app](index.md#sample-apps).
 
 :::moniker-end

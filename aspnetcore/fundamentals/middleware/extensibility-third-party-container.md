@@ -3,7 +3,6 @@ title: Middleware activation with a third-party container in ASP.NET Core
 description: Learn how to use strongly-typed middleware with factory-based activation and a third-party container in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 09/22/2019
-uid: fundamentals/middleware/extensibility-third-party-container
 ---
 # Middleware activation with a third-party container in ASP.NET Core
 
@@ -11,9 +10,9 @@ uid: fundamentals/middleware/extensibility-third-party-container
 
 :::moniker range=">= aspnetcore-3.0"
 
-This article demonstrates how to use <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> and <xref:Microsoft.AspNetCore.Http.IMiddleware> as an extensibility point for [middleware](xref:fundamentals/middleware/index) activation with a third-party container. For introductory information on `IMiddlewareFactory` and `IMiddleware`, see <xref:fundamentals/middleware/extensibility>.
+This article demonstrates how to use <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> and <xref:Microsoft.AspNetCore.Http.IMiddleware> as an extensibility point for [middleware](index.md) activation with a third-party container. For introductory information on `IMiddlewareFactory` and `IMiddleware`, see [Factory-based middleware activation in ASP.NET Core](extensibility.md).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility-third-party-container/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility-third-party-container/samples/) ([how to download](../index.md#how-to-download-a-sample))
 
 The sample app demonstrates middleware activation by an `IMiddlewareFactory` implementation, `SimpleInjectorMiddlewareFactory`. The sample uses the [Simple Injector](https://simpleinjector.org) dependency injection (DI) container.
 
@@ -58,9 +57,9 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 :::moniker range="< aspnetcore-3.0"
 
-This article demonstrates how to use <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> and <xref:Microsoft.AspNetCore.Http.IMiddleware> as an extensibility point for [middleware](xref:fundamentals/middleware/index) activation with a third-party container. For introductory information on `IMiddlewareFactory` and `IMiddleware`, see <xref:fundamentals/middleware/extensibility>.
+This article demonstrates how to use <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory> and <xref:Microsoft.AspNetCore.Http.IMiddleware> as an extensibility point for [middleware](index.md) activation with a third-party container. For introductory information on `IMiddlewareFactory` and `IMiddleware`, see [Factory-based middleware activation in ASP.NET Core](extensibility.md).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility-third-party-container/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/middleware/extensibility-third-party-container/samples/) ([how to download](../index.md#how-to-download-a-sample))
 
 The sample app demonstrates middleware activation by an `IMiddlewareFactory` implementation, `SimpleInjectorMiddlewareFactory`. The sample uses the [Simple Injector](https://simpleinjector.org) dependency injection (DI) container.
 
@@ -105,7 +104,7 @@ The middleware is registered in the request processing pipeline in `Startup.Conf
 
 ## Related content
 
-* [Middleware](xref:fundamentals/middleware/index)
-* [Factory-based middleware activation](xref:fundamentals/middleware/extensibility)
+* [Middleware](index.md)
+* [Factory-based middleware activation](extensibility.md)
 * [Simple Injector GitHub repository](https://github.com/simpleinjector/SimpleInjector)
 * [Simple Injector documentation](https://simpleinjector.readthedocs.io/en/latest/index.html)

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about security considerations when developing apps in Blazor Hybrid.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/security/security-considerations
 ---
 # ASP.NET Core Blazor Hybrid security considerations
 
@@ -34,10 +33,10 @@ If possible, avoid loading content from a third-party origin. To mitigate risk, 
 If your app must reference content from an external origin, we recommend that you use common web security approaches to provide the app with an opportunity to block the content from loading if the content is compromised:
 
 * Serve content securely with TLS/HTTPS.
-* Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For more information, see <xref:blazor/security/content-security-policy>.
+* Institute a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP). For more information, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../../security/content-security-policy.md).
 * Perform [Subresource Integrity (SRI)](https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity) checks.
 
-Even if all of the resources are packed into the app and don't load from any external origin, remain cautious about problems in the resources' code that run inside the Web View, as the resources might have vulnerabilities that could allow [cross-site scripting (XSS)](xref:blazor/security/interactive-server-side-rendering#cross-site-scripting-xss) attacks.
+Even if all of the resources are packed into the app and don't load from any external origin, remain cautious about problems in the resources' code that run inside the Web View, as the resources might have vulnerabilities that could allow [cross-site scripting (XSS)](../../security/interactive-server-side-rendering.md#cross-site-scripting-xss) attacks.
 
 In general, the Blazor framework protects against XSS by dealing with HTML in safe ways. However, some programming patterns allow Razor components to inject raw HTML into rendered output, such as rendering content from an untrusted source. For example, rendering HTML content directly from a database should be avoided. Additionally, JavaScript libraries used by the app might manipulate HTML in unsafe ways to inadvertently or deliberately render unsafe output.
 
@@ -73,7 +72,7 @@ Use one of the following approaches to keep the Web View current in deployed app
 
 ### Android
 
-The Android Web View is distributed and updated via the [Google Play Store](https://play.google.com/store/apps/details?id=com.google.android.webview). Check the Web View version by reading the [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string. Read the Web View's [`navigator.userAgent`](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent) property using [JavaScript interop](xref:blazor/js-interop/index) and optionally cache the value using a singleton service if the user agent string is required outside of a Razor component context.
+The Android Web View is distributed and updated via the [Google Play Store](https://play.google.com/store/apps/details?id=com.google.android.webview). Check the Web View version by reading the [`User-Agent`](https://developer.mozilla.org/docs/Web/HTTP/Headers/User-Agent) string. Read the Web View's [`navigator.userAgent`](https://developer.mozilla.org/docs/Web/API/Navigator/userAgent) property using [JavaScript interop](../../javascript-interoperability/index.md) and optionally cache the value using a singleton service if the user agent string is required outside of a Razor component context.
 
 When using the Android Emulator:
 
@@ -156,5 +155,5 @@ In the app's project file (`.csproj`), add the following after the existing `<Ma
 
 ## Related content
 
-* <xref:blazor/hybrid/security/index>
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor Hybrid authentication and authorization](index.md)
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)

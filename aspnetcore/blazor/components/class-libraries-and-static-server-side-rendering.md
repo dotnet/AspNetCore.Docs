@@ -3,7 +3,6 @@ title: ASP.NET Core Razor class libraries (RCLs) with static server-side renderi
 description: Learn how component authors can support static server-side rendering (static SSR) in ASP.NET Core Razor class libraries (RCLs).
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/class-libraries-with-static-ssr
 ---
 # ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)
 
@@ -26,7 +25,7 @@ All existing components can still be used with static SSR. However, the cost of 
 
 &dagger;There's a special exception for the `@onsubmit` event handler for forms, which is always functional, regardless of render mode.
 
-This is equivalent to how components behave during [prerendering](xref:blazor/fundamentals/index#client-and-server-rendering-concepts), before Blazor's SignalR circuit or the .NET WebAssembly runtime is started.
+This is equivalent to how components behave during [prerendering](../fundamentals/index.md#client-and-server-rendering-concepts), before Blazor's SignalR circuit or the .NET WebAssembly runtime is started.
 
 For components whose only role is to produce read-only DOM content, these behaviors for static SSR are completely sufficient. However, library authors must consider what approach to take when including interactive components in their libraries.
 
@@ -77,7 +76,7 @@ The only reason why a reusable component author should use the `@rendermode` dir
 
 ## Streaming rendering
 
-Reusable Razor components are free to declare `@attribute [StreamRendering]` for [streaming rendering](xref:blazor/components/rendering#streaming-rendering) ([`[StreamRendering]` attribute API](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute)). This results in incremental UI updates during static SSR. Since the same data-loading patterns produce incremental UI updates during interactive rendering, regardless of the presence of the `[StreamRendering]` attribute, the component can behave correctly in all cases. Even in cases where streaming static SSR is suppressed on the server, the component still renders its correct final state.
+Reusable Razor components are free to declare `@attribute [StreamRendering]` for [streaming rendering](rendering.md#streaming-rendering) ([`[StreamRendering]` attribute API](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute)). This results in incremental UI updates during static SSR. Since the same data-loading patterns produce incremental UI updates during interactive rendering, regardless of the presence of the `[StreamRendering]` attribute, the component can behave correctly in all cases. Even in cases where streaming static SSR is suppressed on the server, the component still renders its correct final state.
 
 ## Using links across render modes
 
@@ -127,4 +126,4 @@ private HttpContext? Context { get; set; }
 
 The value is `null` during interactive rendering and is only set during static SSR.
 
-In many cases, there are better alternatives than using <xref:Microsoft.AspNetCore.Http.HttpContext>. If you need to know the current URL or to perform a redirection, the APIs on <xref:Microsoft.AspNetCore.Components.NavigationManager> work with all render modes. If you need to know the user's authentication state, use Blazor's <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service ([`AuthenticationStateProvider` documentation](xref:blazor/security/authentication-state)) over using <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
+In many cases, there are better alternatives than using <xref:Microsoft.AspNetCore.Http.HttpContext>. If you need to know the current URL or to perform a redirection, the APIs on <xref:Microsoft.AspNetCore.Components.NavigationManager> work with all render modes. If you need to know the user's authentication state, use Blazor's <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> service ([`AuthenticationStateProvider` documentation](../security/authentication-state.md)) over using <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType>.
