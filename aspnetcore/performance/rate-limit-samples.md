@@ -86,5 +86,5 @@ builder.Services.AddRateLimiter(options =>
 });
 ```
 
-For more information, see [Chain limiters in a named policy](xref:performance/rate-limit#chain-limiters-in-a-named-policy).
+For more information, see [Chain limiters in a named policy](rate-limit.md#chain-limiters-in-a-named-policy).
 
