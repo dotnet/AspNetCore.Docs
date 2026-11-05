@@ -3,7 +3,6 @@ title: Call a web API from an ASP.NET Core Blazor app
 description: Learn how to call a web API from Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/14/2026
-uid: blazor/call-web-api
 ---
 # Call a web API from ASP.NET Core Blazor
 
@@ -13,9 +12,9 @@ This article describes how to call a web API from a Blazor app.
 
 ## Server-side scenarios for calling external web APIs
 
-Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see <xref:fundamentals/http-requests>.
+Server-based components call external web APIs using <xref:System.Net.Http.HttpClient> instances, typically created using <xref:System.Net.Http.IHttpClientFactory>. For guidance that applies to server-side apps, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md).
 
-A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](xref:fundamentals/http-requests).
+A server-side app doesn't include an <xref:System.Net.Http.HttpClient> service. Provide an <xref:System.Net.Http.HttpClient> to the app using the [`HttpClient` factory infrastructure](../fundamentals/http-requests.md).
 
 In the `Program` file:
 
@@ -23,7 +22,7 @@ In the `Program` file:
 builder.Services.AddHttpClient();
 ```
 
-The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md) article.
 
 `CallWebAPI.razor`:
 
@@ -91,7 +90,7 @@ else
 
 In the preceding example for C# 12 or later, an empty array (`[]`) is created for the `branches` variable. For earlier versions of C# compiled with an SDK earlier than .NET 8, create an empty array (`Array.Empty<GitHubBranch>()`).
 
-For an additional working example, see the server-side file upload example that uploads files to a web API controller in the <xref:blazor/file-uploads#upload-files-to-a-server-with-server-side-rendering> article.
+For an additional working example, see the server-side file upload example that uploads files to a web API controller in the [ASP.NET Core Blazor file uploads](file-uploads.md#upload-files-to-a-server-with-server-side-rendering) article.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -104,13 +103,13 @@ When using the interactive WebAssembly and Auto render modes, components are pre
 * The client version calls the web API with a preconfigured <xref:System.Net.Http.HttpClient>.
 * The server version can typically access the server-side resources directly. Injecting an <xref:System.Net.Http.HttpClient> on the server that makes calls back to the server isn't recommended, as the network request is typically unnecessary. Alternatively, the API might be external to the server project, but a service abstraction for the server is required to transform the request in some way, for example to add an access token to a proxied request.
 
-When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see <xref:blazor/components/prerender#disable-prerendering>.
+When using the WebAssembly render mode, you also have the option of disabling prerendering, so the components only render from the client. For more information, see [Prerender ASP.NET Core Razor components](components/prerender.md#disable-prerendering).
 
 Examples ([sample apps](#sample-apps)):
 
 * Movie list web API in the `BlazorWebAppCallWebApi` sample app.
 * Streaming rendering weather data web API in the `BlazorWebAppCallWebApi_Weather` sample app.
-* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see <xref:blazor/security/blazor-web-app-oidc>.
+* Weather data returned to the client in either the `BlazorWebAppOidc` (non-BFF pattern) or `BlazorWebAppOidcBff` (BFF pattern) sample apps. These apps demonstrate secure (web) API calls. For more information, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](security/blazor-web-app-with-oidc.md).
 
 ## Blazor Web App external web APIs
 
@@ -132,9 +131,9 @@ Use ***either*** of the following approaches:
 
   Example: Todo list web API in the `BlazorWebAppCallWebApi` [sample app](#sample-apps)
 
-* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in <xref:blazor/components/prerender#disable-prerendering>. If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component isn't prerendered on the server.
+* If prerendering isn't required for a WebAssembly component that calls the web API, disable prerendering by following the guidance in [Prerender ASP.NET Core Razor components](components/prerender.md#disable-prerendering). If you adopt this approach, you don't need to add <xref:System.Net.Http.HttpClient> services to the main project of the Blazor Web App because the component isn't prerendered on the server.
 
-For more information, see the [Client-side services fail to resolve during prerendering](xref:blazor/components/prerender#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article.
+For more information, see the [Client-side services fail to resolve during prerendering](components/prerender.md#client-side-services-fail-to-resolve-during-prerendering) section of the *Prerendering* article.
 
 ## Client-side scenarios for calling external web APIs
 
@@ -148,7 +147,7 @@ builder.Services.AddScoped(sp =>
     });
 ```
 
-The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the <xref:fundamentals/http-requests> article.
+The following Razor component makes a request to a web API for GitHub branches similar to the *Basic Usage* example in the [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md) article.
 
 `CallWebAPI.razor`:
 
@@ -287,7 +286,7 @@ builder.Services.AddScoped(sp =>
 
 ## Named `HttpClient` with `IHttpClientFactory`
 
-*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a named <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#review-consumption-patterns).*
 
 <xref:System.Net.Http.IHttpClientFactory> services and the configuration of a named <xref:System.Net.Http.HttpClient> are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
@@ -361,19 +360,19 @@ In the following component code:
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a web API with a named <xref:System.Net.Http.HttpClient> in its `CallTodoWebApiCsrNamedClient` component. For an additional working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md?pivots=named-client-graph-api).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see <xref:blazor/security/webassembly/graph-api?pivots=named-client-graph-api>.
+For a working demonstration in a client app based on calling Microsoft Graph with a named <xref:System.Net.Http.HttpClient>, see [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md?pivots=named-client-graph-api).
 
 :::moniker-end
 
 ## Typed `HttpClient`
 
-*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see <xref:fundamentals/http-requests#review-consumption-patterns>.*
+*The guidance in this section applies to using a typed <xref:System.Net.Http.HttpClient> in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components of a Blazor Web App. For general guidance on HTTP client patterns in ASP.NET Core apps (for example, when you use an HTTP client only in the server project of a Blazor Web App or in a Blazor Server app), see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#review-consumption-patterns).*
 
 Typed <xref:System.Net.Http.HttpClient> uses one or more of the app's <xref:System.Net.Http.HttpClient> instances, default or named, to return data from one or more web API endpoints. Typed clients are supported for classes and Razor components in a Blazor WebAssembly app, the `.Client` project of a Blazor Web App, and for prerendered client-side components in a Blazor Web App.
 
@@ -471,9 +470,9 @@ The `BlazorWebAppCallWebApi` [sample app](#sample-apps) demonstrates calling a w
 
 <xref:System.Net.Http.IHttpClientFactory> creates <xref:System.Net.Http.DelegatingHandler> instances in a separate dependency injection (DI) scope from the app. If you inject a scoped service into a derived <xref:System.Net.Http.DelegatingHandler> type, the handler doesn't have access to the service from the Blazor circuit.
 
-For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+For an example of how to access a service in outgoing request middleware using either an application scope handler or a circuit activity handler, see [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware).
 
-For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md#outgoing-request-middleware).
 
 :::moniker-end
 
@@ -521,13 +520,13 @@ When prerendering, components render twice: first statically, then interactively
 
 You can address this by flowing prerendered state using the Persistent Component State API, which the `BlazorWebAppCallWebApi` and `BlazorWebAppCallWebApi_Weather` [sample apps](#sample-apps) demonstrate. When the component renders interactively, it can render the same way using the same state. For more information, see the following resources:
 
-* <xref:blazor/state-management/prerendered-state-persistence>
-* <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>
+* [ASP.NET Core Blazor prerendered state persistence](state-management/prerendered-state-persistence.md)
+* [ASP.NET Core Blazor navigation](fundamentals/navigation.md#enhanced-navigation-and-form-handling)
 
 :::moniker range="< aspnetcore-10.0"
 
 > [!NOTE]
-> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see <xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling>.
+> The Persistent Component State API only supports enhanced navigation in .NET 10 or later. For apps that target .NET 8 or .NET 9, you can disable enhanced navigation on links to the page with the `data-enhance-nav` attribute set to `false`. For more information, see [ASP.NET Core Blazor navigation](fundamentals/navigation.md#enhanced-navigation-and-form-handling).
 
 :::moniker-end
 
@@ -537,7 +536,7 @@ The [`System.Net.Http.Json` package](https://www.nuget.org/packages/System.Net.H
 
 <xref:System.Net.Http.HttpClient> is available as a preconfigured service for making requests back to the origin server. <xref:System.Net.Http.HttpClient> and JSON helpers (<xref:System.Net.Http.Json.HttpClientJsonExtensions?displayProperty=nameWithType>) are also used to call third-party web API endpoints. <xref:System.Net.Http.HttpClient> is implemented using the browser's [Fetch API](https://developer.mozilla.org/docs/Web/API/Fetch_API) and is subject to its limitations, including enforcement of the same-origin policy, which is discussed later in this article in the *Cross-Origin Resource Sharing (CORS)* section.
 
-The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](xref:mvc/views/razor#inject) directive:
+The client's base address is set to the originating server's address. Inject an <xref:System.Net.Http.HttpClient> instance into a component using the [`@inject`](../mvc/views/razor.md#inject) directive:
 
 ```razor
 @using System.Net.Http
@@ -563,7 +562,7 @@ The following sections cover JSON helpers:
 
 <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> sends an HTTP GET request and parses the JSON response body to create an object.
 
-In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> is called when the component is finished initializing ([`OnInitializedAsync`](xref:blazor/components/lifecycle#component-initialization-oninitializedasync)).
+In the following component code, the `todoItems` are displayed by the component. <xref:System.Net.Http.Json.HttpClientJsonExtensions.GetFromJsonAsync*> is called when the component is finished initializing ([`OnInitializedAsync`](components/lifecycle.md#component-initialization-oninitializedasync)).
 
 ```csharp
 todoItems = await Http.GetFromJsonAsync<TodoItem[]>("todoitems");
@@ -730,7 +729,7 @@ private async Task UpdateItem(long id)
 
 Add <xref:System.Text.Json.JsonSerializerOptions.WriteIndented?displayProperty=nameWithType> set to `true` if you want to present the JSON payload in a pleasant format for display. Writing indented JSON has no bearing on processing PATCH requests and isn't typically performed in production apps for web API requests.
 
-Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](xref:fundamentals/minimal-apis) with the following steps.
+Follow the guidance in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article to add a PATCH controller action to the web API. Alternatively, PATCH request processing can be implemented as a [Minimal API](../fundamentals/minimal-apis.md) with the following steps.
 
 :::moniker-end
 
@@ -783,7 +782,7 @@ app.MapPatch("/todoitems/{id}", async (long id, TodoContext db) =>
 ```
 
 > [!WARNING]
-> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see <xref:tutorials/first-web-api#prevent-over-posting>.
+> As with the other examples in the [JsonPatch in ASP.NET Core web API](../web-api/jsonpatch.md) article, the preceding PATCH API doesn't protect the web API from over-posting attacks. For more information, see [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md#prevent-over-posting).
 
 For a fully working PATCH experience, see the `BlazorWebAppCallWebApi` [sample app](#sample-apps).
 
@@ -826,7 +825,7 @@ Streaming requests:
 * Require HTTPS protocol and don't work on HTTP/1.x.
 * Include a body but not a `Content-Length` header. [CORS](../security/cors.md) with a preflight request is required for cross-origin streaming requests.
 
-For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see <xref:blazor/file-uploads#file-size-read-and-upload-limits> and the example at [Upload files to a server with client-side rendering (CSR)](xref:blazor/file-uploads#upload-files-to-a-server-with-client-side-rendering-csr).
+For more information on file uploads with an <xref:Microsoft.AspNetCore.Components.Forms.InputFile> component, see [ASP.NET Core Blazor file uploads](file-uploads.md#file-size-read-and-upload-limits) and the example at [Upload files to a server with client-side rendering (CSR)](file-uploads.md#upload-files-to-a-server-with-client-side-rendering-csr).
 
 :::moniker-end
 
@@ -853,7 +852,7 @@ public class CookieHandler : DelegatingHandler
 ```
 
 > [!NOTE]
-> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see <xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware>.
+> For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware).
 
 The `CookieHandler` is registered in the `Program` file:
 
@@ -870,7 +869,7 @@ builder.Services.AddHttpClient(...)
 
 :::moniker range=">= aspnetcore-8.0"
 
-For a demonstration, see <xref:blazor/security/webassembly/standalone-with-identity/index>.
+For a demonstration, see [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](security/webassembly/standalone-with-identity/index.md).
 
 :::moniker-end
 
@@ -889,10 +888,10 @@ Blazor Web Apps with OIDC authentication can use a token handler approach to mak
 
 For more information, see the following resources:
 
-* <xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls>
+* [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls)
 * *Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)*
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Server)](xref:blazor/security/blazor-web-app-oidc?pivots=without-yarp-and-aspire-server)
+  * [Without YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-oidc.md?pivots=without-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Server)](security/blazor-web-app-with-oidc.md?pivots=without-yarp-and-aspire-server)
 
 ## Microsoft identity platform for web API calls
 
@@ -977,7 +976,7 @@ Production web apps and web APIs should use a production distributed token cache
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>. 
+To configure a production distributed cache provider, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md). 
 
 > [!WARNING]
 > Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
@@ -1087,9 +1086,9 @@ For more information, see the following resources:
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * <xref:Microsoft.Identity.Abstractions.IDownstreamApi>
 * *Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID*
-  * [With YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire)
-  * [Without YARP and Aspire (Interactive Auto)](xref:blazor/security/blazor-web-app-entra?pivots=without-yarp-and-aspire)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
+  * [With YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-entra.md?pivots=with-yarp-and-aspire)
+  * [Without YARP and Aspire (Interactive Auto)](security/blazor-web-app-with-entra.md?pivots=without-yarp-and-aspire)
+* [Host ASP.NET Core in a web farm: Data Protection](../host-and-deploy/web-farm.md#data-protection)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
 * [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
@@ -1098,7 +1097,7 @@ For more information, see the following resources:
 
 *The guidance in this section applies to client-side scenarios that rely upon bearer token authentication.*
 
-[`HttpClient`](xref:fundamentals/http-requests) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
+[`HttpClient`](../fundamentals/http-requests.md) ([API documentation](xref:System.Net.Http.HttpClient)) and <xref:System.Net.Http.HttpRequestMessage> can be used to customize requests. For example, you can specify the HTTP method and request headers. The following component makes a `POST` request to a web API endpoint and shows the response body.
 
 `TodoRequest.razor`:
 
@@ -1282,7 +1281,7 @@ else
 > [!NOTE]
 > The preceding example is for demonstration purposes. A web API can be configured to return JSON even when an endpoint doesn't exist or an unhandled exception occurs on the server.
 
-For more information, see <xref:blazor/fundamentals/handle-errors>.
+For more information, see [Handle errors in ASP.NET Core Blazor apps](fundamentals/handle-errors.md).
 
 ## Cross-Origin Resource Sharing (CORS)
 
@@ -1290,7 +1289,7 @@ Browser security often restricts a webpage from making requests to a different o
 
 For more information on server-side CORS, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md). The article's examples don't pertain directly to Razor component scenarios, but the article is useful for learning general CORS concepts.
 
-For information on client-side CORS requests, see <xref:blazor/security/webassembly/additional-scenarios#cross-origin-resource-sharing-cors>.
+For information on client-side CORS requests, see [ASP.NET Core Blazor WebAssembly additional security scenarios](security/webassembly/additional-scenarios.md#cross-origin-resource-sharing-cors).
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1313,7 +1312,7 @@ private async Task OnSubmit()
 }
 ```
 
-For more information, see <xref:blazor/security/index#antiforgery-support>.
+For more information, see [ASP.NET Core Blazor authentication and authorization](security/index.md#antiforgery-support).
 
 :::moniker-end
 
@@ -1329,13 +1328,13 @@ Various network tools are publicly available for testing web API backend apps di
 
 ## Sample apps
 
-For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](xref:blazor/fundamentals/index#sample-apps)).
+For working examples, see the following sample apps in the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples/) ([how to download](fundamentals/index.md#sample-apps)).
 
 ### `BlazorWebAppCallWebApi`
 
 Call an external (not in the Blazor Web App) todo list web API from a Blazor Web App:
 
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](../fundamentals/minimal-apis.md). The web API app is a separate app from the Blazor Web App, possibly hosted on a different server.
 * `BlazorApp`/`BlazorApp.Client`: A Blazor Web App that calls the web API app with an <xref:System.Net.Http.HttpClient> for todo list operations, such as creating, reading, updating, and deleting (CRUD) items from the todo list.
 
 For client-side rendering (CSR), which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls are made with a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`):
@@ -1359,7 +1358,7 @@ Call an internal (inside the Blazor Web App) movie list API, where the API resid
 
 * `BlazorApp`: A Blazor Web App that maintains a movie list:
   * When operations are performed on the movie list within the app on the server, ordinary API calls are used.
-  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+  * When API calls are made by a web-based client, a web API is used for movie list operations, based on [Minimal APIs](../fundamentals/minimal-apis.md).
 * `BlazorApp.Client`: The client project of the Blazor Web App, which contains Interactive WebAssembly and Auto components for user management of the movie list.
 
 For CSR, which includes Interactive WebAssembly components and Auto components that have adopted CSR, calls to the API are made via a client-based service (`ClientMovieService`) that uses a preconfigured <xref:System.Net.Http.HttpClient> registered in the `Program` file of the client project (`BlazorApp.Client`). Because these calls are made over a public or private web, the movie list API is a *web API*.
@@ -1388,7 +1387,7 @@ public class ServerMovieService(MovieContext db) : IMovieService
 }
 ```
 
-For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+For more information on how to secure movie data in this scenario, see the weather data example described by [Secure data in Blazor Web Apps with Interactive Auto rendering](security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 ### `BlazorWebAppCallWebApi_Weather`
 
@@ -1398,7 +1397,7 @@ A weather data sample app that uses streaming rendering for weather data.
 
 Calls a todo list web API from a Blazor WebAssembly app:
 
-* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](xref:fundamentals/minimal-apis).
+* `Backend`: A web API app for maintaining a todo list, based on [Minimal APIs](../fundamentals/minimal-apis.md).
 * `BlazorTodo`: A Blazor WebAssembly app that calls the web API with a preconfigured <xref:System.Net.Http.HttpClient> for todo list CRUD operations.
 
 ### `BlazorWebAssemblyStandaloneWithIdentity`
@@ -1416,11 +1415,11 @@ The solution demonstrates calling a secure web API for the following:
 
 ### `BlazorWebAppOidcBffAuto`
 
-A Blazor Web App with global Interactive Auto rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+A Blazor Web App with global Interactive Auto rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [use a token handler for web API calls](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls) to call an external secure web API.
 
 ### `BlazorWebAppOidcBffServer`
 
-A Blazor Web App with global Interactive Server rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](xref:blazor/security/additional-scenarios#use-a-token-handler-for-web-api-calls) to call an external secure web API.
+A Blazor Web App with global Interactive Server rendering that uses OIDC authentication with Microsoft Entra without using Entra-specific packages. The sample demonstrates how to [pass an access token](security/additional-scenarios.md#use-a-token-handler-for-web-api-calls) to call an external secure web API.
 
 ### `BlazorWebAppOidcBffYarpAspire`
 
@@ -1460,7 +1459,7 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 * [Cross-Origin Resource Sharing (CORS) at W3C](https://www.w3.org/TR/cors/)
 * [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md): Although the content applies to ASP.NET Core apps, not Razor components, the article covers general CORS concepts.
-* [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
+* [Secure data in Blazor Web Apps with Interactive Auto rendering](security/index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering)
 
 :::moniker-end
 
@@ -1475,17 +1474,17 @@ The solution includes a demonstration of obtaining weather data securely via an 
 
 Web APIs can be vulnerable to an *overposting* attack, also known as a *mass assignment* attack. An overposting attack occurs when a malicious user issues an HTML form POST to the server that processes data for properties that aren't part of the rendered form and that the developer doesn't wish to allow users to modify. The term "overposting" literally means that the malicious user has *over*-POSTed with the form.
 
-For guidance on mitigating overposting attacks, see <xref:tutorials/first-web-api#prevent-over-posting>.
+For guidance on mitigating overposting attacks, see [Tutorial: Create a controller-based web API with ASP.NET Core](../tutorials/first-web-api.md#prevent-over-posting).
 
 ### Server-side
 
-* <xref:blazor/security/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
-* <xref:fundamentals/http-requests>
+* [ASP.NET Core Blazor additional server-side security scenarios](security/additional-scenarios.md): Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* [HTTP requests with IHttpClientFactory - ASP.NET Core](../fundamentals/http-requests.md)
 * [Enforce HTTPS in ASP.NET Core](../security/enforcing-ssl.md)
-* [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints)
+* [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md)
 
 ### Client-side
 
-* <xref:blazor/security/webassembly/additional-scenarios>: Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
-* <xref:blazor/security/webassembly/graph-api>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](security/webassembly/additional-scenarios.md): Includes coverage on using <xref:System.Net.Http.HttpClient> to make secure web API requests.
+* [Use Graph API with ASP.NET Core Blazor WebAssembly](security/webassembly/graph-api.md)
 * [Fetch API](https://developer.mozilla.org/docs/Web/API/fetch)

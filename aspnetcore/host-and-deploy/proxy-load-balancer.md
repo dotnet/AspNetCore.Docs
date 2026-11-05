@@ -5,7 +5,6 @@ description: Learn about configuration for apps hosted behind proxy servers and 
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 04/23/2026
-uid: host-and-deploy/proxy-load-balancer
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 
@@ -15,14 +14,14 @@ By [Chris Ross](https://github.com/Tratcher)
 
 :::moniker range=">= aspnetcore-6.0"
 
-In the recommended configuration for ASP.NET Core, the app is hosted using <xref:host-and-deploy/aspnet-core-module>, Nginx, or Apache. Proxy servers, load balancers, and other network appliances often obscure information about the request before it reaches the app:
+In the recommended configuration for ASP.NET Core, the app is hosted using [ASP.NET Core Module (ANCM) for IIS](aspnet-core-module.md), Nginx, or Apache. Proxy servers, load balancers, and other network appliances often obscure information about the request before it reaches the app:
 
 * When HTTPS requests are proxied over HTTP, the original scheme (HTTPS) is lost and must be forwarded in a header.
 * Because an app receives a request from the proxy and not its true source on the Internet or corporate network, the originating client IP address must also be forwarded in a header.
 
 This information might be important in request processing, for example in redirects, authentication, link generation, policy evaluation, and client geolocation.
 
-Apps intended to run on web farm should read <xref:host-and-deploy/web-farm>.
+Apps intended to run on web farm should read [Host ASP.NET Core in a web farm](web-farm.md).
 
 ## Forwarded headers
 
@@ -57,11 +56,11 @@ Not all network appliances add the `X-Forwarded-For` and `X-Forwarded-Proto` hea
 
 ## IIS/IIS Express and ASP.NET Core Module
 
-[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) enables forwarded headers middleware by default when the app is hosted [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind IIS and the <xref:host-and-deploy/aspnet-core-module>. Forwarded headers middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module. The restricted configuration is due to trust concerns with forwarded headers, for example, [IP spoofing](https://www.iplocation.net/ip-spoofing). The middleware is configured to forward the [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-For) and [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto) headers and is restricted to a single localhost proxy. If additional configuration is required, see the [forwarded headers middleware options](#forwarded-headers-middleware-options).
+[IIS integration middleware](iis/index.md#enable-the-iisintegration-components) enables forwarded headers middleware by default when the app is hosted [out-of-process](iis/index.md#out-of-process-hosting-model) behind IIS and the [ASP.NET Core Module (ANCM) for IIS](aspnet-core-module.md). Forwarded headers middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module. The restricted configuration is due to trust concerns with forwarded headers, for example, [IP spoofing](https://www.iplocation.net/ip-spoofing). The middleware is configured to forward the [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-For) and [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto) headers and is restricted to a single localhost proxy. If additional configuration is required, see the [forwarded headers middleware options](#forwarded-headers-middleware-options).
 
 ## Other proxy server and load balancer scenarios
 
-Outside of using [IIS Integration](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) when hosting [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model), [forwarded headers middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/ForwardedHeadersOptions.cs) isn't enabled by default. Forwarded headers middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
+Outside of using [IIS Integration](iis/index.md#enable-the-iisintegration-components) when hosting [out-of-process](iis/index.md#out-of-process-hosting-model), [forwarded headers middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HttpOverrides/src/ForwardedHeadersOptions.cs) isn't enabled by default. Forwarded headers middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
 
 Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the [`X-Forwarded-For`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-For) and [`X-Forwarded-Proto`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/X-Forwarded-Proto) headers.
 
@@ -80,7 +79,7 @@ Alternatively, call `UseForwardedHeaders` before diagnostics:
 
 ## Nginx configuration
 
-To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. 
+To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see [Host ASP.NET Core on Linux with Nginx](linux-nginx.md#configure-nginx). 
 
 ## Apache configuration
 
@@ -136,9 +135,9 @@ app.UseRouting();
 ```
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see <xref:migration/50-to-60#new-hosting-model>), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in <xref:fundamentals/middleware/index#middleware-order> and <xref:fundamentals/routing>.
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../fundamentals/routing.md).
 
-The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see <xref:fundamentals/middleware/index>.
+The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), fix redirects and links by setting the request's [PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) property:
 
@@ -201,7 +200,7 @@ If the proxy isn't base64-encoding the certificate, as is the case with Nginx, s
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable `debug` level [logging](xref:fundamentals/logging/index) and HTTP request logging. <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> must be called after <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
+When headers aren't forwarded as expected, enable `debug` level [logging](../fundamentals/logging/index.md) and HTTP request logging. <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> must be called after <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>:
 
 <!-- COMMENTED OUT DELETE after review
  If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
@@ -238,7 +237,7 @@ To display the logs, add `"Microsoft.AspNetCore.HttpLogging": "Information"` to 
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](web-farm.md)
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
 * [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
 
@@ -284,11 +283,11 @@ Not all network appliances add the `X-Forwarded-For` and `X-Forwarded-Proto` hea
 
 ## IIS/IIS Express and ASP.NET Core Module
 
-[IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) enables forwarded headers middleware by default when the app is hosted [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model) behind IIS and the ASP.NET Core Module. Forwarded headers middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module due to trust concerns with forwarded headers (for example, [IP spoofing](https://www.iplocation.net/ip-spoofing)). The middleware is configured to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers and is restricted to a single localhost proxy. If additional configuration is required, see the [forwarded headers middleware options](#forwarded-headers-middleware-options).
+[IIS integration middleware](iis/index.md#enable-the-iisintegration-components) enables forwarded headers middleware by default when the app is hosted [out-of-process](iis/index.md#out-of-process-hosting-model) behind IIS and the ASP.NET Core Module. Forwarded headers middleware is activated to run first in the middleware pipeline with a restricted configuration specific to the ASP.NET Core Module due to trust concerns with forwarded headers (for example, [IP spoofing](https://www.iplocation.net/ip-spoofing)). The middleware is configured to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers and is restricted to a single localhost proxy. If additional configuration is required, see the [forwarded headers middleware options](#forwarded-headers-middleware-options).
 
 ## Other proxy server and load balancer scenarios
 
-Outside of using [IIS Integration](xref:host-and-deploy/iis/index#enable-the-iisintegration-components) when hosting [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model), forwarded headers middleware isn't enabled by default. Forwarded headers middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
+Outside of using [IIS Integration](iis/index.md#enable-the-iisintegration-components) when hosting [out-of-process](iis/index.md#out-of-process-hosting-model), forwarded headers middleware isn't enabled by default. Forwarded headers middleware must be enabled for an app to process forwarded headers with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*>. After enabling the middleware if no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default [ForwardedHeadersOptions.ForwardedHeaders](xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.ForwardedHeaders) are [ForwardedHeaders.None](xref:Microsoft.AspNetCore.HttpOverrides.ForwardedHeaders).
 
 Configure the middleware with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers in `Startup.ConfigureServices`.
 
@@ -309,7 +308,7 @@ Alternatively, call `UseForwardedHeaders` before diagnostics:
 
 ## Nginx configuration
 
-To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see <xref:host-and-deploy/linux-nginx#configure-nginx>. 
+To forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers, see [Host ASP.NET Core on Linux with Nginx](linux-nginx.md#configure-nginx). 
 
 ## Apache configuration
 
@@ -375,7 +374,7 @@ If `/foo` is the app base path for a proxy path passed as `/foo/api/1`, the midd
 app.UsePathBase("/foo");
 ```
 
-The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see <xref:fundamentals/middleware/index>.
+The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 If the proxy trims the path (for example, forwarding `/foo/api/1` to `/api/1`), fix redirects and links by setting the request's [PathBase](xref:Microsoft.AspNetCore.Http.HttpRequest.PathBase) property:
 
@@ -490,7 +489,7 @@ services.AddCertificateForwarding(options =>
 
 ## Troubleshoot
 
-When headers aren't forwarded as expected, enable [logging](xref:fundamentals/logging/index). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
+When headers aren't forwarded as expected, enable [logging](../fundamentals/logging/index.md). If the logs don't provide sufficient information to troubleshoot the problem, enumerate the request headers received by the server. Use inline middleware to write request headers to an app response or log the headers.
 
 To write the headers to the app's response, place the following terminal inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`:
 
@@ -528,7 +527,7 @@ You can write to logs instead of the response body. Writing to logs allows the s
 
 To write logs rather than to the response body:
 
-* Inject `ILogger<Startup>` into the `Startup` class as described in [Create log messages](xref:fundamentals/logging/index#create-log-messages).
+* Inject `ILogger<Startup>` into the `Startup` class as described in [Create log messages](../fundamentals/logging/index.md#create-log-messages).
 * Place the following inline middleware immediately after the call to <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> in `Startup.Configure`.
 
 ```csharp
@@ -576,7 +575,7 @@ services.Configure<ForwardedHeadersOptions>(options =>
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](web-farm.md)
 * [Microsoft Security Advisory CVE-2018-0787: ASP.NET Core Elevation Of Privilege Vulnerability](https://github.com/aspnet/Announcements/issues/295)
 * [YARP: Yet Another Reverse Proxy](https://dotnet.github.io/yarp/)
 

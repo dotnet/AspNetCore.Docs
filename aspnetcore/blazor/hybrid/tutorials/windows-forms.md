@@ -3,7 +3,6 @@ title: Build a Windows Forms Blazor app
 description: Build a Windows Forms Blazor app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/tutorials/windows-forms
 ---
 # Build a Windows Forms Blazor app
 
@@ -62,7 +61,7 @@ At the top of the project file, change the SDK to `Microsoft.NET.Sdk.Razor`:
 
 Save the changes to the project file (`WinFormsBlazor.csproj`).
 
-Add an imports file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
+Add an imports file to the root of the project with an [`@using`](../../../mvc/views/razor.md#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
 `_Imports.razor`:
 
@@ -280,4 +279,4 @@ In this tutorial, you learned how to:
 Learn more about Blazor Hybrid apps:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/hybrid/index>
+> [ASP.NET Core Blazor Hybrid](../index.md)

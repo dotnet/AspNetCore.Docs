@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to design SignalR APIs for compatibility across versions of your app.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 07/06/2026
-uid: signalr/api-design
 ---
 # SignalR API design considerations
 
@@ -76,4 +75,4 @@ In this case, the new client is also tolerant of an old server that doesn't prov
 
 ## Related content
 
-* [SignalR assemblies in shared framework](xref:migration/22-to-30#signalr-assemblies-in-shared-framework)
+* [SignalR assemblies in shared framework](../migration/22-to-30.md#signalr-assemblies-in-shared-framework)

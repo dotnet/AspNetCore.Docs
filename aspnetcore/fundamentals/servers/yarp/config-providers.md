@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/config-providers
 title: YARP Extensibility Configuration Providers
 description: YARP Extensibility Configuration Providers
 ms.date: 2/6/2025
@@ -15,7 +14,7 @@ The [Basic Yarp Sample](https://github.com/microsoft/reverse-proxy/tree/main/sam
 
 See [ReverseProxy.Code.Sample](https://github.com/microsoft/reverse-proxy/tree/main/samples/ReverseProxy.Code.Sample) for an example of a custom configuration provider.
 
-Configuration can be modified during the load sequence using [Configuration Filters](xref:fundamentals/servers/yarp/config-filters).
+Configuration can be modified during the load sequence using [Configuration Filters](config-filters.md).
 
 ## Structure
 [IProxyConfigProvider](xref:Yarp.ReverseProxy.Configuration.IProxyConfigProvider) has a single method `GetConfig()` that should return an [IProxyConfig](xref:Yarp.ReverseProxy.Configuration.IProxyConfig) instance. The IProxyConfig has lists of the current routes and clusters, as well as an `IChangeToken` to notify the proxy when this information is out of date and should be reloaded, which will cause `GetConfig()` to be called again.
@@ -27,7 +26,7 @@ The routes section is an unordered collection of named routes. A route contains 
 * ClusterId - refers to the name of an entry in the clusters section.
 * Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
 
-[Headers](xref:fundamentals/servers/yarp/header-routing), [Authorization](xref:fundamentals/servers/yarp/authn-authz), [CORS](xref:fundamentals/servers/yarp/cors), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
+[Headers](header-routing.md), [Authorization](authn-authz.md), [CORS](cors.md), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
 
 The proxy will apply the given matching criteria and policies, and then pass off the request to the specified cluster.
 

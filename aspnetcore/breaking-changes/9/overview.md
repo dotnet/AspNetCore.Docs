@@ -1,6 +1,5 @@
 ---
 title: Breaking changes in ASP.NET Core 9
-titleSuffix: ""
 description: Navigate to the breaking changes in ASP.NET Core 9.
 ms.date: 03/26/2025
 no-loc: [Blazor, Razor, Kestrel]

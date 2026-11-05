@@ -3,7 +3,6 @@ title: Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 description: The Microsoft.AspNetCore.All metapackage is not recommended for ASP.NET Core 2.1 or later.
 monikerRange: '>= aspnetcore-2.0'
 ms.date: 10/25/2018
-uid: fundamentals/metapackage
 ---
 # Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0
 
@@ -17,7 +16,7 @@ uid: fundamentals/metapackage
 :::moniker-end
 
 > [!NOTE]
-> We recommend applications targeting ASP.NET Core 2.1 or later use the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
+> We recommend applications targeting ASP.NET Core 2.1 or later use the [Microsoft.AspNetCore.App metapackage](metapackage-app.md) rather than this package. See [Migrating from Microsoft.AspNetCore.All to Microsoft.AspNetCore.App](#migrate) in this article.
 
 This feature requires ASP.NET Core 2.x targeting .NET Core 2.x.
 

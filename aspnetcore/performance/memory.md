@@ -2,7 +2,6 @@
 title: Memory management and patterns in ASP.NET Core
 description: Learn how memory is managed in ASP.NET Core and how the garbage collector (GC) works.
 ms.date: 05/06/2026
-uid: performance/memory
 
 # customer intent: As an ASP.NET developer, I want to understand memory management and garbage collection in ASP.NET Core, so I can manage memory in my apps.
 ---
@@ -18,7 +17,7 @@ This article demonstrates common memory use patterns that can be problematic, an
 
 The GC process allocates heap segments where each segment is a contiguous range of memory. Objects placed in the heap are categorized into one of three generations: 0, 1, or 2. The generation determines the frequency of the GC attempts to release memory on managed objects that the app no longer references.  The GC addresses the lower-numbered generations more frequently.
 
-Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](xref:fundamentals/dependency-injection#service-lifetimes) generally migrate to Gen 2.
+Objects are moved from one generation to another based on their lifetime. As objects live longer, they're moved into a higher generation. As mentioned previously, GC runs less often on higher generations. Short-lived objects always remain in Gen 0. For example, objects that are referenced during the life of a web request are short lived. Application level [singletons](../fundamentals/dependency-injection.md#service-lifetimes) generally migrate to Gen 2.
 
 When an ASP.NET Core app starts, the GC process:
 
@@ -264,7 +263,7 @@ Comparing the two preceding charts:
 
 Temporary large objects are problematic because they cause Gen 2 collections.
 
-For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [response caching middleware](xref:performance/caching/response) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
+For maximum performance, minimize the use of large objects. If possible, split up large objects. For example, [response caching middleware](caching/response.md) in ASP.NET Core splits the cache entries into blocks less than 85,000 bytes.
 
 The following links show the ASP.NET Core approach to keeping objects under the LOH limit:
 
@@ -426,7 +425,7 @@ The main difference is allocated bytes, and as a consequence, fewer Gen 0 collec
 
 ## Related content
 
-* [ASP.NET Core Blazor performance best practices](xref:blazor/performance/index)
+* [ASP.NET Core Blazor performance best practices](../blazor/performance/index.md)
 * [Garbage collection](/dotnet/standard/garbage-collection/)
 * [Understanding different GC modes with Concurrency Visualizer (blog)](https://devblogs.microsoft.com/premier-developer/understanding-different-gc-modes-with-concurrency-visualizer/)
 * [Large Object Heap Uncovered (blog)](https://devblogs.microsoft.com/dotnet/large-object-heap-uncovered-from-an-old-msdn-article/)

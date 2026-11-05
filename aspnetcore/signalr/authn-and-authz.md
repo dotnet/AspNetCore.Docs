@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/22/2026
+ms.date: 11/05/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -56,7 +56,8 @@ In .NET 11 and later, a client can refresh the credentials for an active connect
 
 In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When the browser client is used, no extra configuration is needed. If the user is signed in to an app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](xref:signalr/dotnet-client) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a <xref:System.Net.CookieContainer>. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](dotnet-client.md) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie, as the following example demonstrates:
+
 
 ```csharp
 var cookieContainer = new CookieContainer();
@@ -104,7 +105,7 @@ var connection = new HubConnectionBuilder()
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
 
-The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](dotnet-client.md), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 
@@ -464,13 +465,13 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based authorization](../security/authorization/resource-based.md)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 
@@ -505,7 +506,7 @@ public void Configure(IApplicationBuilder app)
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call to provide a <xref:System.Net.CookieContainer>. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](dotnet-client.md), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie, as the following example demonstrates:
 
 ```csharp
 var cookieContainer = new CookieContainer();
@@ -543,7 +544,7 @@ var connection = new HubConnectionBuilder()
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
 
-The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](dotnet-client.md), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 

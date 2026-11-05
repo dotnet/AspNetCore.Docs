@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to create unit tests for Razor Pages apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 7/30/2020
-uid: test/razor-pages-tests
 ---
 # Razor Pages unit tests in ASP.NET Core
 
@@ -19,11 +18,11 @@ ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access l
 
 This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
-* <xref:razor-pages/index>
-* <xref:tutorials/razor-pages/razor-pages-start>
+* [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
+* [Tutorial: Get started with Razor Pages in ASP.NET Core](../tutorials/razor-pages/razor-pages-start.md)
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -50,7 +49,7 @@ The message app is a Razor Pages message system with the following characteristi
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://github.com/xunit/xunit) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the sample app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and <xref:mvc/controllers/testing> (the sample implements the repository pattern).
+Although the sample app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
 ## Test app organization
 
@@ -181,9 +180,9 @@ Other tests in this group create page model objects that include the <xref:Micro
 ## Additional resources
 
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
-* <xref:mvc/controllers/testing>
+* [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
-* <xref:test/integration-tests>
+* [Integration tests in ASP.NET Core](integration-tests.md)
 * [xUnit.net](https://github.com/xunit/xunit)
 * [Getting started with xUnit.net](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)
@@ -202,11 +201,11 @@ ASP.NET Core supports unit tests of Razor Pages apps. Tests of the data access l
 
 This topic assumes that you have a basic understanding of Razor Pages apps and unit tests. If you're unfamiliar with Razor Pages apps or test concepts, see the following topics:
 
-* <xref:razor-pages/index>
-* <xref:tutorials/razor-pages/razor-pages-start>
+* [Razor Pages architecture and concepts in ASP.NET Core](../razor-pages/index.md)
+* [Tutorial: Get started with Razor Pages in ASP.NET Core](../tutorials/razor-pages/razor-pages-start.md)
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/razor-pages-tests/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 The sample project is composed of two apps:
 
@@ -233,7 +232,7 @@ The message app is a Razor Pages message system with the following characteristi
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://github.com/xunit/xunit) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the sample app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and <xref:mvc/controllers/testing> (the sample implements the repository pattern).
+Although the sample app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
 ## Test app organization
 
@@ -364,9 +363,9 @@ Other tests in this group create page model objects that include the <xref:Micro
 ## Additional resources
 
 * [Testing with `dotnet test`](/dotnet/core/testing/unit-testing-with-dotnet-test)
-* <xref:mvc/controllers/testing>
+* [Test controller logic in ASP.NET Core](../mvc/controllers/testing.md)
 * [Unit Test Your Code](/visualstudio/test/unit-test-your-code) (Visual Studio)
-* <xref:test/integration-tests>
+* [Integration tests in ASP.NET Core](integration-tests.md)
 * [xUnit.net](https://github.com/xunit/xunit)
 * [Getting started with xUnit.net](https://xunit.net/docs/getting-started/netcore/cmdline)
 * [Moq](https://github.com/moq/moq4)

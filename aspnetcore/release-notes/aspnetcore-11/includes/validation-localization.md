@@ -57,7 +57,7 @@ The same localization rules apply to validation for minimal APIs and Blazor, so 
 
 Complete feature coverage is available in the following articles:
 
-* <xref:fundamentals/validation?view=aspnetcore-11.0#localize-validation-messages>
-* <xref:fundamentals/minimal-apis?view=aspnetcore-11.0#localizing-validation-messages>
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0#localize-validation-messages)
+* [Minimal APIs quick reference](../../../fundamentals/minimal-apis.md?view=aspnetcore-11.0#localizing-validation-messages)
 
 For more information, see [Add localization support to Microsoft.Extensions.Validation (`dotnet/aspnetcore` #66646)](https://github.com/dotnet/aspnetcore/pull/66646).

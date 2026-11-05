@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/websockets
 title: YARP Proxying WebSockets and SPDY
 description: YARP Proxying WebSockets and SPDY
 ms.date: 9/28/2026
@@ -11,7 +10,7 @@ ai-usage: ai-assisted
 
 ## Introduction
 
-YARP enables proxying WebSocket and SPDY connections by default. This support works with both the [direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding) and [full pipeline](xref:fundamentals/servers/yarp/getting-started) approaches.
+YARP enables proxying WebSocket and SPDY connections by default. This support works with both the [direct forwarding](direct-forwarding.md) and [full pipeline](getting-started.md) approaches.
 
 [WebSockets](https://www.rfc-editor.org/rfc/rfc6455.html) is a bidirectional streaming protocol built on HTTP/1.1 or later adapted to [HTTP/2](https://datatracker.ietf.org/doc/html/rfc8441).
 
@@ -33,11 +32,11 @@ After the initial handshake WebSockets function the same way over both HTTP vers
 
 ## Timeout
 
-[Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](xref:fundamentals/servers/yarp/timeouts).
+[Http Request Timeouts](/aspnet/core/performance/timeouts) (.NET 8+) can apply timeouts to all requests by default or by policy. These timeouts will be disabled after a WebSocket handshake. They will still apply to gRPC requests. For additional configuration see [Timeouts](timeouts.md).
 
-The cluster's [`ActivityTimeout`](xref:fundamentals/servers/yarp/http-client-config#HttpRequest) (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, use *either* of the following approaches:
+The cluster's [`ActivityTimeout`](http-client-config.md#httprequest) (100 seconds by default) still applies after the handshake. If no data or WebSocket keep-alive frames are sent in either direction for that duration, YARP closes the connection. To keep idle connections open, use *either* of the following approaches:
 
 * Send WebSocket keep-alives at an interval shorter than `ActivityTimeout` from the client or the destination server.
 * Increase the `ActivityTimeout` for the cluster.
 
-Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [YARP Request Timeouts](xref:fundamentals/servers/yarp/timeouts#websockets).
+Browser clients don't send keep-alives on their own, so they depend on the destination server's interval. In ASP.NET Core, <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveInterval> defaults to two minutes, which is longer than the default `ActivityTimeout`. For more information, see [YARP Request Timeouts](timeouts.md#websockets).

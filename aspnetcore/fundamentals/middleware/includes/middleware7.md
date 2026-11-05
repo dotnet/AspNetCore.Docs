@@ -1,7 +1,7 @@
 :::moniker range="= aspnetcore-7.0"
 
-[`WebApplication`](xref:fundamentals/minimal-apis/webapplication) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
-* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](xref:fundamentals/environments) is `"Development"`.
+[`WebApplication`](../../minimal-apis/webapplication.md) automatically adds the following middleware in ASP.NET Core apps depending on certain conditions:
+* [`UseDeveloperExceptionPage`](/dotnet/api/microsoft.aspnetcore.diagnostics.developerexceptionpagemiddleware) is added first when the [`HostingEnvironment`](../../environments.md) is `"Development"`.
 * [`UseRouting`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.userouting) is added second if user code didn't already call `UseRouting` and if there are endpoints configured, for example `app.MapGet`.
 * [`UseEndpoints`](/dotnet/api/microsoft.aspnetcore.builder.endpointroutingapplicationbuilderextensions.useendpoints) is added at the end of the middleware pipeline if any endpoints are configured.
 * [`UseAuthentication`](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) is added immediately after `UseRouting` if user code didn't already call `UseAuthentication` and if [`IAuthenticationSchemeProvider`](/dotnet/api/microsoft.aspnetcore.authentication.iauthenticationschemeprovider) can be detected in the service provider. `IAuthenticationSchemeProvider` is added by default when using [`AddAuthentication`](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication), and services are detected using [`IServiceProviderIsService`](/dotnet/api/microsoft.extensions.dependencyinjection.iserviceproviderisservice).

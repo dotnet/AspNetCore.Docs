@@ -4,8 +4,8 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 The following links provide troubleshooting guidance:
 
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../troubleshoot-azure-iis.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../../../host-and-deploy/azure-iis-errors-reference.md)
 * [NDC Conference (London, 2018): Diagnosing issues in ASP.NET Core Applications](https://www.youtube.com/watch?v=RYI0DHoIVaA)
 * [ASP.NET Blog: Troubleshooting ASP.NET Core Performance Problems](https://blogs.msdn.microsoft.com/webdev/2018/05/23/asp-net-core-performance-improvements/)
 
@@ -52,7 +52,7 @@ These warnings appear when the environment variable `PATH` doesn't point to any 
 
 ### Missing SDK after installing the .NET Core Hosting Bundle
 
-Installing the [.NET Core Hosting Bundle](xref:host-and-deploy/iis/index#install-the-net-core-hosting-bundle) modifies the `PATH` when it installs the .NET Core runtime to point to the 32-bit (x86) version of .NET Core (`C:\Program Files (x86)\dotnet\`). This can result in missing SDKs when the 32-bit (x86) .NET Core `dotnet` command is used ([No .NET Core SDKs were detected](#no-net-core-sdks-were-detected)). To resolve this problem, move `C:\Program Files\dotnet\` to a position before `C:\Program Files (x86)\dotnet\` on the `PATH`.
+Installing the [.NET Core Hosting Bundle](../../../host-and-deploy/iis/index.md#install-the-net-hosting-bundle) modifies the `PATH` when it installs the .NET Core runtime to point to the 32-bit (x86) version of .NET Core (`C:\Program Files (x86)\dotnet\`). This can result in missing SDKs when the 32-bit (x86) .NET Core `dotnet` command is used ([No .NET Core SDKs were detected](#no-net-core-sdks-were-detected)). To resolve this problem, move `C:\Program Files\dotnet\` to a position before `C:\Program Files (x86)\dotnet\` on the `PATH`.
 
 ## Obtain data from an app
 
@@ -64,7 +64,7 @@ If an app is capable of responding to requests, you can obtain the following dat
 * Configuration settings
 * Environment variables
 
-Place the following [middleware](xref:fundamentals/middleware/index#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the `Development` environment.
+Place the following [middleware](../../../fundamentals/middleware/index.md#create-a-middleware-pipeline-with-iapplicationbuilder) code at the beginning of the `Startup.Configure` method's request processing pipeline. The environment is checked before the middleware is run to ensure that the code is only executed in the `Development` environment.
 
 To obtain the environment, use either of the following approaches:
 
