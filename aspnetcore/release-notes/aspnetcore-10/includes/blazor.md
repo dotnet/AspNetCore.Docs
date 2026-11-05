@@ -234,7 +234,7 @@ For more information, see [ASP.NET Core Blazor static files](../../../blazor/fun
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> This feature is disabled for Blazor Web App enhanced navigation in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](/aspnet/core/breaking-changes/11/blazor-enhanced-nav-preloading-disabled).
+> This feature is disabled for Blazor Web App enhanced navigation in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](../../../breaking-changes/11/blazor-enhanced-nav-preloading-disabled.md).
 
 :::moniker-end
 

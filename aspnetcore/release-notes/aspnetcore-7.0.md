@@ -178,7 +178,7 @@ Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
-Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](../security/authentication/certauth.md), or a cookie header.
 
 There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
 

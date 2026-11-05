@@ -44,7 +44,7 @@ If you relied on the implicit preload hints during enhanced navigation, add expl
 </HeadContent>
 ```
 
-Alternatively, opt the relevant links out of enhanced navigation if preloading is more important to you than the snappier in-place navigation. For more information, see [enhanced navigation and form handling](/aspnet/core/blazor/fundamentals/routing#enhanced-navigation-and-form-handling).
+Alternatively, opt the relevant links out of enhanced navigation if preloading is more important to you than the snappier in-place navigation. For more information, see [enhanced navigation and form handling](../../blazor/fundamentals/routing.md#enhanced-navigation-and-form-handling).
 
 ## Affected APIs
 

@@ -67,4 +67,4 @@ If you intentionally want the old single-variant shape for a specific endpoint, 
 - <xref:Microsoft.AspNetCore.Mvc.ProducesAttribute?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*?displayProperty=fullName>
-- Generated `responses` entries in the OpenAPI document produced by [`AddOpenApi`](/aspnet/core/fundamentals/openapi/aspnetcore-openapi).
+- Generated `responses` entries in the OpenAPI document produced by [`AddOpenApi`](../../fundamentals/openapi/aspnetcore-openapi.md).

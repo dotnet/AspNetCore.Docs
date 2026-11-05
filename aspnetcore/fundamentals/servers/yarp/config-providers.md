@@ -24,7 +24,7 @@ The routes section is an unordered collection of named routes. A route contains 
 
 * RouteId - a unique name
 * ClusterId - refers to the name of an entry in the clusters section.
-* Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](/aspnet/core/fundamentals/routing#route-templates).
+* Match - contains either a Hosts array or a Path pattern string. Path is an ASP.NET Core route template that can be defined as [explained here](../../routing.md#route-templates).
 
 [Headers](header-routing.md), [Authorization](authn-authz.md), [CORS](cors.md), and other route based policies can be configured on each route entry. For additional fields see [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig).
 

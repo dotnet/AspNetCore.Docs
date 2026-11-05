@@ -8,7 +8,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/526
 
 # WebHostBuilder, IWebHost, and WebHost are obsolete
 
-<xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>, <xref:Microsoft.AspNetCore.Hosting.IWebHost>, and <xref:Microsoft.AspNetCore.WebHost> have been marked as obsolete in .NET 10. `WebHostBuilder` was replaced by `HostBuilder` ([generic host](/aspnet/core/fundamentals/host/generic-host)) in ASP.NET Core 3.0, and `WebApplicationBuilder` was introduced in ASP.NET Core 6.0. These newer alternatives are where future investments will occur.
+<xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>, <xref:Microsoft.AspNetCore.Hosting.IWebHost>, and <xref:Microsoft.AspNetCore.WebHost> have been marked as obsolete in .NET 10. `WebHostBuilder` was replaced by `HostBuilder` ([generic host](../../fundamentals/host/generic-host.md)) in ASP.NET Core 3.0, and `WebApplicationBuilder` was introduced in ASP.NET Core 6.0. These newer alternatives are where future investments will occur.
 
 ## Version introduced
 
@@ -38,7 +38,7 @@ This change can affect [source compatibility](/dotnet/core/compatibility/categor
 
 ## Recommended action
 
-Migrate from `WebHostBuilder` to either [`HostBuilder`](/aspnet/core/fundamentals/host/generic-host) or [`WebApplication`](/aspnet/core/fundamentals/minimal-apis/webapplication):
+Migrate from `WebHostBuilder` to either [`HostBuilder`](../../fundamentals/host/generic-host.md) or [`WebApplication`](../../fundamentals/minimal-apis/webapplication.md):
 
 - For applications that need the full hosting capabilities, migrate to `HostBuilder`:
 
@@ -81,7 +81,7 @@ Migrate from `WebHostBuilder` to either [`HostBuilder`](/aspnet/core/fundamental
 
 ## See also
 
-- [Generic Host in ASP.NET Core](/aspnet/core/fundamentals/host/generic-host)
-- [Minimal APIs with WebApplication](/aspnet/core/fundamentals/minimal-apis/webapplication)
-- [HostBuilder replaces WebHostBuilder](/aspnet/core/migration/22-to-30#hostbuilder-replaces-webhostbuilder)
-- [Introducing WebApplication](/aspnet/core/migration/50-to-60#new-hosting-model)
+- [Generic Host in ASP.NET Core](../../fundamentals/host/generic-host.md)
+- [Minimal APIs with WebApplication](../../fundamentals/minimal-apis/webapplication.md)
+- [HostBuilder replaces WebHostBuilder](../../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder)
+- [Introducing WebApplication](../../migration/50-to-60.md#new-hosting-model)

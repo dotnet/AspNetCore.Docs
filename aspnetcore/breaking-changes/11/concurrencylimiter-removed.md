@@ -61,7 +61,7 @@ The `ConcurrencyLimiter` middleware was marked obsolete in ASP.NET Core 8 (diagn
 
 ## Recommended action
 
-Migrate to the [rate-limiting middleware](/aspnet/core/performance/rate-limit), which provides an equivalent concurrency limiter built on <xref:System.Threading.RateLimiting.ConcurrencyLimiter?displayProperty=nameWithType>:
+Migrate to the [rate-limiting middleware](../../performance/rate-limit.md), which provides an equivalent concurrency limiter built on <xref:System.Threading.RateLimiting.ConcurrencyLimiter?displayProperty=nameWithType>:
 
 ```csharp
 using Microsoft.AspNetCore.Builder;
