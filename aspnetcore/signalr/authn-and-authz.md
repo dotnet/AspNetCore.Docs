@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/22/2026
+ms.date: 11/05/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -56,7 +56,20 @@ In .NET 11 and later, a client can refresh the credentials for an active connect
 
 In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When the browser client is used, no extra configuration is needed. If the user is signed in to an app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](dotnet-client.md) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](dotnet-client.md) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie, as the following example demonstrates:
+
+
+```csharp
+var cookieContainer = new CookieContainer();
+cookieContainer.Add(new Cookie(".AspNetCore.Cookies", cookieValue, "/", "example.com"));
+
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/chathub", options =>
+    {
+        options.Cookies = cookieContainer;
+    })
+    .Build();
+```
 
 :::moniker-end
 
@@ -493,7 +506,19 @@ public void Configure(IApplicationBuilder app)
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](dotnet-client.md), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](dotnet-client.md), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie, as the following example demonstrates:
+
+```csharp
+var cookieContainer = new CookieContainer();
+cookieContainer.Add(new Cookie(".AspNetCore.Cookies", cookieValue, "/", "example.com"));
+
+var connection = new HubConnectionBuilder()
+    .WithUrl("https://example.com/chathub", options =>
+    {
+        options.Cookies = cookieContainer;
+    })
+    .Build();
+```
 
 ### Bearer token authentication
 
