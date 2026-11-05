@@ -34,7 +34,7 @@ This section describes new features for SignalR.
 
 ## gRPC
 
-The `Microsoft.AspNetCore.Grpc.Swagger` package was deprecated. For more information, see [Deprecate Microsoft.AspNetCore.Grpc.Swagger (dotnet/aspnetcore #67134)](https://github.com/dotnet/aspnetcore/issues/67134).
+The `Microsoft.AspNetCore.Grpc.Swagger` package was deprecated. For more information, see [Deprecate Microsoft.AspNetCore.Grpc.Swagger (`dotnet/aspnetcore` #67134)](https://github.com/dotnet/aspnetcore/issues/67134).
 
 ## Minimal APIs
 

@@ -1119,7 +1119,7 @@
         },
         {
             "source_path": "aspnetcore/grpc/json-transcoding-openapi.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-11",
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-11#grpc",
             "redirect_document_id": false
         },
         {
