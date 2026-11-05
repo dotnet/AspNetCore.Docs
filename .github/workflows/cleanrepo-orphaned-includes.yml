@@ -32,7 +32,7 @@ jobs:
           docfx_directory: "aspnetcore"
           target_directory: "aspnetcore"
           url_base_path: "/aspnet/core"
-          exclude_include_files: "['preview-notice.md']"
+          exclude_include_files: '["preview-notice.md"]'
 
       # Create the PR for the work done by the "clean repo" tool
       - name: create-pull-request
