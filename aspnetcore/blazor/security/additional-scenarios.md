@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure server-side Blazor and Blazor Web Apps for additional security scenarios.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/18/2026
-uid: blazor/security/additional-scenarios
 ---
 # ASP.NET Core Blazor additional server-side security scenarios
 
@@ -13,20 +12,20 @@ uid: blazor/security/additional-scenarios
 This article explains how to configure server-side Blazor for additional security scenarios, including how to pass tokens to a Blazor app.
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](xref:migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the `string?`, `TodoItem[]?`, `WeatherForecast[]?`, and `IEnumerable<GitHubBranch>?` types in the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the `string?`, `TodoItem[]?`, `WeatherForecast[]?`, and `IEnumerable<GitHubBranch>?` types in the article's examples.
 
 ## Pass tokens to a server-side Blazor app
 
 :::moniker range=">= aspnetcore-8.0"
 
-*This section applies to Blazor Web Apps. For Blazor Server, view the [.NET 7 version of this article section](xref:blazor/security/additional-scenarios?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
+*This section applies to Blazor Web Apps. For Blazor Server, view the [.NET 7 version of this article section](additional-scenarios.md?view=aspnetcore-7.0&preserve-view=true#pass-tokens-to-a-server-side-blazor-app).*
 
-If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties server-side for other purposes.
+If you merely want to use access tokens to make web API calls from a Blazor Web App with a [named HTTP client](../call-web-api.md#named-httpclient-with-ihttpclientfactory), see the [Use a token handler for web API calls](#use-a-token-handler-for-web-api-calls) section, which explains how to use a <xref:System.Net.Http.DelegatingHandler> implementation to attach a user's access token to outgoing requests. The following guidance in this section is for developers who need access tokens, refresh tokens, and other authentication properties server-side for other purposes.
 
 > [!NOTE]
-> For more information on <xref:System.Net.Http.DelegatingHandler> instances, see <xref:fundamentals/http-requests#outgoing-request-middleware>.
+> For more information on <xref:System.Net.Http.DelegatingHandler> instances, see [HTTP requests with IHttpClientFactory - ASP.NET Core](../../fundamentals/http-requests.md#outgoing-request-middleware).
 
-To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](xref:blazor/components/httpcontext) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal`1> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see <xref:blazor/components/httpcontext>.
+To save tokens and other authentication properties for server-side use in Blazor Web Apps, we recommend using [`IHttpContextAccessor`/`HttpContext`](../components/httpcontext.md) (<xref:Microsoft.AspNetCore.Http.IHttpContextAccessor>, <xref:Microsoft.AspNetCore.Http.HttpContext>). Reading tokens from <xref:Microsoft.AspNetCore.Http.HttpContext>, including as a [cascading parameter](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute), using <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> is supported for obtaining tokens for use during interactive server rendering if the tokens are obtained during static server-side rendering (static SSR) or prerendering. However, tokens aren't updated if the user authenticates after the circuit is established, since the <xref:Microsoft.AspNetCore.Http.HttpContext> is captured at the start of the SignalR connection. Also, the use of <xref:System.Threading.AsyncLocal`1> by <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> means that you must be careful not to lose the execution context before reading the <xref:Microsoft.AspNetCore.Http.HttpContext>. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md).
 
 In a service class, obtain access to the members of the namespace <xref:Microsoft.AspNetCore.Authentication?displayProperty=fullName> to surface the <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*> method on <xref:Microsoft.AspNetCore.Http.HttpContext>. An alternative approach, which is commented out in the following example, is to call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.AuthenticateAsync*> on <xref:Microsoft.AspNetCore.Http.HttpContext>. For the returned <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Properties?displayProperty=nameWithType>, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenValue*>.
 
@@ -100,7 +99,7 @@ builder.Services.AddHttpClient("ExternalApi",
 > [!CAUTION]
 > Ensure that tokens are never transmitted and handled by the client (the `.Client` project), for example, in a component that adopts Interactive Auto rendering and is rendered on the client or by a client-side service. Always have the client call the server (project) to process requests with tokens. **Tokens and other authentication data should never leave the server.**
 >
-> For Interactive Auto components, see <xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering>, which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in <xref:blazor/security/blazor-web-app-oidc> for OIDC providers and <xref:blazor/security/blazor-web-app-entra> for Microsoft Identity Web with Entra.
+> For Interactive Auto components, see [ASP.NET Core Blazor authentication and authorization](index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering), which demonstrates how to leave access tokens and other authentication properties on the server. Also, consider adopting the Backend-for-Frontend (BFF) pattern, which adopts a similar call structure and is described in [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](blazor-web-app-with-oidc.md) for OIDC providers and [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md) for Microsoft Identity Web with Entra.
 
 ## Use a token handler for web API calls
 
@@ -108,7 +107,7 @@ The following approach is aimed at attaching a user's access token to outgoing r
 
 For a demonstration of the guidance in this section, see the `BlazorWebAppOidc` and `BlazorWebAppOidcServer` sample apps (.NET 8 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples). The samples adopt a global interactive render mode and OIDC authentication with Microsoft Entra without using Entra-specific packages. The samples demonstrate how to pass a JWT access token to call a secure web API.
 
-[Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see <xref:blazor/security/blazor-web-app-entra> and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
+[Microsoft identity platform](/entra/identity-platform/) with [Microsoft Identity Web packages](/entra/msal/dotnet/microsoft-identity-web/) for [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra) provides a API to call web APIs from Blazor Web Apps with automatic token management and renewal. For more information, see [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](blazor-web-app-with-entra.md) and the `BlazorWebAppEntra` and `BlazorWebAppEntraBff` sample apps (.NET 9 or later) in the [Blazor samples GitHub repository](https://github.com/dotnet/blazor-samples).
 
 Subclass <xref:System.Net.Http.DelegatingHandler> to attach a user's access token to outgoing requests. The token handler only executes on the server, so using <xref:Microsoft.AspNetCore.Http.HttpContext> is safe.
 
@@ -147,9 +146,9 @@ public class TokenHandler(IHttpContextAccessor httpContextAccessor) :
 > [!NOTE]
 > For guidance on how to access an `AuthenticationStateProvider` from a `DelegatingHandler`, see the [Access `AuthenticationStateProvider` in outgoing request middleware](#access-authenticationstateprovider-in-outgoing-request-middleware) section.
 
-In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
+In the project's `Program` file, the token handler (`TokenHandler`) is registered as a scoped service and specified as a [named HTTP client's](../call-web-api.md#named-httpclient-with-ihttpclientfactory) message handler with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
-In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI. For more information on <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>, see <xref:blazor/components/httpcontext>.
+In the following example, the `{HTTP CLIENT NAME}` placeholder is the name of the <xref:System.Net.Http.HttpClient>, and the `{BASE ADDRESS}` placeholder is the web API's base address URI. For more information on <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md).
 
 In `Program.cs`:
 
@@ -173,7 +172,7 @@ builder.Services.AddHttpClient("ExternalApi",
       .AddHttpMessageHandler<TokenHandler>();
 ```
 
-You can supply the HTTP client base address from [configuration](xref:blazor/fundamentals/configuration) with `builder.Configuration["{CONFIGURATION KEY}"]`, where the `{CONFIGURATION KEY}` placeholder is the configuration key:
+You can supply the HTTP client base address from [configuration](../fundamentals/configuration.md) with `builder.Configuration["{CONFIGURATION KEY}"]`, where the `{CONFIGURATION KEY}` placeholder is the configuration key:
 
 ```csharp
 new Uri(builder.Configuration["ExternalApiUri"] ?? throw new IOException("No URI!"))
@@ -284,7 +283,7 @@ services.Configure<OpenIdConnectOptions>(AzureADDefaults.OpenIdScheme, options =
 
 Optionally, additional scopes are added with `options.Scope.Add("{SCOPE}");`, where the `{SCOPE}` placeholder is the additional scope to add.
 
-Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](xref:blazor/fundamentals/dependency-injection).
+Define a **scoped** token provider service that can be used within the Blazor app to resolve the tokens from [dependency injection (DI)](../fundamentals/dependency-injection.md).
 
 `TokenProvider.cs`:
 
@@ -857,20 +856,20 @@ Use either of the following approaches to address this scenario:
 * [Circuit activity handler](#circuit-activity-handler)
 
 > [!NOTE]
-> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory>, see the following sections of <xref:fundamentals/http-requests>:
+> For general guidance on defining delegating handlers for HTTP requests by <xref:System.Net.Http.HttpClient> instances created using <xref:System.Net.Http.IHttpClientFactory>, see the following sections of [HTTP requests with IHttpClientFactory - ASP.NET Core](../../fundamentals/http-requests.md):
 >
-> * [Outgoing request middleware](xref:fundamentals/http-requests#outgoing-request-middleware)
-> * [Use DI in outgoing request middleware](xref:fundamentals/http-requests#use-di-in-outgoing-request-middleware)
+> * [Outgoing request middleware](../../fundamentals/http-requests.md#outgoing-request-middleware)
+> * [Use DI in outgoing request middleware](../../fundamentals/http-requests.md#use-di-in-outgoing-request-middleware)
 
 The examples in the following subsections attach a custom user name header for authenticated users to outgoing requests.
 
 ### Application scope handler (*Recommended*)
 
-The approach in this section uses a [keyed service](xref:fundamentals/dependency-injection#keyed-services) to register a custom <xref:System.Net.Http.HttpClient> that wraps the base client with an application scope handler resolved from the current application scope to access <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
+The approach in this section uses a [keyed service](../../fundamentals/dependency-injection.md#keyed-services) to register a custom <xref:System.Net.Http.HttpClient> that wraps the base client with an application scope handler resolved from the current application scope to access <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 
 Overview of the approach:
 
-* Base client configuration: <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> is called to register a [named client](xref:blazor/call-web-api#named-httpclient-with-ihttpclientfactory) with <xref:System.Net.Http.IHttpClientFactory>.
+* Base client configuration: <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> is called to register a [named client](../call-web-api.md#named-httpclient-with-ihttpclientfactory) with <xref:System.Net.Http.IHttpClientFactory>.
 * Keyed registration: A custom `AddApplicationScopeHandler` extension method registers a keyed <xref:System.Net.Http.HttpClient> with the same client name.
 * Scope-aware handler: The application scope handler is resolved from the current scope, giving it access to <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>.
 * Handler caching: The application scope handler uses <xref:System.Net.Http.IHttpMessageHandlerFactory> to get the cached <xref:System.Net.Http.HttpMessageHandler>, which preserves connection pooling.
@@ -1009,11 +1008,11 @@ Inject the client into components using the keyed service:
 
 ### Circuit activity handler
 
-The approach in this section uses a [circuit activity handler](xref:blazor/fundamentals/signalr#monitor-circuit-activity-blazor-server) to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is an alternative to the recommended [application scope handler approach](#application-scope-handler-recommended) in the preceding section.
+The approach in this section uses a [circuit activity handler](../fundamentals/signalr.md#monitor-server-side-circuit-activity) to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider>, which is an alternative to the recommended [application scope handler approach](#application-scope-handler-recommended) in the preceding section.
 
 First, implement the `CircuitServicesAccessor` class in the following section of the Blazor dependency injection (DI) article:
 
-[Access server-side Blazor services from a different DI scope](xref:blazor/fundamentals/dependency-injection#access-server-side-blazor-services-from-a-different-di-scope)
+[Access server-side Blazor services from a different DI scope](../fundamentals/dependency-injection.md#access-server-side-blazor-services-from-a-different-di-scope)
 
 Use the `CircuitServicesAccessor` to access the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> in the <xref:System.Net.Http.DelegatingHandler> implementation.
 
@@ -1371,16 +1370,16 @@ Built-in opaque access token support is under consideration for a future release
 
 ## Server-side Blazor app authorization patterns
 
-*For patterns that apply to Blazor WebAssembly apps, see <xref:blazor/security/webassembly/index#blazor-webassembly-authorization-patterns>.*
+*For patterns that apply to Blazor WebAssembly apps, see [Secure ASP.NET Core Blazor WebAssembly](webassembly/index.md#blazor-webassembly-authorization-patterns).*
 
 Server-side Blazor apps (Blazor Web Apps, Blazor Server apps) usually adopt **either** of the following approaches to require authorization:
 
 * The app sets an authorization fallback policy that requires authorization globally across the app and applies the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to resources (for example, Razor components, static assets) that don't require an authenticated user. For more information, see the [Global authorization via a fallback authorization policy](#global-authorization-via-a-fallback-authorization-policy) section.
-* Instead of requiring global authorization for resources, the app applies the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to resources that require an authorized user. For more information, see the [Local authorization via `[Authorize]` attributes](#local-authorization-via-authorize-attributes) section.
+* Instead of requiring global authorization for resources, the app applies the [`[Authorize]` attribute](index.md#authorize-attribute) to resources that require an authorized user. For more information, see the [Local authorization via `[Authorize]` attributes](#local-authorization-via-authorize-attributes) section.
 
 ### Global authorization via a fallback authorization policy
 
-The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)).
+The following demonstration code can be used with the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 Set the <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to a policy with <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireAuthenticatedUser*>. The fallback policy is selected when no policy is produced from authorization metadata. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../../security/authorization/policies.md#default-and-fallback-policies).
 
@@ -1447,7 +1446,7 @@ app.MapStaticAssets().AllowAnonymous();
 To alternatively allow anonymous access for specific paths, apply the <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute> to the route pattern inside the endpoint convention lambda of <xref:Microsoft.AspNetCore.StaticAssets.StaticAssetsEndpointConventionBuilder.Add*?displayProperty=nameWithType>.
 
 > [!IMPORTANT]
-> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](../project-structure.md#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via Map Static Assets routing endpoint conventions or static files middleware.
 
 Place static assets for anonymous access into a single folder. In the following example, endpoint routes with the `/public/` path segment are served anonymously:
 
@@ -1499,7 +1498,7 @@ app.UseAuthorization();
 To alternatively allow anonymous access for specific paths, register a separate static files middleware before <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> are called. A second call to <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> after authorization pipeline processing only serves other static assets if the user is authorized.
 
 > [!IMPORTANT]
-> When only authorizing specific endpoints for anonymous access, the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
+> When only authorizing specific endpoints for anonymous access, the [Blazor script](../project-structure.md#location-of-the-blazor-script) and other Blazor static assets, such as stylesheets, scripts, and modules, must be taken into consideration. If public Razor component pages require the assets to render and function correctly, the assets must be made available anonymously as well because they're requested separately via static files middleware.
 
 In the following example, static assets in the app's `wwwroot/public` folder are served anonymously:
 
@@ -1518,7 +1517,7 @@ app.UseStaticFiles();
 
 :::moniker-end
 
-Use an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
+Use an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../mvc/views/razor.md#attribute) directive for the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to permit anonymous access to individual components. In the following example, the `Home` component sets the attribute.
 
 At the top of `Components/Pages/Home.razor`:
 
@@ -1552,9 +1551,9 @@ app.MapAdditionalIdentityEndpoints().AllowAnonymous();
 
 ### Local authorization via `[Authorize]` attributes
 
-Apply [`[Authorize]` attributes](xref:blazor/security/index#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***either*** of the following approaches:
+Apply [`[Authorize]` attributes](index.md#authorize-attribute) ([API documentation](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute)) to Razor components using ***either*** of the following approaches:
 
-* In the app's imports file, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](xref:mvc/views/razor#attribute) directive for the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute).
+* In the app's imports file, add an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace with an [`@attribute`](../../mvc/views/razor.md#attribute) directive for the [`[Authorize]` attribute](index.md#authorize-attribute).
 
   `_Imports.razor`:
 
@@ -1563,13 +1562,13 @@ Apply [`[Authorize]` attributes](xref:blazor/security/index#authorize-attribute)
   @attribute [Authorize]
   ```
 
-  Imports files can be applied at any level of a folder hierarchy to apply an [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) for that folder's components and its subfolders.
+  Imports files can be applied at any level of a folder hierarchy to apply an [`[Authorize]` attribute](index.md#authorize-attribute) for that folder's components and its subfolders.
 
-* Add the [`[Authorize]` attribute](xref:blazor/security/index#authorize-attribute) to each Razor component that requires authorization under the [`@page`](xref:mvc/views/razor#page) directive with an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace:
+* Add the [`[Authorize]` attribute](index.md#authorize-attribute) to each Razor component that requires authorization under the [`@page`](../../mvc/views/razor.md#page) directive with an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace:
 
   ```razor
   @using Microsoft.AspNetCore.Authorization
   @attribute [Authorize]
   ```
 
-  The [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the preceding example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.
+  The [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Authorization?displayProperty=fullName> namespace in the preceding example can be applied broadly to the app's components by placing it into the app's imports file (`_Imports.razor`) instead of in individual components.

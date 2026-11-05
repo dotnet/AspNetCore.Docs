@@ -3,13 +3,12 @@ title: Render Razor components outside of ASP.NET Core
 description: Render Razor components outside of the context of an HTTP request.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/render-outside-of-aspnetcore
 ---
 # Render Razor components outside of ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-[Razor components](xref:blazor/components/index), which are self-contained portions of user interface (UI) with processing logic used in [ASP.NET Core Blazor](xref:blazor/index), can be rendered outside of the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for generating email content, generating static site content, or for building a content templating engine.
+[Razor components](index.md), which are self-contained portions of user interface (UI) with processing logic used in [ASP.NET Core Blazor](../index.md), can be rendered outside of the context of an HTTP request. You can render Razor components as HTML directly to a string or stream independently of the ASP.NET Core hosting environment. This is convenient for scenarios where you want to generate HTML fragments, such as for generating email content, generating static site content, or for building a content templating engine.
 
 In the following example, a Razor component is rendered to an HTML string from a console app:
 

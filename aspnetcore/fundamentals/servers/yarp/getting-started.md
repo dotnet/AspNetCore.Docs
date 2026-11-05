@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/getting-started
 title: Get started with YARP
 description: Get started with the YARP library that provides core proxy functionality, customize library modules, and create a project that uses the YARP package.
 ms.date: 08/05/2026
@@ -60,9 +59,9 @@ app.Run();
 
 ## Customize the YARP configuration 
 
-The configuration for YARP is defined in the _appsettings.json_ file. For more information, see [YARP configuration files](xref:fundamentals/servers/yarp/config-files).
+The configuration for YARP is defined in the _appsettings.json_ file. For more information, see [YARP configuration files](config-files.md).
 
-You can also specify the configuration programmatically. For more information, see [YARP extensibility: Configuration providers](xref:fundamentals/servers/yarp/config-providers).
+You can also specify the configuration programmatically. For more information, see [YARP extensibility: Configuration providers](config-providers.md).
 
 To learn more about the available configuration options, see the <xref:Yarp.ReverseProxy.Configuration.RouteConfig> and <xref:Yarp.ReverseProxy.Configuration.ClusterConfig> reference articles.
  
@@ -109,5 +108,5 @@ To run your new YARP project:
 ## Related content
 
 - [Basic YARP sample on GitHub](https://github.com/dotnet/yarp/tree/release/latest/samples/BasicYarpSample)
-- [YARP Configuration Files](xref:fundamentals/servers/yarp/config-files)
-- [YARP extensibility: Configuration providers](xref:fundamentals/servers/yarp/config-providers)
+- [YARP Configuration Files](config-files.md)
+- [YARP extensibility: Configuration providers](config-providers.md)

@@ -28,7 +28,7 @@ This change is a [behavioral change](/dotnet/core/compatibility/categories#behav
 
 ## Reason for change
 
-Links allow pagination and sorting to navigate by URL, including under static SSR where button click handlers aren't available. For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#pagination-modes>.
+Links allow pagination and sorting to navigate by URL, including under static SSR where button click handlers aren't available. For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true#pagination-modes).
 
 ## Recommended action
 
@@ -43,7 +43,7 @@ Update custom CSS selectors and UI tests that expect button markup. For example:
 + nav button:disabled, nav a[aria-disabled="true"] { ... }
 ```
 
-The built-in QuickGrid CSS supports both markup styles. For apps with multiple grids on the same page, assign unique query parameter names to avoid conflicts. For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#multiple-grids-on-the-same-page>.
+The built-in QuickGrid CSS supports both markup styles. For apps with multiple grids on the same page, assign unique query parameter names to avoid conflicts. For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true#multiple-grids-on-the-same-page).
 
 To restore the previous button markup, set the `AppContext` switch to `false` before rendering the grid:
 

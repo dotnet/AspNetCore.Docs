@@ -119,7 +119,7 @@ The following guidance relies upon an app that was created with **Individual Acc
 * An existing Blazor Web App (.NET 10 or later) with ASP.NET Core Identity
 * [.NET SDK](https://dotnet.microsoft.com/download) (.NET 10 or later)
 
-For migration guidance, see <xref:migration/index>.
+For migration guidance, see [Migrate an ASP.NET Core app](../../../migration/index.md).
 
 ## Reference source guidance
 
@@ -234,7 +234,7 @@ Add the following `RenamePasskey` component for renaming passkeys and update the
 
 Add a link to the passkey management page in the app's `ManageNavMenu` component.
 
-In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component) for the `Passkeys` component:
+In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink` component](../../../blazor/fundamentals/navigation.md#navlink-component) for the `Passkeys` component:
 
 ```razor
 <li class="nav-item">
@@ -244,7 +244,7 @@ In `Components/Account/Shared/ManageNavMenu.razor`, add the following [`NavLink`
 
 ## Include the JavaScript file
 
-In the `App` component (`Components/App.razor`), locate the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) tag:
+In the `App` component (`Components/App.razor`), locate the [Blazor script](../../../blazor/project-structure.md#location-of-the-blazor-script) tag:
 
 ```razor
 <script src="@Assets["_framework/blazor.web.js"]"></script>

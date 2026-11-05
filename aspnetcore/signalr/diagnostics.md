@@ -4,7 +4,6 @@ description: Learn how to gather diagnostics from your ASP.NET Core SignalR app.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: devx-track-csharp, signalr, linux-related-content
 ms.date: 10/07/2026
-uid: signalr/diagnostics
 ---
 # Logging and diagnostics in ASP.NET Core SignalR
 
@@ -17,7 +16,7 @@ This article provides guidance for gathering diagnostics from your ASP.NET Core 
 > [!WARNING]
 > Server-side logs may contain sensitive information from your app. **Never** post raw logs from production apps to public forums like GitHub.
 
-Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs minimal information, but the logging level can be configured. See the documentation on [ASP.NET Core logging](xref:fundamentals/logging/index) for details on configuring ASP.NET Core logging.
+Since SignalR is part of ASP.NET Core, it uses the ASP.NET Core logging system. In the default configuration, SignalR logs minimal information, but the logging level can be configured. See the documentation on [ASP.NET Core logging](../fundamentals/logging/index.md) for details on configuring ASP.NET Core logging.
 
 SignalR uses two logger categories:
 
@@ -47,7 +46,7 @@ How server-side logs are accessed depends on the environment in which the app is
 
 ### As a console app outside IIS
 
-If you're running in a console app, the [Console logger](xref:fundamentals/logging/index#console) should be enabled by default. SignalR logs appear in the console.
+If you're running in a console app, the [Console logger](../fundamentals/logging/index.md#console) should be enabled by default. SignalR logs appear in the console.
 
 ### Within IIS Express from Visual Studio
 
@@ -55,11 +54,11 @@ Visual Studio displays the log output in the **Output** window. Select the **ASP
 
 ### Azure App Service
 
-Enable the **Application Logging (Filesystem)** option in the **Diagnostics logs** section of the Azure App Service portal and configure the **Level** to `Verbose`. Logs should be available from the **Log streaming** service and in logs on the file system of the App Service. For more information, see [Azure log streaming](xref:fundamentals/logging/index#azure-log-streaming).
+Enable the **Application Logging (Filesystem)** option in the **Diagnostics logs** section of the Azure App Service portal and configure the **Level** to `Verbose`. Logs should be available from the **Log streaming** service and in logs on the file system of the App Service. For more information, see [Azure log streaming](../fundamentals/logging/index.md#azure-log-streaming).
 
 ### Other environments
 
-For more information on configuring logging providers suitable for different deployment environments, such as Docker, Kubernetes, or Windows Service, see <xref:fundamentals/logging/index>.
+For more information on configuring logging providers suitable for different deployment environments, such as Docker, Kubernetes, or Windows Service, see [Logging in .NET and ASP.NET Core](../fundamentals/logging/index.md).
 
 ## JavaScript client logging
 
@@ -107,7 +106,7 @@ If you want to send logs to a custom logging system, you can provide a JavaScrip
 
 To get logs from the .NET client, you can use the `ConfigureLogging` method on `HubConnectionBuilder`. This works the same way as the `ConfigureLogging` method on `WebHostBuilder` and `HostBuilder`. You can configure the same logging providers you use in ASP.NET Core. However, you have to manually install and enable the NuGet packages for the individual logging providers.
 
-To add .NET client logging to a Blazor WebAssembly app, see <xref:blazor/fundamentals/logging#signalr-net-client-logging>.
+To add .NET client logging to a Blazor WebAssembly app, see [ASP.NET Core Blazor logging](../blazor/fundamentals/logging.md#signalr-client-logging-with-app-configuration).
 
 ### Console logging
 
@@ -288,5 +287,5 @@ Press p to pause, r to resume, q to quit.
 ## Related content
 
 * [ASP.NET Core SignalR configuration](configuration.md)
-* <xref:signalr/javascript-client>
-* <xref:signalr/dotnet-client>
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [ASP.NET Core SignalR .NET client](dotnet-client.md)

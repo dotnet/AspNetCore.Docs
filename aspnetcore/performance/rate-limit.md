@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Rate limiting middleware in ASP.NET Core protects APIs from abuse and overload. Learn to configure fixed window, sliding window, token bucket, and concurrency limiters.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/27/2026
-uid: performance/rate-limit
 ---
 
 # Rate limiting middleware in ASP.NET Core
@@ -193,7 +192,7 @@ The preceding code:
 * <xref:System.Threading.RateLimiting.FixedWindowRateLimiterOptions.QueueLimit> to 2 (set this to 0 to disable the queueing mechanism).
 * Calls [UseRateLimiter](/dotnet/api/microsoft.aspnetcore.builder.ratelimiterapplicationbuilderextensions.useratelimiter) to enable rate limiting.
 
-Apps should use [Configuration](xref:fundamentals/configuration/index) to set limiter options. The following code updates the preceding code using [`MyRateLimitOptions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Models/MyRateLimitOptions.cs) for configuration:
+Apps should use [Configuration](../fundamentals/configuration/index.md) to set limiter options. The following code updates the preceding code using [`MyRateLimitOptions`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Models/MyRateLimitOptions.cs) for configuration:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_fixed2":::
 
@@ -207,7 +206,7 @@ app.UseRouting();
 app.UseRateLimiter();
 ```
 
-For more information, see the [`UseStatusCodePagesWithReExecute` section of the error handling article](xref:fundamentals/error-handling#usestatuscodepageswithreexecute).
+For more information, see the [`UseStatusCodePagesWithReExecute` section of the error handling article](../fundamentals/error-handling.md#usestatuscodepageswithreexecute).
 
 <a name="slide"></a>
 

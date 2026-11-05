@@ -4,7 +4,7 @@
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. This article provides three hosted service examples:
 
 * Background task that runs on a timer.
-* Hosted service that activates a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection).
+* Hosted service that activates a [scoped service](../../../dependency-injection.md#service-lifetimes). The scoped service can use [dependency injection (DI)](../../../dependency-injection.md).
 * Queued background tasks that run sequentially.
 
 ## Worker Service template
@@ -56,8 +56,8 @@ If the app shuts down unexpectedly (for example, the app's process fails), `Stop
 
 To extend the default 30 second shutdown timeout, set:
 
-* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdowntimeout>.
-* Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
+* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see [.NET Generic Host in ASP.NET Core](../../generic-host.md#shutdown-timeout).
+* Shutdown timeout host configuration setting when using Web Host. For more information, see [ASP.NET Core Web Host](../../web-host.md#shutdown-timeout).
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
@@ -85,7 +85,7 @@ The service is registered in `IHostBuilder.ConfigureServices` (`Program.cs`) wit
 
 ## Consuming a scoped service in a background task
 
-To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. No scope is created for a hosted service by default.
+To use [scoped services](../../../dependency-injection.md#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. No scope is created for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example:
 
@@ -143,7 +143,7 @@ The following code creates an asynchronous timed background task:
 ## Related content
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](../../../index.md#how-to-download-a-sample))
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
 * [Run background tasks with WebJobs in Azure App Service](/azure/app-service/webjobs-create)
 * <xref:System.Threading.Timer>

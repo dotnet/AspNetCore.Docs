@@ -12,23 +12,23 @@ In an app, a *resource* is typically represented by a C# class that includes dat
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of any method that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
-This article uses Razor component examples and focuses on [Blazor](xref:blazor/index) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
+This article uses Razor component examples and focuses on [Blazor](../../blazor/index.md) authorization scenarios for ASP.NET Core 3.1 or later. For Razor Pages and MVC guidance, which apply to all releases of ASP.NET Core, see the following resources:
 
-* <xref:razor-pages/security/authorization/resource-based>
-* <xref:mvc/security/authorization/resource-based>
+* [Resource-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/resource-based.md)
+* [Resource-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/resource-based.md)
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors).
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured document objects to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured document objects to demonstrate the examples in this article. For more information, see the sample's README file (`README.md`).
 
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](xref:fundamentals/dependency-injection):
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to Razor components and other classes via [dependency injection](../../fundamentals/dependency-injection.md):
 
 ```razor
 @using Microsoft.AspNetCore.Authorization

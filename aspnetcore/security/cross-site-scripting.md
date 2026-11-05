@@ -43,7 +43,7 @@ To avoid introducing XSS into the application, developers should implement the f
 
 ## Explore HTML encoding with Razor
 
-The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro) also encode input you use in tag parameters.
+The Razor engine used in MVC automatically encodes all output sourced from variables, unless you work to prevent this behavior. It uses HTML attribute encoding rules whenever you use the at symbol `@` directive. Because HTML attribute encoding is a superset of HTML encoding, you don't have to consider whether to use HTML encoding or HTML-attribute encoding. You must ensure that you only use the at symbol `@` in an HTML context, and not when attempting to insert untrusted input directly into JavaScript. [Razor Tag Helpers](../mvc/views/tag-helpers/intro.md) also encode input you use in tag parameters.
 
 Consider the following Razor view:
 
@@ -170,7 +170,7 @@ The preceding code generates the following output:
 
 You can use HTML, JavaScript, and URL encoders in your code in two ways:
 
-* Inject them via [dependency injection](xref:fundamentals/dependency-injection).
+* Inject them via [dependency injection](../fundamentals/dependency-injection.md).
 * Use the default encoders contained in the `System.Text.Encodings.Web` namespace.
 
 When you use the default encoders, any customizations applied to character ranges (so they're treated as safe) don't take effect. The default encoders use the safest encoding rules possible.
@@ -297,6 +297,6 @@ Never rely on validation alone. Always encode untrusted input before output, no 
 
 ## Related content
 
-- <xref:fundamentals/dependency-injection>
+- [Dependency injection in ASP.NET Core](../fundamentals/dependency-injection.md)
 - [Unicode 17.0 Character Code Charts](https://www.unicode.org/charts/index.html)
-- [Razor Tag Helpers](xref:mvc/views/tag-helpers/intro)
+- [Razor Tag Helpers](../mvc/views/tag-helpers/intro.md)

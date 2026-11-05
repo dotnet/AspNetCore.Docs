@@ -3,7 +3,6 @@ title: Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authent
 description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone app with the Blazor WebAssembly Authentication library.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-authentication-library
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with the Authentication library
 
@@ -13,9 +12,9 @@ This article explains how to secure an ASP.NET Core Blazor WebAssembly standalon
 
 The Blazor WebAssembly Authentication library (`Authentication.js`) only supports the Proof Key for Code Exchange (PKCE) authorization code flow via the [Microsoft Authentication Library (MSAL, `msal.js`)](/entra/identity-platform/msal-overview). To implement other grant flows, access the MSAL guidance to implement MSAL directly, but we don't support or recommend the use of grant flows other than PKCE for Blazor apps.
 
-*For Microsoft Entra (ME-ID) guidance, don't follow the guidance in this topic. See <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id>.*
+*For Microsoft Entra (ME-ID) guidance, don't follow the guidance in this topic. See [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md).*
 
-For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Walkthrough
 
@@ -36,11 +35,11 @@ Record the following information:
 * Additional IP configuration (see the IP's documentation).
 
 > [!NOTE]
-> The IP must use OIDC. For example, Facebook's IP isn't an OIDC-compliant provider, so the guidance in this topic doesn't work with the Facebook IP. For more information, see <xref:blazor/security/webassembly/index#authentication-library>.
+> The IP must use OIDC. For example, Facebook's IP isn't an OIDC-compliant provider, so the guidance in this topic doesn't work with the Facebook IP. For more information, see [Secure ASP.NET Core Blazor WebAssembly](index.md#authentication-library).
 
 ### Create the Blazor app
 
-To create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the [Parts of the app](#parts-of-the-app) section of this article for guidance on setting up and configuring the app.
+To create a [standalone Blazor WebAssembly app](../../hosting-models.md#blazor-webassembly) that uses the [`Microsoft.AspNetCore.Components.WebAssembly.Authentication`](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.WebAssembly.Authentication) library, follow the guidance for your choice of tooling. If adding support for authentication, see the [Parts of the app](#parts-of-the-app) section of this article for guidance on setting up and configuring the app.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -184,8 +183,8 @@ builder.Services.AddOidcAuthentication(options =>
 
 For more information, see the following sections of the *Additional scenarios* article:
 
-* [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
-* [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [Request additional access tokens](additional-scenarios.md#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](additional-scenarios.md#attach-tokens-to-outgoing-requests)
 
 ### Imports file
 
@@ -223,8 +222,8 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 
 ## Related content
 
-* <xref:blazor/security/webassembly/additional-scenarios>
-* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:host-and-deploy/proxy-load-balancer>: Includes guidance on:
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md): Includes guidance on:
   * Using forwarded headers middleware to preserve HTTPS scheme information across proxy servers and internal networks.
   * Additional scenarios and use cases, including manual scheme configuration, request path changes for correct request routing, and forwarding the request scheme for Linux and non-IIS reverse proxies.

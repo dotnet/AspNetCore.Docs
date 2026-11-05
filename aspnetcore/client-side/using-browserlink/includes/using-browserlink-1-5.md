@@ -15,19 +15,19 @@ Browser Link is a Visual Studio feature. It creates a communication channel betw
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-6.0"
 
-Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in <xref:mvc/views/view-compilation>. Razor syntax changes are applied only when runtime compilation has been enabled.
+Add the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package to your project. For ASP.NET Core Razor Pages or MVC projects, also enable runtime compilation of Razor (`.cshtml`) files as described in [Razor file compilation in ASP.NET Core](../../../mvc/views/view-compilation.md). Razor syntax changes are applied only when runtime compilation has been enabled.
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-2.1 <= aspnetcore-2.2"
 
-When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality. The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.
+When converting an ASP.NET Core 2.0 project to ASP.NET Core 2.1 and transitioning to the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md), install the [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/) package for Browser Link functionality. The ASP.NET Core 2.1 project templates use the `Microsoft.AspNetCore.App` metapackage by default.
 
 :::moniker-end
 
 :::moniker range="= aspnetcore-2.0"
 
-The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](xref:fundamentals/metapackage), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
+The ASP.NET Core 2.0 **Web Application**, **Empty**, and **Web API** project templates use the [Microsoft.AspNetCore.All metapackage](../../../fundamentals/metapackage.md), which contains a package reference for [Microsoft.VisualStudio.Web.BrowserLink](https://www.nuget.org/packages/Microsoft.VisualStudio.Web.BrowserLink/). Therefore, using the `Microsoft.AspNetCore.All` metapackage requires no further action to make Browser Link available for use.
 
 :::moniker-end
 
@@ -57,7 +57,7 @@ if (env.IsDevelopment())
 }
 ```
 
-For more information, see <xref:fundamentals/environments>.
+For more information, see [ASP.NET Core runtime environments](../../../fundamentals/environments.md).
 
 ## How to use Browser Link
 
@@ -122,7 +122,7 @@ When CSS Auto-Sync is enabled, connected browsers are automatically refreshed wh
 
 ## How it works
 
-Browser Link uses [SignalR](xref:signalr/introduction) to create a communication channel between Visual Studio and the browser. When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. Browser Link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
+Browser Link uses [SignalR](../../../signalr/introduction.md) to create a communication channel between Visual Studio and the browser. When Browser Link is enabled, Visual Studio acts as a SignalR server that multiple clients (browsers) can connect to. Browser Link also registers a middleware component in the ASP.NET Core request pipeline. This component injects special `<script>` references into every page request from the server. You can see the script references by selecting **View source** in the browser and scrolling to the end of the `<body>` tag content:
 
 ```html
     <!-- Visual Studio Browser Link -->

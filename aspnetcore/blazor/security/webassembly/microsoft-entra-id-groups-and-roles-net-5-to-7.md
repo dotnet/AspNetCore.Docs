@@ -4,13 +4,12 @@ description: Learn how to configure Blazor WebAssembly to use Microsoft Entra ID
 monikerRange: '>= aspnetcore-5.0 < aspnetcore-8.0'
 ms.custom: devx-track-csharp
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/meid-groups-roles-net5to7
 zone_pivot_groups: blazor-groups-and-roles
 ---
 # Microsoft Entra (ME-ID) groups, Administrator Roles, and App Roles (.NET 5 to .NET 7)
 
 > [!IMPORTANT]
-> This isn't the latest version of this article. For the current ASP.NET Core release, see the latest version of <xref:blazor/security/webassembly/meid-groups-roles>.
+> This isn't the latest version of this article. For the current ASP.NET Core release, see the latest version of [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md).
 
 [!INCLUDE[](~/blazor/security/includes/hosted-blazor-webassembly-notice.md)]
 
@@ -28,22 +27,22 @@ Microsoft Entra (ME-ID) provides several authorization approaches that can be co
 
 The guidance in this article applies to the Blazor WebAssembly ME-ID deployment scenarios described in the following articles:
 
-* [Standalone with Microsoft Accounts](xref:blazor/security/webassembly/standalone-with-microsoft-accounts)
-* [Standalone with ME-ID](xref:blazor/security/webassembly/standalone-with-microsoft-entra-id)
-* [Hosted with ME-ID](xref:blazor/security/webassembly/hosted-with-microsoft-entra-id)
+* [Standalone with Microsoft Accounts](standalone-with-microsoft-accounts.md)
+* [Standalone with ME-ID](standalone-with-microsoft-entra-id.md)
+* [Hosted with ME-ID](hosted-with-microsoft-entra-id.md)
 
 The article's guidance provides instructions for client and server apps:
 
-* **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+* **CLIENT**: Standalone Blazor WebAssembly apps or the **:::no-loc text="Client":::** app of a hosted Blazor [solution](../../tooling.md#visual-studio-solution-file-sln).
 * **SERVER**: ASP.NET Core server API/web API apps or the **:::no-loc text="Server":::** app of a hosted Blazor solution. You can ignore the **SERVER** guidance throughout the article for a standalone Blazor WebAssembly app.
 
 The examples in this article take advantage of new .NET/C# features. When using the examples with .NET 7 or earlier, minor modifications are required. However, the text and code examples that pertain to interacting with ME-ID and Microsoft Graph are the same for all versions of ASP.NET Core.
 
 ## Prerequisite
 
-The guidance in this article implements the Microsoft Graph API per the *Graph SDK* guidance in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>. Follow the *Graph SDK* implementation guidance to configure the app and test it to confirm that the app can obtain Graph API data for a test user account. Additionally, see the [Graph API article's security article cross-links](xref:blazor/security/webassembly/graph-api#security-guidance) to review Microsoft Graph security concepts.
+The guidance in this article implements the Microsoft Graph API per the *Graph SDK* guidance in [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk). Follow the *Graph SDK* implementation guidance to configure the app and test it to confirm that the app can obtain Graph API data for a test user account. Additionally, see the [Graph API article's security article cross-links](graph-api.md#security-guidance) to review Microsoft Graph security concepts.
 
-When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#troubleshoot).
 
 ## Scopes
 
@@ -126,7 +125,7 @@ Add a package reference to the **CLIENT** app for [`Microsoft.Graph`](https://ww
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Add the Graph SDK utility classes and configuration in the *Graph SDK* guidance of the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article. Specify the `User.Read` scope for the access token as the article shows in its example `wwwroot/appsettings.json` file.
+Add the Graph SDK utility classes and configuration in the *Graph SDK* guidance of the [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk) article. Specify the `User.Read` scope for the access token as the article shows in its example `wwwroot/appsettings.json` file.
 
 Add the following custom user account factory to the **CLIENT** app. The custom user factory is used to establish:
 
@@ -365,7 +364,7 @@ builder.Services.AddMsalAuthentication<RemoteAuthenticationState,
 
 :::zone pivot="graph-sdk-5"
 
-Confirm the presence of the *Graph SDK* code described by the <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk> article and that the `wwwroot/appsettings.json` configuration is correct per the *Graph SDK* guidance:
+Confirm the presence of the *Graph SDK* code described by the [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk) article and that the `wwwroot/appsettings.json` configuration is correct per the *Graph SDK* guidance:
 
 ```csharp
 var baseUrl = 
@@ -413,7 +412,7 @@ For the complete list of IDs for ME-ID Administrator Roles, see [Role template I
 
 In the following examples, the **CLIENT** app uses the preceding policy to authorize the user.
 
-The [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) works with the policy:
+The [`AuthorizeView` component](../index.md#authorizeview-component) works with the policy:
 
 ```razor
 <AuthorizeView Policy="BillingAdministrator">
@@ -432,7 +431,7 @@ The [`AuthorizeView` component](xref:blazor/security/index#authorizeview-compone
 </AuthorizeView>
 ```
 
-Access to an entire component can be based on the policy using an [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>):
+Access to an entire component can be based on the policy using an [`[Authorize]` attribute directive](../index.md#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>):
 
 ```razor
 @page "/"
@@ -442,7 +441,7 @@ Access to an entire component can be based on the policy using an [`[Authorize]`
 
 If the user isn't authorized, they're redirected to the ME-ID sign-in page.
 
-A policy check can also be [performed in code with procedural logic](xref:blazor/security/index#procedural-logic).
+A policy check can also be [performed in code with procedural logic](../index.md#procedural-logic).
 
 `CheckPolicy.razor`:
 
@@ -611,23 +610,23 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 > [!NOTE]
 > If you prefer to use the `wids` claim (ADD Administrator Roles), assign "`wids`" to the <xref:Microsoft.IdentityModel.Tokens.TokenValidationParameters.RoleClaimType?displayProperty=nameWithType>.
 
-After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk>, you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claims are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see <xref:blazor/security/webassembly/standalone-with-microsoft-entra-id#troubleshoot>.
+After you've completed the preceding steps to create and assign roles to users (or groups if you have a Premium tier Azure account) and implemented the `CustomAccountFactory` with the Graph SDK, as explained earlier in this article and in [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk), you should see an `appRole` claim for each assigned role that a signed-in user is assigned (or roles assigned to groups that they are members of). Run the app with a test user to confirm the claims are present as expected. When testing with the Graph SDK locally, we recommend using a new in-private/incognito browser session for each test to prevent lingering cookies from interfering with tests. For more information, see [Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID](standalone-with-microsoft-entra-id.md#troubleshoot).
 
 Component authorization approaches are functional at this point. Any of the authorization mechanisms in components of the **CLIENT** app can use the `Admin` role to authorize the user:
 
-* [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component)
+* [`AuthorizeView` component](../index.md#authorizeview-component)
 
   ```razor
   <AuthorizeView Roles="Admin">
   ```
 
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
+* [`[Authorize]` attribute directive](../index.md#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```razor
   @attribute [Authorize(Roles = "Admin")]
   ```
 
-* [Procedural logic](xref:blazor/security/index#procedural-logic)
+* [Procedural logic](../index.md#procedural-logic)
 
   ```csharp
   var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
@@ -656,7 +655,7 @@ Multiple role tests are supported:
   </AuthorizeView>
   ```
 
-  For more information on the `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>, see <xref:blazor/security/index#role-based-and-policy-based-authorization>.
+  For more information on the `Context` for the inner <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>, see [ASP.NET Core Blazor authentication and authorization](../index.md#role-based-and-policy-based-authorization).
 
 * Require that the user be in **either** the `Admin` **or** `Developer` role with the `[Authorize]` attribute:
 
@@ -701,13 +700,13 @@ Multiple role tests are supported:
 
 Any of the authorization mechanisms in controllers of the **SERVER** app can use the `Admin` role to authorize the user:
 
-* [`[Authorize]` attribute directive](xref:blazor/security/index#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
+* [`[Authorize]` attribute directive](../index.md#authorize-attribute) (<xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute>)
 
   ```csharp
   [Authorize(Roles = "Admin")]
   ```
 
-* [Procedural logic](xref:blazor/security/index#procedural-logic)
+* [Procedural logic](../index.md#procedural-logic)
 
   ```csharp
   if (User.IsInRole("Admin")) { ... }
@@ -769,4 +768,4 @@ Role matching is typically case-sensitive because role names are stored and comp
 * [Application roles (Azure documentation)](/azure/architecture/guide/multitenant/considerations/identity)
 * [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../index.md)

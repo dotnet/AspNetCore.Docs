@@ -3,7 +3,6 @@ title: Tag Helpers in forms in ASP.NET Core
 ai-usage: ai-assisted
 description: Describes the built-in Tag Helpers used with Forms.
 ms.date: 05/05/2026
-uid: mvc/views/working-with-forms
 ---
 # Tag Helpers in forms in ASP.NET Core
 
@@ -48,7 +47,7 @@ The `asp-route` Tag Helper attribute can also generate markup for the HTML `acti
 
 [!code-cshtml[](../../mvc/views/working-with-forms/samples/final/Views/Demo/RegisterRoute.cshtml)]
 
-Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual Accounts*) contain the [asp-route-returnurl](xref:mvc/views/working-with-forms) attribute:
+Many of the views in the *Views/Account* folder (generated when you create a new web app with *Individual Accounts*) contain the [asp-route-returnurl](working-with-forms.md) attribute:
 
 ```cshtml
 <form asp-controller="Account" asp-action="Login"
@@ -61,21 +60,21 @@ Many of the views in the *Views/Account* folder (generated when you create a new
 
 ## The Form Action Tag Helper
 
-The Form Action Tag Helper generates the `formaction` attribute on the generated `<button ...>` or `<input type="image" ...>` tag. The `formaction` attribute controls where a form submits its data. It binds to [\<input>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input) elements of type `image` and [\<button>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/button) elements. The Form Action Tag Helper enables the usage of several [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) `asp-` attributes to control what `formaction` link is generated for the corresponding element.
+The Form Action Tag Helper generates the `formaction` attribute on the generated `<button ...>` or `<input type="image" ...>` tag. The `formaction` attribute controls where a form submits its data. It binds to [\<input>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/input) elements of type `image` and [\<button>](https://developer.mozilla.org/docs/Web/HTML/Reference/Elements/button) elements. The Form Action Tag Helper enables the usage of several [AnchorTagHelper](tag-helpers/built-in/anchor-tag-helper.md) `asp-` attributes to control what `formaction` link is generated for the corresponding element.
 
-Supported [AnchorTagHelper](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper) attributes to control the value of `formaction`:
+Supported [AnchorTagHelper](tag-helpers/built-in/anchor-tag-helper.md) attributes to control the value of `formaction`:
 
 |Attribute|Description|
 |---|---|
-|[asp-controller](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-controller)|The name of the controller.|
-|[asp-action](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-action)|The name of the action method.|
-|[asp-area](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-area)|The name of the area.|
-|[asp-page](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page)|The name of the Razor page.|
-|[asp-page-handler](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-page-handler)|The name of the Razor page handler.|
-|[asp-route](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route)|The name of the route.|
-|[asp-route-{value}](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-route-value)|A single URL route value. For example, `asp-route-id="1234"`.|
-|[asp-all-route-data](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-all-route-data)|All route values.|
-|[asp-fragment](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper#asp-fragment)|The URL fragment.|
+|[asp-controller](tag-helpers/built-in/anchor-tag-helper.md#asp-controller)|The name of the controller.|
+|[asp-action](tag-helpers/built-in/anchor-tag-helper.md#asp-action)|The name of the action method.|
+|[asp-area](tag-helpers/built-in/anchor-tag-helper.md#asp-area)|The name of the area.|
+|[asp-page](tag-helpers/built-in/anchor-tag-helper.md#asp-page)|The name of the Razor page.|
+|[asp-page-handler](tag-helpers/built-in/anchor-tag-helper.md#asp-page-handler)|The name of the Razor page handler.|
+|[asp-route](tag-helpers/built-in/anchor-tag-helper.md#asp-route)|The name of the route.|
+|[asp-route-{value}](tag-helpers/built-in/anchor-tag-helper.md#asp-route-value)|A single URL route value. For example, `asp-route-id="1234"`.|
+|[asp-all-route-data](tag-helpers/built-in/anchor-tag-helper.md#asp-all-route-data)|All route values.|
+|[asp-fragment](tag-helpers/built-in/anchor-tag-helper.md#asp-fragment)|The URL fragment.|
 
 ### Submit to controller example
 
@@ -697,10 +696,10 @@ The correct `<option>` element will be selected (contain the `selected="selected
 
 ## Related content
 
-* <xref:mvc/views/tag-helpers/intro>
+* [Tag Helpers in ASP.NET Core](tag-helpers/intro.md)
 * [HTML Form element](https://www.w3.org/TR/html401/interact/forms.html)
 * [Request Verification Token](/aspnet/mvc/overview/security/xsrfcsrf-prevention-in-aspnet-mvc-and-web-pages)
-* <xref:mvc/models/model-binding>
-* <xref:mvc/models/validation>
+* [Model Binding in ASP.NET Core](../models/model-binding.md)
+* [Model validation in ASP.NET Core MVC](../models/validation.md)
 * [IAttributeAdapter Interface](xref:Microsoft.AspNetCore.Mvc.DataAnnotations.IAttributeAdapter)
 * [Code snippets for this document](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/views/working-with-forms/samples/final)
