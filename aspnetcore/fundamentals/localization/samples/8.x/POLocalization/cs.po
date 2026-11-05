@@ -1,8 +1,0 @@
-﻿msgid "Hello world!"
-msgstr "Ahoj světe!!"
-
-msgid "There is one item."
-msgid_plural "There are {0} items."
-msgstr[0] "Existuje jedna položka."
-msgstr[1] "Existují {0} položky."
-msgstr[2] "Existuje {0} položek."
