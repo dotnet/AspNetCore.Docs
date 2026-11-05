@@ -3,7 +3,6 @@ title: Logging and diagnostics in Kestrel
 description: Learn how to gather diagnostics from Kestrel.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 01/26/2023
-uid: fundamentals/servers/kestrel/diagnostics
 ---
 
 # Diagnostics in Kestrel
@@ -14,13 +13,13 @@ By [Sourabh Shirhatti](https://twitter.com/sshirhatti)
 
 This article provides guidance for gathering diagnostics from Kestrel to help troubleshoot issues. Topics covered include:
 
-* **Logging**: Structured logs written to [.NET logging](xref:fundamentals/logging/index). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
+* **Logging**: Structured logs written to [.NET logging](../../logging/index.md). <xref:Microsoft.Extensions.Logging.ILogger> is used by app frameworks to write logs, and by users for their own logging in an app.
 * **Metrics**: Representation of data measures over intervals of time, for example, requests per second. Metrics are emitted using `EventCounter` and can be observed using the [dotnet-counters](/dotnet/core/diagnostics/dotnet-counters) command line tool or with [Application Insights](/azure/azure-monitor/app/eventcounters).
 * **DiagnosticSource**: `DiagnosticSource` is a mechanism for production-time logging with rich data payloads for consumption within the process. Unlike logging, which assumes data will leave the process and expects serializable data, `DiagnosticSource` works well with complex data.
 
 ## Logging
 
-Like most components in ASP.NET Core, Kestrel uses `Microsoft.Extensions.Logging` to emit log information. Kestrel employs the use of multiple [categories](xref:fundamentals/logging/index#log-category) which allows you to be selective on which logs you listen to.
+Like most components in ASP.NET Core, Kestrel uses `Microsoft.Extensions.Logging` to emit log information. Kestrel employs the use of multiple [categories](../../logging/index.md#log-category) which allows you to be selective on which logs you listen to.
 
 | Logging Category Name | Logging Events |
 |--|--|
@@ -32,7 +31,7 @@ Like most components in ASP.NET Core, Kestrel uses `Microsoft.Extensions.Logging
 
 ### Connection logging
 
-Kestrel also supports the ability to emit `Debug` level logs for byte-level communication and can be enabled on a per-endpoint basis. To enable connection logging, see [configure endpoints for Kestrel](xref:fundamentals/servers/kestrel/endpoints)
+Kestrel also supports the ability to emit `Debug` level logs for byte-level communication and can be enabled on a per-endpoint basis. To enable connection logging, see [configure endpoints for Kestrel](endpoints.md)
 
 ## Metrics
 
@@ -116,4 +115,4 @@ app.Run();
 
 ## Behavior with debugger attached
 
-Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](xref:fundamentals/servers/kestrel/options#behavior-with-debugger-attached).
+Certain timeouts and rate limits aren't enforced when a debugger is attached to a Kestrel process. For more information, see [Behavior with debugger attached](options.md#behavior-with-debugger-attached).

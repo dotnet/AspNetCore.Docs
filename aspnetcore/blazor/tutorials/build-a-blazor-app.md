@@ -3,13 +3,12 @@ title: Build a Blazor todo list app
 description: Build a Blazor app step-by-step.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tutorials/build-a-blazor-app
 ---
 # Build a Blazor todo list app
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This tutorial provides a basic working experience for building and modifying a Blazor app. For detailed Blazor guidance, see the [Blazor reference documentation](xref:blazor/index).
+This tutorial provides a basic working experience for building and modifying a Blazor app. For detailed Blazor guidance, see the [Blazor reference documentation](../index.md).
 
 Learn how to:
 
@@ -183,7 +182,7 @@ In `Shared/NavMenu.razor`:
 
 Save the `NavMenu.razor` file.
 
-Build and run the app by executing the [`dotnet watch run`](xref:tutorials/dotnet-watch) command in the command shell from the `TodoList` folder. After the app is running, visit the new Todo page by selecting the **`Todo`** link in the app's navigation bar, which loads the page at `/todo`.
+Build and run the app by executing the [`dotnet watch run`](../../tutorials/dotnet-watch.md) command in the command shell from the `TodoList` folder. After the app is running, visit the new Todo page by selecting the **`Todo`** link in the app's navigation bar, which loads the page at `/todo`.
 
 Leave the app running the command shell. Each time a file is saved, the app is automatically rebuilt, and the page in the browser is automatically reloaded.
 
@@ -547,4 +546,4 @@ In this tutorial, you learned how to:
 Learn about tooling for ASP.NET Core Blazor:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/index>
+> [ASP.NET Core Blazor](../index.md)

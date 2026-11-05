@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to use YARP Direct Forwarding to take a specific request and forward it to a specific destination.
 ms.date: 10/07/2026
 ms.topic: concept-article
-uid: fundamentals/servers/yarp/direct-forwarding
 ---
 # YARP Direct Forwarding
 
@@ -151,7 +150,7 @@ Re-using a client for requests to the same destination is recommended for perfor
 
 The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync*> method, as shown in the [Update `Program.cs`](#update-programcs) section's example.
 
-To use the [built-in transforms](xref:fundamentals/servers/yarp/transforms) with direct forwarding, resolve `ITransformBuilder` from dependency injection and call its `Create` method. `AddHttpForwarder` registers `ITransformBuilder`, so `AddReverseProxy` isn't required.
+To use the [built-in transforms](transforms.md) with direct forwarding, resolve `ITransformBuilder` from dependency injection and call its `Create` method. `AddHttpForwarder` registers `ITransformBuilder`, so `AddReverseProxy` isn't required.
 
 Ensure that the `Program` file imports the following namespaces:
 
@@ -163,7 +162,7 @@ Replace the `transformer` initialization in the preceding example with the follo
 
 The callback configures a `TransformBuilderContext` using the same extension methods available to `AddTransforms`. The transforms remove the `param1` query parameter and set `area` to `xx2`. A request for `/test/orders?param1=value&area=old&sort=name` is forwarded as `/test/orders?area=xx2&sort=name`.
 
-Pass the resulting `HttpTransformer` to `SendAsync` or `MapForwarder`, as shown earlier. Create the transformer once and reuse it across requests. By default, the created transformer also suppresses the incoming `Host` header and adds the `X-Forwarded` headers described in <xref:fundamentals/servers/yarp/transforms#defaults>.
+Pass the resulting `HttpTransformer` to `SendAsync` or `MapForwarder`, as shown earlier. Create the transformer once and reuse it across requests. By default, the created transformer also suppresses the incoming `Host` header and adds the `X-Forwarded` headers described in [YARP Request and Response Transforms](transforms.md#defaults).
 
 ### Error handling
 

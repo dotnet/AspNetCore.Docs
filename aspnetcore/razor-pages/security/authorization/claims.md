@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core Razor Pages app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: razor-pages/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core Razor Pages
 
@@ -13,13 +12,13 @@ When an identity is created for an app user upon signing into an app, the identi
 This article uses Razor Pages examples and focuses on Razor Pages authorization scenarios. For Blazor and MVC guidance, see the following resources:
 
 * [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
-* <xref:mvc/security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/claims.md)
 
-Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
+Examples throughout this article apply claim-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, claim-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 
@@ -77,7 +76,7 @@ Apply the policy using the `Policy` property on the [`[Authorize]`](xref:Microso
 
 Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods. If you need to implement different authorization rules for different page handlers, adopt either of the following approaches.
 
-* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
+* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](../../../mvc/views/partial.md) for shared content.
 
 * Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
 

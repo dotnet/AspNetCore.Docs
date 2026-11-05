@@ -6,6 +6,7 @@
 // HCMinimal2 demonstrates how to use a custom serializer.
 // This one, HCMinimal, is the main sample app.
 
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Caching.Hybrid;
 
@@ -58,7 +59,7 @@ public class Program
             var someInfo = await someService.GetSomeInfoAsync(name!, ID);
             context.Response.StatusCode = 200;
             context.Response.ContentType = "text/html";
-            await context.Response.WriteAsync(someInfo);
+            await context.Response.WriteAsync(HtmlEncoder.Default.Encode(someInfo));
         });
         //</snippet_mapget>
         app.Run();

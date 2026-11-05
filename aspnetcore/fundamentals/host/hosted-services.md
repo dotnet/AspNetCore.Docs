@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/05/2026
-uid: fundamentals/host/hosted-services
 ---
 # Background tasks with hosted services in ASP.NET Core
 
@@ -17,7 +16,7 @@ By [Jeow Li Huan](https://github.com/huan086)
 In ASP.NET Core, background tasks can be implemented as *hosted services*. A hosted service is a class with background task logic that implements the <xref:Microsoft.Extensions.Hosting.IHostedService> interface. Hosted services can be used in Worker Service apps and in web apps. This article provides three hosted service examples:
 
 * Background task that runs on a timer.
-* Hosted service that activates a [scoped service](xref:fundamentals/dependency-injection#service-lifetimes). The scoped service can use [dependency injection (DI)](xref:fundamentals/dependency-injection).
+* Hosted service that activates a [scoped service](../dependency-injection.md#service-lifetimes). The scoped service can use [dependency injection (DI)](../dependency-injection.md).
 * Queued background tasks that run sequentially.
 
 ## Worker Service template
@@ -49,7 +48,7 @@ The following `Program` file is from the web sample app (`BackgroundTasksWebSamp
 In the preceding code:
 
 * `TimedHostedService`, `ConsumeScopedServiceHostedService`, and `QueuedHostedService` are registered with the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionHostedServiceExtensions.AddHostedService*> extension method.
-* A hosted service is registered as a singleton, so it can't receive [scoped services](xref:fundamentals/dependency-injection#service-lifetimes), such as an Entity Framework Core `DbContext`, by constructor injection. `IScopedProcessingService` is registered as a scoped service, and `ConsumeScopedServiceHostedService` creates a scope to resolve it. For more information, see the [Consuming a scoped service in a background task](#consuming-a-scoped-service-in-a-background-task) section.
+* A hosted service is registered as a singleton, so it can't receive [scoped services](../dependency-injection.md#service-lifetimes), such as an Entity Framework Core `DbContext`, by constructor injection. `IScopedProcessingService` is registered as a scoped service, and `ConsumeScopedServiceHostedService` creates a scope to resolve it. For more information, see the [Consuming a scoped service in a background task](#consuming-a-scoped-service-in-a-background-task) section.
 * The `IBackgroundTaskQueue` singleton is consumed by the `/queue` endpoint and `QueuedHostedService`. A `POST` request to `/queue` returns a `202 Accepted` response once the work item is enqueued without waiting for it to execute. If the bounded queue is full, the request waits until space is available to enqueue the work item. `QueuedHostedService` runs the queued work items in the background. For more information, see the [Queued background tasks](#queued-background-tasks) section.
 
 The following service registration snippets are from the Worker Service sample app (`BackgroundTasksSample`), where `services` is the <xref:Microsoft.Extensions.DependencyInjection.IServiceCollection> parameter passed to `ConfigureServices`. In a web app, use `builder.Services` instead of `services`.
@@ -94,8 +93,8 @@ If the app shuts down unexpectedly (for example, the app's process fails), `Stop
 
 To extend the default 30 second shutdown timeout, set:
 
-* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see <xref:fundamentals/host/generic-host#shutdowntimeout>.
-* Shutdown timeout host configuration setting when using Web Host. For more information, see <xref:fundamentals/host/web-host#shutdown-timeout>.
+* <xref:Microsoft.Extensions.Hosting.HostOptions.ShutdownTimeout> when using Generic Host. For more information, see [.NET Generic Host in ASP.NET Core](generic-host.md#shutdown-timeout).
+* Shutdown timeout host configuration setting when using Web Host. For more information, see [ASP.NET Core Web Host](web-host.md#shutdown-timeout).
 
 The hosted service is activated once at app startup and gracefully shut down at app shutdown. If an error is thrown during background task execution, `Dispose` should be called even if `StopAsync` isn't called.
 
@@ -146,7 +145,7 @@ The service is registered in the `Program` file with the <xref:Microsoft.Extensi
 
 ## Consuming a scoped service in a background task
 
-To use [scoped services](xref:fundamentals/dependency-injection#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. No scope is created for a hosted service by default.
+To use [scoped services](../dependency-injection.md#service-lifetimes) within a [BackgroundService](#backgroundservice-base-class), create a scope. No scope is created for a hosted service by default.
 
 The scoped background task service contains the background task's logic. In the following example:
 
@@ -251,7 +250,7 @@ The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
 ## Related content
 
 * [Background services unit tests on GitHub](https://github.com/dotnet/runtime/blob/main/src/libraries/Microsoft.Extensions.Hosting/tests/UnitTests/BackgroundServiceTests.cs).
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples/) ([how to download](../index.md#how-to-download-a-sample))
 * [Implement background tasks in microservices with IHostedService and the BackgroundService class](/dotnet/standard/microservices-architecture/multi-container-microservice-net-applications/background-tasks-with-ihostedservice)
 * [Run background tasks with WebJobs in Azure App Service](/azure/app-service/webjobs-create)
 * <xref:System.Threading.Timer>

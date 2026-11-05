@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor Hybrid static files
 description: Learn how to consume static asset files in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/static-files
 ---
 # ASP.NET Core Blazor Hybrid static files
 
@@ -179,7 +178,7 @@ In the following example component:
 
 A `BlazorWebView` control has a configured host file (:::no-loc text="HostPage":::), typically `wwwroot/index.html`. The :::no-loc text="HostPage"::: path is relative to the project. All static web assets (scripts, CSS files, images, and other files) that are referenced from a `BlazorWebView` are relative to its configured :::no-loc text="HostPage":::.
 
-Static web assets from a [Razor class library (RCL)](xref:razor-pages/ui-class) use special paths: `_content/{PACKAGE ID}/{PATH AND FILE NAME}`. The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`. These paths are logically subpaths of the app's `wwwroot` folder, although they're actually coming from other packages or projects. Component-specific CSS style bundles are also built at the root of the `wwwroot` folder.
+Static web assets from a [Razor class library (RCL)](../../razor-pages/ui-class.md) use special paths: `_content/{PACKAGE ID}/{PATH AND FILE NAME}`. The `{PACKAGE ID}` placeholder is the library's [package ID](/nuget/create-packages/creating-a-package-msbuild#set-properties). The package ID defaults to the project's assembly name if `<PackageId>` isn't specified in the project file. The `{PATH AND FILE NAME}` placeholder is path and file name under `wwwroot`. These paths are logically subpaths of the app's `wwwroot` folder, although they're actually coming from other packages or projects. Component-specific CSS style bundles are also built at the root of the `wwwroot` folder.
 
 The web root of the :::no-loc text="HostPage"::: determines which subset of static assets are available:
 
@@ -326,7 +325,7 @@ private async Task<string> ReadData()
 }
 ```
 
-[Collocated JavaScript files](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
+[Collocated JavaScript files](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) are also accessible at logical subpaths of `wwwroot`. Instead of using the script described earlier for the `showPrompt` function in `wwwroot/scripts.js`, the following collocated JavaScript file for the `StaticAssetExample2` component also makes the function available.
 
 `Pages/StaticAssetExample2.razor.js`:
 

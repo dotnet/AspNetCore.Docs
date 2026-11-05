@@ -3,7 +3,6 @@ title: EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blaz
 description: Learn how to implement EU General Data Protection Regulation (GDPR) support in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/security/gdpr
 zone_pivot_groups: blazor-app-models
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blazor
@@ -48,7 +47,7 @@ app.UseCookiePolicy();
 
 Add the following `CookieConsent` component to handle cookie policy consent.
 
-The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Confirm or adjust the path to the collocated file in the `OnAfterRenderAsync` method. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
+The component uses a [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Confirm or adjust the path to the collocated file in the `OnAfterRenderAsync` method. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
 
 `CookieConsent.razor`:
 
@@ -119,7 +118,7 @@ The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascr
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
+Add the following [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
 
 `CookieConsent.razor.js`:
 
@@ -217,7 +216,7 @@ Add the following `CookieConsent` component to handle cookie policy consent.
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions in a JavaScript module.
+Add the following [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions in a JavaScript module.
 
 `Shared/CookieConsent.razor.js`:
 

@@ -65,21 +65,21 @@ Blazor.start({
 });
 ```
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-11.0#startup-process-and-configuration>.
+For more information, see [ASP.NET Core Blazor startup](../../../blazor/fundamentals/startup.md?view=aspnetcore-11.0&preserve-view=true#startup-process-and-configuration).
 
 ### New `BasePath` component
 
-Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see <xref:blazor/host-and-deploy/app-base-path?view=aspnetcore-11.0>.
+Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see [ASP.NET Core Blazor app base path](../../../blazor/host-and-deploy/app-base-path.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### Inline JS event handler removed from the `NavMenu` component
 
-The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](xref:blazor/js-interop/javascript-location?view=aspnetcore-11.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-11.0&preserve-view=true#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](../../../blazor/security/content-security-policy.md?view=aspnetcore-11.0&preserve-view=true) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
-To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see <xref:migration/100-to-110>.
+To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md).
 
 ### `NavigateTo` and `NavLink` support for relative navigation
 
-The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
+The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0&preserve-view=true#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
 
 Consider the following nested endpoints:
 
@@ -88,7 +88,7 @@ Consider the following nested endpoints:
     * `/installation`
     * `/configuration`
 
-When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) for the desired navigation:
+When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0&preserve-view=true#navlink-component) for the desired navigation:
 
 ```csharp
 Navigation.NavigateTo("/configuration", new NavigationOptions
@@ -105,7 +105,7 @@ Navigation.NavigateTo("/configuration", new NavigationOptions
 
 To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports TempData. TempData is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
-TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](../../../blazor/components/cascading-values-and-parameters.md#cascadingparameter-attribute).
 
 ```csharp
 [CascadingParameter]
@@ -119,7 +119,7 @@ When supplied to a parameter for simple read/write of a single value, use the `[
 public string? Message { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#temporary-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#temporary-data-persistence).
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
@@ -134,7 +134,7 @@ Existing projects created with the old template continue to work. The rename onl
 
 For more information, see the following resources:
 
-* <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>
+* [ASP.NET Core Blazor with .NET on Web Workers](../../../blazor/blazor-with-dotnet-on-web-workers.md?view=aspnetcore-11.0&preserve-view=true)
 * [.NET Web Worker template update to Blazor Web Worker template (`dotnet/aspnetcore` #66070)](https://github.com/dotnet/aspnetcore/pull/66070) (Please don't comment on closed issues and PRs.)
 
 ### Virtualization enhancements
@@ -149,7 +149,7 @@ For more information, see the following resources:
 
   For more information, see the following resources:
 
-  * [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
+  * [*Item size* section](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#item-size) and [*Overscan count* section](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#overscan-count) of the *Virtualization* article.
   * [[Virtualization] Visible content does not shift when in-DOM items above the viewport change height (`dotnet/aspnetcore` #65951)](https://github.com/dotnet/aspnetcore/pull/65951) (Please don't comment on closed issues and PRs).
 
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
@@ -168,7 +168,7 @@ For more information, see the following resources:
 
   For more information, see the following resources:
 
-  * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
+  * [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added)
   * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
 * Content Security Policy (CSP) compliance
@@ -182,7 +182,7 @@ For more information, see the following resources:
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see [Tooling for ASP.NET Core Blazor](../../../blazor/tooling.md?view=aspnetcore-11.0&preserve-view=true#service-defaults-library-for-blazor-webassembly-apps).
 
 ### New development server for Blazor WebAssembly apps
 
@@ -217,7 +217,7 @@ For more information, see [[Blazor] Replace DevServer with BlazorGateway for sta
 
 *This feature applies to server-side Blazor apps.*
 
-Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](xref:blazor/state-management/server#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
+Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](../../../blazor/state-management/server.md#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
 
 `Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
 
@@ -227,7 +227,7 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information and an implementation example for server restarts, see <xref:blazor/state-management/server?view=aspnetcore-11.0#server-triggered-circuit-pause>.
+For more information and an implementation example for server restarts, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#server-triggered-circuit-pause).
 
 ### Smaller Blazor WebAssembly publish output
 
@@ -242,7 +242,7 @@ Apps that use OTEL or Hot Reload aren't affected by the preceding updates.
 
 The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) receives several new features in .NET 11.
 
-For more information on the following features, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0>.
+For more information on the following features, see [ASP.NET Core Blazor \`QuickGrid\` component](../../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true).
 
 #### Pagination modes
 
@@ -357,6 +357,16 @@ Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared U
 
 `GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
 
+<!-- UPDATE 11.0 - Hold for December servicing release
+
+The `Paginator` component now supports passing custom attributes to its rendered navigation element (`<nav>`). In the following example, the [`aria-label` attribute](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) and value are passed:
+
+```razor
+<Paginator State="@pagination" aria-label="Orders page" />
+```
+
+-->
+
 #### CSS breaking change
 
 When URL-based navigation is enabled, selectors targeting `button.col-title` must also target `a.col-title`, and `nav button`/`nav button:disabled` require `nav a`/`nav a[aria-disabled="true"]`. The built-in QuickGrid stylesheet provides both by default.
@@ -448,7 +458,7 @@ public string? Message { get; set; }
 public string? FlashMessage { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#session-data-persistence).
 
 ### `GetUriWithFragment` extension method
 
@@ -708,7 +718,7 @@ Blazor static server-side rendering (static SSR) forms now get instant, in-brows
 
 The feature is enabled by default for all static SSR forms that include the `DataAnnotationsValidator` component. Both enhanced and non-enhanced forms are supported.
 
-Complete feature coverage is available in <xref:blazor/forms/validation-client-side?view=aspnetcore-11.0>.
+Complete feature coverage is available in [ASP.NET Core Blazor client-side form validation in static SSR](../../../blazor/forms/validation-client-side.md?view=aspnetcore-11.0&preserve-view=true).
 
 For more information, see the following resources:
 
@@ -771,7 +781,7 @@ Validator components register asynchronous work with `ValidationRequestedEventAr
 }
 ```
 
-Complete feature coverage is available in <xref:blazor/forms/validation-advanced?view=aspnetcore-11.0#asynchronous-validation>.
+Complete feature coverage is available in [ASP.NET Core Blazor advanced form validation](../../../blazor/forms/validation-advanced.md?view=aspnetcore-11.0&preserve-view=true#asynchronous-validation).
 
 For more information, see [Add built-in support for async form validation in Blazor (`dotnet/aspnetcore` #66526)](https://github.com/dotnet/aspnetcore/pull/66526).
 
@@ -789,14 +799,14 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 For more information, see the following resources:
 
-* <xref:migration/100-to-110>
+* [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md)
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
 * [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md?view=aspnetcore-11.0&preserve-view=true)
-* <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
-* <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
+* [ASP.NET Core Blazor forms overview](../../../blazor/forms/index.md?view=aspnetcore-11.0&preserve-view=true#antiforgery-support)
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-11.0&preserve-view=true#antiforgery-support)
 
 ### Blazor Virtualize can scroll to an item
 
@@ -824,7 +834,7 @@ Out-of-range indexes are clamped to the valid range. If a second `ScrollToItemAs
 
 For more information, see the following resources:
 
-* <xref:blazor/components/virtualization#scroll-to-a-specific-item>
+* [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md#scroll-to-a-specific-item)
 * [Add `InitialIndex` (sic&dagger;) parameter and `ScrollToIndexAsync` (sic&dagger;) API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs. *sic*&dagger;: API naming was changed without updating the title of the PR.)
 
 ### Automatic circuit pause on tab inactivity
@@ -838,11 +848,11 @@ app.MapRazorComponents<App>()
 
 After the tab is hidden for a configurable delay period (default: 2 minutes), the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#automatic-circuit-pause-on-tab-inactivity).
 
 ### Wider support for `AuthorizationPolicy` and `IAuthorizationRequirementData`
 
-Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](../../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
 For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md?view=aspnetcore-11.0&preserve-view=true).
 
@@ -850,12 +860,12 @@ For more information, see [Custom authorization policies with \`IAuthorizationRe
 
 The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize> set to `true`):
 
-* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
-* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
-* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#scroll-to-a-specific-item).
+* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#scroll-to-a-specific-item).
+* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
 
-For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true#quickgrid-implementation).
 
 ### Cache rendered output of a component subtree during static SSR
 
@@ -869,7 +879,7 @@ The new `CacheView` component caches the rendered output of a Razor component su
 </CacheView>
 ```
 
-For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
+For more information, see [ASP.NET Core Blazor CacheView component](../../../blazor/state-management/cacheview-component.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### Blazor Server circuits update after authentication refresh
 
@@ -1323,6 +1333,6 @@ Passing a thread to `UIAgent` enables new completed turns to be persisted but do
 
 For more information, see the following resources:
 
-* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-* <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
-* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
+* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](../../../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0&preserve-view=true#nested-objects-and-collections)
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0&preserve-view=true#force-generate-validatable-type-information)

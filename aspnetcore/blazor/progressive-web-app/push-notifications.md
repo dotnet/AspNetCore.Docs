@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to issue push notifications in Blazor Progressive Web Applications (PWAs).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/progressive-web-app/push-notifications
 ---
 # Push notifications for ASP.NET Core Blazor Progressive Web Applications (PWAs)
 
@@ -227,7 +226,7 @@ async Task RequestNotificationSubscriptionAsync()
 }
 ```
 
-In the `Checkout` component, `RequestNotificationSubscriptionAsync` is called in the [`OnInitialized` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) and executes on component initialization. The method is asynchronous, but it can run in the background, and the <xref:System.Threading.Tasks.Task> that it returns can be discarded. Therefore, the method isn't called in the asynchronous lifecycle method for component initialization (`OnInitializedAsync`). This approach renders the component faster.
+In the `Checkout` component, `RequestNotificationSubscriptionAsync` is called in the [`OnInitialized` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync) and executes on component initialization. The method is asynchronous, but it can run in the background, and the <xref:System.Threading.Tasks.Task> that it returns can be discarded. Therefore, the method isn't called in the asynchronous lifecycle method for component initialization (`OnInitializedAsync`). This approach renders the component faster.
 
 ```csharp
 protected override void OnInitialized()
