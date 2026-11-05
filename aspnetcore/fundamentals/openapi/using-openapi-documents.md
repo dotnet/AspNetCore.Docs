@@ -57,7 +57,7 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
-For more details on document transformers and applying security requirements per endpoint, see <xref:fundamentals/openapi/customize-openapi#use-document-transformers>.
+For more details on document transformers and applying security requirements per endpoint, see [Customize OpenAPI documents](../customize-openapi.md#use-document-transformers).
 
 ## Use Scalar for interactive API documentation
 
