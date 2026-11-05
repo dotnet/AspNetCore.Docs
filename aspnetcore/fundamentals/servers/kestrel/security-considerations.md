@@ -880,7 +880,7 @@ When origin validation fails, the middleware returns `403 Forbidden`. Note that 
 
 ### WebSocket connection limits
 
-WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Monitor connection counts and expected traffic before deciding whether to set a limit. A limit that's too low or an unexpected traffic surge can reject legitimate connections. See the [edge server guidance](#edge-server-direct-internet-exposure). An explicit limit can be configured if needed:
+WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Monitor connection counts and expected traffic before deciding whether to set a limit. A limit that's too low or an unexpected traffic surge can reject legitimate connections. See the [edge server guidance](#edge-server-direct-internet-exposure). If needed, configure an explicit limit:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);

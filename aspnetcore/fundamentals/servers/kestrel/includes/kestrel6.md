@@ -269,7 +269,7 @@ Configure limits with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kestrel
 
 Both connection limits default to `null` (unlimited). Don't set a connection cap solely because an app is internet-facing. Monitor active and rejected connections and consider expected traffic before deciding whether a limit is appropriate. A limit that's too low or an unexpected traffic surge can reject legitimate connections. Connection limits aren't a substitute for upstream DDoS protection.
 
-The connection caps of `100` in the C# examples below are illustrative, not recommended production limits.
+The connection caps of `100` in the following C# examples are illustrative, not recommended production limits.
 
 The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
 
@@ -277,7 +277,7 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](../../../configuration/index.md). For example, the [File Configuration Provider](../../../configuration/index.md#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](../../../configuration/index.md). For example, the [File Configuration Provider](../../../configuration/index.md#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.<environment>.json` file (the `<environment>` placeholder is the app's [environment](../../../environments.md)):
 
 ```json
 {
