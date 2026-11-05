@@ -378,7 +378,7 @@ builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 ### Identify the hub being accessed
 
-Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
 
 ```csharp
 public class CustomUserIdProvider : IUserIdProvider
@@ -671,7 +671,7 @@ services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 
 ### Identify the hub being accessed
 
-Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.HubConnectionContextExtensions.GetHttpContext%2A> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
 
 ```csharp
 public class CustomUserIdProvider : IUserIdProvider
