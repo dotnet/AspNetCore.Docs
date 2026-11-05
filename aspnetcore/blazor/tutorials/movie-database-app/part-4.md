@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains the database context and directly working with the database's schema and data. Seeding the database with data is also covered.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/15/2026
-uid: blazor/tutorials/movie-database-app/part-4
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 4 - Work with a database)
@@ -19,10 +18,10 @@ This part of the tutorial series focuses on the database context and directly wo
 
 This tutorial uses a local database that doesn't require user authentication. Production apps should use the most secure authentication flow available. For more information on authentication for deployed test and production Blazor Web Apps, see the following resources:
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/index> and the following articles in the *Server* security node
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/blazor-web-app-entra>
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
+* [ASP.NET Core Blazor authentication and authorization](../../security/index.md) and the following articles in the *Server* security node
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../security/blazor-web-app-with-oidc.md)
+* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../security/blazor-web-app-with-entra.md)
 
 For Microsoft Azure services, we recommend using *managed identities*. Managed identities securely authenticate to Azure services without storing credentials in app code. For more information, see the following resources:
 
@@ -71,11 +70,11 @@ builder.Services.AddDbContextFactory<BlazorWebAppMoviesContext>(options =>
 
 :::zone-end
 
-<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory%2A> registers a factory for the given context as a service in the app's service collection.
+<xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextFactory*> registers a factory for the given context as a service in the app's service collection.
 
-<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer%2A> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite%2A> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
+<xref:Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer*> or <xref:Microsoft.EntityFrameworkCore.SqliteDbContextOptionsBuilderExtensions.UseSqlite*> configures the context to connect to either a Microsoft SQL Server or SQLite database. Other providers are available to connect to additional types of databases.
 
-<xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString%2A> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
+<xref:Microsoft.Extensions.Configuration.ConfigurationExtensions.GetConnectionString*> uses the ASP.NET Core Configuration system to read the `ConnectionStrings` key for the connection string name provided, which in the preceding example is `BlazorWebAppMoviesContext`.
 
 For local development, configuration obtains the database connection string from the app settings file (`appsettings.json`). The `{CONNECTION STRING}` placeholder in the following example is the connection string:
 
@@ -267,7 +266,7 @@ Review the `Edit` component (`Components/Pages/MoviePages/Edit.razor`).
 
 When an HTTP GET request is made for the `Edit` component page (for example at the relative URL: `/movies/edit?id=6`):
 
-* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method fetches the movie with an `Id` of `6` from the database and assigns it to the `Movie` property.
+* The <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> method fetches the movie with an `Id` of `6` from the database and assigns it to the `Movie` property.
 * The <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model?displayProperty=nameWithType> parameter specifies the top-level model object for the form. An edit context is constructed for the form using the assigned model.
 * The form is displayed with the values from the movie.
 
@@ -319,9 +318,9 @@ private async Task UpdateMovie()
 -->
 
 > [!IMPORTANT]
-> Due to a bug in the Blazor CRUD template, a `return` statement is missing from the `UpdateMovie` method after <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called. The purpose of calling `return` is to ensure the handler (the `UpdateMovie` method) selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>. We're in the process of updating the `Edit` component template, and this article will be updated when the scaffolder generates the correct code.
+> Due to a bug in the Blazor CRUD template, a `return` statement is missing from the `UpdateMovie` method after <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called. The purpose of calling `return` is to ensure the handler (the `UpdateMovie` method) selects only the Not Found outcome, independently of a given database provider synchronously or asynchronously executing <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>. We're in the process of updating the `Edit` component template, and this article will be updated when the scaffolder generates the correct code.
 >
-> After the line that calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A>, add a `return` statement:
+> After the line that calls <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>, add a `return` statement:
 >
 > ```csharp
 > return;
@@ -424,20 +423,20 @@ If the app is running, shut the app down by closing the browser's window and pre
 ## Related content
 
 * Configuration articles:
-  * <xref:fundamentals/configuration/index> (ASP.NET Core Configuration system)
-  * <xref:blazor/fundamentals/configuration> (Blazor documentation)
+  * [Configuration in ASP.NET Core](../../../fundamentals/configuration/index.md) (ASP.NET Core Configuration system)
+  * [ASP.NET Core Blazor configuration](../../fundamentals/configuration.md) (Blazor documentation)
   * [Data seeding (EF Core documentation)](/ef/core/modeling/data-seeding)
-* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
+* [Concurrency with EF Core in Blazor apps](../../blazor-ef-core.md)
 * Database provider resources:
   * EF Core documentation
     * [SQLite EF Core Database Provider Limitations](/ef/core/providers/sqlite/limitations)
     * [Customize migration code](/ef/core/managing-schemas/migrations/#customize-migration-code)
   * [SQLite ALTER TABLE statement (SQLite documentation)](https://sqlite.org/lang_altertable.html)
 * Blazor Web App security
-  * <xref:blazor/security/index>
-  * <xref:blazor/security/index> and the following articles in the *Server* security node
-  * <xref:blazor/security/blazor-web-app-oidc>
-  * <xref:blazor/security/blazor-web-app-entra>
+  * [ASP.NET Core Blazor authentication and authorization](../../security/index.md)
+  * [ASP.NET Core Blazor authentication and authorization](../../security/index.md) and the following articles in the *Server* security node
+  * [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../security/blazor-web-app-with-oidc.md)
+  * [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../security/blazor-web-app-with-entra.md)
 
 ## Legal
 
@@ -446,5 +445,5 @@ If the app is running, shut the app down by closing the browser's window and pre
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Learn about Razor components](xref:blazor/tutorials/movie-database-app/part-3)
-> [Next: Add Validation](xref:blazor/tutorials/movie-database-app/part-5)
+> [Previous: Learn about Razor components](part-3.md)
+> [Next: Add Validation](part-5.md)

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
 monikerRange: ">= aspnetcore-2.1"
 ms.date: 02/24/2026
-uid: tutorials/signalr-typescript-webpack
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
 
@@ -23,7 +22,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR TypeScript client
 > * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -96,11 +95,11 @@ The preceding command adds the [Microsoft.TypeScript.MSBuild](https://www.nuget.
 
 In this section, you configure the ASP.NET Core web app to send and receive SignalR messages.
 
-1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>:
+1. In `Program.cs`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*>:
 
    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_AddSignalR&highlight=3)]
 
-1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles%2A> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles%2A>:
+1. Again, in `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.DefaultFilesExtensions.UseDefaultFiles*> and <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>:
 
    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/10.x/Program.cs?name=snippet_FilesMiddleware&highlight=3-4)]
 
@@ -118,7 +117,7 @@ In this section, you configure the ASP.NET Core web app to send and receive Sign
 
    * The TypeScript client sends a message identified as `newMessage`.
    * The C# `NewMessage` method expects the data sent by the client.
-   * A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All).
+   * A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All).
    * The received messages are sent to all clients connected to the hub.
 
 1. Add the following `using` statement at the top of `Program.cs` to resolve the `ChatHub` reference:
@@ -260,14 +259,14 @@ Confirm that the app works with the following steps:
 
 ## Next steps
 
-* [Strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs)
-* [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
-* [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
+* [Strongly typed hubs](../signalr/hubs.md#use-strongly-typed-hubs)
+* [Authentication and authorization in ASP.NET Core SignalR](../signalr/authn-and-authz.md)
+* [MessagePack Hub Protocol in SignalR for ASP.NET Core](../signalr/messagepackhubprotocol.md)
 
 ## Related content
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../signalr/hubs.md)
 
 :::moniker-end
 

@@ -6,7 +6,6 @@ ms.reviewer: midenn
 ms.topic: tutorial
 content_well_notification: AI-contribution
 ms.date: 05/13/2025
-uid: fundamentals/native-aot-tutorial
 ai-usage: ai-assisted
 ---
 # Tutorial: Publish an ASP.NET Core app using Native AOT
@@ -161,7 +160,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 ## See also
 
-* <xref:fundamentals/native-aot>
+* [ASP.NET Core support for Native AOT](../native-aot.md)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
 * [Using the configuration binder source generator](https://andrewlock.net/exploring-the-dotnet-8-preview-using-the-new-configuration-binder-source-generator/)
 * [The Minimal API AOT compilation template](https://andrewlock.net/exploring-the-dotnet-8-preview-the-minimal-api-aot-template/)

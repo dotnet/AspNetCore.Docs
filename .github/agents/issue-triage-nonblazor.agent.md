@@ -5,8 +5,6 @@ tools:
   - lexical-code-search
   - semantic-code-search
 ai-usage: ai-assisted
-author: tdykstra
-ms.author: wpickett
 ms.date: 12/17/2025
 ---
 
@@ -43,7 +41,7 @@ When examining source files:
 * **Use permalinks with commit SHA** when referencing specific versions.
 * **Use Microsoft-approved styles** by conforming proposed changes to the Microsoft Writing Style Guide at https://learn.microsoft.com/en-us/style-guide/welcome/.
 
-Example format for file references: 
+Example format for file references:
 * Single line: `https://github.com/owner/repo/blob/main/file.md#L123`.
 * Line range: `https://github.com/owner/repo/blob/main/file.md#L123-L145`.
 * Permalink: `https://github.com/owner/repo/blob/<commit-sha>/file.md#L123`.
@@ -56,7 +54,7 @@ Determine if the issue is:
 * **Current**:  Applies to supported .NET versions.
 
 ### 3. Translation Requirements
-If any content is not in English: 
+If any content is not in English:
 * Include the original text in a quote block.
 * Provide complete English translation.
 * Label clearly as "Original" and "Translation".
@@ -77,7 +75,7 @@ Eliminate duplicate report content that may arise from running the analysis more
 ```markdown
 ## 🤖 AI Triage Summary
 
-> **📌 Note to community:** This is an automated preliminary analysis to help our documentation team quickly review, determine scope and prioritize this issue. This report is **not a resolution or answer** to your question—it's an internal triage tool that identifies potentially relevant docs, code samples, and versions to look into. A team member will review this issue and respond. Thank you for your contribution! 
+> **📌 Note to community:** This is an automated preliminary analysis to help our documentation team quickly review, determine scope and prioritize this issue. This report is **not a resolution or answer** to your question—it's an internal triage tool that identifies potentially relevant docs, code samples, and versions to look into. A team member will review this issue and respond. Thank you for your contribution!
 
 ---
 
@@ -149,7 +147,7 @@ Eliminate duplicate report content that may arise from running the analysis more
    * Navigate to: [Line 123](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/path/to/file.md#L123)
    * Section: "Exact Section Heading"
    * Consider: [!NOTE] block with explanation
-   
+
 2. **Review sample:** [`path/to/sample.cs`](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs)
    * Navigate to: [Lines 45-67](https://github.com/dotnet/AspNetCore.Docs/blob/main/path/to/sample.cs#L45-L67)
    * Method: `MethodName()`

@@ -5,11 +5,10 @@ description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/06/2026
-uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](xref:performance/caching/overview#hybridcache).
+This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](overview.md#hybridcache).
 
 ## Get the library
 
@@ -21,7 +20,7 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache%2A>:
+Add the `HybridCache` service to the [dependency injection (DI)](../../fundamentals/dependency-injection.md) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
@@ -29,7 +28,7 @@ The preceding code registers the `HybridCache` service with default options. The
 
 ## Get and store cache entries
 
-The `HybridCache` service provides a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.GetOrCreateAsync%2A> method with two overloads, taking a key and:
+The `HybridCache` service provides a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.GetOrCreateAsync*> method with two overloads, taking a key and:
 
 * A factory method.
 * State, and a factory method.
@@ -96,14 +95,14 @@ The alternative overload might reduce some overhead from [captured variables](/d
 
 ### The `SetAsync` method
 
-In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.SetAsync%2A> to store an object in cache without trying to retrieve it first.
+In many scenarios, `GetOrCreateAsync` is the only API needed. But `HybridCache` also has <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.SetAsync*> to store an object in cache without trying to retrieve it first.
 <!--
 Add GetAsync when it's implemented.
 -->
 
 ## Remove cache entries by key
 
-When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveAsync%2A> with the key to the entry. An overload lets you specify a collection of key values.
+When the underlying data for a cache entry changes before it expires, remove the entry explicitly by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveAsync*> with the key to the entry. An overload lets you specify a collection of key values.
 
 When an entry is removed, it is removed from both the primary and secondary caches.
 
@@ -115,7 +114,7 @@ Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
 :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
-Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync%2A> with the tag value. An overload lets you specify a collection of tag values.
+Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync*> with the tag value. An overload lets you specify a collection of tag values.
 
 Neither `IMemoryCache` nor `IDistributedCache` has direct support for the concept of tags, so tag-based invalidation is a logical operation, not a physical deletion. Calling `RemoveByTagAsync` doesn't remove values from either the local or distributed cache. Instead, it establishes an "ignore anything created before this point" rule for entries associated with that tag. 
 
@@ -154,7 +153,7 @@ The following properties of `HybridCacheOptions` let you configure limits that a
  
 ## Serialization
 
-Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializer%2A> and <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializerFactory%2A> methods, chained from the `AddHybridCache` call. By default, the library
+Use of a secondary, out-of-process cache requires serialization. Serialization is configured as part of registering the `HybridCache` service. Type-specific and general-purpose serializers can be configured via the <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializer*> and <xref:Microsoft.Extensions.DependencyInjection.HybridCacheBuilderExtensions.AddSerializerFactory*> methods, chained from the `AddHybridCache` call. By default, the library
 handles `string` and `byte[]` internally, and uses `System.Text.Json` for everything else. `HybridCache` can also use other serializers, such as protobuf or XML.
 
 The following example configures the service to use a type-specific protobuf serializer:
@@ -170,7 +169,7 @@ The secondary cache requires a data store, such as Redis, SQL Server, or Postgre
 * Install the `Microsoft.Extensions.Caching.StackExchangeRedis` package.
 * Create an instance of Azure Cache for Redis.
 * Get a connection string that connects to the Redis instance. Find the connection string by selecting **Show access keys** on the **Overview** page in the Azure portal.
-* Store the connection string in the app's configuration. For example, use a [user secrets file](xref:security/app-secrets) that looks like the following JSON, with the connection string in the `ConnectionStrings` section. Replace `<the connection string>` with the actual connection string:
+* Store the connection string in the app's configuration. For example, use a [user secrets file](../../security/app-secrets.md) that looks like the following JSON, with the connection string in the `ConnectionStrings` section. Replace `<the connection string>` with the actual connection string:
 
   ```json
   {
@@ -190,13 +189,13 @@ For more information, see the [HybridCache serialization sample app](https://git
 
 ## Cache storage
 
-By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
+By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](distributed.md), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
 
 > [!NOTE]
 > When invalidating cache entries by key or by tags, they're invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
 
 > [!NOTE]
-> When the primary cache is the default <xref:Microsoft.Extensions.Caching.Memory.MemoryCache>, `HybridCache` doesn't use the `IDistributedCache` implementation registered by <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache%2A> as its secondary cache. That implementation stores entries in the same process, so it would only duplicate the primary cache. If it's the only `IDistributedCache` registered, `HybridCache` caches in-process only, and cache entries aren't shared between servers. To share cache entries between servers, register an out-of-process implementation, such as Redis.
+> When the primary cache is the default <xref:Microsoft.Extensions.Caching.Memory.MemoryCache>, `HybridCache` doesn't use the `IDistributedCache` implementation registered by <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddDistributedMemoryCache*> as its secondary cache. That implementation stores entries in the same process, so it would only duplicate the primary cache. If it's the only `IDistributedCache` registered, `HybridCache` caches in-process only, and cache entries aren't shared between servers. To share cache entries between servers, register an out-of-process implementation, such as Redis.
 
 ## Optimize performance
 
@@ -249,7 +248,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 * **Trimming**
 
-  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
+  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see [ASP.NET Core support for Native AOT](../../fundamentals/native-aot.md).
 
 If you set up serialization and trimming correctly, `HybridCache` behaves the same way in Native AOT as in regular ASP.NET Core apps.
 

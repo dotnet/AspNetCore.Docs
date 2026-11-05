@@ -48,7 +48,7 @@ If you've identified a scenario which the public API allowed before this change 
 
 - `Microsoft.Extensions.Localization.Internal.AssemblyWrapper`
 - `Microsoft.Extensions.Localization.Internal.IResourceStringProvider`
-- <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.%23ctor%2A?displayProperty=nameWithType>
+- <xref:Microsoft.Extensions.Localization.ResourceManagerStringLocalizer.%23ctor*?displayProperty=nameWithType>
 
 <!--
 

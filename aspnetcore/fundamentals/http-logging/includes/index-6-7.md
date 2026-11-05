@@ -25,7 +25,7 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 ## Enabling HTTP logging
 
-HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
+HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*>, which adds HTTP logging middleware.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet2&highlight=5)]
 
@@ -41,7 +41,7 @@ The output is logged as a single message at `LogLevel.Information`.
 
 ## HTTP Logging options
 
-To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
+To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging*> in `Program.cs`.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices)]
 
@@ -68,9 +68,9 @@ This approach can also be used to enable logging for data that is not logged by 
 
 #### `MediaTypeOptions` methods
 
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear%2A>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear*>
 
 ### `RequestBodyLogLimit` and `ResponseBodyLogLimit`
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: OpenAPI XML documentation comments in ASP.NET Core enrich generated API documents automatically. Learn how to enable, customize, and disable XML comment support.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 08/19/2026
-uid: fundamentals/openapi/aspnet-openapi-xml
 ---
 # OpenAPI XML documentation comment support in ASP.NET Core
 
@@ -46,7 +45,7 @@ The `<response>` tag supplies the *description* for a response, but it doesn't b
 
 To make a status code appear in the OpenAPI document, ensure it's part of the endpoint's response metadata:
 
-* For Minimal APIs, return a typed result such as `Results<Ok<T>, NotFound>` or add [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces%2A)/[`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem%2A) metadata. In the preceding sample, `GetProjectBoardById` returns `Results.Ok(...)` and `Results.NotFound()`, so both the `200` and `404` responses are inferred and the `<response>` descriptions are applied.
+* For Minimal APIs, return a typed result such as `Results<Ok<T>, NotFound>` or add [`Produces`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.Produces*)/[`ProducesProblem`](xref:Microsoft.AspNetCore.Http.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*) metadata. In the preceding sample, `GetProjectBoardById` returns `Results.Ok(...)` and `Results.NotFound()`, so both the `200` and `404` responses are inferred and the `<response>` descriptions are applied.
 * For controllers, add a [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute) attribute for each status code. For example, a `204` response requires `[ProducesResponseType(StatusCodes.Status204NoContent)]`.
 
 > [!NOTE]
@@ -235,6 +234,6 @@ Navigate to [http://localhost:5052/](http://localhost:5052/) to view the Scalar 
 
 * [Source generator implementation notes](https://github.com/captainsafia/aspnet-openapi-xml#implementation-notes)
 * The source generator implementation can be found in the [ASP.NET Core repository](https://github.com/dotnet/aspnetcore/tree/main/src/OpenApi/gen).
-* <xref:fundamentals/openapi/aspnetcore-openapi>
-* <xref:fundamentals/openapi/using-openapi-documents>
-* <xref:fundamentals/openapi/openapi-tools>
+* [Generate OpenAPI documents](aspnetcore-openapi.md)
+* [Use the generated OpenAPI documents](using-openapi-documents.md)
+* [.NET OpenAPI tool command reference and installation](openapi-tools.md)

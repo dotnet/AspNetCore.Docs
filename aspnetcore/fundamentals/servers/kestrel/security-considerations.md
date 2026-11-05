@@ -3,8 +3,7 @@ title: Security considerations for the ASP.NET Core Kestrel web server
 ai-usage: ai-assisted
 description: Learn about the security considerations, configurable limits, and behavioral decisions in Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/09/2026
-uid: fundamentals/servers/kestrel/security-considerations
+ms.date: 11/04/2026
 ---
 # Security considerations for the ASP.NET Core Kestrel web server
 
@@ -62,7 +61,7 @@ When Kestrel sits behind a reverse proxy (YARP, IIS Application Request Routing 
 
 Key considerations:
 
-- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+- **[Forwarded Headers](#forwarded-headers) middleware is required** to preserve the original client IP, scheme, and host. Without it, `HttpContext.Connection.RemoteIpAddress` returns the proxy's IP, not the client's. For full configuration details, see the [Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 - **Authentication and secure-cookie behavior often depend on the restored scheme.** If the proxy terminates TLS but Kestrel still sees the request as `http`, authentication handlers may generate incorrect redirect URIs, secure cookies may not be issued or returned as expected, and policies that require HTTPS can fail.
 - **Configure `KnownProxies` or `KnownIPNetworks` explicitly.** By default, Forwarded Headers middleware only trusts the IPv6 loopback address (`::1`). If your proxy's IP isn't in the trusted list, the original client information is discarded.
 - **Keep `ForwardLimit` at `1`** unless you have a chain of multiple proxies. Setting it to `null` (unlimited) means any number of `X-Forwarded-For` entries are processed, which can be exploited.
@@ -70,7 +69,7 @@ Key considerations:
 - **HTTPS redirection may be unnecessary** if the proxy terminates TLS and communicates with Kestrel over a private network. If using forwarded headers then `UseHttpsRedirection()` will noop as it will see the `X-Forwarded-Proto` header as HTTPS, recommend keeping it in that case.
 
 > [!NOTE]
-> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](xref:fundamentals/servers/yarp/overview) if you are using YARP as your reverse proxy.
+> **Proxy-specific guidance:** The recommendations above are general guidelines. Each reverse proxy has its own configuration model and security features. Consult your proxy's documentation for specifics—for example, see the [YARP documentation](../yarp/yarp-overview.md) if you are using YARP as your reverse proxy.
 
 > [!WARNING]
 > The Forwarded Headers middleware can be silently enabled with **no proxy restrictions** by setting the environment variable `ASPNETCORE_FORWARDEDHEADERS_ENABLED=true` (or `DOTNET_FORWARDEDHEADERS_ENABLED=true`, or the configuration key `ForwardedHeaders_Enabled`). When enabled this way, the framework **clears `KnownProxies` and `KnownIPNetworks`**, meaning every upstream IP is trusted. This is far more permissive than what is achievable through the C# API, where `KnownProxies` defaults to loopback only. **Verify this variable isn't set in edge deployments**—check your Dockerfiles, orchestrator configs, CI/CD pipelines, and hosting platform defaults.
@@ -694,8 +693,8 @@ Beyond rejection-specific signals, Kestrel emits a set of built-in metrics under
 
 These metrics integrate with OpenTelemetry, `dotnet-counters`, Prometheus exporters, and Azure Monitor. For full setup guidance, see:
 
-- [ASP.NET Core metrics overview](xref:metrics/overview)
-- [Kestrel built-in metrics reference](xref:metrics/http#microsoftaspnetcoreserverkestrel)
+- [ASP.NET Core metrics overview](../../../metrics/overview.md)
+- [Kestrel built-in metrics reference](../../../metrics/http.md#microsoftaspnetcoreserverkestrel)
 
 ### TLS-over-HTTP detection
 
@@ -736,13 +735,13 @@ app.UseHttpsRedirection();
 
 | Option | Default | Description |
 | --- | --- | --- |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort%2A> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
-| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode%2A> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.HttpsPort> | Auto-detected | The HTTPS port to redirect to. Auto-detected from the `HTTPS_PORT` configuration key, the `ASPNETCORE_HTTPS_PORT` environment variable, or the <xref:Microsoft.AspNetCore.Hosting.Server.Features.IServerAddressesFeature>. |
+| <xref:Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionOptions.RedirectStatusCode> | 307 (Temporary Redirect) | Use 308 (Permanent Redirect) for production APIs, where clients should cache the redirect. |
 
 > [!NOTE]
 > **Edge servers:** Enable HTTPS Redirection. **Behind a proxy**: Often unnecessary if the proxy handles TLS termination and all internal traffic is over a private network.
 >
-> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](xref:security/enforcing-ssl#https-redirection-middleware-usehttpsredirection).
+> Don't confuse the `HTTPS_PORTS` configuration key and `ASPNETCORE_HTTPS_PORTS` environment variable, which set the ports for Kestrel/HTTP.sys endpoint configuration, with the `HTTPS_PORT` configuration key and `ASPNETCORE_HTTPS_PORT` environment variable, which set the port for [HTTPS redirection middleware](../../../security/enforcing-ssl.md#https-redirection-middleware-usehttpsredirection).
 
 ### HTTP strict transport security (HSTS)
 
@@ -792,7 +791,7 @@ app.UseForwardedHeaders(new ForwardedHeadersOptions
 > [!WARNING]
 > Forwarded Headers middleware **must be placed before** any middleware that depends on scheme, host, or client IP (authentication, authorization, CORS, etc.). If it runs too late, those components may see the backend hop as plain `http` instead of the original `https` request and fail in subtle ways—for example, authentication handlers may reject requests because the scheme is `http` instead of `https`, and secure cookies won't be sent. Also, **never enable this middleware in edge deployments**—it allows clients to spoof their IP address.
 >
-> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](xref:host-and-deploy/proxy-load-balancer).
+> For the full set of configuration options and guidance, see the [ASP.NET Core Forwarded Headers middleware documentation](../../../host-and-deploy/proxy-load-balancer.md).
 
 ### Rate limiting
 
@@ -881,7 +880,7 @@ When origin validation fails, the middleware returns `403 Forbidden`. Note that 
 
 ### WebSocket connection limits
 
-WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Since WebSocket connections are long-lived, they can accumulate and exhaust server resources. An explicit limit can be set:
+WebSocket and other upgraded connections count toward [`MaxConcurrentUpgradedConnections`](#connection-limits) (unlimited by default). Monitor connection counts and expected traffic before deciding whether to set a limit. A limit that's too low or an unexpected traffic surge can reject legitimate connections. See the [edge server guidance](#edge-server-direct-internet-exposure). If needed, configure an explicit limit:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);

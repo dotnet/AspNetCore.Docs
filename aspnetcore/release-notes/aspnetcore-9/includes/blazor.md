@@ -26,7 +26,7 @@ The template is also available in Visual Studio.
 > [!NOTE]
 > Currently, an exception occurs if Blazor rendering modes are defined at the per-page/component level. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
-For more information, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app?view=aspnetcore-9.0>.
+For more information, see [Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](../../../blazor/hybrid/tutorials/maui-blazor-web-app.md?view=aspnetcore-9.0&preserve-view=true).
 
 ### Detect rendering location, interactivity, and assigned render mode at runtime
 
@@ -36,7 +36,7 @@ We've introduced a new API designed to simplify the process of querying componen
 * **Check if the component is running in an interactive environment**: This can be helpful for components that have different behaviors based on the interactivity of their environment.
 * **Retrieve the assigned render mode for the component**: Understanding the render mode can help in optimizing the rendering process and improving the overall performance of a component.
 
-For more information, see <xref:blazor/components/render-modes?view=aspnetcore-9.0#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+For more information, see [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0&preserve-view=true#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime).
 
 ### Improved server-side reconnection experience:
 
@@ -61,7 +61,7 @@ The following enhancements have been made to the default server-side reconnectio
 
 * The styling of the default reconnect UI has been modernized.
 
-For more information, see <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#adjust-the-server-side-reconnection-retry-count-and-interval>.
+For more information, see [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#adjust-the-server-side-reconnection-retry-count-and-interval).
 
 ### Simplified authentication state serialization for Blazor Web Apps
 
@@ -69,19 +69,19 @@ New APIs make it easier to add authentication to an existing Blazor Web App. Whe
 
 These providers flow the user's authentication state to the browser. Authenticating on the server rather than the client allows the app to access authentication state during prerendering and before the .NET WebAssembly runtime is initialized.
 
-The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](xref:blazor/state-management/prerendered-state-persistence?view=aspnetcore-9.0) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance. 
+The custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> implementations use the [Persistent Component State service](../../../blazor/state-management/prerendered-state-persistence.md?view=aspnetcore-9.0&preserve-view=true) (<xref:Microsoft.AspNetCore.Components.PersistentComponentState>) to serialize the authentication state into HTML comments and read it back from WebAssembly to create a new <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> instance.
 
 This works well if you've started from the Blazor Web App project template and selected the **Individual Accounts** option, but it's a lot of code to implement yourself or copy if you're trying to add authentication to an existing project. There are now APIs, which are now part of the Blazor Web App project template, that can be called in the server and client projects to add this functionality:
 
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A>: Adds the necessary services to serialize the authentication state on the server.
-* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A>: Adds the necessary services to deserialize the authentication state in the browser.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*>: Adds the necessary services to serialize the authentication state on the server.
+* <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*>: Adds the necessary services to deserialize the authentication state in the browser.
 
-By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> to include all claims.
+By default, the API only serializes the server-side name and role claims for access in the browser. An option can be passed to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to include all claims.
 
-For more information, see the following sections of <xref:blazor/security/index?view=aspnetcore-9.0>:
+For more information, see the following sections of [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true):
 
-* [Blazor Identity UI (Individual Accounts)](xref:blazor/security/index?view=aspnetcore-9.0#blazor-identity-ui-individual-accounts)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index?view=aspnetcore-9.0#manage-authentication-state-in-blazor-web-apps)
+* [Blazor Identity UI (Individual Accounts)](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#blazor-identity-ui-individual-accounts)
+* [Manage authentication state in Blazor Web Apps](../../../blazor/security/index.md?view=aspnetcore-9.0&preserve-view=true#manage-authentication-state-in-blazor-web-apps)
 
 ### Add static server-side rendering (SSR) pages to a globally-interactive Blazor Web App
 
@@ -97,7 +97,7 @@ Mark any Razor component page with the new [`[ExcludeFromInteractiveRouting]` at
 
 Applying the attribute causes navigation to the page to exit from interactive routing. Inbound navigation is forced to perform a full-page reload instead resolving the page via interactive routing. The full-page reload forces the top-level root component, typically the `App` component (`App.razor`), to rerender from the server, allowing the app to switch to a different top-level render mode.
 
-The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
+The <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method allows the component to detect whether the [`[ExcludeFromInteractiveRouting]` attribute](xref:Microsoft.AspNetCore.Components.ExcludeFromInteractiveRoutingAttribute) is applied to the current page.
 
 In the `App` component, use the pattern in the following example:
 
@@ -126,9 +126,9 @@ In the `App` component, use the pattern in the following example:
 }
 ```
 
-An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting%2A?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
+An alternative to using the <xref:Microsoft.AspNetCore.Components.Routing.RazorComponentsEndpointHttpContextExtensions.AcceptsInteractiveRouting*?displayProperty=nameWithType> extension method is to read endpoint metadata manually using `HttpContext.GetEndpoint()?.Metadata`.
 
-This feature is covered by the reference documentation in <xref:blazor/components/render-modes?view=aspnetcore-9.0#static-ssr-pages-in-a-globally-interactive-app>.
+This feature is covered by the reference documentation in [ASP.NET Core Blazor render modes](../../../blazor/components/render-modes.md?view=aspnetcore-9.0&preserve-view=true#static-ssr-pages-in-an-interactive-app).
 
 ### Constructor injection
 
@@ -146,13 +146,13 @@ public partial class ConstructorInjection(NavigationManager navigation)
 }
 ```
 
-For more information, see <xref:blazor/fundamentals/dependency-injection?view=aspnetcore-9.0#request-a-service-in-a-component>.
+For more information, see [ASP.NET Core Blazor dependency injection](../../../blazor/fundamentals/dependency-injection.md?view=aspnetcore-9.0&preserve-view=true#request-a-service-in-a-component).
 
 ### Websocket compression for Interactive Server components
 
-By default, Interactive Server components enable compression for [WebSocket connections](xref:fundamentals/websockets) and set a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) directive set to `'self'` ([MDN's CSP reference guidance](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)), which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
+By default, Interactive Server components enable compression for [WebSocket connections](../../../fundamentals/websockets.md) and set a `frame-ancestors` [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) directive set to `'self'` ([MDN's CSP reference guidance](https://developer.mozilla.org/docs/Web/HTTP/Headers/Content-Security-Policy)), which only permits embedding the app in an `<iframe>` of the origin from which the app is served when compression is enabled or when a configuration for the WebSocket context is provided.
 
-Compression can be disabled by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](xref:blazor/security/interactive-server-side-rendering#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
+Compression can be disabled by setting `ConfigureWebSocketOptions` to `null`, which reduces the [vulnerability of the app to attack](../../../blazor/security/interactive-server-side-rendering.md#interactive-server-components-with-websocket-compression-enabled) but may result in reduced performance:
 
 ```csharp
 .AddInteractiveServerRenderMode(o => o.ConfigureWebSocketOptions = null)
@@ -166,8 +166,8 @@ Configure a stricter `frame-ancestors` CSP with a value of `'none'` (single quot
 
 For more information, see the following resources:
 
-* <xref:blazor/fundamentals/signalr?view=aspnetcore-9.0#websocket-compression-for-interactive-server-components>
-* <xref:blazor/security/interactive-server-side-rendering?view=aspnetcore-9.0#interactive-server-components-with-websocket-compression-enabled>
+* [ASP.NET Core Blazor SignalR guidance](../../../blazor/fundamentals/signalr.md?view=aspnetcore-9.0&preserve-view=true#websocket-compression-for-interactive-server-components)
+* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../../blazor/security/interactive-server-side-rendering.md?view=aspnetcore-9.0&preserve-view=true#interactive-server-components-with-websocket-compression-enabled)
 
 ### Handle keyboard composition events in Blazor
 
@@ -187,7 +187,7 @@ The default `OverscanCount` is 3. The following example increases the `OverscanC
 
 ### `InputNumber` component supports the `type="range"` attribute
 
-The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
+The <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> component now supports the [`type="range"` attribute](https://developer.mozilla.org/docs/Web/HTML/Element/input/range), which creates a range input that supports model binding and form validation, typically rendered as a slider or dial control rather than a text box:
 
 ```razor
 <EditForm Model="Model" OnSubmit="Submit" FormName="EngineForm">
@@ -226,7 +226,7 @@ Trigger JavaScript callbacks either before or after enhanced navigation with new
 * `blazor.addEventListener("enhancednavigationstart", {CALLBACK})`
 * `blazor.addEventListener("enhancednavigationend", {CALLBACK})`
 
-For more information, see <xref:blazor/js-interop/ssr?view=aspnetcore-9.0>.
+For more information, see [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../../../blazor/javascript-interoperability/static-server-rendering.md?view=aspnetcore-9.0&preserve-view=true).
 
 ### Client-side request streaming
 
@@ -234,5 +234,5 @@ Interactive WebAssembly rendering in Blazor now supports client-side request str
 
 For more information, see the following resources:
 
-* <xref:blazor/call-web-api?view=aspnetcore-9.0#client-side-request-streaming>
-* <xref:blazor/file-uploads?view=aspnetcore-9.0#file-size-read-and-upload-limits>
+* [Call a web API from an ASP.NET Core Blazor app](../../../blazor/call-web-api.md?view=aspnetcore-9.0&preserve-view=true#client-side-request-streaming)
+* [ASP.NET Core Blazor file uploads](../../../blazor/file-uploads.md?view=aspnetcore-9.0&preserve-view=true#file-size-read-and-upload-limits)

@@ -33,13 +33,13 @@ Razor runtime compilation has been replaced by [Hot Reload](/aspnet/core/test/ho
 
 ## Recommended action
 
-Remove calls to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A> and use [Hot Reload](/aspnet/core/test/hot-reload) instead.
+Remove calls to <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*> and use [Hot Reload](/aspnet/core/test/hot-reload) instead.
 
 ## Affected APIs
 
 - <xref:Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions?displayProperty=fullName>
-- <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation%2A?displayProperty=fullName>
-- <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcCoreBuilderExtensions.AddRazorRuntimeCompilation%2A?displayProperty=fullName>
+- <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcBuilderExtensions.AddRazorRuntimeCompilation*?displayProperty=fullName>
+- <xref:Microsoft.Extensions.DependencyInjection.RazorRuntimeCompilationMvcCoreBuilderExtensions.AddRazorRuntimeCompilation*?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.FileProviderRazorProjectItem?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.MvcRazorRuntimeCompilationOptions?displayProperty=fullName>
 
