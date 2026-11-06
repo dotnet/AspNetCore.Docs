@@ -115,7 +115,7 @@ Other frameworks are recommended over gRPC in the following scenarios:
 
 ## Compare gRPC with SignalR
 
-Both gRPC and [SignalR](xref:signalr/introduction) support real-time streaming communication, but they are designed for different scenarios and architectural patterns.
+Both gRPC and [SignalR](../signalr/introduction.md) support real-time streaming communication, but they are designed for different scenarios and architectural patterns.
 
 ### Feature comparison
 
