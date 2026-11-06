@@ -381,8 +381,6 @@ var fieldMessages = editContext.GetValidationMessages(
 
 These methods read the current validation state. They don't initiate validation.
 
-### Announce validation errors
-
 In interactive forms, `ValidationSummary` doesn't announce newly displayed errors to screen readers by default. To announce errors without moving focus, place the component inside a `div` with `role="alert"` within the `EditForm`:
 
 ```razor
