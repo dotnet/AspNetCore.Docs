@@ -129,18 +129,18 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 * Copy the generated C# code into a file in the client project that will consume the API.
 * Start consuming the web API:
 
-```csharp
-var todoClient = new TodoClient(new HttpClient());
+  ```csharp
+  var todoClient = new TodoClient(new HttpClient());
 
-// Gets all to-dos from the API
-var allTodos = await todoClient.GetAsync();
+  // Gets all to-dos from the API
+  var allTodos = await todoClient.GetAsync();
 
-// Create a new TodoItem, and save it via the API.
-await todoClient.CreateAsync(new TodoItem());
+  // Create a new TodoItem, and save it via the API.
+  await todoClient.CreateAsync(new TodoItem());
 
-// Get a single to-do by ID
-var foundTodo = await todoClient.GetByIdAsync(1);
-```
+  // Get a single to-do by ID
+  var foundTodo = await todoClient.GetByIdAsync(1);
+  ```
 
 ## Customize API documentation
 
@@ -319,11 +319,11 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * In the `Startup.ConfigureServices` method, register the required Swagger services:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs" id="snippet_ConfigureServices" highlight="8":::
 
 * In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-7)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs" id="snippet_Configure" highlight="6-7":::
 
 * Launch the app. Navigate to:
   * `http://localhost:<port>/swagger` to view the Swagger UI.
@@ -415,7 +415,7 @@ Swagger provides options for documenting the object model to ease consumption of
 
 In the `Startup.ConfigureServices` method, a configuration action passed to the `AddSwaggerDocument` method adds information such as the author, license, and description:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup2.cs?name=snippet_AddSwaggerDocument)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup2.cs" id="snippet_AddSwaggerDocument":::
 
 The Swagger UI displays the version's information:
 
@@ -459,11 +459,11 @@ Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflec
 
 Consider the following example:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs" id="snippet_CreateAction":::
 
 The preceding action returns `ActionResult<T>`. Inside the action, it's returning <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute*>. Since the controller has the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute, a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> response is possible, too. For more information, see [Automatic HTTP 400 responses](../web-api/index.md#automatic-http-400-responses). Use data annotations to tell clients which HTTP status codes this action is known to return. Mark the action with the following attributes:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs" id="snippet_CreateActionAttributes":::
 
 In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../web-api/advanced/conventions.md).
 
