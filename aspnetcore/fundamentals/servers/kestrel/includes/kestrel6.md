@@ -263,9 +263,13 @@ public static IHostBuilder CreateHostBuilder(string[] args) =>
 
 ## Kestrel options
 
-The Kestrel web server has constraint configuration options that are especially useful in Internet-facing deployments.
+Kestrel provides configurable limits for connection counts, request sizes, and timeouts. Review the defaults and your app's requirements before changing them.
 
-Set constraints on the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+Configure limits with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Limits> property of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions> class. The `Limits` property holds an instance of the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits> class.
+
+Both connection limits default to `null` (unlimited). Don't set a connection cap solely because an app is internet-facing. Monitor active and rejected connections and consider expected traffic before deciding whether a limit is appropriate. A limit that's too low or an unexpected traffic surge can reject legitimate connections. Connection limits aren't a substitute for upstream DDoS protection.
+
+The connection caps of `100` in the following C# examples are illustrative, not recommended production limits.
 
 The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> namespace:
 
@@ -273,14 +277,14 @@ The following examples use the <xref:Microsoft.AspNetCore.Server.Kestrel.Core> n
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 ```
 
-In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](../../../configuration/index.md). For example, the [File Configuration Provider](../../../configuration/index.md#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.{Environment}.json` file:
+In examples shown later in this article, Kestrel options are configured in C# code. Kestrel options can also be set using a [configuration provider](../../../configuration/index.md). For example, the [File Configuration Provider](../../../configuration/index.md#file-configuration-provider) can load Kestrel configuration from an `appsettings.json` or `appsettings.<environment>.json` file (the `<environment>` placeholder is the app's [environment](../../../environments.md)):
 
 ```json
 {
   "Kestrel": {
     "Limits": {
-      "MaxConcurrentConnections": 100,
-      "MaxConcurrentUpgradedConnections": 100
+      "MaxConcurrentConnections": null,
+      "MaxConcurrentUpgradedConnections": null
     },
     "DisableStringReuse": true
   }
@@ -357,7 +361,7 @@ Gets or sets the [keep-alive timeout](https://www.rfc-editor.org/rfc/rfc9112.htm
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections>
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentUpgradedConnections>
 
-The maximum number of concurrent open TCP connections can be set for the entire app with the following code:
+If your app requires a connection limit, the following code demonstrates how to configure one. The connection caps of `100` in this and the other C# limit examples are illustrative, not recommended production limits:
 
 :::code language="csharp" source="~/fundamentals/servers/kestrel/samples/3.x/KestrelSample/Program.cs" id="snippet_Limits" highlight="3":::
 
