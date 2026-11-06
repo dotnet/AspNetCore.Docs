@@ -472,3 +472,5 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 * [HTTP.sys implementation in the ASP.NET Core repository (source code)](https://github.com/dotnet/aspnetcore/tree/main/src/Servers/HttpSys)
 * [The host](../index.md#host)
 * [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
