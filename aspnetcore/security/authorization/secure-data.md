@@ -227,6 +227,7 @@ Update the create page model:
 * Define the constructor to use the `DI_BasePageModel` base class.
 * Configure the `OnPostAsync` method to:
   * Add the user ID to the `Contact` model.
+  * Set the contact status to _Submitted_ so a contact can't be created in the _Approved_ state through a posted form value.
   * Call the authorization handler to verify the user has permission to create contacts.
 
 [!code-csharp[](secure-data/samples/final6/Pages/Contacts/Create.cshtml.cs?name=snippet)]
@@ -593,6 +594,7 @@ Update the create page model constructor to use the `DI_BasePageModel` base clas
 Update the `CreateModel.OnPostAsync` method to:
 
 * Add the user ID to the `Contact` model.
+* Set the contact status to _Submitted_ so a contact can't be created in the _Approved_ state through a posted form value.
 * Call the authorization handler to verify the user has permission to create contacts.
 
 [!code-csharp[](secure-data/samples/final3/Pages/Contacts/Create.cshtml.cs?name=snippet_Create)]
