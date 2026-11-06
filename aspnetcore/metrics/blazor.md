@@ -16,33 +16,32 @@ For an overview of all built-in metrics reference pages and how to read this ref
 
 The `Microsoft.AspNetCore.Components` metrics report information on Razor component route changes and browser events:
 
-* [`aspnetcore.components.navigation`](#metric-aspnetcorecomponentsnavigation)
-* [`aspnetcore.components.event_handler`](#metric-aspnetcorecomponentsevent_handler)
+* [`aspnetcore.components.navigate`](#metric-aspnetcorecomponentsnavigate)
+* [`aspnetcore.components.handle_event.duration`](#metric-aspnetcorecomponentshandle_eventduration)
 
-### Metric: `aspnetcore.components.navigation`
+### Metric: `aspnetcore.components.navigate`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.navigation`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsnavigation)--> | Counter | `{route}` | Tracks the total number of route changes in the app.
+`aspnetcore.components.navigate`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsnavigate)--> | Counter | `{route}` | Tracks the total number of route changes in the app.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component navigated to. | `TestComponent` | Always
 `aspnetcore.components.route` | string | The component's route. | `/test-route` | Always
-`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
 Usage: How many different Blazor pages did users visit?
 
-### Metric: `aspnetcore.components.event_handler`
+### Metric: `aspnetcore.components.handle_event.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.event_handler`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsevent_handler)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic of the component, excluding the duration of child component event handling.
+`aspnetcore.components.handle_event.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentshandle_eventduration)--> | Histogram | `s` | Measures the duration of processing browser events, including business logic of the component, excluding the duration of child component event handling.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
 `aspnetcore.components.type` | string | Component type handling the event. | `TestComponent` | Always
-`aspnetcore.components.method` | string | C# method handling the event. | `OnClick` | Always
+`code.function.name` | string | C# method handling the event. | `OnClick` | Always
 `aspnetcore.components.attribute.name` | string | Component attribute name handling the event. | `onclick` | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
@@ -55,14 +54,15 @@ Usage:
 
 The `Microsoft.AspNetCore.Components.Lifecycle` metrics report information on Razor component lifecycle events:
 
-* [`aspnetcore.components.update_parameters`](#metric-aspnetcorecomponentsupdate_parameters)
-* [`aspnetcore.components.render_diff`](#metric-aspnetcorecomponentsrender_diff)
+* [`aspnetcore.components.update_parameters.duration`](#metric-aspnetcorecomponentsupdate_parametersduration)
+* [`aspnetcore.components.render_diff.duration`](#metric-aspnetcorecomponentsrender_diffduration)
+* [`aspnetcore.components.render_diff.size`](#metric-aspnetcorecomponentsrender_diffsize)
 
-### Metric: `aspnetcore.components.update_parameters`
+### Metric: `aspnetcore.components.update_parameters.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.update_parameters`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsupdate_parameters)--> | Histogram | `s` | Measures the duration of processing component parameters, including business logic.
+`aspnetcore.components.update_parameters.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsupdate_parametersduration)--> | Histogram | `s` | Measures the duration of processing component parameters, including business logic.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
@@ -74,21 +74,29 @@ Usage:
 * Which components are slow to update?
 * Which components are updated often?
 
-### Metric: `aspnetcore.components.render_diff`
+### Metric: `aspnetcore.components.render_diff.duration`
 
 Name | Instrument Type | Unit (UCUM) | Description
 --- | --- | --- | ---
-`aspnetcore.components.render_diff`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diff)--> | Histogram | `s` | Tracks the duration of rendering batches.
+`aspnetcore.components.render_diff.duration`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diffduration)--> | Histogram | `s` | Measures the duration of rendering a component tree and producing the HTML diff, including business logic of the changed components.
 
 Attribute | Type | Description | Examples | Presence
 --- | --- | --- | --- | ---
-`aspnetcore.components.diff.length` | int | The length of the render diff/size of the batch (bucketed). | 50 | Always
 `error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
 
-Usage:
+Usage: Is rendering slow?
 
-* Is server rendering slow?
-* Do I render diffs that are too large? (network bandwidth, DOM update)
+### Metric: `aspnetcore.components.render_diff.size`
+
+Name | Instrument Type | Unit (UCUM) | Description
+--- | --- | --- | ---
+`aspnetcore.components.render_diff.size`<!--](https://opentelemetry.io/docs/specs/semconv/dotnet/dotnet-http-metrics/#metric-aspnetcorecomponentsrender_diffsize)--> | Histogram | `{elements}` | Tracks the number of HTML elements modified during a rendering batch.
+
+Attribute | Type | Description | Examples | Presence
+--- | --- | --- | --- | ---
+`error.type` | string | The full name of exception type. | `System.InvalidOperationException`; `Contoso.MyException` | If an exception is thrown.
+
+Usage: Do I render diffs that are too large? (network bandwidth, DOM update)
 
 ## `Microsoft.AspNetCore.Components.Server.Circuits`
 
