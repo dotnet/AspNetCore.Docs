@@ -315,19 +315,27 @@ When the request target is in absolute-form (e.g., `GET http://example.com/path`
 
 Kestrel implements protections against HTTP request smuggling per RFC 9112 Section 6.3 and Section 11:
 
-1. **When both Transfer-Encoding and Content-Length are present**, Transfer-Encoding takes precedence. The Content-Length header is removed and preserved as `X-Content-Length` for diagnostic purposes. **The connection is closed after the response** to prevent pipeline-based smuggling. The `AllowKeepAliveAfterCLTE` AppContext switch can restore keep-alive behavior for backwards compatibility—see [AppContext Compatibility Switches](#appcontext-compatibility-switches).
+1. **When both Transfer-Encoding and Content-Length are present**, Transfer-Encoding takes precedence. The Content-Length header is removed, and Kestrel attempts to preserve its value as `X-Content-Length` for diagnostic purposes. **The connection is closed after the response** to prevent pipeline-based smuggling. The `AllowKeepAliveAfterCLTE` AppContext switch can restore keep-alive behavior for backwards compatibility—see [AppContext Compatibility Switches](#appcontext-compatibility-switches).
 2. **The final Transfer-Encoding must be `chunked`.** If Transfer-Encoding is present but the final coding isn't `chunked`, the request is rejected. This prevents ambiguous body-framing.
 3. **HTTP/2 forbids chunked Transfer-Encoding** per RFC 9113 Section 8.1. Kestrel rejects HTTP/2 requests with chunked encoding.
 
-```
+The `X-Content-Length` header is best-effort diagnostic metadata, not a guaranteed Kestrel-generated copy of `Content-Length`. Kestrel uses `TryAdd` to add it only if it's absent. If the client supplies `X-Content-Length`, Kestrel preserves that value instead of replacing it with the removed `Content-Length` value.
+
+```text
 # Rejected: Transfer-Encoding is present but final coding is not chunked
 Transfer-Encoding: gzip
 -> 400 Bad Request
 
-# Accepted: Content-Length removed, body read as chunked
+# Accepted: No client-supplied X-Content-Length; body read as chunked
 Transfer-Encoding: chunked
 Content-Length: 42
 -> Content-Length removed, X-Content-Length: 42 added
+
+# Accepted: Client-supplied X-Content-Length preserved; body read as chunked
+Transfer-Encoding: chunked
+Content-Length: 42
+X-Content-Length: 7
+-> Content-Length removed, X-Content-Length: 7 unchanged
 
 # Accepted by Kestrel's HTTP/1 parser: upgrade requests can still carry a body
 # and are not rejected solely because body framing headers are present.
