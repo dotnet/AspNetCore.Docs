@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/395
 ---
 # Static files: CSV content type changed to standards-compliant
 
-In ASP.NET Core 5.0, the default `Content-Type` response header value that the [static file middleware](/aspnet/core/fundamentals/static-files) uses for *.csv* files has changed to the standards-compliant value `text/csv`.
+In ASP.NET Core 5.0, the default `Content-Type` response header value that the [static file middleware](../../fundamentals/static-files.md) uses for *.csv* files has changed to the standards-compliant value `text/csv`.
 
 For discussion on this issue, see [dotnet/aspnetcore#17385](https://github.com/dotnet/AspNetCore/issues/17385).
 
@@ -40,7 +40,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 ```
 
-For more information on customizing the mapping, see [FileExtensionContentTypeProvider](/aspnet/core/fundamentals/static-files#fileextensioncontenttypeprovider).
+For more information on customizing the mapping, see [FileExtensionContentTypeProvider](../../fundamentals/static-files.md#fileextensioncontenttypeprovider).
 
 ## Affected APIs
 

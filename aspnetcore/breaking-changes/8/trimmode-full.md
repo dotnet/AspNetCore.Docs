@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/507
 ---
 # TrimMode defaults to full for Web SDK projects
 
-Trimming now trims all assemblies in applications that target the [Web SDK](/aspnet/core/razor-pages/web-sdk), by default. This change only affects apps that are published with `PublishTrimmed=true`, and it only breaks apps that had existing trim warnings.
+Trimming now trims all assemblies in applications that target the [Web SDK](../../razor-pages/web-sdk.md), by default. This change only affects apps that are published with `PublishTrimmed=true`, and it only breaks apps that had existing trim warnings.
 
 ## Version introduced
 

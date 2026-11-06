@@ -395,7 +395,7 @@ The behavior depends on which middleware ran:
 * Apps that call `app.UseAntiforgery()` are unchanged. The token-based middleware validates each request, and antiforgery tokens are generated for rendered forms as before.
 * Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation because no token middleware is present to validate a token on a later request.
 
-This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md). For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
+This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md). For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](../breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md).
 
 ### Troubleshooting
 

@@ -225,7 +225,7 @@ Tag Helpers provide an HTML-friendly development experience and a rich IntelliSe
 
 ## Compatibility version
 
-The `SetCompatibilityVersion` method allowed an app to opt in or opt out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. The method is a no-op for ASP.NET Core 3.0 and later apps, and it's removed in ASP.NET Core 11. For more information, see [Compatibility version for ASP.NET Core MVC](compatibility-version.md) and [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
+The `SetCompatibilityVersion` method allowed an app to opt in or opt out of potentially breaking behavior changes introduced in ASP.NET Core MVC 2.1 or later. The method is a no-op for ASP.NET Core 3.0 and later apps, and it's removed in ASP.NET Core 11. For more information, see [Compatibility version for ASP.NET Core MVC](compatibility-version.md) and [MVC compatibility options removed](../breaking-changes/11/mvc-compatibility-options-removed.md).
 
 ## Related content
 

@@ -21,7 +21,7 @@ By default, store static files within the project's [web root](index.md#web-root
 
 Only files with specific file extensions mapped to supported media types are treated as static web assets.
 
-Static web assets are discovered at build time and optimized using content-based [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent the reuse of old files. Assets are also [compressed](/aspnet/core/performance/response-compression) to reduce asset delivery time.
+Static web assets are discovered at build time and optimized using content-based [fingerprinting](https://wikipedia.org/wiki/Fingerprint_(computing)) to prevent the reuse of old files. Assets are also [compressed](../performance/response-compression.md) to reduce asset delivery time.
 
 At runtime, the discovered static web assets are exposed as endpoints with HTTP headers applied, such as [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control) and content type headers. An asset is served once until the file changes or the browser clears its cache. The [`ETag`](https://developer.mozilla.org/docs/Web/HTTP/Headers/ETag), [`Last-Modified`](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified), and [`Content-Type`](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Content-Type) headers are set. The browser is prevented from using stale assets after an app is updated.
 

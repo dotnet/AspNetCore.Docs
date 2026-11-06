@@ -43,7 +43,7 @@ The following table lists the diagnostics available for ASP.NET Core application
 | **[ASP0019](asp0019.md)** | Suggest using `IHeaderDictionary.Append` or the indexer |
 | **[ASP0020](asp0020.md)** | Complex types referenced by route parameters must be parsable |
 | **[ASP0021](asp0021.md)** | Return type of the `BindAsync` method must be `ValueTask<T>` |
-| **[ASP0022](asp0022.md)** | Route conflict detected between route handlers ([Minimal API apps](/aspnet/core/fundamentals/apis)) |
+| **[ASP0022](asp0022.md)** | Route conflict detected between route handlers ([Minimal API apps](../fundamentals/apis.md)) |
 | **[ASP0023](asp0023.md)** | Route conflict detected between route handlers |
 | **[ASP0024](asp0024.md)** | Route handler has multiple parameters with the `[FromBody]` attribute |
 | **[ASP0025](asp0025.md)** | Use `AddAuthorizationBuilder` to register authorization services and construct policies |

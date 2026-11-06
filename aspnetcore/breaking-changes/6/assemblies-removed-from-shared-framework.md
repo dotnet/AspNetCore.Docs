@@ -24,7 +24,7 @@ ASP.NET Core 6.0
 
 ## Old behavior
 
-Applications could use APIs provided by these libraries by referencing the [Microsoft.AspNetCore.App](/aspnet/core/fundamentals/metapackage-app) shared framework.
+Applications could use APIs provided by these libraries by referencing the [Microsoft.AspNetCore.App](../../fundamentals/metapackage-app.md) shared framework.
 
 ## New behavior
 

@@ -44,7 +44,7 @@ In standalone Blazor WebAssembly apps, framework assets are scheduled for high p
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Blazor Web App enhanced navigation doesn't attempt to preload resources in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](/aspnet/core/breaking-changes/11/blazor-enhanced-nav-preloading-disabled).
+> Blazor Web App enhanced navigation doesn't attempt to preload resources in .NET 11 or later. For more information, see [Blazor enhanced navigation no longer preloads resources](../../breaking-changes/11/blazor-enhanced-nav-preloading-disabled.md).
 
 :::moniker-end
 

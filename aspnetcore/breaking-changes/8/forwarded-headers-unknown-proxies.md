@@ -69,4 +69,4 @@ For applications that target .NET 9 or earlier, you can set the `Microsoft.AspNe
 
 ## See also
 
-- [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer)
+- [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md)

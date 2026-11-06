@@ -5,7 +5,7 @@ ms.date: 08/05/2024
 ---
 # HostBuilder enables ValidateOnBuild/ValidateScopes in development environment
 
-Previously, no validation was enabled by default. Now, in the [development environment](/aspnet/core/fundamentals/environments), <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are enabled.
+Previously, no validation was enabled by default. Now, in the [development environment](../../fundamentals/environments.md), <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are enabled.
 
 ## Version introduced
 
@@ -17,7 +17,7 @@ Previously, no validation was enabled by default. Now, in the [development envir
 
 ## New behavior
 
-In the [development environment](/aspnet/core/fundamentals/environments) when options haven't been set with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*>, <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are set to `true`.
+In the [development environment](../../fundamentals/environments.md) when options haven't been set with <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*>, <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateOnBuild> and <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> are set to `true`.
 
 ## Type of breaking change
 

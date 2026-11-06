@@ -13,7 +13,7 @@ For an overview of all built-in metrics reference pages and how to read this ref
 
 ## `Microsoft.AspNetCore.Diagnostics`
 
-The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](/aspnet/core/fundamentals/error-handling):
+The `Microsoft.AspNetCore.Diagnostics` metrics report diagnostics information from [ASP.NET Core error handling middleware](../fundamentals/error-handling.md):
 
 * [`aspnetcore.diagnostics.exceptions`](#metric-aspnetcorediagnosticsexceptions)
 
