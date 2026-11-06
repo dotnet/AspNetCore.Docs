@@ -123,11 +123,11 @@ Both gRPC and [SignalR](xref:signalr/introduction) support real-time streaming c
 | ------- | ---- | ------- |
 | **Primary focus** | High-performance service-to-service RPC and microservices | Real-time push notifications and duplex client-server communication |
 | **Communication pattern** | Point-to-point RPC, client/server/bidirectional streaming | Hub-based publish/subscribe, direct client messaging, and broadcasting |
-| **Browser support** | Requires [gRPC-Web](xref:grpc/grpcweb) and proxy configuration | First-class native browser support with automatic transport fallback |
+| **Browser support** | Requires [gRPC-Web](grpcweb.md) and proxy configuration | First-class native browser support with automatic transport fallback |
 | **Transports** | HTTP/2, Unix domain sockets, named pipes | WebSockets, Server-Sent Events, Long Polling |
-| **Payload format** | [Protobuf (binary)](#performance) | JSON or [MessagePack](xref:signalr/messagepackhubprotocol) |
+| **Payload format** | [Protobuf (binary)](#performance) | JSON or [MessagePack](../signalr/messagepackhubprotocol.md) |
 | **Contract** | Required (`.proto`) | Optional (strongly typed hubs supported in .NET) |
-| **Client targeting** | Single connection per RPC call | Individual connections, users (<xref:signalr/authn-and-authz#use-claims-to-customize-identity-handling>), or arbitrary groups (<xref:signalr/groups>) |
+| **Client targeting** | Single connection per RPC call | Individual connections, users (../signalr/authn-and-authz.md#use-claims-to-customize-identity-handling>), or arbitrary groups (../signalr/groups.md) |
 
 ### When to choose gRPC
 
