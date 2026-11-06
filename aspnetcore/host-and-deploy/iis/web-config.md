@@ -156,7 +156,7 @@ The `disallowRotationOnConfigChange` setting prevents changes to IIS configurati
 </aspNetCore>
 ```
 
-This setting corresponds to the <xref:Microsoft.Web.Administration.ApplicationPoolRecycling.DisallowRotationOnConfigChange?displayProperty=nameWithType> API. For more information, see <advanced.md#disallow-rotation-on-config>.
+This setting corresponds to the <xref:Microsoft.Web.Administration.ApplicationPoolRecycling.DisallowRotationOnConfigChange?displayProperty=nameWithType> API. For more information, see [Advanced configuration](advanced.md#disallow-rotation-on-config).
 
 ## Configuration of IIS with `web.config`
 
