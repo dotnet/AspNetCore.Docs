@@ -113,9 +113,42 @@ Other frameworks are recommended over gRPC in the following scenarios:
 * **Browser accessible APIs**: gRPC isn't fully supported in the browser. gRPC-Web can offer browser support, but it has limitations and introduces a server proxy.
 * **Broadcast real-time communication**: gRPC supports real-time communication via streaming, but the concept of broadcasting a message out to registered connections doesn't exist. For example in a chat room scenario where new chat messages should be sent to all clients in the chat room, each gRPC call is required to individually stream new chat messages to the client. [SignalR](../signalr/introduction.md) is a useful framework for this scenario. SignalR has the concept of persistent connections and built-in support for broadcasting messages.
 
+## Compare gRPC with SignalR
+
+Both gRPC and [SignalR](../signalr/introduction.md) support real-time streaming communication, but they are designed for different scenarios and architectural patterns.
+
+### Feature comparison
+
+| Feature | gRPC | SignalR |
+| ------- | ---- | ------- |
+| **Primary focus** | High-performance service-to-service RPC and microservices | Real-time push notifications and duplex client-server communication |
+| **Communication pattern** | Point-to-point RPC, client/server/bidirectional streaming | Hub-based publish/subscribe, direct client messaging, and broadcasting |
+| **Browser support** | Requires [gRPC-Web](grpcweb.md) and proxy configuration | First-class native browser support with automatic transport fallback |
+| **Transports** | HTTP/2, Unix domain sockets, named pipes | WebSockets, Server-Sent Events, Long Polling |
+| **Payload format** | [Protobuf (binary)](#performance) | JSON or [MessagePack](../signalr/messagepackhubprotocol.md) |
+| **Contract** | Required (`.proto`) | Optional (strongly typed hubs supported in .NET) |
+| **Client targeting** | Single connection per RPC call | Individual connections, users (../signalr/authn-and-authz.md#use-claims-to-customize-identity-handling>), or arbitrary groups (../signalr/groups.md) |
+
+### When to choose gRPC
+
+Choose gRPC for:
+
+* **Microservices and backend communications**: Low-latency, high-throughput RPC between backend services where binary payloads and strict contracts improve efficiency.
+* **Polyglot ecosystems**: Strong cross-platform tooling across languages (C#, Go, Java, Python, C++, etc.) driven by `.proto` contracts.
+* **Streaming pipelines**: Point-to-point data pipelines requiring fine-grained stream flow control and deadlines/cancellation propagation.
+
+### When to choose SignalR
+
+Choose SignalR for:
+
+* **Real-time browser and client push notifications**: Live dashboards, collaborative editing, gaming, and chat applications connecting browsers or mobile apps to the server.
+* **Broadcasting and multicast messaging**: Sending updates to multiple connected clients simultaneously using `Clients.All` or `Clients.Group(...)`.
+* **Dynamic connection management**: Applications needing built-in connection lifecycle management, automatic reconnects, and fallback transports when WebSockets are unavailable or blocked by network proxies.
+
 ## Related content
 
 * [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)
 * [Overview for gRPC on .NET](index.md)
 * [gRPC Services with C#](basics.md)
 * [Migrate gRPC from C-core to gRPC for .NET](migration.md)
+* [Overview of ASP.NET Core SignalR](../signalr/introduction.md)
