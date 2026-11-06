@@ -473,7 +473,13 @@ app.MapStaticAssets().Add(endpointBuilder =>
     endpointBuilder.Metadata.Add(new AllowAnonymousAttribute()));
 ```
 
-Don't store files that require authorization in `wwwroot` and rely only on `MapStaticAssets().RequireAuthorization()`. Map Static Assets endpoint conventions apply only to assets in the static web assets manifest, which is generated at build time. They don't protect other files that can be served from `wwwroot`, such as files added after the build. Store protected files outside `wwwroot` and serve them through an authorized endpoint. Alternatively, configure <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to require authenticated users by default and call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> for files served by static file middleware. Endpoints that must remain anonymous, such as login endpoints, must opt out by applying <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>.
+> [!WARNING]
+> Don't store files that require authorization in `wwwroot` and rely only on `MapStaticAssets().RequireAuthorization()` to protect them. Map Static Assets endpoint conventions apply only to assets in the static web assets manifest, which is generated at build time. They don't protect other files that can be served from `wwwroot`, such as files added after the build.
+>
+> To protect files, use one of the following approaches:
+>
+> * Store protected files outside `wwwroot` and serve them through an authorized endpoint, or through a <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> instance placed after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>.
+> * Configure <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to require authenticated users by default for all endpoints that don't specify explicit authorization metadata. Endpoints that must remain anonymous, such as login endpoints, must opt out by applying <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>.
 
 :::moniker-end
 
