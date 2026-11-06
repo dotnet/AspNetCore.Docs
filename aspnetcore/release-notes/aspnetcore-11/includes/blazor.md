@@ -636,58 +636,9 @@ Hosted services are started when the app starts and stopped when it shuts down, 
 
 ### Configure Blazor client behavior from the server
 
-<!-- UPDATE 11.0 - We need reference article coverage for this, but we'll wait
-                   for the API to completely stabilize at RC2 and possibly
-                   for content from the PU to arrive. -->
+Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. The new <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> API configures browser startup options for Razor component endpoints, including logging, static server rendering, Interactive Server reconnection, and WebAssembly runtime behavior. The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports request-specific options.
 
-Blazor apps can now configure client-side startup behavior from the server in C# when mapping Razor components instead of hand-writing `Blazor.start` JavaScript. `WithBrowserOptions` sets options that the server serializes into the rendered page and the Blazor script applies in the browser, across the Server, WebAssembly, and Auto render modes. The options cover the client log level, interactive Server reconnection, whether enhanced navigation preserves the DOM, and a WebAssembly runtime's environment name, culture, and environment variables:
-
-```csharp
-app.MapRazorComponents<App>()
-    .WithBrowserOptions(options =>
-    {
-        options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
-        options.InteractiveServer.ReconnectionMaxRetries = 10;
-        options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(1.5);
-        options.InteractiveWebAssembly.EnvironmentVariables["OTEL_EXPORTER_OTLP_ENDPOINT"] =
-            "https://localhost:4318";
-        options.StaticServer.CircuitInactivityTimeout = TimeSpan.FromSeconds(1.5);
-        options.StaticServer.PreserveDom = true;
-        options.InteractiveWebAssembly.ApplicationCulture = "en-ca";
-        options.InteractiveWebAssembly.EnvironmentName = "Staging";
-        options.LogLevel = LogLevel.Warning;
-    });
-```
-
-You can also set the options in a Razor component with the `ConfigureBrowser` component:
-
-```razor
-<ConfigureBrowser Options="RequestBrowserOptions" />
-
-...
-
-@code {
-    private BrowserOptions RequestBrowserOptions => new()
-    {
-        LogLevel = LogLevel.Trace,
-        StaticServer = { PreserveDom = true }
-    };
-}
-```
-
-Read the resolved options from `HttpContext` with `GetBrowserOptions()`:
-
-```razor
-@BrowserOptions.GetBrowserOptions(HttpContext).LogLevel
-```
-
-For more information, see the following resources:
-
-* [API Proposal: BrowserOptions for server-to-client configuration (`dotnet/aspnetcore` #66393)](https://github.com/dotnet/aspnetcore/issues/66393)
-* [Reshape BrowserConfiguration API per review (BrowserOptions) while preserving the JS wire format (`dotnet/aspnetcore` #67337)](https://github.com/dotnet/aspnetcore/pull/67337)
-* [Reshape BrowserOptions server-to-client configuration API per review (`dotnet/aspnetcore` #67918)](https://github.com/dotnet/aspnetcore/pull/67918)
-
-Please don't comment on closed issues and PRs. Open a new issue to provide feedback on this API.
+For more information, see [Configure Blazor client behavior from the server](../../../blazor/fundamentals/startup.md?view=aspnetcore-11.0&preserve-view=true#configure-blazor-client-behavior-from-the-server).
 
 ### Environment variables in Blazor WebAssembly configuration
 
