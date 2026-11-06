@@ -96,9 +96,11 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 Channel binding tokens (CBT) tie Windows authentication to the underlying TLS channel, which helps mitigate NTLM relay and man-in-the-middle attacks.
 
+::: moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
-Starting in ASP.NET Core 11, configure CBT hardening with <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.HttpAuthenticationHardeningLevel>. The available <xref:Microsoft.AspNetCore.Server.HttpSys.HttpAuthenticationHardeningLevel> values are:
+Configure CBT hardening with <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.HttpAuthenticationHardeningLevel>. The available <xref:Microsoft.AspNetCore.Server.HttpSys.HttpAuthenticationHardeningLevel> values are:
 
 | Value | Behavior |
 | --- | --- |
@@ -121,9 +123,9 @@ For access to CBT bytes, see [Get channel binding tokens](#get-channel-binding-t
 
 :::moniker-end
 
-:::moniker range="== aspnetcore-10.0"
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
-In ASP.NET Core 10.0.1 and later servicing releases of ASP.NET Core 10, opt in to CBT hardening for HTTPS endpoints that use Windows authentication by setting the `Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening` AppContext switch to `true`. This switch selects medium hardening, which validates supplied CBTs but permits their absence.
+Opt in to CBT hardening for HTTPS endpoints that use Windows authentication by setting the `Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening` AppContext switch to `true`. This switch selects medium hardening, which validates supplied CBTs but permits their absence.
 
 Enable the switch in your project's `runtimeconfig.template.json` file:
 
@@ -135,7 +137,7 @@ Enable the switch in your project's `runtimeconfig.template.json` file:
 }
 ```
 
-Or set the switch programmatically before building the host in `Program.cs`:
+Alternatively, set the switch programmatically before building the host in the `Program` file:
 
 ```csharp
 AppContext.SetSwitch("Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening", true);
@@ -145,6 +147,8 @@ AppContext.SetSwitch("Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening", t
 > CBT hardening is off by default. Enabling it can cause Windows authentication to fail for clients or proxies that don't support channel binding. Test thoroughly in your environment before enabling in production.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 ### Support for kernel-mode response buffering
 
@@ -167,7 +171,7 @@ For more information about HTTP.sys options, see <xref:Microsoft.AspNetCore.Serv
 
 ### Customize security descriptors
 
-A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. Manage access to the request queue by using <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueSecurityDescriptor>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
+A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your app is ready to process them. Manage access to the request queue by using <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueSecurityDescriptor>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
 
 By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
@@ -214,7 +218,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 
-1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install the matching ASP.NET Core Runtime and .NET Runtime from [.NET Downloads](https://dotnet.microsoft.com/download). The .NET SDK isn't required on the server. ASP.NET Core 10 and later don't target .NET Framework. For installer contents, see [Choose the correct runtime](/dotnet/core/install/windows#choose-the-correct-runtime).
+1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install the matching ASP.NET Core Runtime and .NET Runtime from [.NET Downloads](https://dotnet.microsoft.com/download). The .NET SDK isn't required on the server. ASP.NET Core doesn't target .NET Framework. For installer contents, see [Choose the correct runtime](/dotnet/core/install/windows#choose-the-correct-runtime).
 
    If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), the app includes the runtime in its deployment. No framework installation is required on the server.
 
@@ -327,12 +331,12 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [netsh http](/windows-server/administration/windows-commands/netsh-http)
+   * [`netsh http`](/windows-server/administration/windows-commands/netsh-http)
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.
 
-   Run the app under the identity authorized by the URL reservation. Administrator privileges are required to configure URL reservations and certificate bindings, but aren't required to run an app whose identity has the necessary namespace permissions. Binding to a local IP address or port 443 doesn't by itself require an elevated application process. For more information, see [Namespace reservations, registrations, and routing](/windows/win32/http/namespace-reservations-registrations-and-routing).
+   Run the app under the identity authorized by the URL reservation. Administrator privileges are required to configure URL reservations and certificate bindings but aren't required to run an app whose identity has the necessary namespace permissions. Binding to a local IP address or port 443 doesn't by itself require an elevated application process. For more information, see [Namespace reservations, registrations, and routing](/windows/win32/http/namespace-reservations-registrations-and-routing).
 
    The app responds at the server's public IP address. In this example, the server is reached from the Internet at its public IP address of `104.214.79.47`.
 
@@ -344,42 +348,50 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md).
 
+:::moniker-end
+
 :::moniker range=">= aspnetcore-11.0"
 
 When processing a request with both a `Content-Length` header and a `Transfer-Encoding` header whose final coding is `chunked`, HTTP.sys removes `Content-Length` from the request headers surfaced to the app and closes the connection after responding by default. Proxies shouldn't send conflicting request framing. This behavior helps prevent request smuggling; it doesn't imply that every such request is rejected before reaching the app.
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-10.0"
+
 ## Inspect TLS and request properties
+
+<!-- UPDATE 11.0 - Remove prerelease language -->
 
 HTTP.sys exposes request features for inspecting TLS information without replacing its kernel-mode TLS implementation. Feature availability depends on the connection, the installed Windows HTTP Server API, and the server's configuration. The sample project targets the ASP.NET Core 11 prerelease SDK; the following headings identify the versions that support each API. The examples use the `Microsoft.AspNetCore.Http.Features`, `Microsoft.AspNetCore.Connections.Features`, `Microsoft.AspNetCore.Server.HttpSys`, and `System.Security.Authentication.ExtendedProtection` namespaces.
 
 ### Get the negotiated TLS cipher suite
 
-Starting in ASP.NET Core 10, <xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> exposes the negotiated cipher suite through its `NegotiatedCipherSuite` property for HTTP.sys. The feature isn't available for a non-TLS request. The property can be `null` if Windows doesn't support the query or the query fails.
+<xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> exposes the negotiated cipher suite through its `NegotiatedCipherSuite` property for HTTP.sys. The feature isn't available for a non-TLS request. The property can be `null` if Windows doesn't support the query or the query fails.
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_cipher_suite":::
 
 ### Read the TLS ClientHello
 
-Use <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetTlsClientHello*> to retrieve the raw TLS ClientHello bytes on demand. The HTTPS service configuration must enable `HTTP_SERVICE_CONFIG_SSL_FLAG_ENABLE_CACHE_CLIENT_HELLO`. Configuring ASP.NET Core to use HTTP.sys doesn't enable this native flag. See [HttpSetServiceConfiguration](/windows/win32/api/http/nf-http-httpsetserviceconfiguration) and [HTTP_SERVICE_CONFIG_ID](/windows/win32/api/http/ne-http-http_service_config_id).
+Use <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetTlsClientHello*> to retrieve the raw TLS ClientHello bytes on demand. The HTTPS service configuration must enable `HTTP_SERVICE_CONFIG_SSL_FLAG_ENABLE_CACHE_CLIENT_HELLO`. Configuring ASP.NET Core to use HTTP.sys doesn't enable this native flag. See [`HttpSetServiceConfiguration`](/windows/win32/api/http/nf-http-httpsetserviceconfiguration) and [`HTTP_SERVICE_CONFIG_ID`](/windows/win32/api/http/ne-http-http_service_config_id).
 
 First call the method with an empty span to obtain the required buffer size, then allocate a buffer and retry:
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_client_hello":::
 
-`false` indicates that the destination buffer is too small, and `bytesReturned` contains the required size. Other failures throw `HttpSysException`, or `InvalidOperationException` when the installed Windows API doesn't support the query. Check these Windows prerequisites before deploying the example. The on-demand API replaces the earlier preview callback design.
+`false` indicates that the destination buffer is too small, and `bytesReturned` contains the required size. Other failures throw `HttpSysException` (or `InvalidOperationException` when the installed Windows API doesn't support the query). Check these Windows prerequisites before deploying the example. The on-demand API replaces the earlier preview callback design.
+
+:::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
 ### Query other native request properties
 
-Starting in ASP.NET Core 11, <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [HttpQueryRequestProperty](/windows/win32/http/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/http/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
 
-* `propertyId` identifies a value from the native [HTTP_REQUEST_PROPERTY](/windows/win32/api/http/ne-http-http_request_property) enumeration.
+* `propertyId` identifies a value from the native [`HTTP_REQUEST_PROPERTY`](/windows/win32/api/http/ne-http-http_request_property) enumeration.
 * `qualifier` contains optional property-specific bytes. An empty span is passed to Windows as a null pointer.
 * `output` receives the native bytes. The caller must interpret them using the corresponding native data structure.
-* `bytesReturned` contains the bytes written on success, or the required size when the output buffer is too small.
+* `bytesReturned` contains the bytes written on success or the required size when the output buffer is too small.
 
 The following example queries the TLS ClientHello property through the general-purpose API. It requires the same native ClientHello caching configuration as `TryGetTlsClientHello`:
 
@@ -389,7 +401,7 @@ As with `TryGetTlsClientHello`, `false` means insufficient buffer space, not an 
 
 ### Get channel binding tokens
 
-Starting in ASP.NET Core 11, <xref:Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature.TryGetChannelBindingBytes*> provides access to TLS channel binding bytes:
+<xref:Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature.TryGetChannelBindingBytes*> provides access to TLS channel binding bytes:
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_channel_binding":::
 
@@ -398,6 +410,8 @@ HTTP.sys supports `ChannelBindingKind.Endpoint`, corresponding to the `tls-serve
 Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict` hardening. The returned bytes contain the Windows `SEC_CHANNEL_BINDINGS` structure and its binding data, not just a certificate hash.
 
 :::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 <a name="ihsrtf8"></a>
 
@@ -419,7 +433,7 @@ Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
-[IHttpSysRequestTimingFeature.TryGetElapsedTime](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetElapsedTime*) yields the elapsed time between two specified timings:
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetElapsedTime*?displayProperty=nameWithType> yields the elapsed time between two specified timings:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
 
