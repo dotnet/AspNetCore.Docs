@@ -90,11 +90,11 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * Add the OpenApi generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_ServicesDefault" highlight="4":::
 
 * Enable the middleware for serving the generated OpenApi specification, the Swagger UI, and the Redoc UI, also in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/Program.cs" id="snippet_Middleware" highlight="5,9":::
+:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_MiddlewareDefault" highlight="5,9":::
 
 * Launch the app. Navigate to:
   * `http://localhost:<port>/swagger` to view the Swagger UI.
@@ -129,7 +129,18 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 * Copy the generated C# code into a file in the client project that will consume the API.
 * Start consuming the web API:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/TodoHttpClientExample.cs":::
+```csharp
+var todoClient = new TodoClient(new HttpClient());
+
+// Gets all to-dos from the API
+var allTodos = await todoClient.GetAsync();
+
+// Create a new TodoItem, and save it via the API.
+await todoClient.CreateAsync(new TodoItem());
+
+// Get a single to-do by ID
+var foundTodo = await todoClient.GetByIdAsync(1);
+```
 
 ## Customize API documentation
 
