@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor AI components for agentic user interfaces
 ai-usage: ai-assisted
 description: Learn how to create agentic user interfaces with Blazor's AI components.
 monikerRange: '>= aspnetcore-11.0'
-ms.date: 11/04/2026
+ms.date: 11/06/2026
 ---
 # ASP.NET Core Blazor AI components for agentic user interfaces
 
@@ -14,12 +14,12 @@ ms.date: 11/04/2026
 
 [!INCLUDE[](~/includes/preview-notice.md)]
 
-Modern AI apps increasingly provide rich interactions with agents. A complete agentic user interface may need to stream ongoing work, visualize agent reasoning and progress, request approval before tools act, accept multimodal input, and synchronize state between the app and the agent. The Blazor AI components are designed to provide building blocks for creating these experiences using Blazor's component model.
+Modern AI apps increasingly provide rich interactions with agents. A complete agentic user interface might need to stream ongoing work, visualize agent reasoning and progress, request approval before tools act, accept multimodal input, and synchronize state between the app and the agent. The Blazor AI components are designed to provide building blocks for creating these experiences using Blazor's component model.
 
 The [`Microsoft.AspNetCore.Components.AI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.AI) includes a set of Blazor AI components for streaming chat, rich-text and tool rendering, human approval flows, and typed, shared, and predictive UI state.
 
 > [!IMPORTANT]
-> The `Microsoft.AspNetCore.Components.AI` package is a prerelease, experimental package throughout .NET 11. Experimental features are provided for the purpose of exploring feature viability and may not ship in a stable version.
+> The `Microsoft.AspNetCore.Components.AI` package is a prerelease, experimental package throughout .NET 11. Experimental features are provided for the purpose of exploring feature viability and might not ship in a stable version.
 
 ## Packages
 
@@ -140,7 +140,7 @@ Use the renderer's `When` predicate to only handle selected blocks of a type. If
 
 Rich-text support permits an agent to return a structured presentation model instead of plain text. `RichTextContent` is response content that contains both plain text and `RichTextNode` values for headings, paragraphs, emphasis, links, lists, code blocks, tables, and other presentation elements. `UIAgent` maps it to the same `RichContentBlock` used for plain `TextContent` but uses the supplied node tree instead of creating simple paragraphs.
 
-Apps can produce `RichTextContent` directly or use `IChatClient` middleware to transform streamed `TextContent`, such as by parsing markdown into `RichTextNode` values. The package doesn't require or include a particular markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
+Apps can produce `RichTextContent` directly or use `IChatClient` middleware to transform streamed `TextContent`, such as by parsing Markdown into `RichTextNode` values. The package doesn't require or include a particular Markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
 
 ## Render server tool calls
 
