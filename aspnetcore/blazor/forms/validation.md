@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor forms validation
 ai-usage: ai-assisted
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/23/2026
+ms.date: 11/06/2026
 ---
 # ASP.NET Core Blazor forms validation
 
@@ -380,6 +380,18 @@ var fieldMessages = editContext.GetValidationMessages(
 ```
 
 These methods read the current validation state. They don't initiate validation.
+
+### Announce validation errors
+
+In interactive forms, `ValidationSummary` doesn't announce newly displayed errors to screen readers by default. To announce errors without moving focus, place the component inside a `div` with `role="alert"` within the `EditForm`:
+
+```razor
+<div role="alert" aria-atomic="true">
+    <ValidationSummary />
+</div>
+```
+
+Keep the wrapper rendered even when there are no errors, so the live region exists before its content changes. Don't place `role="alert"` directly on `ValidationSummary`: the component applies additional attributes to its generated `ul`, and replacing the list's role removes the list semantics required by its `li` elements.
 
 ## Customize validation appearance
 
