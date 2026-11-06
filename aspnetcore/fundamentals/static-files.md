@@ -478,7 +478,7 @@ app.MapStaticAssets().Add(endpointBuilder =>
 >
 > To protect files, use one of the following approaches:
 >
-> * Store protected files outside `wwwroot` and serve them through an authorized endpoint, or through a <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> instance placed after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>.
+> * Store protected files outside `wwwroot` and serve them through an authorized endpoint or through a <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> instance placed after <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>.
 > * Configure <xref:Microsoft.AspNetCore.Authorization.AuthorizationOptions.FallbackPolicy?displayProperty=nameWithType> to require authenticated users by default for all endpoints that don't specify explicit authorization metadata. Endpoints that must remain anonymous, such as login endpoints, must opt out by applying <xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute>.
 
 :::moniker-end
