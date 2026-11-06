@@ -378,7 +378,7 @@ app.MapRazorComponents<App>()
     });
 ```
 
-The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component merges options into the current request, which is useful when settings depend on request data. Render it in server-rendered content:
+The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports request-specific settings when no endpoint-wide defaults are configured with `WithBrowserOptions`. When combined with `WithBrowserOptions`, overrides currently modify shared endpoint defaults and can affect subsequent requests, so don't use this combination for request- or user-specific settings. Render the component in server-rendered content:
 
 ```razor
 <ConfigureBrowser Options="RequestBrowserOptions" />
