@@ -848,6 +848,8 @@ items:
                 href: blazor/components/js-spa-frameworks.md
               - name: Components outside of ASP.NET Core
                 href: blazor/components/render-components-outside-of-aspnetcore.md
+              - name: AI components for agentic user interfaces
+                href: blazor/components/ai-components.md
               - name: Built-in components
                 href: blazor/components/built-in-components.md
           - name: Globalization and localization
