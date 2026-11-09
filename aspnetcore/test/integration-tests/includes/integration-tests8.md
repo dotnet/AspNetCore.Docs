@@ -2,16 +2,16 @@
 
 This article assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Testing in .NET](/dotnet/core/testing/) article and its linked content.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/8.x/IntegrationTestsSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/test/integration-tests/8.x/IntegrationTestsSample) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 > [!NOTE]
 > Both the downloadable sample project and the code examples in this article for ASP.NET Core 8.0 are implemented using [xUnit](https://xunit.net/). For code examples demonstrating MSTest or NUnit, switch the version selector to ASP.NET Core 9.0 or later.
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If you're unfamiliar with Razor Pages, see the following articles:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* [Introduction to Razor Pages](../../../razor-pages/index.md)
+* [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md)
+* [Razor Pages unit tests](../../razor-pages-tests.md)
 
 **For testing SPAs**, we recommend a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
 
@@ -38,7 +38,7 @@ Entity Framework Core is also used in the tests. See the [project file in GitHub
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
+If the SUT's [environment](../../../fundamentals/environments.md) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 
@@ -69,16 +69,16 @@ Test classes implement a *class fixture* interface ([`IClassFixture`](https://xu
 The following test class, `BasicTests`, uses the `WebApplicationFactory` to bootstrap the SUT and provide an <xref:System.Net.Http.HttpClient> to a test method, `Get_EndpointsReturnSuccessAndCorrectContentType`. The method verifies the response status code is successful (200-299) and the `Content-Type` header is `text/html; charset=utf-8` for several app pages.
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
-  
+
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
-By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](xref:security/gdpr) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](xref:security/gdpr#essential-cookies).
+By default, non-essential cookies aren't preserved across requests when the [General Data Protection Regulation consent policy](../../../security/gdpr.md) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](../../../security/gdpr.md#essential-cookies).
 
 <a name="asap7"></a>
 
 ## AngleSharp vs `Application Parts` for antiforgery checks
 
-This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The [Application Parts](xref:mvc/extensibility/app-parts) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello). <!--See https://github.com/dotnet/AspNetCore.Docs/issues/18860 -->
+This article uses the [AngleSharp](https://anglesharp.github.io/) parser to handle the antiforgery checks by loading pages and parsing the HTML. For testing the endpoints of controller and Razor Pages views at a lower-level, without caring about how they render in the browser, consider using `Application Parts`. The [Application Parts](../../../mvc/advanced/app-parts.md) approach injects a controller or Razor Page into the app that can be used to make JSON requests to get the required values. For more information, see the blog [Integration Testing ASP.NET Core Resources Protected with Antiforgery Using Application Parts](https://blog.martincostello.com/integration-testing-antiforgery-with-application-parts/) and [associated GitHub repo](https://github.com/martincostello/antiforgery-testing-application-part) by [Martin Costello](https://github.com/martincostello). <!--See https://github.com/dotnet/AspNetCore.Docs/issues/18860 -->
 
 ## Customize WebApplicationFactory
 
@@ -111,7 +111,7 @@ Web host configuration can be created independently of the test classes by inher
 
    [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
 
-Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](xref:security/data-protection/introduction). In order to arrange for a test's POST request, the test app must:
+Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](../../../security/data-protection/introduction.md). In order to arrange for a test's POST request, the test app must:
 
 1. Make a request for the page.
 1. Parse the antiforgery cookie and request validation token from the response.
@@ -129,7 +129,7 @@ The `SendAsync` helper extension methods (`Helpers/HttpClientExtensions.cs`) and
 
 The [EF-Core in-memory database provider](/ef/core/testing/choosing-a-testing-strategy#in-memory-as-a-database-fake) can be used for limited and basic testing, however the ***[SQLite provider](/ef/core/testing/choosing-a-testing-strategy#sqlite-as-a-database-fake) is the recommended choice for in-memory testing***.
 
-When a test requires a custom middleware, you can use an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. For more information, see <xref:fundamentals/startup#startup-filters>.
+When a test requires a custom middleware, you can use an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter>. For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md#startup-filters).
 
 When a test requires a custom service, see the [Inject mock services](#inject-mock-services) section.
 
@@ -189,7 +189,7 @@ The sample SUT includes a scoped service that returns a quote. The quote is embe
 The following markup is generated when the SUT app is run:
 
 ```html
-<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in 
+<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in
     London, and we&#x27;re already 30,000 years late.">
 ```
 
@@ -206,7 +206,7 @@ To test the service and quote injection in an integration test, a mock service i
 The markup produced during the test's execution reflects the quote text supplied by `TestQuoteService`, thus the assertion passes:
 
 ```html
-<input id="quote" type="hidden" value="Something&#x27;s interfering with time, 
+<input id="quote" type="hidden" value="Something&#x27;s interfering with time,
     Mr. Scarman, and time is my business.">
 ```
 
@@ -217,7 +217,7 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's sign in page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](../../../razor-pages/security/authorization/conventions.md#require-authorization-to-access-a-page).
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/src/RazorPagesProject/Program.cs?name=snippet1)]
 
@@ -246,13 +246,13 @@ See [this GitHub repository](https://github.com/blowdart/idunno.Authentication/t
 
 ## Set the environment
 
-Set the [environment](xref:fundamentals/environments) in the custom application factory:
+Set the [environment](../../../fundamentals/environments.md) in the custom application factory:
 
 [!code-csharp[](~/../AspNetCore.Docs.Samples/test/integration-tests/8.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1&highlight=36)]
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app [content root](../../../fundamentals/index.md#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 ## Disable shadow copying
 
@@ -298,7 +298,7 @@ The SUT is a Razor Pages message system with the following characteristics:
 
 &#8224;The EF article, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.net/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](xref:mvc/controllers/testing) (the sample implements the repository pattern).
+Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](../../../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
 ### Test app organization
 
@@ -324,9 +324,9 @@ The SUT's database context is registered in `Program.cs`. The test app's `builde
 ## Related content
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* <xref:test/razor-pages-tests>
-* <xref:fundamentals/middleware/index>
-* <xref:mvc/controllers/testing>
+* [Razor Pages unit tests in ASP.NET Core](../../razor-pages-tests.md)
+* [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
+* [Test controller logic in ASP.NET Core](../../../mvc/controllers/testing.md)
 * [Basic tests for authentication middleware](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test)
 
 :::moniker-end

@@ -5,7 +5,6 @@ description: Learn about URL rewriting and redirecting with URL rewriting middle
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
 ms.date: 09/18/2026
-uid: fundamentals/url-rewriting
 ---
 # URL rewriting middleware in ASP.NET Core
 
@@ -67,7 +66,7 @@ Use URL rewriting middleware when the following approaches aren't satisfactory:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -165,7 +164,7 @@ options.AddRedirect("go/(.*)", "https://$1/path");
 
 Use a fixed local prefix when redirecting within the app. For external redirects, use a fixed host or validate the host against an allow list. Imported IIS URL Rewrite and Apache `mod_rewrite` rules also expand back-references and variables. Importing a rule doesn't validate its resulting substitution, so review imported rules by the same criteria.
 
-Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see <xref:security/preventing-open-redirects>.
+Depending on the API, imported-rule options, and replacement, the original query string might be preserved or appended to the destination. Include query parameters when reviewing whether request-derived data can affect a redirect. For more information about validating redirect destinations, see [Prevent open redirect attacks in ASP.NET Core](../security/preventing-open-redirects.md).
 
 ### URL redirect to a secure endpoint
 
@@ -185,7 +184,7 @@ Use <xref:Microsoft.AspNetCore.Rewrite.RewriteOptionsExtensions.AddRedirectToHtt
 <!-- Note: something wrong with project because the localhostHTTPSport is correctly calculated but not used in the redirect. The exact same code at https://github.com/Rick-Anderson/WebRedirect does work. -->
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](xref:security/enforcing-ssl#require-https).
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see [Enforce HTTPS](../security/enforcing-ssl.md#require-https).
 
 The sample app demonstrates how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Make an insecure HTTP request to the app at `http://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`. When testing HTTP to HTTPS redirection with localhost:
 
@@ -303,7 +302,7 @@ Try the request to `https://redirect6.azurewebsites.net/iis-rules-rewrite/xyz`
 Apps that have an active IIS Rewrite Module with server-level rules configured that impacts the app in undesirable ways:
 
 * Consider disabling the IIS Rewrite Module for the app.
-* For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+* For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 
@@ -427,7 +426,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -467,7 +466,7 @@ Use URL rewriting middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys).
+Use the URL rewriting middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -552,7 +551,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -666,7 +665,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Browser window with developer tools tracking the request and response: Add IIS URL rewrite](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 
@@ -781,7 +780,7 @@ URL rewriting is the act of modifying request URLs based on one or more predefin
 > [!NOTE]
 > URL rewriting can reduce the performance of an app. Where feasible, limit the number and complexity of rules.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 
 ## URL redirect and URL rewrite
 
@@ -821,7 +820,7 @@ Use URL rewriting middleware when you're unable to use the following approaches:
 * [Apache mod_rewrite module on Apache Server](https://httpd.apache.org/docs/2.4/rewrite/)
 * [URL rewriting on Nginx](https://www.nginx.com/blog/creating-nginx-rewrite-rules/)
 
-Also, use the middleware when the app is hosted on [HTTP.sys server](xref:fundamentals/servers/httpsys) (formerly called WebListener).
+Also, use the middleware when the app is hosted on [HTTP.sys server](servers/httpsys.md) (formerly called WebListener).
 
 The main reasons to use the server-based URL rewriting technologies in IIS, Apache, and Nginx are:
 
@@ -834,7 +833,7 @@ The main reasons to use the server-based URL rewriting technologies in IIS, Apac
 
 ## Package
 
-To include the middleware in your project, add a package reference to the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) in the project file, which contains the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package.
+To include the middleware in your project, add a package reference to the [Microsoft.AspNetCore.App metapackage](metapackage-app.md) in the project file, which contains the [Microsoft.AspNetCore.Rewrite](https://www.nuget.org/packages/Microsoft.AspNetCore.Rewrite) package.
 
 When not using the `Microsoft.AspNetCore.App` metapackage, add a project reference to the `Microsoft.AspNetCore.Rewrite` package.
 
@@ -908,7 +907,7 @@ public void Configure(IApplicationBuilder app)
 ```
 
 > [!NOTE]
-> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](xref:security/enforcing-ssl#require-https) topic.
+> When redirecting to a secure endpoint without the requirement for additional redirect rules, we recommend using HTTPS redirection middleware. For more information, see the [Enforce HTTPS](../security/enforcing-ssl.md#require-https) topic.
 
 The sample app is capable of demonstrating how to use `AddRedirectToHttps` or `AddRedirectToHttpsPermanent`. Add the extension method to the `RewriteOptions`. Make an insecure request to the app at any URL. Dismiss the browser security warning that the self-signed certificate is untrusted or create an exception to trust the certificate.
 
@@ -1022,7 +1021,7 @@ Original Request: `/iis-rules-rewrite/1234`
 
 ![Add IIS URL rewrite: Browser window with developer tools tracking the request and response](url-rewriting/_static/add_iis_url_rewrite.png)
 
-If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](xref:host-and-deploy/iis/modules#disabling-iis-modules).
+If you have an active IIS Rewrite Module with server-level rules configured that would impact your app in undesirable ways, you can disable the IIS Rewrite Module for an app. For more information, see [Disabling IIS modules](../host-and-deploy/iis/modules.md#disabling-iis-modules).
 
 #### Unsupported features
 
@@ -1120,10 +1119,10 @@ Original Request: `/image.jpg`
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/url-rewriting/samples/) ([how to download](index.md#how-to-download-a-sample))
 * [`RewriteMiddleware` (reference source)](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Rewrite/src/RewriteMiddleware.cs)
-* <xref:fundamentals/startup>
-* <xref:fundamentals/middleware/index>
+* [App startup in ASP.NET Core](startup.md)
+* [ASP.NET Core middleware](middleware/index.md)
 * [Regular expressions in .NET](/dotnet/articles/standard/base-types/regular-expressions)
 * [Regular expression language - quick reference](/dotnet/articles/standard/base-types/quick-ref)
 * [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/)

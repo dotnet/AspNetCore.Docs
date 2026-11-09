@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover how to enable Web Authentication API (WebAuthn) passkeys in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/01/2026
-uid: security/authentication/passkeys/index
 ---
 # Enable Web Authentication API (WebAuthn) passkeys
 
@@ -17,7 +16,7 @@ uid: security/authentication/passkeys/index
 
 Passkeys provide a modern, phishing-resistant authentication method based on the [Web Authentication API (WebAuthn)](https://developer.mozilla.org/docs/Web/API/Web_Authentication_API) and [FIDO2](https://www.microsoft.com/security/business/security-101/what-is-fido2) standards. They are a secure alternative to passwords, using public key cryptography and device-based authentication. This article explains how to configure an ASP.NET Core app to use passkeys to authenticate users.
 
-For guidance specific to new and existing Blazor Web Apps, see <xref:security/authentication/passkeys/blazor> after reading this article.
+For guidance specific to new and existing Blazor Web Apps, see [Implement passkeys in ASP.NET Core Blazor Web Apps](blazor.md) after reading this article.
 
 ## What are passkeys?
 
@@ -104,7 +103,7 @@ For example:
 
 All passkey operations require HTTPS. The implementation stores authentication data in encrypted and signed cookies that could be intercepted over unencrypted connections.
 
-**Requirement**: Always use HTTPS in production. Configure [HTTP Strict Transport Security (HSTS) protocol](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) to prevent protocol downgrade attacks.
+**Requirement**: Always use HTTPS in production. Configure [HTTP Strict Transport Security (HSTS) protocol](../../enforcing-ssl.md#http-strict-transport-security-hsts-protocol) to prevent protocol downgrade attacks.
 
 ### Account recovery
 
@@ -250,7 +249,7 @@ The state is the only place that records the account. An attestation response fr
 
 An app that manages the attestation state itself must meet the following three requirements.
 
-**Integrity**: The client must not be able to modify the state. Don't place the state in a hidden form field, a request body, or unprotected browser storage. An attacker who alters the user ID in the state completes registration normally, and their authenticator is stored on the account that the altered state names, which grants them sign-in access to that account. Keep the state on the server or protect it with the [ASP.NET Core Data Protection APIs](xref:security/data-protection/introduction) before sending it to the browser.
+**Integrity**: The client must not be able to modify the state. Don't place the state in a hidden form field, a request body, or unprotected browser storage. An attacker who alters the user ID in the state completes registration normally, and their authenticator is stored on the account that the altered state names, which grants them sign-in access to that account. Keep the state on the server or protect it with the [ASP.NET Core Data Protection APIs](../../data-protection/introduction.md) before sending it to the browser.
 
 **Ownership**: The state must be bound to the session that requested the creation options, and the binding must be checked when the credential is submitted. Compare <xref:Microsoft.AspNetCore.Identity.PasskeyAttestationResult.UserEntity> to the signed-in user before storing the passkey. The handler doesn't perform this check because it has no independent record of the user to compare against.
 

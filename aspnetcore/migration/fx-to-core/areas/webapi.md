@@ -3,7 +3,6 @@ title: Migrate from ASP.NET Web API to ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to migrate a web API implementation from ASP.NET 4.x Web API to ASP.NET Core MVC.
 ms.date: 07/17/2025
-uid: migration/fx-to-core/areas/webapi
 ---
 # Migrate from ASP.NET Web API to ASP.NET Core
 
@@ -60,14 +59,14 @@ This article shows how to migrate the Products controller created in [Getting St
 
 ## The configuration for ASP.NET Core Web API
 
-ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see <xref:host-and-deploy/iis/web-config>.
+ASP.NET Core doesn't use the *App_Start* folder or the *Global.asax* file. The *web.config* file is added at publish time. For more information, see [web.config file](../../../host-and-deploy/iis/web-config.md).
 
 The `Program.cs` file:
 
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 The following shows the application startup code in the ASP.NET Core `Program.cs` file:
 
@@ -159,10 +158,10 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 [!code-csharp[](webapi/samples/6.x/ProductsCore/Controllers/ProductsController.cs?highlight=6,7,26,32)]
 
-* The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](xref:fundamentals/routing) pattern.
+* The [`[Route]`](xref:Microsoft.AspNetCore.Mvc.RouteAttribute) attribute [configures the controller's attribute routing](../../../fundamentals/routing.md) pattern.
 * The [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute makes attribute routing a requirement for all actions in this controller.
 
-* [Attribute routing supports tokens](xref:mvc/controllers/routing#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
+* [Attribute routing supports tokens](../../../mvc/controllers/routing.md#token-replacement-in-route-templates-controller-action-area), such as `[controller]` and `[action]`. At runtime, each token is replaced with the name of the controller or action, respectively, to which the attribute has been applied. The tokens:
 
   * Reduces or eliminates the need to use hard coded strings for the route.
   * Ensure routes remain synchronized with the corresponding controllers and actions when automatic rename refactorings are applied.
@@ -174,13 +173,13 @@ The migrated `ProductsController` contains the following highlighted attributes:
 
 Run the migrated project, and browse to `/api/products`.  For example: https://localhost:`<port>`/api/products. A full list of three products appears. Browse to `/api/products/1`. The first product appears.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/migration/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Additional resources
 
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
-* <xref:mvc/compatibility-version>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
+* [Compatibility version for ASP.NET Core MVC](../../../mvc/compatibility-version.md)
 
 :::moniker-end
 
@@ -238,7 +237,7 @@ The `Startup` class:
 * Replaces *Global.asax*.
 * Handles all app startup tasks.
 
-For more information, see <xref:fundamentals/startup>.
+For more information, see [App startup in ASP.NET Core](../../../fundamentals/startup.md).
 
 ## Migrate models and controllers
 
@@ -275,7 +274,7 @@ The ASP.NET Core *API* project template includes endpoint routing configuration 
 
 The following <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> and <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseEndpoints*> calls:
 
-* Register route matching and endpoint execution in the [middleware](xref:fundamentals/middleware/index) pipeline.
+* Register route matching and endpoint execution in the [middleware](../../../fundamentals/middleware/index.md) pipeline.
 * Replace the *ProductsApp* project's `App_Start/WebApiConfig.cs` file.
 
 [!code-csharp[](webapi/samples/3.x/ProductsCore/Startup.cs?name=snippet_Configure&highlight=10,14)]
@@ -302,8 +301,8 @@ Run the migrated project, and browse to `/api/products`. A full list of three pr
 
 ## Additional resources
 
-* <xref:web-api/index>
-* <xref:web-api/action-return-types>
-* <xref:mvc/compatibility-version>
+* [Create web APIs with ASP.NET Core](../../../web-api/index.md)
+* [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)
+* [Compatibility version for ASP.NET Core MVC](../../../mvc/compatibility-version.md)
 :::moniker-end
 

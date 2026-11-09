@@ -14,7 +14,7 @@ Browser security prevents a web page from making requests to a different domain 
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
 * Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/6.0/Cors/WebAPI) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/6.0/Cors/WebAPI) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Same origin
 
@@ -43,7 +43,7 @@ There are three ways to enable CORS:
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](../../../fundamentals/middleware/index.md#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
 
 Each approach is detailed in the following sections.
 
@@ -58,10 +58,10 @@ CORS middleware handles cross-origin requests. The following code applies a CORS
 The preceding code:
 
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](../../../fundamentals/middleware/index.md#middleware-order).
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors6) to apply a CORS policy to specific endpoints.
-* When using [response caching middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
+* When using [response caching middleware](../../../performance/caching/middleware.md), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
 
 With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and  `UseEndpoints`.
 
@@ -419,7 +419,7 @@ The `Access-Control-Max-Age` header specifies how long the response to the prefl
 This section describes what happens in a [CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS) request at the level of the HTTP messages.
 
 * CORS is **not** a security feature. CORS is a W3C standard that allows a server to relax the same-origin policy.
-  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) against your site and execute a cross-site request to their CORS enabled site to steal information.
+  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](../../cross-site-scripting.md) against your site and execute a cross-site request to their CORS enabled site to steal information.
 * An API isn't safer by allowing CORS.
   * It's up to the client (browser) to enforce CORS. The server executes the request and returns the response, it's the client that returns an error and blocks the response. For example, any of the following tools will display the server response:
     * [Fiddler](https://www.telerik.com/fiddler)
@@ -546,7 +546,7 @@ needs to be installed and configured for the app.
 
 ## Test CORS
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) has code to test CORS. See [how to download](xref:fundamentals/index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) has code to test CORS. See [how to download](../../../fundamentals/index.md#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
 [!code-csharp[](~/security/cors/samples/6.0/Cors/WebAPI/ProgramTest.cs?name=snippet_test)]
 
@@ -640,7 +640,7 @@ Browser security prevents a web page from making requests to a different domain 
 * Allows a server to explicitly allow some cross-origin requests while rejecting others.
 * Is safer and more flexible than earlier techniques, such as [JSONP](/dotnet/framework/wcf/samples/jsonp).
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Same origin
 
@@ -669,7 +669,7 @@ There are three ways to enable CORS:
 Using the [[EnableCors]](#attr) attribute with a named policy provides the finest control in limiting endpoints that support CORS.
 
 > [!WARNING]
-> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
+> <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> must be called in the correct order. For more information, see [Middleware order](../../../fundamentals/middleware/index.md#middleware-order). For example, `UseCors` must be called before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> when using `UseResponseCaching`.
 
 Each approach is detailed in the following sections.
 
@@ -684,10 +684,10 @@ CORS middleware handles cross-origin requests. The following code applies a CORS
 The preceding code:
 
 * Sets the policy name to `_myAllowSpecificOrigins`. The policy name is arbitrary.
-* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](xref:fundamentals/middleware/index#middleware-order).
+* Calls the <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> extension method and specifies the  `_myAllowSpecificOrigins` CORS policy. `UseCors` adds the CORS middleware. The call to `UseCors` must be placed after `UseRouting`, but before `UseAuthorization`. For more information, see [Middleware order](../../../fundamentals/middleware/index.md#middleware-order).
 * Calls <xref:Microsoft.Extensions.DependencyInjection.CorsServiceCollectionExtensions.AddCors*> with a [lambda expression](/dotnet/csharp/programming-guide/statements-expressions-operators/lambda-expressions). The lambda takes a <xref:Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder> object. [Configuration options](#cors-policy-options), such as `WithOrigins`, are described later in this article.
 * Enables the `_myAllowSpecificOrigins` CORS policy for all controller endpoints. See [endpoint routing](#ecors) to apply a CORS policy to specific endpoints.
-* When using [response caching middleware](xref:performance/caching/middleware), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
+* When using [response caching middleware](../../../performance/caching/middleware.md), call <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> before <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*>.
 
 With endpoint routing, the CORS middleware **must** be configured to execute between the calls to `UseRouting` and `UseEndpoints`.
 
@@ -1033,7 +1033,7 @@ The `Access-Control-Max-Age` header specifies how long the response to the prefl
 This section describes what happens in a [CORS](https://developer.mozilla.org/docs/Web/HTTP/CORS) request at the level of the HTTP messages.
 
 * CORS is **not** a security feature. CORS is a W3C standard that allows a server to relax the same-origin policy.
-  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](xref:security/cross-site-scripting) against your site and execute a cross-site request to their CORS enabled site to steal information.
+  * For example, a malicious actor could use [Cross-Site Scripting (XSS)](../../cross-site-scripting.md) against your site and execute a cross-site request to their CORS enabled site to steal information.
 * An API isn't safer by allowing CORS.
   * It's up to the client (browser) to enforce CORS. The server executes the request and returns the response, it's the client that returns an error and blocks the response. For example, any of the following tools will display the server response:
     * [Fiddler](https://www.telerik.com/fiddler)
@@ -1152,7 +1152,7 @@ needs to be installed and configured for the app.
 
 ## Test CORS
 
-The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) has code to test CORS. See [how to download](xref:fundamentals/index#how-to-download-a-sample). The sample is an API project with Razor Pages added:
+The [sample download](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/cors/samples/3.1/Cors/WebAPI) has code to test CORS. See [how to download](../../../fundamentals/index.md#how-to-download-a-sample). The sample is an API project with Razor Pages added:
 
 [!code-csharp[](~/security/cors/samples/3.1/Cors/WebAPI/StartupTest2.cs?name=snippet2)]
 

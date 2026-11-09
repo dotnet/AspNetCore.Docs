@@ -95,7 +95,7 @@ Complex form binding is supported using <xref:Microsoft.AspNetCore.Http.IFormFil
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/IFormFile/Program.cs" id="snippet_1" highlight="20-35":::
 
-Parameters bound to the request with `[FromForm]` include an [antiforgery token](xref:security/anti-request-forgery). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma).
+Parameters bound to the request with `[FromForm]` include an [antiforgery token](../../../security/anti-request-forgery.md). The antiforgery token is validated when the request is processed. For more information, see [Antiforgery with Minimal APIs](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis).
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/).
 
@@ -103,7 +103,7 @@ The [complete sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tre
 
 ## Parameter binding with dependency injection
 
-Parameter binding for Minimal APIs binds parameters through [dependency injection](xref:fundamentals/dependency-injection) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
+Parameter binding for Minimal APIs binds parameters through [dependency injection](../../dependency-injection.md) when the type is configured as a service. It's not necessary to explicitly apply the [`[FromServices]`](xref:Microsoft.AspNetCore.Mvc.FromServicesAttribute) attribute to a parameter. In the following code, both actions return the time:
 
 :::code language="csharp" source="~/release-notes/aspnetcore-7/samples/ApiController/Program.cs" id="snippet_min" highlight="8-9":::
 
@@ -171,7 +171,7 @@ The following types are bound without explicit attributes:
 * <xref:System.Threading.CancellationToken>: The cancellation token associated with the current HTTP request:
 
   ```csharp
-  app.MapGet("/", async (CancellationToken cancellationToken) => 
+  app.MapGet("/", async (CancellationToken cancellationToken) =>
       await MakeLongRunningRequestAsync(cancellationToken));
   ```
 
@@ -227,17 +227,17 @@ Authenticated file upload requests are supported using an [Authorization header]
 
 ### Binding to forms with IFormCollection, IFormFile, and IFormFileCollection
 
-Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](xref:fundamentals/openapi/aspnetcore-openapi) metadata is inferred for form parameters to support integration with [Swagger UI](xref:tutorials/web-api-help-pages-using-swagger).
+Binding from form-based parameters using <xref:Microsoft.AspNetCore.Http.IFormCollection>, <xref:Microsoft.AspNetCore.Http.IFormFile>, and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> is supported. [OpenAPI](../../openapi/aspnetcore-openapi.md) metadata is inferred for form parameters to support integration with [Swagger UI](../../../tutorials/web-api-help-pages-using-swagger.md).
 
 The following code uploads files using inferred binding from the `IFormFile` type:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples/8/Iform/Program.cs" highlight="18-23,44-50":::
 
-***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an antiforgery token:
+***Warning:*** When implementing forms, the app ***must prevent*** [Cross-Site Request Forgery (XSRF/CSRF) attacks](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis). In the preceding code, the <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgery> service is used to prevent XSRF attacks by generating and validation an antiforgery token:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/parameter-binding/samples/8/Iform/Program.cs" highlight="25,45":::
 
-For more information on XSRF attacks, see [Antiforgery with Minimal APIs](xref:security/anti-request-forgery?view=aspnetcore-8.0&preserve-view=true#afwma)
+For more information on XSRF attacks, see [Antiforgery with Minimal APIs](../../../security/anti-request-forgery.md?view=aspnetcore-8.0&preserve-view=true#antiforgery-with-minimal-apis)
 
 For more information, see [Form binding in Minimal APIs](https://andrewlock.net/exploring-the-dotnet-8-preview-form-binding-in-minimal-apis/);
 
@@ -281,7 +281,7 @@ In the preceding code:
 * The target parameter ***must*** be annotated with the [`[FromForm]`](xref:Microsoft.AspNetCore.Mvc.FromFormAttribute) attribute to disambiguate from parameters that should be read from the JSON body.
 * Binding from complex or collection types is ***not*** supported for Minimal APIs that are compiled with the Request Delegate Generator.
 * The markup shows an additional hidden input with a name of `isCompleted` and a value of `false`. If the `isCompleted` checkbox is checked when the form is submitted, both values `true` and `false` are submitted as values. If the checkbox is unchecked, only the hidden input value `false` is submitted. The ASP.NET Core form-mapping process reads only the first value when binding to a `bool` value, which results in `true` for checked checkboxes and `false` for unchecked checkboxes.
-  
+
 An example of the form data submitted to the preceding endpoint looks as follows:
 
 ```txt
@@ -316,7 +316,7 @@ To test the preceding code, add the following endpoint to populate the database 
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs" id="snippet_batch":::
 
-Use a tool like [`HttpRepl`](xref:web-api/http-repl) to pass the following data to the previous endpoint:
+Use a tool like [`HttpRepl`](../../../web-api/http-repl/index.md) to pass the following data to the previous endpoint:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs" id="batch_post_payload":::
 
@@ -429,7 +429,7 @@ You can also implement validation within your custom binding logic:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/10.0/CustomBindingExample/Program.cs" id="snippet_Validation":::
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/CustomBindingExample) ([how to download](xref:index#how-to-download-a-sample))
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/minimal-apis/samples/10.0/CustomBindingExample) ([how to download](../../index.md#how-to-download-a-sample))
 
 ## Binding failures
 
@@ -443,7 +443,7 @@ When binding fails, the framework logs a debug message and returns various statu
 | Failure to deserialize JSON body |doesn't matter|body|400|
 | Wrong content type (not `application/json`) |doesn't matter|body|415|
 
-When `ThrowOnBadRequest` is `false`, endpoints that have a filter pipeline run their filters after a parameter-check failure (such as failed route, query, or header parsing, or a missing required parameter), allowing a filter to observe the `400` status code and replace the response body. Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported content types) or for binding exceptions. For more information, see [Filters and parameter binding failures](xref:fundamentals/minimal-apis/min-api-filters#filters-and-parameter-binding-failures).
+When `ThrowOnBadRequest` is `false`, endpoints that have a filter pipeline run their filters after a parameter-check failure (such as failed route, query, or header parsing, or a missing required parameter), allowing a filter to observe the `400` status code and replace the response body. Endpoint filters don't run for body-reading failures (such as malformed JSON or unsupported content types) or for binding exceptions. For more information, see [Filters and parameter binding failures](../min-api-filters.md#filters-and-parameter-binding-failures).
 
 ## Binding Precedence
 

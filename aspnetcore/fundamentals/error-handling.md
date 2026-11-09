@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Discover how to handle errors in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/27/2026
-uid: fundamentals/error-handling
 ---
 # Handle errors in ASP.NET Core
 
@@ -12,9 +11,9 @@ uid: fundamentals/error-handling
 
 :::moniker range=">= aspnetcore-10.0"
 
-This article covers common approaches to handling errors in ASP.NET Core web apps. See also <xref:fundamentals/error-handling-api>.
+This article covers common approaches to handling errors in ASP.NET Core web apps. See also [Handle errors in ASP.NET Core APIs](error-handling-api.md).
 
-For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/fundamentals/handle-errors>.
+For Blazor error handling guidance, which adds to or supersedes the guidance in this article, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 ## Developer exception page
 
@@ -22,7 +21,7 @@ For Blazor error handling guidance, which adds to or supersedes the guidance in 
 
 ## Exception handler page
 
-To configure a custom error handling page for the [`Production` environment](xref:fundamentals/environments), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This exception handling middleware:
+To configure a custom error handling page for the [`Production` environment](environments.md), call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. This exception handling middleware:
 
 * Catches and logs unhandled exceptions.
 * Re-executes the request in an alternate pipeline using the path indicated. The request isn't re-executed if the response has started. The template-generated code re-executes the request using the `/Error` path.
@@ -265,7 +264,7 @@ app.UseRouting();
 app.UseRateLimiter();
 ```
 
-For more information, see <xref:performance/rate-limit>.
+For more information, see [Rate limiting middleware in ASP.NET Core](../performance/rate-limit.md).
 
 ## Disable status code pages
 
@@ -288,19 +287,19 @@ Once the headers for a response are sent:
 
 ## Server exception handling
 
-In addition to the exception handling logic in an app, the [HTTP server implementation](xref:fundamentals/servers/index) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a `500 - Internal Server Error` response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by the app are handled by the server. Any exception that occurs when the server is handling the request is handled by the server's exception handling. The app's custom error pages, exception handling middleware, and filters don't affect this behavior.
+In addition to the exception handling logic in an app, the [HTTP server implementation](servers/index.md) can handle some exceptions. If the server catches an exception before response headers are sent, the server sends a `500 - Internal Server Error` response without a response body. If the server catches an exception after response headers are sent, the server closes the connection. Requests that aren't handled by the app are handled by the server. Any exception that occurs when the server is handling the request is handled by the server's exception handling. The app's custom error pages, exception handling middleware, and filters don't affect this behavior.
 
 ## Startup exception handling
 
-Only the hosting layer can handle exceptions that take place during app startup. The host can be configured to [capture startup errors](xref:fundamentals/host/web-host#capture-startup-errors) and [capture detailed errors](xref:fundamentals/host/web-host#detailed-errors).
+Only the hosting layer can handle exceptions that take place during app startup. The host can be configured to [capture startup errors](host/web-host.md#capture-startup-errors) and [capture detailed errors](host/web-host.md#detailed-errors).
 
 The hosting layer can show an error page for a captured startup error only if the error occurs after host address/port binding. If binding fails:
 
 * The hosting layer logs a critical exception.
 * The dotnet process crashes.
-* No error page is displayed when the HTTP server is [Kestrel](xref:fundamentals/servers/kestrel).
+* No error page is displayed when the HTTP server is [Kestrel](servers/kestrel.md).
 
-When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module) if the process can't start. For more information, see <xref:test/troubleshoot-azure-iis>.
+When running on [IIS](/iis) (or Azure App Service) or [IIS Express](/iis/extensions/introduction-to-iis-express/iis-express-overview), a *502.5 - Process Failure* is returned by the [ASP.NET Core Module](../host-and-deploy/aspnet-core-module.md) if the process can't start. For more information, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md).
 
 ## Database error page
 
@@ -310,13 +309,13 @@ The Database developer page exception filter <xref:Microsoft.Extensions.Dependen
 
 ## Exception filters
 
-In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see <xref:mvc/controllers/filters#exception-filters>.
+In MVC apps, exception filters can be configured globally or on a per-controller or per-action basis. In Razor Pages apps, they can be configured globally or per page model. These filters handle any unhandled exceptions that occur during the execution of a controller action or another filter. For more information, see [Filters in ASP.NET Core](../mvc/controllers/filters.md#exception-filters).
 
 Exception filters are useful for trapping exceptions that occur within MVC actions, but they're not as flexible as the built-in [exception handling middleware](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/Diagnostics/src/ExceptionHandler/ExceptionHandlerMiddleware.cs), <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. We recommend using `UseExceptionHandler`, unless you need to perform error handling differently based on which MVC action is chosen.
 
 ## Model state errors
 
-For information about how to handle model state errors, see [Model binding](xref:mvc/models/model-binding) and [Model validation](xref:mvc/models/validation).
+For information about how to handle model state errors, see [Model binding](../mvc/models/model-binding.md) and [Model validation](../mvc/models/validation.md).
 
 <a name="pds7"></a>
 
@@ -405,7 +404,7 @@ In non-development environments, when an exception occurs, the following is a st
 
 For most apps, the preceding code is all that's needed for exceptions. However, the following section shows how to get more detailed problem responses.
 
-An alternative to a [custom exception handler page](xref:fundamentals/error-handling#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
+An alternative to a [custom exception handler page](error-handling.md#exception-handler-page) is to provide a lambda to <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. Using a lambda allows access to the error and writing a problem details response with [`IProblemDetailsService.WriteAsync`](/dotnet/api/microsoft.aspnetcore.http.iproblemdetailsservice.writeasync?view=aspnetcore-7.0&preserve-view=true):
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/problem-details-service/Program.cs" id="snippet_lambda" :::
 
@@ -424,17 +423,17 @@ An alternative approach to generate problem details is to use the third-party Nu
 
 :::moniker range=">= aspnetcore-7.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
-* <xref:fundamentals/error-handling-api>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](index.md#how-to-download-a-sample))
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../host-and-deploy/azure-iis-errors-reference.md)
+* [Handle errors in ASP.NET Core APIs](error-handling-api.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:test/troubleshoot-azure-iis>
-* <xref:host-and-deploy/azure-iis-errors-reference>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/error-handling/samples) ([how to download](index.md#how-to-download-a-sample))
+* [Troubleshoot ASP.NET Core on Azure App Service and IIS](../test/troubleshoot-azure-iis.md)
+* [Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../host-and-deploy/azure-iis-errors-reference.md)
 
 :::moniker-end

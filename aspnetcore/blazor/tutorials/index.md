@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor tutorials
 description: Learn how to build Blazor apps with the tutorials listed in this article.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tutorials/index
 ---
 # ASP.NET Core Blazor tutorials
 
@@ -13,17 +12,17 @@ The following tutorials provide basic working experiences for building Blazor ap
 
 :::moniker range=">= aspnetcore-8.0"
 
-For an overview of Blazor, see <xref:blazor/index>.
+For an overview of Blazor, see [ASP.NET Core Blazor](../index.md).
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro)
 
-* <xref:blazor/tutorials/build-a-blazor-app> (Blazor Web App)
+* [Build a Blazor todo list app](build-a-blazor-app.md) (Blazor Web App)
 
-* <xref:blazor/tutorials/movie-database-app/index> (Blazor Web App)
+* [Build a Blazor movie database app (Overview)](movie-database-app/index.md) (Blazor Web App)
 
-* <xref:blazor/tutorials/signalr-blazor> (Blazor Web App)
+* [Use ASP.NET Core SignalR with Blazor](signalr-blazor.md) (Blazor Web App)
 
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor Hybrid tutorials](../hybrid/tutorials/index.md)
 
 * Microsoft Learn
 
@@ -34,15 +33,15 @@ For an overview of Blazor, see <xref:blazor/index>.
 
 :::moniker range="< aspnetcore-8.0"
 
-For an overview of Blazor, see <xref:blazor/index>. For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see <xref:blazor/hosting-models>.
+For an overview of Blazor, see [ASP.NET Core Blazor](../index.md). For more information on the Blazor hosting models, Blazor Server and Blazor WebAssembly, see [ASP.NET Core Blazor hosting models](../hosting-models.md).
 
 * [Build your first Blazor app](https://dotnet.microsoft.com/learn/aspnet/blazor-tutorial/intro) (Blazor Server)
 
-* <xref:blazor/tutorials/build-a-blazor-app> (Blazor Server or Blazor WebAssembly)
+* [Build a Blazor todo list app](build-a-blazor-app.md) (Blazor Server or Blazor WebAssembly)
 
-* <xref:blazor/tutorials/signalr-blazor> (Blazor Server or Blazor WebAssembly)
+* [Use ASP.NET Core SignalR with Blazor](signalr-blazor.md) (Blazor Server or Blazor WebAssembly)
 
-* <xref:blazor/hybrid/tutorials/index>
+* [ASP.NET Core Blazor Hybrid tutorials](../hybrid/tutorials/index.md)
 
 * Microsoft Learn
 

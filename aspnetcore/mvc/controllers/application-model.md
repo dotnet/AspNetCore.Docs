@@ -3,7 +3,6 @@ title: Work with the application model in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to read and manipulate the application model to modify how MVC elements behave in ASP.NET Core.
 ms.date: 09/06/2026
-uid: mvc/controllers/application-model
 ---
 # Work with the application model in ASP.NET Core
 
@@ -56,15 +55,15 @@ The `DefaultApplicationModelProvider` establishes many of the default behaviors 
 
 Some built-in behaviors are implemented by the `DefaultApplicationModelProvider`. This provider is responsible for constructing the <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ControllerModel>, which in turn references <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ActionModel>, <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PropertyModel>, and <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ParameterModel> instances. The `DefaultApplicationModelProvider` class is an internal framework implementation detail that may change in the future.
 
-The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> and <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> attributes. For more information, see <xref:security/authorization/simple>.
+The `AuthorizationApplicationModelProvider` is responsible for applying the behavior associated with the <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> and <xref:Microsoft.AspNetCore.Mvc.Authorization.AllowAnonymousFilter> attributes. For more information, see [Simple authorization in ASP.NET Core](../../security/authorization/simple.md).
 
-The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see <xref:security/cors>.
+The `CorsApplicationModelProvider` implements behavior associated with <xref:Microsoft.AspNetCore.Cors.Infrastructure.IEnableCorsAttribute> and <xref:Microsoft.AspNetCore.Cors.Infrastructure.IDisableCorsAttribute>. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../security/cors.md).
 
 Information on the framework's internal providers described in this section aren't available via the [.NET API browser](/dotnet/api/). However, the providers may be inspected in the [ASP.NET Core reference source (dotnet/aspnetcore GitHub repository)](https://github.com/dotnet/aspnetcore). Use GitHub search to find the providers by name and select the version of the source with the **Switch branches/tags** dropdown list.
 
 ## Conventions
 
-The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify an app's behavior. Conventions provide a way to write code that dynamically applies customizations. While [filters](xref:mvc/controllers/filters) provide a means of modifying the framework's behavior, customizations permit control over how the whole app works together.
+The application model defines convention abstractions that provide a simpler way to customize the behavior of the models than overriding the entire model or provider. These abstractions are the recommended way to modify an app's behavior. Conventions provide a way to write code that dynamically applies customizations. While [filters](filters.md) provide a means of modifying the framework's behavior, customizations permit control over how the whole app works together.
 
 The following conventions are available:
 
@@ -73,10 +72,10 @@ The following conventions are available:
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IActionModelConvention>
 * <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.IParameterModelConvention>
 
-Conventions are applied by adding them to MVC options or by implementing attributes and applying them to controllers, actions, or action parameters (similar to [filters](xref:mvc/controllers/filters)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
+Conventions are applied by adding them to MVC options or by implementing attributes and applying them to controllers, actions, or action parameters (similar to [filters](filters.md)).Unlike filters, conventions are only executed when the app is starting, not as part of each request.
 
 > [!NOTE]
-> For information on Razor Pages route and application model provider conventions, see <xref:razor-pages/razor-pages-conventions>.
+> For information on Razor Pages route and application model provider conventions, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages/razor-pages-conventions.md).
 
 ## Modify the `ApplicationModel`
 
@@ -154,7 +153,7 @@ The convention is added as an option in `Startup.ConfigureServices`:
 [!code-csharp[](./application-model/samples/src/AppModelSample/Startup.cs?name=ConfigureServices&highlight=6)]
 
 > [!TIP]
-> Add conventions to [middleware](xref:fundamentals/middleware/index) via <xref:Microsoft.AspNetCore.Mvc.MvcOptions> using the following approach. The `{CONVENTION}` placeholder is the convention to add:
+> Add conventions to [middleware](../../fundamentals/middleware/index.md) via <xref:Microsoft.AspNetCore.Mvc.MvcOptions> using the following approach. The `{CONVENTION}` placeholder is the convention to add:
 >
 > ```csharp
 > services.Configure<MvcOptions>(c => c.Conventions.Add({CONVENTION}));
@@ -171,7 +170,7 @@ The following example applies a convention to routes that aren't using attribute
 ASP.NET Core MVC uses a different set of conventions from ASP.NET Web API 2. Using custom conventions, you can modify an ASP.NET Core MVC app's behavior to be consistent with that of a web API app. Microsoft ships the [`WebApiCompatShim` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.WebApiCompatShim) specifically for this purpose.
 
 > [!NOTE]
-> For more information on migration from ASP.NET Web API, see <xref:migration/fx-to-core/areas/webapi>.
+> For more information on migration from ASP.NET Web API, see [Migrate from ASP.NET Web API to ASP.NET Core](../../migration/fx-to-core/areas/webapi.md).
 
 To use the Web API Compatibility Shim:
 
@@ -203,7 +202,7 @@ The conventions provided by the shim are only applied to parts of the app that h
 
 ### Routes
 
-<xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute> controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](xref:mvc/controllers/areas) to the route and indicates the controller is in the `api` area.
+<xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim.UseWebApiRoutesAttribute> controls whether the `WebApiApplicationModelConvention` controller convention is applied. When enabled, this convention is used to add support for [areas](areas.md) to the route and indicates the controller is in the `api` area.
 
 In addition to a set of conventions, the compatibility package includes a <xref:System.Web.Http.ApiController?displayProperty=fullName> base class that replaces the one provided by web API. This allows your web API controllers written for web API and inheriting from its `ApiController` to work while running on ASP.NET Core MVC. All of the [`UseWebApi*`](xref:Microsoft.AspNetCore.Mvc.WebApiCompatShim) attributes listed earlier are applied to the base controller class. The `ApiController` exposes properties, methods, and result types that are compatible with those found in web API.
 
@@ -211,7 +210,7 @@ In addition to a set of conventions, the compatibility package includes a <xref:
 
 ## Use `ApiExplorer` to document an app
 
-The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](xref:tutorials/web-api-help-pages-using-swagger). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
+The application model exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel> property at each level that can be used to traverse the app's structure. This can be used to [generate help pages for web APIs using tools like Swagger](../../tutorials/web-api-help-pages-using-swagger.md). The `ApiExplorer` property exposes an <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.ApiExplorerModel.IsVisible> property that can be set to specify which parts of the app's model should be exposed. Configure this setting using a convention:
 
 [!code-csharp[](./application-model/samples/src/AppModelSample/Conventions/EnableApiExplorerApplicationConvention.cs)]
 
@@ -221,14 +220,14 @@ Using this approach (and additional conventions if required), API visibility is 
 
 :::moniker range=">= aspnetcore-9.0"
 
-Starting with .NET 9, ASP.NET Core includes built-in OpenAPI document generation in the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package. To programmatically inspect or modify the generated OpenAPI output, use document, operation, and schema transformers rather than implementing <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> directly. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+Starting with .NET 9, ASP.NET Core includes built-in OpenAPI document generation in the [`Microsoft.AspNetCore.OpenApi`](https://www.nuget.org/packages/Microsoft.AspNetCore.OpenApi) package. To programmatically inspect or modify the generated OpenAPI output, use document, operation, and schema transformers rather than implementing <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> directly. For more information, see [Generate OpenAPI documents](../../fundamentals/openapi/aspnetcore-openapi.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
 > [!NOTE]
-> <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> is an advanced extensibility point intended for framework and library authors. Most apps don't need to implement it. Starting with .NET 9, use the built-in OpenAPI document, operation, and schema transformers to customize generated API documentation. For more information, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+> <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> is an advanced extensibility point intended for framework and library authors. Most apps don't need to implement it. Starting with .NET 9, use the built-in OpenAPI document, operation, and schema transformers to customize generated API documentation. For more information, see [Generate OpenAPI documents](../../fundamentals/openapi/aspnetcore-openapi.md).
 
 ASP.NET Core uses <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiDescriptionProvider> implementations to discover endpoints and generate <xref:Microsoft.AspNetCore.Mvc.ApiExplorer.ApiDescription> metadata. Tools such as Swashbuckle and NSwag inspect these `ApiDescription` instances when producing API documentation.
 

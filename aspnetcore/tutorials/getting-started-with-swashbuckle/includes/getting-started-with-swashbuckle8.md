@@ -4,8 +4,8 @@
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. Swashbuckle is no longer included by default, but it remains available as a community package you can add manually to ASP.NET Core projects targeting .NET 9 or later.
 > 
-> • To understand the built‑in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
-> • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.
+> • To understand the built‑in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../../../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).  
+> • To add and use the Swagger UI provided by the `Swashbuckle.AspNetCore.SwaggerUI` package for interactive exploration or local ad‑hoc testing, see [Use the generated OpenAPI documents](../../../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
 >
 >The following instructions apply when using Swashbuckle with .NET versions earlier than 9.
 
@@ -61,7 +61,10 @@ dotnet add TodoApi.csproj package Swashbuckle.AspNetCore -v 6.6.2
 
 Add the Swagger generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="3,4":::
+```csharp
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+```
 
 The call to <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer*> shown in the preceding example is required only for [Minimal APIs](/aspnet/core/fundamentals/apis). For more information, see [this StackOverflow post](https://stackoverflow.com/a/71933535).
 
@@ -71,21 +74,35 @@ Enable the middleware for serving the generated JSON document and the Swagger UI
 
 The preceding code adds the Swagger middleware only if the current environment is set to `Development`. The `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool.
 
-Launch the app and navigate to `https://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
+Launch the app and navigate to `https://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](../../web-api-help-pages-using-swagger.md#openapi-specification-openapijson).
 
 The Swagger UI can be found at `https://localhost:<port>/swagger`. Explore the API via Swagger UI and incorporate it in other programs.
 
 > [!TIP]
 > To serve the Swagger UI at the app's root (`https://localhost:<port>/`), set the `RoutePrefix` property to an empty string:
 >
-> :::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareRoutePrefix" highlight="6":::
+> ```csharp
+> if (builder.Environment.IsDevelopment())
+> {
+>     app.UseSwaggerUI(options =>
+>     {
+>         options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+>         options.RoutePrefix = string.Empty;
+>     });
+> }
+> ```
 
 If using directories with IIS or a reverse proxy, set the Swagger endpoint to a relative path using the `./` prefix. For example, `./swagger/v1/swagger.json`. Using `/swagger/v1/swagger.json` instructs the app to look for the JSON file at the true root of the URL (plus the route prefix, if used). For example, use `https://localhost:<port>/<route_prefix>/swagger/v1/swagger.json` instead of `https://localhost:<port>/<virtual_directory>/<route_prefix>/swagger/v1/swagger.json`.
 
 > [!NOTE]
-> By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, you can opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in `Program.cs`:
+> By default, Swashbuckle generates and exposes Swagger JSON in version 3.0 of the specification&mdash;officially called the OpenAPI Specification. To support backwards compatibility, opt into exposing JSON in the 2.0 format instead. This 2.0 format is important for integrations such as Microsoft Power Apps and Microsoft Flow that currently support OpenAPI version 2.0. To opt into the 2.0 format, set the `SerializeAsV2` property in `Program.cs`:
 >
-> :::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_MiddlewareJsonV2" highlight="3":::
+> ```csharp
+> app.UseSwagger(options =>
+> {
+>     options.SerializeAsV2 = true;
+> });
+> ```
 
 ## Customize and extend
 
@@ -101,7 +118,28 @@ In `Program.cs`, import the following namespace to use the `OpenApiInfo` class:
 
 Using the `OpenApiInfo` class, modify the information displayed in the UI:
 
-:::code language="csharp" source="~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs" id="snippet_ServicesOpenApiInfo" highlight="3-19":::
+```csharp
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "ToDo API",
+        Description = "An ASP.NET Core Web API for managing ToDo items",
+        TermsOfService = new Uri("https://example.com/terms"),
+        Contact = new OpenApiContact
+        {
+            Name = "Example Contact",
+            Url = new Uri("https://example.com/contact")
+        },
+        License = new OpenApiLicense
+        {
+            Name = "Example License",
+            Url = new Uri("https://example.com/license")
+        }
+    });
+});
+```
 
 The Swagger UI displays the version's information:
 
@@ -218,7 +256,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 :::image source="~/tutorials/web-api-help-pages-using-swagger/_static/v6-swagger-post-responses.png"  alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../../../web-api/advanced/conventions.md).
 
 To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annotations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
 
@@ -226,24 +264,36 @@ To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.
 
 The default UI is both functional and presentable. However, API documentation pages should represent your brand or theme. Branding the Swashbuckle components requires adding the resources to serve static files and building the folder structure to host those files.
 
-Enable static file middleware:
+Enable static file middleware, call <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>:
 
-[!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs?name=snippet_MiddlewareStaticFiles&highlight=2)]
+```csharp
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.MapControllers();
+```
 
-To inject additional CSS stylesheets, add them to the project's *wwwroot* folder and specify the relative path in the middleware options:
+To inject additional CSS stylesheets, add them to the project's `wwwroot` folder and specify the relative path in the middleware options:
 
-[!code-csharp[](~/tutorials/web-api-help-pages-using-swagger/samples/6.x/SwashbuckleSample/Snippets/Program.cs?name=snippet_MiddlewareInjectStylesheet&highlight=5)]
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwaggerUI(options =>
+    {
+        options.InjectStylesheet("/swagger-ui/custom.css");
+    });
+}
+```
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 * [Improve the developer experience of an API with Swagger documentation](/training/modules/improve-api-developer-experience-with-swagger/)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 There are three main components to Swashbuckle:
 
@@ -307,9 +357,9 @@ In the `Startup.Configure` method, enable the middleware for serving the generat
 > Swashbuckle relies on MVC's <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> to discover the routes and endpoints. If the project calls <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>, routes and endpoints are discovered automatically. When calling <xref:Microsoft.Extensions.DependencyInjection.MvcCoreServiceCollectionExtensions.AddMvcCore*>, the <xref:Microsoft.Extensions.DependencyInjection.MvcApiExplorerMvcCoreBuilderExtensions.AddApiExplorer*> method must be explicitly called. For more information, see [Swashbuckle, ApiExplorer, and Routing](https://github.com/domaindrivendev/Swashbuckle.AspNetCore#swashbuckle-apiexplorer-and-routing).
 
 In development, the preceding `UseSwaggerUI` method call enables an embedded version of the Swagger UI tool. This depends on
-the [static file middleware](xref:fundamentals/static-files). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
+the [static file middleware](../../../fundamentals/static-files.md). If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.StaticFiles](https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/) NuGet package to the project.
 
-Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](xref:tutorials/web-api-help-pages-using-swagger#openapi-specification-openapijson).
+Launch the app, and navigate to `http://localhost:<port>/swagger/v1/swagger.json`. The generated document describing the endpoints appears as shown in [OpenAPI specification (openapi.json)](../../web-api-help-pages-using-swagger.md#openapi-specification-openapijson).
 
 The Swagger UI can be found at `http://localhost:<port>/swagger`. Explore the API via Swagger UI and incorporate it in other programs.
 
@@ -515,7 +565,7 @@ The Swagger UI now clearly documents the expected HTTP response codes:
 
 :::image source="~/tutorials/web-api-help-pages-using-swagger/_static/data-annotations-response-types.png" alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+In ASP.NET Core 2.2 or later, conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../../../web-api/advanced/conventions.md).
 
 To support the `[ProducesResponseType]` decoration, the [Swashbuckle.AspNetCore.Annotations](https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/master/README.md#swashbuckleaspnetcoreannotations) package offers extensions to enable and enrich the response, schema, and parameter metadata.
 
@@ -529,7 +579,7 @@ If targeting .NET Framework or .NET Core 1.x, add the [Microsoft.AspNetCore.Stat
 <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.1.1" />
 ```
 
-The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](xref:fundamentals/metapackage).
+The preceding NuGet package is already installed if targeting .NET Core 2.x and using the [metapackage](../../../fundamentals/metapackage.md).
 
 Enable static file middleware:
 

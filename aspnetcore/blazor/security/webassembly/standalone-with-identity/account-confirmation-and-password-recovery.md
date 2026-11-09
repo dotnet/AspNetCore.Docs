@@ -3,7 +3,6 @@ title: Account confirmation and password recovery in ASP.NET Core Blazor WebAsse
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -12,7 +11,7 @@ uid: blazor/security/webassembly/standalone-with-identity/account-confirmation-a
 This article explains how to configure an ASP.NET Core Blazor WebAssembly app with ASP.NET Core Identity with email confirmation and password recovery.
 
 > [!NOTE]
-> This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see <xref:blazor/security/account-confirmation-and-password-recovery>.
+> This article only applies standalone Blazor WebAssembly apps with ASP.NET Core Identity. To implement email confirmation and password recovery for Blazor Web Apps, see [Account confirmation and password recovery in ASP.NET Core Blazor](../../account-confirmation-and-password-recovery.md).
 
 ## Namespaces and article code examples
 
@@ -21,7 +20,7 @@ The namespaces used by the examples in this article are:
 * `Backend` for the backend server web API project ("server project" in this article).
 * `BlazorWasmAuth` for the front-end client standalone Blazor WebAssembly app ("client project" in this article).
 
-These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneWithIdentity` sample solution in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples). For more information, see <xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps>.
+These namespaces correspond to the projects in the `BlazorWebAssemblyStandaloneWithIdentity` sample solution in the [`dotnet/blazor-samples` GitHub repository](https://github.com/dotnet/blazor-samples). For more information, see [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](index.md#sample-apps).
 
 If you aren't using the `BlazorWebAssemblyStandaloneWithIdentity` sample solution, change the namespaces in the code examples to use the namespaces of your projects.
 
@@ -61,7 +60,7 @@ We strongly recommend that you avoid storing secrets in project code or configur
 
 ## Secret Manager Tool
 
-If the server project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
+If the server project has already been initialized for the [Secret Manager tool](../../../../security/app-secrets.md), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the server project's directory. In Visual Studio, you can use the Developer PowerShell command prompt (use the `cd` command to change the directory to the server project after you open the command shell).
 
 ```dotnetcli
 dotnet user-secrets init
@@ -75,7 +74,7 @@ dotnet user-secrets set "EmailAuthKey" "{KEY}"
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
-For more information, see <xref:security/app-secrets>.
+For more information, see [Safe storage of app secrets in development](../../../../security/app-secrets.md).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -131,7 +130,7 @@ public static class AzureHelper
 > [!NOTE]
 > The preceding example uses <xref:Azure.Identity.DefaultAzureCredential> to simplify authentication while developing apps that deploy to Azure by combining credentials used in Azure hosting environments with credentials used in local development. When moving to production, an alternative is a better choice, such as <xref:Azure.Identity.ManagedIdentityCredential>. For more information, see [Authenticate Azure-hosted .NET apps to Azure resources using a system-assigned managed identity](/dotnet/azure/sdk/authentication/system-assigned-managed-identity).
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](../../../../fundamentals/configuration/options.md):
 
 ```csharp
 var tenantId = builder.Configuration.GetValue<string>("AzureAd:TenantId")!;
@@ -176,7 +175,7 @@ Example:
 "VaultUri": "https://contoso.vault.azure.net/"
 ```
 
-Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see [ASP.NET Core Blazor configuration](../../../fundamentals/configuration.md).
 
 ## Implement `IEmailSender` in the server project
 
@@ -314,7 +313,7 @@ Password recovery is a two-step process:
 1. A POST request is made to the `/forgotPassword` endpoint provided by <xref:Microsoft.AspNetCore.Routing.IdentityApiEndpointRouteBuilderExtensions.MapIdentityApi*> in the server project. A message in the UI instructs the user to check their email for a reset code.
 1. A POST request is made to the `/resetPassword` endpoint of the server project with the user's email address, password reset code, and new password.
 
-The preceding steps are demonstrated by the following implementation guidance for the [sample solution](xref:blazor/security/webassembly/standalone-with-identity/index#sample-apps).
+The preceding steps are demonstrated by the following implementation guidance for the [sample solution](index.md#sample-apps).
 
 In the client project, add the following method signatures to the `IAccountManagement` class (`Identity/IAccountManagement.cs`):
 

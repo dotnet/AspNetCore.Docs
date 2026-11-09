@@ -1,9 +1,10 @@
 ---
 title: Overview of Single Page Apps (SPAs) - ASP.NET Core
 monikerRange: '>= aspnetcore-8.0'
+ai-usage: ai-assisted
 description: Learn how to get started with Single Page Apps (SPAs) in ASP.NET Core and find links to tutorials for detailed procedures.
-ms.date: 04/24/2026
-uid: spa/intro
+monikerRange: '>= aspnetcore-6.0'
+ms.date: 10/30/2026
 
 # customer intent: As an ASP.NET developer, I want to get an overview of SPAs in ASP.NET Core, so I can determine the appropriate tutorial to create apps.
 ---

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Understand ASP.NET Core Identity default values and learn how to configure Identity properties to use custom values.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/18/2026
-uid: security/authentication/identity-configuration
 ---
 # Configure ASP.NET Core Identity
 
@@ -59,7 +58,7 @@ By default, Identity requires that passwords contain an uppercase character, low
 Passwords are configured with:
 
 * <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in `Program.cs`.
-* [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](xref:security/authentication/scaffold-identity). `InputModel` `Password` properties are found in the following files:
+* [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](scaffold-identity.md). `InputModel` `Password` properties are found in the following files:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
@@ -145,7 +144,7 @@ builder.Services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-For guidance, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
+For guidance, see [Require global user authentication](../authorization/policies.md#require-global-user-authentication).
 
 <a name="iss6"></a>
 
@@ -209,7 +208,7 @@ By default, Identity requires that passwords contain an uppercase character, low
 Passwords are configured with:
 
 * <xref:Microsoft.AspNetCore.Identity.PasswordOptions> in `Startup.ConfigureServices`.
-* [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](xref:security/authentication/scaffold-identity). `InputModel` `Password` properties are found in the following files:
+* [`[StringLength]` attributes](xref:System.ComponentModel.DataAnnotations.StringLengthAttribute) of `Password` properties if Identity is [scaffolded into the app](scaffold-identity.md). `InputModel` `Password` properties are found in the following files:
   * `Areas/Identity/Pages/Account/Register.cshtml.cs`
   * `Areas/Identity/Pages/Account/ResetPassword.cshtml.cs`
 
@@ -293,6 +292,6 @@ services.Configure<PasswordHasherOptions>(option =>
 
 ## Globally require all users to be authenticated
 
-For guidance, see [Require global user authentication](xref:security/authorization/policies#require-global-user-authentication).
+For guidance, see [Require global user authentication](../authorization/policies.md#require-global-user-authentication).
 
 :::moniker-end

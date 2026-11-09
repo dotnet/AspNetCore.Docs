@@ -3,7 +3,6 @@ title: Rate limiting middleware samples
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
 ms.date: 03/05/2025
-uid: performance/rate-limit-sample
 ---
 
 # Rate limiter samples
@@ -40,7 +39,7 @@ In the preceding code, <xref:Microsoft.AspNetCore.RateLimiting.RateLimiterOption
 
 ## Limiter with authorization
 
-The following sample uses JSON Web Tokens (JWT) and creates a partition with the JWT [access token](https://github.com/dotnet/aspnetcore/blob/fd1891536f27e959d14a140ff9307b6a21191de9/src/Security/Authentication/JwtBearer/src/JwtBearerHandler.cs#L152-L158). In a production app, the JWT would typically be provided by a server acting as a Security token service (STS). For local development, the dotnet [user-jwts](xref:security/authentication/jwt) command line tool can be used to create and manage app-specific local JWTs.
+The following sample uses JSON Web Tokens (JWT) and creates a partition with the JWT [access token](https://github.com/dotnet/aspnetcore/blob/fd1891536f27e959d14a140ff9307b6a21191de9/src/Security/Authentication/JwtBearer/src/JwtBearerHandler.cs#L152-L158). In a production app, the JWT would typically be provided by a server acting as a Security token service (STS). For local development, the dotnet [user-jwts](../security/authentication/jwt-authn.md) command line tool can be used to create and manage app-specific local JWTs.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs" id="snippet_jwt":::
 

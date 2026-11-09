@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Create an ASP.NET Core app using Identity with external authentication providers such as Facebook, X (formerly Twitter), Google, and Microsoft.
 ms.custom: sfi-image-nochange
 ms.date: 04/21/2026
-uid: security/authentication/social/index
 ---
 # External provider authentication in ASP.NET Core Identity
 
@@ -12,7 +11,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 This article explains how to build an ASP.NET Core app that enables users to sign in using OAuth 2.0 with credentials from external authentication providers.
 
-[Facebook](xref:security/authentication/facebook-logins), [X (formerly Twitter)](xref:security/authentication/twitter-logins), [Google](xref:security/authentication/google-logins), and [Microsoft](xref:security/authentication/microsoft-logins) providers are covered in the following sections and use the starter project created in this article. Other providers are available in third-party packages such as [OpenIddict](https://documentation.openiddict.com/integrations/web-providers), [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
+[Facebook](facebook-logins.md), [X (formerly Twitter)](twitter-logins.md), [Google](google-logins.md), and [Microsoft](microsoft-logins.md) providers are covered in the following sections and use the starter project created in this article. Other providers are available in third-party packages such as [OpenIddict](https://documentation.openiddict.com/integrations/web-providers), [AspNet.Security.OAuth.Providers](https://github.com/aspnet-contrib/AspNet.Security.OAuth.Providers) and [AspNet.Security.OpenId.Providers](https://github.com/aspnet-contrib/AspNet.Security.OpenId.Providers).
 
 Enabling users to sign in with their existing credentials is convenient for the users and shifts many of the complexities of managing the sign-in process onto a third party.
 
@@ -60,22 +59,22 @@ Enabling users to sign in with their existing credentials is convenient for the 
 
 ## Use Secret Manager to store tokens assigned by login providers
 
-Social login providers assign **Application Id** and **Application Secret** tokens during the registration process. The exact token names vary by provider. These tokens represent the credentials that the app uses to access the provider's API. The tokens constitute *user secrets* that can be linked to your app configuration with the help of [Secret Manager](xref:security/app-secrets#secret-manager). User secrets are a more secure alternative to storing the tokens in a configuration file, such as `appsettings.json`.
+Social login providers assign **Application Id** and **Application Secret** tokens during the registration process. The exact token names vary by provider. These tokens represent the credentials that the app uses to access the provider's API. The tokens constitute *user secrets* that can be linked to your app configuration with the help of [Secret Manager](../../app-secrets.md#secret-manager). User secrets are a more secure alternative to storing the tokens in a configuration file, such as `appsettings.json`.
 
 > [!IMPORTANT]
-> Secret Manager is only for local development and testing. Protect staging and production secrets with the [Azure Key Vault configuration provider](xref:security/key-vault-configuration), which can also be used for local development and testing if you prefer not to use the Secret Manager locally.
+> Secret Manager is only for local development and testing. Protect staging and production secrets with the [Azure Key Vault configuration provider](../../key-vault-configuration.md), which can also be used for local development and testing if you prefer not to use the Secret Manager locally.
 
-For guidance on storing the tokens assigned by each login provider, see <xref:security/app-secrets>.
+For guidance on storing the tokens assigned by each login provider, see [Safe storage of app secrets in development](../../app-secrets.md).
 
 ## Configure login providers
 
 Use the following articles to configure login providers and the app:
 
-* [Facebook](xref:security/authentication/facebook-logins) instructions
-* [X (formerly Twitter)](xref:security/authentication/twitter-logins) instructions
-* [Google](xref:security/authentication/google-logins) instructions
-* [Microsoft](xref:security/authentication/microsoft-logins) instructions
-* [Other provider](xref:security/authentication/otherlogins) instructions
+* [Facebook](facebook-logins.md) instructions
+* [X (formerly Twitter)](twitter-logins.md) instructions
+* [Google](google-logins.md) instructions
+* [Microsoft](microsoft-logins.md) instructions
+* [Other provider](other-logins.md) instructions
 
 ## Multiple authentication providers
 
@@ -117,5 +116,5 @@ To create a password and sign in using your email that you set during the sign-i
 
 * [Sign in with Apple Example Integration](https://github.com/martincostello/SignInWithAppleSample)
 * [How to customize the login buttons (`dotnet/AspNetCore.Docs` #10563)](https://github.com/dotnet/AspNetCore.Docs/issues/10563)
-* [Persist additional data about the user and their access and refresh tokens](xref:security/authentication/social/additional-claims)
-* [Passkeys (FIDO2/WebAuthn) in ASP.NET Core Identity](xref:security/authentication/passkeys/index): A passwordless alternative to social logins introduced in .NET 10.
+* [Persist additional data about the user and their access and refresh tokens](additional-claims.md)
+* [Passkeys (FIDO2/WebAuthn) in ASP.NET Core Identity](../passkeys/index.md): A passwordless alternative to social logins introduced in .NET 10.

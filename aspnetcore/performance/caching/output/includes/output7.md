@@ -1,6 +1,6 @@
 :::moniker range="= aspnetcore-7.0"
 
-This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
+This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](../../overview.md#output-caching).
 
 The output caching middleware can be used in all types of ASP.NET Core apps: Minimal API, Web API with controllers, MVC, and Razor Pages. The sample app is a Minimal API, but every caching feature it illustrates is also supported in the other app types.
 
@@ -11,9 +11,9 @@ Add the output caching middleware to the service collection by calling <xref:Mic
 Add the middleware to the request processing pipeline by calling <xref:Microsoft.AspNetCore.Builder.OutputCacheApplicationBuilderExtensions.UseOutputCache*>.
 
 > [!NOTE]
-> * In apps that use [CORS middleware](xref:security/cors), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>.
+> * In apps that use [CORS middleware](../../../../security/cors.md), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*>.
 > * In Razor Pages apps and apps with controllers, `UseOutputCache` must be called after `UseRouting`.
-> * In apps that use [authentication](xref:security/authentication/index) or [authorization](xref:security/authorization/introduction), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
+> * In apps that use [authentication](../../../../security/authentication/index.md) or [authorization](../../../../security/authorization/introduction.md), `UseOutputCache` must be called after <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. Otherwise, the output caching middleware can serve content cached for unauthorized users instead of content for authorized users.
 > * Calling `AddOutputCache`and `UseOutputCache` doesn't start caching behavior, it makes caching available. Caching response data must be configured as shown in the following sections.
 
 ## Configure one endpoint or page
@@ -150,7 +150,7 @@ This base policy enables you to use the "tag-all" tag to evict everything in cac
 
 ## Disable resource locking
 
-By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](xref:performance/caching/overview#output-caching).
+By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://en.wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](../../overview.md#output-caching).
 
 To disable resource locking, call [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking*) while creating a policy, as shown in the following example:
 
@@ -170,12 +170,12 @@ The following properties of <xref:Microsoft.AspNetCore.OutputCaching.OutputCache
 
 ## Cache storage
 
-<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis. Or use the [built-in support for Redis cache in .NET 8.](xref:performance/caching/output?view=aspnetcore-8.0&preserve-view=true#cache-storage).
+<xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> is used for storage. By default it's used with <xref:System.Runtime.Caching.MemoryCache>. We don't recommend <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> for use with output caching. `IDistributedCache` doesn't have atomic features, which are required for tagging. We recommend that you create custom <xref:Microsoft.AspNetCore.OutputCaching.IOutputCacheStore> implementations by using direct dependencies on the underlying storage mechanism, such as Redis. Or use the [built-in support for Redis cache in .NET 8.](../../output.md?view=aspnetcore-8.0&preserve-view=true#cache-storage).
 
 ## See also
 
-* <xref:performance/caching/overview>
-* <xref:fundamentals/middleware/index>
+* [Overview of caching in ASP.NET Core](../../overview.md)
+* [ASP.NET Core middleware](../../../../fundamentals/middleware/index.md)
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 

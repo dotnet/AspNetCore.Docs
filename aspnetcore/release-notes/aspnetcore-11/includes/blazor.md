@@ -1,6 +1,6 @@
 ### New `DisplayName` component and support for `[Display]` and `[DisplayName]` attributes
 
-<!-- UPDATE 11.0 - API cross-link 
+<!-- UPDATE 11.0 - API cross-link
 
 <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
 -->
@@ -65,21 +65,21 @@ Blazor.start({
 });
 ```
 
-For more information, see <xref:blazor/fundamentals/startup?view=aspnetcore-11.0#startup-process-and-configuration>.
+For more information, see [ASP.NET Core Blazor startup](../../../blazor/fundamentals/startup.md?view=aspnetcore-11.0&preserve-view=true#startup-process-and-configuration).
 
 ### New `BasePath` component
 
-Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see <xref:blazor/host-and-deploy/app-base-path?view=aspnetcore-11.0>.
+Blazor Web Apps can use the new `BasePath` component (`<BasePath />`) to render the app's app base path (`<base href>`) HTML tag automatically. For more information, see [ASP.NET Core Blazor app base path](../../../blazor/host-and-deploy/app-base-path.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### Inline JS event handler removed from the `NavMenu` component
 
-The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](xref:blazor/js-interop/javascript-location?view=aspnetcore-11.0#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](xref:blazor/security/content-security-policy?view=aspnetcore-11.0) because it doesn't require the CSP to include an unsafe hash for the inline JS.
+The inline JS event handler that toggles the display of navigation links is no longer present in the `NavMenu` component of the Blazor Web App project template. Apps generated from the project template now use a [collocated JS module](../../../blazor/javascript-interoperability/location-of-javascript.md?view=aspnetcore-11.0&preserve-view=true#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) approach to show or hide the navigation bar on the rendered page. The new approach improves [Content Security Policy (CSP) compliance](../../../blazor/security/content-security-policy.md?view=aspnetcore-11.0&preserve-view=true) because it doesn't require the CSP to include an unsafe hash for the inline JS.
 
-To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see <xref:migration/100-to-110>.
+To migrate an existing app to .NET 11, including adopting the new JS module approach for the navigation bar toggler, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md).
 
 ### `NavigateTo` and `NavLink` support for relative navigation
 
-The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
+The new `RelativeToCurrentUri` parameter (default: `false`) for <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> and the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0&preserve-view=true#navlink-component) allows you to navigate to URIs relative to the current page path rather than the app's base URI.
 
 Consider the following nested endpoints:
 
@@ -88,7 +88,7 @@ Consider the following nested endpoints:
     * `/installation`
     * `/configuration`
 
-When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](xref:blazor/fundamentals/routing?view=aspnetcore-11.0#navlink-component) for the desired navigation:
+When the browser's URI is `/docs/getting-started/installation` and you want to navigate the user to `/docs/getting-started/configuration`, `NavigateTo("/configuration")` redirects to `/configuration` at the app's root instead of the relative path at `/docs/getting-started/configuration`. Set the `RelativeToCurrentUri` with <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*> or the [`NavLink` component](../../../blazor/fundamentals/navigation.md?view=aspnetcore-11.0&preserve-view=true#navlink-component) for the desired navigation:
 
 ```csharp
 Navigation.NavigateTo("/configuration", new NavigationOptions
@@ -105,7 +105,7 @@ Navigation.NavigateTo("/configuration", new NavigationOptions
 
 To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports TempData. TempData is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
-TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute).
+TempData is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file and is provided as a cascading value with the [`[CascadingParameter]` attribute](../../../blazor/components/cascading-values-and-parameters.md#cascadingparameter-attribute).
 
 ```csharp
 [CascadingParameter]
@@ -119,7 +119,7 @@ When supplied to a parameter for simple read/write of a single value, use the `[
 public string? Message { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#temporary-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#temporary-data-persistence).
 
 ### New Blazor Web Worker template (`blazorwebworker`)
 
@@ -134,7 +134,7 @@ Existing projects created with the old template continue to work. The rename onl
 
 For more information, see the following resources:
 
-* <xref:blazor/blazor-web-workers?view=aspnetcore-11.0>
+* [ASP.NET Core Blazor with .NET on Web Workers](../../../blazor/blazor-with-dotnet-on-web-workers.md?view=aspnetcore-11.0&preserve-view=true)
 * [.NET Web Worker template update to Blazor Web Worker template (`dotnet/aspnetcore` #66070)](https://github.com/dotnet/aspnetcore/pull/66070) (Please don't comment on closed issues and PRs.)
 
 ### Virtualization enhancements
@@ -142,14 +142,14 @@ For more information, see the following resources:
 * The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component no longer assumes every item has the same height. Previously, the component disabled the browser's native scroll anchoring (to avoid an infinite rendering loop), which meant any height change above the viewport&mdash;item expansion, data updates, lazy-loaded content&mdash;caused visible items to jump on screen. The `Virtualize` component now adapts to measured item sizes at runtime, which reduces incorrect spacing and scrolling when item heights vary.
 
   The updates use a hybrid approach: native CSS scroll anchoring on browsers that support it for non-`<table>` layouts with a manual `ResizeObserver`-based scroll-compensation fallback for `<table>` layouts and Safari, where native anchoring miscalculates positions on `<tr>` elements.
-  
+
   Apps using the `Virtualize` component receive the benefits of these updates automatically. No developer API changes are required.
 
   These updates include an update to the default value of <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.OverscanCount?displayProperty=nameWithType>, which was `3` in .NET 10 or earlier and now changes to `15` in .NET 11 or later. The change in default value increases the precision of average item height calculations.
 
   For more information, see the following resources:
-  
-  * [*Item size* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#item-size) and [*Overscan count* section](xref:blazor/components/virtualization?view=aspnetcore-11.0#overscan-count) of the *Virtualization* article.
+
+  * [*Item size* section](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#item-size) and [*Overscan count* section](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#overscan-count) of the *Virtualization* article.
   * [[Virtualization] Visible content does not shift when in-DOM items above the viewport change height (`dotnet/aspnetcore` #65951)](https://github.com/dotnet/aspnetcore/pull/65951) (Please don't comment on closed issues and PRs).
 
 * Use the new `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
@@ -167,8 +167,8 @@ For more information, see the following resources:
   ```
 
   For more information, see the following resources:
-  
-  * <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>
+
+  * [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added)
   * [[release/11.0-preview4] Virtualization AnchorMode with variable-height support (`dotnet/aspnetcore` #66521)](https://github.com/dotnet/aspnetcore/pull/66521) (Please don't comment on closed issues and PRs.)
 
 * Content Security Policy (CSP) compliance
@@ -182,7 +182,7 @@ For more information, see the following resources:
 
 ### New service defaults library project template for Blazor WebAssembly apps
 
-The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see <xref:blazor/tooling?view=aspnetcore-11.0#service-defaults-library-for-blazor-webassembly-apps>.
+The `blazor-wasm-servicedefaults` project template creates a service defaults library for Blazor WebAssembly apps with [Aspire](/dotnet/aspire/get-started/aspire-overview) integration. For more information, see [Tooling for ASP.NET Core Blazor](../../../blazor/tooling.md?view=aspnetcore-11.0&preserve-view=true#service-defaults-library-for-blazor-webassembly-apps).
 
 ### New development server for Blazor WebAssembly apps
 
@@ -217,7 +217,7 @@ For more information, see [[Blazor] Replace DevServer with BlazorGateway for sta
 
 *This feature applies to server-side Blazor apps.*
 
-Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](xref:blazor/state-management/server#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
+Blazor already supports graceful circuit pause and resume with [`Blazor.pauseCircuit()` and `Blazor.resumeCircuit()`](../../../blazor/state-management/server.md#pause-and-resume-circuits). .NET 11 introduces a symmetric server-side pause and resume capability, where the server can request that connected clients begin the graceful circuit-pause flow.
 
 `Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
 
@@ -227,7 +227,7 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-For more information and an implementation example for server restarts, see <xref:blazor/state-management/server?view=aspnetcore-11.0#server-triggered-circuit-pause>.
+For more information and an implementation example for server restarts, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#server-triggered-circuit-pause).
 
 ### Smaller Blazor WebAssembly publish output
 
@@ -242,7 +242,7 @@ Apps that use OTEL or Hot Reload aren't affected by the preceding updates.
 
 The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) receives several new features in .NET 11.
 
-For more information on the following features, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0>.
+For more information on the following features, see [ASP.NET Core Blazor \`QuickGrid\` component](../../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true).
 
 #### Pagination modes
 
@@ -279,7 +279,7 @@ The constructor takes an optional prefix argument that's prepended to all three 
 ```razor
 @using Microsoft.AspNetCore.Components.QuickGrid
 
-<QuickGrid ... 
+<QuickGrid ...
     QueryParameterNameOptions="@(new QueryParameterNameOptions("products_"))">
     ...
 </QuickGrid>
@@ -329,7 +329,7 @@ With the release of .NET 11, the following `QuickGrid` components require unique
     ...
 </QuickGrid>
 
-<QuickGrid ... Pagination="@pagination2" 
+<QuickGrid ... Pagination="@pagination2"
     QueryParameterNameOptions="@(new QueryParameterNameOptions("cities_"))">
     ...
 </QuickGrid>
@@ -357,6 +357,16 @@ Renaming a column's `Title` is a URL-breaking change. Any bookmarked or shared U
 
 `GetPageUrl` returns a URL with the one-based page number. Page index 0 (page 1) omits the query parameter entirely.
 
+<!-- UPDATE 11.0 - Hold for December servicing release
+
+The `Paginator` component now supports passing custom attributes to its rendered navigation element (`<nav>`). In the following example, the [`aria-label` attribute](https://developer.mozilla.org/docs/Web/Accessibility/ARIA/Reference/Attributes/aria-label) and value are passed:
+
+```razor
+<Paginator State="@pagination" aria-label="Orders page" />
+```
+
+-->
+
 #### CSS breaking change
 
 When URL-based navigation is enabled, selectors targeting `button.col-title` must also target `a.col-title`, and `nav button`/`nav button:disabled` require `nav a`/`nav a[aria-disabled="true"]`. The built-in QuickGrid stylesheet provides both by default.
@@ -383,7 +393,7 @@ The `QuickGrid` component now supports row click events through the new <xref:Mi
 @using Microsoft.AspNetCore.Components.QuickGrid
 @inject NavigationManager NavigationManager
 
-<QuickGrid Items="@people.AsQueryable()" 
+<QuickGrid Items="@people.AsQueryable()"
     OnRowClick="@((Person args) => HandleRowClick(args))">
     <PropertyColumn Property="@(p => p.Name)" />
     <PropertyColumn Property="@(p => p.Email)" />
@@ -448,7 +458,7 @@ public string? Message { get; set; }
 public string? FlashMessage { get; set; }
 ```
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#session-data-persistence>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#session-data-persistence).
 
 ### `GetUriWithFragment` extension method
 
@@ -599,7 +609,7 @@ Blazor WebAssembly now supports `IHostedService` for running background services
 public class DataRefreshService : IHostedService
 {
     private Timer? _timer;
-    
+
     public Task StartAsync(CancellationToken cancellationToken)
     {
         _timer = new Timer(RefreshData, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
@@ -655,7 +665,7 @@ You can also set the options in a Razor component with the `ConfigureBrowser` co
 <ConfigureBrowser Options="RequestBrowserOptions" />
 
 ...
-    
+
 @code {
     private BrowserOptions RequestBrowserOptions => new()
     {
@@ -708,7 +718,7 @@ Blazor static server-side rendering (static SSR) forms now get instant, in-brows
 
 The feature is enabled by default for all static SSR forms that include the `DataAnnotationsValidator` component. Both enhanced and non-enhanced forms are supported.
 
-Complete feature coverage is available in <xref:blazor/forms/validation-client-side?view=aspnetcore-11.0>.
+Complete feature coverage is available in [ASP.NET Core Blazor client-side form validation in static SSR](../../../blazor/forms/validation-client-side.md?view=aspnetcore-11.0&preserve-view=true).
 
 For more information, see the following resources:
 
@@ -771,7 +781,7 @@ Validator components register asynchronous work with `ValidationRequestedEventAr
 }
 ```
 
-Complete feature coverage is available in <xref:blazor/forms/validation-advanced?view=aspnetcore-11.0#asynchronous-validation>.
+Complete feature coverage is available in [ASP.NET Core Blazor advanced form validation](../../../blazor/forms/validation-advanced.md?view=aspnetcore-11.0&preserve-view=true#asynchronous-validation).
 
 For more information, see [Add built-in support for async form validation in Blazor (`dotnet/aspnetcore` #66526)](https://github.com/dotnet/aspnetcore/pull/66526).
 
@@ -785,18 +795,18 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 
 ### Antiforgery middleware (`app.UseAntiforgery()`) optional in Blazor Web Apps
 
-[CSRF protection](xref:security/anti-request-forgery#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
+[CSRF protection](../../../security/anti-request-forgery.md#automatic-csrf-protection-in-aspnet-core) is enabled by default via the auto-injected CSRF protection middleware, so an explicit `app.UseAntiforgery()` call in a Blazor Web App is usually unnecessary and should only be added for specific use cases. The call no longer appears in apps created from the Blazor Web App project template.
 
 For more information, see the following resources:
 
-* <xref:migration/100-to-110>
+* [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md)
 * [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 
-* <xref:security/anti-request-forgery?view=aspnetcore-11.0>
-* <xref:blazor/forms/index?view=aspnetcore-11.0#antiforgery-support>
-* <xref:blazor/security/index?view=aspnetcore-11.0#antiforgery-support>
+* [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../../../security/anti-request-forgery.md?view=aspnetcore-11.0&preserve-view=true)
+* [ASP.NET Core Blazor forms overview](../../../blazor/forms/index.md?view=aspnetcore-11.0&preserve-view=true#antiforgery-support)
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md?view=aspnetcore-11.0&preserve-view=true#antiforgery-support)
 
 ### Blazor Virtualize can scroll to an item
 
@@ -824,7 +834,7 @@ Out-of-range indexes are clamped to the valid range. If a second `ScrollToItemAs
 
 For more information, see the following resources:
 
-* <xref:blazor/components/virtualization#scroll-to-a-specific-item>
+* [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md#scroll-to-a-specific-item)
 * [Add `InitialIndex` (sic&dagger;) parameter and `ScrollToIndexAsync` (sic&dagger;) API to `Virtualize<TItem>` (`dotnet/aspnetcore` #66753)](https://github.com/dotnet/aspnetcore/pull/66753). (Please don't comment on closed issues and PRs. *sic*&dagger;: API naming was changed without updating the title of the PR.)
 
 ### Automatic circuit pause on tab inactivity
@@ -838,24 +848,24 @@ app.MapRazorComponents<App>()
 
 After the tab is hidden for a configurable delay period (default: 2 minutes), the circuit pauses. If the user returns before the delay elapses, the pause doesn't occur.
 
-For more information, see <xref:blazor/state-management/server?view=aspnetcore-11.0#automatic-circuit-pause-on-tab-inactivity>.
+For more information, see [ASP.NET Core Blazor server-side state management](../../../blazor/state-management/server.md?view=aspnetcore-11.0&preserve-view=true#automatic-circuit-pause-on-tab-inactivity).
 
 ### Wider support for `AuthorizationPolicy` and `IAuthorizationRequirementData`
 
-Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](xref:blazor/security/index#authorizeview-component) and [`AuthorizeRouteView`](xref:blazor/security/authentication-state?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+Starting in .NET 11, you can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](../../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
 
-For more information, see <xref:security/authorization/iard?view=aspnetcore-11.0>.
+For more information, see [Custom authorization policies with \`IAuthorizationRequirementData\`](../../../security/authorization/custom-authorization-policies-with-iauthorizationrequirementdata.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### QuickGrid APIs from Virtualize are exposed
 
 The following new [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) APIs are exposed when a grid is virtualized (<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Virtualize> set to `true`):
 
-* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
-* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#scroll-to-a-specific-item>.
-* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
-* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see <xref:blazor/components/virtualization?view=aspnetcore-11.0#control-viewport-scroll-position-behavior-when-items-are-dynamically-added>.
+* `InitialItemIndex`: Scrolls the grid to the given zero-based row index on the first interactive render. The value is applied once and clamped to the valid range. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#scroll-to-a-specific-item).
+* `ScrollToItemAsync`: Programmatically scrolls the grid to the given zero-based row index, aligning it to the top. The last call wins, and the method throws an <xref:System.InvalidOperationException> when virtualization is disabled or the grid isn't rendered yet. This forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#scroll-to-a-specific-item).
+* `AnchorMode`: Controls how the viewport behaves at list edges when items are dynamically added (default: `Start`). This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
+* `ItemComparer`: A comparer used to detect whether items were prepended or appended between data loads, which is useful for class-typed items supplied by an <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.ItemsProvider>. This is an experimental API that requires opting in to the `ASP0030` diagnostic, and it forwards to the inner `Virtualize` component. For more information, see [ASP.NET Core Razor component virtualization](../../../blazor/components/virtualization.md?view=aspnetcore-11.0&preserve-view=true#control-viewport-scroll-position-behavior-when-items-are-dynamically-added).
 
-For more information, see <xref:blazor/components/quickgrid?view=aspnetcore-11.0#quickgrid-implementation>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../../blazor/components/quickgrid.md?view=aspnetcore-11.0&preserve-view=true#quickgrid-implementation).
 
 ### Cache rendered output of a component subtree during static SSR
 
@@ -869,7 +879,7 @@ The new `CacheView` component caches the rendered output of a Razor component su
 </CacheView>
 ```
 
-For more information, see <xref:blazor/state-management/cacheview-component?view=aspnetcore-11.0>.
+For more information, see [ASP.NET Core Blazor CacheView component](../../../blazor/state-management/cacheview-component.md?view=aspnetcore-11.0&preserve-view=true).
 
 ### Blazor Server circuits update after authentication refresh
 
@@ -890,96 +900,11 @@ Modern AI apps increasingly provide rich interactions with agents. A complete ag
 
 The new [`Microsoft.AspNetCore.Components.AI` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.AI) includes an initial set of Blazor AI components for streaming chat, rich-text and tool rendering, human approval flows, and typed, shared, and predictive UI state.
 
-#### Get started
+Blazor AI chat interface showing a conversation with a travel planning agent:
 
-<!-- UPDATE 11.0 - Update the package reference. -->
+![Conversation with a travel planning agent](~/release-notes/aspnetcore-11/static/blazor-ai-chat.png)
 
-> [!IMPORTANT]
-> The `Microsoft.AspNetCore.Components.AI` package is a prerelease, experimental package throughout .NET 11.
-
-Add the package to a Blazor app:
-
-```dotnetcli
-dotnet add package Microsoft.AspNetCore.Components.AI --prerelease
-```
-
-Basic chat and the Components.AI block model work with any `IChatClient`. To connect the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com), install the `AGUI.Client` package:
-
-```dotnetcli
-dotnet add package AGUI.Client
-```
-
-`AGUI.Client` includes a transitive reference to `AGUI.Abstractions`, which provides the AG-UI event types used in later examples. Register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
-
-```csharp
-using AGUI.Client;
-using Microsoft.Extensions.AI;
-
-builder.Services.AddHttpClient("Agent", client =>
-{
-    client.Timeout = Timeout.InfiniteTimeSpan;
-});
-
-builder.Services.AddScoped<IChatClient>(services =>
-{
-    var httpClient = services.GetRequiredService<IHttpClientFactory>()
-        .CreateClient("Agent");
-
-    return new AGUIChatClient(
-        new AGUIChatClientOptions(httpClient, "https://api.example.com/agent"));
-});
-```
-
-`AGUIChatClient` streams AG-UI events as `ChatResponseUpdate` values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any `IChatClient`, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
-
-Microsoft Agent Framework (MAF) can expose an `AIAgent` through an ASP.NET Core AG-UI endpoint. For the server-side setup, see [AG-UI integration with Agent Framework](/agent-framework/integrations/by-component/ui/ag-ui/) and its [.NET getting-started guide](/agent-framework/integrations/by-component/ui/ag-ui/getting-started).
-
-#### Build a basic streaming conversation
-
-The first step in an agentic UI is often a basic conversation that streams responses and retains message history across turns. The [initial chat support](https://github.com/dotnet/aspnetcore/pull/68323) is provider- and protocol-neutral. Apps supply an `IChatClient` from `Microsoft.Extensions.AI`, and `UIAgent` converts its streaming responses into observable content blocks.
-
-`ChatPage` is a complete chat shell that combines three lower-level components:
-
-* `AgentBoundary` creates and cascades the conversation state.
-* `MessageList` renders each turn as it streams and provides default typing, error, and retry UI.
-* `MessageInput` sends messages from a text area and disables input while a response is streaming.
-
-The following component creates a `UIAgent` over an app-provided `IChatClient` and renders the conversation with `ChatPage`:
-
-```razor
-@rendermode InteractiveServer
-@using Microsoft.AspNetCore.Components.AI
-@using Microsoft.Extensions.AI
-@implements IDisposable
-@inject IChatClient ChatClient
-
-<ChatPage Agent="agent" Placeholder="Type a message...">
-    <WelcomeContent>
-        <p>Ask the agent a question.</p>
-    </WelcomeContent>
-</ChatPage>
-
-@code {
-    private UIAgent agent = default!;
-
-    protected override void OnInitialized()
-    {
-        agent = new UIAgent(ChatClient);
-    }
-
-    public void Dispose() => agent.Dispose();
-}
-```
-
-`Placeholder` sets the hint shown in the empty message input. `WelcomeContent` supplies the content shown before the first message is sent.
-
-Include the component styles in the `App` component (`Components/App.razor`):
-
-```razor
-<link rel="stylesheet" href="@Assets["_content/Microsoft.AspNetCore.Components.AI/ai-chat.css"]" />
-```
-
-![Blazor AI chat interface showing a conversation with a travel planning agent](~/release-notes/aspnetcore-11/static/blazor-ai-chat.png)
+For more information, see [ASP.NET Core Blazor AI components for agentic user interfaces](../../../blazor/components/ai-components.md).
 
 #### Render content blocks
 
@@ -1009,313 +934,11 @@ The following example replaces the default rendering for conversational content:
 
 Use the renderer's `When` predicate to only handle selected blocks of a type. If multiple renderers match, the most recently registered renderer takes precedence. Apps can also define custom `ContentBlock` types and map response content to them with a `ContentBlockHandler<TState>`.
 
-#### Render structured rich text
 
-The [rich-text support](https://github.com/dotnet/aspnetcore/pull/68324) permits an agent to return a structured presentation model instead of plain text. `RichTextContent` is response content that contains both plain text and `RichTextNode` values for headings, paragraphs, emphasis, links, lists, code blocks, tables, and other presentation elements. `UIAgent` maps it to the same `RichContentBlock` used for plain `TextContent` but uses the supplied node tree instead of creating simple paragraphs.
 
-Apps can produce `RichTextContent` directly or use `IChatClient` middleware to transform streamed `TextContent`, such as by parsing markdown into `RichTextNode` values. The package doesn't require or include a particular markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
 
-#### Render server tool calls
 
-An agent can call a tool that runs on its server while the Blazor app renders the operation using app-specific UI. For example, the agent can call a weather tool, and the app can show the requested location immediately, followed by a weather card when the server returns the result.
 
-Server tool calls become `FunctionInvocationContentBlock` instances, which pair the `FunctionCallContent` with its eventual `FunctionResultContent` and expose the tool name, arguments, and completion state.
-
-The package's source generator creates a strongly typed block handler from a class annotated with `ToolBlock`, `ToolParameter`, and `ToolResult` ([[Blazor] Add Components.AI server tool rendering (`dotnet/aspnetcore` #68327)](https://github.com/dotnet/aspnetcore/pull/68327)):
-
-```csharp
-[ToolBlock("get_weather")]
-public partial class WeatherToolBlock : FunctionInvocationContentBlock
-{
-    [ToolParameter(Name = "location")]
-    public string? Location { get; set; }
-
-    [ToolResult]
-    public WeatherInfo? Weather { get; set; }
-}
-```
-
-Register the generated handlers when constructing the `UIAgent`:
-
-```csharp
-var agent = new UIAgent(
-    chatClient,
-    options => options.AddGeneratedToolBlocks());
-```
-
-Render the generated block in `MessageListContent`:
-
-```razor
-<ChatPage Agent="agent">
-    <MessageListContent>
-        <BlockRenderer TBlock="WeatherToolBlock">
-            @if (context.HasResult)
-            {
-                <p>@context.Location: @context.Weather?.Temperature&deg;C</p>
-            }
-            else
-            {
-                <p>Checking the weather for @context.Location...</p>
-            }
-        </BlockRenderer>
-    </MessageListContent>
-</ChatPage>
-```
-
-As the call arguments stream, the generated handler updates `Location` while `HasResult` remains `false`. When the result arrives, it populates `Weather`, sets `HasResult` to `true`, and rerenders the same block as the completed weather card.
-
-![A generated typed tool block rendering a weather result](~/release-notes/aspnetcore-11/static/blazor-ai-tool-block.png)
-
-When MAF hosts the remote agent, backend tools use its normal tool pipeline and AG-UI transports the call and result to the client. See [Backend tool rendering with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/backend-tool-rendering).
-
-#### Run frontend tools
-
-Frontend tools run in the client app rather than on the agent server. For example, a Blazor app can expose a tool that changes UI state, reads a local preference, or asks the user for input. Create the tool with `AIFunctionFactory` from `Microsoft.Extensions.AI`, then register it with `UIAgentOptions.RegisterUIAction` ([[Blazor] Add Components.AI client tool rendering (`dotnet/aspnetcore` #68325)](https://github.com/dotnet/aspnetcore/pull/68325)).
-
-`RegisterUIAction` advertises the `AIFunction` to the agent. When the agent requests it, `UIAgent` creates a `UIActionBlock` instead of executing the function immediately:
-
-```csharp
-var setAccentColor = AIFunctionFactory.Create(
-    async (string color) =>
-    {
-        await InvokeAsync(() =>
-        {
-            accentColor = color;
-            StateHasChanged();
-        });
-        return $"Changed the accent color to {color}.";
-    },
-    name: "set_accent_color");
-
-var agent = new UIAgent(
-    chatClient,
-    options => options.RegisterUIAction(setAccentColor))
-```
-
-Place a `BlockRenderer<UIActionBlock>` in `MessageListContent` to handle the function call requested by the agent. For example, the renderer can use a component that automatically invokes the function and displays its progress:
-
-```razor
-<ChatPage Agent="agent">
-    <MessageListContent>
-        <BlockRenderer TBlock="UIActionBlock"
-                       When='@(action => action.ToolName == "set_accent_color")'
-                       Context="action">
-            <AutoInvokeAction Action="action" />
-        </BlockRenderer>
-    </MessageListContent>
-</ChatPage>
-```
-
-The `AutoInvokeAction` component calls `InvokeAsync` when it receives the block:
-
-```razor
-@if (Action.IsComplete)
-{
-    <span>Accent color updated</span>
-}
-else
-{
-    <span>Updating accent color...</span>
-}
-
-@code {
-    [Parameter, EditorRequired]
-    public UIActionBlock Action { get; set; } = default!;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (!Action.IsComplete)
-        {
-            await Action.InvokeAsync();
-        }
-    }
-}
-```
-
-Calling `InvokeAsync` executes the registered function with the arguments supplied by the agent. The function runs wherever the Blazor UI runs: in the server-side circuit for Blazor Server or in the browser for WebAssembly. When the function completes, `UIAgent` sends its result back to the agent and continues the conversation. Use the renderer's `When` predicate to provide different handling for each `action.ToolName`. A renderer can invoke the action automatically, as shown here, or present UI that collects input or confirmation first.
-
-#### Require approval before tools run
-
-An app can require the user to approve a consequential tool call, such as scheduling a meeting, before the agent proceeds. Tool approval requests become `FunctionApprovalBlock` instances. The conversation pauses until the UI calls `Approve` or `Reject` ([[Blazor] Add Components.AI human approval flows (`dotnet/aspnetcore` #68329)](https://github.com/dotnet/aspnetcore/pull/68329)):
-
-```razor
-<ChatPage Agent="agent">
-    <MessageListContent>
-        <BlockRenderer TBlock="FunctionApprovalBlock" Context="approval">
-            <p>Allow <code>@approval.ToolName</code> to run?</p>
-            <button @onclick="approval.Approve">Approve</button>
-            <button @onclick="() => approval.Reject()">Reject</button>
-        </BlockRenderer>
-    </MessageListContent>
-</ChatPage>
-```
-
-![A tool call waiting for human approval](~/release-notes/aspnetcore-11/static/blazor-ai-tool-approval.png)
-
-For a MAF agent, the server decides which functions require approval, and AG-UI transports the request and decision. See [Human-in-the-loop with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/human-in-the-loop).
-
-#### Display activities
-
-An activity is an app-defined progress item that updates in place while an agent performs longer-running work. For example, a research agent can show that it's searching sources, comparing results, and completing the research without adding a separate message for every update.
-
-`ActivityHandler<TBlock>` is a protocol-neutral extension point that maps provider- or app-specific progress updates into a mutable `ActivityContentBlock` ([[Blazor] Add agentic generative UI state rendering (`dotnet/aspnetcore` #68333)](https://github.com/dotnet/aspnetcore/pull/68333)). `TryCreateBlock` initializes and emits the block for the first matching update. `TryUpdateBlock` mutates the same block as later updates arrive and indicates when the activity is complete. Register the handler with `UIAgentOptions.AddBlockHandler`, then provide a `BlockRenderer` for the app-specific block. Activities don't have a default visual representation.
-
-AG-UI's `ACTIVITY_SNAPSHOT` and `ACTIVITY_DELTA` events are one possible source of these updates. `AGUIChatClient` exposes the original event through `ChatResponseUpdate.RawRepresentation`. For example, an app can handle replacing snapshots whose payload includes an app-defined `complete` property:
-
-```csharp
-using System.Text.Json;
-using Microsoft.AspNetCore.Components.AI;
-using AGUI.Abstractions;
-
-public sealed class ResearchActivityBlock : ActivityContentBlock
-{
-    public string ActivityMessageId { get; set; } = "";
-}
-
-public sealed class ResearchActivityHandler
-    : ActivityHandler<ResearchActivityBlock>
-{
-    protected override bool TryCreateBlock(
-        BlockMappingContext context,
-        ResearchActivityBlock state)
-        => TryApplySnapshot(context, state, out _);
-
-    protected override bool TryUpdateBlock(
-        BlockMappingContext context,
-        ResearchActivityBlock state,
-        out bool isCompleted)
-        => TryApplySnapshot(context, state, out isCompleted);
-
-    private static bool TryApplySnapshot(
-        BlockMappingContext context,
-        ResearchActivityBlock state,
-        out bool isCompleted)
-    {
-        isCompleted = false;
-
-        if (context.Update.RawRepresentation is not ActivitySnapshotEvent snapshot ||
-            (state.ActivityMessageId.Length > 0 &&
-             (state.ActivityMessageId != snapshot.MessageId ||
-              snapshot.Replace == false)))
-        {
-            return false;
-        }
-
-        state.ActivityMessageId = snapshot.MessageId;
-        state.ActivityType = snapshot.ActivityType;
-        state.Content = snapshot.Content;
-        isCompleted =
-            snapshot.Content.ValueKind == JsonValueKind.Object &&
-            snapshot.Content.TryGetProperty("complete", out var complete) &&
-            complete.ValueKind == JsonValueKind.True;
-        context.MarkUpdateHandled();
-        return true;
-    }
-}
-```
-
-The handler stores the AG-UI message ID on the block to correlate later snapshots. Apps that consume `ActivityDeltaEvent` instead apply its RFC 6902 JSON Patch operations to the current `Content` before returning from `TryUpdateBlock`. The app defines the activity payload and completion semantics; Components.AI doesn't include an AG-UI-specific activity handler or JSON Patch implementation.
-
-#### Shared state
-
-Agentic UIs often show a shared workspace alongside the conversation, such as a recipe, document, form, or plan that the agent can update. `UIAgent<TState>` exposes this data as typed, observable UI state separately from conversational content ([[Blazor] Add agentic generative UI state rendering (`dotnet/aspnetcore` #68333)](https://github.com/dotnet/aspnetcore/pull/68333)).
-
-The app configures a state mapper for the `ChatResponseUpdate` values produced by its `IChatClient`. In an AG-UI integration, the agent server explicitly maps selected tool results to `STATE_SNAPSHOT` or `STATE_DELTA` events. `AGUIChatClient` then exposes those events through `ChatResponseUpdate.RawRepresentation`, where the Blazor app can deserialize them and call `SetState`:
-
-```csharp
-using System.Text.Json;
-using AGUI.Abstractions;
-using Microsoft.AspNetCore.Components.AI;
-
-var agent = new UIAgent<RecipeState>(chatClient, options =>
-{
-    options.StateMapper = context =>
-    {
-        if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
-            snapshot.Snapshot.Deserialize<RecipeState>(
-                JsonSerializerOptions.Web) is { } state)
-        {
-            context.SetState(state);
-        }
-    };
-});
-```
-
-Read the current value from `agent.State.Value` and subscribe to `agent.State.OnChanged` when the surrounding component needs to rerender. State mappers can also handle app-specific `AIContent` from other `IChatClient` implementations.
-
-![Typed agent state rendered as a recipe card](~/release-notes/aspnetcore-11/static/blazor-ai-shared-state.png)
-
-For the corresponding MAF server configuration, including mapping tool results to state snapshots and deltas, see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
-
-#### Show predictive UI state
-
-Predictive state permits an app to render an agent's proposed state change while the model is still generating it without replacing the committed state. For example, as an agent generates the complete contents of an edited document in a tool argument, the UI can progressively display the proposed document and a diff. When generation finishes, the user can accept the completed proposal or reject it and restore the committed document.
-
-An AG-UI server integration can map streamed arguments for a state-writing tool to provisional state events. The completed tool-call arguments are the authoritative proposal. When creating the `UIAgent<TState>`, configure its state mapper to deserialize those events and call `SetPredictiveState`. `AgentState<TState>` then retains the prior committed value for rollback ([[Blazor] Add predictive state updates (`dotnet/aspnetcore` #68335)](https://github.com/dotnet/aspnetcore/pull/68335)):
-
-```csharp
-using System.Text.Json;
-using AGUI.Abstractions;
-using Microsoft.AspNetCore.Components.AI;
-
-var agent = new UIAgent<DocumentState>(chatClient, options =>
-{
-    options.StateMapper = context =>
-    {
-        if (context.Update.RawRepresentation is StateSnapshotEvent snapshot &&
-            snapshot.Snapshot.Deserialize<DocumentState>(
-                JsonSerializerOptions.Web) is { } predictedState)
-        {
-            context.SetPredictiveState(predictedState);
-        }
-    };
-
-    options.RegisterUIAction(AIFunctionFactory.Create(
-        ConfirmChanges,
-        name: "confirm_changes",
-        description: "Confirm the proposed document changes."));
-});
-```
-
-The example also registers a `confirm_changes` frontend action. When the action appears, a custom block renderer displays the accept and reject controls. The renderer adds the user's choice as the `accepted` argument and calls `UIActionBlock.InvokeAsync`, which runs the registered callback:
-
-```csharp
-private string ConfirmChanges(bool accepted)
-{
-    if (accepted)
-    {
-        agent.State.AcceptPredictiveState();
-    }
-    else
-    {
-        agent.State.RejectPredictiveState();
-    }
-
-    return accepted
-        ? "The user accepted the changes."
-        : "The user rejected the changes.";
-}
-```
-
-The provisional value is immediately available from `agent.State.Value`, and `HasPendingPredictiveState` indicates that it isn't committed. The callback commits the completed proposal or restores the baseline, and its return value reports the decision to the agent in a follow-up run. If generation fails, is canceled, or ends without a decision, the provisional value is automatically rolled back. The server-side extraction and mapping of streamed tool arguments must be configured explicitly; see [State management with AG-UI](/agent-framework/integrations/by-component/ui/ag-ui/state-management).
-
-![An express shipping proposal with accept and reject actions](~/release-notes/aspnetcore-11/static/blazor-ai-predictive-state.png)
-
-#### Persist and restore conversations
-
-An `IConversationThread` stores completed turns so a UI can rebuild its conversation after the component or app restarts. A thread can also retain protocol metadata, such as the `threadId` and previous `runId` used to continue a server-owned AG-UI conversation.
-
-Pass the thread when constructing `UIAgent`, then call `UIAgent.RestoreAsync` or `AgentContext.RestoreAsync` to explicitly replay the stored updates into content blocks and typed state ([[Blazor] Add shared agent and UI state (`dotnet/aspnetcore` #68334)](https://github.com/dotnet/aspnetcore/pull/68334)):
-
-```csharp
-var agent = new UIAgent(
-    chatClient,
-    options => options.Thread = conversationThread);
-
-var restoredBlocks = await agent.RestoreAsync();
-```
-
-Passing a thread to `UIAgent` enables new completed turns to be persisted but doesn't automatically restore earlier turns. For MAF-hosted AG-UI agents, see [AG-UI conversation continuity](/agent-framework/integrations/by-component/ui/ag-ui/getting-started#conversation-continuity).
 
 ### Validation attributes are no longer experimental
 
@@ -1323,6 +946,6 @@ Passing a thread to `UIAgent` enables new completed turns to be persisted but do
 
 For more information, see the following resources:
 
-* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-* <xref:fundamentals/validation?view=aspnetcore-11.0#nested-objects-and-collections>
-* <xref:fundamentals/validation?view=aspnetcore-11.0#force-generate-validatable-type-information>
+* [Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10](../../../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0&preserve-view=true#nested-objects-and-collections)
+* [Validation in ASP.NET Core](../../../fundamentals/validation.md?view=aspnetcore-11.0&preserve-view=true#force-generate-validatable-type-information)

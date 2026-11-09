@@ -3,7 +3,6 @@ title: Create backend services for native mobile apps with ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to create backend services using ASP.NET Core MVC to support native mobile apps.
 ms.date: 05/12/2026
-uid: mobile/native-mobile-backend
 ---
 # Create backend services for native mobile apps with ASP.NET Core
 
@@ -306,7 +305,7 @@ A DTO may be used to:
 * Omit some properties to reduce payload size.
 * Flatten object graphs that contain nested objects. Flattened object graphs can be more convenient for clients.
 
-To demonstrate the DTO approach, see [Prevent over-posting](xref:tutorials/first-web-api#prevent-over-posting)
+To demonstrate the DTO approach, see [Prevent over-posting](../tutorials/first-web-api.md#prevent-over-posting)
 
 ## Common Web API conventions
 

@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Discover how to prevent attacks against web apps where a malicious website can influence the interaction between a client browser and the app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/26/2026
-uid: security/anti-request-forgery
 ---
 # Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core
 
@@ -49,7 +48,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -64,7 +63,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password they're issued a token containing an authentication ticket. The token can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed with the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 Modern web browsers support the `SameSite` cookie attribute, which specifies whether a cookie is sent with cross-site requests. Configuring `SameSite` on cookies provides a browser-level defense against CSRF attacks:
 
@@ -82,13 +81,13 @@ While `SameSite` cookies mitigate many CSRF attacks, they should be used as part
 
 :::moniker range=">= aspnetcore-11.0"
 
-Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens or [automatic CSRF protection](#automatic-csrf-protection-in-aspnet-core) provides the most comprehensive protection. For more information, see [Work with SameSite cookies in ASP.NET Core](samesite.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens provides the most comprehensive protection. For more information, see <xref:security/samesite>.
+Therefore, combining `SameSite` cookies with ASP.NET Core antiforgery tokens provides the most comprehensive protection. For more information, see [Work with SameSite cookies in ASP.NET Core](samesite.md).
 
 :::moniker-end
 
@@ -122,7 +121,7 @@ Modern browsers attach [Fetch Metadata](https://developer.mozilla.org/docs/Web/H
 
 ASP.NET Core ships an automatic CSRF protection middleware that's enabled by default in apps built with `WebApplication.CreateBuilder`. Unlike the [token-based antiforgery system](#antiforgery-in-aspnet-core), this middleware doesn't issue or validate tokens. Instead, it inspects the `Sec-Fetch-Site` and `Origin` [Fetch metadata headers](#fetch-metadata-headers) and records a validation verdict on the request. Components that process submitted form data enforce that verdict, rejecting cross-origin form posts that aren't explicitly trusted.
 
-For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](xref:security/cors) to declare the trusted origin or opt the endpoint out.
+For most apps, no code changes are required: same-origin browser requests, safe HTTP methods, and non-browser clients (`curl`, server-to-server, mobile apps) all pass through unaffected. The middleware primarily affects apps that accept cross-origin form posts from a browser, such as a site that posts a form to an API on a different origin. Those scenarios need to either configure [CORS](cors.md) to declare the trusted origin or opt the endpoint out.
 
 This middleware is *additive* to the token-based antiforgery system. The two protections coexist and can both be active on the same endpoint. For a comparison of when each one applies, see [Interaction with token-based antiforgery](#interaction-with-token-based-antiforgery).
 
@@ -183,7 +182,7 @@ The middleware integrates with the existing antiforgery model:
 
 The most common scenario that requires action is a browser-based client that submits a cross-origin form—for example, a site at `https://app.contoso.com` posting a form to an API at `https://api.contoso.com`. Such form posts are denied by default because `Sec-Fetch-Site` is `same-site` or `cross-site` rather than `same-origin`, and the form consumer enforces that verdict with a `400 - Bad Request`.
 
-The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](xref:security/cors) resolves for the endpoint: if that policy allows the request's `Origin` *and* the policy has `.AllowCredentials()` configured, the CSRF middleware records an allowed verdict for the request.
+The CSRF middleware doesn't introduce its own trust list. It reuses the same CORS policy that the [CORS middleware](cors.md) resolves for the endpoint: if that policy allows the request's `Origin` *and* the policy has `.AllowCredentials()` configured, the CSRF middleware records an allowed verdict for the request.
 
 Allowing an origin with `WithOrigins` does not, by itself, permit browser JavaScript at that origin to read responses to credentialed requests. `.AllowCredentials()` grants that permission. Omitting it does not guarantee that requests arrive without credentials, so CORS alone is not a defense against CSRF. The CSRF middleware requires both an allowed origin and `.AllowCredentials()` as an explicit trust signal. Otherwise, the request falls through to the remaining `Sec-Fetch-Site` and Origin-vs-Host checks.
 
@@ -234,7 +233,7 @@ app.MapPost("/widgets", ([FromForm] Widget w) => Results.Created($"/widgets/{w.I
 
 `[DisableCors]` on an endpoint isn't a CSRF opt-out. It skips the CORS-derived trust step, and the request still has to satisfy the `Sec-Fetch-Site` and Origin-vs-Host rules. To opt out of CSRF protection, see [Opting an endpoint out](#opting-an-endpoint-out).
 
-For details on configuring CORS itself—`AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API—see <xref:security/cors>.
+For details on configuring CORS itself—`AddCors`, `AddDefaultPolicy`, `AddPolicy`, `WithOrigins`, and the rest of the policy builder API—see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](cors.md).
 
 ### Opting an endpoint out
 
@@ -360,7 +359,7 @@ The two CSRF defenses target different layers and are designed to coexist. They 
 | Introduced | ASP.NET Core 2.0+ | .NET 11 |
 | Activation | Opt-in via `app.UseAntiforgery()` (or implicitly by `AddMvc` / `MapRazorPages` / `AddRazorComponents`) | Auto-injected by `WebApplication.CreateBuilder` |
 | Validates | Synchronized token (form field + cookie pair) | `Sec-Fetch-Site` / `Origin` headers |
-| Requires | <xref:security/data-protection/introduction> for token encryption | No tokens, no state |
+| Requires | [ASP.NET Core Data Protection Overview](data-protection/introduction.md) for token encryption | No tokens, no state |
 | Browser scope | All browsers that send cookies | All modern browsers; `Origin` fallback for legacy |
 | Per-endpoint opt-out | `.DisableAntiforgery()` / `[IgnoreAntiforgeryToken]` | Same — both honor the same metadata |
 
@@ -396,7 +395,7 @@ The behavior depends on which middleware ran:
 * Apps that call `app.UseAntiforgery()` are unchanged. The token-based middleware validates each request, and antiforgery tokens are generated for rendered forms as before.
 * Apps that don't call `app.UseAntiforgery()` are protected by the automatic CSRF middleware instead. In that configuration, the endpoint skips antiforgery token generation because no token middleware is present to validate a token on a later request.
 
-This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see <xref:migration/100-to-110>. For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
+This is a behavior change for static SSR that previously removed `app.UseAntiforgery()`: they're now protected by the CSRF middleware rather than left unprotected, and they stop emitting antiforgery tokens. For migration guidance, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md). For the formal breaking-change notice, see [Blazor server-side rendering defers antiforgery validation to middleware](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection).
 
 ### Troubleshooting
 
@@ -440,7 +439,7 @@ curl -i -X POST https://localhost:{PORT}/widgets \
 
 Replace `{PORT}` with the app's local HTTPS port. The `400 - Bad Request` is observed because the endpoint binds the form, which enforces the recorded verdict. A non-form endpoint returns its normal response because nothing reads the verdict. Without the `Origin` header, the same request is allowed because `curl` doesn't send `Sec-Fetch-Site` either and a request with neither header is treated as a non-browser client.
 
-The token-based antiforgery system described in the rest of this article predates this middleware and remains available. For most apps, the automatic protection is enough on its own. For guidance on when to keep the token-based system and how to migrate, see <xref:migration/100-to-110>.
+The token-based antiforgery system described in the rest of this article predates this middleware and remains available. For most apps, the automatic protection is enough on its own. For guidance on when to keep the token-based system and how to migrate, see [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../migration/100-to-110.md).
 
 :::moniker-end
 
@@ -451,9 +450,9 @@ The token-based antiforgery system described in the rest of this article predate
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -466,20 +465,20 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in `Program.cs` to add the middleware to the request processing pipeline. MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
+> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in `Program.cs` to add the middleware to the request processing pipeline. MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see [ASP.NET Core Blazor authentication and authorization](../blazor/security/index.md#antiforgery-support) and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
 > [!NOTE]
-> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in `Program.cs` to add the middleware to the request processing pipeline (present by default in the Blazor Web App project template). MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see <xref:blazor/security/index#antiforgery-support> and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
+> Registering the services doesn't add the Antiforgery middleware to the request processing pipeline. Calling `AddRazorComponents` or `AddAntiforgery` only registers the antiforgery services in DI; it doesn't add the middleware. Blazor and Minimal APIs require an explicit call to <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> in `Program.cs` to add the middleware to the request processing pipeline (present by default in the Blazor Web App project template). MVC and Razor Pages validate tokens with built-in filters and don't require the middleware. For more information, see [ASP.NET Core Blazor authentication and authorization](../blazor/security/index.md#antiforgery-support) and [Antiforgery with Minimal APIs](#antiforgery-with-minimal-apis).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-8.0"
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -496,7 +495,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -505,7 +504,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to protecting against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -527,7 +526,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -627,7 +626,7 @@ If cookies are used to store authentication tokens and to authenticate API reque
 
 ### Blazor
 
-For more information, see <xref:blazor/security/index#antiforgery-support>.
+For more information, see [ASP.NET Core Blazor authentication and authorization](../blazor/security/index.md#antiforgery-support).
 
 ### JavaScript
 
@@ -661,7 +660,7 @@ The following example uses JavaScript to make an AJAX request to obtain the toke
 
 ## Antiforgery with Minimal APIs
 
-Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI, and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> to add the Antiforgery Middleware to the request processing pipeline.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](xref:security/anti-request-forgery).
+Call [AddAntiforgery](/dotnet/api/microsoft.extensions.dependencyinjection.antiforgeryservicecollectionextensions.addantiforgery) to register antiforgery services in DI, and <xref:Microsoft.AspNetCore.Builder.AntiforgeryApplicationBuilderExtensions.UseAntiforgery*> to add the Antiforgery Middleware to the request processing pipeline.  Antiforgery tokens are used to mitigate [cross-site request forgery attacks](anti-request-forgery.md).
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MyAntiForgery/Program.cs" id="snippet_short" highlight="3,7":::
 
@@ -744,7 +743,7 @@ app.MapDelete("/item/{id}", async (int id, IAntiforgery antiforgery, HttpContext
 > * Avoid form-field overrides for endpoints that rely on antiforgery validation.
 > * If form-field override must run first, validate the antiforgery token explicitly using `IAntiforgery.ValidateRequestAsync`.
 >
-> For configuration details, see <xref:fundamentals/middleware/index>.
+> For configuration details, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
 ## Antiforgery with API controllers
 
@@ -780,7 +779,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -822,7 +821,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -837,7 +836,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -858,9 +857,9 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -868,7 +867,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -885,7 +884,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -894,7 +893,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -916,7 +915,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -1071,7 +1070,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -1113,7 +1112,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1128,7 +1127,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1145,9 +1144,9 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## Antiforgery in ASP.NET Core
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Program.cs`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Program.cs`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -1155,7 +1154,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-The [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+The [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_Form":::
 
@@ -1172,7 +1171,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormAntiforgeryFalse":::
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormTagHelperDisabled":::
 
@@ -1181,7 +1180,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   :::code language="cshtml" source="anti-request-forgery/samples/6.x/AntiRequestForgerySample/Snippets/Views/Home/Index.cshtml" id="snippet_FormRemoveTagHelper":::
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrfcsrf-and-razor-pages-1).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrfcsrf-and-razor-pages).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1203,7 +1202,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -1338,7 +1337,7 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
@@ -1380,7 +1379,7 @@ CSRF attacks are possible against web apps that use cookies for authentication b
 
 However, CSRF attacks aren't limited to exploiting cookies. For example, Basic and Digest authentication are also vulnerable. After a user signs in with Basic or Digest authentication, the browser automatically sends the credentials until the session ends.
 
-In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](xref:fundamentals/app-state).
+In this context, *session* refers to the client-side session during which the user is authenticated. It's unrelated to server-side sessions or [ASP.NET Core session middleware](../fundamentals/app-state.md).
 
 Users can protect against CSRF vulnerabilities by taking precautions:
 
@@ -1395,7 +1394,7 @@ Cookie-based authentication is a popular form of authentication. Token-based aut
 
 ### Cookie-based authentication
 
-When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](xref:fundamentals/middleware/index) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
+When a user authenticates using their username and password, they're issued a token, containing an authentication ticket that can be used for authentication and authorization. The token is stored as a cookie that's sent with every request the client makes. Generating and validating this cookie is performed by the cookie authentication middleware. The [middleware](../fundamentals/middleware/index.md) serializes a user principal into an encrypted cookie. On subsequent requests, the middleware validates the cookie, recreates the principal, and assigns the principal to the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property.
 
 ### Token-based authentication
 
@@ -1412,9 +1411,9 @@ Attacks that exploit trusted cookies between apps hosted on the same domain can 
 ## ASP.NET Core antiforgery configuration
 
 > [!WARNING]
-> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](xref:security/data-protection/introduction). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](xref:security/data-protection/configuration/overview).
+> ASP.NET Core implements antiforgery using [ASP.NET Core Data Protection](data-protection/introduction.md). The data protection stack must be configured to work in a server farm. For more information, see [Configuring data protection](data-protection/configuration/overview.md).
 
-Antiforgery *services* are registered in the [dependency injection](xref:fundamentals/dependency-injection) container when one of the following APIs is called in `Startup.ConfigureServices`:
+Antiforgery *services* are registered in the [dependency injection](../fundamentals/dependency-injection.md) container when one of the following APIs is called in `Startup.ConfigureServices`:
 
 * <xref:Microsoft.Extensions.DependencyInjection.AntiforgeryServiceCollectionExtensions.AddAntiforgery*>
 * <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddMvc*>
@@ -1422,7 +1421,7 @@ Antiforgery *services* are registered in the [dependency injection](xref:fundame
 * <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>
 * <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>
 
-In ASP.NET Core 2.0 or later, the [FormTagHelper](xref:mvc/views/working-with-forms#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
+In ASP.NET Core 2.0 or later, the [FormTagHelper](../mvc/views/working-with-forms.md#the-form-tag-helper) injects antiforgery tokens into HTML form elements. The following markup in a Razor file automatically generates antiforgery tokens:
 
 ```cshtml
 <form method="post">
@@ -1447,7 +1446,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   </form>
   ```
 
-* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](xref:mvc/views/tag-helpers/intro#opt-out):
+* The form element is opted-out of Tag Helpers by using the Tag Helper [! opt-out symbol](../mvc/views/tag-helpers/intro.md#opt-out):
 
   ```cshtml
   <!form method="post">
@@ -1462,7 +1461,7 @@ Automatic generation of antiforgery tokens for HTML form elements can be disable
   ```
 
 > [!NOTE]
-> [Razor Pages](xref:razor-pages/index) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](xref:razor-pages/index#xsrf).
+> [Razor Pages](../razor-pages/index.md) are automatically protected from XSRF/CSRF. For more information, see [XSRF/CSRF and Razor Pages](../razor-pages/index.md#xsrf).
 
 The most common approach to defending against CSRF attacks is to use the *Synchronizer Token Pattern* (STP). STP is used when the user requests a page with form data:
 
@@ -1497,7 +1496,7 @@ In each of the preceding cases, ASP.NET Core adds a hidden form field similar to
 <input name="__RequestVerificationToken" type="hidden" value="CfDJ8NrAkS ... s2-m9Yw">
 ```
 
-ASP.NET Core includes three [filters](xref:mvc/controllers/filters) for working with antiforgery tokens:
+ASP.NET Core includes three [filters](../mvc/controllers/filters.md) for working with antiforgery tokens:
 
 * [ValidateAntiForgeryToken](xref:Microsoft.AspNetCore.Mvc.ValidateAntiForgeryTokenAttribute)
 * [AutoValidateAntiforgeryToken](xref:Microsoft.AspNetCore.Mvc.AutoValidateAntiforgeryTokenAttribute)
@@ -1791,6 +1790,6 @@ The <xref:Microsoft.AspNetCore.Antiforgery.IAntiforgeryAdditionalDataProvider> t
 
 ## Additional resources
 
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end

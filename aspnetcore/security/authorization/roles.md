@@ -4,28 +4,27 @@ ai-usage: ai-assisted
 description: Learn how to restrict ASP.NET Core Blazor Razor component access with the AuthorizeView component and by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core
 
 When a user's identity is created after authentication, the user may belong to one or more *roles*, reflecting various authorizations that the user has to access data and perform operations. For example, Tracy may belong to the "Administrator" and "User" roles with access to administrative web pages in the app, while Scott may only belong to the "User" role and not have access to administrative data or operations. How these roles are created and managed depends on the backing store of the authorization process. Roles are exposed to the developer through <xref:System.Security.Claims.ClaimsPrincipal.IsInRole*?displayProperty=nameWithType>. <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddRoles*> must be called to add Role services when setting up the app's identity system.
 
-While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see <xref:security/authentication/identity/spa>.
+While roles are claims, not all claims are roles. Depending on the identity issuer, a role may be a collection of users that may apply claims for group members, as well as an actual claim on an identity. However, claims are meant to be information about an individual user. Using roles to add claims to a user can confuse the boundary between the user and their individual claims. This confusion is why the single-page application (SPA) templates aren't designed around roles. In addition, for organizations migrating from an on-premises legacy system, the proliferation of roles over the years can mean a role claim may be too large to be contained within a token usable by a SPA. To secure SPAs, see [Use Identity to secure a Web API backend for SPAs](../authentication/identity-api-authorization.md).
 
 This article uses Razor component examples and focuses on Blazor authorization scenarios. For additional Blazor guidance, see the [Related content](#related-content) section. For Razor Pages and MVC guidance, see the following resources:
 
-* <xref:razor-pages/security/authorization/roles>
-* <xref:mvc/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/roles.md)
+* [Role-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/roles.md)
 
 :::moniker range="< aspnetcore-6.0"
 
-Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](xref:razor-pages/security/authorization/roles) and the [MVC roles-based authorization article](xref:mvc/security/authorization/roles). See the preceding resources and set the article version selector to the version of .NET that your app targets.
+Identity configuration changed with the release of .NET 6. Examples in this article demonstrate approaches that configure Identity services in the app's `Program` file. For .NET apps prior to the release of .NET 6 (and before Blazor Web Apps were released with .NET 8), services are configured in `Startup.ConfigureServices` of the `Startup.cs` file. The syntax for Identity configuration is shown in the companion [Razor Pages roles-based authorization article](../../razor-pages/security/authorization/roles.md) and the [MVC roles-based authorization article](../../mvc/security/authorization/roles.md). See the preceding resources and set the article version selector to the version of .NET that your app targets.
 
 :::moniker-end
 
 ## Sample app
 
-The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](xref:index#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured roles to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
+The Blazor Web App sample for this article is the [`BlazorWebAppAuthorization` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/BlazorWebAppAuthorization) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app uses seeded accounts with preconfigured roles to demonstrate most of the examples in this article. For more information, see the sample's README file (`README.md`).
 
 > [!CAUTION]
 > This sample app uses an in-memory database to store user information, which isn't suitable for production scenarios. The sample app is intended for demonstration purposes only and shouldn't be used as a starting point for production apps.
@@ -126,9 +125,9 @@ builder.Services.AddAuthorizationCore();
 Role-based authorization checks:
 
 * Are declarative and specify roles that the current user must be a member of to access the requested resource.
-* Are applied to Razor components (examples in this article), [Razor Pages](xref:razor-pages/security/authorization/roles), or [MVC controllers or actions within a controller](xref:mvc/security/authorization/roles).
+* Are applied to Razor components (examples in this article), [Razor Pages](../../razor-pages/security/authorization/roles.md), or [MVC controllers or actions within a controller](../../mvc/security/authorization/roles.md).
 
-The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](xref:blazor/security/index#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see <xref:blazor/security/index>.
+The <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView> component ([`AuthorizeView` component in Blazor documentation](../../blazor/security/index.md#authorizeview-component)) supports *role-based* authorization. This section covers basic concepts. For complete coverage, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md).
 
 For role-based authorization of content in Razor components, use the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView.Roles?displayProperty=nameWithType> parameter.
 
@@ -209,7 +208,7 @@ When multiple attributes are applied, the user must be a member of *all* of the 
 </p>
 ```
 
-Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see <xref:security/authorization/claims#claim-case-sensitivity>.
+Role matching is typically case-sensitive because role names are stored and compared using .NET string comparisons. For example, `Admin` (uppercase `A`) isn't treated as the same role as `admin` (lowercase `a`). For more information, see [Claim-based authorization in ASP.NET Core](claims.md#claim-case-sensitivity).
 
 ## Policy-based authorization checks
 
@@ -448,13 +447,13 @@ services.AddAuthorization(options =>
 
 :::moniker range=">= aspnetcore-9.0"
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) ([Blazor-specific guidance](xref:blazor/security/blazor-web-app-windows-authentication)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](../authentication/windowsauth.md) ([Blazor-specific guidance](../../blazor/security/blazor-web-app-with-windows-authentication.md)) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-After the app is [configured for Windows Authentication](xref:security/authentication/windowsauth) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
+After the app is [configured for Windows Authentication](../authentication/windowsauth.md) with the client and server machines part of the same Windows domain, user security groups are automatically included as claims in the user's <xref:System.Security.Claims.ClaimsPrincipal>.
 
 :::moniker-end
 
@@ -490,20 +489,20 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../blazor/security/blazor-web-app-with-windows-authentication.md). Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-An approach similar to the preceding example for retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+An approach similar to the preceding example for retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
 ## Related content
 
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:razor-pages/security/authorization/roles>
-* <xref:mvc/security/authorization/roles>
-* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](xref:security/authentication/claims#extend-or-add-custom-claims-using-iclaimstransformation)
+* [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](../../blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md)
+* [Role-based authorization in ASP.NET Core Razor Pages](../../razor-pages/security/authorization/roles.md)
+* [Role-based authorization in ASP.NET Core MVC](../../mvc/security/authorization/roles.md)
+* [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

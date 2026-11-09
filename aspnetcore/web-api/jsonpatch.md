@@ -3,7 +3,6 @@ title: JsonPatch in ASP.NET Core web API
 description: "JSON Patch in ASP.NET Core web API: Learn how to handle JSON Patch requests, apply partial updates, and improve API efficiency with System.Text.Json."
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/23/2026
-uid: web-api/jsonpatch
 ---
 # JSON Patch support in ASP.NET Core web API
 
@@ -348,7 +347,7 @@ public void Validate(JsonPatchDocument<T> patch)
 
 ## Get the code
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples/10.x/JsonPatchSample). ([How to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/jsonpatch/samples/10.x/JsonPatchSample). ([How to download](../fundamentals/index.md#how-to-download-a-sample)).
 
 To test the sample, run the app and send HTTP requests by using the included `.http` file.
 

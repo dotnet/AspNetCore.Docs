@@ -1,11 +1,11 @@
 :::moniker range="= aspnetcore-7.0"
 
-This document provides a quick reference for Minimal APIs. For a guided introduction, see <xref:tutorials/min-web-api>.
+This document provides a quick reference for Minimal APIs. For a guided introduction, see [Tutorial: Create a Minimal API with ASP.NET Core](../../../tutorials/min-web-api.md).
 
 The Minimal APIs consist of:
 
-* [WebApplication and WebApplicationBuilder](xref:fundamentals/minimal-apis/webapplication)
-* [Route Handlers](xref:fundamentals/minimal-apis/route-handlers)
+* [WebApplication and WebApplicationBuilder](../webapplication.md)
+* [Route Handlers](../route-handlers.md)
 
 [!INCLUDE [WebApplication](~/fundamentals/minimal-apis/includes/webapplication7.md)]
 
@@ -15,21 +15,21 @@ The following table lists some of the middleware frequently used with Minimal AP
 
 | Middleware | Description | API |
 |--|--|--|
-| [Authentication](xref:security/authentication/index?view=aspnetcore-6.0) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
-| [Authorization](xref:security/authorization/introduction) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
-| [CORS](xref:security/cors?view=aspnetcore-6.0) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
-| [Exception Handler](xref:fundamentals/error-handling-api?view=aspnetcore-6.0) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
-| [Forwarded Headers](xref:fundamentals/middleware/index?view=aspnetcore-6.0#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
-| [HTTPS Redirection](xref:security/enforcing-ssl?view=aspnetcore-6.0) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
-| [HTTP Strict Transport Security (HSTS)](xref:fundamentals/middleware/index?view=aspnetcore-6.0#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
-| [Request Logging](xref:fundamentals/http-logging/index) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
-| [Request Timeouts](xref:performance/timeouts) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
+| [Authentication](../../../security/authentication/index.md) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
+| [Authorization](../../../security/authorization/introduction.md) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
+| [CORS](../../../security/cors.md) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
+| [Exception Handler](../../error-handling-api.md) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
+| [Forwarded Headers](../../middleware/index.md#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
+| [HTTPS Redirection](../../../security/enforcing-ssl.md) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
+| [HTTP Strict Transport Security (HSTS)](../../middleware/index.md#middleware-order) | Security enhancement middleware that adds a special response header. | <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> |
+| [Request Logging](../../http-logging/index.md) | Provides support for logging HTTP requests and responses. | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*> |
+| [Request Timeouts](../../../performance/timeouts.md) | Provides support for configuring request timeouts, global default and per endpoint. | `UseRequestTimeouts` |
 | [W3C Request Logging](https://www.w3.org/TR/WD-logfile.html) | Provides support for logging HTTP requests and responses in the [W3C format](https://www.w3.org/TR/WD-logfile.html). | <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseW3CLogging*> |
-| [Response Caching](xref:performance/caching/middleware) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
-| [Response Compression](xref:performance/response-compression) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
-| [Session](xref:fundamentals/app-state) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
-| [Static Files](xref:fundamentals/static-files) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
-| [WebSockets](xref:fundamentals/websockets) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
+| [Response Caching](../../../performance/caching/middleware.md) | Provides support for caching responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCachingExtensions.UseResponseCaching*> |
+| [Response Compression](../../../performance/response-compression.md) | Provides support for compressing responses. | <xref:Microsoft.AspNetCore.Builder.ResponseCompressionBuilderExtensions.UseResponseCompression*> |
+| [Session](../../app-state.md) | Provides support for managing user sessions. | <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> |
+| [Static Files](../../static-files.md) | Provides support for serving static files and directory browsing. | <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*>, <xref:Microsoft.AspNetCore.Builder.FileServerExtensions.UseFileServer*> |
+| [WebSockets](../../websockets.md) | Enables the WebSockets protocol. | <xref:Microsoft.AspNetCore.Builder.WebSocketMiddlewareExtensions.UseWebSockets*> |
 
 The following sections cover request handling: routing, parameter binding, and responses.
 
@@ -63,7 +63,7 @@ Route handlers support the following types of return values:
 |`string` | The framework writes the string directly to the response | `text/plain`
 | `T` (Any other type) | The framework JSON-serializes the response| `application/json`
 
-For a more in-depth guide to route handler return values see <xref:fundamentals/minimal-apis/responses>
+For a more in-depth guide to route handler return values see [Create responses in Minimal API applications](../responses.md)
 
 ### Example return values
 
@@ -87,7 +87,7 @@ The following code returns a <xref:Microsoft.AspNetCore.Http.TypedResults>:
 app.MapGet("/hello", () => TypedResults.Ok(new Message() {  Text = "Hello World!" }));
 ```
 
-Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning `TypedResults` is preferred to returning <xref:Microsoft.AspNetCore.Http.Results>. For more information, see [`TypedResults` versus `Results`](../responses.md#typedresults-versus-results).
 
 #### IResult return values
 
@@ -122,7 +122,7 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 ```csharp
 var proxyClient = new HttpClient();
-app.MapGet("/pokemon", async () => 
+app.MapGet("/pokemon", async () =>
 {
     var stream = await proxyClient.GetStreamAsync("http://contoso/pokedex.json");
     // Proxy the response as JSON
@@ -130,7 +130,7 @@ app.MapGet("/pokemon", async () =>
 });
 ```
 
-See <xref:fundamentals/minimal-apis/responses#stream7> for more examples.
+See [Create responses in Minimal API applications](../responses.md#stream7) for more examples.
 
 #### Redirect
 
@@ -170,11 +170,11 @@ The types implementing `IResult` are public, allowing for type assertions when t
 
 You can look at the return types of the corresponding methods on the static [TypedResults](/dotnet/api/microsoft.aspnetcore.http.typedresults) class to find the correct public `IResult` type to cast to.
 
-See <xref:fundamentals/minimal-apis/responses> for more examples.
+See [Create responses in Minimal API applications](../responses.md) for more examples.
 
 ## Filters
 
-See <xref:fundamentals/minimal-apis/min-api-filters>
+See [Filters in Minimal API apps](../min-api-filters.md)
 
 ## Authorization
 
@@ -186,7 +186,7 @@ The preceding code can be written with <xref:Microsoft.AspNetCore.Builder.Author
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_auth2)]
 
-The following sample uses [policy-based authorization](xref:security/authorization/policies):
+The following sample uses [policy-based authorization](../../../security/authorization/policies.md):
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebRPauth/Program.cs?name=snippet_auth3&range=7-8,22-26)]
 
@@ -199,30 +199,30 @@ allows unauthenticated users to access endpoints:
 
 ## CORS
 
-Routes can be [CORS](xref:security/cors?view=aspnetcore-6.0) enabled using [CORS policies](xref:security/cors?view=aspnetcore-6.0#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
+Routes can be [CORS](../../../security/cors.md) enabled using [CORS policies](../../../security/cors.md#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cors)]
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/7.0/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
-For more information, see <xref:security/cors?view=aspnetcore-6.0>
+For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md)
 
 <a name="openapi7"></a>
 
-<!-- 
+<!--
 # Differences between Minimal APIs and APIs with controllers
 
-Moved to uid: tutorials/min-web-api
+Moved to tutorials/min-web-api.md
 -->
 
 ## See also
 
-* <xref:fundamentals/openapi/aspnetcore-openapi>
-* <xref:fundamentals/minimal-apis/responses>
-* <xref:fundamentals/minimal-apis/min-api-filters>
-* <xref:fundamentals/error-handling-api>
-* <xref:fundamentals/minimal-apis/security>
-* <xref:fundamentals/minimal-apis/test-min-api>
+* [Generate OpenAPI documents](../../openapi/aspnetcore-openapi.md)
+* [Create responses in Minimal API applications](../responses.md)
+* [Filters in Minimal API apps](../min-api-filters.md)
+* [Handle errors in ASP.NET Core APIs](../../error-handling-api.md)
+* [Authentication and authorization in Minimal APIs](../security.md)
+* [Test Minimal API apps](../test-min-api.md)
 
 :::moniker-end

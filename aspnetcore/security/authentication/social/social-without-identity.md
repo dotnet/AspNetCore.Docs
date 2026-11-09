@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Use Facebook, Google, Twitter, etc. account user authentication without ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/09/2026
-uid: security/authentication/social/social-without-identity
 ---
 # Use social sign-in provider authentication without ASP.NET Core Identity
 
@@ -12,16 +11,16 @@ By [Kirk Larkin](https://twitter.com/serpent5) and [Rick Anderson](https://twitt
 
 :::moniker range=">= aspnetcore-6.0"
 
-<xref:security/authentication/social/index> describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that article includes ASP.NET Core Identity as an authentication provider.
+[Using external login providers with Identity in ASP.NET Core](index.md) describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that article includes ASP.NET Core Identity as an authentication provider.
 
 This sample demonstrates how to use an external authentication provider **without** ASP.NET Core Identity. This approach is useful for apps that don't require all of the features of ASP.NET Core Identity, but still require integration with a trusted external authentication provider.
 
-This sample uses [Google authentication](xref:security/authentication/google-logins) for authenticating users. Using Google authentication shifts many of the complexities of managing the sign-in process to Google. To integrate with a different external authentication provider, see the following articles:
+This sample uses [Google authentication](google-logins.md) for authenticating users. Using Google authentication shifts many of the complexities of managing the sign-in process to Google. To integrate with a different external authentication provider, see the following articles:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other providers](other-logins.md)
 
 ## Configuration
 
@@ -43,7 +42,7 @@ In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtension
 
 :::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Program.cs" id="snippet_UseAuthentication" highlight="4-5":::
 
-To learn more about authentication schemes, see [Authentication Concepts](xref:security/authentication/index#authentication-concepts). To learn more about cookie authentication, see <xref:security/authentication/cookie>.
+To learn more about authentication schemes, see [Authentication Concepts](../index.md#authentication-concepts). To learn more about cookie authentication, see [Use cookie authentication without ASP.NET Core Identity](../cookie.md).
 
 ## Apply authorization
 
@@ -73,23 +72,23 @@ Notice that the call to `SignOutAsync` doesn't specify an authentication scheme.
 
 ## Additional resources
 
-* <xref:security/authorization/simple>
-* <xref:security/authentication/social/additional-claims>
+* [Simple authorization in ASP.NET Core](../../authorization/simple.md)
+* [Persist additional claims and tokens from external providers in ASP.NET Core](additional-claims.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-<xref:security/authentication/social/index> describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that article includes ASP.NET Core Identity as an authentication provider.
+[Using external login providers with Identity in ASP.NET Core](index.md) describes how to enable users to sign in using OAuth 2.0 with credentials from external authentication providers. The approach described in that article includes ASP.NET Core Identity as an authentication provider.
 
 This sample demonstrates how to use an external authentication provider **without** ASP.NET Core Identity. This approach is useful for apps that don't require all of the features of ASP.NET Core Identity, but still require integration with a trusted external authentication provider.
 
-This sample uses [Google authentication](xref:security/authentication/google-logins) for authenticating users. Using Google authentication shifts many of the complexities of managing the sign-in process to Google. To integrate with a different external authentication provider, see the following articles:
+This sample uses [Google authentication](google-logins.md) for authenticating users. Using Google authentication shifts many of the complexities of managing the sign-in process to Google. To integrate with a different external authentication provider, see the following articles:
 
-* [Facebook authentication](xref:security/authentication/facebook-logins)
-* [Microsoft authentication](xref:security/authentication/microsoft-logins)
-* [Twitter authentication](xref:security/authentication/twitter-logins)
-* [Other providers](xref:security/authentication/otherlogins)
+* [Facebook authentication](facebook-logins.md)
+* [Microsoft authentication](microsoft-logins.md)
+* [Twitter authentication](twitter-logins.md)
+* [Other providers](other-logins.md)
 
 ## Configuration
 
@@ -111,7 +110,7 @@ In `Startup.Configure`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderEx
 
 :::code language="csharp" source="social-without-identity/samples/snapshot/3.x/Startup.cs" id="snippet_UseAuthentication" highlight="3-4":::
 
-To learn more about authentication schemes, see [Authentication Concepts](xref:security/authentication/index#authentication-concepts). To learn more about cookie authentication, see <xref:security/authentication/cookie>.
+To learn more about authentication schemes, see [Authentication Concepts](../index.md#authentication-concepts). To learn more about cookie authentication, see [Use cookie authentication without ASP.NET Core Identity](../cookie.md).
 
 ## Apply authorization
 
@@ -129,7 +128,7 @@ Notice that the call to `SignOutAsync` doesn't specify an authentication scheme.
 
 ## Additional resources
 
-* <xref:security/authorization/simple>
-* <xref:security/authentication/social/additional-claims>
+* [Simple authorization in ASP.NET Core](../../authorization/simple.md)
+* [Persist additional claims and tokens from external providers in ASP.NET Core](additional-claims.md)
 
 :::moniker-end

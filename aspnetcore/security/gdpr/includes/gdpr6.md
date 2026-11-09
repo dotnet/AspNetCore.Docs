@@ -17,7 +17,7 @@ In the preceding code, <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> a
 
   [!code-cshtml[Main](~/security/gdpr/samples/RP6.0/WebGDPR/Pages/Shared/_CookieConsentPartial.cshtml)]
 
-* Select the ASP.NET Core [2.2 version](xref:security/gdpr?view=aspnetcore-2.2&preserve-view=true) of this article to read about the cookie consent feature.
+* Select the ASP.NET Core [2.2 version](../../gdpr.md?view=aspnetcore-2.2&preserve-view=true) of this article to read about the cookie consent feature.
 
 ## Encryption at rest
 

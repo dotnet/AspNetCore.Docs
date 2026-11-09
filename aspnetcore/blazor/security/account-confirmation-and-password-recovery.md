@@ -3,7 +3,6 @@ title: Account confirmation and password recovery in ASP.NET Core Blazor
 description: Learn how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor
 
@@ -12,7 +11,7 @@ uid: blazor/security/account-confirmation-and-password-recovery
 This article explains how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 
 > [!NOTE]
-> This article only applies to Blazor Web Apps. To implement email confirmation and password recovery for standalone Blazor WebAssembly apps with ASP.NET Core Identity, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>.
+> This article only applies to Blazor Web Apps. To implement email confirmation and password recovery for standalone Blazor WebAssembly apps with ASP.NET Core Identity, see [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md).
 
 ## Namespace
 
@@ -54,7 +53,7 @@ We strongly recommend that you avoid storing secrets in project code or configur
 
 ### Secret Manager tool
 
-If the project has already been initialized for the [Secret Manager tool](xref:security/app-secrets), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
+If the project has already been initialized for the [Secret Manager tool](../../security/app-secrets.md), it will already have a user secrets identifier (`<UserSecretsId>`) in its project file (`.csproj`). In Visual Studio, you can tell if the user secrets ID is present by looking at the **Properties** panel when the project is selected in **Solution Explorer**. If the app hasn't been initialized, execute the following command in a command shell opened to the project's directory. In Visual Studio, you can use the Developer PowerShell command prompt.
 
 ```dotnetcli
 dotnet user-secrets init
@@ -68,7 +67,7 @@ dotnet user-secrets set "EmailAuthKey" "{KEY}"
 
 If using Visual Studio, you can confirm the secret is set by right-clicking the server project in **Solution Explorer** and selecting **Manage User Secrets**.
 
-For more information, see <xref:security/app-secrets>.
+For more information, see [Safe storage of app secrets in development](../../security/app-secrets.md).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -115,7 +114,7 @@ public static class AzureHelper
 }
 ```
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](../../fundamentals/configuration/options.md):
 
 ```csharp
 TokenCredential? credential;
@@ -156,7 +155,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 > var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
 > ```
 >
-> For more information, see <xref:blazor/fundamentals/configuration>.
+> For more information, see [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ## Implement `IEmailSender`
 

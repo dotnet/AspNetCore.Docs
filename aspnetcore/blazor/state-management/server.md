@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/29/2026
-uid: blazor/state-management/server
 ---
 # ASP.NET Core Blazor server-side state management
 
@@ -20,9 +19,9 @@ Examples of user state held in a circuit include:
 
 * The hierarchy of component instances and their most recent render output in the rendered UI.
 * The values of fields and properties in component instances.
-* Data held in [dependency injection (DI)](xref:fundamentals/dependency-injection) service instances that are scoped to the circuit.
+* Data held in [dependency injection (DI)](../../fundamentals/dependency-injection.md) service instances that are scoped to the circuit.
 
-User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](xref:blazor/js-interop/call-javascript-from-dotnet) calls.
+User state might also be found in JavaScript variables in the browser's memory set via [JavaScript interop](../javascript-interoperability/call-javascript-from-dotnet.md) calls.
 
 If a user experiences a temporary network connection loss, Blazor attempts to reconnect the user to their original circuit with their original state. However, reconnecting a user to their original circuit in the server's memory isn't always possible:
 
@@ -55,7 +54,7 @@ During server-side rendering, Blazor Web Apps can persist a user's session (circ
 * Mobile device users switching apps
 * Network interruptions
 * Proactive resource management (pausing inactive circuits)
-* [Enhanced navigation](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling)
+* [Enhanced navigation](../fundamentals/navigation.md#enhanced-navigation-and-form-handling)
 
 Server resources can be freed up if the circuit state can be persisted and then resumed later:
 
@@ -92,12 +91,12 @@ services.Configure<CircuitOptions>(options =>
 });
 ```
 
-Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see <xref:blazor/state-management/prerendered-state-persistence>.
+Persisting component state across circuits is built on top of the existing <xref:Microsoft.AspNetCore.Components.PersistentComponentState> API, which continues to persist state for prerendered components that adopt an interactive render mode. For more information, see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 > [NOTE]
 > Persisting component state for prerendering works for any interactive render mode, but circuit state persistence only works for the **Interactive Server** render mode.
 
-Annotate component `public` properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](xref:blazor/components/key) to provide a unique identifier for each component instance:
+Annotate component `public` properties with the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) to enable circuit state persistence. The following example also keys the items with the [`@key` directive attribute](../components/element-component-model-relationships.md) to provide a unique identifier for each component instance:
 
 ```razor
 @foreach (var item in Items)
@@ -139,7 +138,7 @@ services.AddRazorComponents()
 > [NOTE]
 > The preceding example persists `UserData` state when the service is used in component prerendering for both Interactive Server and Interactive WebAssembly rendering because `RenderMode.InteractiveAuto` is specified to <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsRazorComponentBuilderExtensions.RegisterPersistentService*>. However, circuit state persistence is only available for the **Interactive Server** render mode.
 
-To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](xref:performance/caching/overview#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
+To handle distributed state persistence (and to act as the default state persistence mechanism when configured), assign a [`HybridCache`](../../performance/caching/overview.md#hybridcache) (API: <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache>) to the app, which configures its own persistence period (<xref:Microsoft.AspNetCore.Components.Server.CircuitOptions.PersistedCircuitDistributedRetentionPeriod>, eight hours by default). `HybridCache` is used because it provides a unified approach to distributed storage that doesn't require separate packages for each storage provider.
 
 In the following example, a <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache> is implemented with the [Redis](https://redis.io/) storage provider:
 
@@ -151,9 +150,9 @@ services.AddRazorComponents()
     .AddInteractiveServerComponents();
 ```
 
-In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](xref:security/app-secrets#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
+In the preceding example, the `{CONNECTION STRING}` placeholder represents the Redis cache connection string, which should be provided using a secure approach, such as the [Secret Manager](../../security/app-secrets.md#secret-manager) tool in the `Development` environment or [Azure Key Vault](/azure/key-vault/) with [Azure Managed Identities](/entra/identity/managed-identities-azure-resources/overview) for Azure-deployed apps in any environment.
 
-For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 ## Pause and resume circuits
 
@@ -210,7 +209,7 @@ After the tab is hidden for `HiddenDelay`, the circuit pauses. If the user retur
 
 The package defers the pause while circuit-owned work is in progress (downloads, uploads, JS interop calls, Web Locks, Picture-in-Picture). It vetoes the pause entirely while focused text `<input>` elements with Blazor `@bind` bindings are edited or audio/video is playing.
 
-For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup):
+For elements without Blazor bindings (for example, `<canvas>`, WebRTC connections, or custom elements), the app is responsible for handling state. Register a circuit handler with an `onCircuitPausing` callback in the [Blazor startup configuration](../fundamentals/startup.md):
 
 ```razor
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -435,7 +434,7 @@ var app = builder.Build();
 // ... rest of pipeline
 ```
 
-Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](xref:blazor/fundamentals/startup). Place the following after the [server-side Blazor script reference](xref:blazor/project-structure#location-of-the-blazor-script):
+Optionally, to defer pause on the client until critical work completes (for example, an in-flight payment), configure the `onPauseRequested` callback in the [Blazor startup configuration](../fundamentals/startup.md). Place the following after the [server-side Blazor script reference](../project-structure.md#location-of-the-blazor-script):
 
 ```razor
 <script> 
@@ -478,7 +477,7 @@ In a component, use the [`[PersistentState]` attribute](xref:Microsoft.AspNetCor
 }
 ```
 
-For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see <xref:blazor/state-management/prerendered-state-persistence>.
+For more information on the [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute), see [ASP.NET Core Blazor prerendered state persistence](prerendered-state-persistence.md).
 
 -->
 
@@ -534,7 +533,7 @@ To persist temporary data between HTTP requests during static server-side render
 `TempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file.
-* Is provided as a cascading value with the [`[CascadingParameter]` attribute](xref:blazor/components/cascading-values-and-parameters#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](../components/cascading-values-and-parameters.md#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
 * Is accessed by key (string).
 * Supports the [stored-value types listed earlier](#supported-property-types-for-temporary-data-and-session).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
@@ -566,7 +565,7 @@ The `ITempData` interface provides the following methods for controlling value l
 
 Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
 
-The default cookie-based provider uses [Data Protection](xref:security/data-protection/introduction) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](xref:security/data-protection/configuration/overview) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
+The default cookie-based provider uses [Data Protection](../../security/data-protection/introduction.md) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](../../security/data-protection/configuration/overview.md) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
 
 To change the Blazor `TempData` cookie settings in the following table, configure `TempDataCookie` when calling `AddRazorComponents` in the app's `Program` file.
 
@@ -705,7 +704,7 @@ Session storage:
 * Requires explicit session state configuration.
 * Has no practical size limits (within session constraints).
 * Serializes values with <xref:System.Text.Json> with <xref:System.Text.Json.JsonSerializerDefaults?displayProperty=nameWithType>.
-* Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see <xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting>.
+* Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting).
 
 For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
 
@@ -804,11 +803,11 @@ For more information on Azure data storage options, see the following:
 
 ## Browser storage
 
-For more information, see <xref:blazor/state-management/protected-browser-storage>.
+For more information, see [ASP.NET Core Blazor state management using protected browser storage](protected-browser-storage.md).
 
 ## Related content
 
-* [State management using the URL](xref:blazor/state-management/index#url)
-* [In-memory state container service](xref:blazor/state-management/index#in-memory-state-container-service)
-* [Cascading values and parameters](xref:blazor/state-management/index#cascading-values-and-parameters)
-* [Managing state via an external server API](xref:blazor/call-web-api)
+* [State management using the URL](index.md#state-management-using-the-url)
+* [In-memory state container service](index.md#in-memory-state-container-service)
+* [Cascading values and parameters](index.md#cascading-values-and-parameters)
+* [Managing state via an external server API](../call-web-api.md)

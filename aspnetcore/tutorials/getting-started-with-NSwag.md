@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use NSwag to generate documentation and help pages for an ASP.NET Core web API.
 monikerRange: ">= aspnetcore-3.1 <= aspnetcore-8.0"
 ms.date: 07/06/2026
-uid: tutorials/get-started-with-nswag
 ---
 # Get started with NSwag and ASP.NET Core
 
@@ -13,15 +12,15 @@ uid: tutorials/get-started-with-nswag
 > [!NOTE]
 > In .NET 9 and later, ASP.NET Core includes built-in OpenAPI support. NSwag isn't included by default, but you can add it manually as a community package to ASP.NET Core projects targeting .NET 9 or later.
 >
-> • To understand the built-in OpenAPI features, see <xref:fundamentals/openapi/overview?view=aspnetcore-9.0&preserve-view=true>.  
-> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see <xref:fundamentals/openapi/using-openapi-documents#use-swagger-ui-for-local-ad-hoc-testing>.  
-> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see <xref:tutorials/min-web-api>. It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
+> • To understand the built-in OpenAPI features, see [Overview of OpenAPI support in ASP.NET Core API apps](../fundamentals/openapi/overview.md?view=aspnetcore-9.0&preserve-view=true).
+> • To add and use the Swagger UI for interactive exploration or local ad-hoc testing, see [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing).
+> • For a step-by-step walkthrough of building a Minimal API that uses the built-in OpenAPI support in the latest version of ASP.NET Core, see [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md). It shows how to test endpoints with Endpoints Explorer and `.http` files in Visual Studio and with the Scalar UI in Visual Studio Code.
 >
 > The following instructions apply when using NSwag with .NET versions earlier than 9.
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/7.x/NSwagSample) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 
@@ -90,13 +89,25 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * Add the OpenApi generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+  ```csharp
+  builder.Services.AddOpenApiDocument();
+  ```
 
-* Enable the middleware for serving the generated OpenApi specification, the Swagger UI, and the Redoc UI, also in `Program.cs`:
+* Enable the middleware for serving the generated OpenApi specification and the Swagger UI in the `Development` environment, also in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/Program.cs" id="snippet_Middleware" highlight="5,9":::
+  ```csharp
+  if (app.Environment.IsDevelopment())
+  {
+      // Add OpenAPI 3.0 document serving middleware
+      app.UseOpenApi();
+
+      // Add web UIs to interact with the document
+      app.UseSwaggerUI();
+  }
+  ```
 
 * Launch the app. Navigate to:
+
   * `http://localhost:<port>/swagger` to view the Swagger UI.
   * `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
 
@@ -129,7 +140,18 @@ You can take advantage of NSwag's code generation capabilities by choosing one o
 * Copy the generated C# code into a file in the client project that will consume the API.
 * Start consuming the web API:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Snippets/TodoHttpClientExample.cs":::
+  ```csharp
+  var todoClient = new TodoClient(new HttpClient());
+
+  // Gets all to-dos from the API
+  var allTodos = await todoClient.GetAsync();
+
+  // Create a new TodoItem, and save it via the API.
+  await todoClient.CreateAsync(new TodoItem());
+
+  // Get a single to-do by ID
+  var foundTodo = await todoClient.GetByIdAsync(1);
+  ```
 
 ## Customize API documentation
 
@@ -218,17 +240,27 @@ The Swagger UI now clearly documents the expected HTTP response codes (and the [
 
 :::image source="web-api-help-pages-using-swagger/_static/v6-nswag-swagger-post.png" alt-text="Swagger UI showing POST Response Class description 'Returns the newly created Todo item' and '400 - If the item is null' for status code and reason under Response Messages.":::
 
-Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+Conventions can be used as an alternative to explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../web-api/advanced/conventions.md).
 
 ### Redoc
 
-Redoc is an alternative to the Swagger UI.
-It's similar because it also provides a documentation page for the Web API using the OpenAPI specification.
-The difference is that Redoc UI is more focused on the documentation, and doesn't provide an interactive UI to test the API.
+Redoc is an alternative to the Swagger UI that also provides a documentation page for the Web API using the OpenAPI specification. The difference is that Redoc UI is focused on producing the API documentation and doesn't provide an interactive UI to test the API.
 
-To enable Redoc, add its middleware to `Program.cs`:
+To enable Redoc in the `Development` environment, add its middleware to `Program.cs` afer `UseOpenApi` is called:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_Middleware" highlight="13-16":::
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    // Add OpenAPI 3.0 document serving middleware
+    app.UseOpenApi();
+
+    // Add Redoc API documentation pages
+    app.UseReDoc(options =>
+    {
+        options.Path = "/redoc";
+    });
+}
+```
 
 Run the application and navigate to `http://localhost:<port>/redoc` to view the Redoc UI:
 
@@ -240,7 +272,7 @@ Run the application and navigate to `http://localhost:<port>/redoc` to view the 
 
 By [Rico Suter](https://rsuter.com) and [Dave Brock](https://twitter.com/daveabrock)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 NSwag offers the following capabilities:
 
@@ -308,11 +340,11 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * In the `Startup.ConfigureServices` method, register the required Swagger services:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_ConfigureServices&highlight=8)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs" id="snippet_ConfigureServices" highlight="8":::
 
 * In the `Startup.Configure` method, enable the middleware for serving the generated Swagger specification and the Swagger UI:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs?name=snippet_Configure&highlight=6-7)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup.cs" id="snippet_Configure" highlight="6-7":::
 
 * Launch the app. Navigate to:
   * `http://localhost:<port>/swagger` to view the Swagger UI.
@@ -404,7 +436,7 @@ Swagger provides options for documenting the object model to ease consumption of
 
 In the `Startup.ConfigureServices` method, a configuration action passed to the `AddSwaggerDocument` method adds information such as the author, license, and description:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup2.cs?name=snippet_AddSwaggerDocument)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.0/TodoApi.NSwag/Startup2.cs" id="snippet_AddSwaggerDocument":::
 
 The Swagger UI displays the version's information:
 
@@ -448,13 +480,13 @@ Because NSwag uses [Reflection](/dotnet/csharp/programming-guide/concepts/reflec
 
 Consider the following example:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateAction)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs" id="snippet_CreateAction":::
 
-The preceding action returns `ActionResult<T>`. Inside the action, it's returning <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute*>. Since the controller has the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute, a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> response is possible, too. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses). Use data annotations to tell clients which HTTP status codes this action is known to return. Mark the action with the following attributes:
+The preceding action returns `ActionResult<T>`. Inside the action, it's returning <xref:Microsoft.AspNetCore.Mvc.ControllerBase.CreatedAtRoute*>. Since the controller has the [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) attribute, a <xref:Microsoft.AspNetCore.Mvc.ControllerBase.BadRequest*> response is possible, too. For more information, see [Automatic HTTP 400 responses](../web-api/index.md#automatic-http-400-responses). Use data annotations to tell clients which HTTP status codes this action is known to return. Mark the action with the following attributes:
 
-[!code-csharp[](../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs?name=snippet_CreateActionAttributes)]
+:::code language="csharp" source="../tutorials/web-api-help-pages-using-swagger/samples/2.1/TodoApi.NSwag/Controllers/TodoController.cs" id="snippet_CreateActionAttributes":::
 
-In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see <xref:web-api/advanced/conventions>.
+In ASP.NET Core 2.2 or later, you can use conventions instead of explicitly decorating individual actions with `[ProducesResponseType]`. For more information, see [Use web API conventions](../web-api/advanced/conventions.md).
 
 The Swagger generator can now accurately describe this action, and generated clients know what they receive when calling the endpoint. As a recommendation, mark all actions with these attributes.
 

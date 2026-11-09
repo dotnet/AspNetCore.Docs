@@ -8,7 +8,7 @@ Health checks are exposed by an app as HTTP endpoints. Health check endpoints ca
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 The sample app includes examples of the scenarios described in this article. To run the sample app for a given scenario, use the [dotnet run](/dotnet/core/tools/dotnet-run) command from the project's folder in a command shell. See the sample app's `README.md` file and the scenario descriptions in this article for details on how to use the sample app.
 
@@ -68,7 +68,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
@@ -204,7 +204,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 
@@ -305,7 +305,7 @@ The second example demonstrates how to use [`Newtonsoft.Json`](https://www.nuget
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/CustomWriterStartup.cs" id="snippet_WriteResponse_NewtonSoftJson":::
 
-In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](xref:index#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
+In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](../../../fundamentals/index.md#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
 
 The health checks API doesn't provide built-in support for complex JSON return formats because the format is specific to your choice of monitoring system. Customize the response in the preceding examples as needed. For more information on JSON serialization with `System.Text.Json`, see [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to).
 
@@ -424,11 +424,11 @@ In some hosting scenarios, a pair of health checks is used to distinguish two ap
 
 Consider the following example: An app must download a large configuration file before it's ready to process requests. We don't want the app to be restarted if the initial download fails because the app can retry downloading the file several times. We use a *liveness probe* to describe the liveness of the process, no other checks are run. We also want to prevent requests from being sent to the app before the configuration file download has succeeded. We use a *readiness probe* to indicate a "not ready" state until the download succeeds and the app is ready to receive requests.
 
-The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (`StartupHostedServiceHealthCheck.cs`):
+The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](../../../fundamentals/host/hosted-services.md). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (`StartupHostedServiceHealthCheck.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/StartupHostedServiceHealthCheck.cs" id="snippet1" highlight="7-11":::
 
-The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
+The long-running background task is started by a [Hosted Service](../../../fundamentals/host/hosted-services.md) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/Services/StartupHostedService.cs" id="snippet1" highlight="23":::
 
@@ -537,7 +537,7 @@ dotnet run --scenario writer
 
 Call `RequireHost` on `MapHealthChecks` with a URL pattern that specifies a port to restrict health check requests to the port specified. This approach is typically used in a container environment to expose a port for monitoring services.
 
-The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables). The port is set in the `launchSettings.json` file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
+The sample app configures the port using the [Environment Variable Configuration Provider](../../../fundamentals/configuration/index.md#environment-variables-configuration-provider). The port is set in the `launchSettings.json` file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
 
 To use the sample app to demonstrate management port configuration, create the `launchSettings.json` file in a `Properties` folder.
 
@@ -628,7 +628,7 @@ dotnet run --scenario port
 
 To distribute a health check as a library:
 
-1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
+1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](../../../fundamentals/dependency-injection.md), type activation, and [named options](../../../fundamentals/configuration/options.md) to access configuration data.
 
    In the health checks logic of `CheckHealthAsync`:
 
@@ -739,7 +739,7 @@ In the sample app, `ReadinessPublisher` is an <xref:Microsoft.Extensions.Diagnos
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/ReadinessPublisher.cs" id="snippet_ReadinessPublisher" highlight="18-27":::
 
-In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check has a two second startup delay and runs the check every 30 seconds. To activate the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check has a two second startup delay and runs the check every 30 seconds. To activate the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/5.x/HealthChecksSample/LivenessProbeStartup.cs" id="snippet_ConfigureServices":::
 
@@ -766,7 +766,7 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-For more information, see <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
+For more information, see [ASP.NET Core middleware](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline).
 
 :::moniker-end
 
@@ -780,7 +780,7 @@ Health checks are exposed by an app as HTTP endpoints. Health check endpoints ca
 * Use of memory, disk, and other physical server resources can be monitored for healthy status.
 * Health checks can test an app's dependencies, such as databases and external service endpoints, to confirm availability and normal functioning.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 The sample app includes examples of the scenarios described in this article. To run the sample app for a given scenario, use the [dotnet run](/dotnet/core/tools/dotnet-run) command from the project's folder in a command shell. See the sample app's `README.md` file and the scenario descriptions in this article for details on how to use the sample app.
 
@@ -840,7 +840,7 @@ dotnet run --scenario basic
 
 ### Docker example
 
-[Docker](xref:host-and-deploy/docker/index) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
+[Docker](../../docker/index.md) offers a built-in `HEALTHCHECK` directive that can be used to check the status of an app that uses the basic health check configuration:
 
 ```
 HEALTHCHECK CMD curl --fail http://localhost:5000/health || exit
@@ -973,7 +973,7 @@ app.UseEndpoints(endpoints =>
 
 ### Enable Cross-Origin Requests (CORS)
 
-Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see <xref:security/cors>.
+Although running health checks manually from a browser isn't a common use scenario, CORS middleware can be enabled by calling `RequireCors` on health checks endpoints. A `RequireCors` overload accepts a CORS policy builder delegate (`CorsPolicyBuilder`) or a policy name. If a policy isn't provided, the default CORS policy is used. For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md).
 
 ## Health check options
 
@@ -1074,7 +1074,7 @@ The second example demonstrates how to use [Newtonsoft.Json](https://www.nuget.o
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/CustomWriterStartup.cs" id="snippet_WriteResponse_NewtonSoftJson":::
 
-In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](xref:index#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
+In the sample app, comment out the `SYSTEM_TEXT_JSON` [preprocessor directive](../../../fundamentals/index.md#preprocessor-directives-in-sample-code) in `CustomWriterStartup.cs` to enable the `Newtonsoft.Json` version of `WriteResponse`.
 
 The health checks API doesn't provide built-in support for complex JSON return formats because the format is specific to your choice of monitoring system. Customize the response in the preceding examples as needed. For more information on JSON serialization with `System.Text.Json`, see [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to).
 
@@ -1193,11 +1193,11 @@ In some hosting scenarios, a pair of health checks is used to distinguish two ap
 
 Consider the following example: An app must download a large configuration file before it's ready to process requests. We don't want the app to be restarted if the initial download fails because the app can retry downloading the file several times. We use a *liveness probe* to describe the liveness of the process, no other checks are run. We also want to prevent requests from being sent to the app before the configuration file download has succeeded. We use a *readiness probe* to indicate a "not ready" state until the download succeeds and the app is ready to receive requests.
 
-The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](xref:fundamentals/host/hosted-services). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (`StartupHostedServiceHealthCheck.cs`):
+The sample app contains a health check to report the completion of long-running startup task in a [Hosted Service](../../../fundamentals/host/hosted-services.md). The `StartupHostedServiceHealthCheck` exposes a property, `StartupTaskCompleted`, that the hosted service can set to `true` when its long-running task is finished (`StartupHostedServiceHealthCheck.cs`):
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/StartupHostedServiceHealthCheck.cs" id="snippet1" highlight="7-11":::
 
-The long-running background task is started by a [Hosted Service](xref:fundamentals/host/hosted-services) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
+The long-running background task is started by a [Hosted Service](../../../fundamentals/host/hosted-services.md) (`Services/StartupHostedService`). At the conclusion of the task, `StartupHostedServiceHealthCheck.StartupTaskCompleted` is set to `true`:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/Services/StartupHostedService.cs" id="snippet1" highlight="23":::
 
@@ -1306,7 +1306,7 @@ dotnet run --scenario writer
 
 Call `RequireHost` on `MapHealthChecks` with a URL pattern that specifies a port to restrict health check requests to the port specified. This approach is typically used in a container environment to expose a port for monitoring services.
 
-The sample app configures the port using the [Environment Variable Configuration Provider](xref:fundamentals/configuration/index#environment-variables). The port is set in the `launchSettings.json` file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
+The sample app configures the port using the [Environment Variable Configuration Provider](../../../fundamentals/configuration/index.md#environment-variables-configuration-provider). The port is set in the `launchSettings.json` file and passed to the configuration provider via an environment variable. You must also configure the server to listen to requests on the management port.
 
 To use the sample app to demonstrate management port configuration, create the `launchSettings.json` file in a `Properties` folder.
 
@@ -1397,7 +1397,7 @@ dotnet run --scenario port
 
 To distribute a health check as a library:
 
-1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
+1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](../../../fundamentals/dependency-injection.md), type activation, and [named options](../../../fundamentals/configuration/options.md) to access configuration data.
 
    In the health checks logic of `CheckHealthAsync`:
 
@@ -1508,7 +1508,7 @@ In the sample app, `ReadinessPublisher` is an <xref:Microsoft.Extensions.Diagnos
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/ReadinessPublisher.cs" id="snippet_ReadinessPublisher" highlight="18-27":::
 
-In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check has a two second startup delay and runs the check every 30 seconds. To activate the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](xref:fundamentals/dependency-injection) container:
+In the sample app's `LivenessProbeStartup` example, the `StartupHostedService` readiness check has a two second startup delay and runs the check every 30 seconds. To activate the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublisher> implementation, the sample registers `ReadinessPublisher` as a singleton service in the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container:
 
 :::code language="csharp" source="~/host-and-deploy/health-checks/samples/3.x/HealthChecksSample/LivenessProbeStartup.cs" id="snippet_ConfigureServices":::
 
@@ -1535,6 +1535,6 @@ app.UseEndpoints(endpoints =>
 });
 ```
 
-For more information, see <xref:fundamentals/middleware/index#branch-the-middleware-pipeline>.
+For more information, see [ASP.NET Core middleware](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline).
 
 :::moniker-end

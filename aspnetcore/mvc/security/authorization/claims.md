@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to add claims checks for authorization in an ASP.NET Core MVC app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 04/07/2026
-uid: mvc/security/authorization/claims
 ---
 # Claim-based authorization in ASP.NET Core MVC
 
@@ -12,12 +11,12 @@ When an identity is created for an app user upon signing into an app, the identi
 
 This article uses MVC examples and focuses on MVC scenarios. For Blazor and Razor Pages guidance, see the following resources:
 
-* <xref:security/authorization/claims>
-* <xref:razor-pages/security/authorization/claims>
+* [Claim-based authorization in ASP.NET Core](../../../security/authorization/claims.md)
+* [Claim-based authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/claims.md)
 
 ## Sample app
 
-The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](xref:index#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
+The sample app for this article is the [`WebAll` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/claims) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). For more information, see the sample's README file (`README.md`).
 
 ## Add claim checks
 
@@ -154,7 +153,7 @@ services.AddAuthorization(options =>
 
 :::moniker-end
 
-For more information, see <xref:security/authorization/policies#use-a-func-to-fulfill-a-policy>.
+For more information, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#use-a-func-to-fulfill-a-policy).
 
 ## Evaluate multiple policies
 
@@ -166,7 +165,7 @@ If multiple policies are applied at the controller and action levels, ***all*** 
 
 In the preceding example, any identity that fulfills the `EmployeeOnly` policy can access the `Payslip` action, as that policy is enforced on the controller. However, in order to call the `UpdateSalary` action, the identity must fulfill *both* the `EmployeeOnly` policy and the `HumanResources` policy.
 
-If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](xref:security/authorization/policies).
+If you want more complicated policies, such as taking a date of birth claim, calculating an age from it then checking the age is 21 or older then you need to write [custom policy handlers](../../../security/authorization/policies.md).
 
 ## Claim case sensitivity
 

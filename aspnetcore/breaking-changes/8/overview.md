@@ -1,6 +1,5 @@
 ---
 title: Breaking changes in ASP.NET Core 8
-titleSuffix: ""
 description: Navigate to the breaking changes in ASP.NET Core 8.
 ms.date: 04/10/2025
 no-loc: [Blazor, Razor, Kestrel]
@@ -11,8 +10,8 @@ If you're migrating an app to ASP.NET Core 8, the breaking changes listed here m
 
 [!INCLUDE [binary-source-behavioral](../includes/binary-source-behavioral.md)]
 
-| Title                                                                                                | Type of change      |
-| ---------------------------------------------------------------------------------------------------- | ------------------- |
+| Title                                                                                | Type of change      |
+|--------------------------------------------------------------------------------------|---------------------|
 | [ConcurrencyLimiterMiddleware is obsolete](concurrencylimitermiddleware-obsolete.md) | Source incompatible |
 | [Custom converters for serialization removed](problemdetails-custom-converters.md)   | Behavioral change   |
 | [Forwarded headers middleware ignores X-Forwarded-* headers from unknown proxies](forwarded-headers-unknown-proxies.md) | Behavioral change   |

@@ -78,8 +78,8 @@ Native AOT analysis includes all of the app's code and the libraries the app dep
 In .NET 8, Native AOT is supported by the following ASP.NET Core app types:
 
 * Minimal APIs - For more information, see the [The Web API (Native AOT) template](#the-web-api-native-aot-template) section later in this article.
-* gRPC - For more information, see [gRPC and Native AOT](xref:grpc/native-aot).
-* Worker services - For more information, see [AOT in Worker Service templates](xref:fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
+* gRPC - For more information, see [gRPC and Native AOT](../../../grpc/native-aot.md).
+* Worker services - For more information, see [AOT in Worker Service templates](../../host/hosted-services.md?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
 ## The Web API (Native AOT) template
 
@@ -89,7 +89,7 @@ The **ASP.NET Core Web API (Native AOT)** template (short name `webapiaot`) crea
 * Uses the <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateSlimBuilder> API to ensure only the essential features are enabled by default, minimizing the app's deployed size.
 * Is configured to listen on HTTP only, as HTTPS traffic is commonly handled by an ingress service in cloud-native deployments.
 * Doesn't include a launch profile for running under IIS or IIS Express.
-* Creates an [`.http` file](xref:test/http-files) configured with sample HTTP requests that can be sent to the app's endpoints.
+* Creates an [`.http` file](../../../test/http-files.md) configured with sample HTTP requests that can be sent to the app's endpoints.
 * Includes a sample `Todo` API instead of the weather forecast sample.
 * Adds `PublishAot` to the project file, as shown [earlier in this article](#native-aot-publishing).
 * Enables the [JSON serializer source generators](/dotnet/standard/serialization/system-text-json/source-generation). The source generator is used to generate serialization code at build time, which is required for Native AOT compilation.
@@ -191,7 +191,7 @@ As noted earlier, the `CreateSlimBuilder` method doesn't include support for HTT
 
 The `CreateSlimBuilder` method doesn't support the following features that are supported by the `CreateBuilder` method:
 
-* [Hosting startup assemblies](xref:fundamentals/configuration/platform-specific-configuration)
+* [Hosting startup assemblies](../../host/platform-specific-configuration.md)
 * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*>
 * The following logging providers:
     * [Windows EventLog](/aspnet/core/fundamentals/logging#windows-eventlog)
@@ -199,10 +199,10 @@ The `CreateSlimBuilder` method doesn't support the following features that are s
     * [Event Source](/aspnet/core/fundamentals/logging#event-source)
 * Web hosting features:
     * <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStaticWebAssets*>
-    * [IIS Integration](xref:host-and-deploy/iis/index)
+    * [IIS Integration](../../../host-and-deploy/iis/index.md)
 * Kestrel configuration
-    * [HTTPS endpoints in Kestrel](xref:fundamentals/servers/kestrel/endpoints#https)
-    * [Quic (HTTP/3)](xref:fundamentals/servers/kestrel/http3#http3-benefits)
+    * [HTTPS endpoints in Kestrel](../../servers/kestrel/endpoints.md#configure-https)
+    * [Quic (HTTP/3)](../../servers/kestrel/http3.md#http3-benefits)
 * [Regex and alpha constraints used in routing](https://github.com/dotnet/aspnetcore/issues/46142)
 
 The `CreateSlimBuilder` method includes the following features needed for an efficient development experience:
@@ -212,7 +212,7 @@ The `CreateSlimBuilder` method includes the following features needed for an eff
 * Console logging.
 * Logging configuration.
 
-For a builder that omits the preceding features, see [The `CreateEmptyBuilder` method](xref:aspnetcore-8#new-createemptybuilder-method).
+For a builder that omits the preceding features, see [The `CreateEmptyBuilder` method](../../../release-notes/aspnetcore-8.0.md#new-createemptybuilder-method).
 
 Including minimal features has benefits for trimming as well as AOT. For more information, see [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained).
 
@@ -254,7 +254,7 @@ All types that are transmitted as part of the HTTP body or returned from request
 
 In the preceding highlighted code:
 
-* The JSON serializer context is registered with the [DI container](xref:fundamentals/dependency-injection). For more information, see:
+* The JSON serializer context is registered with the [DI container](../../dependency-injection.md). For more information, see:
   * [Combine source generators](/dotnet/standard/serialization/system-text-json/source-generation?pivots=dotnet-8-0#combine-source-generators)
   * <xref:System.Text.Json.JsonSerializerOptions.TypeInfoResolverChain>
 * The custom `JsonSerializerContext` is annotated with the [`[JsonSerializable]`](/dotnet/api/system.text.json.serialization.jsonserializableattribute) attribute to enable source generated JSON serializer code for the `ToDo` type.
@@ -269,7 +269,7 @@ See [this GitHub issue](https://github.com/dotnet/core/issues/8288) to report or
 
 ## See also
 
-* <xref:fundamentals/native-aot-tutorial>
+* [Tutorial: Publish an ASP.NET Core app using Native AOT](../../aot/native-aot-tutorial.md)
 * [Native AOT deployment](/dotnet/core/deploying/native-aot/)
 * [Optimize AOT deployments](/dotnet/core/deploying/native-aot/optimizing)
 * [Configuration-binding source generator](/dotnet/core/whats-new/dotnet-8#configuration-binding-source-generator)

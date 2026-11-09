@@ -5,7 +5,6 @@ description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 07/06/2026
-uid: blazor/security/blazor-web-app-entra
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
@@ -26,7 +25,7 @@ This version of the article covers implementing Entra with the [Backend for Fron
 
 The following specification is covered:
 
-* The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](xref:blazor/components/render-modes).
+* The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](../components/render-modes.md).
 * The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
 * Automatic non-interactive token refresh is managed by the framework.
@@ -51,7 +50,7 @@ The sample solution consists of the following projects:
 * Aspire:
   * `Aspire.AppHost`: Used to manage the high-level orchestration concerns of the app.
   * `Aspire.ServiceDefaults`: Contains default Aspire app configurations that can be extended and customized as needed.
-* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppEntra`: Server-side project of the Blazor Web App.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
 
@@ -59,7 +58,7 @@ Access the sample through the latest version folder in the Blazor samples reposi
 
 Start the solution from the ***`Aspire/Aspire.AppHost` project***.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 ## Microsoft Entra ID app registrations
 
@@ -97,11 +96,11 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 ## Backend web API project (`MinimalApiJwt`)
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppEntra`) are proxied to the `MinimalApiJwt` project.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data. Requests from the Blazor Web App server-side project (`BlazorWebAppEntra`) are proxied to the `MinimalApiJwt` project.
 
-The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see [Use .http files in Visual Studio 2022](../../test/http-files.md).
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -354,7 +353,7 @@ This version of the article covers implementing Entra with the [Backend for Fron
 
 The following specification is covered:
 
-* The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](xref:blazor/components/render-modes).
+* The Blazor Web App uses the [Auto render mode with global interactivity (`InteractiveAuto`)](../components/render-modes.md).
 * The server project calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> to add a server-side authentication state provider that uses <xref:Microsoft.AspNetCore.Components.PersistentComponentState> to flow the authentication state to the client. The client calls <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*> to deserialize and use the authentication state passed by the server. The authentication state is fixed for the lifetime of the WebAssembly application.
 * The app uses [Microsoft Entra ID](https://www.microsoft.com/security/business/microsoft-entra), based on [Microsoft Identity Web](/entra/msal/dotnet/microsoft-identity-web/) packages.
 * Automatic non-interactive token refresh is managed by the framework.
@@ -367,13 +366,13 @@ The following specification is covered:
 
 The sample solution consists of the following projects:
 
-* `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `BlazorWebAppEntra`: Server-side project of the Blazor Web App, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 * `BlazorWebAppEntra.Client`: Client-side project of the Blazor Web App.
-* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+* `MinimalApiJwt`: Backend web API, containing an example [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppEntraBff` folder for .NET 9 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 ## Microsoft Entra ID app registrations
 
@@ -403,11 +402,11 @@ If the user needs to log in or out during client-side rendering, a full page rel
 
 ## Backend web API project (`MinimalApiJwt`)
 
-The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](xref:fundamentals/minimal-apis) endpoint for weather data.
+The `MinimalApiJwt` project is a backend web API for multiple frontend projects. The project configures a [Minimal API](../../fundamentals/minimal-apis.md) endpoint for weather data.
 
-The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see <xref:test/http-files>.
+The `MinimalApiJwt.http` file can be used for testing the weather data request. Note that the `MinimalApiJwt` project must be running to test the endpoint, and the endpoint is hardcoded into the file. For more information, see [Use .http files in Visual Studio 2022](../../test/http-files.md).
 
-The project includes packages and configuration to produce [OpenAPI documents](xref:fundamentals/openapi/overview).
+The project includes packages and configuration to produce [OpenAPI documents](../../fundamentals/openapi/overview.md).
 
 A secure weather forecast data endpoint is in the project's `Program` file:
 
@@ -657,7 +656,7 @@ We strongly recommend that you avoid storing client secrets in project code or c
 
 ### Secret Manager tool
 
-The [Secret Manager tool](xref:security/app-secrets) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
+The [Secret Manager tool](../../security/app-secrets.md) can store the server app's client secret under the configuration key `AzureAd:ClientSecret`.
 
 The Blazor server app hasn't been initialized for the Secret Manager tool. Use a command shell, such as the Developer PowerShell command shell in Visual Studio, to execute the following command. Before executing the command, change the directory with the `cd` command to the server project's directory. The command establishes a user secrets identifier (`<UserSecretsId>`) in the server app's project file, which is used internally by the tooling to track secrets for the app:
 
@@ -758,7 +757,7 @@ msIdentityOptions.ClientSecret = AzureHelper.GetKeyVaultSecret("{VAULT URI}",
 
 `{SECRET NAME}`: Secret name. Example: `BlazorWebAppEntraClientSecret`
 
-Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see <xref:blazor/fundamentals/configuration>.
+Configuration is used to facilitate supplying dedicated key vaults and secret names based on the app's environmental configuration files. For example, you can supply different configuration values for `appsettings.Development.json` in development, `appsettings.Staging.json` when staging, and `appsettings.Production.json` for the production deployment. For more information, see [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ## Only serialize the name and role claims
 
@@ -766,7 +765,7 @@ In the `Program` file, all claims are serialized by setting <xref:Microsoft.AspN
 
 ## Supply configuration with the JSON configuration provider (app settings)
 
-The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](xref:fundamentals/configuration/index). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](xref:fundamentals/environments). Follow the guidance in this section to use app settings files for configuration.
+The [sample solution projects](#sample-solution) configure Microsoft Identity Web and JWT bearer authentication in their `Program` files in order to make configuration settings discoverable using C# autocompletion. Professional apps usually use a *configuration provider* to configure OIDC options, such as the default [JSON configuration provider](../../fundamentals/configuration/index.md). The JSON configuration provider loads configuration from app settings files `appsettings.json`/`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the app's [runtime environment](../../fundamentals/environments.md). Follow the guidance in this section to use app settings files for configuration.
 
 In the app settings file (`appsettings.json`) of the `BlazorWebAppEntra` project, add the following JSON configuration:
 
@@ -899,8 +898,8 @@ Remove the following lines from the `Program` file:
 
 For more information on configuration, see the following resources:
 
-* <xref:fundamentals/configuration/index>
-* <xref:blazor/fundamentals/configuration>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md)
+* [ASP.NET Core Blazor configuration](../fundamentals/configuration.md)
 
 ## Use a production distributed token cache provider
 
@@ -948,7 +947,7 @@ builder.Services.Configure<MsalDistributedTokenCacheAdapterOptions>(
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-To configure a production distributed cache provider, see <xref:performance/caching/distributed>.
+To configure a production distributed cache provider, see [Distributed caching in ASP.NET Core](../../performance/caching/distributed.md).
 
 > [!WARNING]
 > Always replace the in-memory distributed token caches with a real token cache provider when deploying the app to a production environment. If you fail to adopt a production distributed token cache provider, the app may suffer significantly degraded performance.
@@ -970,7 +969,7 @@ Use a shared Data Protection key ring in production so that instances of the app
 >
 > Later in the development and testing period, enable token encryption and adopt a shared Data Protection key ring.
 
-The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
+The following example shows how to use [Azure Blob Storage and Azure Key Vault (`PersistKeysToAzureBlobStorage`/`ProtectKeysWithAzureKeyVault`)](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault) for the shared key ring. The service configurations are base case scenarios for demonstration purposes. Before deploying production apps, familiarize yourself with the Azure services and adopt best practices using the Azure services' dedicated documentation sets, which are linked at the end of this section.
 
 Confirm the presence of the following packages in the server project of the Blazor Web App:
 
@@ -982,11 +981,11 @@ Confirm the presence of the following packages in the server project of the Blaz
 > [!NOTE]
 > Before proceeding with the following steps, confirm that the app is registered with Microsoft Entra.
 
-The following code is typically implemented at the same time that a [production distributed token cache provider](xref:performance/caching/distributed) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
+The following code is typically implemented at the same time that a [production distributed token cache provider](../../performance/caching/distributed.md) is implemented. Other options, both within Azure and outside of Azure, are available for managing data protection keys across multiple app instances, but the sample app demonstrates how to use Azure services.
 
-Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in <xref:security/data-protection/implementation/key-storage-providers#azure-storage>.
+Configure Azure Blob Storage to maintain data protection keys. Follow the guidance in [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage).
 
-Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+Configure Azure Key Vault to encrypt the data protection keys at rest. Follow the guidance in [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault).
 
 Use the following code in the `Program` file where services are registered:
 
@@ -1104,12 +1103,12 @@ builder.Services.AddDataProtection()
 
 For more information on using a shared Data Protection key ring and key storage providers, see the following resources:
 
-* <xref:security/data-protection/implementation/key-storage-providers#azure-storage>
-* <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>
+* [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md#azure-storage)
+* [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault)
 * [Use the Azure SDK for .NET in ASP.NET Core apps](/dotnet/azure/sdk/aspnetcore-guidance?tabs=api)
-* [Host ASP.NET Core in a web farm: Data Protection](xref:host-and-deploy/web-farm#data-protection)
-* <xref:security/data-protection/configuration/overview>
-* <xref:security/data-protection/implementation/key-storage-providers>
+* [Host ASP.NET Core in a web farm: Data Protection](../../host-and-deploy/web-farm.md#data-protection)
+* [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
+* [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
 * [Azure Key Vault documentation](/azure/key-vault/general/)
 * [Azure Storage documentation](/azure/storage/)
 * [Provide access to Key Vault keys, certificates, and secrets with Azure role-based access control](/azure/key-vault/general/rbac-guide?tabs=azure-cli)
@@ -1171,13 +1170,13 @@ Alternatively, use the following `LogInOrOut` component, which doesn't supply a 
 
 ## Weather data security
 
-For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](xref:blazor/security/index#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
+For more information on how this app secures its weather data, see [Secure data in Blazor Web Apps with Interactive Auto rendering](index.md#secure-data-in-blazor-web-apps-with-interactive-auto-rendering).
 
 ## Host in a web farm or cluster
 
-Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](xref:blazor/fundamentals/signalr#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
+Server-side Blazor Web Apps hosted in a web farm or cluster of machines must adopt [*session affinity*](../fundamentals/signalr.md#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting) to maintain Blazor circuits for users of the app.
 
-We also recommend using a shared [Data Protection](xref:security/data-protection/introduction) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
+We also recommend using a shared [Data Protection](../../security/data-protection/introduction.md) key ring in production, even when the app uses the Interactive WebAssembly render mode exclusively for client-side rendering (no Blazor circuits).
 
 ## STS token version
 
@@ -1225,16 +1224,16 @@ For more information, see [Access tokens in the Microsoft identity platform: Tok
 
 ## Related content
 
-* [Call a web API from an ASP.NET Core Blazor app: Microsoft identity platform for web API calls](xref:blazor/call-web-api#microsoft-identity-platform-for-web-api-calls)
+* [Call a web API from an ASP.NET Core Blazor app: Microsoft identity platform for web API calls](../call-web-api.md#microsoft-identity-platform-for-web-api-calls)
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Web API documentation | Microsoft identity platform](/entra/identity-platform/index-web-api)
 * [A web API that calls web APIs: Call an API: Option 2: Call a downstream web API with the helper class](/entra/identity-platform/scenario-web-api-call-api-call-api?tabs=aspnetcore#option-2-call-a-downstream-web-api-with-the-helper-class)
 * [`AzureAD/microsoft-identity-web` GitHub repository](https://github.com/AzureAD/microsoft-identity-web/wiki): Helpful guidance on implementing Microsoft Identity Web for Microsoft Entra ID for ASP.NET Core apps, including links to sample apps and related Azure documentation. Currently, Blazor Web Apps aren't explicitly addressed by the Azure documentation, but the setup and configuration of a Blazor Web App for ME-ID and Azure hosting is the same as it is for any ASP.NET Core web app.
-* [`AuthenticationStateProvider` service](xref:blazor/security/index#authenticationstateprovider-service)
-* [Manage authentication state in Blazor Web Apps](xref:blazor/security/index#manage-authentication-state-in-blazor-web-apps)
-* [Service abstractions in Blazor Web Apps](xref:blazor/call-web-api#service-abstractions-for-web-api-calls)
+* [`AuthenticationStateProvider` service](index.md#authenticationstateprovider-service)
+* [Manage authentication state in Blazor Web Apps](index.md#manage-authentication-state-in-blazor-web-apps)
+* [Service abstractions in Blazor Web Apps](../call-web-api.md#service-abstractions-for-web-api-calls)
 * Data Protection resources
-  * <xref:security/data-protection/configuration/overview>
-  * <xref:security/data-protection/implementation/key-storage-providers>
-  * <xref:security/data-protection/implementation/key-encryption-at-rest>
-* [Opaque (reference) access token support](xref:blazor/security/additional-scenarios#opaque-reference-access-token-support)
+  * [Configure ASP.NET Core Data Protection](../../security/data-protection/configuration/overview.md)
+  * [Key storage providers in ASP.NET Core](../../security/data-protection/implementation/key-storage-providers.md)
+  * [Key encryption at rest in Windows and Azure using ASP.NET Core](../../security/data-protection/implementation/key-encryption-at-rest.md)
+* [Opaque (reference) access token support](additional-scenarios.md#opaque-reference-access-token-support)

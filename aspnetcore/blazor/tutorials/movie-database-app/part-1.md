@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
 description: This part of the Blazor movie database app tutorial explains how to create a Blazor Web App that adopts static server-side rendering (static SSR), where content is only rendered on the server.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-1
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 1 - Create a Blazor Web App)
@@ -220,7 +219,7 @@ The `wwwroot` folder contains static assets, such as image, JavaScript (`.js`), 
 
 These folders contain *Razor components*, often referred to as "components," and supporting files. A component is a self-contained portion of user interface (UI) with optional processing logic. Components can be nested, reused, and shared among projects.
 
-Components are implemented using a combination of C# and HTML markup in [Razor](xref:mvc/views/razor) component files with the `.razor` file extension.
+Components are implemented using a combination of C# and HTML markup in [Razor](../../../mvc/views/razor.md) component files with the `.razor` file extension.
 
 Typically, components that are nested within other components and not directly reachable ("routable") at a URL are placed in the `Components` folder. Components that are routable via a URL are usually placed in the `Components/Pages` folder.
 
@@ -288,7 +287,7 @@ Next, the HTTP request pipeline is configured.
 When the app isn't running in the `Development` environment:
 
 * Exception handler middleware (<xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>) processes errors and displays a custom error page.
-* [HTTP Strict Transport Security (HSTS) protocol middleware](xref:security/enforcing-ssl#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
+* [HTTP Strict Transport Security (HSTS) protocol middleware](../../../security/enforcing-ssl.md#http-strict-transport-security-hsts-protocol) (<xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*>) processes [HSTS](https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html).
 
 ```csharp
 if (!app.Environment.IsDevelopment())
@@ -363,9 +362,9 @@ app.Run();
 
 ## Related content
 
-When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see <xref:security/enforcing-ssl>.
+When using VS Code or the .NET CLI, this tutorial series adopts insecure HTTP protocol to ease the transition of adopting SSL/HTTPS security for Linux and macOS users. For information on adopting SSL/HTTPS, see [Enforce HTTPS in ASP.NET Core](../../../security/enforcing-ssl.md).
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
+> [Next: Add and scaffold a model](part-2.md)

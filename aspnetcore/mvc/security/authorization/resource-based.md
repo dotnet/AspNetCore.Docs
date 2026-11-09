@@ -3,7 +3,6 @@ title: Resource-based authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
 description: Learn how to implement resource-based authorization in an ASP.NET Core MVC app when an [Authorize] attribute doesn't suffice.
 ms.date: 07/21/2026
-uid: mvc/security/authorization/resource-based
 ---
 # Resource-based authorization in ASP.NET Core MVC
 
@@ -13,15 +12,15 @@ In an app, a *resource* is typically represented by a C# class that includes dat
 
 Resource-based authorization requires special attention in ASP.NET Core apps. Attribute evaluation occurs before data binding and before execution of an action that loads a resource. Declarative authorization with an `[Authorize]` attribute doesn't suffice for resource-based authorization. Instead, the app must invoke a custom authorization method&mdash;an approach known as *imperative authorization*.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/resource-based) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)).
 
-<xref:security/authorization/secure-data> contains a sample app that uses resource-based authorization.
+[Create an ASP.NET Core app with user data protected by authorization](../../../security/authorization/secure-data.md) contains a sample app that uses resource-based authorization.
 
 Examples in this article use *primary constructors*, available in C# 12 (.NET 8) or later. For more information, see [Declare primary constructors for classes and structs (C# documentation tutorial)](/dotnet/csharp/whats-new/tutorials/primary-constructors) and [Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors). Sample apps that accompany the article that target versions of .NET earlier than .NET 8 use constructor injection.
 
 ## Use imperative authorization
 
-Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](xref:fundamentals/dependency-injection). The following controller also injects a document repository, which the developer creates and registers in the service container to manage document operations:
+Authorization is implemented as an <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, which is registered in the service collection at app startup *by the ASP.NET Core framework*. The service is made available to classes and actions via [dependency injection](../../../fundamentals/dependency-injection.md). The following controller also injects a document repository, which the developer creates and registers in the service container to manage document operations:
 
 ```csharp
 public class DocumentController(IAuthorizationService authorizationService,
@@ -81,7 +80,7 @@ public async Task<IActionResult> Edit(Guid documentId)
 
 ## Create a resource-based handler
 
-Creating a resource-based authorization handler is similar to [creating a plain requirements handler](xref:security/authorization/policies#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see <xref:security/authorization/policies#requirements-and-policy-registration>.
+Creating a resource-based authorization handler is similar to [creating a plain requirements handler](../../../security/authorization/policies.md#authorization-handlers). Create a custom requirement class and implement a requirement handler class. For more information on creating a requirement class, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md#requirements-and-policy-registration).
 
 The handler class specifies the requirement and resource type. The following example demonstrates a handler utilizing a `SameAuthorRequirement` requirement and a `Document` resource:
 
@@ -119,7 +118,7 @@ services.AddSingleton<IAuthorizationHandler, DocumentAuthorizationHandler>();
 
 :::moniker-end
 
-For more information on creating authorization policies, see <xref:security/authorization/policies>.
+For more information on creating authorization policies, see [Policy-based authorization in ASP.NET Core](../../../security/authorization/policies.md).
 
 ### Operational requirements
 

@@ -4,15 +4,14 @@ description: Learn how to secure an ASP.NET Core Blazor WebAssembly standalone a
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-csharp, sfi-ropc-nochange
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/standalone-with-microsoft-entra-id
 ---
 # Secure an ASP.NET Core Blazor WebAssembly standalone app with Microsoft Entra ID
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a [standalone Blazor WebAssembly app](xref:blazor/hosting-models#blazor-webassembly) that uses [Microsoft Entra ID (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication.
+This article explains how to create a [standalone Blazor WebAssembly app](../../hosting-models.md#blazor-webassembly) that uses [Microsoft Entra ID (ME-ID)](https://azure.microsoft.com/services/active-directory/) for authentication.
 
-For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Walkthrough
 
@@ -49,7 +48,7 @@ Record the following information:
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
 1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
-1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see <xref:blazor/security/webassembly/index#use-the-authorization-code-flow-with-pkce>.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see [Secure ASP.NET Core Blazor WebAssembly](index.md#use-the-authorization-code-flow-with-pkce).
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.
 
@@ -159,14 +158,14 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
 > [!NOTE]
-> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
+> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent).
 
 For more information, see the following resources:
 
-* [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
-* [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [Request additional access tokens](additional-scenarios.md#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](additional-scenarios.md#attach-tokens-to-outgoing-requests)
 * [Quickstart: Configure an application to expose web APIs](/entra/identity-platform/quickstart-configure-app-expose-web-apis)
-* [Access token scopes for Microsoft Graph API](xref:blazor/security/webassembly/graph-api)
+* [Access token scopes for Microsoft Graph API](graph-api.md)
 
 ### Login mode
 
@@ -209,10 +208,10 @@ The <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName
 ## Related content
 
 * [Identity and account types for single- and multitenant apps](/security/zero-trust/develop/identity-supported-account-types)
-* <xref:blazor/security/webassembly/additional-scenarios>
-* [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
-* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:security/authentication/azure-active-directory/index>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](microsoft-entra-id-groups-and-roles.md)
+* [Microsoft identity platform and Microsoft Entra ID with ASP.NET Core](../../../security/authentication/azure-active-directory/index.md)
 * [Microsoft identity platform documentation](/entra/identity-platform/)
 * [Security best practices for application properties in Microsoft Entra ID](/entra/identity-platform/security-best-practices-for-app-registration)

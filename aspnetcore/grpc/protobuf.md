@@ -3,7 +3,6 @@ title: Create Protobuf messages for .NET apps
 description: Learn how to create Protobuf messages for .NET apps.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 04/07/2026
-uid: grpc/protobuf
 ---
 # Create Protobuf messages for .NET apps
 
@@ -33,7 +32,7 @@ The preceding message definition specifies three fields as name-value pairs. Lik
 
 The [Protobuf style guide](https://developers.google.com/protocol-buffers/docs/style) recommends using `underscore_separated_names` for field names. New Protobuf messages created for .NET apps should follow the Protobuf style guidelines. .NET tooling automatically generates .NET types that use .NET naming standards. For example, a `first_name` Protobuf field generates a `FirstName` .NET property.
 
-In addition to a name, each field in the message definition has a unique number. Field numbers are used to identify fields when the message is serialized to Protobuf. Serializing a small number is faster than serializing the entire field name. Because field numbers identify a field it is important to take care when changing them. For more information about changing Protobuf messages see <xref:grpc/versioning>.
+In addition to a name, each field in the message definition has a unique number. Field numbers are used to identify fields when the message is serialized to Protobuf. Serializing a small number is faster than serializing the entire field name. Because field numbers identify a field it is important to take care when changing them. For more information about changing Protobuf messages see [Versioning gRPC services](versioning.md).
 
 When an app is built the Protobuf tooling generates .NET types from `.proto` files. The `Person` message generates a .NET class:
 
@@ -438,4 +437,4 @@ var document = JsonDocument.Parse(json);
 ## Related content
 
 * [Protobuf language guide](https://developers.google.com/protocol-buffers/docs/proto3#simple)
-* <xref:grpc/versioning>
+* [Versioning gRPC services](versioning.md)

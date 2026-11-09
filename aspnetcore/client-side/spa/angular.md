@@ -4,7 +4,6 @@ description: Learn how to get started with the ASP.NET Core Single Page Applicat
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 07/29/2026
 ms.reviewer: stevesa
-uid: spa/angular
 ---
 # Use the Angular project template with ASP.NET Core
 

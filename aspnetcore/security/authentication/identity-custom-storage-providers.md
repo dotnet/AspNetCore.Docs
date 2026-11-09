@@ -3,14 +3,13 @@ title: Custom storage providers for ASP.NET Core Identity
 ai-usage: ai-assisted
 description: Learn how to configure custom storage providers for ASP.NET Core Identity.
 ms.date: 01/29/2026
-uid: security/authentication/identity-custom-storage-providers
 ---
 <!-- ms.sfi.ropc: t -->
 # Custom storage providers for ASP.NET Core Identity
 
 By [Steve Smith](https://ardalis.com/)
 
-ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but isn't a step-by-step walk through. See [Identity model customization](xref:security/authentication/customize_identity_model) to customize an Identity model.
+ASP.NET Core Identity is an extensible system which enables you to create a custom storage provider and connect it to your app. This topic describes how to create a customized storage provider for ASP.NET Core Identity. It covers the important concepts for creating your own storage provider, but isn't a step-by-step walk through. See [Identity model customization](customize-identity-model.md) to customize an Identity model.
 
 ## Introduction
 
@@ -106,7 +105,7 @@ The implementation logic for creating the user is in the `_usersTable.CreateAsyn
 
 ## Customize the user class
 
-When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](xref:security/authentication/customize_identity_model#model-generic-types).
+When implementing a storage provider, create a user class which is equivalent to the [IdentityUser class](customize-identity-model.md#model-generic-types).
 
 At a minimum, your user class must include an `Id` and a `UserName` property.
 
@@ -259,7 +258,7 @@ var app = builder.Build();
 
 ## References
 
-* [Identity model customization](xref:security/authentication/customize_identity_model)
+* [Identity model customization](customize-identity-model.md)
 * [Custom Storage Providers for ASP.NET 4.x Identity](/aspnet/identity/overview/extensibility/overview-of-custom-storage-providers-for-aspnet-identity)
 * [ASP.NET Core Identity](https://github.com/dotnet/AspNetCore/tree/main/src/Identity): This repository includes links to community maintained store providers.
 * [View or download sample from GitHub](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity-custom-storage-providers/samples/CustomIdentityProviderSample).

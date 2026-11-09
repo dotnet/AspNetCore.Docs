@@ -3,15 +3,15 @@
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)). [How to run](#sample-app).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/websockets/samples) ([how to download](../../index.md#how-to-download-a-sample)). [How to run](#sample-app).
 
 ## SignalR
 
-[ASP.NET Core SignalR](xref:signalr/introduction) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
+[ASP.NET Core SignalR](../../../signalr/introduction.md) is a library that simplifies adding real-time web functionality to apps. It uses WebSockets whenever possible.
 
 For most applications, we recommend SignalR over raw WebSockets. SignalR provides transport fallback for environments where WebSockets isn't available. It also provides a basic remote procedure call app model. And in most scenarios, SignalR has no significant performance disadvantage compared to using raw WebSockets.
 
-For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSockets.
+For some apps, [gRPC on .NET](../../../grpc/index.md) provides an alternative to WebSockets.
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ For some apps, [gRPC on .NET](xref:grpc/index) provides an alternative to WebSoc
   * Windows 8 / Windows Server 2012 or later
   * IIS 8 / IIS 8 Express
   * WebSockets must be enabled. See the [IIS/IIS Express support](#iisiis-express-support) section.  
-* If the app runs on [HTTP.sys](xref:fundamentals/servers/httpsys):
+* If the app runs on [HTTP.sys](../../servers/httpsys.md):
   * Windows 8 / Windows Server 2012 or later
 * For supported browsers, see [Can I use](https://caniuse.com/?search=websockets).
 

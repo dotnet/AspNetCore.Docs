@@ -4,7 +4,6 @@ description: Learn about error handling in ASP.NET Core APIs with Minimal APIs a
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/27/2026
-uid: fundamentals/error-handling-api
 ---
 
 # Handle errors in ASP.NET Core APIs
@@ -13,11 +12,11 @@ uid: fundamentals/error-handling-api
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-This article describes how to handle errors in ASP.NET Core APIs. Documentation for Minimal APIs is selected. To see documentation for controller-based APIs, select the **Controllers** tab. For Blazor error handling guidance, see <xref:blazor/fundamentals/handle-errors>.
+This article describes how to handle errors in ASP.NET Core APIs. Documentation for Minimal APIs is selected. To see documentation for controller-based APIs, select the **Controllers** tab. For Blazor error handling guidance, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 #### [Controllers](#tab/controllers)
 
-This article describes how to handle errors in ASP.NET Core APIs. Documentation for Controller-based APIs is selected. To see documentation for **Minimal APIs**, select the **Minimal APIs** tab. For Blazor error handling guidance, see <xref:blazor/fundamentals/handle-errors>.
+This article describes how to handle errors in ASP.NET Core APIs. Documentation for Controller-based APIs is selected. To see documentation for **Minimal APIs**, select the **Minimal APIs** tab. For Blazor error handling guidance, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 ---
 
@@ -29,7 +28,7 @@ This article describes how to handle errors in ASP.NET Core APIs. Documentation 
 
 To see the Developer Exception Page in a Minimal API:
 
-* Run the sample app in the [`Development` environment](xref:fundamentals/environments).
+* Run the sample app in the [`Development` environment](environments.md).
 * Go to the `/exception` endpoint.
 
 This section refers to the following sample app to demonstrate ways to handle exceptions in a Minimal API. It throws an exception when the endpoint `/exception` is requested:
@@ -44,14 +43,14 @@ To see the Developer Exception Page in a controller-based API:
 
   :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-* Run the app in the [development environment](xref:fundamentals/environments).
+* Run the app in the [development environment](environments.md).
 * Go to the endpoint defined by the controller action.
 
 ---
 
 ## Exception handler
 
-In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload.
+In non-development environments, use the [exception handler middleware](error-handling.md#exception-handler-page) to produce an error payload.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
@@ -74,7 +73,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 > [!WARNING]
 > Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method.
 >
-> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
+> For web APIs that use [Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
 >
 > ```csharp
 > [ApiExplorerSettings(IgnoreApi = true)]

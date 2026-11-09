@@ -3,7 +3,6 @@ title: Filters in ASP.NET Core
 description: Learn how filters work and how to use them in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/27/2026
-uid: mvc/controllers/filters
 ---
 # Filters in ASP.NET Core
 
@@ -20,7 +19,7 @@ Built-in filters handle tasks such as:
 
 Custom filters can be created to handle cross-cutting concerns. Examples of cross-cutting concerns include error handling, caching, configuration, authorization, and logging. Filters avoid duplicating code. For example, an error handling exception filter could consolidate error handling.
 
-This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](xref:blazor/components/index). A filter can only indirectly affect a component when:
+This document applies to Razor Pages, API controllers, and controllers with views. Filters don't work directly with [Razor components](../../blazor/components/index.md). A filter can only indirectly affect a component when:
 
 * The component is embedded in a page or view.
 * The page or controller and view uses the filter.
@@ -78,7 +77,7 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Run only when the action method executes successfully.
   * Are useful for logic that must surround view or formatter execution.
 
-Razor Pages also support [Razor Page filters](xref:razor-pages/filter), which run before and after a Razor Page handler.
+Razor Pages also support [Razor Page filters](../../razor-pages/filter.md), which run before and after a Razor Page handler.
 
 ## Implementation
 
@@ -236,7 +235,7 @@ Navigating to `https://localhost:<port>/ControllerFilters` runs the following co
 
 Controller level filters set the [Order](https://github.com/dotnet/AspNetCore/blob/main/src/Mvc/Mvc.Core/src/Filters/ControllerActionFilter.cs#L15-L17) property to `int.MinValue`. Controller level filters can **not** be set to run after filters applied to methods. Order is explained in the next section.
 
-For Razor Pages, see [Implement Razor Page filters by overriding filter methods](xref:razor-pages/filter#implement-razor-page-filters-by-overriding-filter-methods).
+For Razor Pages, see [Implement Razor Page filters by overriding filter methods](../../razor-pages/filter.md#implement-razor-page-filters-by-overriding-filter-methods).
 
 ### Override the default order
 
@@ -275,9 +274,9 @@ Therefore the `ResponseHeaderAttribute` filter never runs for the `Index` action
 Filters can be added by type or by instance. If an instance is added, that instance is used for every request. If a type is added, it's type-activated. A type-activated filter means:
 
 * An instance is created for each request.
-* Any constructor dependencies are populated by [dependency injection](xref:fundamentals/dependency-injection) (DI).
+* Any constructor dependencies are populated by [dependency injection](../../fundamentals/dependency-injection.md) (DI).
 
-Filters that are implemented as attributes and added directly to controller classes or action methods can't have constructor dependencies provided by [dependency injection](xref:fundamentals/dependency-injection) (DI). Constructor dependencies can't be provided by DI because attributes must have their constructor parameters supplied where they're applied.
+Filters that are implemented as attributes and added directly to controller classes or action methods can't have constructor dependencies provided by [dependency injection](../../fundamentals/dependency-injection.md) (DI). Constructor dependencies can't be provided by DI because attributes must have their constructor parameters supplied where they're applied.
 
 The following filters support constructor dependencies provided from DI:
 
@@ -287,7 +286,7 @@ The following filters support constructor dependencies provided from DI:
 
 The preceding filters can be applied to a controller or an action.
 
-Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](xref:fundamentals/logging/index) typically provides what's needed for logging. Logging added to filters:
+Loggers are available from DI. However, avoid creating and using filters purely for logging purposes. The [built-in framework logging](../../fundamentals/logging/index.md) typically provides what's needed for logging. Logging added to filters:
 
 * Should focus on business domain concerns or behavior specific to the filter.
 * Should **not** log actions or other framework events. The built-in filters already log actions and framework events.
@@ -356,7 +355,7 @@ Do **not** throw exceptions within authorization filters:
 
 Consider issuing a challenge when an exception occurs in an authorization filter.
 
-Learn more about [Authorization](xref:security/authorization/introduction).
+Learn more about [Authorization](../../security/authorization/introduction.md).
 
 ## Resource filters
 
@@ -378,7 +377,7 @@ Resource filter examples:
 
 ## Action filters
 
-Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](xref:razor-pages/filter).
+Action filters do **not** apply to Razor Pages. Razor Pages supports <xref:Microsoft.AspNetCore.Mvc.Filters.IPageFilter> and <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncPageFilter>. For more information, see [Filter methods for Razor Pages](../../razor-pages/filter.md).
 
 Action filters:
 
@@ -424,7 +423,7 @@ The `OnActionExecuting` action filter can be used to:
 :::code language="csharp" source="~/mvc/controllers/filters/samples/8.x/FiltersSample/Filters/ValidateModelAttribute.cs" id="snippet_Class":::
 
 > [!NOTE]
-> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](xref:web-api/index#automatic-http-400-responses).
+> Controllers annotated with the `[ApiController]` attribute automatically validate model state and return a 400 response. For more information, see [Automatic HTTP 400 responses](../../web-api/index.md#automatic-http-400-responses).
 
 The `OnActionExecuted` method runs after the action method:
 
@@ -453,7 +452,7 @@ Exception filters:
 
 * Don't have before and after events.
 * Implement <xref:Microsoft.AspNetCore.Mvc.Filters.IExceptionFilter.OnException*> or <xref:Microsoft.AspNetCore.Mvc.Filters.IAsyncExceptionFilter.OnExceptionAsync*>.
-* Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](xref:mvc/models/model-binding), action filters, or action methods.
+* Handle unhandled exceptions that occur in Razor Page or controller creation, [model binding](../models/model-binding.md), action filters, or action methods.
 * Do **not** catch exceptions that occur in resource filters, result filters, or MVC result execution.
 
 To handle an exception, set the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.ExceptionHandled> property to `true` or assign the <xref:Microsoft.AspNetCore.Mvc.Filters.ExceptionContext.Result> property. This stops propagation of the exception. An exception filter can't turn an exception into a "success". Only an action filter can do that.
@@ -480,7 +479,7 @@ The following code shows a sample result filter:
 
 :::code language="csharp" source="~/mvc/controllers/filters/samples/8.x/FiltersSample/Snippets/Filters/SampleResultFilter.cs" id="snippet_Class":::
 
-The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](xref:mvc/controllers/actions).
+The kind of result being executed depends on the action. An action returning a view includes all razor processing as part of the <xref:Microsoft.AspNetCore.Mvc.ViewResult> being executed. An API method might perform some serialization as part of the execution of the result. Learn more about [action results](actions.md).
 
 Result filters are only executed when an action or action filter produces an action result. Result filters aren't executed when:
 
@@ -559,7 +558,7 @@ In the preceding code, the first approach to applying the filter is preferred.
 
 ## Use middleware in the filter pipeline
 
-Resource filters work like [middleware](xref:fundamentals/middleware/index) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
+Resource filters work like [middleware](../../fundamentals/middleware/index.md) in that they surround the execution of everything that comes later in the pipeline. But filters differ from middleware in that they're part of the runtime, which means that they have access to context and constructs.
 
 To use middleware as a filter, create a type with a `Configure` method that specifies the middleware to inject into the filter pipeline. The following example uses middleware to set a response header:
 
@@ -577,8 +576,8 @@ When passing an *instance* of a filter into `Add`, instead of its `Type`, the fi
 
 ## Related content
 
-* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
-* <xref:razor-pages/filter>
+* [View or download sample](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/filters/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
+* [Filter methods for Razor Pages in ASP.NET Core](../../razor-pages/filter.md)
 
 :::moniker-end
 [!INCLUDE[](~/mvc/controllers/filters/includes/filters7.md)]

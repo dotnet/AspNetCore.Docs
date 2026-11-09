@@ -3,7 +3,6 @@ title: Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Dir
 description: Learn how to secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C.
 monikerRange: '>= aspnetcore-3.1 < aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 ---
 # Secure a hosted ASP.NET Core Blazor WebAssembly app with Azure Active Directory B2C
 
@@ -11,9 +10,9 @@ uid: blazor/security/webassembly/hosted-with-azure-active-directory-b2c
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 
-This article explains how to create a [hosted Blazor WebAssembly solution](xref:blazor/hosting-models#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
+This article explains how to create a [hosted Blazor WebAssembly solution](../../hosting-models.md#blazor-webassembly) that uses [Azure Active Directory (AAD) B2C](/azure/active-directory-b2c/overview) for authentication.
 
-For additional security scenario coverage after reading this article, see <xref:blazor/security/webassembly/additional-scenarios>.
+For additional security scenario coverage after reading this article, see [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md).
 
 ## Walkthrough
 
@@ -83,7 +82,7 @@ Record the *Client app* Application (client) ID (for example, `11112222-bbbb-333
 In **Authentication** > **Platform configurations** > **Single-page application**:
 
 1. Confirm the redirect URI of `https://localhost/authentication/login-callback` is present.
-1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see <xref:blazor/security/webassembly/index#use-the-authorization-code-flow-with-pkce>.
+1. In the **Implicit grant** section, ensure that the checkboxes for **Access tokens** and **ID tokens** aren't selected. **Implicit grant isn't recommended for Blazor apps using MSAL v2.0 or later.** For more information, see [Secure ASP.NET Core Blazor WebAssembly](index.md#use-the-authorization-code-flow-with-pkce).
 1. The remaining defaults for the app are acceptable for this experience.
 1. Select the **Save** button if you made changes.
 
@@ -359,7 +358,7 @@ options.ProviderOptions.AdditionalScopesToConsent.Add("{ADDITIONAL SCOPE URI}");
 ```
 
 > [!NOTE]
-> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see <xref:blazor/security/webassembly/graph-api?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent>.
+> <xref:Microsoft.Authentication.WebAssembly.Msal.Models.MsalProviderOptions.AdditionalScopesToConsent> isn't able to provision delegated user permissions for Microsoft Graph via the Microsoft Entra ID consent UI when a user first uses an app registered in Microsoft Azure. For more information, see [Use Graph API with ASP.NET Core Blazor WebAssembly](graph-api.md?pivots=graph-sdk-5#defaultaccesstokenscopes-versus-additionalscopestoconsent).
 
 Example default access token scope:
 
@@ -370,8 +369,8 @@ options.ProviderOptions.DefaultAccessTokenScopes.Add(
 
 For more information, see the following sections of the *Additional scenarios* article:
 
-* [Request additional access tokens](xref:blazor/security/webassembly/additional-scenarios#request-additional-access-tokens)
-* [Attach tokens to outgoing requests](xref:blazor/security/webassembly/additional-scenarios#attach-tokens-to-outgoing-requests)
+* [Request additional access tokens](additional-scenarios.md#request-additional-access-tokens)
+* [Attach tokens to outgoing requests](additional-scenarios.md#attach-tokens-to-outgoing-requests)
 
 ### Login mode
 
@@ -446,10 +445,10 @@ Due to changes in the framework across releases of ASP.NET Core, Razor markup fo
 
 * [Configure an app's publisher domain](/entra/identity-platform/howto-configure-publisher-domain)
 * [Microsoft Entra ID app manifest: identifierUris attribute](/entra/identity-platform/reference-app-manifest#identifieruris-attribute)
-* <xref:blazor/security/webassembly/additional-scenarios>
-* [Build a custom version of the Authentication.MSAL JavaScript library](xref:blazor/security/webassembly/additional-scenarios#build-a-custom-version-of-the-authenticationmsal-javascript-library)
-* [Unauthenticated or unauthorized web API requests in an app with a secure default client](xref:blazor/security/webassembly/additional-scenarios#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
-* <xref:security/authentication/azure-ad-b2c>
+* [ASP.NET Core Blazor WebAssembly additional security scenarios](additional-scenarios.md)
+* [Replace the Microsoft Authentication Library for JavaScript (`MSAL.js`)](additional-scenarios.md#replace-the-microsoft-authentication-library-for-javascript-msaljs)
+* [Unauthenticated or unauthorized web API requests in an app with a secure default client](additional-scenarios.md#unauthenticated-or-unauthorized-web-api-requests-in-an-app-with-a-secure-default-client)
+* [Cloud authentication with Azure Active Directory B2C in ASP.NET Core](../../../security/authentication/azure-ad-b2c.md)
 * [Tutorial: Create an Azure Active Directory B2C tenant](/azure/active-directory-b2c/tutorial-create-tenant)
 * [Tutorial: Register an application in Azure Active Directory B2C](/azure/active-directory-b2c/tutorial-register-applications)
 * [Microsoft identity platform documentation](/entra/identity-platform/)

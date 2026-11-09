@@ -1,0 +1,43 @@
+name: "clean repo - replace redirects"
+
+on:
+  schedule:
+    - cron: "0 1 1 * *" # Runs at 01:00, on day 1 of the month
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  clean-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@ccd8616d44fd3846e67624a50d5aad6d37bf2d25 # v2.22.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Call clean repo
+      - name: Clean repo
+        id: clean-repo-step
+        uses: dotnet/docs-tools/cleanrepo@1792e4913167146272afc4d7ad9b7e2bf1701495 # main
+        with:
+          function: "ReplaceRedirectTargets"
+          docfx_directory: "aspnetcore"
+          target_directory: "aspnetcore"
+          url_base_path: "/aspnet/core"
+
+      # Create the PR for the work done by the "clean repo" tool
+      - name: create-pull-request
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 #v8.1.1
+        with:
+          branch: cleanrepo-replace-redirects
+          title: "Monthly chores: Replace redirect targets"
+          commit-message: "Bot 🤖 generated CleanRepo tool run"
+          body: "Replace redirected links with target URL. Contributes to #..."

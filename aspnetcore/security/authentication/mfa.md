@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to set up multi-factor authentication (MFA) in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 08/07/2026
-uid: security/authentication/mfa
 ---
 <!-- ms.sfi.ropc: t -->
 # Multi-factor authentication in ASP.NET Core
@@ -23,7 +22,7 @@ This article provides an overview of MFA in ASP.NET Core and the recommended aut
 * Send an MFA sign-in requirement to the OpenID Connect server.
 * Force the ASP.NET Core OpenID Connect client to require MFA.
 
-[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## MFA versus 2FA
 
@@ -40,7 +39,7 @@ MFA with TOTP is supported by default when using ASP.NET Core Identity. This app
 * Microsoft Authenticator
 * Google Authenticator
 
-For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes).
+For implementation details, see [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](identity-enable-qrcodes.md).
 
 To disable support for MFA TOTP, configure authentication by using the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionExtensions.AddIdentity*> method instead of the <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> method. The `AddDefaultIdentity` method calls the <xref:Microsoft.AspNetCore.Identity.IdentityBuilderExtensions.AddDefaultTokenProviders*> method internally, which registers multiple token providers including one for MFA TOTP. To register only specific token providers, call the <xref:Microsoft.AspNetCore.Identity.IdentityBuilder.AddTokenProvider*> method for each required provider. For more information on available token providers, see the ['AddDefaultTokenProviders' reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/Core/src/IdentityBuilderExtensions.cs) in the `dotnet/aspnetcore` GitHub repository.
 
@@ -53,7 +52,7 @@ The **passkeys/FIDO2** approach is currently:
 * The most secure way to achieve MFA.
 * MFA that protects against phishing attacks (also certificate authentication and Windows for business).
 
-ASP.NET Core supports passkeys by using ASP.NET Core Identity. Passkeys/FIDO2 can be used for MFA or passwordless flows. For more information, see <xref:security/authentication/passkeys/index>.
+ASP.NET Core supports passkeys by using ASP.NET Core Identity. Passkeys/FIDO2 can be used for MFA or passwordless flows. For more information, see [Enable Web Authentication API (WebAuthn) passkeys](passkeys/index.md).
 
 Microsoft Entra ID provides support for passkeys/FIDO2 and passwordless flows. For more information, see [Authentication methods in Microsoft Entra ID - passkeys (FIDO2)](/entra/identity/authentication/concept-authentication-passkeys-fido2).
 
@@ -516,7 +515,7 @@ The OAuth and OIDC authentication handlers <xref:Microsoft.AspNetCore.Authentica
 
 ## Related content
 
-* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
+* [Enable QR Code generation for TOTP authenticator apps in ASP.NET Core](identity-enable-qrcodes.md)
 * [Authentication methods in Microsoft Entra ID - passkeys (FIDO2)](/entra/identity/authentication/concept-authentication-passkeys-fido2)
 * [FIDO2 .NET library for FIDO2 / WebAuthn attestation and assertion with .NET](https://github.com/passwordless-lib/fido2-net-lib) (GitHub)
 * [WebAuthn and Passkeys Awesome](https://github.com/yackermann/awesome-webauthn) (GitHub)

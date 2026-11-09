@@ -3,7 +3,6 @@ title: gRPC client-side load balancing
 description: Learn how to make scalable, high-performance gRPC apps with client-side load balancing in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 05/11/2023
-uid: grpc/loadbalancing
 ---
 # gRPC client-side load balancing
 
@@ -166,7 +165,7 @@ The preceding code:
 
 ## Configure channel credentials
 
-A channel must know whether gRPC calls are sent using [transport security](xref:grpc/security#transport-security). `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `Credentials` must be configured on channel options when using load balancing.
+A channel must know whether gRPC calls are sent using [transport security](security.md#transport-security). `http` and `https` are no longer part of the address, the scheme now specifies a resolver, so `Credentials` must be configured on channel options when using load balancing.
 
 * `ChannelCredentials.SecureSsl` - gRPC calls are secured with [Transport Layer Security (TLS)](https://tools.ietf.org/html/rfc5246). Equivalent to an `https` address.
 * `ChannelCredentials.Insecure` - gRPC calls don't use transport security. Equivalent to an `http` address.
@@ -182,7 +181,7 @@ var response = await client.SayHelloAsync(new HelloRequest { Name = "world" });
 
 ## Use load balancing with gRPC client factory
 
-[gRPC client factory](xref:grpc/clientfactory) can be configured to use load balancing:
+[gRPC client factory](clientfactory.md) can be configured to use load balancing:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -388,4 +387,4 @@ gRPC and HTTP/2 can be effectively load balanced using either an application loa
 
 ## Related content
 
-* <xref:grpc/client>
+* [Call gRPC services with the .NET client](client.md)

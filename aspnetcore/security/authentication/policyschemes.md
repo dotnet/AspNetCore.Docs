@@ -2,7 +2,6 @@
 title: Policy schemes in ASP.NET Core
 description: Authentication policy schemes make it easier to have a single logical authentication scheme
 ms.date: 08/07/2026
-uid: security/authentication/policyschemes
 ---
 # Policy schemes in ASP.NET Core
 

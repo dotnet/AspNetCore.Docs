@@ -15,6 +15,6 @@
 
 * Select **Yes** if you agree to trust the development certificate.
 
-  For more information, see the **Trust the ASP.NET Core HTTPS development certificate** section of the [Enforcing SSL](xref:security/enforcing-ssl) article.
+  For more information, see the **Trust the ASP.NET Core HTTPS development certificate** section of the [Enforcing SSL](../security/enforcing-ssl.md) article.
 
 [!INCLUDE[trust FF](~/includes/trust-ff.md)]

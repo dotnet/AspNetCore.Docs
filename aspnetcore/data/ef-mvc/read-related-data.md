@@ -3,7 +3,6 @@ title: "Tutorial: Read related data - ASP.NET MVC with EF Core"
 description: "In this tutorial you'll read and display related data -- that is, data that the Entity Framework loads into navigation properties."
 ms.date: 09/28/2019
 ms.topic: tutorial
-uid: data/ef-mvc/read-related-data
 ---
 
 # Tutorial: Read related data - ASP.NET MVC with EF Core
@@ -199,7 +198,7 @@ You've made the following changes to the existing code:
   }
   ```
 
-* Added a **Courses** column that displays courses taught by each instructor. For more information, see the [Explicit line transition](xref:mvc/views/razor#explicit-line-transition) section of the Razor syntax article.
+* Added a **Courses** column that displays courses taught by each instructor. For more information, see the [Explicit line transition](../../mvc/views/razor.md#explicit-line-transition) section of the Razor syntax article.
 
 * Added code that conditionally adds a Bootstrap CSS class to the `tr` element of the selected instructor. This class sets a background color for the selected row.
 

@@ -3,7 +3,6 @@ title: Identity model customization in ASP.NET Core
 ai-usage: ai-assisted
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
 ms.date: 11/03/2025
-uid: security/authentication/customize_identity_model
 ---
 <!-- ms.sfi.ropc: t -->
 # Identity model customization in ASP.NET Core
@@ -75,7 +74,7 @@ public class DesignTimeApplicationDbContextFactory
 
 > [!NOTE]
 > You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn't available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
-> For more details, see <xref:security/authentication/identity-configuration>.
+> For more details, see [Configure ASP.NET Core Identity](identity-configuration.md).
 
 > [!TIP]
 > Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
@@ -348,7 +347,7 @@ dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
  -->
 
-[Custom user data](xref:security/authentication/add-user-data) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
+[Custom user data](add-user-data.md) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -411,10 +410,10 @@ services.AddIdentityCore<TUser>(o =>
 .AddDefaultTokenProviders();
 ```
 
-Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
+Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
 
-* [Scaffold Identity](xref:security/authentication/scaffold-identity)
-* [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data)
+* [Scaffold Identity](scaffold-identity.md)
+* [Add, download, and delete custom user data to Identity](add-user-data.md)
 
 ### Change the primary key type
 
@@ -472,7 +471,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 5. If a custom `ApplicationRole` class is being used, update the class to inherit from `IdentityRole<TKey>`. For example:
 
@@ -488,7 +487,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 ### Add navigation properties
 
@@ -933,4 +932,4 @@ Refer to the preceding examples for guidance on adding navigation properties to 
 
 ## Related content
 
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md)

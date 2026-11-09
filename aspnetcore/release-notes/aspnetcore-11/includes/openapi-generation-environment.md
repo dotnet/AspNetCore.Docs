@@ -10,6 +10,6 @@ Set the property in the project file:
 </PropertyGroup>
 ```
 
-For more information, see <xref:fundamentals/openapi/aspnetcore-openapi#customize-build-time-document-generation>.
+For more information, see [Generate OpenAPI documents](../../../fundamentals/openapi/aspnetcore-openapi.md#customize-build-time-document-generation).
 
 Thank you [@ldsenow](https://github.com/ldsenow) for this contribution!

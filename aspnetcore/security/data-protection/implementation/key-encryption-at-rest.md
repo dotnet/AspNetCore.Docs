@@ -2,20 +2,19 @@
 title: Key encryption at rest in Windows and Azure using ASP.NET Core
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 ms.date: 06/06/2025
-uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key encryption at rest in Windows and Azure using ASP.NET Core
 
-The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
+The data protection system [employs a discovery mechanism by default](../configuration/default-settings.md) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
 
 > [!WARNING]
-> If you specify an explicit [key persistence location](xref:security/data-protection/implementation/key-storage-providers), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](xref:security/data-protection/implementation/key-encryption-at-rest) for production deployments. The encryption-at-rest mechanism options are described in this topic.
+> If you specify an explicit [key persistence location](key-storage-providers.md), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](key-encryption-at-rest.md) for production deployments. The encryption-at-rest mechanism options are described in this topic.
 
 :::moniker range=">= aspnetcore-2.1"
 
 ## Azure Key Vault
 
-For more information, see <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+For more information, see [Configure ASP.NET Core Data Protection](../configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault).
 
 :::moniker-end
 

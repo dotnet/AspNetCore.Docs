@@ -6,7 +6,6 @@ ms.date: 04/24/2025
 ms.topic: concept-article
 content_well_notification: AI-contribution
 ai-usage: ai-assisted
-uid: data/dotnet-scaffold-rp
 ---
 # Scaffold a data model with dotnet scaffold in a Razor Pages project
 
@@ -36,7 +35,7 @@ To navigate the UI, use the:
 
 ## Create and scaffold a data model in a Razor Pages project
 
-If you have any problems with the following steps, see <xref:tutorials/razor-pages/index?tabs=visual-studio-code>.
+If you have any problems with the following steps, see [Tutorial: Create a Razor Pages web app with ASP.NET Core](../tutorials/razor-pages/index.md?tabs=visual-studio-code).
 
 1. Run the following commands to create a Razor Pages project and navigate to the projects folder:
     ```dotnetcli
@@ -75,7 +74,7 @@ In  The preceding commands:
 
 * `dotnet tool uninstall --global dotnet-ef` uninstalls the `dotnet-ef` tool. Uninstalling ensures the latest tool is successfully installed. If `dotnet-ef` isn't installed, an error messages **A tool with the package Id 'dotnet-ef' could not be found.** You can ignore this message.
 * `dotnet tool install --global dotnet-ef` installs globally the `dotnet-ef` tool.
-* `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see <xref:tutorials/razor-pages/model?tabs=visual-studio-code>.
+* `dotnet ef migrations add initialMigration` adds the initial migration. For more information, see [Part 2, add a model](../tutorials/razor-pages/model.md?tabs=visual-studio-code).
 * `dotnet ef database update` applies the migrations to the database.
 
 Run the app:
@@ -92,4 +91,4 @@ Run the app:
 * [dotnet scaffold repo on GitHub](https://github.com/dotnet/Scaffolding)
 * [How to manage .NET tools](/dotnet/core/tools/global-tools)
 * [`Microsoft.dotnet-scaffold`](https://www.nuget.org/packages/Microsoft.dotnet-scaffold) NuGet package.
-* <xref:data/dotnet-scaffold-rp>
+* [Scaffold a data model with dotnet scaffold in a Razor Pages project](scaffold_RP.md)

@@ -2,8 +2,7 @@
 title: What's new in ASP.NET Core in .NET 11
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 11.
-ms.date: 10/19/2026
-uid: aspnetcore-11
+ms.date: 11/05/2026
 ---
 # What's new in ASP.NET Core in .NET 11
 
@@ -32,6 +31,10 @@ This section describes new features for SignalR.
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-cancel-hub-invocations.md)]
 
 [!INCLUDE[](~/release-notes/aspnetcore-11/includes/signalr-typescript-authentication-refresh.md)]
+
+## gRPC
+
+The `Microsoft.AspNetCore.Grpc.Swagger` package was deprecated. For more information, see [Deprecate Microsoft.AspNetCore.Grpc.Swagger (`dotnet/aspnetcore` #67134)](https://github.com/dotnet/aspnetcore/issues/67134).
 
 ## Minimal APIs
 
@@ -118,4 +121,3 @@ This section describes miscellaneous new features in .NET 11.
 ## Breaking changes
 
 Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaking-changes) to find breaking changes that might apply when upgrading an app to a newer version of .NET.
-

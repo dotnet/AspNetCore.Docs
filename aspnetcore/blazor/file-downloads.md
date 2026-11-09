@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor file downloads
 description: Learn how to download files in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/file-downloads
 ---
 # ASP.NET Core Blazor file downloads
 
@@ -28,7 +27,7 @@ Security steps that reduce the likelihood of a successful attack are:
 
 * Download files from a dedicated file download area on the server, preferably from a non-system drive. Using a dedicated location makes it easier to impose security restrictions on downloadable files. Disable execute permissions on the file download area.
 * Client-side security checks are easy to circumvent by malicious users. Always perform client-side security checks on the server, too.
-* Don't receive files from users or other untrusted sources and then make the files available for immediate download without performing security checks on the files. For more information, see <xref:mvc/models/file-uploads#security-considerations>.
+* Don't receive files from users or other untrusted sources and then make the files available for immediate download without performing security checks on the files. For more information, see [Upload files in ASP.NET Core](../mvc/models/file-uploads.md#security-considerations).
 
 ## Download from a stream
 
@@ -36,13 +35,13 @@ Security steps that reduce the likelihood of a successful attack are:
 
 :::moniker range=">= aspnetcore-8.0"
 
-The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index). This approach is effective for components that adopt an interactive render mode but not components that adopt static server-side rendering (static SSR).
+The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](javascript-interoperability/index.md). This approach is effective for components that adopt an interactive render mode but not components that adopt static server-side rendering (static SSR).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](xref:blazor/js-interop/index).
+The recommended approach for downloading relatively small files (&lt; 250 MB) is to stream file content to a raw binary data buffer on the client with [JavaScript (JS) interop](javascript-interoperability/index.md).
 
 :::moniker-end
 
@@ -77,7 +76,7 @@ The following `downloadFileFromStream` JS function:
 ```
 
 > [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
+> For general guidance on JS location and our recommendations for production apps, see [JavaScript location in ASP.NET Core Blazor apps](javascript-interoperability/location-of-javascript.md).
 
 The following component:
 
@@ -190,7 +189,7 @@ The following `triggerFileDownload` JS function:
 ```
 
 > [!NOTE]
-> For general guidance on JS location and our recommendations for production apps, see <xref:blazor/js-interop/javascript-location>.
+> For general guidance on JS location and our recommendations for production apps, see [JavaScript location in ASP.NET Core Blazor apps](javascript-interoperability/location-of-javascript.md).
 
 The following example component downloads the file from the same origin that the app uses. If the file download is attempted from a different origin, configure Cross-Origin Resource Sharing (CORS). For more information, see the [Cross-Origin Resource Sharing (CORS)](#cross-origin-resource-sharing-cors) section.
 
@@ -202,7 +201,7 @@ The following example component downloads the file from the same origin that the
 
 For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
 
-If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](javascript-interoperability/static-server-rendering.md).
 
 :::moniker-end
 
@@ -212,7 +211,7 @@ If the component adopts static server-side rendering (static SSR), add an event 
 
 For interactive components, the button in the preceding example calls the `DownloadFileFromURL` handler to invoke the JavaScript (JS) function `triggerFileDownload`.
 
-If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in <xref:blazor/js-interop/ssr>.
+If the component adopts static server-side rendering (static SSR), add an event handler for the button ([`addEventListener`](https://developer.mozilla.org/docs/Web/API/EventTarget/addEventListener)) to call `triggerFileDownload` following the guidance in [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](javascript-interoperability/static-server-rendering.md).
 
 :::moniker-end
 
@@ -238,7 +237,7 @@ Without taking further steps to enable [Cross-Origin Resource Sharing (CORS)](ht
 
 For more information on CORS with ASP.NET Core apps and other Microsoft products and services that host files for download, see the following resources:
 
-* <xref:security/cors>
+* [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../security/cors.md)
 * [Using Azure CDN with CORS (Azure documentation)](/azure/cdn/cdn-cors)
 * [Cross-Origin Resource Sharing (CORS) support for Azure Storage (REST documentation)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services)
 * [Core Cloud Services - Set up CORS for your website and storage assets (Learn module)](/training/modules/set-up-cors-website-storage/)
@@ -246,10 +245,10 @@ For more information on CORS with ASP.NET Core apps and other Microsoft products
 
 ## Related content
 
-* <xref:blazor/fundamentals/static-files>
-* <xref:blazor/js-interop/index>
-* <xref:blazor/js-interop/javascript-location>
-* <xref:blazor/js-interop/ssr>
+* [ASP.NET Core Blazor static files](fundamentals/static-files.md)
+* [ASP.NET Core Blazor JavaScript interoperability (JS interop)](javascript-interoperability/index.md)
+* [JavaScript location in ASP.NET Core Blazor apps](javascript-interoperability/location-of-javascript.md)
+* [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](javascript-interoperability/static-server-rendering.md)
 * [`<a>`: The Anchor element: Security and privacy (MDN documentation)](https://developer.mozilla.org/docs/Web/HTML/Element/a#security_and_privacy)
-* <xref:blazor/file-uploads>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [ASP.NET Core Blazor file uploads](file-uploads.md)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](fundamentals/index.md#sample-apps))

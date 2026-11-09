@@ -5,7 +5,6 @@ description: Part 5 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/22/2026
-uid: tutorials/first-mvc-app/working-with-sql
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
@@ -27,17 +26,17 @@ You'll learn how to:
 
 ## Prerequisite
 
-This tutorial uses a database you set up in the previous step: <xref:tutorials/first-mvc-app/adding-model>.
+This tutorial uses a database you set up in the previous step: [Part 4, add a model to an ASP.NET Core MVC app](adding-model.md).
 
 ## Working with the database context
 
-The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `Program.cs` file:
+The `MvcMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../fundamentals/dependency-injection.md) container in the `Program.cs` file:
 
 # [Visual Studio](#tab/visual-studio)
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Program.cs?name=snippet_FirstSQLServer&highlight=2-3)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../fundamentals/configuration/index.md) system reads the `ConnectionString` key. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/appsettings.json?highlight=2&range=9-11)]
 
@@ -45,7 +44,7 @@ The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system r
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/Program.cs?name=snippet_FirstSQLite&highlight=3-4)]
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
+The ASP.NET Core [Configuration](../../fundamentals/configuration/index.md) system reads the `ConnectionString`. For local development, it gets the connection string from the `appsettings.json` file:
 
 [!code-json[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie10/appsettings_SQLite.json?highlight=2&range=9-11)]
 
