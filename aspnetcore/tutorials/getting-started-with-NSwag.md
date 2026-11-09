@@ -90,13 +90,25 @@ Add and configure Swagger in your ASP.NET Core app by performing the following s
 
 * Add the OpenApi generator to the services collection in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_ServicesDefault" highlight="4":::
+  ```csharp
+  builder.Services.AddOpenApiDocument();
+  ```
 
-* Enable the middleware for serving the generated OpenApi specification, the Swagger UI, and the Redoc UI, also in `Program.cs`:
+* Enable the middleware for serving the generated OpenApi specification and the Swagger UI in the `Development` environment, also in `Program.cs`:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_MiddlewareDefault" highlight="5,9":::
+  ```csharp
+  if (app.Environment.IsDevelopment())
+  {
+      // Add OpenAPI 3.0 document serving middleware
+      app.UseOpenApi();
+
+      // Add web UIs to interact with the document
+      app.UseSwaggerUI();
+  }
+  ```
 
 * Launch the app. Navigate to:
+
   * `http://localhost:<port>/swagger` to view the Swagger UI.
   * `http://localhost:<port>/swagger/v1/swagger.json` to view the Swagger specification.
 
@@ -233,13 +245,23 @@ Conventions can be used as an alternative to explicitly decorating individual ac
 
 ### Redoc
 
-Redoc is an alternative to the Swagger UI.
-It's similar because it also provides a documentation page for the Web API using the OpenAPI specification.
-The difference is that Redoc UI is more focused on the documentation, and doesn't provide an interactive UI to test the API.
+Redoc is an alternative to the Swagger UI that also provides a documentation page for the Web API using the OpenAPI specification. The difference is that Redoc UI is focused on producing the API documentation and doesn't provide an interactive UI to test the API.
 
-To enable Redoc, add its middleware to `Program.cs`:
+To enable Redoc in the `Development` environment, add its middleware to `Program.cs` afer `UseOpenApi` is called:
 
-:::code language="csharp" source="web-api-help-pages-using-swagger/samples/7.x/NSwagSample/Program.cs" id="snippet_Middleware" highlight="13-16":::
+```csharp
+if (app.Environment.IsDevelopment())
+{
+    // Add OpenAPI 3.0 document serving middleware
+    app.UseOpenApi();
+
+    // Add Redoc API documentation pages
+    app.UseReDoc(options =>
+    {
+        options.Path = "/redoc";
+    });
+}
+```
 
 Run the application and navigate to `http://localhost:<port>/redoc` to view the Redoc UI:
 
