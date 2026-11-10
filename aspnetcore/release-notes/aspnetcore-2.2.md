@@ -29,7 +29,7 @@ For more information, see the following resources:
 
 * [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
 * [Route parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (see **Routing** section)
-* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2&preserve-view=true)
+* [Routing in ASP.NET Core](../fundamentals/routing.md)
 
 ## Health checks
 

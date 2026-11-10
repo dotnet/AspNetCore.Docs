@@ -58,7 +58,7 @@ In .NET 6, routes can be added directly to the <xref:Microsoft.AspNetCore.Builde
 **Note:** Routes added directly to the <xref:Microsoft.AspNetCore.Builder.WebApplication> execute at the ***end*** of the pipeline.
 
 <!-- TODO, uncomment when article is updated for .NET 6
-For more information, see [Routing in ASP.NET Core](../fundamentals/routing.md?view=aspnetcore-6.0)
+For more information, see [Routing in ASP.NET Core](../fundamentals/routing.md)
 -->
 
 <a name="ccr"></a>
