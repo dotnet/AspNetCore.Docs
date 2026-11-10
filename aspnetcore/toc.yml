@@ -25,6 +25,8 @@ items:
                 href: breaking-changes/11/concurrencylimiter-removed.md
               - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
                 href: breaking-changes/11/http-activity-otel-semconv.md
+              - name: Identity external login keys use ordinal equality
+                href: breaking-changes/11/identity-login-ordinal-equality.md
               - name: Kestrel tightens HTTP protocol compliance
                 href: breaking-changes/11/kestrel-strict-protocol-compliance.md
               - name: Microsoft.OpenApi upgraded to 3.x
