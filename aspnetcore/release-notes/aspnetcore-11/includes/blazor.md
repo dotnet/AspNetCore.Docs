@@ -800,7 +800,7 @@ For more information, see [Fix TempData and SupplyParameterFromSession persisten
 For more information, see the following resources:
 
 * [Migrate from ASP.NET Core in .NET 10 to ASP.NET Core in .NET 11](../../../migration/100-to-110.md)
-* [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](/aspnet/core/breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection)
+* [Blazor server-side rendering defers antiforgery validation to middleware (breaking change announcement)](../../../breaking-changes/11/blazor-server-side-rendering-deferred-cross-site-request-forgery-protection.md)
 
 General coverage for the new automatic CSRF protection in ASP.NET Core:
 

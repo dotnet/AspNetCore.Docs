@@ -253,7 +253,7 @@ builder.Services.AddOpenApi(options =>
 
 ## Related content
 
-* [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](/aspnet/core/breaking-changes/11/microsoft-openapi-3x)
+* [Microsoft.OpenApi upgraded to 3.x (ASP.NET Core 11.0 breaking change announcement)](../../breaking-changes/11/microsoft-openapi-3x.md)
 * [OpenAPI 3.x upgrade migration guidance](../../migration/100-to-110.md#microsoftopenapi-upgraded-to-3x)
 * [Use the generated OpenAPI documents](using-openapi-documents.md)
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)

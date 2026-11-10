@@ -79,4 +79,4 @@ app.Run();
 
 ## See also
 
-- [Rate limiting middleware in ASP.NET Core](/aspnet/core/performance/rate-limit)
+- [Rate limiting middleware in ASP.NET Core](../../performance/rate-limit.md)

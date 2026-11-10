@@ -49,7 +49,7 @@ Each filter type is executed at a different stage in the filter pipeline:
 
 :::moniker range=">= aspnetcore-7.0 < aspnetcore-8.0"
 
-* [Endpoint filters](/aspnet/core/fundamentals/minimal-apis/min-api-filters):
+* [Endpoint filters](../../../../fundamentals/minimal-apis/min-api-filters.md):
 
   * Run immediately before and after an action method is called.
   * Can change the arguments passed into an action.

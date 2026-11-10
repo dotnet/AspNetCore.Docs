@@ -61,4 +61,4 @@ This change can affect [source compatibility](/dotnet/core/compatibility/categor
 
 - MSBuild item `OpenApiReference` (all instances).
 - MSBuild property `OpenApiProjectReference`.
-- CLI command [`dotnet openapi`](/aspnet/core/fundamentals/openapi/openapi-tools).
+- CLI command [`dotnet openapi`](../../fundamentals/openapi/openapi-tools.md).

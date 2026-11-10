@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/404
 ---
 # SignalR: MessagePack Hub Protocol moved to MessagePack 2.x package
 
-The ASP.NET Core SignalR [MessagePack Hub Protocol](/aspnet/core/signalr/messagepackhubprotocol) uses the [MessagePack NuGet package](https://www.nuget.org/packages/MessagePack) for MessagePack serialization. ASP.NET Core 5.0 upgrades the package from 1.x to the latest 2.x package version.
+The ASP.NET Core SignalR [MessagePack Hub Protocol](../../signalr/messagepackhubprotocol.md) uses the [MessagePack NuGet package](https://www.nuget.org/packages/MessagePack) for MessagePack serialization. ASP.NET Core 5.0 upgrades the package from 1.x to the latest 2.x package version.
 
 For discussion on this issue, see [dotnet/aspnetcore#18692](https://github.com/dotnet/aspnetcore/issues/18692).
 

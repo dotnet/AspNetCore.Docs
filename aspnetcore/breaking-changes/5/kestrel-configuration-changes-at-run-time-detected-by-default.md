@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/419
 ---
 # Kestrel: Configuration changes at runtime detected by default
 
-Kestrel now reacts to changes made to the `Kestrel` section of the project's `IConfiguration` instance (for example, *appsettings.json*) at runtime. To learn more about how to configure Kestrel using *appsettings.json*, see the *appsettings.json* example in [Endpoint configuration](/aspnet/core/fundamentals/servers/kestrel#endpoint-configuration).
+Kestrel now reacts to changes made to the `Kestrel` section of the project's `IConfiguration` instance (for example, *appsettings.json*) at runtime. To learn more about how to configure Kestrel using *appsettings.json*, see the *appsettings.json* example in [Endpoint configuration](../../fundamentals/servers/kestrel.md#endpoint-configuration).
 
 Kestrel will bind, unbind, and rebind endpoints as necessary to react to these configuration changes.
 

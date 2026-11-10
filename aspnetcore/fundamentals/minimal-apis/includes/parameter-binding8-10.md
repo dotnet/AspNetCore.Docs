@@ -221,7 +221,7 @@ The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Mic
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
-Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](../../../security/authentication/certauth.md), or a cookie header.
 
 <a name="bind8"></a>
 
