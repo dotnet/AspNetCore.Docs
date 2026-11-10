@@ -40,7 +40,7 @@ The `MinimumAgeAuthorizeAttribute` implementation of <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsDataBWA/Authorization/MinimumAgeAuthorizeAttribute.cs":::
 
-An attribute that implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> doesn't have to inherit from `AuthorizeAttribute`. The sample does because the `RequireAuthorization(...)` overload shown below accepts `IAuthorizeData`, which `AuthorizeAttribute` implements. This inheritance is needed for that overload, not for <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> itself.
+An attribute that implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> doesn't have to inherit from `AuthorizeAttribute`. The sample does because the `RequireAuthorization(...)` overload shown below accepts `IAuthorizeData`, which `AuthorizeAttribute` implements. Implementing `IAuthorizeData` is required for that overload, but inheriting from `AuthorizeAttribute` is only one way to provide that implementation.
 
 ## Minimum age authorization handler
 
