@@ -40,7 +40,7 @@ app.UseStaticFiles(new StaticFileOptions
 });
 ```
 
-For more information on customizing the mapping, see [File mappings and static file options](../../blazor/fundamentals/static-files.md#file-mappings-and-static-file-options).
+For more information on customizing the mapping, see [Map file extensions to MIME types](../../fundamentals/static-files.md#map-file-extensions-to-mime-types).
 
 ## Affected APIs
 
