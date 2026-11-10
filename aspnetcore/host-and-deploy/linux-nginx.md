@@ -494,6 +494,10 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 
 ---
 
+The `limit_req` directive requires a matching shared memory zone defined by [`limit_req_zone`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req_zone) in the `http` block of `/etc/nginx/nginx.conf`, not in a `server` or `location` block. The following example defines the `one` zone with 10 MB of memory and a rate of 5 requests per second per client IP address.
+
+Copying `limit_req` without the matching zone definition causes the error `zero size shared memory zone "one"`.
+
 [!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 
 > [!NOTE]
