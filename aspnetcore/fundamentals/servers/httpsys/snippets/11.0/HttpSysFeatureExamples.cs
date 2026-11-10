@@ -48,7 +48,7 @@ internal static class HttpSysFeatureExamples
                 ArrayPool<byte>.Shared.Return(pooled);
             }
         }
-        // <snippet_client_hello>
+        // </snippet_client_hello>
     }
 
     public static void LogRequestProperty(HttpContext context, ILogger logger)
