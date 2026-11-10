@@ -37,7 +37,7 @@ namespace WebCookieShare_NetFx
                 },
 
                 // Settings to configure shared cookie with ASP.NET Core app
-                CookieName = ".AspNet.ApplicationCookie",
+                CookieName = ".AspNet.SharedCookie",
                 AuthenticationType = "Identity.Application",                
                 TicketDataFormat = new AspNetTicketDataFormat(
                     new DataProtectorShim(
