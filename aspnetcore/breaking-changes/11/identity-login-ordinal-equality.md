@@ -40,5 +40,5 @@ Third-party `IUserLoginStore<TUser>` implementations own their equality semantic
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Identity.IUserLoginStore`1.FindByLoginAsync(System.String,System.String,System.Threading.CancellationToken)?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Identity.IUserLoginStore`1.RemoveLoginAsync(`0,System.String,System.String,System.Threading.CancellationToken)?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Identity.IUserLoginStore`1.FindByLoginAsync(System.String,System.String,System.Threading.CancellationToken)?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Identity.IUserLoginStore`1.RemoveLoginAsync(`0,System.String,System.String,System.Threading.CancellationToken)?displayProperty=fullName>
