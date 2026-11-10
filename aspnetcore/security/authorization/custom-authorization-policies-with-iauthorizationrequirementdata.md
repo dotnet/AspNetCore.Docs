@@ -3,7 +3,7 @@ title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/13/2026
+ms.date: 11/10/2026
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
 
@@ -40,6 +40,8 @@ The `MinimumAgeAuthorizeAttribute` implementation of <xref:Microsoft.AspNetCore.
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsDataBWA/Authorization/MinimumAgeAuthorizeAttribute.cs":::
 
+An attribute that implements <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> doesn't have to inherit from `AuthorizeAttribute`. The sample does because the `RequireAuthorization(...)` overload shown below accepts `IAuthorizeData`, which `AuthorizeAttribute` implements. This inheritance is needed for that overload, not for <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> itself.
+
 ## Minimum age authorization handler
 
 The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by `MinimumAgeAuthorizeAttribute`, as specified by the generic parameter `MinimumAgeAuthorizeAttribute`.
@@ -69,6 +71,8 @@ app.MapGet("/api/greetings/hello", (HttpContext context) =>
     return $"Hello {context.User.Identity?.Name}!";
 }).RequireAuthorization(new MinimumAgeAuthorizeAttribute(21));
 ```
+
+Because `MinimumAgeAuthorizeAttribute` inherits from `AuthorizeAttribute`, passing it to `RequireAuthorization` adds both <xref:Microsoft.AspNetCore.Authorization.IAuthorizeData> and <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> metadata. The `IAuthorizeData` metadata selects the default policy, and the age requirement is combined with it. The fallback policy is relevant only when no other endpoint authorization metadata produces a policy; that isn't the case in this sample. For more information, see [Default and fallback policies](policies.md#default-and-fallback-policies).
 
 The endpoint displays the user's name when they satisfy the minimum age policy, using an age of 21 years old supplied to a `MinimumAgeAuthorizeAttribute` instance.
 
