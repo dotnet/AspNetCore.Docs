@@ -28,6 +28,7 @@ If you're migrating an app to ASP.NET Core 11, the breaking changes listed here 
 | [OpenAPI document includes all ProducesResponseType entries per status code](openapi-multiple-produces-per-status.md) | Behavioral change |
 | [OpenAPI server URL no longer has a trailing slash when PathBase is empty](openapi-server-url-trailing-slash.md) | Behavioral change |
 | [OpenApiVersion defaults to OpenApi3_2](openapi-version-default-3-2.md) | Behavioral change |
+| [OpenID Connect `max_age` validates `auth_time`](openid-connect-max-age-validates-auth-time.md) | Behavioral change |
 | [Passkey sign-in enforces email/phone confirmation and lockout](passkey-signin-enforces-confirmation-lockout.md) | Behavioral change |
 | [QuickGrid sorting and pagination controls render as links](quickgrid-controls-render-as-links.md) | Behavioral change |
 | [Response compression always emits Vary: Accept-Encoding](response-compression-always-vary.md) | Behavioral change |
