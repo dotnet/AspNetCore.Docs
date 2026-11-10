@@ -2,12 +2,12 @@
 title: WebSockets support in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to get started with WebSockets in ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-8.0'
 ms.date: 08/19/2026
 ---
 # WebSockets support in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -251,6 +251,3 @@ Select **Connect** to send a WebSocket request to the URL shown. Enter a test me
 :::moniker-end
 
 [!INCLUDE[](~/fundamentals/websockets/includes/websockets8.md)]
-[!INCLUDE[](~/fundamentals/websockets/includes/websockets7.md)]
-[!INCLUDE[](~/fundamentals/websockets/includes/websockets6.md)]
-[!INCLUDE[](~/fundamentals/websockets/includes/websockets3-5.md)]

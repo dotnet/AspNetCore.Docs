@@ -590,7 +590,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0&preserve-view=true#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 
