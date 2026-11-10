@@ -113,9 +113,9 @@ See the common deployment configuration errors for apps hosted by Azure App Serv
 
 ## Data Protection key ring and deployment slots
 
-[ASP.NET Core Data Protection keys](../../security/data-protection/implementation/key-management.md#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, don't share a key ring.
+[ASP.NET Core Data Protection keys](../../security/data-protection/implementation/key-management.md#data-protection-implementation-key-management) are persisted to the *%HOME%\ASP.NET\DataProtection-Keys* folder. This folder is backed by network storage and is synchronized across all machines hosting the app. Keys aren't protected at rest. This folder supplies the key ring to all instances of an app in a single deployment slot. Separate deployment slots, such as Staging and Production, each have their own key ring. Keys remain associated with their slot and aren't moved with app content during a swap.
 
-When swapping between deployment slots, any system using data protection won't be able to decrypt stored data using the key ring inside the previous slot. ASP.NET cookie middleware uses data protection to protect its cookies. This leads to users being signed out of an app that uses the standard ASP.NET cookie middleware. For a slot-independent key ring solution, use an external key ring provider, such as:
+After a swap, an app may be unable to decrypt data, including authentication cookies, that it protected while running in the other slot. This can invalidate protected data and may sign users out. To use a key ring that isn't tied to slot-specific storage, for example, one shared across slots, use an external key ring provider, such as:
 
 * Azure Blob Storage
 * Azure Key Vault
