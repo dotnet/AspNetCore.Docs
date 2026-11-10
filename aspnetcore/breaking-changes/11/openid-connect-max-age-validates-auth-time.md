@@ -78,7 +78,7 @@ The switch defaults to `false`. To restore validation after the provider is fixe
 
 ## Affected APIs
 
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MaxAge>
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectChallengeProperties.MaxAge>
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.AdditionalAuthorizationParameters>
-* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProvider>
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MaxAge?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectChallengeProperties.MaxAge?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.AdditionalAuthorizationParameters?displayProperty=fullName>
+* <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnRedirectToIdentityProvider?displayProperty=fullName>
