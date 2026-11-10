@@ -179,7 +179,7 @@ For example, the following code allows all authenticated users but denies guests
 
 [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/10.x/HttpSysConfig/Program.cs)]
 
-The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues. When `RequestQueueMode` is `Attach`, or `CreateOrAttach` attaches to an existing queue, options such as `RequestQueueSecurityDescriptor` and `RequestQueueLimit` don't apply. URL-group settings, such as timeouts and authentication hardening, must be configured by the listener that owns the URL group. When attaching, `UrlPrefixes` is used to compute `PathBase`, not to register new bindings.
+The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues. When `RequestQueueMode` is `Attach`, or `CreateOrAttach` opens an existing queue, queue-level options such as `RequestQueueSecurityDescriptor` and `RequestQueueLimit` don't apply. In `Attach` mode, URL-group settings, such as timeouts and authentication hardening, must be configured by the listener that owns the URL group, and `UrlPrefixes` is used only to compute `PathBase`. `CreateOrAttach` still configures its own URL group and registers its `UrlPrefixes`, even when the queue already exists; settings for prefixes already registered by another listener remain controlled by that listener.
 
 <a name="maxrequestbodysize"></a>
 
@@ -362,7 +362,7 @@ When processing a request with both a `Content-Length` header and a `Transfer-En
 
 <!-- UPDATE 11.0 - Remove prerelease language -->
 
-HTTP.sys exposes request features for inspecting TLS information without replacing its kernel-mode TLS implementation. Feature availability depends on the connection, the installed Windows HTTP Server API, and the server's configuration. The sample project targets the ASP.NET Core 11 prerelease SDK; the following headings identify the versions that support each API. The examples use the `Microsoft.AspNetCore.Http.Features`, `Microsoft.AspNetCore.Connections.Features`, `Microsoft.AspNetCore.Server.HttpSys`, and `System.Security.Authentication.ExtendedProtection` namespaces.
+HTTP.sys exposes request features for inspecting TLS information. Availability depends on the request, the Windows version, and the HTTP.sys configuration.
 
 ### Get the negotiated TLS cipher suite
 
@@ -378,7 +378,6 @@ First call the method with an empty span to obtain the required buffer size, the
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_client_hello":::
 
-`false` indicates that the destination buffer is too small, and `bytesReturned` contains the required size. Other failures throw `HttpSysException` (or `InvalidOperationException` when the installed Windows API doesn't support the query). Check these Windows prerequisites before deploying the example. The on-demand API replaces the earlier preview callback design.
 
 :::moniker-end
 
@@ -391,13 +390,12 @@ First call the method with an empty span to obtain the required buffer size, the
 * `propertyId` identifies a value from the native [`HTTP_REQUEST_PROPERTY`](/windows/win32/api/http/ne-http-http_request_property) enumeration.
 * `qualifier` contains optional property-specific bytes. An empty span is passed to Windows as a null pointer.
 * `output` receives the native bytes. The caller must interpret them using the corresponding native data structure.
-* `bytesReturned` contains the bytes written on success or the required size when the output buffer is too small.
+* `bytesReturned` contains the bytes written on success. On an insufficient-buffer failure, required-size reporting depends on the native property. For fixed-size properties, allocate a buffer sized for the corresponding native structure instead of assuming that an empty-buffer query reports the required size.
 
 The following example queries the TLS ClientHello property through the general-purpose API. It requires the same native ClientHello caching configuration as `TryGetTlsClientHello`:
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_request_property":::
 
-As with `TryGetTlsClientHello`, `false` means insufficient buffer space, not an arbitrary query failure. Other Windows errors throw `HttpSysException`; an unsupported query API throws `InvalidOperationException`. Property availability depends on the installed Windows version.
 
 ### Get channel binding tokens
 

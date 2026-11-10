@@ -1,5 +1,6 @@
 #nullable enable
 
+using System.Buffers;
 using System.Security.Authentication.ExtendedProtection;
 using Microsoft.AspNetCore.Connections.Features;
 using Microsoft.AspNetCore.Http.Features;
@@ -27,16 +28,27 @@ internal static class HttpSysFeatureExamples
         // <snippet_client_hello>
         var feature = context.Features.GetRequiredFeature<IHttpSysRequestPropertyFeature>();
         _ = feature.TryGetTlsClientHello(Span<byte>.Empty, out var requiredSize);
-        var buffer = new byte[requiredSize];
 
-        if (!feature.TryGetTlsClientHello(buffer, out var bytesReturned))
+        var pooled = requiredSize <= 1024 ? ArrayPool<byte>.Shared.Rent(requiredSize) : null;
+        var buffer = pooled ?? new byte[requiredSize];
+        try
         {
-            throw new InvalidOperationException(
-                $"The TLS ClientHello buffer must be resized to {bytesReturned} bytes.");
-        }
+            if (!feature.TryGetTlsClientHello(buffer, out var bytesReturned))
+            {
+                throw new InvalidOperationException(
+                    $"The TLS ClientHello buffer must be resized to {bytesReturned} bytes.");
+            }
 
-        logger.LogInformation("Retrieved {ByteCount} TLS ClientHello bytes.", bytesReturned);
-        // </snippet_client_hello>
+            logger.LogInformation("Retrieved {ByteCount} TLS ClientHello bytes.", bytesReturned);
+        }
+        finally
+        {
+            if (pooled is not null)
+            {
+                ArrayPool<byte>.Shared.Return(pooled);
+            }
+        }
+        // <snippet_client_hello>
     }
 
     public static void LogRequestProperty(HttpContext context, ILogger logger)
