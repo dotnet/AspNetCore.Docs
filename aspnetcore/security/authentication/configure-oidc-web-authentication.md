@@ -39,6 +39,13 @@ OpenID Connect comes in many variations and all server implementations have slig
 > [!NOTE]
 > From .NET 9, [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126) is used per default, if the OpenID Connect server supports this. This is a three step flow and not a two step flow as shown above. (User Info request is an optional step.)
 
+:::moniker range=">= aspnetcore-11.0"
+
+> [!IMPORTANT]
+> When an authorization request includes `max_age`, the OpenID Connect handler validates the signed ID token's `auth_time` against that value and the configured clock skew. Ensure that the identity provider honors `max_age` and returns a valid `auth_time`. For PAR, set `max_age` in `OnRedirectToIdentityProvider`, not `OnPushAuthorization`. For details and a temporary compatibility switch, see [OpenID Connect `max_age` validates `auth_time`](../../breaking-changes/11/openid-connect-max-age-validates-auth-time.md).
+
+:::moniker-end
+
 ## Create an Open ID Connect code flow client using Razor Pages
 
 The following section shows how to implement an OpenID Connect client in an empty ASP.NET Core Razor page project. The same logic can be applied to any ASP.NET Core web project with only the UI integration being different.
