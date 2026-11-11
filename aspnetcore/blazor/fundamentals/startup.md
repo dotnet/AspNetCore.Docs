@@ -359,18 +359,14 @@ export function beforeStart(options, extensions) {
 
 ## Configure Blazor client behavior from the server
 
-Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser  when the page contains an interactive component. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
+Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser when the page contains an interactive component. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
 
 ```csharp
 app.MapRazorComponents<App>()
     .WithBrowserOptions(options =>
     {
-        options.LogLevel = LogLevel.Warning;
-        options.StaticServer.PreserveDom = true;
         options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
         options.InteractiveServer.ReconnectionMaxRetries = 10;
-        options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(2);
-        options.InteractiveWebAssembly.ApplicationCulture = "en-CA";
         options.InteractiveWebAssembly.EnvironmentName = "Staging";
         options.InteractiveWebAssembly.EnvironmentVariables["PUBLIC_API_URL"] =
             "https://api.example.com";
@@ -385,8 +381,7 @@ The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports r
 @code {
     private BrowserOptions RequestBrowserOptions => new()
     {
-        LogLevel = LogLevel.Trace,
-        StaticServer = { PreserveDom = true }
+        InteractiveServer = { ReconnectionDialogId = "reconnect-dialog" }
     };
 }
 ```
