@@ -12,7 +12,7 @@ public class FactoryActivatedMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var keyValue = context.Request.Query["key"];
+        var keyValue = context.Request.Query["key"].ToString();
 
         if (!string.IsNullOrWhiteSpace(keyValue))
         {
