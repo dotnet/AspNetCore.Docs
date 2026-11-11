@@ -399,6 +399,7 @@ In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routi
 :::code language="csharp" source="~/fundamentals/routing/samples/8.x/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class" highlight="12":::
 
 <a name="rtr"></a>
+<a name="route-template-reference"></a>
 
 ## Route templates
 
@@ -416,8 +417,6 @@ Asterisk `*` or double asterisk `**`:
 * Are called a **catch-all** parameters. For example, `blog/{**slug}`:
   * Matches any URI that starts with `blog/` and has any value following it.
   * The value following `blog/` is assigned to the [slug](https://developer.mozilla.org/docs/Glossary/Slug) route value.
-
-[!INCLUDE[](~/includes/catchall.md)]
 
 Catch-all parameters can also match the empty string.
 
