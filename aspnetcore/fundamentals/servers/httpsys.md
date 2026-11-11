@@ -3,7 +3,7 @@ title: HTTP.sys web server implementation in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 07/29/2026
+ms.date: 11/06/2026
 ---
 # HTTP.sys web server implementation in ASP.NET Core
 
@@ -13,7 +13,7 @@ By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.co
 
 :::moniker range=">= aspnetcore-10.0"
 
-[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](index.md) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](kestrel.md) server and offers some features that Kestrel doesn't provide.
+[HTTP.sys](/iis/get-started/introduction-to-iis/introduction-to-iis-architecture#hypertext-transfer-protocol-stack-httpsys) is a [web server for ASP.NET Core](index.md) that only runs on Windows. HTTP.sys is an alternative to [Kestrel](kestrel.md) server and offers some features that Kestrel doesn't provide. This article explains when to use HTTP.sys, how to configure it, and how to inspect request and TLS information.
 
 > [!IMPORTANT]
 > HTTP.sys isn't compatible with the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md) and can't be used with IIS or IIS Express.
@@ -31,10 +31,7 @@ HTTP.sys supports the following features:
 * Customizable security descriptors
 * Automatic memory pool eviction
 
-Supported Windows versions:
-
-* Windows 7 or later
-* Windows Server 2008 R2 or later
+The operating system must be supported by the app's target version of .NET. For supported Windows versions, see [Install .NET on Windows](/dotnet/core/install/windows#supported-versions). The availability of HTTP.sys on older Windows versions doesn't imply support for those versions by current ASP.NET Core releases. Individual features can have additional Windows requirements, as described in the following sections.
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/servers/httpsys/samples) ([how to download](../index.md#how-to-download-a-sample))
 
@@ -62,7 +59,7 @@ HTTP.sys is mature technology that protects against many types of attacks and pr
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
-HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the connection falls back to HTTP/1.1. In a future release of Windows, HTTP/2 configuration flags will be available, including the ability to disable HTTP/2 with HTTP.sys.
+HTTP/2 is enabled by default. If an HTTP/2 connection isn't established, the connection falls back to HTTP/1.1. On Windows versions that support it, the `disablehttp2` option on a `netsh http` SSL certificate binding disables HTTP/2 for that binding. For available options, see [netsh http](/windows-server/administration/windows-commands/netsh-http).
 
 ## HTTP/3 support
 
@@ -97,7 +94,38 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 ### Enable channel binding token (CBT) hardening
 
-Channel binding tokens (CBT) tie Windows authentication to the underlying TLS channel, which helps mitigate NTLM relay and man-in-the-middle attacks. For HTTPS endpoints that use Windows authentication with HTTP.sys, you can opt in to CBT hardening by setting the `Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening` AppContext switch to `true`.
+Channel binding tokens (CBT) tie Windows authentication to the underlying TLS channel, which helps mitigate NTLM relay and man-in-the-middle attacks.
+
+::: moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+Configure CBT hardening with <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.HttpAuthenticationHardeningLevel>. The available <xref:Microsoft.AspNetCore.Server.HttpSys.HttpAuthenticationHardeningLevel> values are:
+
+| Value | Behavior |
+| --- | --- |
+| `Legacy` | Doesn't enforce channel binding validation or expose CBT bytes to the app. |
+| `Medium` (default) | Validates CBTs when clients supply them, but permits their absence. Exposes CBT bytes to the app. |
+| `Strict` | Requires CBTs on authenticated requests and rejects requests without them. Exposes CBT bytes to the app. |
+
+The following example opts in to `Strict` hardening:
+
+:::code language="csharp" source="httpsys/snippets/11.0/Program.cs" id="snippet_hardening":::
+
+If HTTP.sys can't apply `Strict` hardening, server startup fails with a `HttpSysException`. With `Legacy` or `Medium`, a failure to apply the setting is logged, and startup continues. The configured value alone doesn't guarantee that the operating system applied the setting.
+
+> [!WARNING]
+> `Strict` hardening can cause Windows authentication to fail for clients or proxies that don't supply a valid CBT. Test client compatibility and TLS termination in your environment before enabling it in production.
+
+When attaching to an existing request queue, configure hardening on the listener that owns the URL group. The attaching app doesn't apply URL-group configuration.
+
+For access to CBT bytes, see [Get channel binding tokens](#get-channel-binding-tokens).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+
+Opt in to CBT hardening for HTTPS endpoints that use Windows authentication by setting the `Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening` AppContext switch to `true`. This switch selects medium hardening, which validates supplied CBTs but permits their absence.
 
 Enable the switch in your project's `runtimeconfig.template.json` file:
 
@@ -109,7 +137,7 @@ Enable the switch in your project's `runtimeconfig.template.json` file:
 }
 ```
 
-Or set the switch programmatically before building the host in `Program.cs`:
+Alternatively, set the switch programmatically before building the host in the `Program` file:
 
 ```csharp
 AppContext.SetSwitch("Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening", true);
@@ -118,9 +146,13 @@ AppContext.SetSwitch("Microsoft.AspNetCore.Server.HttpSys.EnableCBTHardening", t
 > [!WARNING]
 > CBT hardening is off by default. Enabling it can cause Windows authentication to fail for clients or proxies that don't support channel binding. Test thoroughly in your environment before enabling in production.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
 ### Support for kernel-mode response buffering
 
-In some scenarios, high volumes of small writes with high latency can cause significant performance impact to `HTTP.sys`. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the `HTTP.sys` implementation. To improve performance in these scenarios, support for response buffering is included in `HTTP.sys`. Enable buffering by setting [HttpSysOptions.EnableKernelResponseBuffering](https://github.com/dotnet/aspnetcore/blob/main/src/Servers/HttpSys/src/HttpSysOptions.cs#L120) to `true`.
+In some scenarios, high volumes of small writes with high latency can cause significant performance impact to `HTTP.sys`. This impact is due to the lack of a <xref:System.IO.Pipelines.Pipe> buffer in the `HTTP.sys` implementation. To improve performance in these scenarios, support for response buffering is included in `HTTP.sys`. Enable buffering by setting <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.EnableKernelResponseBuffering> to `true`.
 Response buffering should be enabled by an app that does synchronous I/O, or asynchronous I/O with no more than one outstanding write at a time. In these scenarios, response buffering can significantly improve throughput over high-latency connections.
 
 Apps that use asynchronous I/O and that may have more than one write outstanding at a time should **_not_** use this flag. Enabling this flag can result in higher CPU and memory usage by HTTP.Sys.
@@ -139,7 +171,7 @@ For more information about HTTP.sys options, see <xref:Microsoft.AspNetCore.Serv
 
 ### Customize security descriptors
 
-A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your application is ready to process them. Manage access to the request queue by using the [RequestQueueSecurityDescriptor](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/HttpSysOptions.cs,a556950881fd2d87) property on <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
+A *request queue* in HTTP.sys is a kernel-level structure that temporarily stores incoming HTTP requests until your app is ready to process them. Manage access to the request queue by using <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.RequestQueueSecurityDescriptor>. Set it to a <xref:System.Security.AccessControl.GenericSecurityDescriptor> instance when configuring your HTTP.sys server.
 
 By customizing the security descriptor, you can allow or deny specific users or groups access to the request queue. This is useful in scenarios where you want to restrict or delegate HTTP.sys request handling at the operating system level.
 
@@ -147,7 +179,7 @@ For example, the following code allows all authenticated users but denies guests
 
 [!code-csharp[](~/fundamentals/servers/httpsys/samples/snapshot/10.x/HttpSysConfig/Program.cs)]
 
-The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues.
+The `RequestQueueSecurityDescriptor` property applies only when creating a new request queue. The property doesn't affect existing request queues. When `RequestQueueMode` is `Attach`it opens an existing queue, queue-level options such as `RequestQueueSecurityDescriptor` and `RequestQueueLimit` don't apply. In `Attach` mode, URL-group settings, such as timeouts and authentication hardening, must be configured by the listener that owns the URL group, and `UrlPrefixes` is used only to compute `PathBase`. `CreateOrAttach` still configures its own URL group and registers its `UrlPrefixes`, even when the queue already exists; settings for prefixes already registered by another listener remain controlled by that listener.
 
 <a name="maxrequestbodysize"></a>
 
@@ -186,10 +218,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Install either self-signed or CA-signed certificates in the server's **Local Machine** > **Personal** store.
 
-1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install .NET, .NET Framework, or both (if the app is a .NET app targeting the .NET Framework).
-
-   * **.NET**: If the app requires .NET, obtain and run the **.NET Runtime** installer from [.NET Downloads](https://dotnet.microsoft.com/download). Don't install the full SDK on the server.
-   * **.NET Framework**: If the app requires .NET Framework, see the [.NET Framework installation guide](/dotnet/framework/install/). Install the required .NET Framework. The installer for the latest .NET Framework is available from the [.NET Downloads](https://dotnet.microsoft.com/download) page.
+1. If the app is a [framework-dependent deployment](/dotnet/core/deploying/#framework-dependent-deployments-fdd), install the matching ASP.NET Core Runtime and .NET Runtime from [.NET Downloads](https://dotnet.microsoft.com/download). The .NET SDK isn't required on the server. ASP.NET Core doesn't target .NET Framework. For installer contents, see [Choose the correct runtime](/dotnet/core/install/windows#choose-the-correct-runtime).
 
    If the app is a [self-contained deployment](/dotnet/core/deploying/#self-contained-deployments-scd), the app includes the runtime in its deployment. No framework installation is required on the server.
 
@@ -302,12 +331,12 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    Reference documentation for *netsh.exe*:
 
-   * [Netsh Commands for Hypertext Transfer Protocol (HTTP)](/previous-versions/windows/it-pro/windows-server-2008-R2-and-2008/cc725882(v=ws.10))
+   * [`netsh http`](/windows-server/administration/windows-commands/netsh-http)
    * [UrlPrefix Strings](/windows/win32/http/urlprefix-strings)
 
 1. Run the app.
 
-   Administrator privileges aren't required to run the app when binding to localhost using HTTP (not HTTPS) with a port number greater than 1024. For other configurations (for example, using a local IP address or binding to port 443), run the app with administrator privileges.
+   Run the app under the identity authorized by the URL reservation. Administrator privileges are required to configure URL reservations and certificate bindings but aren't required to run an app whose identity has the necessary namespace permissions. Binding to a local IP address or port 443 doesn't by itself require an elevated application process. For more information, see [Namespace reservations, registrations, and routing](/windows/win32/http/namespace-reservations-registrations-and-routing).
 
    The app responds at the server's public IP address. In this example, the server is reached from the Internet at its public IP address of `104.214.79.47`.
 
@@ -318,6 +347,69 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 ## Proxy server and load balancer scenarios
 
 For apps hosted by HTTP.sys that interact with requests from the Internet or a corporate network, additional configuration might be required when hosting behind proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../../host-and-deploy/proxy-load-balancer.md).
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+When processing a request with both a `Content-Length` header and a `Transfer-Encoding` header whose final coding is `chunked`, HTTP.sys removes `Content-Length` from the request headers surfaced to the app and closes the connection after responding by default. Proxies shouldn't send conflicting request framing. This behavior helps prevent request smuggling; it doesn't imply that every such request is rejected before reaching the app.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
+
+## Inspect TLS and request properties
+
+<!-- UPDATE 11.0 - Remove prerelease language -->
+
+HTTP.sys exposes request features for inspecting TLS information. Availability depends on the request, the Windows version, and the HTTP.sys configuration.
+
+### Get the negotiated TLS cipher suite
+
+<xref:Microsoft.AspNetCore.Connections.Features.ITlsHandshakeFeature> exposes the negotiated cipher suite through its `NegotiatedCipherSuite` property for HTTP.sys. The feature isn't available for a non-TLS request. The property can be `null` if Windows doesn't support the query or the query fails.
+
+:::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_cipher_suite":::
+
+### Read the TLS ClientHello
+
+Use <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetTlsClientHello*> to retrieve the raw TLS ClientHello bytes on demand. The HTTPS service configuration must enable `HTTP_SERVICE_CONFIG_SSL_FLAG_ENABLE_CACHE_CLIENT_HELLO`. Configuring ASP.NET Core to use HTTP.sys doesn't enable this native flag. See [`HttpSetServiceConfiguration`](/windows/win32/api/http/nf-http-httpsetserviceconfiguration) and [`HTTP_SERVICE_CONFIG_ID`](/windows/win32/api/http/ne-http-http_service_config_id).
+
+First call the method with an empty span to obtain the required buffer size, then allocate a buffer and retry:
+
+:::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_client_hello":::
+
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+### Query other native request properties
+
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/api/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
+
+* `propertyId` identifies a value from the native [`HTTP_REQUEST_PROPERTY`](/windows/win32/api/http/ne-http-http_request_property) enumeration.
+* `qualifier` contains optional property-specific bytes. An empty span is passed to Windows as a null pointer.
+* `output` receives the native bytes. The caller must interpret them using the corresponding native data structure.
+* `bytesReturned` contains the bytes written on success. On an insufficient-buffer failure, required-size reporting depends on the native property. For fixed-size properties, allocate a buffer sized for the corresponding native structure instead of assuming that an empty-buffer query reports the required size.
+
+The following example queries the TLS ClientHello property through the general-purpose API. It requires the same native ClientHello caching configuration as `TryGetTlsClientHello`:
+
+:::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_request_property":::
+
+
+### Get channel binding tokens
+
+<xref:Microsoft.AspNetCore.Http.Features.ITlsConnectionFeature.TryGetChannelBindingBytes*> provides access to TLS channel binding bytes:
+
+:::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_channel_binding":::
+
+HTTP.sys supports `ChannelBindingKind.Endpoint`, corresponding to the `tls-server-end-point` binding defined by [RFC 5929](https://datatracker.ietf.org/doc/html/rfc5929). Other binding kinds return `false`. An unavailable token also returns `false`. CBT exposure requires `Medium` or `Strict` [authentication hardening](#enable-channel-binding-token-cbt-hardening) to be applied by HTTP.sys.
+
+Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict` hardening. The returned bytes contain the Windows `SEC_CHANNEL_BINDINGS` structure and its binding data, not just a certificate hash.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-10.0"
 
 <a name="ihsrtf8"></a>
 
@@ -339,7 +431,7 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
-[IHttpSysRequestTimingFeature.TryGetElapsedTime](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequesttimingfeature.trygetelapsedtime yields the elapsed time between two specified timings:
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetElapsedTime*?displayProperty=nameWithType> yields the elapsed time between two specified timings:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
 
@@ -375,6 +467,8 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 * [Enable Windows Authentication with HTTP.sys](../../security/authentication/windowsauth.md#httpsys)
 * [HTTP Server API](/windows/win32/http/http-api-start-page)
-* [aspnet/HttpSysServer GitHub repository (source code)](https://github.com/aspnet/HttpSysServer/)
+* [HTTP.sys implementation in the ASP.NET Core repository (source code)](https://github.com/dotnet/aspnetcore/tree/main/src/Servers/HttpSys)
 * [The host](../index.md#host)
 * [Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)
+
+[!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
