@@ -359,7 +359,7 @@ export function beforeStart(options, extensions) {
 
 ## Configure Blazor client behavior from the server
 
-Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser and applied when the Blazor script starts. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
+Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser  when the page contains an interactive component. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
 
 ```csharp
 app.MapRazorComponents<App>()
