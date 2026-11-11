@@ -367,7 +367,6 @@ app.MapRazorComponents<App>()
     {
         options.LogLevel = LogLevel.Warning;
         options.StaticServer.PreserveDom = true;
-        options.StaticServer.CircuitInactivityTimeout = TimeSpan.FromMinutes(10);
         options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
         options.InteractiveServer.ReconnectionMaxRetries = 10;
         options.InteractiveServer.ReconnectionRetryInterval = TimeSpan.FromSeconds(2);
