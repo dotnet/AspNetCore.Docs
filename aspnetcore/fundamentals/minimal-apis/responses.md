@@ -73,7 +73,7 @@ The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http
 Returning `TypedResults` rather than `Results` has the following advantages:
 
 * `TypedResults` helpers return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
-* The implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types) to describe the endpoint.
+* The implementation type [automatically provides the response type metadata for OpenAPI](../openapi/aspnetcore-openapi.md#describe-response-types) to describe the endpoint.
 
 Consider the following endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
@@ -88,7 +88,7 @@ For more information about describing a response type, see [Include OpenAPI meta
 > [!NOTE]
 > The `.Produces()` and `.Produces<T>()` extension methods are provided by the shared framework and only add endpoint metadata. To generate an OpenAPI document from that metadata, configure an OpenAPI document generator such as Microsoft.AspNetCore.OpenApi, Swashbuckle, or NSwag. For more information, see [Overview of OpenAPI support in ASP.NET Core API apps](../openapi/overview.md).
 
-For examples on testing result types, see the [Test documentation](/aspnet/core/fundamentals/minimal-apis/test-min-api#unit-test-iresult-implementation-types).
+For examples on testing result types, see the [Test documentation](test-min-api.md#unit-test-iresult-implementation-types).
 
 Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
 

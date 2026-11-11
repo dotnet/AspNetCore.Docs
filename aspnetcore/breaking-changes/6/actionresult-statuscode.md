@@ -46,7 +46,7 @@ This change can affect [source compatibility](/dotnet/core/compatibility/categor
 
 ## Reason for change
 
-Returning a status code of `200 OK` is [documented since ASP.NET Core 3.1](/aspnet/core/web-api/action-return-types#actionresultt-type). However, it keeps <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> as `null` and eventually generates a `200 OK` response only because it's the default. Since the default internal behavior could change, we decided to avoid relying on the default and to explicitly set <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> to the expected `200 OK`.
+Returning a status code of `200 OK` is [documented since ASP.NET Core 3.1](../../web-api/action-return-types.md#actionresultt-type). However, it keeps <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> as `null` and eventually generates a `200 OK` response only because it's the default. Since the default internal behavior could change, we decided to avoid relying on the default and to explicitly set <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> to the expected `200 OK`.
 
 ## Recommended action
 
@@ -90,4 +90,4 @@ public Model Get()
 
 ## See also
 
-- [ActionResult\<T> type](/aspnet/core/web-api/action-return-types#actionresultt-type)
+- [ActionResult\<T> type](../../web-api/action-return-types.md#actionresultt-type)

@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
-ms.date: 04/23/2026
+ms.date: 11/10/2026
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 
@@ -174,6 +174,8 @@ If the proxy doesn't use headers named `X-Forwarded-For` and `X-Forwarded-Proto`
 Apps that call <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> and <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> put a site into an infinite loop if deployed to an Azure Linux App Service, Azure Linux virtual machine (VM), or behind any other reverse proxy besides IIS. The reverse proxy terminates TLS, and Kestrel isn't made aware of the correct request scheme. OAuth and OIDC also fail in this configuration because they generate incorrect redirects. <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIISIntegration*> adds and configures forwarded headers middleware when running behind IIS, but there's no matching automatic configuration for Linux (Apache or Nginx integration).
 
 To forward the scheme from the proxy in non-IIS scenarios, enable the forwarded headers middleware by setting `ASPNETCORE_FORWARDEDHEADERS_ENABLED` to `true`. Warning: This flag uses settings designed for cloud environments and doesn't enable features such as the [`KnownProxies option`](#forwarded-headers-middleware-options) to restrict which IPs forwarders are accepted from.
+
+Azure App Service doesn't have a universal proxy IP address or CIDR range to add to `KnownProxies` or `KnownNetworks`. If forwarded headers aren't processed because the proxy isn't trusted, use the immediate peer address reported by `HttpContext.Connection.RemoteIpAddress` to add an exact `KnownProxies` entry. Use `KnownNetworks` only for a narrowly scoped range you've verified contains only trusted proxies. Don't guess addresses or clear both lists by default: accepting forwarded headers from arbitrary peers is a security tradeoff and should be considered only when network access independently restricts callers. Forwarded headers middleware must run before <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> so HSTS sees the forwarded HTTPS scheme.
 
 ## Certificate forwarding
 
@@ -437,6 +439,8 @@ if (string.Equals(
     });
 }
 ```
+
+Clearing both lists allows forwarded headers from any peer. Don't use this as a default; only consider it when network access independently restricts callers.
 
 ## Certificate forwarding
 

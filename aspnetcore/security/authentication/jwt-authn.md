@@ -120,11 +120,11 @@ Replace the contents of the _Program.cs_ file with the following code:
 
 In the preceding code, a GET request to the `/secret` endpoint returns a `401 Unauthorized` error. A production app might get the JWT from a [Security token service](/entra/identity-platform/security-tokens), perhaps in response to signing in with credentials. When you use the API during local development, the `dotnet user-jwts` command line tool can be used to create and manage app-specific local JWTs.
 
-The `user-jwts` tool is similar in concept to the [user-secrets](../app-secrets.md) tool. It can be used to manage values for the app that are valid only for the developer on the local machine. In fact, the `user-jwts` tool utilizes the `user-secrets` infrastructure to manage the key that the JWTs are signed with. This approach ensures the key is stored safely in the user profile.
+The `user-jwts` tool is similar in concept to the [user-secrets](../app-secrets.md) tool. It can be used to manage values for the app that are valid only for the developer on the local machine. In fact, the `user-jwts` tool utilizes the `user-secrets` infrastructure to store the symmetric signing secret (there's no public key) under `Authentication:Schemes:Bearer:SigningKeys`. In the Development environment, the default host configuration makes user secrets available to `AddJwtBearer()` for signature validation. This approach ensures the key is stored safely in the user profile.
 
 The `user-jwts` tool hides implementation details, such as where and how the values are stored. The tool can be used without knowing the implementation details.
 
-The values are stored in a JSON file in the local machine's user profile folder:
+The issued-token records (not the signing key) are stored in a JSON file in the local machine's user profile folder:
 
 - **Windows**: _%APPDATA%\Microsoft\UserSecrets\<secrets_GUID>\user-jwts.json_
 

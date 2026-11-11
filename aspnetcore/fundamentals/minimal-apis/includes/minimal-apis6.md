@@ -270,7 +270,7 @@ The following table lists some of the middleware frequently used with Minimal AP
 |--|--|--|
 | [Authentication](../../../security/authentication/index.md?view=aspnetcore-6.0&preserve-view=true) | Provides authentication support. | <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> |
 | [Authorization](../../../security/authorization/introduction.md) | Provides authorization support. | <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*> |
-| [CORS](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
+| [CORS](../../../security/cors.md) | Configures Cross-Origin Resource Sharing. | <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> |
 | [Exception Handler](../../error-handling-api.md?view=aspnetcore-6.0&preserve-view=true) | Globally handles exceptions thrown by the middleware pipeline. | <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*> |
 | [Forwarded Headers](../../middleware/index.md?view=aspnetcore-6.0&preserve-view=true#forwarded-headers-middleware-order) | Forwards proxied headers onto the current request. | <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> |
 | [HTTPS Redirection](../../../security/enforcing-ssl.md?view=aspnetcore-6.0&preserve-view=true) | Redirects all HTTP requests to HTTPS. | <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> |
@@ -739,14 +739,14 @@ allows unauthenticated users to access endpoints:
 
 ## CORS
 
-Routes can be [CORS](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true) enabled using [CORS policies](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
+Routes can be [CORS](../../../security/cors.md) enabled using [CORS policies](../../../security/cors.md#cors-policy-options). CORS can be declared via the [`[EnableCors]`](xref:Microsoft.AspNetCore.Cors.EnableCorsAttribute) attribute or by using the
 <xref:Microsoft.AspNetCore.Builder.CorsEndpointConventionBuilderExtensions.RequireCors*> method. The following samples enable CORS:
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors)]
 
 [!code-csharp[](~/fundamentals/minimal-apis/samples/WebMinAPIs/Program.cs?name=snippet_cors2)]
 
-For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md?view=aspnetcore-6.0&preserve-view=true)
+For more information, see [Enable Cross-Origin Requests (CORS) in ASP.NET Core](../../../security/cors.md)
 
 ## See also
 

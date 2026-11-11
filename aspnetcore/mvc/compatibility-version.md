@@ -14,7 +14,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.S
 
 * The next minor version of ASP.NET Core may provide a new `CompatibilityVersion` value.
 * `CompatibilityVersion` values `Version_2_0` through `Version_2_2` are marked `[Obsolete(...)]`.
-* The compatibility version APIs are removed in ASP.NET Core 11. For more information, see [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
+* The compatibility version APIs are removed in ASP.NET Core 11. For more information, see [MVC compatibility options removed](../breaking-changes/11/mvc-compatibility-options-removed.md).
 * See [Breaking API changes in Antiforgery, CORS, Diagnostics, Mvc, and Routing](https://github.com/aspnet/Announcements/issues/387). This list includes breaking changes for compatibility switches.
 
 To see how `SetCompatibilityVersion` works with ASP.NET Core 2.x apps, select the [ASP.NET Core 2.2 version of this article](?view=aspnetcore-2.2&preserve-view=true).

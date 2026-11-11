@@ -215,7 +215,7 @@ builder.Services.AddOpenApi(options =>
 });
 ```
 
-For more information, see [OpenApiVersion defaults to OpenApi3_2](/aspnet/core/breaking-changes/11/openapi-version-default-3-2).
+For more information, see [OpenApiVersion defaults to OpenApi3_2](../../breaking-changes/11/openapi-version-default-3-2.md).
 
 :::moniker-end
 

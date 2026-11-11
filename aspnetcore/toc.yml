@@ -25,6 +25,8 @@ items:
                 href: breaking-changes/11/concurrencylimiter-removed.md
               - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
                 href: breaking-changes/11/http-activity-otel-semconv.md
+              - name: Identity external login keys use ordinal equality
+                href: breaking-changes/11/identity-login-ordinal-equality.md
               - name: Kestrel tightens HTTP protocol compliance
                 href: breaking-changes/11/kestrel-strict-protocol-compliance.md
               - name: Microsoft.OpenApi upgraded to 3.x
@@ -43,6 +45,8 @@ items:
                 href: breaking-changes/11/openapi-server-url-trailing-slash.md
               - name: OpenApiVersion defaults to OpenApi3_2
                 href: breaking-changes/11/openapi-version-default-3-2.md
+              - name: OpenID Connect max_age validates auth_time
+                href: breaking-changes/11/openid-connect-max-age-validates-auth-time.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
                 href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
               - name: QuickGrid sorting and pagination controls render as links

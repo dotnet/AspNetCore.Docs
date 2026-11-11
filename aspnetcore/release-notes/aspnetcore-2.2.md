@@ -29,7 +29,7 @@ For more information, see the following resources:
 
 * [Endpoint routing in 2.2](https://blogs.msdn.microsoft.com/webdev/2018/08/27/asp-net-core-2-2-0-preview1-endpoint-routing/)
 * [Route parameter transformers](https://www.hanselman.com/blog/ASPNETCore22ParameterTransformersForCleanURLGenerationAndSlugsInRazorPagesOrMVC.aspx) (see **Routing** section)
-* [Differences between IRouter- and endpoint-based routing](../fundamentals/routing.md?view=aspnetcore-2.2&preserve-view=true)
+* [Routing in ASP.NET Core](../fundamentals/routing.md)
 
 ## Health checks
 
@@ -79,7 +79,7 @@ For more information, see [ASP.NET Core SignalR Java client](../signalr/java-cli
 
 In earlier versions of ASP.NET Core, CORS middleware allows `Accept`, `Accept-Language`, `Content-Language`, and `Origin` headers to be sent regardless of the values configured in `CorsPolicy.Headers`. In 2.2, a CORS middleware policy match is only possible when the headers sent in `Access-Control-Request-Headers` exactly match the headers stated in `WithHeaders`.
 
-For more information, see [CORS middleware](../security/cors.md?view=aspnetcore-2.2&preserve-view=true#set-the-allowed-request-headers).
+For more information, see [CORS middleware](../security/cors.md#set-the-allowed-request-headers).
 
 ## Response compression
 

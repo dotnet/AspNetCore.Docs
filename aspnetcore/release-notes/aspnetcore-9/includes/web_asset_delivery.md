@@ -10,7 +10,7 @@ Creating performant web apps requires optimizing asset delivery to the browser. 
 * Prevent the browser from using old or stale assets after an app is updated. Set the [Last-Modified](https://developer.mozilla.org/docs/Web/HTTP/Headers/Last-Modified) header.
 * Set up proper [caching headers](https://developer.mozilla.org/docs/Web/HTTP/Headers/Cache-Control).
 * Use [caching middleware](../../../performance/caching/middleware.md).
-* Serve [compressed](/aspnet/core/performance/response-compression) versions of the assets when possible.
+* Serve [compressed](../../../performance/response-compression.md) versions of the assets when possible.
 * Use a [CDN](/microsoft-365/enterprise/content-delivery-networks?view=o365-worldwide&preserve-view=true) to serve the assets closer to the user.
 * Minimize the size of assets served to the browser. This optimization doesn't include minification.
 

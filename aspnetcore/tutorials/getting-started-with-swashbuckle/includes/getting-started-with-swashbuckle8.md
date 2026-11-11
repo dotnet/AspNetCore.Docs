@@ -66,7 +66,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 ```
 
-The call to <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer*> shown in the preceding example is required only for [Minimal APIs](/aspnet/core/fundamentals/apis). For more information, see [this StackOverflow post](https://stackoverflow.com/a/71933535).
+The call to <xref:Microsoft.Extensions.DependencyInjection.EndpointMetadataApiExplorerServiceCollectionExtensions.AddEndpointsApiExplorer*> shown in the preceding example is required only for [Minimal APIs](../../../fundamentals/apis.md). For more information, see [this StackOverflow post](https://stackoverflow.com/a/71933535).
 
 Enable the middleware for serving the generated JSON document and the Swagger UI, also in `Program.cs`:
 

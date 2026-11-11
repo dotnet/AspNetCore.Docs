@@ -178,7 +178,7 @@ Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
-Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](/aspnet/core/security/authentication/certauth), or a cookie header.
+Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](../security/authentication/certauth.md), or a cookie header.
 
 There is no built-in support for [antiforgery](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#anti7). However, it can be implemented using the [`IAntiforgery` service](/aspnet/core/security/anti-request-forgery?view=aspnetcore-7.0&preserve-view=true#antimin7).
 
@@ -590,7 +590,7 @@ Using WebSockets over HTTP/2 takes advantage of new features such as:
 
 These supported features are available in Kestrel on all HTTP/2 enabled platforms. The version negotiation is automatic in browsers and Kestrel, so no new APIs are needed.
 
-For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md?view=aspnetcore-7.0&preserve-view=true#http2-websockets-support).
+For more information, see [Http/2 WebSockets support](../fundamentals/websockets.md#http2-websockets-support).
 
 ### Kestrel performance improvements on high core machines
 
