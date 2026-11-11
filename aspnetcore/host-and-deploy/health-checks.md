@@ -2,14 +2,14 @@
 title: Health checks in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/28/2026
 ---
 # Health checks in ASP.NET Core
 
 By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -113,7 +113,7 @@ To restrict the health check endpoint to respond only on a specific port, specif
 
 To prevent unauthorized clients from spoofing the port, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
 
 For more information, see [Host matching in routes with RequireHost](../fundamentals/routing.md#host-matching-in-routes-with-requirehost).
 
@@ -317,11 +317,11 @@ It's possible to use dependency injection to consume an instance of a specific `
 
 The following example shows a sample Health Check that retrieves a configuration object via dependency injection:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
 
 The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to the service container :
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
 ## UseHealthChecks vs. MapHealthChecks
 
@@ -391,6 +391,3 @@ Because short-circuiting only bypasses middleware positioned after routing in th
 > This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks6-7.md)]
