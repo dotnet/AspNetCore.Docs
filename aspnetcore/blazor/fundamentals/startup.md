@@ -361,6 +361,11 @@ export function beforeStart(options, extensions) {
 
 Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser when the page contains an interactive component. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
 
+<!-- UPDATE 11.0 - Track on engineering issue for updates -->
+
+> [!NOTE]
+> `WithBrowserOptions` API, released with .NET 11, remains under development. For more information, see [Blazor browser options are ignored or applied incorrectly (`dotnet/aspnetcore` #70510)](https://github.com/dotnet/aspnetcore/issues/70510).
+
 ```csharp
 app.MapRazorComponents<App>()
     .WithBrowserOptions(options =>
