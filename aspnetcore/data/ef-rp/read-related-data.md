@@ -236,7 +236,7 @@ Update `Pages/Instructors/Index.cshtml` with the following code.
 
 The preceding code makes the following changes:
 
-  * Updates the `page` directive to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The [route template](../../fundamentals/routing.md#route-template-reference) changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
+  * Updates the `page` directive to `@page "{id:int?}"`. `"{id:int?}"` is a route template. The [route template](../../fundamentals/routing.md#route-templates) changes integer query strings in the URL to route data. For example, clicking on the **Select** link for an instructor with only the `@page` directive produces a URL like the following:
 
     `https://localhost:5001/Instructors?id=2`
 
