@@ -239,7 +239,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
-   HTTP.sys recognizes two types of wild cards in URL prefixes:   
+   HTTP.sys recognizes two types of wild cards in URL prefixes:
 
    * `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
    * `+` is a *strong binding*. If the URL prefix is `http://+:5000`, this binding will be used before other port 5000 bindings.
@@ -315,9 +315,9 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
    * An online random GUID generator provides the `appid` value.
 
    ```console
-   netsh http add sslcert 
-       ipport=10.0.0.4:443 
-       certhash=b66ee04419d4ee37464ab8785ff02449980eae10 
+   netsh http add sslcert
+       ipport=10.0.0.4:443
+       certhash=b66ee04419d4ee37464ab8785ff02449980eae10
        appid="{00001111-aaaa-2222-bbbb-3333cccc4444}"
    ```
 
@@ -385,7 +385,7 @@ First call the method with an empty span to obtain the required buffer size, the
 
 ### Query other native request properties
 
-<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/api/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/http/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
 
 * `propertyId` identifies a value from the native [`HTTP_REQUEST_PROPERTY`](/windows/win32/api/http/ne-http-http_request_property) enumeration.
 * `qualifier` contains optional property-specific bytes. An empty span is passed to Windows as a null pointer.
@@ -415,7 +415,7 @@ Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict
 
 ## Get detailed timing information with IHttpSysRequestTimingFeature
 <!--
-<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> 
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature>
 -->
 [IHttpSysRequestTimingFeature](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequesttimingfeature)  provides detailed timing information for requests:
 
