@@ -12,7 +12,7 @@ public class ConventionalMiddleware
 
     public async Task InvokeAsync(HttpContext context, SampleDbContext dbContext)
     {
-        var keyValue = context.Request.Query["key"];
+        var keyValue = context.Request.Query["key"].ToString();
 
         if (!string.IsNullOrWhiteSpace(keyValue))
         {
