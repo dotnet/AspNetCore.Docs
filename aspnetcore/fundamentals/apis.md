@@ -13,7 +13,7 @@ monikerRange: '>= aspnetcore-6.0'
 
  :::moniker range=">= aspnetcore-10.0"
 
-ASP.NET Core provides two approaches for building HTTP APIs: **Minimal APIs** and controller-based APIs. **Minimal APIs are the recommended approach for building HTTP APIs**, offering a streamlined developer experience, significantly less boilerplate, and better performance.
+ASP.NET Core provides two approaches for building HTTP APIs: Minimal APIs and controller-based APIs. *Minimal APIs* are the recommended approach for building HTTP APIs, offering a streamlined developer experience, significantly less boilerplate, and better performance.
 
 ## Minimal APIs - recommended approach
 
@@ -48,7 +48,7 @@ Getting started with Minimal APIs:
 
 * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * [Minimal APIs quick reference](minimal-apis.md)
-* **Examples**: For a full list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md).
+* For a list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md).
 
 ## Controller-based APIs - alternative approach
 
@@ -74,19 +74,19 @@ Both API projects refer to the following class:
 
 ## Choose between approaches
 
-**Start with Minimal APIs for most projects**. Minimal APIs offer the following features:
+Start with Minimal APIs for most projects, which offer the following features:
 
 * **Streamlined experience and simpler syntax**. There's less boilerplate code and faster setup.
 * **Better performance**. Minimal APIs have reduced overhead compared to controllers.
 * **Easier testing**. They simplify unit and integration testing.
 * **Modern approach**. The API can leverage the latest .NET features and C# innovations.
 
-**Consider controller-based APIs only if you specifically need any of the following**:
+Consider controller-based APIs only if you specifically need any of the following:
 
 * Model binding extensibility (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinderProvider>, <xref:Microsoft.AspNetCore.Mvc.ModelBinding.IModelBinder>)
 * Advanced validation features (<xref:Microsoft.AspNetCore.Mvc.ModelBinding.Validation.IModelValidator>)
 * [Application parts](../mvc/advanced/app-parts.md) or the [application model](../mvc/controllers/application-model.md)
-* [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData/) support
+* [OData](https://www.nuget.org/packages/Microsoft.AspNetCore.OData) support
 
 Most of the preceding features can be implemented in Minimal APIs with custom solutions, but controllers provide them natively.
 
