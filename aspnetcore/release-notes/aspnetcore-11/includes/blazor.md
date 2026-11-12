@@ -636,7 +636,7 @@ Hosted services are started when the app starts and stopped when it shuts down, 
 
 ### Configure Blazor client behavior from the server
 
-Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. The new <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> API configures browser startup options for Razor component endpoints, including logging, static server rendering, Interactive Server reconnection, and WebAssembly runtime behavior. The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports request-specific options.
+Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. The new <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> API configures browser startup options for Razor component endpoints, Interactive Server reconnection, and WebAssembly runtime behavior. The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports request-specific options.
 
 For more information, see [Configure Blazor client behavior from the server](../../../blazor/fundamentals/startup.md?view=aspnetcore-11.0&preserve-view=true#configure-blazor-client-behavior-from-the-server).
 

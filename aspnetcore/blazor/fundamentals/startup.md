@@ -364,7 +364,7 @@ Blazor apps can configure browser startup behavior in server-side C# instead of 
 <!-- UPDATE 11.0 - Track on engineering issue for updates -->
 
 > [!NOTE]
-> `WithBrowserOptions` API, released with .NET 11, remains under development. For more information, see [Blazor browser options are ignored or applied incorrectly (`dotnet/aspnetcore` #70510)](https://github.com/dotnet/aspnetcore/issues/70510).
+> The `WithBrowserOptions` API, released with .NET 11, has known issues. For more information, see [Blazor browser options are ignored or applied incorrectly (`dotnet/aspnetcore` #70510)](https://github.com/dotnet/aspnetcore/issues/70510).
 
 ```csharp
 app.MapRazorComponents<App>()
