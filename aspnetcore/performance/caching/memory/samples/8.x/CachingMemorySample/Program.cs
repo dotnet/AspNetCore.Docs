@@ -3,6 +3,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 
+// <snippet_TrackLinkedCacheEntries>
+builder.Services.AddMemoryCache(options =>
+{
+    options.TrackLinkedCacheEntries = true;
+});
+// </snippet_TrackLinkedCacheEntries>
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
