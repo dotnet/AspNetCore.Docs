@@ -189,15 +189,15 @@ This article primarily discusses using `HttpContext` in request and response flo
 
 The following sample logs GitHub branches when requested from the `/branch` endpoint:
 
-[!code-csharp[](~/fundamentals/http-context/samples/HttpContextInBackgroundThread/Program.cs?highlight=26-46)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=26-46)]
 
 The GitHub API requires two headers. The `User-Agent` header is added dynamically by the `UserAgentHeaderHandler`:
 
-[!code-csharp[](~/fundamentals/http-context/samples/HttpContextInBackgroundThread/Program.cs?highlight=10-20)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=10-20)]
 
 The `UserAgentHeaderHandler`:
 
-[!code-csharp[](~/fundamentals/http-context/samples/HttpContextInBackgroundThread/UserAgentHeaderHandler.cs?highlight=21-29)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/UserAgentHeaderHandler.cs?highlight=21-29)]
 
 In the preceding code, when the `HttpContext` is `null`, the `userAgent` string is set to `"Unknown"`. If possible, `HttpContext` should be explicitly passed to the service. Explicitly passing in `HttpContext` data:
 
@@ -209,11 +209,11 @@ When the service must access `HttpContext`, it should account for the possibilit
 
 The application also includes `PeriodicBranchesLoggerService`, which logs the open GitHub branches of the specified repository every 30 seconds:
 
-[!code-csharp[](~/fundamentals/http-context/samples/HttpContextInBackgroundThread/PeriodicBranchesLoggerService.cs)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/PeriodicBranchesLoggerService.cs)]
 
 `PeriodicBranchesLoggerService` is a [hosted service](host/hosted-services.md), which runs outside the request and response flow. Logging from the `PeriodicBranchesLoggerService` has a null `HttpContext`. The `PeriodicBranchesLoggerService` was written to not depend on the `HttpContext`.
 
-[!code-csharp[](~/fundamentals/http-context/samples/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
+[!code-csharp[](~/fundamentals/http-context/samples/6.x/HttpContextInBackgroundThread/Program.cs?highlight=8&range=1-11)]
 
 ## Related content
 

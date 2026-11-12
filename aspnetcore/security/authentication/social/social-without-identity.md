@@ -26,7 +26,7 @@ This sample uses [Google authentication](google-logins.md) for authenticating us
 
 In `Program.cs`, configure the app's authentication schemes with the <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*>, <xref:Microsoft.Extensions.DependencyInjection.CookieExtensions.AddCookie*>, and <xref:Microsoft.Extensions.DependencyInjection.GoogleExtensions.AddGoogle*> methods:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Program.cs" id="snippet_AddAuthentication":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Program.cs" id="snippet_AddAuthentication":::
 
 The call to <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> sets the app's <xref:Microsoft.AspNetCore.Authentication.AuthenticationOptions.DefaultScheme>. The `DefaultScheme` is the default scheme used by the following `HttpContext` authentication extension methods:
 
@@ -40,7 +40,7 @@ Setting the app's `DefaultScheme` to <xref:Microsoft.AspNetCore.Authentication.C
 
 In `Program.cs`, call <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*> and <xref:Microsoft.AspNetCore.Builder.AuthorizationAppBuilderExtensions.UseAuthorization*>. This middleware combination sets the <xref:Microsoft.AspNetCore.Http.HttpContext.User?displayProperty=nameWithType> property and runs the authorization middleware for requests:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Program.cs" id="snippet_UseAuthentication" highlight="4-5":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Program.cs" id="snippet_UseAuthentication" highlight="4-5":::
 
 To learn more about authentication schemes, see [Authentication Concepts](../index.md#authentication-concepts). To learn more about cookie authentication, see [Use cookie authentication without ASP.NET Core Identity](../cookie.md).
 
@@ -48,7 +48,7 @@ To learn more about authentication schemes, see [Authentication Concepts](../ind
 
 Test the app's authentication configuration by applying the [[Authorize]](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) attribute to a controller, action, or page. The following code limits access to the *Privacy* page to users that have been authenticated:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Pages/Privacy.cshtml.cs" id="snippet_Class" highlight="1":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Pages/Privacy.cshtml.cs" id="snippet_Class" highlight="1":::
 
 ## Save the access token
 
@@ -56,17 +56,17 @@ Test the app's authentication configuration by applying the [[Authorize]](xref:M
 
 To save access and refresh tokens after a successful authorization, set `SaveTokens` to `true` in `Program.cs`:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Snippets/Program.cs" id="snippet_SaveTokens" highlight="12":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Snippets/Program.cs" id="snippet_SaveTokens" highlight="12":::
 
 To retrieve a saved token, use <xref:Microsoft.AspNetCore.Authentication.AuthenticationTokenExtensions.GetTokenAsync*>. The following example retrieves the token named `access_token`:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Snippets/Pages/Privacy.cshtml.cs" id="snippet_OnGetAsync" highlight="3-4":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Snippets/Pages/Privacy.cshtml.cs" id="snippet_OnGetAsync" highlight="3-4":::
 
 ## Sign out
 
 To sign out the current user and delete their cookie, call <xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.SignOutAsync*>. The following code adds a `Logout` page handler to the *Index* page:
 
-:::code language="csharp" source="social-without-identity/samples/SocialWithoutIdentitySample/Pages/Index.cshtml.cs" id="snippet_Class":::
+:::code language="csharp" source="social-without-identity/samples/6.x/SocialWithoutIdentitySample/Pages/Index.cshtml.cs" id="snippet_Class":::
 
 Notice that the call to `SignOutAsync` doesn't specify an authentication scheme. The app uses the `DefaultScheme`, `CookieAuthenticationDefaults.AuthenticationScheme`, as a fallback.
 

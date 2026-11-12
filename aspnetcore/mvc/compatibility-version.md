@@ -27,7 +27,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.S
 
 The following code sets the compatibility mode to ASP.NET Core 2.2:
 
-[!code-csharp[Main](compatibility-version/samples/CompatibilityVersionSample/Startup.cs?name=snippet1)]
+[!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup.cs?name=snippet1)]
 
 We recommend you test your app using the latest version (`CompatibilityVersion.Latest`). We anticipate that most apps won't have breaking behavior changes using the latest version.
 
@@ -43,7 +43,7 @@ The following code sets the compatibility mode to ASP.NET Core 2.2, except for t
 * <xref:Microsoft.AspNetCore.Mvc.MvcOptions.AllowCombiningAuthorizeFilters>
 * <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatterExceptionPolicy>
 
-[!code-csharp[Main](compatibility-version/samples/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
+[!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
 
 For apps that encounter breaking behavior changes, using the appropriate compatibility switches:
 

@@ -25,15 +25,15 @@ ms.date: 03/25/2022
 
 Middleware activated by convention:
 
-:::code language="csharp" source="extensibility/samples/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs" id="snippet_Class":::
 
 Middleware activated by <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>:
 
-:::code language="csharp" source="extensibility/samples/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs" id="snippet_Class":::
 
 Extensions are created for the middleware:
 
-:::code language="csharp" source="extensibility/samples/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs" id="snippet_Class":::
 
 It isn't possible to pass objects to the factory-activated middleware with <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*>:
 
@@ -48,11 +48,11 @@ public static IApplicationBuilder UseFactoryActivatedMiddleware(
 
 The factory-activated middleware is added to the built-in container in `Program.cs`:
 
-:::code language="csharp" source="extensibility/samples/MiddlewareExtensibilitySample/Program.cs" id="snippet_Services" highlight="6":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Services" highlight="6":::
 
 Both middleware are registered in the request processing pipeline, also in `Program.cs`:
 
-:::code language="csharp" source="extensibility/samples/MiddlewareExtensibilitySample/Program.cs" id="snippet_Middleware" highlight="3-4":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Middleware" highlight="3-4":::
 
 ## IMiddlewareFactory
 

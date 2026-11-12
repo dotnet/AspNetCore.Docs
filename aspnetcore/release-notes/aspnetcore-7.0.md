@@ -94,7 +94,7 @@ For more information, see [Filters in Minimal API apps](../fundamentals/minimal-
 
 In ASP.NET 7, binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues) is supported:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_bqs2pa)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#bindar).
 
@@ -115,7 +115,7 @@ For more information, see [Bind the request body as a `Stream` or `PipeReader`](
 
 We introduced new [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads to accommodate scenarios that need access to the underlying HTTP response stream without buffering. These overloads also improve cases where an API streams data to the HTTP response stream, like from Azure Blob Storage. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
 
 For more information, see [Stream examples](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#stream7)
 
@@ -176,7 +176,7 @@ For more information, see [OpenAPI in Minimal API apps](../fundamentals/openapi/
 
 Minimal APIs now support file upload with `IFormFile` and `IFormFileCollection`. The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/MinimalApi/Program.cs" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](../security/authentication/certauth.md), or a cookie header.
 

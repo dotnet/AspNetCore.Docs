@@ -37,7 +37,7 @@ Suppose the goal is to create a middleware that reads the entire request body as
 > * Is used to demonstrate the problems with not using a pipe to read the request body.
 > * Is not intended to be used in production apps.
 
-[!code-csharp[](request-response/samples/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
+[!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStream)]
 
 This code works, but there are some issues:
 
@@ -51,7 +51,7 @@ Here's an example that fixes some of the preceding issues:
 > * Is used to demonstrate the solutions to some problems in the preceding code while not solving all the problems.
 > * Is not intended to be used in production apps.
 
-[!code-csharp[](request-response/samples/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
+[!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringsFromStreamMoreEfficient)]
 
 This preceding example:
 
@@ -69,7 +69,7 @@ These issues are fixable, but the code is becoming progressively more complicate
 
 The following example shows how the preceding stream scenario can be handled using a [PipeReader](/dotnet/standard/io/pipelines#pipe):
 
-[!code-csharp[](request-response/samples/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
+[!code-csharp[](request-response/samples/3.x/RequestResponseSample/Startup.cs?name=GetListOfStringFromPipe)]
 
 This example fixes many issues that the streams implementations had:
 
