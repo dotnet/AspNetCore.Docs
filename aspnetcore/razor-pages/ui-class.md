@@ -119,9 +119,9 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 
 To include TypeScript files in an RCL:
 
-* Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project, using version 7.0.0 or later.
+* Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project, using version 7.0.0 or later of the package.
 
-   [!INCLUDE[](~/includes/package-reference.md)]
+  [!INCLUDE[](~/includes/package-reference.md)]
 
 * Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
 * TypeScript compilation runs automatically as part of the build.
