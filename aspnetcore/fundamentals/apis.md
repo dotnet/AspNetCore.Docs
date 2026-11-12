@@ -15,7 +15,7 @@ monikerRange: '>= aspnetcore-6.0'
 
 ASP.NET Core provides two approaches for building HTTP APIs: **Minimal APIs** and controller-based APIs. **Minimal APIs are the recommended approach for building HTTP APIs**, offering a streamlined developer experience, significantly less boilerplate, and better performance.
 
-## Minimal APIs - Recommended approach
+## Minimal APIs - recommended approach
 
 Minimal APIs are the recommended approach for building fast HTTP APIs with ASP.NET Core. They deliver a streamlined developer experience with less boilerplate and better runtime performance, allowing you to build fully functioning REST endpoints with minimal code and configuration. Skip traditional scaffolding and avoid unnecessary controllers by fluently declaring API routes and actions.
 
@@ -50,7 +50,7 @@ Getting started with Minimal APIs:
 * [Minimal APIs quick reference](minimal-apis.md)
 * **Examples**: For a full list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md).
 
-## Controller-based APIs - Alternative approach
+## Controller-based APIs - alternative approach
 
 While Minimal APIs are recommended, ASP.NET Core also supports a controller-based alternative approach where controllers are classes that derive from <xref:Microsoft.AspNetCore.Mvc.ControllerBase>. This approach follows traditional object-oriented patterns and may be preferred for the following scenarios:
 
