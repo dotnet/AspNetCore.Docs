@@ -2,14 +2,14 @@
 title: Background tasks with hosted services in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to implement background tasks with hosted services in ASP.NET Core.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/05/2026
 ---
 # Background tasks with hosted services in ASP.NET Core
 
 By [Jeow Li Huan](https://github.com/huan086)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -256,6 +256,3 @@ The AOT option adds `<PublishAot>true</PublishAot>` to the project file:
 * <xref:System.Threading.Timer>
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services67.md)]
-[!INCLUDE[](~/fundamentals/host/hosted-services/includes/hosted-services5.md)]
