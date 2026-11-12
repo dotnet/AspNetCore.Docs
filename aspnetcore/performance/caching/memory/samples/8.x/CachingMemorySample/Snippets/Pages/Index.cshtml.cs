@@ -91,13 +91,14 @@ public class IndexModel : PageModel
     }
 
     private static void PostEvictionCallback(
-        object cacheKey, object cacheValue, EvictionReason evictionReason, object state)
+        object cacheKey, object? cacheValue, EvictionReason evictionReason, object? state)
     {
-        var memoryCache = (IMemoryCache)state;
-
-        memoryCache.Set(
-            CacheKeys.CallbackMessage,
-            $"Entry {cacheKey} was evicted: {evictionReason}.");
+        if (state is IMemoryCache memoryCache)
+        {
+            memoryCache.Set(
+                CacheKeys.CallbackMessage,
+                $"Entry {cacheKey} was evicted: {evictionReason}.");
+        }
     }
     // </snippet_MemoryCacheEntryOptions>
 
@@ -125,7 +126,7 @@ public class IndexModel : PageModel
         var cancellationTokenSource = _memoryCache.Get<CancellationTokenSource>(
             CacheKeys.DependentCancellationTokenSource);
 
-        cancellationTokenSource.Cancel();
+        cancellationTokenSource?.Cancel();
     }
     // </snippet_CacheDependencies>
 
@@ -144,7 +145,7 @@ public class IndexModel : PageModel
                     new CancellationChangeToken(cancellationTokenSource.Token))
                 .RegisterPostEvictionCallback((key, value, reason, state) =>
                 {
-                    ((CancellationTokenSource)state).Dispose();
+                    (state as CancellationTokenSource)?.Dispose();
                 }, cancellationTokenSource);
 
             _memoryCache.Set(CacheKeys.Entry, cacheValue, cacheEntryOptions);
