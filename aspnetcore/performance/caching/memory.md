@@ -48,7 +48,7 @@ The following guidelines apply to in-memory caching:
 
   * Use expirations to limit cache growth.
 
-  * [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size). The ASP.NET Core runtime **doesn't** limit cache size based on memory pressure. The developer is responsible for limiting the cache size.
+  * [Limit cache size with SetSize, Size, and SizeLimit](#limit-cache-size-with-setsize-size-and-sizelimit). The ASP.NET Core runtime **doesn't** limit cache size based on memory pressure. The developer is responsible for limiting the cache size.
 
 ## Create an instance of IMemoryCache
 
@@ -59,7 +59,7 @@ In-memory caching is a *service* that an app references by using [dependency inj
 > 
 > When a size limit is set on a cache, all entries must specify a size when they're added. This approach can lead to issues because developers might not have full control over what uses the shared cache.
 > 
-> To limit the cache size with the `SetSize` method, the `Size` property, or the `SizeLimit` property, create a cache singleton for caching. For more information and an example, see [Use SetSize, Size, and SizeLimit to limit cache size](#use-setsize-size-and-sizelimit-to-limit-cache-size).
+> To limit the cache size with the `SetSize` method, the `Size` property, or the `SizeLimit` property, create a cache singleton for caching. For more information and an example, see [Limit cache size with SetSize, Size, and SizeLimit](#limit-cache-size-with-setsize-size-and-sizelimit).
 
 Request the `IMemoryCache` instance in the constructor:
 
