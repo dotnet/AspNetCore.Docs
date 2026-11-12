@@ -1,14 +1,14 @@
 ---
 title: Factory-based middleware activation in ASP.NET Core
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/25/2022
 ---
 # Factory-based middleware activation in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](index.md) activation that offers the following benefits:
 
@@ -25,15 +25,15 @@ ms.date: 03/25/2022
 
 Middleware activated by convention:
 
-:::code language="csharp" source="extensibility/samples/8.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/ConventionalMiddleware.cs" id="snippet_Class":::
 
 Middleware activated by <xref:Microsoft.AspNetCore.Http.MiddlewareFactory>:
 
-:::code language="csharp" source="extensibility/samples/8.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/FactoryActivatedMiddleware.cs" id="snippet_Class":::
 
 Extensions are created for the middleware:
 
-:::code language="csharp" source="extensibility/samples/8.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs" id="snippet_Class":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Middleware/MiddlewareExtensions.cs" id="snippet_Class":::
 
 It isn't possible to pass objects to the factory-activated middleware with <xref:Microsoft.AspNetCore.Builder.UseMiddlewareExtensions.UseMiddleware*>:
 
@@ -48,11 +48,11 @@ public static IApplicationBuilder UseFactoryActivatedMiddleware(
 
 The factory-activated middleware is added to the built-in container in `Program.cs`:
 
-:::code language="csharp" source="extensibility/samples/8.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Services" highlight="6":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Services" highlight="6":::
 
 Both middleware are registered in the request processing pipeline, also in `Program.cs`:
 
-:::code language="csharp" source="extensibility/samples/8.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Middleware" highlight="3-4":::
+:::code language="csharp" source="extensibility/samples/10.x/MiddlewareExtensibilitySample/Program.cs" id="snippet_Middleware" highlight="3-4":::
 
 ## IMiddlewareFactory
 

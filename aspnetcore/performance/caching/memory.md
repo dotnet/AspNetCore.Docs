@@ -3,7 +3,7 @@ title: Cache in-memory in ASP.NET Core
 ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Learn how to cache data in memory in ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/28/2026
 
 # customer intent: As an ASP.NET developer, I want to use in-memory caching in ASP.NET Core, so I can improve the performance and scalability of my app.
@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 
@@ -63,41 +63,41 @@ In-memory caching is a *service* that an app references by using [dependency inj
 
 Request the `IMemoryCache` instance in the constructor:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_ClassConstructor" highlight="5":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_ClassConstructor" highlight="5":::
 
 The following code uses the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache.TryGetValue*> method to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Set*> method:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_OnGet" highlight="5,9-12":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_OnGet" highlight="5,9-12":::
 
 In the preceding code, the cache entry is configured with a sliding expiration of 3 seconds. If the cache entry isn't accessed for more than 3 seconds, the entry is evicted from the cache. Each time the cache entry is accessed, it remains in the cache for a further 3 seconds. The `CacheKeys` class is part of the download sample.
 
 The current time and the cached time are displayed:
 
-:::code language="cshtml" source="memory/samples/8.x/CachingMemorySample/Pages/Index.cshtml" id="snippet_CacheCurrentDateTime":::
+:::code language="cshtml" source="memory/samples/10.x/CachingMemorySample/Pages/Index.cshtml" id="snippet_CacheCurrentDateTime":::
 
 The following code uses the `Set` extension method to cache data for a relative time without <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions>:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheRelative":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheRelative":::
 
 In the preceding code, the cache entry is configured with a relative expiration of one day. The cache entry is evicted from the cache after one day, even if the entry is accessed during the timeout period.
 
 The following code uses the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreate*> and <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.GetOrCreateAsync*> methods to cache data.
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreate":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreate":::
 
 The following code calls the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Get*> method to fetch the cached time:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGet":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGet":::
 
 The following code gets or creates a cached item with absolute expiration:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateAbsolute" highlight="5":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateAbsolute" highlight="5":::
 
 A cached item set with only a sliding expiration is at risk of never expiring. If the cached item is repeatedly accessed within the sliding expiration interval, the item never expires. Combining a sliding expiration with an absolute expiration guarantees the item expires. The absolute expiration sets an upper bound on how long the item can be cached. It still allows the item to expire earlier, if the item isn't requested within the sliding expiration interval. If either the sliding expiration interval *or* the absolute expiration time passes, the item is evicted from the cache.
 
 The following code gets or creates a cached item with both sliding *and* absolute expiration:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateSlidingAbsolute" highlight="5-6":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGetCacheGetOrCreateSlidingAbsolute" highlight="5-6":::
 
 The preceding code guarantees the data isn't cached longer than the absolute time.
 
@@ -111,7 +111,7 @@ The following example demonstrates how to create <xref:Microsoft.Extensions.Cach
 
 * Sets a <xref:Microsoft.Extensions.Caching.Memory.PostEvictionDelegate> to call after the entry is evicted from the cache. The callback runs on a different thread from the code that removes the item from the cache.
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_MemoryCacheEntryOptions" highlight="4-5":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_MemoryCacheEntryOptions" highlight="4-5":::
 
 ## Limit cache size with SetSize, Size, and SizeLimit
 
@@ -129,19 +129,19 @@ If the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.SizeLimit> p
 
 The following code creates a unitless fixed-size <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> instance that's accessible by [dependency injection](../../fundamentals/dependency-injection.md):
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/MyMemoryCache.cs" id="snippet_Class":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/MyMemoryCache.cs" id="snippet_Class":::
 
 The `SizeLimit` property doesn't have units. Cached entries must specify size in whatever units they consider most appropriate when the cache size limit is set. All users of a cache instance should use the same unit system. An entry isn't cached if the sum of the cached entry sizes exceeds the value specified by `SizeLimit`. If no cache size limit is set, the cache size set on the entry is ignored.
 
 The following code registers the `MyMemoryCache` instance with the [dependency injection](../../fundamentals/dependency-injection.md) container:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Program.cs" id="snippet_AddSingletonMyMemoryCache" highlight="4":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Program.cs" id="snippet_AddSingletonMyMemoryCache" highlight="4":::
 
 `MyMemoryCache` is created as an independent memory cache for components that are aware of this size-limited cache and know how to set cache entry size appropriately.
 
 The size of the cache entry can be set by using the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryExtensions.SetSize*> extension method or the <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheEntryOptions.Size> property:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheSizeSetSize" highlight="4,6":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheSizeSetSize" highlight="4,6":::
 
 In the preceding code, the two highlighted lines achieve the same result of setting the size of the cache entry. The `SetSize` method is provided for convenience when chaining calls onto `new MemoryCacheOptions()`.
 
@@ -157,7 +157,7 @@ The `MemoryCache.Compact` method attempts to remove the specified percentage of 
 
 Pinned items with priority <xref:Microsoft.Extensions.Caching.Memory.CacheItemPriority.NeverRemove> are [never removed](https://github.com/dotnet/runtime/blob/release/6.0/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L415-L430). The following code removes a cache item and calls the `Compact` method to remove 25% of cached entries:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheCompact":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/MyMemoryCache.cshtml.cs" id="snippet_OnGetCacheCompact":::
 
 For more information, see the [Compact source on GitHub](https://github.com/dotnet/runtime/blob/release/6.0/src/libraries/Microsoft.Extensions.Caching.Memory/src/MemoryCache.cs#L382-L393).
 
@@ -165,11 +165,11 @@ For more information, see the [Compact source on GitHub](https://github.com/dotn
 
 To enable inheritance of expiration tokens and time-based expiration settings between linked cache entries, set <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.TrackLinkedCacheEntries> to `true` when registering the cache in `Program.cs`. This option is `false` by default starting in .NET 7:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Program.cs" id="snippet_TrackLinkedCacheEntries":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Program.cs" id="snippet_TrackLinkedCacheEntries":::
 
 The following sample shows how to expire a cache entry if a dependent entry expires. A <xref:Microsoft.Extensions.Primitives.CancellationChangeToken> is added to the cached item. When the `Cancel` method is called on the `CancellationTokenSource` object, both cache entries are evicted:
 
-:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_CacheDependencies" highlight="16,24":::
+:::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_CacheDependencies" highlight="16,24":::
 
 When you use a <xref:System.Threading.CancellationTokenSource> object, you can evict multiple cache entries as a group. With linked-entry tracking enabled, the parent entry inherits the expiration token from the child entry created within its `using` scope.
 
@@ -183,7 +183,7 @@ The following notes apply to in-memory caching:
 
   The following example uses the <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> overloaded constructor for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
 
-  :::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
+  :::code language="csharp" source="memory/samples/10.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
 
 * When you use a callback to repopulate a cache item:
 
