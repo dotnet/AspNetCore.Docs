@@ -35,7 +35,7 @@ This article covers low-level details of ASP.NET Core routing. For information o
 
 The following code shows a basic example of routing:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Program.cs" highlight="4":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Program.cs" highlight="4":::
 
 The preceding example includes a single endpoint using the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGet*> method:
 
@@ -51,7 +51,7 @@ Routing uses a pair of middleware, registered by <xref:Microsoft.AspNetCore.Buil
 
 Apps typically don't need to call `UseRouting` or `UseEndpoints`. <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> configures a middleware pipeline that wraps middleware added in `Program.cs` with `UseRouting` and `UseEndpoints`. However, apps can change the order in which `UseRouting` and `UseEndpoints` run by calling these methods explicitly. For example, the following code makes an explicit call to `UseRouting`:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_UseRouting" highlight="7":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_UseRouting" highlight="7":::
 
 In the preceding code:
 
@@ -79,7 +79,7 @@ Endpoints that can be matched and executed by the app are configured in `UseEndp
 
 The following example shows routing with a more sophisticated route template:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RouteTemplate":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RouteTemplate":::
 
 The string `/hello/{name:alpha}` is a **route template**. A route template is used to configure how the endpoint is matched. In this case, the template matches:
 
@@ -93,7 +93,7 @@ The second segment of the URL path, `{name:alpha}`:
 
 The following example shows routing with [health checks](../host-and-deploy/health-checks.md) and authorization:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_HealthChecksAuthz":::
 
 The preceding example demonstrates how:
 
@@ -129,7 +129,7 @@ An ASP.NET Core endpoint is:
 
 The following code shows how to retrieve and inspect the endpoint matching the current request:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_InspectEndpointMiddleware":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_InspectEndpointMiddleware":::
 
 The endpoint, if selected, can be retrieved from the `HttpContext`. Its properties can be inspected. Endpoint objects are immutable and cannot be modified after creation. The most common type of endpoint is a <xref:Microsoft.AspNetCore.Routing.RouteEndpoint>. `RouteEndpoint` includes information that allows it to be selected by the routing system.
 
@@ -137,7 +137,7 @@ In the preceding code, [app.Use](xref:Microsoft.AspNetCore.Builder.UseExtensions
 
 The following code shows that, depending on where `app.Use` is called in the pipeline, there may not be an endpoint:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_CurrentEndpointMiddlewareOrder":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_CurrentEndpointMiddlewareOrder":::
 
 The preceding sample adds `Console.WriteLine` statements that display whether or not an endpoint has been selected. For clarity, the sample assigns a display name to the provided `/` endpoint.
 
@@ -172,8 +172,8 @@ The `UseEndpoints` middleware is designed to be used in tandem with the `UseRout
 
 The following code demonstrates how middleware can influence or react to routing:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RequiresAudit":::
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/RequiresAuditAttribute.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RequiresAudit":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/RequiresAuditAttribute.cs" id="snippet_Class":::
 
 The preceding example demonstrates two important concepts:
 
@@ -203,7 +203,7 @@ The best practices for metadata types are to define them either as interfaces or
 
 The following example demonstrates both terminal middleware and routing:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_CompareTerminalMiddlewareRouting":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_CompareTerminalMiddlewareRouting":::
 
 The style of middleware shown with `Approach 1:` is **terminal middleware**. It's called terminal middleware because it does a matching operation:
 
@@ -248,7 +248,7 @@ Existing terminal middleware that integrates with [Map](middleware/index.md#bran
 
 The following code shows use of [MapHealthChecks](../host-and-deploy/health-checks.md):
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_MapHealthChecks" highlight="4":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_MapHealthChecks" highlight="4":::
 
 The preceding sample shows why returning the builder object is important. Returning the builder object allows the app developer to configure policies such as authorization for the endpoint. In this example, the health checks middleware has no direct integration with the authorization system.
 
@@ -378,7 +378,7 @@ The methods provided by <xref:Microsoft.AspNetCore.Routing.LinkGenerator> suppor
 
 In the following example, a middleware uses the <xref:Microsoft.AspNetCore.Routing.LinkGenerator> API to create a link to an action method that lists store products. Using the link generator by injecting it into a class and calling `GenerateLink` is available to any class in an app:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class" highlight="12":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Middleware/ProductsMiddleware.cs" id="snippet_Class" highlight="12":::
 
 ## Route templates
 
@@ -516,11 +516,11 @@ Regular expressions can be specified as inline constraints using the `regex(...)
 
 The following code uses an inline regex constraint:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RegexMapGet":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RegexMapGet":::
 
 The following code uses an object literal to specify a regex constraint:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RegExMapControllerRoute" highlight="4":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RegExMapControllerRoute" highlight="4":::
 
 The ASP.NET Core framework adds `RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant` to the regular expression constructor. See <xref:System.Text.RegularExpressions.RegexOptions> for a description of these members.
 
@@ -561,15 +561,15 @@ The ASP.NET Core [Constraints](https://github.com/dotnet/aspnetcore/tree/main/sr
 
 To use a custom `IRouteConstraint`, the route constraint type must be registered with the app's <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in the service container. A `ConstraintMap` is a dictionary that maps route constraint keys to `IRouteConstraint` implementations that validate those constraints. An app's `ConstraintMap` can be updated in `Program.cs` either as part of an <xref:Microsoft.Extensions.DependencyInjection.RoutingServiceCollectionExtensions.AddRouting*> call or by configuring <xref:Microsoft.AspNetCore.Routing.RouteOptions> directly with `builder.Services.Configure<RouteOptions>`. For example:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_AddRoutingConstraintMap":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_AddRoutingConstraintMap":::
 
 The preceding constraint is applied in the following code:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/NoZeroesController.cs" id="snippet_Class" highlight="5":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/NoZeroesController.cs" id="snippet_Class" highlight="5":::
 
 The implementation of `NoZeroesRouteConstraint` prevents `0` being used in a route parameter:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Routing/NoZeroesRouteConstraint.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Routing/NoZeroesRouteConstraint.cs" id="snippet_Class":::
 
 [!INCLUDE[](~/includes/regex.md)]
 
@@ -580,7 +580,7 @@ The preceding code:
 
 The following code is a better approach to preventing an `id` containing a `0` from being processed:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/BetterNoZeroesController.cs" id="snippet_Action":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/BetterNoZeroesController.cs" id="snippet_Action":::
 
 The preceding code has the following advantages over the `NoZeroesRouteConstraint` approach:
 
@@ -601,15 +601,15 @@ For example, a custom `slugify` parameter transformer in route pattern `blog\{ar
 
 Consider the following `IOutboundParameterTransformer` implementation:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Routing/SlugifyParameterTransformer.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Routing/SlugifyParameterTransformer.cs" id="snippet_Class":::
 
 To use a parameter transformer in a route pattern, configure it using <xref:Microsoft.AspNetCore.Routing.RouteOptions.ConstraintMap> in `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_AddRouting":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_AddRouting":::
 
 The ASP.NET Core framework uses parameter transformers to transform the URI where an endpoint resolves. For example, parameter transformers transform the route values used to match an `area`, `controller`, `action`, and `page`:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_MapControllerRoute":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_MapControllerRoute":::
 
 With the preceding route template, the action `SubscriptionManagementController.GetAll` is matched with the URI `/subscription-management/get-all`. A parameter transformer doesn't change the route values used to generate a link. For example, `Url.Action("GetAll", "SubscriptionManagement")` outputs `/subscription-management/get-all`.
 
@@ -662,7 +662,7 @@ From the current request, routing accesses the route values of the current reque
 
 The following example shows ambient values and explicit values. It provides ambient values from the current request and explicit values:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_ClassIndex":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_ClassIndex":::
 
 The preceding code:
 
@@ -671,17 +671,17 @@ The preceding code:
 
 The following code provides only explicit values and no ambient values:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_HomeSubscribe":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_HomeSubscribe":::
 
 The preceding method returns `/Home/Subscribe/17`
 
 The following code in the `WidgetController` returns `/Widget/Subscribe/17`:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_WidgetSubscribe":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/WidgetController.cs" id="snippet_WidgetSubscribe":::
 
 The following code provides the controller from ambient values in the current request and explicit values:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/GadgetController.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/GadgetController.cs" id="snippet_Class":::
 
 In the preceding code:
 
@@ -691,7 +691,7 @@ In the preceding code:
 
 The following code provides ambient values from the current request and explicit values:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Pages/Index.cshtml.cs" id="snippet_Class":::
 
 The preceding code sets `url` to `/Edit/17` when the Edit Razor Page contains the following page directive:
 
@@ -793,7 +793,7 @@ Values explicitly provided that don't match a segment of the route are added to 
 
 Optional route parameters must come after all required route parameters and literals. In the following code, the `id` and `name` parameters must come after the `color` parameter:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/OptionalParams/Controllers/MyController.cs" highlight="10":::
+:::code language="csharp" source="~/fundamentals/routing/samples/OptionalParams/Controllers/MyController.cs" highlight="10":::
 
 ### Problems with route value invalidation
 
@@ -801,7 +801,7 @@ For related information about how required values, such as `controller` and `act
 
 The following code shows an example of a URL generation scheme that's not supported by routing:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RouteValueInvalidation":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RouteValueInvalidation":::
 
 In the preceding code, the `culture` route parameter is used for localization. The desire is to have the `culture` parameter always accepted as an ambient value. However, the `culture` parameter is not accepted as an ambient value because of the way required values work:
 
@@ -814,11 +814,11 @@ The <xref:Microsoft.AspNetCore.Routing.LinkParser> class adds support for parsin
 
 In the following example controller, the `GetProduct` action uses a route template of `api/Products/{id}` and has a <xref:Microsoft.AspNetCore.Mvc.RouteAttribute.Name> of `GetProduct`:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_ClassGet" highlight="2,5":::
 
 In the same controller class, the `AddRelatedProduct` action expects a URL path, `pathToRelatedProduct`, which can be provided as a query-string parameter:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_AddRelatedProduct":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/ProductsController.cs" id="snippet_AddRelatedProduct":::
 
 In the preceding example, the `AddRelatedProduct` action extracts the `id` route value from the URL path. For example, with a URL path of `/api/Products/1`, the `relatedProductId` value is set to `1`. This approach allows the API's clients to use URL paths when referring to resources, without requiring knowledge of how such a URL is structured.
 
@@ -847,11 +847,11 @@ Multiple parameters can be specified using `RequireHost` or `[Host]`. The constr
 
 The following code uses `RequireHost` to require the specified host on the route:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_RequireHost":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_RequireHost":::
 
 The following code uses the `[Host]` attribute on the controller to require any of the specified hosts:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Controllers/HostsController.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Controllers/HostsController.cs" id="snippet_Class":::
 
 When the `[Host]` attribute is applied to both the controller and action method:
 
@@ -875,7 +875,7 @@ Routing is performance tested using thousands of endpoints. It's unlikely that a
 
 This following code sample demonstrates a basic technique for narrowing down the source of delay:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddleware":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddleware":::
 
 To time routing:
 
@@ -886,9 +886,9 @@ This is a basic way to narrow down the delay when it's significant, for example,
 
 The following code uses a more compact approach to the preceding timing code:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/AutoStopwatch.cs" id="snippet_Class":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/AutoStopwatch.cs" id="snippet_Class":::
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddlewareAuto":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Snippets/Program.cs" id="snippet_StopwatchMiddlewareAuto":::
 
 ### Potentially expensive routing features
 
@@ -932,13 +932,13 @@ There are several techniques and optimizations that can be applied to routes tha
 
 When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/ShortCircuitSample/Program.cs" id="mapget":::
+:::code language="csharp" source="~/fundamentals/routing/samples/ShortCircuitSample/Program.cs" id="mapget":::
 
 The <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit(Microsoft.AspNetCore.Builder.IEndpointConventionBuilder,System.Nullable{System.Int32})> method can optionally take a status code.
 
 Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit*> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
+:::code language="csharp" source="~/fundamentals/routing/samples/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 `MapShortCircuit` returns <xref:Microsoft.AspNetCore.Builder.IEndpointConventionBuilder> so that additional route constraints like host filtering can be added to it.
 
@@ -946,11 +946,11 @@ Short-circuiting doesn't affect middleware placed before `UseRouting`. Short-cir
 
 To see the effect of short-circuiting middleware, set the "Microsoft" logging category to "Information" in `appsettings.Development.json`:
 
-:::code language="json" source="~/fundamentals/routing/samples/10.x/ShortCircuitSample/appsettings.Development.json" highlight="5":::
+:::code language="json" source="~/fundamentals/routing/samples/ShortCircuitSample/appsettings.Development.json" highlight="5":::
 
 Run the following code:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/ShortCircuitSample/Program.cs" id="all":::
+:::code language="csharp" source="~/fundamentals/routing/samples/ShortCircuitSample/Program.cs" id="all":::
 
 The following example is from the console logs produced by running the `/` endpoint. It includes output from the logging middleware:
 
@@ -1088,7 +1088,7 @@ The routing tests have a [basic example](https://github.com/dotnet/AspNetCore/bl
 
 **DO** make it possible to use metadata types as an attribute on classes and methods.
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_InterfaceAttribute":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_InterfaceAttribute":::
 
 Frameworks like controllers and Razor Pages support applying metadata attributes to types and methods. If you declare metadata types:
 
@@ -1102,7 +1102,7 @@ Declaring a metadata type as an interface adds another layer of flexibility:
 
 **DO** make it possible to override metadata, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/10.x/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_SuppressController":::
+:::code language="csharp" source="~/fundamentals/routing/samples/RoutingSample/Routing/ICoolMetadata.cs" id="snippet_SuppressController":::
 
 The best way to follow these guidelines is to avoid defining **marker metadata**:
 
