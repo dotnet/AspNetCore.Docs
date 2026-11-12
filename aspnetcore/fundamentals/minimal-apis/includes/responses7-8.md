@@ -161,15 +161,15 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Redirect
 

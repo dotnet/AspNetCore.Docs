@@ -172,13 +172,13 @@ All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interfac
 **Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet1)]
 
 In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
 
 **Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet2)]
 
 The preceding code asynchronously reads the entire HTTP request body into memory.
 
@@ -187,7 +187,7 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 
 **Do this:** The following example is fully asynchronous using a non-buffered request body:
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet3)]
 
 The preceding code asynchronously de-serializes the request body into a C# object.
 
@@ -201,11 +201,11 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 
 **Do not do this:** The following example uses `HttpContext.Request.Form`. `HttpContext.Request.Form` uses [sync over async](https://devblogs.microsoft.com/pfxteam/should-i-expose-synchronous-wrappers-for-asynchronous-methods/) and can lead to thread pool starvation.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MySecondController.cs?name=snippet1)]
 
 **Do this:** The following example uses `HttpContext.Request.ReadFormAsync` to read the form body asynchronously.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MySecondController.cs?name=snippet2)]
 
 <a name="arlb"></a>
 
@@ -246,7 +246,7 @@ The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpConte
 
 **Do not do this:** The following example stores the `HttpContext` in a field and then attempts to use it later.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/MyType.cs?name=snippet1)]
 
 The preceding code frequently captures a null or incorrect `HttpContext` in the constructor.
 
@@ -255,7 +255,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Stores the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in a field.
 * Uses the `HttpContext` field at the correct time and checks for `null`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/MyType.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/MyType.cs?name=snippet2)]
 
 ## Do not access HttpContext from multiple threads
 
@@ -263,11 +263,11 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing HTTP request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
 
 ## Do not use the HttpContext after the request is complete
 
@@ -279,11 +279,11 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * The example code accesses the `HttpResponse` after the HTTP request is complete.
 * The late access crashes the process.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncBadVoidController.cs?name=snippet1)]
 
 **Do this:** The following example returns a `Task` to the framework, so the HTTP request doesn't complete until the action completes.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncSecondController.cs?name=snippet1)]
 
 ## Do not capture the HttpContext in background threads
 
@@ -292,14 +292,14 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Run outside of the request scope.
 * Attempt to read the wrong `HttpContext`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
 
 **Do this:** The following example:
 
 * Copies the data required in the background task during the request.
 * Doesn't reference anything from the controller.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
 Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](host/hosted-services.md).
 
@@ -307,7 +307,7 @@ Background tasks should be implemented as hosted services. For more information,
 
 **Do not do this:** The following example shows a closure that is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice. The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
 **Do this:** The following example:
 
@@ -316,14 +316,14 @@ Background tasks should be implemented as hosted services. For more information,
 * Doesn't reference anything from the controller.
 * Doesn't capture the `ContosoDbContext` from the incoming request.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 The following highlighted code:
 
 * Creates a scope for the lifetime of the background operation and resolves services from it.
 * Uses `ContosoDbContext` from the correct scope.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 
 ## Do not modify the status code or headers after the response body has started
 
@@ -334,13 +334,13 @@ ASP.NET Core does not buffer the HTTP response body. The first time the response
 
 **Do not do this:** The following code tries to add response headers after the response has already started:
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet1)]
 
 In the preceding code, `context.Response.Headers["test"] = "test value";` will throw an exception if `next()` has written to the response.
 
 **Do this:** The following example checks if the HTTP response has started before modifying the headers.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet2)]
 
 **Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
 
@@ -349,7 +349,7 @@ Checking if the response has not started allows registering a callback that will
 * Provides the ability to append or override headers just in time.
 * Doesn't require knowledge of the next middleware in the pipeline.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet3)]
 
 ## Do not call next() if you have already started writing to the response body
 
