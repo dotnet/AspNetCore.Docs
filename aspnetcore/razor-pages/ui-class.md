@@ -124,10 +124,12 @@ To include TypeScript files in an RCL:
    [!INCLUDE[](~/includes/package-reference.md)]
 
 * Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
-* With `Microsoft.TypeScript.MSBuild` 7.0.0 or later, TypeScript compilation runs automatically as part of the build. Don't add a TypeScript target to `PrepareForBuildDependsOn` or add a manual publishing target.
+* With `Microsoft.TypeScript.MSBuild` 7.0.0 or later, TypeScript compilation runs automatically as part of the build.
 * Add the following markup to the project file to configure the TypeScript output directory and remove generated outputs from the `Content` item group:
 
 [!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5,9,12-16)]
+
+Automatic compilation with `Microsoft.TypeScript.MSBuild` 7.0.0 or later doesn't by itself ensure that generated files are registered as RCL static web assets or included in publish output. The newer SDK integration isn't available in .NET SDKs 7 through 10; the .NET 11 SDK integration is opt-in and still calls the legacy target names. If relying on the legacy publishing target, the reported workaround is to use `Microsoft.TypeScript.MSBuild` 6.0.3 until a compatible SDK/package integration is available.
 
 ### Consume content from a referenced RCL
 
