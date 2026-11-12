@@ -2,7 +2,7 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 ai-usage: ai-assisted
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-ms.date: 11/19/2023
+ms.date: 11/12/2026
 ---
 # Create reusable UI using the Razor class library project in ASP.NET Core
 
@@ -124,13 +124,10 @@ To include TypeScript files in an RCL:
    [!INCLUDE[](~/includes/package-reference.md)]
 
 * Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
-* Add the following markup to the project file:
-  * Configure the TypeScript build output for the `wwwroot` folder with the `TypescriptOutDir` property.
-  * Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target.
-  * Remove the output in the `wwwroot folder`.
-  * Remove deleted TypeScript outputs from the `Content` item group.
+* With `Microsoft.TypeScript.MSBuild` 7.0.0 or later, TypeScript compilation runs automatically as part of the build. Don't add a TypeScript target to `PrepareForBuildDependsOn` or add a manual publishing target.
+* Add the following markup to the project file to configure the TypeScript output directory and remove generated outputs from the `Content` item group:
 
-[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5-9,13,16-20)]
+[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5,9,12-16)]
 
 ### Consume content from a referenced RCL
 
