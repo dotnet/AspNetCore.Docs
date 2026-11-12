@@ -125,9 +125,9 @@ To include TypeScript files in an RCL:
 
 * Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
 * TypeScript compilation runs automatically as part of the build.
-* Add the following markup to the project file to configure the TypeScript output directory and remove generated outputs from the `Content` item group:
+* Add the following markup to the project file to configure the TypeScript output directory and remove deleted outputs from the `Content` item group:
 
-  [!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5,9,12-16)]
+  [!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5,8-12)]
 
 Details on setting the TypeScript output directory with `<TypeScriptOutDir>`:
 
