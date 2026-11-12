@@ -56,16 +56,16 @@ In-memory caching is a *service* that an app references by using [dependency inj
 
 > [!WARNING]
 > If the same cache is used by multiple frameworks or libraries, it's a _shared_ cache. If you use a shared memory cache from [dependency injection](../../fundamentals/dependency-injection.md) and also use `SetSize`, `Size`, and `SizeLimit` to limit the cache size, the app can fail.
-> 
+>
 > When a size limit is set on a cache, all entries must specify a size when they're added. This approach can lead to issues because developers might not have full control over what uses the shared cache.
-> 
+>
 > To limit the cache size with the `SetSize` method, the `Size` property, or the `SizeLimit` property, create a cache singleton for caching. For more information and an example, see [Limit cache size with SetSize, Size, and SizeLimit](#limit-cache-size-with-setsize-size-and-sizelimit).
 
 Request the `IMemoryCache` instance in the constructor:
 
 :::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_ClassConstructor" highlight="5":::
 
-The following code uses the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache.TryGetValue*> method to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Set*> method: 
+The following code uses the <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache.TryGetValue*> method to check if a time is in the cache. If a time isn't cached, a new entry is created and added to the cache with the <xref:Microsoft.Extensions.Caching.Memory.CacheExtensions.Set*> method:
 
 :::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Pages/Index.cshtml.cs" id="snippet_OnGet" highlight="5,9-12":::
 
@@ -163,11 +163,15 @@ For more information, see the [Compact source on GitHub](https://github.com/dotn
 
 ## Evict a cache entry with expired dependencies
 
+To enable inheritance of expiration tokens and time-based expiration settings between linked cache entries, set <xref:Microsoft.Extensions.Caching.Memory.MemoryCacheOptions.TrackLinkedCacheEntries> to `true` when registering the cache in `Program.cs`. This option is `false` by default starting in .NET 7:
+
+:::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Program.cs" id="snippet_TrackLinkedCacheEntries":::
+
 The following sample shows how to expire a cache entry if a dependent entry expires. A <xref:Microsoft.Extensions.Primitives.CancellationChangeToken> is added to the cached item. When the `Cancel` method is called on the `CancellationTokenSource` object, both cache entries are evicted:
 
 :::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_CacheDependencies" highlight="16,24":::
 
-When you use a <xref:System.Threading.CancellationTokenSource> object, you can evict multiple cache entries as a group. With the `using` pattern in the preceding code, cache entries created inside the `using` scope inherit triggers and expiration settings.
+When you use a <xref:System.Threading.CancellationTokenSource> object, you can evict multiple cache entries as a group. With linked-entry tracking enabled, the parent entry inherits the expiration token from the child entry created within its `using` scope.
 
 ## Review notes about in-memory caching
 
@@ -176,7 +180,7 @@ The following notes apply to in-memory caching:
 * Expiration doesn't happen in the background.
 
   There's no timer that actively scans the cache for expired items. Any activity on the cache (via `Get`, `TryGetValue`, `Set`, or `Remove`) can trigger a background scan for expired items. A timer set on the `CancellationTokenSource` object (by using the <xref:System.Threading.CancellationTokenSource.CancelAfter*> method) also removes the entry and triggers a scan for expired items.
-  
+
   The following example uses the <xref:System.Threading.CancellationTokenSource.%23ctor(System.TimeSpan)> overloaded constructor for the registered token. When this token fires, it removes the entry immediately and fires the eviction callbacks:
 
   :::code language="csharp" source="memory/samples/8.x/CachingMemorySample/Snippets/Pages/Index.cshtml.cs" id="snippet_OnGeCacheExpirationToken":::
@@ -186,12 +190,12 @@ The following notes apply to in-memory caching:
   * Multiple requests might discover the cached key value is empty because the callback isn't finished.
   * This approach can result in several threads repopulating the cached item.
 
-* When one cache entry (the parent) creates another entry (the child), the child copies the parent entry's expiration tokens and time-based expiration settings. The child doesn't expire by manual removal or updating of the parent entry.
+* When linked-entry tracking is enabled and one cache entry (the parent) creates another entry (the child), the parent inherits the child's expiration tokens and time-based expiration settings. Manually removing or updating the child doesn't expire the parent.
 
-* Use the <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> property to specify which callbacks should fire after a cache entry is evicted from the cache. 
+* Use the <xref:Microsoft.Extensions.Caching.Memory.ICacheEntry.PostEvictionCallbacks> property to specify which callbacks should fire after a cache entry is evicted from the cache.
 
 * For most apps, `IMemoryCache` is enabled. For example, calling `AddMvc`, `AddControllersWithViews`, `AddRazorPages`, `AddMvcCore().AddRazorViewEngine`, and many other `Add{Service}` methods in the _Program.cs_ file enables `IMemoryCache`.
-  
+
   For apps that don't call one of the mentioned `Add{Service}` methods, you might need to call the <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> method in the _Program.cs_ file.
 
 * <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> is thread-safe and can be used concurrently across multiple threads.
@@ -211,5 +215,5 @@ Use a [background service](../../fundamentals/host/hosted-services.md) such as t
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/memory/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 * [Detect changes with change tokens in ASP.NET Core](../../fundamentals/change-tokens.md)
 * [Response caching in ASP.NET Core](response.md)
-    
+
 :::moniker-end
