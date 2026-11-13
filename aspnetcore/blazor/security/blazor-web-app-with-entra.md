@@ -4,16 +4,12 @@ ai-usage: ai-assisted
 description: Learn how to secure a Blazor Web App with Microsoft Entra ID.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
-ms.date: 07/06/2026
+ms.date: 11/13/2026
 zone_pivot_groups: blazor-web-app-entra-specification
 ---
 # Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID
 
-<!-- UPDATE 11.0 - Activate ...
-
 [!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
 
 [!INCLUDE[](~/includes/azure-active-directory-b2c-eol-support-notice.md)]
 

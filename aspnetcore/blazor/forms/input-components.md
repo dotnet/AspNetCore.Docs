@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor input components
+ai-usage: ai-assisted
 description: Learn about built-in Blazor input components.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/11/2025
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor input components
 
@@ -447,27 +448,23 @@ The validation summary displays the friendly name when the field's value is inva
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API cross-link 
-
-                   <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
--->
-The `DisplayName` component can be used to display property names from metadata attributes
-
-```csharp
-[Required, DisplayName("Production Date")]
-public DateTime ProductionDate { get; set; }
-```
-
-The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
+Use the <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1> component to display property names from metadata attributes, reading from either the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) or the [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute):
 
 ```csharp
 [Required, Display(Name = "Production Date")]
 public DateTime ProductionDate { get; set; }
 ```
 
-Between the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over `[DisplayName]`. If neither attribute is present, the component falls back to the property name.
+Alternatively, use the `[DisplayName]` attribute:
 
-Use the `DisplayName` component in labels or table headers:
+```csharp
+[Required, DisplayName("Production Date")]
+public DateTime ProductionDate { get; set; }
+```
+
+The `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over the `[DisplayName]` attribute. If neither attribute is present, the component falls back to the property name.
+
+Use the <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1> component in labels or table headers:
 
 ```razor
 <label>
@@ -482,12 +479,9 @@ Use the `DisplayName` component in labels or table headers:
 
 ## `Label` component
 
-<!-- UPDATE 11.0 - API cross-link 
+The <xref:Microsoft.AspNetCore.Components.Forms.Label`1> component renders a `<label>` element that automatically extracts the display name from a model property using either the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) or the [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute). This simplifies form creation by eliminating the need to manually specify label text.
 
-                   <xref:Microsoft.AspNetCore.Components.Forms.Label`1>
--->
-
-The `Label` component renders a `<label>` element that automatically extracts the display name from a model property using `[Display]` or `[DisplayName]` attributes. This simplifies form creation by eliminating the need to manually specify label text.
+The `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over the `[DisplayName]` attribute. If neither attribute is present, the component falls back to the property name.
 
 ### Nested pattern
 

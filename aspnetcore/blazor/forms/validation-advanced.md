@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor advanced form validation
 ai-usage: ai-assisted
 description: Learn how to implement validator components and remote validation for Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/22/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor advanced form validation
 
@@ -135,13 +135,8 @@ To implement a business rule inside the validator component instead of accepting
 
 The same component pattern supports asynchronous work:
 
-<!-- UPDATE 11.0 - API Browser cross-ref
-
-                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*>
--->
-
 * In an `OnValidationRequested` handler, call `e.AddAsyncValidator` to register form-level work. `EditForm` awaits it before invoking `OnValidSubmit` or `OnInvalidSubmit`.
-* In an `OnFieldChanged` handler, call `EditContext.RegisterAsyncFieldValidator` to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
+* In an `OnFieldChanged` handler, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*?displayProperty=nameWithType> to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
 
 For form-level asynchronous validation:
 

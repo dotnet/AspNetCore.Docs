@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor server-side state management
 ai-usage: ai-assisted
 description: Learn how to persist user data (state) in server-side Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/29/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor server-side state management
 
@@ -185,7 +185,7 @@ window.addEventListener('visibilitychange', () => {
 
 <!-- UPDATE 11.0 - API browser cross-links -->
 
-Auto-pause can pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. It's an opt-in feature provided by the `Microsoft.AspNetCore.Components.Server.AutoPause` package. After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
+Auto-pause can pause a circuit when the browser tab becomes hidden, freeing server memory and SignalR connections held by inactive users. It's an opt-in feature provided by the [`Microsoft.AspNetCore.Components.Server.AutoPause` NuGet package](https://www.nuget.org/packages/Microsoft.AspNetCore.Components.Server.AutoPause). After adding a package reference, enable the feature by calling `AddAutoPause` when the app's root component is mapped:
 
 ```csharp
 app.MapRazorComponents<App>()
@@ -279,18 +279,12 @@ This feature is useful in the following scenarios:
 * Instance draining.
 * App maintenance windows.
 
-`Circuit.RequestCircuitPauseAsync(CancellationToken)` is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
-
-<!-- UPDATE 11.0 - API doc cross-links
-
-<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync*>
-
--->
+<xref:Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync*?displayProperty=nameWithType> is used to request that the connected client begin the graceful circuit-pause flow. The `CancellationToken` cancels the request before it is accepted by the framework. The method returns `true` if the request was accepted and the client was asked to begin pausing.
                        
 When a server-side Blazor application shuts down (for example, during deployment), connected clients lose their SignalR connection. The approach in this section:
 
 * Detects shutdown before the server closes connections.
-* Triggers a pause on connected circuits via `Microsoft.AspNetCore.Components.Server.Circuits.Circuit.RequestCircuitPauseAsync`.
+* Triggers a pause on connected circuits via `RequestCircuitPauseAsync`.
 * Preserves state using [`[PersistentState]` attribute](xref:Microsoft.AspNetCore.Components.PersistentStateAttribute) on component properties.
 
 In the following example implementation, the following code files are placed in a `Shutdown` folder at the root of the app:
@@ -524,16 +518,15 @@ Arbitrary JSON-serializable types aren't supported. For example, a user-defined 
 
 ### Temporary data persistence
 
-<!-- UPDATE 11.0 - API cross-links -->
-
-To persist temporary data between HTTP requests during static server-side rendering (static SSR), Blazor supports `TempData`. `TempData` is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
+Persist temporary data between HTTP requests during static server-side rendering (static SSR) with <xref:Microsoft.AspNetCore.Components.ITempData>. Temporary data is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
 > [!IMPORTANT]
-> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), the `TempData` value isn't supplied, and the property retains its default value.
-`TempData`:
+> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), temporary data isn't supplied, and the data retains it default values.
+
+`ITempData`:
 
 * Is available when <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*> is called in the app's `Program` file.
-* Is provided as a cascading value with the [`[CascadingParameter]` attribute](../components/cascading-values-and-parameters.md#cascadingparameter-attribute) or the `[SupplyParameterFromTempData]` parameter attribute.
+* Is provided as a cascading value with the [`[CascadingParameter]` attribute](../components/cascading-values-and-parameters.md#cascadingparameter-attribute) or the [`[SupplyParameterFromTempData]` attribute](xref:Microsoft.AspNetCore.Components.Web.SupplyParameterFromTempDataAttribute).
 * Is accessed by key (string).
 * Supports the [stored-value types listed earlier](#supported-property-types-for-temporary-data-and-session).
 * Stores `object?` values, requiring runtime casting (example: `var message = TempData["Message"] as string`). IntelliSense and type checking aren't supported.
@@ -544,7 +537,7 @@ To persist temporary data between HTTP requests during static server-side render
 public ITempData? TempData { get; set; }
 ```
 
-When supplied to a parameter for simple read/write of a single value, use the `[SupplyParameterFromTempData]` attribute without or with a key (string):
+When supplied to a parameter for simple read/write of a single value, use the [`[SupplyParameterFromTempData]` attribute](xref:Microsoft.AspNetCore.Components.Web.SupplyParameterFromTempDataAttribute) without or with a key (string):
 
 ```csharp
 [SupplyParameterFromTempData]
@@ -563,20 +556,20 @@ The `ITempData` interface provides the following methods for controlling value l
 * `Keep`: Marks all keys in the dictionary for retention. Values are available on the next request.
 * `Keep(string)`: Marks a specified key (string) for retention. The value is available on the next request.
 
-Data stored in `TempData` is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
+Stored data is automatically removed after the data is read unless `Keep`/`Keep(string)` is called or the data is accessed via `Peek`.
 
 The default cookie-based provider uses [Data Protection](../../security/data-protection/introduction.md) for encryption. If the cookie is tampered with or can't be decrypted, `TempData` has no value for that request. The provider removes the unreadable cookie in the response rather than displaying an error page, so the next request starts without it. In a multi-server deployment, configure [Data Protection](../../security/data-protection/configuration/overview.md) so instances can read each other's cookies. Normal key rotation doesn't make existing cookies unreadable when the previous keys are retained.
 
-To change the Blazor `TempData` cookie settings in the following table, configure `TempDataCookie` when calling `AddRazorComponents` in the app's `Program` file.
+To change the Blazor cookie settings in the following table, configure <xref:Microsoft.AspNetCore.Components.Endpoints.RazorComponentsServiceOptions.TempDataCookie> when calling `AddRazorComponents` in the app's `Program` file.
 
-Parameter | API | Notes
---- | --- | ---
-Name | `Name` | The default value is `.AspNetCore.Components.TempData`.
-[HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | The default value is `true`.
-[SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>.
-[Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | The default value is <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest?displayProperty=nameWithType>, which marks the cookie as secure when the request uses HTTPS.
+| Parameter | API | Notes |
+| --- | --- | --- |
+| Name | `Name` | The default value is `.AspNetCore.Components.TempData`.
+[HTTP Only](https://developer.mozilla.org/docs/Web/Security/Practical_implementation_guides/Cookies#httponly) | `HttpOnly` | The default value is `true`. |
+| [SameSite value](https://developer.mozilla.org/docs/Web/HTTP/Headers/Set-Cookie#samesitesamesite-value) | `SameSite` | The default value is <xref:Microsoft.AspNetCore.Http.SameSiteMode.Lax?displayProperty=nameWithType>. |
+| [Secure policy](https://developer.mozilla.org/docs/Web/HTTP/Reference/Headers/Set-Cookie#secure) | `SecurePolicy` | The default value is <xref:Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest?displayProperty=nameWithType>, which marks the cookie as secure when the request uses HTTPS. |
 
-Example (sets default values):
+The following example sets default values:
 
 ```csharp
 builder.Services.AddRazorComponents(options =>
@@ -589,12 +582,11 @@ builder.Services.AddRazorComponents(options =>
 ```
 
 > [!NOTE]
+> Unsupported non-null temporary data values fail when the response is persisted, which can occur after the component has rendered. Blazor WebAssembly and interactive server rendering aren't supported.
 
-Unsupported non-null `TempData` values fail when the response is persisted, which can occur after the component has rendered. Blazor WebAssembly and interactive server rendering aren't supported.
+Browsers enforce a 4 KB cookie size limit. <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> is automatically used to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
 
-Browsers enforce a 4 KB cookie size limit. `TempData` automatically uses <xref:Microsoft.AspNetCore.Authentication.Cookies.ChunkingCookieManager> to split cookies across multiple cookie headers, but developers storing a large amount of data must switch to session storage, which introduces session affinity requirements.
-
-In the following example, a form displays a message that's retained in `TempData` after the form is submitted (a new request).
+In the following example, a form displays a message that's retained in the temporary data after the form is submitted (a new request).
 
 `Pages/TempDataExample1.razor`:
 
@@ -686,13 +678,11 @@ Similar to the preceding example but when only simple read/write of a single val
 
 #### Streaming server-side rendering
 
-During streaming server-side rendering (streaming SSR), cookie-backed `TempData` values can't be saved after the response starts because the provider must write a cookie to the response headers. Setting a value before an `await` doesn't avoid this limitation if the response is flushed before `TempData` is persisted. To persist values during streaming SSR, use the session-storage provider.
+During streaming server-side rendering (streaming SSR), cookie-backed temporary values can't be saved after the response starts because the provider must write a cookie to the response headers. Setting a value before an `await` doesn't avoid this limitation if the response is flushed before `TempData` is persisted. To persist values during streaming SSR, use the session-storage provider.
 
 Configure session services and middleware as described in [Session data persistence](#session-data-persistence). A new session needs its session cookie issued before the first response flush. After the session is established, session-backed values can be persisted during streaming SSR.
 
 ### Session data persistence
-
-<!-- UPDATE 11.0 - API Browser cross-links -->
 
 Session data persistence reads and writes cookie-based HTTP session values during static server-side rendering (static SSR), which is useful for scenarios such as shopping cart IDs or multi-step form progress. Unlike [temporary data persistence (`ITempData`)](#temporary-data-persistence), session values aren't cleared after reading. Values persist across multiple requests for the session lifetime.
 
@@ -706,7 +696,7 @@ Session storage:
 * Serializes values with <xref:System.Text.Json> with <xref:System.Text.Json.JsonSerializerDefaults?displayProperty=nameWithType>.
 * Requires session affinity (sticky sessions) in load-balanced environments. Without it, users may lose data. For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#use-session-affinity-sticky-sessions-for-server-side-web-farm-hosting).
 
-For streaming SSR, establish a new session before the first response flush. Place a `[SupplyParameterFromSession]` parameter on a component rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values won't persist to the next request.
+For streaming SSR, establish a new session before the first response flush. Place a [`[SupplyParameterFromSession]` attribute](xref:Microsoft.AspNetCore.Components.Web.SupplyParameterFromSessionAttribute) on a component parameter rendered before that flush or write to the session directly before an `await` that triggers it. If the first session-backed component is rendered only after streaming starts, the session cookie can't be issued for a new session and its values don't persist to the next request.
 
 When supplied to a parameter, use the `[SupplyParameterFromSession]` attribute without or with a key (string):
 
@@ -720,9 +710,9 @@ public string? FlashMessage { get; set; }
 
 A key (string) is useful to distinguish multiple parameters because properties can't share a session value.
 
-The [supported property types](#supported-property-types-for-temporary-data-and-session) are the same as for `[SupplyParameterFromTempData]`. For an unsupported concrete property type, `[SupplyParameterFromSession]` throws when the component subscribes to the session value. The exception identifies the property, component, attribute, and property type. This differs from the later `TempData` persistence failure, which identifies the unsupported value type.
+The [supported property types](#supported-property-types-for-temporary-data-and-session) are the same as for the [`[SupplyParameterFromTempData]` attribute](xref:Microsoft.AspNetCore.Components.Web.SupplyParameterFromTempDataAttribute). For an unsupported concrete property type, `[SupplyParameterFromSession]` throws when the component subscribes to the session value. The exception identifies the property, component, attribute, and property type. This differs from the later temporary data persistence failure, which identifies the unsupported value type.
 
-Call `AddSession` on the service collection in the app's `Program` file passing `SessionOptions` to change the cookie's parameters.
+Call <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*> on the service collection in the app's `Program` file passing <xref:Microsoft.AspNetCore.Builder.SessionOptions> to change the cookie's parameters.
 
 Parameter | API | Notes
 --- | --- | ---
@@ -735,7 +725,7 @@ Is Essential | `IsEssential` | Session is considered non-essential, as it's desi
 Idle Timeout | `IdleTimeout` | Indicates how long the session can be idle before its contents are abandoned (default value: 20 minutes). Each session access resets the timeout. This setting only applies to the content of the session, not the cookie.
 IO Timeout | `IOTimeout` | The maximum amount of time allowed to load a session from the store or to commit it back to the store (default value: 1 minute). This may only apply to asynchronous operations. The timeout is disabled using <xref:System.Threading.Timeout.InfiniteTimeSpan*?displayProperty=nameWithType>.
 
-After configuring session services with `AddSession`, call `UseSession` in the request processing pipeline. The following example demonstrates default values:
+After configuring session services with <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*>, call <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> in the request processing pipeline. The following example demonstrates default values:
 
 <!-- UPDATE 11.0 - Is AddDistributedMemoryCache required? What happens if
                    it isn't used? -->

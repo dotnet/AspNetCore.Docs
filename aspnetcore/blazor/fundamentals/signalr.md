@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor SignalR guidance
+ai-usage: ai-assisted
 description: Learn how to configure and manage Blazor SignalR connections.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/11/2025
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor SignalR guidance
 
@@ -80,9 +81,7 @@ For security implications, see [Threat mitigation guidance for ASP.NET Core Blaz
 
 ### SignalR `ConfigureConnection` for Interactive Server components
 
-<!-- UPDATE 11.0 - API Browser cross-links -->
-
-Blazor provides access to configure the underlying SignalR connection options when using Interactive Server components through the `ConfigureConnection` property on `ServerComponentsEndpointOptions`. This enables configuration of `HttpConnectionDispatcherOptions` properties.
+Blazor provides access to configure the underlying SignalR connection options when using Interactive Server components through the <xref:Microsoft.AspNetCore.Components.Server.ServerComponentsEndpointOptions.ConfigureConnection?displayProperty=nameWithType> property. This enables configuration of <xref:Microsoft.AspNetCore.Http.Connections.HttpConnectionDispatcherOptions> properties.
 
 ```csharp
 app.MapRazorComponents<App>()

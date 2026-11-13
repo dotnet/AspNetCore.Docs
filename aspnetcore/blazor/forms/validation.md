@@ -3,9 +3,11 @@ title: ASP.NET Core Blazor forms validation
 ai-usage: ai-assisted
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/06/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor forms validation
+
+<!-- UPDATE 11.0 - API Browser cross-links -->
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
@@ -334,12 +336,7 @@ Static SSR doesn't provide live .NET field validation between requests.
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API Browser cross-ref
-
-                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*>
--->
-
-For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `EditContext.RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
+For asynchronous full-form validation, call <xref:Microsoft.AspNetCore.Components.Forms.ValidationRequestedEventArgs.AddAsyncValidator*?displayProperty=nameWithType> from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnValidationRequested> handler. For asynchronous field validation in an interactive form, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*?displayProperty=nameWithType> from an <xref:Microsoft.AspNetCore.Components.Forms.EditContext.OnFieldChanged?displayProperty=nameWithType> handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
 
 For model-based asynchronous validation attributes, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support). For a complete reusable validator component, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
@@ -606,7 +603,7 @@ Live pending indicators require an interactive render mode. During a static SSR 
 }
 ```
 
-The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*> method is obsolete in .NET 11. It doesn't await asynchronous validation and throws if a handler attempts to register asynchronous work.
+The synchronous <xref:Microsoft.AspNetCore.Components.Forms.EditContext.Validate*> method is obsolete in apps that target .NET 11 or later. It doesn't await asynchronous validation and throws if a handler attempts to register asynchronous work.
 
 For interactive forms, the form-level pending state can be used to disable submission while `ValidateAsync` is running:
 
@@ -642,19 +639,24 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 ## Related content
 
+:::moniker range=">= aspnetcore-11.0"
+
 * [ASP.NET Core Blazor forms overview](index.md)
 * [ASP.NET Core Blazor forms binding](binding.md)
 * [ASP.NET Core Blazor input components](input-components.md)
 * [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
+* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 
-:::moniker range=">= aspnetcore-10.0"
+:::moniker-end
 
+:::moniker range="< aspnetcore-11.0"
+
+* [ASP.NET Core Blazor forms overview](index.md)
+* [ASP.NET Core Blazor forms binding](binding.md)
+* [ASP.NET Core Blazor input components](input-components.md)
+* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
 * [Validation in ASP.NET Core](../../fundamentals/validation.md)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-11.0"
 
-* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
-
-:::moniker-end

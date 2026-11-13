@@ -3,14 +3,15 @@ title: ASP.NET Core Blazor AI components for agentic user interfaces
 ai-usage: ai-assisted
 description: Learn how to create agentic user interfaces with Blazor's AI components.
 monikerRange: '>= aspnetcore-11.0'
-ms.date: 11/06/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor AI components for agentic user interfaces
 
 <!-- UPDATE 12.0 - Replace preview notice with not-latest-version.md and
                    remove the prerelease/experimental IMPORTANT NOTE below -->
 
-<!-- UPDATE 11.0 - API XREF cross-links -->
+<!-- UPDATE 11.0 - API Browser cross-links
+                   Waiting on Microsoft.AspNetCore.Components.AI -->
 
 [!INCLUDE[](~/includes/preview-notice.md)]
 
@@ -30,13 +31,13 @@ Add the following package references to the Blazor app:
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Basic chat and the Components.AI block model work with any `IChatClient`. The `AGUI.Client` package provides API for connecting the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com).
+Basic chat and the Components.AI block model work with any <xref:Microsoft.Extensions.AI.IChatClient>. The `AGUI.Client` package provides API for connecting the Blazor app to a remote agent over the [Agent User Interaction Protocol (AG-UI)](https://ag-ui.com).
 
 `AGUI.Client` includes a transitive reference to the [`AGUI.Abstractions` NuGet package](https://www.nuget.org/packages/AGUI.Abstractions), which provides the AG-UI event types used in examples later in this article.
 
 ## Get started
 
-Register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's `IChatClient`:
+Register an [`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) as the app's <xref:Microsoft.Extensions.AI.IChatClient>:
 
 ```csharp
 using AGUI.Client;
@@ -57,13 +58,13 @@ builder.Services.AddScoped<IChatClient>(services =>
 });
 ```
 
-`AGUIChatClient` streams AG-UI events as `ChatResponseUpdate` values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any `IChatClient`, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
+<xref:Microsoft.Agents.AI.AGUI.AGUIChatClient> streams AG-UI events as <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any <xref:Microsoft.Extensions.AI.IChatClient>, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
 
-Microsoft Agent Framework (MAF) can expose an `AIAgent` through an ASP.NET Core AG-UI endpoint. For the server-side setup, see [AG-UI integration with Agent Framework](/agent-framework/integrations/by-component/ui/ag-ui/) and its [.NET getting-started guide](/agent-framework/integrations/by-component/ui/ag-ui/getting-started).
+Microsoft Agent Framework (MAF) can expose an <xref:Microsoft.Agents.AI.AIAgent> through an ASP.NET Core AG-UI endpoint. For the server-side setup, see [AG-UI integration with Agent Framework](/agent-framework/integrations/by-component/ui/ag-ui/) and its [.NET getting-started guide](/agent-framework/integrations/by-component/ui/ag-ui/getting-started).
 
 ## Build a basic streaming conversation
 
-The first step in an agentic UI is often a basic conversation that streams responses and retains message history across turns. Chat support is provider- and protocol-neutral. Apps supply an `IChatClient` from `Microsoft.Extensions.AI`, and `UIAgent` converts its streaming responses into observable content blocks.
+The first step in an agentic UI is often a basic conversation that streams responses and retains message history across turns. Chat support is provider- and protocol-neutral. Apps supply an <xref:Microsoft.Extensions.AI.IChatClient> from <xref:Microsoft.Extensions.AI?displayProperty=fullName>, and `UIAgent` converts its streaming responses into observable content blocks.
 
 `ChatPage` is a complete chat shell that combines three lower-level components:
 
@@ -71,7 +72,7 @@ The first step in an agentic UI is often a basic conversation that streams respo
 * `MessageList` renders each turn as it streams and provides default typing, error, and retry UI.
 * `MessageInput` sends messages from a text area and disables input while a response is streaming.
 
-The following component creates a `UIAgent` over an app-provided `IChatClient` and renders the conversation with `ChatPage`:
+The following component creates a `UIAgent` over an app-provided <xref:Microsoft.Extensions.AI.IChatClient> and renders the conversation with `ChatPage`:
 
 ```razor
 @rendermode InteractiveServer
@@ -110,7 +111,7 @@ Include the component styles in the `App` component (`Components/App.razor`):
 
 ## Render content blocks
 
-An `IChatClient` streams model-facing content, such as `TextContent`, `RichTextContent`, and `FunctionCallContent`, in `ChatResponseUpdate` values. `UIAgent` maps this response content into UI-facing `ContentBlock` objects that retain rendering state and can update in place while the response streams. For example, both plain-text fragments and structured rich-text snapshots map to a `RichContentBlock`.
+An <xref:Microsoft.Extensions.AI.IChatClient> streams model-facing content, such as <xref:Microsoft.Extensions.AI.TextContent>, <xref:Microsoft.Extensions.AI.TextReasoningContent>, and <xref:Microsoft.Extensions.AI.FunctionCallContent>, in <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. `UIAgent` maps this response content into UI-facing `ContentBlock` objects that retain rendering state and can update in place while the response streams. For example, both plain-text fragments and structured rich-text snapshots map to a `RichContentBlock`.
 
 The built-in block types include:
 
@@ -140,13 +141,13 @@ Use the renderer's `When` predicate to only handle selected blocks of a type. If
 
 Rich-text support permits an agent to return a structured presentation model instead of plain text. `RichTextContent` is response content that contains both plain text and `RichTextNode` values for headings, paragraphs, emphasis, links, lists, code blocks, tables, and other presentation elements. `UIAgent` maps it to the same `RichContentBlock` used for plain `TextContent` but uses the supplied node tree instead of creating simple paragraphs.
 
-Apps can produce `RichTextContent` directly or use `IChatClient` middleware to transform streamed `TextContent`, such as by parsing Markdown into `RichTextNode` values. The package doesn't require or include a particular Markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
+Apps can produce `RichTextContent` directly or use <xref:Microsoft.Extensions.AI.IChatClient> middleware to transform streamed `TextContent`, such as by parsing Markdown into `RichTextNode` values. The package doesn't require or include a particular Markdown implementation. Each `RichTextContent` is a complete snapshot, so it atomically replaces the previous content for the same message as streaming progresses. `ChatPage` and `MessageList` then render the structured content without requiring a custom `BlockRenderer`.
 
 ## Render server tool calls
 
 An agent can call a tool that runs on its server while the Blazor app renders the operation using app-specific UI. For example, the agent can call a weather tool, and the app can show the requested location immediately, followed by a weather card when the server returns the result.
 
-Server tool calls become `FunctionInvocationContentBlock` instances, which pair the `FunctionCallContent` with its eventual `FunctionResultContent` and expose the tool name, arguments, and completion state.
+Server tool calls become `FunctionInvocationContentBlock` instances, which pair the `FunctionCallContent` with its eventual <xref:Microsoft.Extensions.AI.FunctionResultContent> and expose the tool name, arguments, and completion state.
 
 The package's source generator creates a strongly typed block handler from a class annotated with `ToolBlock`, `ToolParameter`, and `ToolResult`:
 
@@ -197,9 +198,9 @@ When MAF hosts the remote agent, backend tools use its normal tool pipeline and 
 
 ## Run frontend tools
 
-Frontend tools run in the client app rather than on the agent server. For example, a Blazor app can expose a tool that changes UI state, reads a local preference, or asks the user for input. Create the tool with `AIFunctionFactory` from `Microsoft.Extensions.AI`, then register it with `UIAgentOptions.RegisterUIAction`.
+Frontend tools run in the client app rather than on the agent server. For example, a Blazor app can expose a tool that changes UI state, reads a local preference, or asks the user for input. Create the tool with <xref:Microsoft.Extensions.AI.AIFunctionFactory> from <xref:Microsoft.Extensions.AI?displayProperty=fullName>, then register it with `UIAgentOptions.RegisterUIAction`.
 
-`RegisterUIAction` advertises the `AIFunction` to the agent. When the agent requests it, `UIAgent` creates a `UIActionBlock` instead of executing the function immediately:
+`RegisterUIAction` advertises the <xref:Microsoft.Extensions.AI.AIFunction> to the agent. When the agent requests it, `UIAgent` creates a `UIActionBlock` instead of executing the function immediately:
 
 ```csharp
 var setAccentColor = AIFunctionFactory.Create(
@@ -287,7 +288,7 @@ An activity is an app-defined progress item that updates in place while an agent
 
 `ActivityHandler<TBlock>` is a protocol-neutral extension point that maps provider- or app-specific progress updates into a mutable `ActivityContentBlock`. `TryCreateBlock` initializes and emits the block for the first matching update. `TryUpdateBlock` mutates the same block as later updates arrive and indicates when the activity is complete. Register the handler with `UIAgentOptions.AddBlockHandler`, then provide a `BlockRenderer` for the app-specific block. Activities don't have a default visual representation.
 
-AG-UI's `ACTIVITY_SNAPSHOT` and `ACTIVITY_DELTA` events are one possible source of these updates. `AGUIChatClient` exposes the original event through `ChatResponseUpdate.RawRepresentation`. For example, an app can handle replacing snapshots whose payload includes an app-defined `complete` property:
+AG-UI's `ACTIVITY_SNAPSHOT` and `ACTIVITY_DELTA` events are one possible source of these updates. `AGUIChatClient` exposes the original event through <xref:Microsoft.Extensions.AI.ChatResponseUpdate.RawRepresentation?displayProperty=nameWithType>. For example, an app can handle replacing snapshots whose payload includes an app-defined `complete` property:
 
 ```csharp
 using System.Text.Json;
@@ -347,7 +348,7 @@ The handler stores the AG-UI message ID on the block to correlate later snapshot
 
 Agentic UIs often show a shared workspace alongside the conversation, such as a recipe, document, form, or plan that the agent can update. `UIAgent<TState>` exposes this data as typed, observable UI state separately from conversational content.
 
-The app configures a state mapper for the `ChatResponseUpdate` values produced by its `IChatClient`. In an AG-UI integration, the agent server explicitly maps selected tool results to `STATE_SNAPSHOT` or `STATE_DELTA` events. `AGUIChatClient` then exposes those events through `ChatResponseUpdate.RawRepresentation`, where the Blazor app can deserialize them and call `SetState`:
+The app configures a state mapper for the <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values produced by its <xref:Microsoft.Extensions.AI.IChatClient>. In an AG-UI integration, the agent server explicitly maps selected tool results to `STATE_SNAPSHOT` or `STATE_DELTA` events. `AGUIChatClient` then exposes those events through <xref:Microsoft.Extensions.AI.ChatResponseUpdate.RawRepresentation?displayProperty=nameWithType>, where the Blazor app can deserialize them and call `SetState`:
 
 ```csharp
 using System.Text.Json;
@@ -368,7 +369,7 @@ var agent = new UIAgent<RecipeState>(chatClient, options =>
 });
 ```
 
-Read the current value from `agent.State.Value` and subscribe to `agent.State.OnChanged` when the surrounding component needs to rerender. State mappers can also handle app-specific `AIContent` from other `IChatClient` implementations.
+Read the current value from `agent.State.Value` and subscribe to `agent.State.OnChanged` when the surrounding component needs to rerender. State mappers can also handle app-specific `AIContent` from other <xref:Microsoft.Extensions.AI.IChatClient> implementations.
 
 ![Typed agent state rendered as a recipe card](ai-components/static/blazor-ai-shared-state.png)
 

@@ -3,7 +3,7 @@ title: Dynamically-rendered ASP.NET Core Razor components
 ai-usage: ai-assisted
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/14/2026
+ms.date: 11/13/2026
 ---
 # Dynamically-rendered ASP.NET Core Razor components
 
@@ -252,15 +252,6 @@ In the following example:
 :::moniker range=">= aspnetcore-11.0"
 
 Dictionary values for [C# union-typed parameters](/dotnet/csharp/language-reference/builtin-types/union) must be boxed as the union, not the raw case value, because an implicit conversion is only valid at compile-time.
-
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
 
 Consider the following C# union type, `SlotContent`, that accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
