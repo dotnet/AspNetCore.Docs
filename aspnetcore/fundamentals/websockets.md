@@ -2,14 +2,14 @@
 title: WebSockets support in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to get started with WebSockets in ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 08/19/2026
 ---
 # WebSockets support in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-9.0"
+:::moniker range=">= aspnetcore-10.0"
 
 This article explains how to get started with WebSockets in ASP.NET Core. [WebSocket](https://wikipedia.org/wiki/WebSocket) ([RFC 6455](https://tools.ietf.org/html/rfc6455)) is a protocol that enables two-way persistent communication channels over TCP connections. It's used in apps that benefit from fast, real-time communication, such as chat, dashboard, and game apps.
 
@@ -69,7 +69,7 @@ For some apps, [gRPC on .NET](../grpc/index.md) provides an alternative to WebSo
 
 Add the WebSockets middleware in `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSockets":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSockets":::
 
 The following settings can be configured:
 
@@ -77,7 +77,7 @@ The following settings can be configured:
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.KeepAliveTimeout> - How long to wait for a "pong" frame from the client after sending a "ping" frame. If the timeout is exceeded, the WebSocket connection is aborted and `WebSocket.ReceiveAsync` throws an exception. The default is `Timeout.InfiniteTimeSpan` (disabled). For more information, see [Handle client disconnects](#handle-client-disconnects) in this article.
 * <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> - A list of allowed Origin header values for WebSocket requests. By default, all origins are allowed. For more information, see [WebSocket origin restriction](#websocket-origin-restriction) in this article.
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Program.cs" id="snippet_UseWebSockets":::
 
 ## Accept WebSocket requests
 
@@ -85,13 +85,13 @@ Somewhere later in the request life cycle (later in `Program.cs` or in an action
 
 The following example is from later in `Program.cs`:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsync" highlight="7":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsync" highlight="7":::
 
 A WebSocket request could come in on any URL, but this sample code only accepts requests for `/ws`.
 
 A similar approach can be taken in a controller method:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Connect":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Controllers/WebSocketController.cs" id="snippet_Controller_Connect":::
 
 When using a WebSocket, you **must** keep the middleware pipeline running for the duration of the connection. If you attempt to send or receive a WebSocket message after the middleware pipeline ends, you may get an exception like the following:
 
@@ -102,7 +102,7 @@ Object name: 'HttpResponseStream'.
 
 If you're using a background service to write data to a WebSocket, make sure you keep the middleware pipeline running. Do this by using a <xref:System.Threading.Tasks.TaskCompletionSource`1>. Pass the `TaskCompletionSource` to your background service and have it call <xref:System.Threading.Tasks.TaskCompletionSource`1.TrySetResult*> when you finish with the WebSocket. Then `await` the <xref:System.Threading.Tasks.TaskCompletionSource`1.Task> property during the request, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Snippets/Program.cs" id="snippet_AcceptWebSocketAsyncBackgroundSocketProcessor":::
 
 The WebSocket closed exception can also happen when returning too soon from an action method. When accepting a socket in an action method, wait for the code that uses the socket to complete before returning from the action method.
 
@@ -112,7 +112,7 @@ Never use `Task.Wait`, `Task.Result`, or similar blocking calls to wait for the 
 
 .NET 7 introduced WebSockets over HTTP/2 support for Kestrel, the SignalR JavaScript client, and SignalR with Blazor WebAssembly. HTTP/2 WebSockets use CONNECT requests rather than GET. If you previously used `[HttpGet("/path")]` on your controller action method for Websocket requests, update it to use `[Route("/path")]` instead.
 
-[!code-csharp[](~/fundamentals/websockets/samples/8.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
+[!code-csharp[](~/fundamentals/websockets/samples/10.x/WebSocketsSample/Controllers/WebSocketController.cs?name=snippet_Controller_Connect&highlight=3)]
 
 ### Compression
 
@@ -144,7 +144,7 @@ The `AcceptWebSocketAsync` method upgrades the TCP connection to a WebSocket con
 
 The code shown earlier that accepts the WebSocket request passes the `WebSocket` object to an `Echo` method. The code receives a message and immediately sends back the same message. Messages are sent and received in a loop until the client closes the connection:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_Echo":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Snippets/Program.cs" id="snippet_Echo":::
 
 When accepting the WebSocket connection before beginning the loop, the middleware pipeline ends. Upon closing the socket, the pipeline unwinds. That is, the request stops moving forward in the pipeline when the WebSocket is accepted. When the loop is finished and the socket is closed, the request proceeds back up the pipeline.
 
@@ -167,11 +167,11 @@ The keep-alive timeout setting is useful for detecting connections that might be
 
 The keep-alive timeout can be configured globally for the WebSocket middleware:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/9.x/WebSocketsSample/Program.cs" id="snippet_WebSocket_KeepAliveTimeout_Global":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/KeepAliveTimeoutSample/Program.cs" id="snippet_WebSocket_KeepAliveTimeout_Global":::
 
 Or configured per accepted WebSocket:
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/9.x/WebSocketsSample/Program.cs" id="snippet_KeepAliveTimeout_Per_Accepted_WebSocket":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/KeepAliveTimeoutSample/Program.cs" id="snippet_KeepAliveTimeout_Per_Accepted_WebSocket":::
 
 ## WebSocket origin restriction
 
@@ -184,7 +184,7 @@ However, browsers do send the `Origin` header when issuing WebSocket requests. A
 
 If you're hosting your server on "https://server.com" and hosting your client on "https://client.com", add "https://client.com" to the <xref:Microsoft.AspNetCore.Builder.WebSocketOptions.AllowedOrigins> list for WebSockets to verify.
 
-:::code language="csharp" source="~/fundamentals/websockets/samples/8.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
+:::code language="csharp" source="~/fundamentals/websockets/samples/10.x/WebSocketsSample/Snippets/Program.cs" id="snippet_UseWebSocketsOptionsAllowedOrigins" highlight="6-7":::
 
 > [!NOTE]
 > The `Origin` header is controlled by the client and, like the `Referer` header, can be faked. Do **not** use these headers as an authentication mechanism.
@@ -249,5 +249,3 @@ Select **Connect** to send a WebSocket request to the URL shown. Enter a test me
 :::image source="~/fundamentals/websockets/_static/end.png" alt-text="Final state of webpage after WebSockets connection and test messages are sent and received":::
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/websockets/includes/websockets8.md)]
