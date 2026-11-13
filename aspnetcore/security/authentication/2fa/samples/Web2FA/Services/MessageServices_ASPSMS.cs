@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
+using ASPSMS;
 
-namespace Web2FA.Services
+namespace Web2FA.Services.ASPSMSClient
 {
     // This class is used by the application to send Email and SMS
     // when you turn on two-factor authentication in ASP.NET Identity.
