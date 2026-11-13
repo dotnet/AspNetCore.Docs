@@ -59,7 +59,7 @@ namespace performance_best_practices.Controllers
             {
                 await Task.Delay(1000);
 
-                await using (var scope = serviceScopeFactory.CreateAsyncScope())
+                using (var scope = serviceScopeFactory.CreateScope())
                 {
                     var context = scope.ServiceProvider.GetRequiredService<ContosoDbContext>();
 

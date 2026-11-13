@@ -1,5 +1,23 @@
-#define FIRST // FIRST SECOND ABC XYZ
+#define FIRST // FIRST SECOND ABC XYZ ACTION
 #if NEVER
+#elif ACTION
+// <snippet_action_endpoint_filters>
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+
+var app = builder.Build();
+
+app.MapControllers()
+    .AddEndpointFilter(async (efiContext, next) =>
+    {
+        efiContext.HttpContext.Items["endpointFilterCalled"] = true;
+        var result = await next(efiContext);
+        return result;
+    });
+
+app.Run();
+// </snippet_action_endpoint_filters>
 #elif FIRST
 #region snippet1
 var builder = WebApplication.CreateBuilder(args);
@@ -106,20 +124,4 @@ app.MapGet("/", () =>
 app.Run();
 #endregion
 #endif
-
-#region snippet_action_endpoint_filters
-var builder = WebApplication.CreateBuilder(args);
-
-var app = builder.Build();
-
-app.MapController()
-    .AddEndpointFilter(async (efiContext, next) =>
-    {
-        efiContext.HttpContext.Items["endpointFilterCalled"] = true;
-        var result = await next(efiContext);
-        return result;
-    });
-
-app.Run();
-#endregion
 
