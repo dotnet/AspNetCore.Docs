@@ -25,7 +25,7 @@ namespace Web2FA.Services
         {
             // Plug in your SMS service here to send a text message.
 
-            // Please check MessageServices_twilio.cs or MessageServices_ASPSMS.cs
+            // Please check MessageServices_Twilio.cs or MessageServices_ASPSMS.cs
             // for implementation details.
 
             return Task.FromResult(0);
