@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/22/2026
+ms.date: 10/30/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -381,6 +381,8 @@ By default, an unauthenticated user can call all methods in a hub. To require au
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
+Applying `[Authorize]` at the hub class level requires an authenticated user when connecting to the hub. If an unauthenticated client attempts to connect, the initial HTTP negotiate or WebSocket handshake request fails with an HTTP 401 Unauthorized status (or an HTTP 302 redirect if cookie authentication redirects to a login page), and the connection isn't established. To allow anonymous clients to connect while restricting specific hub methods to authenticated users, omit `[Authorize]` from the hub class and apply it only to the specific hub methods.
+
 The constructor arguments and properties of the `[Authorize]` attribute can be used to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, with the custom authorization policy called `MyAuthorizationPolicy`, only users matching that policy can access the hub by using the following code:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Hubs/ChatPolicyHub.cs?name=snippet&highlight=1)]
@@ -640,6 +642,8 @@ services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
+
+Applying `[Authorize]` at the hub class level requires an authenticated user when connecting to the hub. If an unauthenticated client attempts to connect, the initial HTTP negotiate or WebSocket handshake request fails with an HTTP 401 Unauthorized status (or an HTTP 302 redirect if cookie authentication redirects to a login page), and the connection isn't established. To allow anonymous clients to connect while restricting specific hub methods to authenticated users, omit `[Authorize]` from the hub class and apply it only to the specific hub methods.
 
 You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
 
