@@ -58,7 +58,7 @@ builder.Services.AddScoped<IChatClient>(services =>
 });
 ```
 
-<xref:Microsoft.Agents.AI.AGUI.AGUIChatClient> streams AG-UI events as <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any <xref:Microsoft.Extensions.AI.IChatClient>, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
+[`AGUIChatClient`](https://docs.ag-ui.com/sdk/dotnet/client/chat-client) streams AG-UI events as <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. The Blazor AI components render the conversational content from these updates, while apps can use the additional AG-UI event information to build richer agentic interactions. While basic chat functionality is supported with any <xref:Microsoft.Extensions.AI.IChatClient>, AG-UI is required when a remote server and the Blazor client must exchange frontend tool declarations, backend tool events, approval interrupts, shared-state events, or AG-UI conversation identifiers.
 
 Microsoft Agent Framework (MAF) can expose an <xref:Microsoft.Agents.AI.AIAgent> through an ASP.NET Core AG-UI endpoint. For the server-side setup, see [AG-UI integration with Agent Framework](/agent-framework/integrations/by-component/ui/ag-ui/) and its [.NET getting-started guide](/agent-framework/integrations/by-component/ui/ag-ui/getting-started).
 
