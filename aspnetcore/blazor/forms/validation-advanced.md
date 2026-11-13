@@ -420,25 +420,15 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 ## Related content
 
-:::moniker range=">= aspnetcore-11.0"
+:::moniker range=">= aspnetcore-10.0"
 
-* [ASP.NET Core Blazor forms validation](validation.md)
-* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 * [Validation in ASP.NET Core](../../fundamentals/validation.md)
 * [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+:::moniker range=">= aspnetcore-6.0"
 
-* [ASP.NET Core Blazor forms validation](validation.md)
-* [Validation in ASP.NET Core](../../fundamentals/validation.md)
-* [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-[ASP.NET Core Blazor forms validation](validation.md)
+[Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end

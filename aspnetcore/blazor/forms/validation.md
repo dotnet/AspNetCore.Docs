@@ -637,31 +637,10 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 :::moniker-end
 
-## Related content
-
-:::moniker range=">= aspnetcore-11.0"
-
-* [ASP.NET Core Blazor forms overview](index.md)
-* [ASP.NET Core Blazor forms binding](binding.md)
-* [ASP.NET Core Blazor input components](input-components.md)
-* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
-* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-11.0"
-
-* [ASP.NET Core Blazor forms overview](index.md)
-* [ASP.NET Core Blazor forms binding](binding.md)
-* [ASP.NET Core Blazor input components](input-components.md)
-* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
-
-:::moniker-end
-
 :::moniker range=">= aspnetcore-10.0"
 
-* [Validation in ASP.NET Core](../../fundamentals/validation.md)
+## Related content
+
+[Validation in ASP.NET Core](../../fundamentals/validation.md)
 
 :::moniker-end
-
-
