@@ -158,15 +158,15 @@ For example, the data might be enqueued to [Azure Queue storage](/azure/storage/
 
 The following code implements a background queue:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/PipeStreamToBackgroundQueue/BackgroundQueueService.cs)]
 
 The following code binds the request body to a `Stream`:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet_1)]
 
 The following code shows the complete `Program.cs` file:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/7.0/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindStreamPipeReader/samples/PipeStreamToBackgroundQueue/Program.cs?name=snippet)]
 
 * When reading data, the `Stream` is the same object as `HttpRequest.Body`.
 * The request body isn't buffered by default. After the body is read, it's not rewindable. The stream can't be read multiple times.
@@ -177,7 +177,7 @@ The following code shows the complete `Program.cs` file:
 
 The following code uses <xref:Microsoft.AspNetCore.Http.IFormFile> and <xref:Microsoft.AspNetCore.Http.IFormFileCollection> to upload file:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/7.0/MinimalApi/Program.cs" :::
+:::code language="csharp" source="~/fundamentals/minimal-apis/iformFile/samples/MinimalApi/Program.cs" :::
 
 Authenticated file upload requests are supported using an [Authorization header](https://developer.mozilla.org/docs/Web/HTTP/Headers/Authorization), a [client certificate](../../../security/authentication/certauth.md), or a cookie header.
 
@@ -189,31 +189,31 @@ There is no built-in support for [antiforgery](/aspnet/core/security/anti-reques
 
 The following code demonstrates binding query strings to an array of primitive types, string arrays, and [StringValues](/dotnet/api/microsoft.extensions.primitives.stringvalues):
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bqs2pa)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_bqs2pa)]
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. The following code binds to a string array and returns all the items with the specified tags:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_bind_str_array)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_bind_str_array)]
 
 The following code shows the model and the required `TryParse` implementation:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_model)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_model)]
 
 The following code binds to an `int` array:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_iaray)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_iaray)]
 
 To test the preceding code, add the following endpoint to populate the database with `Todo` items:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_batch)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_batch)]
 
 Use an API testing tool like [`HttpRepl`](../../../web-api/http-repl/index.md) to pass the following data to the previous endpoint:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=batch_post_payload)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=batch_post_payload)]
 
 The following code binds to the header key `X-Todo-Id` and returns the `Todo` items with matching `Id` values:
 
-[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/7.0/todo/Program.cs?name=snippet_getHeader)]
+[!code-csharp[](~/fundamentals/minimal-apis/bindingArrays/samples/todo/Program.cs?name=snippet_getHeader)]
 
 > [!NOTE]
 > When binding a non-nullable `string[]` from a query string, the absence of any matching query string value results in an empty array instead of `null`. If the parameter is declared as nullable (for example, `string[]?`) or has a default value of `null` (for example, `[FromQuery] string[]? names = null`), omitting the query parameter results in `null`.

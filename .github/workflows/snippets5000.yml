@@ -1,19 +1,25 @@
 name: 'Snippets 5000'
 
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events on the main branch only.
 on:
   pull_request:
-    branches: [main]
+    branches: [ main ]
     types: [opened, synchronize, reopened]
   workflow_dispatch:
     inputs:
-      pull_request:
-        description: 'The pull request number to build'
+      reason:
+        description: 'The reason for running the workflow'
         required: true
-        type: number
+        default: 'Manual run'
+      pull:
+        description: "The pull request number to manually test"
+        required: true
 
 env:
-  DOTNET_VERSION: '11.0.x'
+  DOTNET_VERSION: '11.0.*'
   DOTNET_QUALITY: 'preview'
+  DOTNET_DO_INSTALL: 'true' # To install a version of .NET not provided by the runner, set to true
   EnableNuGetPackageRestore: 'True'
 
 permissions:
@@ -22,41 +28,51 @@ permissions:
 
 jobs:
   snippets-build:
-    runs-on: windows-2022
+    runs-on: windows-11-arm
 
     steps:
-      - name: Harden Runner
-        uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
-        with:
-          egress-policy: audit
+    # Checkout the repository for the PR
+    - name: Harden Runner
+      uses: step-security/harden-runner@1d88384fd173af6ecb012dfd0264a306b711241a # v2.22.4
+      with:
+        egress-policy: audit
 
-      - name: Checkout repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/merge', inputs.pull_request) || github.ref }}
-          persist-credentials: false
+    - name: Checkout repository
+      uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #@v7.0.1
+      with:
+        ref: ${{ github.event_name == 'workflow_dispatch' && format('refs/pull/{0}/merge', inputs.pull) || github.ref }}
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
-        with:
-          dotnet-version: |
-            10.0.x
-            ${{ env.DOTNET_VERSION }}
-          dotnet-quality: ${{ env.DOTNET_QUALITY }}
+    # Get the latest preview SDK (or sdk not installed by the runner)
+    - name: Setup .NET
+      if: ${{ env.DOTNET_DO_INSTALL == 'true' }}
+      uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 #@6.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+        dotnet-quality: ${{ env.DOTNET_QUALITY }}
 
-      - name: Display .NET info
-        run: dotnet --info
+    # Print dotnet info
+    - name: Display .NET info
+      run: |
+        dotnet --info
 
-      - name: Clone docs-tools repository
-        run: git clone --depth 1 https://github.com/dotnet/docs-tools
+    # Clone docs tools repo
+    - name: Clone docs-tools repository
+      run: |
+        git clone --depth 1 https://github.com/dotnet/docs-tools
 
-      - name: Run snippets 5000 for PR
-        env:
-          GitHubKey: ${{ secrets.GITHUB_TOKEN }}
-          ExtensionsCodeTriggers: .cs;.vb;.fs;.xaml;.razor;.cshtml;.vbhtml;.sln;.slnx;.csproj;.fsproj;.vbproj;.proj
-          ExtensionsProjects: .sln;.slnx;.csproj;.fsproj;.vbproj;.proj
-          PR_NUMBER: ${{ github.event.pull_request.number || inputs.pull_request }}
-          REPOSITORY_OWNER: ${{ github.repository_owner }}
-          REPOSITORY_NAME: ${{ github.event.repository.name }}
-        run: |
-          dotnet run --project docs-tools\snippets5000\Snippets5000\Snippets5000.csproj -- --sourcepath "$env:GITHUB_WORKSPACE" --pullrequest "$env:PR_NUMBER" --owner "$env:REPOSITORY_OWNER" --repo "$env:REPOSITORY_NAME"
+    # Run snippets 5000 for the pull request, either from the triggering event or the manual input.
+    - name: Run snippets 5000 for PR
+      env:
+        GitHubKey: ${{ secrets.GITHUB_TOKEN }}
+        ExtensionsCodeTriggers: .cs;.vb;.fs;.xaml;.razor;.cshtml;.vbhtml;.sln;.slnx;.csproj;.fsproj;.vbproj;.proj
+        ExtensionsProjects: .sln;.slnx;.csproj;.fsproj;.vbproj;.proj
+      run: |
+        dotnet run --project docs-tools/snippets5000/Snippets5000/Snippets5000.csproj -- --sourcepath "${{ github.workspace }}" --pullrequest ${{ github.event.number || inputs.pull }} --owner ${{ github.repository_owner }} --repo ${{ github.event.repository.name }}
+
+    - name: Upload snippets diagnostics
+      if: ${{ always() }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      with:
+        name: snippets5000-diagnostics
+        path: ${{ github.workspace }}\output.json
+        if-no-files-found: ignore
