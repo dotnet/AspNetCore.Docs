@@ -114,7 +114,7 @@ Apps that use asynchronous I/O and that may have more than one write outstanding
 
 Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
 
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
@@ -137,7 +137,7 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
@@ -175,7 +175,7 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_11" highlight="5":::
+   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_11" highlight="5":::
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
@@ -304,15 +304,15 @@ For apps hosted by HTTP.sys that interact with requests from the Internet or a c
 * The value may be 0 if the timing isn't available for the current request.
 * Requires Windows 10 version 2004, Windows Server 2022, or later.
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
 [IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*) retrieves the timestamp for the provided timing type:
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
 [IHttpSysRequestTimingFeature.TryGetElapsedTime](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequesttimingfeature.trygetelapsedtime yields the elapsed time between two specified timings:
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
 
 ## Advanced HTTP/2 features to support gRPC
 

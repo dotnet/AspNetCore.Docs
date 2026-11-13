@@ -2,12 +2,12 @@
 title: HTTP.sys web server implementation in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-monikerRange: '>= aspnetcore-2.1'
+monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/13/2026
 ---
 # HTTP.sys web server implementation in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 By [Tom Dykstra](https://github.com/tdykstra) and [Chris Ross](https://github.com/Tratcher)
 
@@ -163,7 +163,7 @@ Apps that use asynchronous I/O and that may have more than one write outstanding
 
 Call the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderHttpSysExtensions.UseHttpSys*> extension method when building the host, specifying any required <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions>. The following example sets options to their default values:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_1" highlight="8-16":::
 
 Additional HTTP.sys configuration is handled through [registry settings](https://support.microsoft.com/help/820129/http-sys-registry-settings-for-windows).
 
@@ -198,7 +198,7 @@ An exception is thrown if the app attempts to configure the limit on a request a
 
 If the app should override <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.MaxRequestBodySize> per-request, use the <xref:Microsoft.AspNetCore.Http.Features.IHttpMaxRequestBodySizeFeature>:
 
-:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
+:::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_12" highlight="3-4":::
 
 If using Visual Studio, make sure the app isn't configured to run IIS or IIS Express.
 
@@ -233,13 +233,13 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
 
    The following code example shows how to use <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysOptions.UrlPrefixes> with the server's local IP address `10.0.0.4` on port 443:
 
-   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/8.x/SampleApp/Program.cs" id="snippet_11" highlight="5":::
+   :::code language="csharp" source="~/fundamentals/servers/httpsys/samples/SampleApp/Program.cs" id="snippet_11" highlight="5":::
 
    An advantage of `UrlPrefixes` is that an error message is generated immediately for improperly formatted prefixes.
 
    The settings in `UrlPrefixes` override `UseUrls`/`urls`/`ASPNETCORE_URLS` settings. Therefore, an advantage of `UseUrls`, `urls`, and the `ASPNETCORE_URLS` environment variable is that it's easier to switch between Kestrel and HTTP.sys.
 
-   HTTP.sys recognizes two types of wild cards in URL prefixes:   
+   HTTP.sys recognizes two types of wild cards in URL prefixes:
 
    * `*` is a *weak binding*, also known as a *fallback binding*. If the URL prefix is `http://*:5000`, and something else is bound to port 5000, this binding won't be used.
    * `+` is a *strong binding*. If the URL prefix is `http://+:5000`, this binding will be used before other port 5000 bindings.
@@ -315,9 +315,9 @@ In Visual Studio, the default launch profile is for IIS Express. To run the proj
    * An online random GUID generator provides the `appid` value.
 
    ```console
-   netsh http add sslcert 
-       ipport=10.0.0.4:443 
-       certhash=b66ee04419d4ee37464ab8785ff02449980eae10 
+   netsh http add sslcert
+       ipport=10.0.0.4:443
+       certhash=b66ee04419d4ee37464ab8785ff02449980eae10
        appid="{00001111-aaaa-2222-bbbb-3333cccc4444}"
    ```
 
@@ -382,7 +382,7 @@ First call the method with an empty span to obtain the required buffer size, the
 
 ### Query other native request properties
 
-<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/api/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestPropertyFeature.TryGetRequestProperty*> exposes [`HttpQueryRequestProperty`](/windows/win32/http/http/nf-http-httpqueryrequestproperty) for arbitrary native request properties.
 
 * `propertyId` identifies a value from the native [`HTTP_REQUEST_PROPERTY`](/windows/win32/api/http/ne-http-http_request_property) enumeration.
 * `qualifier` contains optional property-specific bytes. An empty span is passed to Windows as a null pointer.
@@ -419,15 +419,15 @@ Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict
 * The value may be 0 if the timing isn't available for the current request.
 * Requires Windows 10 version 2004, Windows Server 2022, or later.
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
 <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*?displayProperty=nameWithType> retrieves the timestamp for the provided timing type:
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
 <xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetElapsedTime*?displayProperty=nameWithType> yields the elapsed time between two specified timings:
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetElapsedTime":::
 
 ## Advanced HTTP/2 features to support gRPC
 
@@ -454,7 +454,6 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 
 :::moniker-end
 
-[!INCLUDE [httpsys5-7](~/fundamentals/servers/httpsys/includes/httpsys5-7.md)]
 [!INCLUDE [httpsys8-9](~/fundamentals/servers/httpsys/includes/httpsys8-9.md)]
 
 ## Related content

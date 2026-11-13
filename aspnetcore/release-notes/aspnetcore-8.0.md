@@ -751,7 +751,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 <!--keep--> [IHttpSysRequestTimingFeature.TryGetTimestamp](https://source.dot.net/#Microsoft.AspNetCore.Server.HttpSys/IHttpSysRequestTimingFeature.cs,3c5dc86dc837b1f4) retrieves the timestamp for the provided timing type:
 
-:::code language="csharp" source="~/fundamentals/request-features/samples/8.x/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
+:::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
 For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](../fundamentals/servers/httpsys.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
@@ -1019,11 +1019,11 @@ ASP.NET Core in .NET 8 adds support for using Redis as a distributed cache for o
 
 When routing matches an endpoint, it typically lets the rest of the middleware pipeline run before invoking the endpoint logic. Services can reduce resource usage by filtering out known requests early in the pipeline. Use the <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> extension method to cause routing to invoke the endpoint logic immediately and then end the request. For example, a given route might not need to go through authentication or CORS middleware. The following example short-circuits requests that match the `/short-circuit` route:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapget":::
+:::code language="csharp" source="~/fundamentals/routing/samples/ShortCircuitSample/Program.cs" id="mapget":::
 
 Use the <xref:Microsoft.AspNetCore.Routing.RouteShortCircuitEndpointRouteBuilderExtensions.MapShortCircuit*> method to set up short-circuiting for multiple routes at once, by passing to it a params array of URL prefixes. For example, browsers and bots often probe servers for well known paths like `robots.txt` and `favicon.ico`. If the app doesn't have those files, one line of code can configure both routes:
 
-:::code language="csharp" source="~/fundamentals/routing/samples/8.x/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
+:::code language="csharp" source="~/fundamentals/routing/samples/ShortCircuitSample/Program.cs" id="mapshortcircuit":::
 
 For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 
@@ -1045,7 +1045,7 @@ For more information, see [HTTP logging in .NET and ASP.NET Core](../fundamental
 
 In .NET 7, the [ProblemDetails service](../fundamentals/error-handling.md#problem-details) was introduced to improve the experience for generating error responses that comply with the [ProblemDetails specification](https://datatracker.ietf.org/doc/html/rfc7807). In .NET 8, a new API was added to make it easier to implement fallback behavior if <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> isn't able to generate <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>. The following example illustrates use of the new <xref:Microsoft.AspNetCore.Http.IProblemDetailsService.TryWriteAsync*> API:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
 For more information, see [IProblemDetailsService fallback](../fundamentals/error-handling-api.md#iproblemdetailsservice-fallback)
 

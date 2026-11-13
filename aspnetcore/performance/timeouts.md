@@ -35,7 +35,7 @@ Adding the middleware to the app doesn't automatically start triggering timeouts
 
 For Minimal API apps, configure an endpoint to timeout by calling <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.WithRequestTimeout*>, or by applying the [`[RequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutAttribute) attribute, as shown in the following example:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="oneendpoint" highlight="20,24":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="oneendpoint" highlight="20,24":::
 
 For apps with controllers, apply the `[RequestTimeout]` attribute to the action method or the controller class. For Razor Pages apps, apply the attribute to the Razor page class.
 
@@ -43,11 +43,11 @@ For apps with controllers, apply the `[RequestTimeout]` attribute to the action 
 
 Create named *policies* to specify timeout configuration that applies to multiple endpoints. Add a policy by calling <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutOptions.AddPolicy*>:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="definepolicies" highlight="4":::
 
 A timeout can be specified for an endpoint by policy name:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy" highlight="12":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="usepolicy" highlight="12":::
 
 The `[RequestTimeout]` attribute can also be used to specify a named policy.
 
@@ -55,41 +55,41 @@ The `[RequestTimeout]` attribute can also be used to specify a named policy.
 
 Specify a policy for the global default timeout configuration:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies" highlight="2-3":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="definepolicies" highlight="2-3":::
 
 The default timeout applies to endpoints that don't have a timeout specified. The following endpoint code checks for a timeout although it doesn't call the extension method or apply the attribute. The global timeout configuration applies, so the code checks for a timeout:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault" :::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="usedefault" :::
 
 ## Specify the status code in a policy
 
 The <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy> class has a property that can automatically set the status code when a timeout is triggered.
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="4":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="definepolicies2" highlight="4":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usedefault2" :::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="usedefault2" :::
 
 ## Use a delegate in a policy
 
 The `RequestTimeoutPolicy` class has a <xref:Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy.WriteTimeoutResponse> property that can be used to customize the response when a timeout is triggered.
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="definepolicies2" highlight="8-11":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="definepolicies2" highlight="8-11":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="usepolicy2" highlight="12":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="usepolicy2" highlight="12":::
 
 ## Disable timeouts
 
 To disable all timeouts including the default global timeout, use the [`[DisableRequestTimeout]`](xref:Microsoft.AspNetCore.Http.Timeouts.DisableRequestTimeoutAttribute) attribute or the <xref:Microsoft.AspNetCore.Builder.RequestTimeoutsIEndpointConventionBuilderExtensions.DisableRequestTimeout*> extension method:
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyattr" highlight="1":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="disablebyattr" highlight="1":::
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="disablebyext" highlight="12":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="disablebyext" highlight="12":::
 
 ## Cancel a timeout
 
 To cancel a timeout that has already been started, use the <xref:Microsoft.AspNetCore.Http.Timeouts.IHttpRequestTimeoutFeature.DisableTimeout> method on <xref:Microsoft.AspNetCore.Http.Timeouts.IHttpRequestTimeoutFeature>. Timeouts cannot be canceled after they've expired.
 
-:::code language="csharp" source="~/performance/timeouts/samples/8.x/Program.cs" id="canceltimeout" highlight="2-3":::
+:::code language="csharp" source="~/performance/timeouts/samples/Program.cs" id="canceltimeout" highlight="2-3":::
 
 ## See also
 

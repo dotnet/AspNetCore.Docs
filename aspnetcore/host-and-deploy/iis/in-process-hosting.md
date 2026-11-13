@@ -52,7 +52,7 @@ Apps published as a single file executable can't be loaded by the in-process hos
 
 To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in `Program.cs`. The following example disables <xref:Microsoft.AspNetCore.Builder.IISServerOptions.AutomaticAuthentication>:
 
-[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/6.0/Program.cs?highlight=17-20)]
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/Program.cs?highlight=1-4&name=snippet_options)]
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
@@ -81,7 +81,7 @@ The following characteristics apply when hosting in-process:
 
 * When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
 
-[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/6.0/Program.cs?highlight=22-23)]
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/Program.cs?highlight=1-2&name=snippet_authentication)]
   
 * [Web Package (single-file) deployments](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) aren't supported.
 
