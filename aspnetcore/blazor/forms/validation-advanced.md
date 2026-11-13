@@ -427,7 +427,7 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-6.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-10.0"
 
 [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
