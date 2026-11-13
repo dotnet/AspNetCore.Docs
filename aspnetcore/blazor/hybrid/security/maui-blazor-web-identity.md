@@ -3,11 +3,15 @@ title: .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 ai-usage: ai-assisted
 description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that manages authentication with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 11/13/2026
+ms.date: 08/31/2026
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 
+<!-- UPDATE 11.0 - Activate ...
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This sample app demonstrates how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that uses ASP.NET Core Identity. It shows how to share common UI and authenticate with ASP.NET Core Identity local accounts. Although ASP.NET Core Identity is used, you can use this pattern for any authentication provider from a MAUI Blazor Hybrid client.
 

@@ -3,11 +3,15 @@ title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 ai-usage: ai-assisted
 description: Learn about browser developer tools diagnostics in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 11/13/2026
+ms.date: 11/11/2026
 ---
 # ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 
+<!-- UPDATE 11.0 - Activate ...
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article describes browser developer tools diagnostic tools in Blazor WebAssembly apps.
 

@@ -3,11 +3,15 @@ title: Secure an ASP.NET Core Blazor Web App with Windows Authentication
 ai-usage: ai-assisted
 description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 11/13/2026
+ms.date: 09/18/2026
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
 
+<!-- UPDATE 11.0 - Activate ...
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 This article describes how to secure a Blazor Web App with [Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) using a sample app. For more information, see [Configure Windows Authentication in ASP.NET Core](../../security/authentication/windowsauth.md).
 

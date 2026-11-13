@@ -7,7 +7,11 @@ ms.date: 04/07/2026
 ---
 # ASP.NET Core Blazor with .NET on Web Workers
 
+<!-- UPDATE 11.0 - Activate ...
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 Modern Blazor WebAssembly apps often handle CPU-intensive work alongside rich UI updates. Tasks such as image processing, document parsing, or data crunching can easily freeze the browser's main thread. Web Workers let you push that work to a background thread. Combined with the .NET WebAssembly runtime, you can execute C# code in the background while the UI stays responsive.
 

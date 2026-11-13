@@ -3,11 +3,15 @@ title: .NET on Web Workers
 ai-usage: ai-assisted
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a React app.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 11/13/2026
+ms.date: 04/07/2026
 ---
 # .NET on Web Workers
 
+<!-- UPDATE 11.0 - Activate
+
 [!INCLUDE[](~/includes/not-latest-version.md)]
+
+-->
 
 Modern web apps often require intensive computational tasks that can block the main UI thread, leading to poor user experience. [Web Workers](https://developer.mozilla.org/docs/Web/API/Web_Workers_API) provide a solution to this problem by enabling JavaScript (JS) to run on separate threads. With .NET WebAssembly (Wasm), you can run C# code in Web Workers, combining the performance benefits of compiled code with the non-blocking execution model of background threads.
 
