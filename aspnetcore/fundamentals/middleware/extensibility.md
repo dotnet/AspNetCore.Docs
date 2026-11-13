@@ -1,14 +1,14 @@
 ---
 title: Factory-based middleware activation in ASP.NET Core
 description: Learn how to use strongly-typed middleware with a factory-based activation implementation in ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/25/2022
 ---
 # Factory-based middleware activation in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 <xref:Microsoft.AspNetCore.Http.IMiddlewareFactory>/<xref:Microsoft.AspNetCore.Http.IMiddleware> is an extensibility point for [middleware](index.md) activation that offers the following benefits:
 

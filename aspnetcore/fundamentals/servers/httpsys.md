@@ -2,7 +2,7 @@
 title: HTTP.sys web server implementation in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 11/06/2026
 ---
 # HTTP.sys web server implementation in ASP.NET Core
@@ -96,7 +96,7 @@ HTTP.sys delegates to kernel mode authentication with the Kerberos authenticatio
 
 Channel binding tokens (CBT) tie Windows authentication to the underlying TLS channel, which helps mitigate NTLM relay and man-in-the-middle attacks.
 
-::: moniker-end
+:::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
@@ -378,7 +378,6 @@ First call the method with an empty span to obtain the required buffer size, the
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_client_hello":::
 
-
 :::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
@@ -395,7 +394,6 @@ First call the method with an empty span to obtain the required buffer size, the
 The following example queries the TLS ClientHello property through the general-purpose API. It requires the same native ClientHello caching configuration as `TryGetTlsClientHello`:
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_request_property":::
-
 
 ### Get channel binding tokens
 
@@ -459,8 +457,6 @@ For information about how to get traces from HTTP.sys, see [HTTP.sys Manageabili
 [!INCLUDE[](includes/memory-eviction2.md)]
 
 :::moniker-end
-
-[!INCLUDE [httpsys8-9](~/fundamentals/servers/httpsys/includes/httpsys8-9.md)]
 
 ## Related content
 

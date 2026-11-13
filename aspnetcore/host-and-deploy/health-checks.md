@@ -2,7 +2,7 @@
 title: Health checks in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/28/2026
 ---
 # Health checks in ASP.NET Core
@@ -11,7 +11,7 @@ By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitt
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ASP.NET Core offers health checks middleware and libraries for reporting the health of app infrastructure components.
 
