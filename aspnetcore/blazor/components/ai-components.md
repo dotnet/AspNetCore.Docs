@@ -111,7 +111,7 @@ Include the component styles in the `App` component (`Components/App.razor`):
 
 ## Render content blocks
 
-An <xref:Microsoft.Extensions.AI.IChatClient> streams model-facing content, such as <xref:Microsoft.Extensions.AI.TextContent>, <xref:Microsoft.Extensions.AI.TextReasoningContent>, and <xref:Microsoft.Extensions.AI.FunctionCallContent>, in <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. `UIAgent` maps this response content into UI-facing `ContentBlock` objects that retain rendering state and can update in place while the response streams. For example, both plain-text fragments and structured rich-text snapshots map to a `RichContentBlock`.
+An <xref:Microsoft.Extensions.AI.IChatClient> streams model-facing content, such as <xref:Microsoft.Extensions.AI.TextContent>, `RichTextContent`, and <xref:Microsoft.Extensions.AI.FunctionCallContent>, in <xref:Microsoft.Extensions.AI.ChatResponseUpdate> values. `UIAgent` maps this response content into UI-facing `ContentBlock` objects that retain rendering state and can update in place while the response streams. For example, both plain-text fragments and structured rich-text snapshots map to a `RichContentBlock`.
 
 The built-in block types include:
 
