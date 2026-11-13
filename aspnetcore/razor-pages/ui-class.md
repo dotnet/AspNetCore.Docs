@@ -2,7 +2,7 @@
 title: Reusable Razor UI in class libraries with ASP.NET Core
 ai-usage: ai-assisted
 description: Explains how to create reusable Razor UI using partial views in a class library in ASP.NET Core.
-ms.date: 11/19/2023
+ms.date: 11/12/2026
 ---
 # Create reusable UI using the Razor class library project in ASP.NET Core
 
@@ -119,18 +119,25 @@ In the following example, the `lib.css` stylesheet in the `wwwroot` folder isn't
 
 To include TypeScript files in an RCL:
 
-* Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project.
+* Reference the [`Microsoft.TypeScript.MSBuild`](https://www.nuget.org/packages/Microsoft.TypeScript.MSBuild) NuGet package in the project, using version 7.0.0 or later of the package.
 
-   [!INCLUDE[](~/includes/package-reference.md)]
+  [!INCLUDE[](~/includes/package-reference.md)]
 
 * Place the TypeScript files (`.ts`) outside of the `wwwroot` folder. For example, place the files in a `Client` folder.
-* Add the following markup to the project file:
-  * Configure the TypeScript build output for the `wwwroot` folder with the `TypescriptOutDir` property.
-  * Include the TypeScript target as a dependency of the `PrepareForBuildDependsOn` target.
-  * Remove the output in the `wwwroot folder`.
-  * Remove deleted TypeScript outputs from the `Content` item group.
+* TypeScript compilation runs automatically as part of the build.
+* Add the following markup to the project file to configure the TypeScript output directory and remove deleted outputs from the `Content` item group:
 
-[!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5-9,13,16-20)]
+  [!code-xml[](~/razor-pages/ui-class/remove.xml?highlight=5,8-12)]
+
+Details on setting the TypeScript output directory with `<TypeScriptOutDir>`:
+
+* The property comes from the `Microsoft.TypeScript.MSBuild` NuGet package or Visual Studio's TypeScript SDK targets rather than the base .NET SDK.
+* The value is forwarded to the TypeScript compiler's `--outDir` flag, which defaults to emitting compiled files in the same folder as their source `.ts` files. Not providing `<TypeScriptOutDir>` or leaving its value blank results in side-by-side output.
+* If the project root contains a `tsconfig.json` file, MSBuild ignores `<TypeScriptOutDir>` in favor of the `compilerOptions.outDir` setting inside `tsconfig.json`.
+
+Automatic compilation with `Microsoft.TypeScript.MSBuild` 7.0.0 or later doesn't by itself ensure that generated files are registered as RCL static web assets or included in publish output.
+
+The newer SDK integration isn't available in .NET SDKs 7 through 10; the .NET 11 SDK integration is opt-in and still calls the legacy target names. If relying on the legacy publishing target, the reported workaround is to use `Microsoft.TypeScript.MSBuild` 6.0.3 until a compatible SDK/package integration is available.
 
 ### Consume content from a referenced RCL
 
