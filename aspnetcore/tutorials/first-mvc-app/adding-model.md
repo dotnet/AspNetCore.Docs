@@ -2,14 +2,14 @@
 title: Part 4, add a model to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 01/22/2026
 ---
 
 # Part 4, add a model to an ASP.NET Core MVC app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -417,15 +417,3 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 > [Next: Working with SQL](~/tutorials/first-mvc-app/working-with-sql.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/adding-model/includes/adding-model3.md)]
