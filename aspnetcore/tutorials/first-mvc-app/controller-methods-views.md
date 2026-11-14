@@ -2,13 +2,13 @@
 title: Part 6, controller methods and views in ASP.NET Core
 ai-usage: ai-assisted
 description: Part 6, add a model to an ASP.NET Core MVC app
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/22/2026
 ---
 
 # Part 6, controller methods and views in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -131,13 +131,3 @@ All the `HttpGet` methods in the movie controller follow a similar pattern. They
 > [Next](~/tutorials/first-mvc-app/search.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/controller-methods-views/includes/controller-methods-views3-5.md)]

@@ -2,13 +2,13 @@
 title: Part 7, add search to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 7 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/27/2026
 ---
 
 # Part 7, add search to an ASP.NET Core MVC app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -154,13 +154,3 @@ Test the app by searching by genre, by movie title, and by both:
 > [Next](~/tutorials/first-mvc-app/new-field.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/search/includes/search3-5.md)]
