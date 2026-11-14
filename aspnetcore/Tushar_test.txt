@@ -1,1 +1,1 @@
-This is my test file.This is for conflict.
+This is my test file.This is for conflict. my new line.Final change.
