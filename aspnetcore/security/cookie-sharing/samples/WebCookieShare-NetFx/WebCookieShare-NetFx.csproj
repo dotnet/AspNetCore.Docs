@@ -31,9 +31,4 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="**\*.*" Exclude=".vs\**;bin\**;obj\**;**\*.cs;**\*.csproj;**\*.csproj.user;packages.config" CopyToOutputDirectory="PreserveNewest" />
-    <None Remove="**\*.*" />
-  </ItemGroup>
-
 </Project>
