@@ -79,7 +79,7 @@ In .NET 8, Native AOT is supported by the following ASP.NET Core app types:
 
 * Minimal APIs - For more information, see the [The Web API (Native AOT) template](#the-web-api-native-aot-template) section later in this article.
 * gRPC - For more information, see [gRPC and Native AOT](../../../grpc/native-aot.md).
-* Worker services - For more information, see [AOT in Worker Service templates](../../host/hosted-services.md?view=aspnetcore-8.0&preserve-view=true#native-aot).
+* Worker services - For more information, see [AOT in Worker Service templates](/previous-versions/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&preserve-view=true#native-aot).
 
 ## The Web API (Native AOT) template
 

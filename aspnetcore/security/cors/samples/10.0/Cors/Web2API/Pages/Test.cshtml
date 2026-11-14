@@ -17,7 +17,7 @@
         var host1 = Configuration["host1"];
         var hostTest = host1 + "/test";
 
-        var theHost = HttpContext.Request.Host.Value;
+        var theHost = HttpContext.Request.Host.Value ?? string.Empty;
         if (!host1.Contains(theHost) && !theHost.Contains("localhost"))
         {
             <text>Test from <a href="@hostTest">@hostTest</a>  or

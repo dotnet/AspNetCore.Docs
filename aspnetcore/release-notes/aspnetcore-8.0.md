@@ -753,7 +753,7 @@ For more information, see <!--keep--> [ITlsHandshakeFeature.HostName](https://so
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
-For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](../fundamentals/servers/httpsys.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+For more information, see [Get detailed timing information with IHttpSysRequestTimingFeature](/previous-versions/aspnet/core/fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8) and [Timing information and In-process hosting with IIS](../host-and-deploy/iis/in-process-hosting.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 ### HTTP.sys: opt-in support for kernel-mode response buffering
 
