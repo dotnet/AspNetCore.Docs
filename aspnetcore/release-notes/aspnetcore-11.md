@@ -2,7 +2,7 @@
 title: What's new in ASP.NET Core in .NET 11
 ai-usage: ai-assisted
 description: Learn about the new features in ASP.NET Core in .NET 11.
-ms.date: 11/05/2026
+ms.date: 11/13/2026
 ---
 # What's new in ASP.NET Core in .NET 11
 

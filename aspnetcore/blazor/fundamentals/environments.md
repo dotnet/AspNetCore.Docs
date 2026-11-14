@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor environments
+ai-usage: ai-assisted
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/15/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor environments
 
@@ -285,11 +286,9 @@ App settings from the `appsettings.{ENVIRONMENT}.json` file are loaded by the ap
 
 ## `EnvironmentView` component
 
-<!-- UPDATE 11.0 - API Browser cross-links -->
+Use the <xref:Microsoft.AspNetCore.Components.Web.EnvironmentView> component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
 
-Use the `EnvironmentView` component for conditional rendering based on the hosting environment. This component provides a consistent way to render content based on the current environment across both server-side and client-side hosting models.
-
-The `EnvironmentView` component accepts `Include` and `Exclude` parameters for specifying environment names. The component performs case-insensitive matching.
+The `EnvironmentView` component accepts <xref:Microsoft.AspNetCore.Components.Web.EnvironmentView.Include> and <xref:Microsoft.AspNetCore.Components.Web.EnvironmentView.Exclude> parameters for specifying environment names. The component performs case-insensitive matching.
 
 ```razor
 @using Microsoft.AspNetCore.Components.Web

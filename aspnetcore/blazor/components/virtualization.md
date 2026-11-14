@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Razor component virtualization
+ai-usage: ai-assisted
 description: Learn how to use component virtualization in ASP.NET Core Blazor apps.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 09/10/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Razor component virtualization
 
@@ -272,15 +273,13 @@ The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> compo
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API Browser cross-links -->
-
 ## Scroll to a specific item
 
-The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component provides two ways to control scroll position: `InitialItemIndex` for the first render and `ScrollToItemAsync` for programmatic scrolling after the component is rendered.
+The <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1> component provides two ways to control scroll position: <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.InitialItemIndex> for the first render and <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ScrollToItemAsync*> for programmatic scrolling after the component is rendered.
 
 ### `InitialItemIndex` parameter
 
-Set `InitialItemIndex` to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
+Set <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.InitialItemIndex> to open the list at a specific item index on the first interactive render. This is a one-shot parameter—changes after first render are ignored. Out-of-range values are clamped.
 
 ```razor
 <Virtualize Items="allFlights" Context="flight" InitialItemIndex="500">
@@ -290,7 +289,7 @@ Set `InitialItemIndex` to open the list at a specific item index on the first in
 
 ### `ScrollToItemAsync` method
 
-Call `ScrollToItemAsync` to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
+Call <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ScrollToItemAsync*> to programmatically scroll to an item after the first render. The scroll is instant (no animation). The method returns a <xref:System.Threading.Tasks.Task> that completes when the target item is aligned to the top of the viewport. Cancellation is supported via a <xref:System.Threading.CancellationToken>.
 
 If multiple calls occur, the last call wins—earlier calls complete normally but only the final target is honored. If the user scrolls during a programmatic scroll, the user's scroll takes precedence. Calling before the first interactive render throws an <xref:System.InvalidOperationException>.
 
@@ -320,9 +319,7 @@ If multiple calls occur, the last call wins—earlier calls complete normally bu
 
 ## Control viewport scroll position behavior when items are dynamically added
 
-<!-- UPDATE 11.0 - API cross-links -->
-
-Assign a `VirtualizeAnchorMode` value to the `AnchorMode` parameter to control how the viewport behaves at list edges when items are dynamically added:
+Assign a <xref:Microsoft.AspNetCore.Components.Web.Virtualization.VirtualizeAnchorMode> value to the <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.AnchorMode> parameter to control how the viewport behaves at list edges when items are dynamically added:
 
 * `None`: No edge pinning. The viewport stays at the current scroll position regardless of item changes.
 * `Start`: Pins the viewport to the start of the list. When the user is at a scroll position near the top of the list and new items arrive at the start, the viewport stays at the top showing the newest items. For example, this pinning behavior is useful for a news feed user experience.
@@ -340,7 +337,7 @@ The following example pins the viewport to the start of a virtualized flight lis
 
 Modes can be combined. For example, assigning `Start | End` pins both edges. Combining `None` with other modes is supported but doesn't change the combined value.
 
-`Virtualize.ItemComparer` gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
+<xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemComparer> gets or sets a comparer used to detect whether items were prepended or appended when using class-typed items with an <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.ItemsProvider> (for more information, see the [Item provider delegate](#item-provider-delegate) section).
 
 The comparer determines if the first loaded item changed between provider calls, which indicates items were inserted at the top. For records, the default comparer's value-equality behavior (`EqualityComparer<T>.Default`) works automatically. For an in-memory <xref:Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize`1.Items> assignment, an `ItemComparer` comparer isn't required because the component can detect prepends automatically. In cases where non-primative objects are virtualized and the framework can't detect if an item is prepended or appended, assign an <xref:System.Collections.Generic.IEqualityComparer`1> to the `Virtualize` component:
 

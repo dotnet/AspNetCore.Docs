@@ -3,7 +3,7 @@ title: ASP.NET Core Razor components
 ai-usage: ai-assisted
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 07/14/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Razor components
 
@@ -1163,15 +1163,6 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 :::moniker range=">= aspnetcore-11.0"
 
 Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter*?displayProperty=nameWithType>.
-
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
 
 The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 

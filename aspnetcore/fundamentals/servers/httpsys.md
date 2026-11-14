@@ -3,7 +3,7 @@ title: HTTP.sys web server implementation in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about HTTP.sys, a web server for ASP.NET Core on Windows. Built on the HTTP.sys kernel-mode driver, HTTP.sys is an alternative to Kestrel that can be used for direct connection to the Internet without IIS.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 11/06/2026
+ms.date: 11/14/2026
 ---
 # HTTP.sys web server implementation in ASP.NET Core
 
@@ -360,8 +360,6 @@ When processing a request with both a `Content-Length` header and a `Transfer-En
 
 ## Inspect TLS and request properties
 
-<!-- UPDATE 11.0 - Remove prerelease language -->
-
 HTTP.sys exposes request features for inspecting TLS information. Availability depends on the request, the Windows version, and the HTTP.sys configuration.
 
 ### Get the negotiated TLS cipher suite
@@ -401,7 +399,7 @@ The following example queries the TLS ClientHello property through the general-p
 
 :::code language="csharp" source="httpsys/snippets/11.0/HttpSysFeatureExamples.cs" id="snippet_channel_binding":::
 
-HTTP.sys supports `ChannelBindingKind.Endpoint`, corresponding to the `tls-server-end-point` binding defined by [RFC 5929](https://datatracker.ietf.org/doc/html/rfc5929). Other binding kinds return `false`. An unavailable token also returns `false`. CBT exposure requires `Medium` or `Strict` [authentication hardening](#enable-channel-binding-token-cbt-hardening) to be applied by HTTP.sys.
+HTTP.sys supports <xref:System.Security.Authentication.ExtendedProtection.ChannelBindingKind.Endpoint?displayProperty=nameWithType>, corresponding to the `tls-server-end-point` binding defined by [RFC 5929](https://datatracker.ietf.org/doc/html/rfc5929). Other binding kinds return `false`. An unavailable token also returns `false`. CBT exposure requires `Medium` or `Strict` [authentication hardening](#enable-channel-binding-token-cbt-hardening) to be applied by HTTP.sys.
 
 Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict` hardening. The returned bytes contain the Windows `SEC_CHANNEL_BINDINGS` structure and its binding data, not just a certificate hash.
 
@@ -411,21 +409,19 @@ Retrieving CBT bytes doesn't by itself authenticate a request or enforce `Strict
 
 <a name="ihsrtf8"></a>
 
-## Get detailed timing information with IHttpSysRequestTimingFeature
-<!--
-<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature>
--->
-[IHttpSysRequestTimingFeature](/dotnet/api/microsoft.aspnetcore.server.httpsys.ihttpsysrequesttimingfeature)  provides detailed timing information for requests:
+## Get detailed timing information with `IHttpSysRequestTimingFeature`
 
-* Timestamps are obtained using [QueryPerformanceCounter](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
-* The timestamp frequency can be obtained via [QueryPerformanceFrequency](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
-* The index of the timing can be cast to [HttpSysRequestTimingType](/dotnet/api/microsoft.aspnetcore.server.httpsys.httpsysrequesttimingtype) to know what the timing represents.
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature> provides detailed timing information for requests:
+
+* Timestamps are obtained using [`QueryPerformanceCounter`](/windows/win32/api/profileapi/nf-profileapi-queryperformancecounter).
+* The timestamp frequency can be obtained via [`QueryPerformanceFrequency`](/windows/win32/api/profileapi/nf-profileapi-queryperformancefrequency).
+* The index of the timing can be cast to <xref:Microsoft.AspNetCore.Server.HttpSys.HttpSysRequestTimingType> to know what the timing represents.
 * The value may be 0 if the timing isn't available for the current request.
 * Requires Windows 10 version 2004, Windows Server 2022, or later.
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTimestamps":::
 
-[IHttpSysRequestTimingFeature.TryGetTimestamp](xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*) retrieves the timestamp for the provided timing type:
+<xref:Microsoft.AspNetCore.Server.HttpSys.IHttpSysRequestTimingFeature.TryGetTimestamp*?displayProperty=nameWithType> retrieves the timestamp for the provided timing type:
 
 :::code language="csharp" source="~/fundamentals/request-features/samples/IHttpSysRequestTimingFeature/Program.cs" id="snippet_WithTryGetTimestamp":::
 
