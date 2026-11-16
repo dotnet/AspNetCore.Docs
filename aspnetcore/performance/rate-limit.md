@@ -550,7 +550,7 @@ In the preceding controller:
 
 ## Rate limiting metrics
 
-The rate limiting middleware provides [built-in metrics and monitoring](/aspnet/core/metrics/overview) capabilities to help you understand how rate limits affect app performance and user experience. For a list of metrics, see [`Microsoft.AspNetCore.RateLimiting`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore#microsoftaspnetcoreratelimiting).
+The rate limiting middleware provides [built-in metrics and monitoring](../metrics/overview.md) capabilities to help you understand how rate limits affect app performance and user experience. For a list of metrics, see [`Microsoft.AspNetCore.RateLimiting`](/dotnet/core/diagnostics/built-in-metrics-aspnetcore#microsoftaspnetcoreratelimiting).
 
 <a name="test7"></a>
 

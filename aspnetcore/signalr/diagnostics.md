@@ -158,7 +158,7 @@ The following example uses the [Aspire dashboard](/dotnet/aspire/fundamentals/da
 
 Add the following startup code to the `Program.cs` file:
 
-[!code-csharp[](~/signalr/diagnostics/samples/9.x/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,10-23)]
+[!code-csharp[](~/signalr/diagnostics/samples/SignalRChatTraceExample/Program.cs?name=snippet_trace_signalr_server&highlight=1,10-23)]
 
 The following example output is from the Aspire Dashboard:
 
