@@ -102,7 +102,7 @@ dotnet tool install --global dotnet-ef
 The preceding commands add:
 
 * The [command-line interface (CLI) tools for EF Core](/ef/core/miscellaneous/cli/dotnet)
-* The [aspnet-codegenerator scaffolding tool](xref:fundamentals/tools/dotnet-aspnet-codegenerator).
+* The [aspnet-codegenerator scaffolding tool](../../../../fundamentals/tools/dotnet-aspnet-codegenerator.md).
 
 Build the project as a check for compiler errors.
 
@@ -263,7 +263,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 ## Initial migration
 
-Use the EF Core [Migrations](xref:data/ef-mvc/migrations) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
+Use the EF Core [Migrations](../../../../data/ef-mvc/migrations.md) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -274,7 +274,7 @@ In the Package Manager Console (PMC), enter the following commands:
 ```powershell
 Add-Migration InitialCreate
 Update-Database
- 
+
 ```
 
 * `Add-Migration InitialCreate`: Generates a `Migrations/{timestamp}_InitialCreate.cs` migration file. The `InitialCreate` argument is the migration name. Any name can be used, but by convention, a name is selected that describes the migration. Because this is the first migration, the generated class contains code to create the database schema. The database schema is based on the model specified in the `MvcMovieContext` class.
@@ -347,13 +347,13 @@ Scaffolding creates the `Data/MvcMovieContext.cs` database context class:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Data/MvcMovieContext.cs?name=snippet_First)]
 
-The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet%601) property that represents the movies in the database.
+The preceding code creates a [DbSet\<Movie>](xref:Microsoft.EntityFrameworkCore.DbSet`1) property that represents the movies in the database.
 
 ### Dependency injection
 
-ASP.NET Core is built with [dependency injection (DI)](xref:fundamentals/dependency-injection). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
+ASP.NET Core is built with [dependency injection (DI)](../../../../fundamentals/dependency-injection.md). Services, such as the database context, are registered with DI in `Program.cs`. These services are provided to components that require them via constructor parameters.
 
-In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+In the `Controllers/MoviesController.cs` file, the constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the `MvcMovieContext` database context into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Scaffolding generated the following highlighted code in `Program.cs`:
 
@@ -367,7 +367,7 @@ Scaffolding generated the following highlighted code in `Program.cs`:
 
 ---
 
-The [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the "MvcMovieContext" database connection string.
+The [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the "MvcMovieContext" database connection string.
 
 <a name="cs"></a>
 
@@ -385,7 +385,7 @@ Scaffolding added a connection string to the `appsettings.json` file:
 
 ---
 
-For local development, the [ASP.NET Core configuration system](xref:fundamentals/configuration/index) reads the `ConnectionString` key from the `appsettings.json` file.
+For local development, the [ASP.NET Core configuration system](../../../../fundamentals/configuration/index.md) reads the `ConnectionString` key from the `appsettings.json` file.
 
 ### The `InitialCreate` class
 
@@ -406,7 +406,7 @@ Open the `Controllers/MoviesController.cs` file and examine the constructor:
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Controllers/MoviesController.cs?name=snippet_Constructor)]
 
-The constructor uses [Dependency Injection](xref:fundamentals/dependency-injection) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
+The constructor uses [Dependency Injection](../../../../fundamentals/dependency-injection.md) to inject the database context (`MvcMovieContext`) into the controller. The database context is used in each of the [CRUD](https://wikipedia.org/wiki/Create,_read,_update_and_delete) methods in the controller.
 
 Test the **Create** page. Enter and submit data.
 
@@ -436,7 +436,7 @@ The `id` can be passed in with a query string, as in the following example:
 
 The `id` parameter is defined as a [nullable type](/dotnet/csharp/programming-guide/nullable-types/index) (`int?`) in cases when the `id` value isn't provided.
 
-A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync%2A> method to select movie entities that match the route data or query string value.
+A [lambda expression](/dotnet/articles/csharp/programming-guide/statements-expressions-operators/lambda-expressions) is passed in to the <xref:System.Data.Entity.QueryableExtensions.FirstOrDefaultAsync*> method to select movie entities that match the route data or query string value.
 
 ```csharp
 var movie = await _context.Movie
@@ -465,7 +465,7 @@ Examine the `Index.cshtml` view and the `Index` method in the Movies controller.
 
 [!code-csharp[](~/tutorials/first-mvc-app/start-mvc/samples/MvcMovie70/Controllers/MoviesController.cs?name=snippet_FirstIndexNoSearch)]
 
-The code returns [problem details](xref:fundamentals/error-handling-api#problem-details-service) if the `Movie` property of the data context is null.
+The code returns [problem details](../../../../fundamentals/error-handling-api.md#problem-details-service) if the `Movie` property of the data context is null.
 
 When the movies controller was created, scaffolding included the following `@model` statement at the top of the `Index.cshtml` file:
 
@@ -482,8 +482,8 @@ Because the `Model` object is strongly typed as an `IEnumerable<Movie>` object, 
 ## Related content
 
 * [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s)
-* [Tag Helpers](xref:mvc/views/tag-helpers/intro)
-* [Globalization and localization](xref:fundamentals/localization)
+* [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md)
+* [Globalization and localization](../../../../fundamentals/localization.md)
 
 > [!div class="step-by-step"]
 > [Previous: Adding a View](~/tutorials/first-mvc-app/adding-view.md)

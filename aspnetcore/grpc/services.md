@@ -3,7 +3,6 @@ title: Create gRPC services and methods
 description: Learn how to create gRPC services and methods.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 08/18/2022
-uid: grpc/services
 ---
 # Create gRPC services and methods
 
@@ -19,7 +18,7 @@ This document explains how to create gRPC services and methods in C#. Topics inc
 
 ## Create new gRPC services
 
-[gRPC services with C#](xref:grpc/basics) introduced gRPC's contract-first approach to API development. Services and messages are defined in `.proto` files. C# tooling then generates code from `.proto` files. For server-side assets, an abstract base type is generated for each service, along with classes for any messages.
+[gRPC services with C#](basics.md) introduced gRPC's contract-first approach to API development. Services and messages are defined in `.proto` files. C# tooling then generates code from `.proto` files. For server-side assets, an abstract base type is generated for each service, along with classes for any messages.
 
 The following `.proto` file:
 
@@ -43,7 +42,7 @@ The service implementation is registered with the app. If the service is hosted 
 
 :::code language="csharp" source="~/grpc/services/Program.cs" id="snippet_MapGrpcService" :::
 
-See <xref:grpc/aspnetcore> for more information.
+See [gRPC services with ASP.NET Core](aspnetcore.md) for more information.
 
 ## Implement gRPC methods
 
@@ -66,7 +65,7 @@ A unary method has the request message as a parameter, and returns the response.
 
 :::code language="csharp" source="~/grpc/services/ExampleService.cs" id="snippet_UnaryCall" :::
 
-Unary calls are the most similar to [actions on web API controllers](xref:web-api/index). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by adding fields to the request message:
+Unary calls are the most similar to [actions on web API controllers](../web-api/index.md). One important difference gRPC methods have from actions is gRPC methods are not able to bind parts of a request to different method arguments. gRPC methods always have one message argument for the incoming request data. Multiple values can still be sent to a gRPC service by adding fields to the request message:
 
 :::code language="protobuf" source="~/grpc/services/Protos/example.proto" range="19-23" :::
 
@@ -153,5 +152,5 @@ For the previous example, the solution is to await the write task before exiting
 
 ## Related content
 
-* <xref:grpc/basics>
-* <xref:grpc/client>
+* [gRPC Services with C#](basics.md)
+* [Call gRPC services with the .NET client](client.md)

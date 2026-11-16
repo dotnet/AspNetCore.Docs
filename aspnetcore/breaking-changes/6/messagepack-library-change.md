@@ -16,7 +16,7 @@ ASP.NET Core 6.0
 
 ## Old behavior
 
-In previous versions, you must include three script references to use the [MessagePack Hub Protocol](/aspnet/core/signalr/messagepackhubprotocol) in the browser:
+In previous versions, you must include three script references to use the [MessagePack Hub Protocol](../../signalr/messagepackhubprotocol.md) in the browser:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>
@@ -26,7 +26,7 @@ In previous versions, you must include three script references to use the [Messa
 
 ## New behavior
 
-Starting in ASP.NET Core 6, you only need two script references to use the [MessagePack Hub Protocol](/aspnet/core/signalr/messagepackhubprotocol) in the browser:
+Starting in ASP.NET Core 6, you only need two script references to use the [MessagePack Hub Protocol](../../signalr/messagepackhubprotocol.md) in the browser:
 
 ```html
 <script src="~/lib/signalr/signalr.js"></script>

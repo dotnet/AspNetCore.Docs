@@ -25,7 +25,7 @@ The exception diagnostics are:
 
 ## New behavior
 
-Starting in .NET 10, if <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler.TryHandleAsync%2A?displayProperty=nameWithType> returns `true`, then exception diagnostics are no longer recorded by default.
+Starting in .NET 10, if <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler.TryHandleAsync*?displayProperty=nameWithType> returns `true`, then exception diagnostics are no longer recorded by default.
 
 ## Type of breaking change
 
@@ -52,5 +52,5 @@ The `context` passed to the callback includes information about the exception, t
 
 ## Affected APIs
 
-- <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Diagnostics.IExceptionHandler?displayProperty=fullName>

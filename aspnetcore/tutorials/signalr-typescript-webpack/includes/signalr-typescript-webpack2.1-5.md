@@ -11,7 +11,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -175,7 +175,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/3.x/Startup.cs?name=snippet_UseSignalR&highlight=3)]
 
-1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A>.
+1. In `Startup.ConfigureServices`, call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*>.
 
    [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/3.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -224,7 +224,7 @@ The app currently displays a basic form to send messages, but isn't yet function
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
-    In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All). The received messages are sent to all clients connected to the hub.
+    In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All). The received messages are sent to all clients connected to the hub.
 
 ## Test the app
 
@@ -270,8 +270,8 @@ Confirm that the app works with the following steps.
 
 ## Additional resources
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../../../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../../../signalr/hubs.md)
 
 :::moniker-end
 
@@ -288,7 +288,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR server
 > * Enable communication between client and server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/signalr-typescript-webpack/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -429,7 +429,7 @@ The following steps configure the conversion of TypeScript to JavaScript and the
 
     The preceding code allows the server to locate and serve the `index.html` file, whether the user enters its full URL or the root URL of the web app.
 
-1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR%2A> in `Startup.ConfigureServices`. It adds the SignalR services to the project.
+1. Call <xref:Microsoft.Extensions.DependencyInjection.SignalRDependencyInjectionExtensions.AddSignalR*> in `Startup.ConfigureServices`. It adds the SignalR services to the project.
 
     [!code-csharp[](~/tutorials/signalr-typescript-webpack/samples/2.x/Startup.cs?name=snippet_AddSignalR)]
 
@@ -479,7 +479,7 @@ The app currently displays a simple form to send messages. Nothing happens when 
 
     The preceding code broadcasts received messages to all connected users once the server receives them. It's unnecessary to have a generic `on` method to receive all the messages. A method named after the message name suffices.
 
-    In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients%601.All). The received messages are sent to all clients connected to the hub.
+    In this example, the TypeScript client sends a message identified as `newMessage`. The C# `NewMessage` method expects the data sent by the client. A call is made to <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> on [Clients.All](xref:Microsoft.AspNetCore.SignalR.IHubClients`1.All). The received messages are sent to all clients connected to the hub.
 
 ## Test the app
 
@@ -523,7 +523,7 @@ Confirm that the app works with the following steps.
 
 ## Additional resources
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../../../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../../../signalr/hubs.md)
 
 :::moniker-end

@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization in Minimal API apps, explore concepts, define policies, and run development tests.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 04/28/2026
-uid: fundamentals/minimal-apis/security
 
 # customer intent: As an ASP.NET developer, I want to use authentication and authorization in Minimal API apps, so I can manage user access to my apps.
 ---
@@ -22,7 +21,7 @@ This article describes the support for authentication and authorization in Minim
 
 Authentication is the process of determining a user's identity while authorization is the process of determining whether a user has access to a resource. Both authentication and authorization scenarios share similar implementation semantics in ASP.NET Core.
 
-* The authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, handles all authentication and is used by authentication [middleware](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
+* The authentication service, <xref:Microsoft.AspNetCore.Authentication.IAuthenticationService>, handles all authentication and is used by authentication [middleware](../middleware/index.md#middleware-added-automatically-by-webapplication).
 * The authorization service, <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService>, manages all authorization and is used by the authorization middleware.
 
 ### Authentication service
@@ -33,9 +32,9 @@ The authentication service uses registered authentication handlers to complete a
 
 In the authorization layer, there are two strategies for determining user access to resources:
 
-* **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information, see <xref:security/authorization/roles>.
+* **Role-based strategies** determine a user's access based on their assigned role, such as `Administrator` or `User`. For more information, see [Role-based authorization in ASP.NET Core](../../security/authorization/roles.md).
 
-* **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information, see <xref:security/authorization/claims>.
+* **Claim-based strategies** determine a user's access based on claims issued by a central authority. For more information, see [Claim-based authorization in ASP.NET Core](../../security/authorization/claims.md).
 
 In ASP.NET Core, both strategies are captured into an authorization requirement. The authorization service uses authorization handlers to determine whether or not a particular user meets the authorization requirements for a resource. 
 
@@ -43,19 +42,19 @@ In ASP.NET Core, both strategies are captured into an authorization requirement.
 
 To enable authentication, call the [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) method to register the required authentication services on the app's service provider.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
 Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JSON Web Token (JWT) bearer-based authentication. This example makes use of the APIs available in the [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) NuGet package.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
 
 By default, the [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middleware if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke the [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [UseAuthorization](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) methods to register the middleware. [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically completes the registration after calling the `AddAuthentication` or `AddAuthorization` method.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
 
-In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](xref:fundamentals/middleware/index#middleware-added-automatically-by-webapplication).
+In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](../middleware/index.md#middleware-added-automatically-by-webapplication).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 
 ### Configure authentication strategy
 
@@ -99,7 +98,7 @@ In the _Program.cs_ file, two JWT bearer-based authentication strategies are reg
 
 The scheme name is used to uniquely identify an authentication strategy. The name is also used as the lookup key when resolving authentication options from config, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
 ## Configure authorization policies in minimal apps
 
@@ -110,19 +109,19 @@ Configuration of the authorization requirements on a resource is a two-step proc
 1. Define the authorization requirements in a policy globally.
 1. Apply individual policies to resources.
 
-In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder%2A> method is invoked, which:
+In the following code, the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> method is invoked, which:
 
 * Adds authorization-related services to the DI container.
 * Returns an <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder> object that can be used to directly register authorization policies.
 
 The code creates a new authorization policy named `admin_greetings` that encapsulates two authorization requirements:
 
-* A role-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole%2A> for users with an `admin` role.
-* A claim-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim%2A> for which the user must provide a `greetings_api` scope claim.
+* A role-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireRole*> for users with an `admin` role.
+* A claim-based requirement via the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicyBuilder.RequireClaim*> for which the user must provide a `greetings_api` scope claim.
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
 
 ## Use 'dotnet user-jwts' for development testing
 
@@ -153,5 +152,5 @@ curl -i -H "Authorization: Bearer {token}" https://localhost:{port}/hello
 
 * [The authentication service (`IAuthenticationService`)](xref:Microsoft.AspNetCore.Authentication.IAuthenticationService)
 * [The authorization service (`IAuthorizationService`)](xref:Microsoft.AspNetCore.Authorization.IAuthorizationService)
-* <xref:fundamentals/middleware/index>
-* <xref:security/authentication/jwt>
+* [ASP.NET Core middleware](../middleware/index.md)
+* [Generate tokens with dotnet user-jwts](../../security/authentication/jwt-authn.md)

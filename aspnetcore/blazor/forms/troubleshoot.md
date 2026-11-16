@@ -3,7 +3,6 @@ title: Troubleshoot ASP.NET Core Blazor forms
 description: Learn how to troubleshoot forms in Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/forms/troubleshoot
 ---
 # Troubleshoot ASP.NET Core Blazor forms
 
@@ -17,7 +16,7 @@ This article provides troubleshooting guidance for Blazor forms.
 
 :::moniker range=">= aspnetcore-6.0"
 
-If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the form can adopt [streaming JS interop](xref:blazor/js-interop/call-dotnet-from-javascript#stream-from-javascript-to-net) without increasing the message size limit. For more information on the size limit and the error thrown, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the form can adopt [streaming JS interop](../javascript-interoperability/call-dotnet-from-javascript.md#stream-from-javascript-to-net) without increasing the message size limit. For more information on the size limit and the error thrown, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#maximum-receive-message-size).
 
 In the following example a text area (`<textarea>`) is used with streaming JS interop to move up to 50,000 bytes of data to the server.
 
@@ -36,7 +35,7 @@ window.getText = (elem) => {
 };
 ```
 
-For information on where to place JS in a Blazor app, see <xref:blazor/js-interop/javascript-location>.
+For information on where to place JS in a Blazor app, see [JavaScript location in ASP.NET Core Blazor apps](../javascript-interoperability/location-of-javascript.md).
 
 Due to security considerations, zero-length streams aren't permitted for streaming JS Interop. Therefore, the following `StreamFormData` component traps a <xref:Microsoft.JSInterop.JSException> and returns an empty string if the text area is blank when the form is submitted.
 
@@ -190,7 +189,7 @@ Due to security considerations, zero-length streams aren't permitted for streami
 
 :::moniker range="< aspnetcore-6.0"
 
-If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the message size limit can be increased. For more information on the size limit and the error thrown, see <xref:blazor/fundamentals/signalr#maximum-receive-message-size>.
+If form processing fails because the component's form payload has exceeded the maximum incoming SignalR message size permitted for hub methods, the message size limit can be increased. For more information on the size limit and the error thrown, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#maximum-receive-message-size).
 
 :::moniker-end
 
@@ -211,4 +210,4 @@ When assigning to <xref:Microsoft.AspNetCore.Components.Forms.EditForm.Model>, c
 For more information and guidance, see the following resources:
 
 * [Large form payloads and the SignalR message size limit](#large-form-payloads-and-the-signalr-message-size-limit)
-* <xref:blazor/fundamentals/signalr#maximum-receive-message-size>
+* [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#maximum-receive-message-size)

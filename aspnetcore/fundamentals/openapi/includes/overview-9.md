@@ -32,7 +32,7 @@ To use the `Microsoft.AspNetCore.OpenApi` package, add it as a PackageReference 
 
 [!code-xml[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/projectFile.xml?highlight=15)]
 
-To learn more about the `Microsoft.AspNetCore.OpenApi` package, see <xref:fundamentals/openapi/aspnetcore-openapi>.
+To learn more about the `Microsoft.AspNetCore.OpenApi` package, see [Generate OpenAPI documents](../aspnetcore-openapi.md).
 
 ## `Microsoft.Extensions.ApiDescription.Server` NuGet package
 
@@ -56,6 +56,6 @@ the output directory by setting the `OpenApiDocumentsDirectory` property.
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](../../minimal-apis/security.md)
 
 :::moniker-end

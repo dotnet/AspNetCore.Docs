@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor routing
 description: Learn about Blazor app request routing with guidance on static versus interactive routing, endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 06/24/2026
-uid: blazor/fundamentals/routing
 ---
 # ASP.NET Core Blazor routing
 
@@ -11,7 +10,7 @@ uid: blazor/fundamentals/routing
 
 This article explains Blazor app request routing with guidance on static versus interactive routing, ASP.NET Core endpoint routing integration, navigation events, and route templates and constraints for Razor components.
 
-Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](xref:mvc/views/razor#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Components.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
+Routing in Blazor is achieved by providing a route template to each accessible component in the app with an [`@page`](../../mvc/views/razor.md#page) directive. When a Razor file with an `@page` directive is compiled, the generated class is given a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the route template. At runtime, the router searches for component classes with a <xref:Microsoft.AspNetCore.Components.RouteAttribute> and renders whichever component has a route template that matches the requested URL.
 
 The following `HelloWorld` component uses a route template of `/hello-world`, and the rendered webpage for the component is reached at the relative URL `/hello-world`.
 
@@ -31,13 +30,13 @@ The preceding component loads in the browser at `/hello-world` regardless of whe
 
 *This section applies to Blazor Web Apps.*
 
-If [prerendering is enabled](xref:blazor/components/prerender), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
+If [prerendering is enabled](../components/prerender.md), the Blazor router (`Router` component, `<Router>` in `Routes.razor`) performs static routing to components during static server-side rendering (static SSR). This type of routing is called *static routing*.
 
 When an interactive render mode is assigned to the `Routes` component, the Blazor router becomes interactive after static SSR with static routing on the server. This type of routing is called *interactive routing*.
 
 Static routers use endpoint routing and the HTTP request path to determine which component to render. When the router becomes interactive, it uses the document's URL (the URL in the browser's address bar) to determine which component to render. This means that the interactive router can dynamically change which component is rendered if the document's URL dynamically changes to another valid internal URL, and it can do so without performing an HTTP request to fetch new page content.
 
-Interactive routing also prevents prerendering because new page content isn't requested from the server with a normal page request. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
+Interactive routing also prevents prerendering because new page content isn't requested from the server with a normal page request. For more information, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md#interactive-routing-and-prerendering).
 
 :::moniker-end
 
@@ -47,7 +46,7 @@ Interactive routing also prevents prerendering because new page content isn't re
 
 *This section applies to Blazor Web Apps operating over a circuit.*
 
-A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
+A Blazor Web App is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured with endpoints for routable components and the root component to render for those endpoints with <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the `Program` file.  The default root component (first component loaded) is the `App` component (`App.razor`):
 
 ```csharp
 app.MapRazorComponents<App>();
@@ -59,7 +58,7 @@ app.MapRazorComponents<App>();
 
 *This section applies to Blazor Server apps operating over a circuit.*
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in the `Program` file:
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in the `Program` file:
 
 ```csharp
 app.UseRouting();
@@ -74,7 +73,7 @@ app.MapFallbackToPage("/_Host");
 
 *This section applies to Blazor Server apps operating over a circuit.*
 
-Blazor Server is integrated into [ASP.NET Core Endpoint Routing](xref:fundamentals/routing). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A> in `Startup.Configure`.
+Blazor Server is integrated into [ASP.NET Core Endpoint Routing](../../fundamentals/routing.md). An ASP.NET Core app is configured to accept incoming connections for interactive components with <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*> in `Startup.Configure`.
 
 :::moniker-end
 
@@ -84,7 +83,7 @@ The typical configuration is to route all requests to a Razor page, which acts a
 
 The route specified in the host file is called a *fallback route* because it operates with a low priority in route matching. The fallback route is used when other routes don't match. This allows the app to use other controllers and pages without interfering with component routing in the Blazor Server app.
 
-For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage%2A> for non-root URL server hosting, see <xref:blazor/host-and-deploy/app-base-path>.
+For information on configuring <xref:Microsoft.AspNetCore.Builder.RazorPagesEndpointRouteBuilderExtensions.MapFallbackToPage*> for non-root URL server hosting, see [ASP.NET Core Blazor app base path](../host-and-deploy/app-base-path.md).
 
 :::moniker-end
 
@@ -102,18 +101,18 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component enables rout
 
 :::moniker-end
 
-When a Razor component (`.razor`) with an [`@page` directive](xref:mvc/views/razor#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
+When a Razor component (`.razor`) with an [`@page` directive](../../mvc/views/razor.md#page) is compiled, the generated component class is provided a <xref:Microsoft.AspNetCore.Components.RouteAttribute> specifying the component's route template.
 
 When the app starts, the assembly specified as the Router's `AppAssembly` is scanned to gather route information for the app's components that have a <xref:Microsoft.AspNetCore.Components.RouteAttribute>.
 
 At runtime, the <xref:Microsoft.AspNetCore.Components.RouteView> component:
 
 * Receives the <xref:Microsoft.AspNetCore.Components.RouteData> from the <xref:Microsoft.AspNetCore.Components.Routing.Router> along with any route parameters.
-* Renders the specified component with its [layout](xref:blazor/components/layouts), including any further nested layouts.
+* Renders the specified component with its [layout](../components/layouts.md), including any further nested layouts.
 
-Optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class for components that don't specify a layout with the [`@layout` directive](xref:blazor/components/layouts#apply-a-layout-to-a-component). The framework's [Blazor project templates](xref:blazor/project-structure) specify the `MainLayout` component (`MainLayout.razor`) as the app's default layout. For more information on layouts, see <xref:blazor/components/layouts>.
+Optionally specify a <xref:Microsoft.AspNetCore.Components.RouteView.DefaultLayout> parameter with a layout class for components that don't specify a layout with the [`@layout` directive](../components/layouts.md#apply-a-layout-to-a-component). The framework's [Blazor project templates](../project-structure.md) specify the `MainLayout` component (`MainLayout.razor`) as the app's default layout. For more information on layouts, see [ASP.NET Core Blazor layouts](../components/layouts.md).
 
-Components support multiple route templates using multiple [`@page` directives](xref:mvc/views/razor#page). The following example component loads on requests for `/blazor-route` and `/different-blazor-route`.
+Components support multiple route templates using multiple [`@page` directives](../../mvc/views/razor.md#page). The following example component loads on requests for `/blazor-route` and `/different-blazor-route`.
 
 `BlazorRoute.razor`:
 
@@ -130,15 +129,15 @@ Components support multiple route templates using multiple [`@page` directives](
 ```
 
 > [!IMPORTANT]
-> For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](xref:blazor/project-structure#location-of-head-and-body-content)) with the app base path specified in the `href` attribute. For more information, see <xref:blazor/host-and-deploy/app-base-path>.
+> For URLs to resolve correctly, the app must include a `<base>` tag ([location of `<head>` content](../project-structure.md#location-of-head-and-body-content)) with the app base path specified in the `href` attribute. For more information, see [ASP.NET Core Blazor app base path](../host-and-deploy/app-base-path.md).
 
 :::moniker range="< aspnetcore-6.0"
 
-The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see [Query strings](xref:blazor/fundamentals/navigation#query-strings).
+The <xref:Microsoft.AspNetCore.Components.Routing.Router> doesn't interact with query string values. To work with query strings, see [Query strings](navigation.md#query-strings).
 
 :::moniker-end
 
-As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](xref:mvc/views/razor#attribute).
+As an alternative to specifying the route template as a string literal with the `@page` directive, constant-based route templates can be specified with the [`@attribute` directive](../../mvc/views/razor.md#attribute).
 
 In the following example, the `@page` directive in a component is replaced with the `@attribute` directive and the constant-based route template in `Constants.CounterRoute`, which is set elsewhere in the app to "`/counter`":
 
@@ -171,9 +170,9 @@ When the <xref:Microsoft.AspNetCore.Components.Routing.Router> component navigat
 
 :::moniker range=">= aspnetcore-10.0"
 
-For requests where content isn't found, a Razor component can be assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType>. The parameter works in concert with [`NavigationManager.NotFound`](xref:blazor/fundamentals/navigation#not-found-responses), a method called in developer code that triggers a Not Found response.
+For requests where content isn't found, a Razor component can be assigned to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType>. The parameter works in concert with [`NavigationManager.NotFound`](navigation.md#not-found-responses), a method called in developer code that triggers a Not Found response.
 
-The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound%2A> is called, making it possible to handle missing routes with a consistent user experience.
+The Blazor project template includes a `NotFound.razor` page. This page automatically renders whenever <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*> is called, making it possible to handle missing routes with a consistent user experience.
 
 `NotFound.razor`:
 
@@ -185,9 +184,9 @@ The Blazor project template includes a `NotFound.razor` page. This page automati
 <p>Sorry, the content you are looking for does not exist.</p>
 ```
 
-The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
+The `NotFound` component is assigned to the router's <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> parameter, which supports routing that can be used across status code pages re-execution middleware, including non-Blazor middleware.
 
-In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage%2A?displayProperty=nameWithType> parameter:
+In the following example, the preceding `NotFound` component is present in the app's `Pages` folder and passed to the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFoundPage?displayProperty=nameWithType> parameter:
 
 ```razor
 <Router AppAssembly="@typeof(Program).Assembly" NotFoundPage="typeof(Pages.NotFound)">
@@ -198,7 +197,7 @@ In the following example, the preceding `NotFound` component is present in the a
 </Router>
 ```
 
-For more information, see the next article on <xref:blazor/fundamentals/navigation#not-found-responses>.
+For more information, see the next article on [ASP.NET Core Blazor navigation](navigation.md#not-found-responses).
 
 :::moniker-end
 
@@ -217,7 +216,7 @@ Set custom content for the <xref:Microsoft.AspNetCore.Components.Routing.Router>
 </Router>
 ```
 
-Arbitrary items are supported as content of the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see <xref:blazor/components/layouts#apply-a-layout-to-arbitrary-content-layoutview-component>.
+Arbitrary items are supported as content of the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter, such as other interactive components. To apply a default layout to <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> content, see [ASP.NET Core Blazor layouts](../components/layouts.md#apply-a-layout-to-arbitrary-content-layoutview-component).
 
 Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Router.NotFound> parameter (`<NotFound>...</NotFound>` markup), but the parameter is supported&dagger; for backward compatibility in .NET 8/9 to avoid a breaking change in the framework. The server-side ASP.NET Core middleware pipeline processes requests on the server. Use server-side techniques to handle bad requests.
 
@@ -225,8 +224,8 @@ Blazor Web Apps don't use the <xref:Microsoft.AspNetCore.Components.Routing.Rout
 
 For more information, see the following resources:
 
-* <xref:blazor/components/render-modes#static-server-side-rendering-static-ssr>
-* [Blazor navigation: Not Found responses](xref:blazor/fundamentals/navigation#not-found-responses)
+* [ASP.NET Core Blazor render modes](../components/render-modes.md#static-server-side-rendering-static-ssr)
+* [Blazor navigation: Not Found responses](navigation.md#not-found-responses)
 
 :::moniker-end
 
@@ -236,11 +235,11 @@ For more information, see the following resources:
 
 *This section applies to Blazor Web Apps.*
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> to discover routable components in additional assemblies. The following subsections explain when and how to use each API.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies*> to discover routable components in additional assemblies. The following subsections explain when and how to use each API.
 
 ### Static routing
 
-To discover routable components from additional assemblies for static server-side rendering (static SSR), even if the router later becomes interactive for interactive rendering, the assemblies must be disclosed to the Blazor framework. Call the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> method with the additional assemblies chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A> in the server project's `Program` file.
+To discover routable components from additional assemblies for static server-side rendering (static SSR), even if the router later becomes interactive for interactive rendering, the assemblies must be disclosed to the Blazor framework. Call the <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies*> method with the additional assemblies chained to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*> in the server project's `Program` file.
 
 The following example includes the routable components in the `BlazorSample.Client` project's assembly using the project's imports file (`_Imports.razor`):
 
@@ -250,13 +249,13 @@ app.MapRazorComponents<App>()
 ```
 
 > [!NOTE]
-> The preceding guidance also applies in [component class library](xref:blazor/components/class-libraries) scenarios. Additional important guidance for class libraries and static SSR is found in <xref:blazor/components/class-libraries-with-static-ssr>.
+> The preceding guidance also applies in [component class library](../components/class-libraries.md) scenarios. Additional important guidance for class libraries and static SSR is found in [ASP.NET Core Razor class libraries (RCLs) with static server-side rendering (static SSR)](../components/class-libraries-and-static-server-side-rendering.md).
 
 ### Interactive routing
 
 An interactive render mode can be assigned to the `Routes` component (`Routes.razor`) that makes the Blazor router become interactive after static SSR and static routing on the server. For example, `<Routes @rendermode="InteractiveServer" />` assigns interactive server-side rendering (interactive SSR) to the `Routes` component. The `Router` component inherits interactive server-side rendering (interactive SSR) from the `Routes` component. The router becomes interactive after static routing on the server.
 
-Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. For more information, see <xref:blazor/state-management/prerendered-state-persistence#interactive-routing-and-prerendering>.
+Internal navigation for interactive routing doesn't involve requesting new page content from the server. Therefore, prerendering doesn't occur for internal page requests. For more information, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md#interactive-routing-and-prerendering).
 
 If the `Routes` component is defined in the server project, the <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter of the `Router` component should include the `.Client` project's assembly. This allows the router to work correctly when rendered interactively.
 
@@ -270,10 +269,10 @@ In the following example, the `Routes` component is in the server project, and t
 </Router>
 ```
 
-Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
+Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly>.
 
 > [!NOTE]
-> The preceding guidance also applies in [component class library](xref:blazor/components/class-libraries) scenarios.
+> The preceding guidance also applies in [component class library](../components/class-libraries.md) scenarios.
 
 Alternatively, routable components only exist in the `.Client` project with global Interactive WebAssembly or Auto rendering applied, and the `Routes` component is defined in the `.Client` project, not the server project. In this case, there aren't external assemblies with routable components, so it isn't necessary to specify a value for <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies>.
 
@@ -283,9 +282,9 @@ Alternatively, routable components only exist in the `.Client` project with glob
 
 *This section applies to Blazor Server apps.*
 
-Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> to discover routable components in additional assemblies.
+Use the <xref:Microsoft.AspNetCore.Components.Routing.Router> component's <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter and the endpoint convention builder <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies*> to discover routable components in additional assemblies.
 
-In the following example, `Component1` is a routable component defined in a referenced [component class library](xref:blazor/components/class-libraries) named `ComponentLibrary`:
+In the following example, `Component1` is a routable component defined in a referenced [component class library](../components/class-libraries.md) named `ComponentLibrary`:
 
 ```razor
 <Router
@@ -295,13 +294,13 @@ In the following example, `Component1` is a routable component defined in a refe
 </Router>
 ```
 
-Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly%2A>.
+Additional assemblies are scanned in addition to the assembly specified to <xref:Microsoft.AspNetCore.Components.Routing.Router.AppAssembly>.
 
 :::moniker-end
 
 ## Route parameters
 
-The router uses route parameters to populate the corresponding [component parameters](xref:blazor/components/index#component-parameters) with the same name. Route parameter names are case insensitive. In the following example, the `text` parameter assigns the value of the route segment to the component's `Text` property. When a request is made for `/route-parameter-1/amazing`, the content is rendered as `Blazor is amazing!`.
+The router uses route parameters to populate the corresponding [component parameters](../components/index.md#component-parameters) with the same name. Route parameter names are case insensitive. In the following example, the `text` parameter assigns the value of the route segment to the component's `Text` property. When a request is made for `/route-parameter-1/amazing`, the content is rendered as `Blazor is amazing!`.
 
 `RouteParameter1.razor`:
 
@@ -326,7 +325,7 @@ Optional parameters are supported. In the following example, the `text` optional
 
 :::moniker range="< aspnetcore-5.0"
 
-Optional parameters aren't supported. In the following example, two [`@page` directives](xref:mvc/views/razor#page) are applied. The first directive permits navigation to the component without a parameter. The second directive assigns the `{text}` route parameter value to the component's `Text` property.
+Optional parameters aren't supported. In the following example, two [`@page` directives](../../mvc/views/razor.md#page) are applied. The first directive permits navigation to the component without a parameter. The second directive assigns the `{text}` route parameter value to the component's `Text` property.
 
 :::moniker-end
 
@@ -347,12 +346,12 @@ Optional parameters aren't supported. In the following example, two [`@page` dir
 }
 ```
 
-When the [`OnInitialized{Async}` lifecycle method](xref:blazor/components/lifecycle#component-initialization-oninitializedasync) is used instead of the [`OnParametersSet{Async}` lifecycle method](xref:blazor/components/lifecycle#after-parameters-are-set-onparameterssetasync), the default assignment of the `Text` property to `fantastic` doesn't occur if the user navigates within the same component. For example, this situation arises when the user navigates from `/route-parameter-2/amazing` to `/route-parameter-2`. As the component instance persists and accepts new parameters, the `OnInitialized` method isn't invoked again.
+When the [`OnInitialized{Async}` lifecycle method](../components/lifecycle.md#component-initialization-oninitializedasync) is used instead of the [`OnParametersSet{Async}` lifecycle method](../components/lifecycle.md#after-parameters-are-set-onparameterssetasync), the default assignment of the `Text` property to `fantastic` doesn't occur if the user navigates within the same component. For example, this situation arises when the user navigates from `/route-parameter-2/amazing` to `/route-parameter-2`. As the component instance persists and accepts new parameters, the `OnInitialized` method isn't invoked again.
 
 :::moniker range="< aspnetcore-6.0"
 
 > [!NOTE]
-> Route parameters don't work with query string values. To work with query strings, see [Query strings](xref:blazor/fundamentals/navigation#query-strings).
+> Route parameters don't work with query string values. To work with query strings, see [Query strings](navigation.md#query-strings).
 
 :::moniker-end
 
@@ -390,7 +389,7 @@ In the following example, the route to the `User` component only matches if:
 :::moniker range="< aspnetcore-5.0"
 
 > [!NOTE]
-> Route constraints don't work with query string values. To work with query strings, see [Query strings](xref:blazor/fundamentals/navigation#query-strings).
+> Route constraints don't work with query string values. To work with query strings, see [Query strings](navigation.md#query-strings).
 
 :::moniker-end
 
@@ -468,7 +467,7 @@ To restrict a route parameter to capturing non-file paths, use the [`:nonfile` c
 
 ## Routing with URLs that contain dots
 
-A ***server-side*** default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](xref:mvc/views/razor#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
+A ***server-side*** default route template assumes that if the last segment of a request URL contains a dot (`.`) that a file is requested. For example, the relative URL `/example/some.thing` is interpreted by the router as a request for a file named `some.thing`. Without additional configuration, an app returns a *404 - Not Found* response if `some.thing` was meant to route to a component with an [`@page`](../../mvc/views/razor.md#page) directive and `some.thing` is a route parameter value. To use a route with one or more parameters that contain a dot, the app must configure the route with a custom template.
 
 Consider the following `Example` component that can receive a route parameter from the last segment of the URL.
 
@@ -491,7 +490,7 @@ Consider the following `Example` component that can receive a route parameter fr
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
+To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in the `Program` file:
 
 ```csharp
 app.MapFallbackToFile("/example/{param?}", "index.html");
@@ -503,13 +502,13 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 app.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
-For more information, see <xref:fundamentals/routing>.
+For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
+To permit the **:::no-loc text="Server":::** app of a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln) to route the request with a dot in the `param` route parameter, add a fallback file route template with the optional parameter in `Startup.Configure`.
 
 `Startup.cs`:
 
@@ -525,7 +524,7 @@ To configure a Blazor Server app to route the request with a dot in the `param` 
 endpoints.MapFallbackToPage("/example/{param?}", "/_Host");
 ```
 
-For more information, see <xref:fundamentals/routing>.
+For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 
 :::moniker-end
 
@@ -562,7 +561,7 @@ Catch-all route parameters are:
 
 For the URL `/catch-all/this/is/a/test` with a route template of `/catch-all/{*pageRoute}`, the value of `PageRoute` is set to `this/is/a/test`.
 
-Slashes and segments of the captured path are decoded. For a route template of `/catch-all/{*pageRoute}`, the URL `/catch-all/this/is/a%2Ftest%2A` yields `this/is/a/test*`.
+Slashes and segments of the captured path are decoded. For a route template of `/catch-all/{*pageRoute}`, the URL `/catch-all/this/is/a%2Ftest*` yields `this/is/a/test*`.
 
 :::moniker-end
 
@@ -573,7 +572,7 @@ Slashes and segments of the captured path are decoded. For a route template of `
 The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> feature. The <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> handler is invoked when the user:
 
 * Visits a route for the first time by navigating to it directly in their browser.
-* Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo%2A?displayProperty=nameWithType> invocation, which is called in developer code to navigates to a URI. [<xref:Microsoft.AspNetCore.Components.NavigationManager> API is described in the next article, <xref:blazor/fundamentals/navigation>.]
+* Navigates to a new route using a link or a <xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> invocation, which is called in developer code to navigates to a URI. [<xref:Microsoft.AspNetCore.Components.NavigationManager> API is described in the next article, [ASP.NET Core Blazor navigation](navigation.md).]
 
 :::moniker-end
 
@@ -615,7 +614,7 @@ The <xref:Microsoft.AspNetCore.Components.Routing.Router> component supports an 
 
 :::moniker range=">= aspnetcore-5.0"
 
-For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see <xref:blazor/webassembly-lazy-load-assemblies>.
+For an example that uses <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync>, see [Lazy load assemblies in ASP.NET Core Blazor WebAssembly](../webassembly-lazy-load-assemblies.md).
 
 When prerendering on the server, <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> is executed *twice*:
 
@@ -626,13 +625,13 @@ When prerendering on the server, <xref:Microsoft.AspNetCore.Components.Routing.R
 
 :::moniker range=">= aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `Routes` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in the [`OnAfterRender{Async}` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop).
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `Routes` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in the [`OnAfterRender{Async}` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Prerendering with JavaScript interop](../components/lifecycle.md#prerendering-with-javascript-interop).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-5.0 < aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender{Async}`](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Prerendering with JavaScript interop](xref:blazor/components/lifecycle#prerendering-with-javascript-interop).
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.Routing.Router.OnNavigateAsync> from executing twice, the `App` component can store the <xref:Microsoft.AspNetCore.Components.Routing.NavigationContext> for use in [`OnAfterRender{Async}`](../components/lifecycle.md#after-component-render-onafterrenderasync), where `firstRender` can be checked. For more information, see [Prerendering with JavaScript interop](../components/lifecycle.md#prerendering-with-javascript-interop).
 
 :::moniker-end
 
@@ -734,9 +733,9 @@ In the following example:
 
 ## User interaction with `<Navigating>` content
 
-If there's a significant delay during navigation, such as while [lazy-loading assemblies in a Blazor WebAssembly app](xref:blazor/webassembly-lazy-load-assemblies) or for a slow network connection to a Blazor server-side app, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
+If there's a significant delay during navigation, such as while [lazy-loading assemblies in a Blazor WebAssembly app](../webassembly-lazy-load-assemblies.md) or for a slow network connection to a Blazor server-side app, the <xref:Microsoft.AspNetCore.Components.Routing.Router> component can indicate to the user that a page transition is occurring.
 
-At the top of the component that specifies the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, add an [`@using`](xref:mvc/views/razor#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
+At the top of the component that specifies the <xref:Microsoft.AspNetCore.Components.Routing.Router> component, add an [`@using`](../../mvc/views/razor.md#using) directive for the <xref:Microsoft.AspNetCore.Components.Routing?displayProperty=fullName> namespace:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Routing
@@ -752,6 +751,6 @@ In the router element (`<Router>...</Router>`) content:
 </Navigating>
 ```
 
-For an example that uses the <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> property, see <xref:blazor/webassembly-lazy-load-assemblies#user-interaction-with-navigating-content>.
+For an example that uses the <xref:Microsoft.AspNetCore.Components.Routing.Router.Navigating> property, see [Lazy load assemblies in ASP.NET Core Blazor WebAssembly](../webassembly-lazy-load-assemblies.md#user-interaction-with-navigating-content).
 
 :::moniker-end

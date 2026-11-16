@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor state management using protected browser storage
 description: Learn how to persist user data (state) in Blazor apps using browser storage.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/state-management/protected-browser-storage
 ---
 # ASP.NET Core Blazor protected browser storage
 
@@ -24,13 +23,13 @@ Caveats for using browser storage:
 * Similar to the use of a server-side database, loading and saving data are asynchronous.
 * The requested page doesn't exist in the browser during prerendering, so local storage isn't available during prerendering.
 * Storage of a few kilobytes of data is reasonable to persist for server-side Blazor apps. Beyond a few kilobytes, you must consider the performance implications because the data is loaded and saved across the network.
-* Users may view or tamper with the data. [ASP.NET Core Data Protection](xref:security/data-protection/introduction) can mitigate the risk. For example, [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) uses ASP.NET Core Data Protection.
+* Users may view or tamper with the data. [ASP.NET Core Data Protection](../../security/data-protection/introduction.md) can mitigate the risk. For example, [ASP.NET Core Protected Browser Storage](#aspnet-core-protected-browser-storage) uses ASP.NET Core Data Protection.
 
-Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`. It's worth considering choosing a package that transparently uses [ASP.NET Core Data Protection](xref:security/data-protection/introduction). Data Protection encrypts stored data and reduces the potential risk of tampering with stored data. If JSON-serialized data is stored in plain text, users can see the data using browser developer tools and also modify the stored data. Securing trivial data isn't a problem. For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization. Avoid allowing users to inspect or tamper with *sensitive data*.
+Third-party NuGet packages provide APIs for working with `localStorage` and `sessionStorage`. It's worth considering choosing a package that transparently uses [ASP.NET Core Data Protection](../../security/data-protection/introduction.md). Data Protection encrypts stored data and reduces the potential risk of tampering with stored data. If JSON-serialized data is stored in plain text, users can see the data using browser developer tools and also modify the stored data. Securing trivial data isn't a problem. For example, reading or modifying the stored color of a UI element isn't a significant security risk to the user or the organization. Avoid allowing users to inspect or tamper with *sensitive data*.
 
 ## ASP.NET Core Protected Browser Storage
 
-ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](xref:security/data-protection/introduction) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).
+ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](../../security/data-protection/introduction.md) for [`localStorage`](https://developer.mozilla.org/docs/Web/API/Window/localStorage) and [`sessionStorage`](https://developer.mozilla.org/docs/Web/API/Window/sessionStorage).
 
 :::moniker range=">= aspnetcore-5.0"
 
@@ -68,7 +67,7 @@ ASP.NET Core Protected Browser Storage leverages [ASP.NET Core Data Protection](
 
 ## Save and load data within a component
 
-In any component that requires loading or saving data to browser storage, use the [`@inject`](xref:mvc/views/razor#inject) directive to inject an instance of either of the following:
+In any component that requires loading or saving data to browser storage, use the [`@inject`](../../mvc/views/razor.md#inject) directive to inject an instance of either of the following:
 
 * `ProtectedLocalStorage`
 * `ProtectedSessionStorage`
@@ -95,7 +94,7 @@ The choice depends on which browser storage location you wish to use. In the fol
 
 The `@using` directive can be placed in the app's imports file (`_Imports.razor`) instead of in the component. Use of the imports file makes the namespace available to larger segments of the app or the whole app.
 
-To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](xref:blazor/project-structure), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
+To persist the `currentCount` value in the `Counter` component of an app based on the [Blazor project template](../project-structure.md), modify the `IncrementCount` method to use `ProtectedSessionStore.SetAsync`:
 
 ```csharp
 private async Task IncrementCount()
@@ -134,7 +133,7 @@ protected override async Task OnInitializedAsync()
 
 :::moniker-end
 
-If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is only called once when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see <xref:blazor/components/lifecycle>.
+If the component's parameters include navigation state, call `ProtectedSessionStore.GetAsync` and assign a non-`null` result in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*>, not <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> is only called once when the component is first instantiated. <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> isn't called again later if the user navigates to a different URL while remaining on the same page. For more information, see [ASP.NET Core Razor component lifecycle](../components/lifecycle.md).
 
 > [!WARNING]
 > The examples in this section only work if the server doesn't have prerendering enabled. With prerendering enabled, an error is generated explaining that JavaScript interop calls cannot be issued because the component is being prerendered.
@@ -153,7 +152,7 @@ One approach is to track whether the data is `null`, which means that the data i
 private int? currentCount;
 ```
 
-Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable%601.HasValue%2A>:
+Instead of unconditionally displaying the count and **`Increment`** button, display these elements only if the data is loaded by checking <xref:System.Nullable`1.HasValue>:
 
 ```razor
 @if (currentCount.HasValue)
@@ -199,13 +198,13 @@ Also, disable prerendering for the `HeadOutlet` component:
 <HeadOutlet @rendermode="new InteractiveServerRenderMode(prerender: false)" />
 ```
 
-For more information, see <xref:blazor/components/prerender#disable-prerendering>.
+For more information, see [Prerender ASP.NET Core Razor components](../components/prerender.md#disable-prerendering).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-To disable prerendering, open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
+To disable prerendering, open the `_Host.cshtml` file and change the `render-mode` attribute of the [Component Tag Helper](../../mvc/views/tag-helpers/built-in/component-tag-helper.md) to <xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.Server>:
 
 ```cshtml
 <component type="typeof(App)" render-mode="Server" />
@@ -215,7 +214,7 @@ To disable prerendering, open the `_Host.cshtml` file and change the `render-mod
 
 :::moniker range=">= aspnetcore-6.0"
 
-When prerendering is disabled, [prerendering of `<head>` content](xref:blazor/components/control-head-content) is disabled.
+When prerendering is disabled, [prerendering of `<head>` content](../components/control-head-content.md) is disabled.
 
 :::moniker-end
 
@@ -262,7 +261,7 @@ else
 }
 ```
 
-For more information on <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>, see <xref:blazor/components/render-modes#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime>.
+For more information on <xref:Microsoft.AspNetCore.Components.RendererInfo.IsInteractive?displayProperty=nameWithType>, see [ASP.NET Core Blazor render modes](../components/render-modes.md#detect-rendering-location-interactivity-and-assigned-render-mode-at-runtime).
 
 :::moniker-end
 
@@ -363,7 +362,7 @@ If many components rely on browser-based storage, implementing state provider co
 
 In the following example of a `CounterStateProvider` component, counter data is persisted to `sessionStorage`, and it handles the loading phase by not rendering its child content until state loading is complete.
 
-The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
+The `CounterStateProvider` component deals with prerendering by not loading state until after component rendering in the [`OnAfterRenderAsync` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync), which doesn't execute during prerendering.
 
 The approach in this section isn't capable of triggering rerendering of multiple subscribed components on the same page. If one subscribed component changes the state, it rerenders and can display the updated state, but a different component on the same page displaying that state displays stale data until its own next rerender. Therefore, the approach described in this section is best suited to using state in a single component on the page.
 
@@ -473,7 +472,7 @@ else
 :::moniker-end
 
 > [!NOTE]
-> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see <xref:blazor/components/index#child-content-render-fragments>.
+> For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [ASP.NET Core Razor components](../components/index.md#child-content-render-fragments).
 
 :::moniker range=">= aspnetcore-8.0"
 

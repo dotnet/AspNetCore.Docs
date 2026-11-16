@@ -5,7 +5,6 @@ description: Remote app setup
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 01/26/2026
 ms.topic: concept-article
-uid: migration/fx-to-core/inc/remote-app-setup
 zone_pivot_groups: migration-remote-app-setup
 ---
 
@@ -21,8 +20,8 @@ In some incremental upgrade scenarios, it's useful for the new ASP.NET Core app 
 Common scenarios this enables:
 
 * Fallback to the legacy application with [YARP](~/fundamentals/servers/yarp/yarp-overview.md)
-* [Remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication)
-* [Remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state)
+* [Remote app authentication](../areas/authentication.md#remote-authentication)
+* [Remote session](../areas/session.md#remote-app-session-state)
 
 :::zone pivot="manual"
 
@@ -109,7 +108,7 @@ builder.Services.AddSystemWebAdapters()
     });
 ```
 
-With both the ASP.NET and ASP.NET Core apps updated, extension methods can now be used to set up [remote app authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) or [remote session](xref:migration/fx-to-core/areas/session#remote-app-session-state), as needed.
+With both the ASP.NET and ASP.NET Core apps updated, extension methods can now be used to set up [remote app authentication](../areas/authentication.md#remote-authentication) or [remote session](../areas/session.md#remote-app-session-state), as needed.
 
 ### Enable proxying
 

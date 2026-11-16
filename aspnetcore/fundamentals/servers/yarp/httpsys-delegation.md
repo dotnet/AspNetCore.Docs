@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/httpsys-delegation
 title: YARP HTTP.sys Delegation
 description: YARP HTTP.sys Delegation
 ms.date: 04/03/2025
@@ -17,7 +16,7 @@ HTTP.sys delegation is a kernel level feature added into newer versions of Windo
 
 HTTP.sys delegation requires:
 
-* [ASP.NET Core's HTTP.sys server](/aspnet/core/fundamentals/servers/httpsys)
+* [ASP.NET Core's HTTP.sys server](../httpsys.md)
 * Windows Server 2019 or Windows 10 (build number 1809) or newer.
 
 ## Defaults

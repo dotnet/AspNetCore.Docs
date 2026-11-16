@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/overview
 title: Overview of YARP
 description: Overview of YARP
 ms.date: 04/03/2025
