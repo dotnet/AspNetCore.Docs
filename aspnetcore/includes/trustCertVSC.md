@@ -4,6 +4,8 @@
   dotnet dev-certs https --trust
   ```
 
+  On Linux, this command requires the .NET 9 SDK or later. For earlier SDKs, see your Linux distribution's documentation for trusting a certificate.
+
   The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
   ![Security warning dialog](~/static/cert.png)
