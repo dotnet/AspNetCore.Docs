@@ -28,7 +28,7 @@ This change is a [behavioral change](/dotnet/core/compatibility/categories#behav
 
 ## Reason for change
 
-Without a remote IP address, the middleware can't verify that the peer matches a configured trusted proxy or network. The change prevents connections without an IP address from bypassing the configured trust checks. For more information, see [dotnet/aspnetcore#67817](https://github.com/dotnet/aspnetcore/pull/67817).
+Without a remote IP address, the middleware can't verify that the peer matches a configured trusted proxy or network. The change prevents connections without an IP address from bypassing the configured trust checks. For more information, see [Harden KnownProxies/KnownNetworks for non-IP transports (`dotnet/aspnetcore` #67817)](https://github.com/dotnet/aspnetcore/pull/67817).
 
 ## Recommended action
 
