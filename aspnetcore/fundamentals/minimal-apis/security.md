@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Learn how to configure authentication and authorization in Minimal API apps, explore concepts, define policies, and run development tests.
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 11/25/2026
+ms.date: 11/16/2026
 ---
 # Authentication and authorization in Minimal APIs
 
