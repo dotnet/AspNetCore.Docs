@@ -56,7 +56,7 @@ app.Lifetime.ApplicationStarted.Register(() =>
     byte[] encodedCurrentTimeUTC = System.Text.Encoding.UTF8.GetBytes(currentTimeUTC);
     var options = new DistributedCacheEntryOptions()
         .SetSlidingExpiration(TimeSpan.FromSeconds(20));
-    app.Services.GetService<IDistributedCache>()
+    app.Services.GetRequiredService<IDistributedCache>()
                               .Set("cachedTimeUTC", encodedCurrentTimeUTC, options);
 });
 #endregion
