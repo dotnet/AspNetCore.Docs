@@ -64,4 +64,4 @@ Then update the corresponding `[EventHandler]` attribute or `@on*` directive on 
 
 ## Affected APIs
 
-None. `Blazor.registerCustomEventType` is a JavaScript API; it isn't surfaced through the .NET object model. For more information, see [custom events in Blazor](/aspnet/core/blazor/components/event-handling#custom-event-arguments).
+None. `Blazor.registerCustomEventType` is a JavaScript API; it isn't surfaced through the .NET object model. For more information, see [custom events in Blazor](../../blazor/components/event-handling.md#custom-event-arguments).

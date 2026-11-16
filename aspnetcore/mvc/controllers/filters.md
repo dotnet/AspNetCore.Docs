@@ -57,7 +57,7 @@ Each filter type is executed at a different stage in the filter pipeline:
   * Can change the result returned from the action.
   * Are **not** supported in Razor Pages.
 
-* [Endpoint filters](/aspnet/core/fundamentals/minimal-apis/min-api-filters):
+* [Endpoint filters](../../fundamentals/minimal-apis/min-api-filters.md):
 
   * Run immediately before and after an action method is called.
   * Can change the arguments passed into an action.

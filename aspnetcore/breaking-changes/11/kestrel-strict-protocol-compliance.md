@@ -59,4 +59,4 @@ For the HTTP/1.1 change, audit any client that emits both `Content-Length` and `
 
 ## Affected APIs
 
-None directly. The change is enforced at the protocol layer by Kestrel; no public API surface is changed. For more information, see the [Kestrel documentation](/aspnet/core/fundamentals/servers/kestrel).
+None directly. The change is enforced at the protocol layer by Kestrel; no public API surface is changed. For more information, see the [Kestrel documentation](../../fundamentals/servers/kestrel.md).

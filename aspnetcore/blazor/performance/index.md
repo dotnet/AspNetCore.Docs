@@ -48,7 +48,7 @@ builder.Services.ConfigureOpenTelemetryTracerProvider(tracerProvider =>
 
 ### Performance meters
 
-For more information on the following performance meters, see [ASP.NET Core built-in metrics](../../metrics/built-in.md).
+For more information on the following performance meters, see [ASP.NET Core built-in Blazor (Razor components) metrics](../../metrics/blazor.md) and [ASP.NET Core built-in metrics](../../metrics/built-in.md).
 
 `Microsoft.AspNetCore.Components` meter:
 
@@ -71,13 +71,13 @@ In server-side Blazor apps, additional circuit-specific metrics include:
 
 ### Blazor tracing
 
-For more information on the following tracing activities, see [ASP.NET Core built-in metrics](../../metrics/built-in.md).
+For more information on the following tracing activities, see [ASP.NET Core built-in Blazor (Razor components) metrics](../../metrics/blazor.md) and [ASP.NET Core built-in metrics](../../metrics/built-in.md).
 
-The new activity tracing capabilities use the `Microsoft.AspNetCore.Components` activity source and provide three main types of tracing activities: circuit lifecycle, navigation, and event handling.
+The new activity tracing capabilities use the `Microsoft.AspNetCore.Components` and `Microsoft.AspNetCore.Components.Server.Circuits` activity sources and provide three main types of tracing activities: circuit lifecycle, navigation, and event handling.
 
 Circuit lifecycle tracing:
 
-`Microsoft.AspNetCore.Components.StartCircuit`: Traces circuit initialization with the format `Circuit {circuitId}`.
+`Microsoft.AspNetCore.Components.Server.Circuits.StartCircuit`: Traces circuit initialization with the format `Circuit {circuitId}`.
 
 Tags:
 
