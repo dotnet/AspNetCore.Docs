@@ -98,8 +98,8 @@ A [403 Forbidden](https://developer.mozilla.org/docs/Web/HTTP/Status/403) respon
 
 In ASP.NET Core, you can enforce authorization using:
 
-- [Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, such as "Must be an administrator," and associate them with policies.
-- [Role-based authorization](/aspnet/core/security/authorization/roles): Assign users to roles, such as "Admin" or "Editor," and restrict access based on those roles.
+- [Requirements and policies](../authorization/policies.md): Define custom requirements, such as "Must be an administrator," and associate them with policies.
+- [Role-based authorization](../authorization/roles.md): Assign users to roles, such as "Admin" or "Editor," and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
 
@@ -108,7 +108,7 @@ When an API uses JWT access tokens for authorization, the API only validates the
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
 * For apps acting on behalf of a user and an application: Use OIDC to enable delegated user access. In web apps, use the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*).
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](configure-oidc-web-authentication.md), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*).
 * If the app has no user: Use the OAuth 2.0 client credentials flow to obtain application access tokens.
 
 ## Implementing JWT bearer token authentication
@@ -226,7 +226,7 @@ You should **NOT** create an access token from a username/password request. User
 
 ### Use cookies
 
-For secure web apps, a backend is required to store access tokens on a trusted server.  Only a secure HTTP only cookie is shared on the client browser. See the [OIDC authentication documentation](/aspnet/core/security/authentication/configure-oidc-web-authentication) for how to do this in an ASP.NET Core web app.
+For secure web apps, a backend is required to store access tokens on a trusted server.  Only a secure HTTP only cookie is shared on the client browser. See the [OIDC authentication documentation](configure-oidc-web-authentication.md) for how to do this in an ASP.NET Core web app.
 
 ## Downstream APIs
 
@@ -301,7 +301,7 @@ For more information, see [auth0: The Backend for Frontend Pattern](https://auth
 
 ## Testing APIs
 
-Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](/aspnet/core/security/authentication/jwt-authn).
+Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](jwt-authn.md).
 
 > [!WARNING]
 > Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
