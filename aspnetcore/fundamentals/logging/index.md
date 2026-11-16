@@ -2,12 +2,12 @@
 title: Logging in .NET and ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/18/2026
 ---
 # Logging in .NET and ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 This article describes logging in ASP.NET Core apps. For general guidance on logging in .NET, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For Blazor logging guidance, which adds to or supersedes this guidance, see [ASP.NET Core Blazor logging](../../blazor/fundamentals/logging.md).
 
@@ -16,8 +16,6 @@ This article describes logging in ASP.NET Core apps. For general guidance on log
 ASP.NET Core supports high performance, structured logging via the <xref:Microsoft.Extensions.Logging.ILogger> API to help you monitor app behavior and diagnose problems. Logs are written to different destinations by configuring *logging providers*. A set of logging providers are built into the framework, and there are many third-party providers available. Multiple providers can be enabled in an app.
 
 Most logging providers write log messages to a data storage system. For example, the Azure Application Insights logging provider stores logs in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). One provider, the `Console` provider, only displays log messages. The `Console` provider is useful when running an app locally for monitoring and debugging in real time.
-
-:::moniker range=">= aspnetcore-6.0"
 
 Apps created from an ASP.NET Core web app project template call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> in the app's `Program` file, which adds the following default logging providers:
 
@@ -50,39 +48,6 @@ builder.Host.ConfigureLogging(logging =>
     logging.AddConsole();
 });
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-Apps created from an ASP.NET Core web app project template call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*?displayProperty=nameWithType>, which adds the following default logging providers:
-
-* [`Console`](#console)
-* [`Debug`](#debug)
-* [`EventSource`](#eventsource)
-* [Windows `EventLog`](#windows-eventlog)
-
-```csharp
-Host.CreateDefaultBuilder(args)
-```
-
-To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the <xref:Microsoft.Extensions.Logging.ILoggingBuilder> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddConsole();
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-:::moniker-end
 
 Additional providers are covered in the [Built-in logging providers](#built-in-logging-providers) and [Third-party logging providers](#third-party-logging-providers) sections.
 
@@ -131,13 +96,6 @@ In the following counter page (`Counter` Razor component) in a Blazor app, an `I
     }
 }
 ```
-
-:::moniker range="< aspnetcore-6.0"
-
-> [!NOTE]
-> In .NET 5 or earlier, an [`@using` directive](../../mvc/views/razor.md#using) for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) logging API completions in Razor components.
-
-:::moniker-end
 
 Log message:
 
@@ -200,8 +158,6 @@ When logging to Azure Table Storage:
 
 ## Log at app startup
 
-:::moniker range=">= aspnetcore-6.0"
-
 The following example calls <xref:Microsoft.AspNetCore.Builder.WebApplication.Logger?displayProperty=nameWithType> in the `Program` file to log informational messages:
 
 ```csharp
@@ -260,41 +216,6 @@ app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 
 app.Run();
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-The following code logs in `Program.Main` by obtaining an <xref:Microsoft.Extensions.Logging.ILogger> instance from DI after building the host:
-
-```csharp
-public static void Main(string[] args)
-{
-    var host = CreateHostBuilder(args).Build();
-
-    var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Host created.");
-
-    host.Run();
-}
-```
-
-The following example shows how to inject an <xref:Microsoft.Extensions.Logging.ILogger> into `Startup.Configure`:
-
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
-{
-    logger.LogInformation("'Startup'.Configure' logging");
-
-    ...
-}
-```
-
-Logger injection into the `Startup` constructor or into the `Startup.ConfigureServices` method isn't supported because logging depends on dependency injection (DI) and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes executing.
-
-For information on configuring a service that depends on <xref:Microsoft.Extensions.Logging.ILogger> or why constructor injection of a logger into `Startup` worked in earlier versions, see the [Configure a service that depends on `ILogger`](#configure-a-service-that-depends-on-ilogger) section.
-
-:::moniker-end
 
 ## Configure logging
 
@@ -865,13 +786,9 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 <xref:Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider> writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
 
-:::moniker range=">= aspnetcore-7.0"
-
 #### `ServerReady` event to measure startup time
 
 The ASP.NET Core hosting <xref:System.Diagnostics.Tracing.EventSource> emits the <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName>, which represents the point where the server is ready to respond to requests and can be used to measure startup time.
-
-:::moniker-end
 
 #### `dotnet-trace` tooling
 
@@ -1090,8 +1007,6 @@ The provider package isn't included in the shared framework. To use the provider
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
 
-:::moniker range=">= aspnetcore-6.0"
-
 ```csharp
 using Microsoft.Extensions.Logging.AzureAppServices;
 
@@ -1111,44 +1026,6 @@ builder.Services.Configure<AzureBlobLoggerOptions>(options =>
     options.BlobName = "log.txt";
 });
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-public class Scopes
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-                .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options =>
-                    {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    })
-                    .Configure<AzureBlobLoggerOptions>(options =>
-                    {
-                        options.BlobName = "log.txt";
-                    }))
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
-```
-
-:::moniker-end
 
 When deployed to Azure App Service, the app uses the settings in the [App Service logs](/azure/app-service/troubleshoot-diagnostic-logs) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
@@ -1254,13 +1131,7 @@ In the preceding example:
   * All categories starting with "`Microsoft`".
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Trace> and higher.
 
-:::moniker range=">= aspnetcore-5.0"
-
 ## Specify the trace context for logging scopes
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
 
 The logging libraries implicitly create a scope object with <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>. The following fields indicate the options (<xref:Microsoft.Extensions.Logging.ActivityTrackingOptions>):
 
@@ -1295,43 +1166,6 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-## Automatically log scope with `SpanId`, `TraceId`, and `ParentId`
-
-The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, and `ParentId`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
-
-
-The logging libraries implicitly create a scope object with <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>. The following fields indicate the options (<xref:Microsoft.Extensions.Logging.ActivityTrackingOptions>):
-
-* `SpanId`
-* `TraceId`
-* `ParentId`
-
-`SpanId`, `TraceId`, `ParentId` are enabled by default.
-
-In the following example, only the `SpanId` and `TraceId` are specified:
-
-```csharp
-var loggerFactory = LoggerFactory.Create(logging =>
-{
-    logging.Configure(options =>
-    {
-        options.ActivityTrackingOptions = 
-            ActivityTrackingOptions.SpanId | ActivityTrackingOptions.TraceId;
-    }).AddSimpleConsole(options =>
-    {
-        options.IncludeScopes = true;
-    });
-});
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
-
 If the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/) `traceparent` http request header is set:
 
 * The [`ParentId`](xref:Microsoft.Extensions.Logging.ActivityTrackingOptions) in the log scope shows the `parent-id` from in-bound `traceparent` header.
@@ -1339,80 +1173,9 @@ If the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/) `
 
 For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 
-:::moniker-end
-
 ## Create a custom logger
 
 To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
-
-:::moniker range="< aspnetcore-6.0"
-
-## Log during host construction
-
-Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHostBuilder*>. `AddSerilog` uses the static configuration specified in `Log.Logger`, which is provided by the [Serilog NuGet package](https://www.nuget.org/packages/serilog).
-
-In the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateHostBuilder*> method of the app's `Program` file:
-
-```csharp
-var builtConfig = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .AddCommandLine(args)
-    .Build();
-
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File(builtConfig["Logging:FilePath"])
-    .CreateLogger();
-
-try
-{
-    return Host.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.AddRazorPages();
-        })
-        .ConfigureAppConfiguration((hostingContext, config) =>
-        {
-            config.AddConfiguration(builtConfig);
-        })
-        .ConfigureLogging(logging =>
-        {   
-            logging.AddSerilog();
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Host builder error");
-
-    throw;
-}
-finally
-{
-    Log.CloseAndFlush();
-}
-```
-
-## Configure a service that depends on `ILogger`
-
-Constructor injection of a logger into `Startup` works in earlier versions of ASP.NET Core because a separate DI container is created for the [Web Host](../host/web-host.md). For information about why only one container is created for the [Generic Host](../host/generic-host.md), see the [breaking change announcement](https://github.com/aspnet/Announcements/issues/353).
-
-To configure a service that depends on <xref:Microsoft.Extensions.Logging.ILogger>, use constructor injection or provide a factory method. The factory method approach is recommended only if there's no other option. For example, consider a service that requires a logger instance provided by dependency injection (DI):
-
-```csharp
-services.AddSingleton<ILoggingService>((container) =>
-{
-    var logger = container.GetRequiredService<ILogger<LoggingService>>();
-    return new LoggingService() { Logger = logger };
-});
-```
-
-The preceding code is a <xref:System.Func`2> that runs the first time the DI container constructs an instance of `LoggerService`. Access any registered service using this pattern.
-
-:::moniker-end
 
 ## Logging bug reports
 

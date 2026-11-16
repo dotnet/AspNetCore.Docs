@@ -107,13 +107,13 @@ Forwarded headers middleware should run before other middleware. This ordering e
 
 Invoke the <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersExtensions.UseForwardedHeaders*> method before calling other middleware. Configure the middleware to forward the `X-Forwarded-For` and `X-Forwarded-Proto` headers:
 
-:::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_1":::
+:::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/Program.cs" id="snippet_1":::
 
 If no <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions> are specified to the middleware, the default headers to forward are `None`.
 
 Proxies running on loopback addresses (`127.0.0.0/8`, `[::1]`), including the standard localhost address (`127.0.0.1`), are trusted by default. If other trusted proxies or networks within the organization handle requests between the internet and the web server, add them to the list of <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownProxies> or <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions.KnownNetworks> with <xref:Microsoft.AspNetCore.Builder.ForwardedHeadersOptions>. The following example adds a trusted proxy server at IP address `10.0.0.100` to the forwarded headers middleware `KnownProxies`:
 
-:::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/7/Program.cs" id="snippet_all":::
+:::code language="csharp" source="~/host-and-deploy/linux-nginx/samples/Program.cs" id="snippet_all":::
 
 For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](proxy-load-balancer.md).
 
@@ -493,6 +493,10 @@ Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{
 Modify `/etc/nginx/nginx.conf`. Open it in a text editor, and replace the `http{}` and `server{}` code blocks with contents with the following snippet:
 
 ---
+
+The `limit_req` directive requires a matching shared memory zone defined by [`limit_req_zone`](https://nginx.org/docs/http/ngx_http_limit_req_module.html#limit_req_zone) in the `http` block of `/etc/nginx/nginx.conf`, not in a `server` or `location` block. The following example defines the `one` zone with 10 MB of memory and a rate of 5 requests per second per client IP address.
+
+Copying `limit_req` without the matching zone definition causes the error `zero size shared memory zone "one"`.
 
 [!code-nginx[](~/host-and-deploy/linux-nginx/nginx.conf)]
 

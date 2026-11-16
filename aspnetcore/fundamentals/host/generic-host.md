@@ -45,11 +45,11 @@ The host is typically configured, built, and run by code in the _Program.cs_ fil
 
 The following code creates a host with an `IHostedService` implementation added to the DI container:
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Program.cs" id="snippet_Host":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Program.cs" id="snippet_Host":::
 
 For an HTTP workload, call the <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> method after the <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder*> method:
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_HostConfigureWebHostDefaults":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_HostConfigureWebHostDefaults":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -177,7 +177,7 @@ The following example is an `IHostedService` implementation that registers `IHos
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Services/HostApplicationLifetimeEventsHostedService.cs" id="snippet_Class":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Services/HostApplicationLifetimeEventsHostedService.cs" id="snippet_Class":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -222,7 +222,7 @@ The following example creates host configuration:
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureHostConfiguration":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureHostConfiguration":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -275,7 +275,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.ContentRootPath> propert
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_UseContentRoot":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_UseContentRoot":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -307,7 +307,7 @@ The <xref:Microsoft.Extensions.Hosting.IHostEnvironment.EnvironmentName> propert
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_UseEnvironment":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_UseEnvironment":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -343,7 +343,7 @@ If the timeout period expires before all hosted services stop, any remaining act
 
 The following example sets the timeout to 20 seconds:
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ShutdownTimeout":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_ShutdownTimeout":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -379,7 +379,7 @@ Extension methods on `IWebHostBuilder` are available for these settings. Code sa
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureWebHostDefaults":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_ConfigureWebHostDefaults":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -410,7 +410,7 @@ When `false`, errors during startup result in the host exiting. When `true`, the
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderCaptureStartupErrors":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderCaptureStartupErrors":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -435,7 +435,7 @@ When enabled, or when the environment is set to `Development`, the app captures 
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderDetailedErrors":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderDetailedErrors":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -460,7 +460,7 @@ Although the configuration value defaults to an empty string, the hosting startu
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupAssemblies":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupAssemblies":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -483,7 +483,7 @@ Provides a semicolon-delimited string of hosting startup assemblies to exclude o
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupExcludeAssemblies":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHostingStartupExcludeAssemblies":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -508,7 +508,7 @@ This setting is used in [enforcing HTTPS](../../security/enforcing-ssl.md). This
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPort":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderHttpsPort":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -549,7 +549,7 @@ Indicates whether the host should listen on the URLs configured with the `IWebHo
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreferHostingUrls":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreferHostingUrls":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -572,7 +572,7 @@ Prevents the automatic loading of hosting startup assemblies, including hosting 
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreventHostingStartup":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderPreventHostingStartup":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -597,9 +597,9 @@ You can reference the assembly by name (`string`) or type (`TStartup`). If multi
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartup":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartup":::
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartupGeneric":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseStartupGeneric":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -626,7 +626,7 @@ Indicates whether to suppress hosting startup status messages.
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderSuppressStatusMessages":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderSuppressStatusMessages":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -651,7 +651,7 @@ Set to a semicolon-separated `;` list of URL prefixes to which the server should
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseUrls":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseUrls":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"
@@ -680,7 +680,7 @@ The path to `{content root}/wwwroot` must exist. If the path doesn't exist, a no
 
 :::moniker range=">= aspnetcore-6.0"
 
-:::code language="csharp" source="generic-host/samples/6.x/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseWebRoot":::
+:::code language="csharp" source="generic-host/samples/GenericHostSample/Snippets/Program.cs" id="snippet_WebHostBuilderUseWebRoot":::
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"

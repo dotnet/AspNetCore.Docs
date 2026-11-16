@@ -38,7 +38,7 @@ app.Run();
 ```
 
 > [!NOTE]
-> For details about middleware ordering, see [ASP.NET Core middleware > Middleware order](/aspnet/core/fundamentals/middleware/#middleware-order).
+> For details about middleware ordering, see [ASP.NET Core middleware > Middleware order](../../middleware/index.md#middleware-order).
 
 Configuration can be modified during the load sequence by using [YARP configuration filters](config-filters.md).
 
@@ -104,9 +104,9 @@ Each route requires at least the following fields:
 
 * `RouteId`: A unique name for the route.
 * `ClusterId`: The name of an entry in the `Clusters` section.
-* `Match`: Either a `Hosts` array or a `Path` pattern string. You can define the path by using [Routing in ASP.NET Core > Route templates](/aspnet/core/fundamentals/routing#route-templates).
+* `Match`: Either a `Hosts` array or a `Path` pattern string. You can define the path by using [Routing in ASP.NET Core > Route templates](../../routing.md#route-templates).
 
-Route matching is based on the most specific routes having highest precedence, as described in [URL matching](/aspnet/core/fundamentals/routing#url-matching). Explicit ordering can be achieved by using the `order` field, where lower values take higher priority.
+Route matching is based on the most specific routes having highest precedence, as described in [URL matching](../../routing.md#url-matching). Explicit ordering can be achieved by using the `order` field, where lower values take higher priority.
 
 [YARP headers](header-routing.md), [authentication and authorization](authn-authz.md), [cross-origin requests (CORS)](cors.md), and other route-based policies can be configured on each route entry. For other fields, see the [RouteConfig](xref:Yarp.ReverseProxy.Configuration.RouteConfig) reference.
 
