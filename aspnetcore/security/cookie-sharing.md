@@ -86,11 +86,13 @@ ASP.NET 4.x apps that use Microsoft.Owin cookie authentication middleware can be
 
 To configure ASP.NET Microsoft.Owin cookie authentication middleware to share cookies with an ASP.NET Core app, follow the preceding instructions to configure the ASP.NET Core app to use a specific cookie name, app name, and to persist data protection keys to a well-known location. See [Configure ASP.NET Core Data Protection](data-protection/configuration/overview.md) for more information on persisting data protection keys.
 
-In the ASP.NET app, install the [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
+In the ASP.NET app, install the latest stable [`Microsoft.Owin.Security.Interop`](https://www.nuget.org/packages/Microsoft.Owin.Security.Interop/) package.
 
 Update the `UseCookieAuthentication` call in Startup.Auth.cs to configure an AspNetTicketDataFormat to match the ASP.NET Core app's settings:
 
 [!code-csharp[](~/security/cookie-sharing/samples/WebCookieShare-NetFx/App_Start/Startup.Auth.cs?name=snippet_netfx_cookie_auth&highlight=11-23)]
+
+The `Microsoft.Owin.Security.Cookies.CookieAuthenticationOptions.TicketDataFormat` property has type `ISecureDataFormat<AuthenticationTicket>`, so an `AspNetTicketDataFormat` instance can be assigned to it. Don't declare the destination as the concrete `Microsoft.Owin.Security.DataHandler.TicketDataFormat` type.
 
 Important items configured here include:
 

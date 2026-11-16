@@ -35,6 +35,7 @@ namespace ContactManager.Pages.Contacts
             }
 
             Contact.OwnerID = UserManager.GetUserId(User);
+            Contact.Status = ContactStatus.Submitted;
 
             var isAuthorized = await AuthorizationService.AuthorizeAsync(
                                                         User, Contact,

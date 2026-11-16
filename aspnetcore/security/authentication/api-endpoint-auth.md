@@ -98,7 +98,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 ## Breaking change considerations
 
-The change introduced in .NET 10 is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change). An app that combines cookie authentication with endpoints that ASP.NET Core detects as API endpoints returns 401 and 403 responses where it previously returned a 302 redirect to the login or access-denied page. For the full breaking change notice, see [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints).
+The change introduced in .NET 10 is a [behavioral change](/dotnet/core/compatibility/categories#behavioral-change). An app that combines cookie authentication with endpoints that ASP.NET Core detects as API endpoints returns 401 and 403 responses where it previously returned a 302 redirect to the login or access-denied page. For the full breaking change notice, see [Cookie login redirects are disabled for known API endpoints](../../breaking-changes/10/cookie-authentication-api-endpoints.md).
 
 Consider the impact on each kind of app:
 
@@ -132,6 +132,6 @@ public async Task UnauthorizedApiRequest_Returns401()
 * [Create web APIs with ASP.NET Core](../../web-api/index.md)
 * [Create responses in Minimal API applications](../../fundamentals/minimal-apis/responses.md)
 * [SignalR authentication and authorization](../../signalr/authn-and-authz.md)
-* [Cookie login redirects are disabled for known API endpoints](/aspnet/core/breaking-changes/10/cookie-authentication-api-endpoints)
+* [Cookie login redirects are disabled for known API endpoints](../../breaking-changes/10/cookie-authentication-api-endpoints.md)
 
 :::moniker-end

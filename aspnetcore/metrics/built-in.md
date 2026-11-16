@@ -24,7 +24,7 @@ Page | Namespaces | Example metrics
 --- | --- | ---
 [HTTP metrics](http.md) | `Microsoft.AspNetCore.Hosting`, `Microsoft.AspNetCore.Routing`, `Microsoft.AspNetCore.RateLimiting`, `Microsoft.AspNetCore.HeaderParsing`, `Microsoft.AspNetCore.Server.Kestrel`, `Microsoft.AspNetCore.Http.Connections` (SignalR) | `http.server.request.duration`, `aspnetcore.routing.match_attempts`, `kestrel.active_connections`, `signalr.server.active_connections`
 [Diagnostics metrics](diagnostics.md) | `Microsoft.AspNetCore.Diagnostics` | `aspnetcore.diagnostics.exceptions`
-[Blazor (Components) metrics](blazor.md) | `Microsoft.AspNetCore.Components`, `Microsoft.AspNetCore.Components.Lifecycle`, `Microsoft.AspNetCore.Components.Server.Circuits` | `aspnetcore.components.navigation`, `aspnetcore.components.circuit.active`
+[Blazor (Components) metrics](blazor.md) | `Microsoft.AspNetCore.Components`, `Microsoft.AspNetCore.Components.Lifecycle`, `Microsoft.AspNetCore.Components.Server.Circuits` | `aspnetcore.components.navigate`, `aspnetcore.components.circuit.active`
 [Authentication and authorization metrics](security.md) | `Microsoft.AspNetCore.Authorization`, `Microsoft.AspNetCore.Authentication` | `aspnetcore.authorization.attempts`, `aspnetcore.authentication.challenges`
 
 The Blazor (Components) and authentication and authorization metrics pages describe metrics available in ASP.NET Core 10.0 or later. Select ASP.NET Core 10.0 (or a later version) with the version selector to view that content.
