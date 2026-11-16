@@ -14,7 +14,7 @@ This article highlights the most significant changes in ASP.NET Core in .NET 6 w
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They are ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core. For more information, see:
 
 * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
-* [Differences between Minimal APIs and APIs with controllers](../fundamentals/apis.md#choosing-between-approaches)
+* [Differences between Minimal APIs and APIs with controllers](../fundamentals/apis.md#choose-between-approaches)
 * [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
 * [Code samples migrated to the new minimal hosting model in 6.0](../migration/50-to-60-samples.md)
 
