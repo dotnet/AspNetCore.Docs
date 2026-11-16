@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core APIs
 description: Learn about error handling in ASP.NET Core APIs with Minimal APIs and controller-based approaches.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 11/05/2026
+ms.date: 11/16/2026
 ---
 # Handle errors in ASP.NET Core APIs
 
@@ -233,9 +233,16 @@ If you're migrating from controller-based APIs to Minimal APIs:
 
 ### Returning multiple result types with `TypedResults`
 
-Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on an error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on a success. To preserve compile-time type safety and enable automatic OpenAPI metadata generation, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with <xref:Microsoft.AspNetCore.Http.TypedResults>:
+Endpoints often return different result types depending on the request outcome, such as returning a <xref:Microsoft.AspNetCore.Http.HttpResults.ProblemHttpResult> on an error or a <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> on a success. To preserve compile-time type safety and strongly-typed signatures, use the union return type <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> with <xref:Microsoft.AspNetCore.Http.TypedResults>. Because result types such as <xref:Microsoft.AspNetCore.Http.HttpResults.RedirectHttpResult> don't automatically provide OpenAPI metadata, configure explicit response metadata with <xref:Microsoft.AspNetCore.Builder.OpenApiRouteHandlerBuilderExtensions.Produces*> and <xref:Microsoft.AspNetCore.Builder.OpenApiRouteHandlerBuilderExtensions.ProducesProblem*>:
 
 ```csharp
+using Microsoft.AspNetCore.Http.HttpResults;
+
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+bool IsSupportedProvider(string provider) => provider is "google" or "github";
+
 app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (string? provider) =>
 {
     if (string.IsNullOrEmpty(provider))
@@ -255,7 +262,10 @@ app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (st
     }
 
     return TypedResults.Redirect($"/auth/{provider}");
-});
+})
+.Produces(StatusCodes.Status302Found)
+.ProducesProblem(StatusCodes.Status400BadRequest)
+.ProducesProblem(StatusCodes.Status501NotImplemented);
 ```
 
 Using <xref:Microsoft.AspNetCore.Http.TypedResults> with <xref:Microsoft.AspNetCore.Http.HttpResults.Results%602> avoids throwing exceptions for expected business errors and provides strongly-typed response signatures for testability.
