@@ -2,7 +2,7 @@
 title: Rate limiting middleware samples
 monikerRange: '>= aspnetcore-7.0'
 description: Samples for using ASP.NET rate limitng middleware
-ms.date: 11/05/2026
+ms.date: 11/16/2026
 ---
 # Rate limiter samples
 
@@ -54,6 +54,8 @@ The following sample:
 
 See [the samples repository for the complete `Program.cs`](https://github.com/dotnet/AspNetCore.Docs.Samples/blob/main/fundamentals/middleware/rate-limit/WebRateLimitAuth/Program.cs#L145,L281) file.
 
+:::moniker range=">= aspnetcore-10.0"
+
 ## Chained limiters in a named policy
 
 To combine multiple limiters within a named policy (rather than globally), use <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*> inside the policy's partition factory:
@@ -86,5 +88,10 @@ builder.Services.AddRateLimiter(options =>
 });
 ```
 
+> [!NOTE]
+> <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*> does not dispose its inner limiters when the returned chained limiter is disposed. When partitions are evicted from the partition cache, only the top-level limiter is disposed. If inner limiters manage background resources (such as an auto-replenishing <xref:System.Threading.RateLimiting.TokenBucketRateLimiter>), return an owning wrapper that disposes the inner limiters in both <xref:System.Threading.RateLimiting.RateLimiter.Dispose*> and <xref:System.Threading.RateLimiting.RateLimiter.DisposeAsync*>.
+
 For more information, see [Chain limiters in a named policy](rate-limit.md#chain-limiters-in-a-named-policy).
+
+:::moniker-end
 
