@@ -9,7 +9,7 @@ var securityDescriptor = new CommonSecurityDescriptor(isContainer: false, isDS: 
 var dacl = new DiscretionaryAcl(isContainer: false, isDS: false, capacity: 2);
 dacl.AddAccess(
     AccessControlType.Allow,
-    new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, null),
+    new SecurityIdentifier(WellKnownSidType.AuthenticatedUserSid, null),
     -1,
     InheritanceFlags.None,
     PropagationFlags.None

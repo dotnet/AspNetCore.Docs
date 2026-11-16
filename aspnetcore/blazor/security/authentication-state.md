@@ -3,14 +3,13 @@ title: ASP.NET Core Blazor authentication state
 description: Learn how to create a custom authentication state provider and receive notifications of user authentication state changes.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/security/authentication-state
 zone_pivot_groups: blazor-app-models
 ---
 # ASP.NET Core Blazor authentication state
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to create a custom [authentication state provider](xref:blazor/security/index#authenticationstateprovider-service) and receive user authentication state change notifications in code.
+This article explains how to create a custom [authentication state provider](index.md#authenticationstateprovider-service) and receive user authentication state change notifications in code.
 
 The general approaches taken for server-side and client-side Blazor apps are similar but differ in their exact implementations, so this article pivots between server-side Blazor apps and client-side Blazor apps. Use the pivot selector at the top of the article to change the article's pivot to match the type of Blazor project that you're working with:
 
@@ -21,9 +20,9 @@ The general approaches taken for server-side and client-side Blazor apps are sim
 
 The Blazor framework includes an abstract <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> class to provide information about the authentication state of the current user with the following members:
 
-* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync%2A>: Asynchronously gets the authentication state of the current user.
+* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync*>: Asynchronously gets the authentication state of the current user.
 * <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.AuthenticationStateChanged>: An event that provides notification when the authentication state has changed. For example, this event may be raised if a user signs in or out of the app.
-* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>: Raises an authentication state changed event.
+* <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>: Raises an authentication state changed event.
 
 ## Implement a custom `AuthenticationStateProvider`
 
@@ -37,7 +36,7 @@ The app must reference the [`Microsoft.AspNetCore.Components.Authorization` NuGe
 
 Configure the following authentication, authorization, and cascading authentication state services in the `Program` file.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app is preconfigured with the following service registrations, which includes exposing the authentication state as a cascading parameter. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app is preconfigured with the following service registrations, which includes exposing the authentication state as a cascading parameter. For more information, see [ASP.NET Core Blazor authentication and authorization](index.md#expose-the-authentication-state-as-a-cascading-parameter) with additional information presented in the article's [Customize unauthorized content with the `Router` component](index.md#customize-unauthorized-content-with-the-router-component) section.
 
 ```csharp
 using Microsoft.AspNetCore.Components.Authorization;
@@ -88,7 +87,7 @@ services.AddAuthorization();
 
 In Blazor WebAssembly apps (all .NET versions) or the `.Client` project of a Blazor Web App (.NET 8 or later), configure authentication, authorization, and cascading authentication state services in the `Program` file.
 
-When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app is preconfigured with the following service registrations, which includes exposing the authentication state as a cascading parameter. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app is preconfigured with the following service registrations, which includes exposing the authentication state as a cascading parameter. For more information, see [ASP.NET Core Blazor authentication and authorization](index.md#expose-the-authentication-state-as-a-cascading-parameter) with additional information presented in the article's [Customize unauthorized content with the `Router` component](index.md#customize-unauthorized-content-with-the-router-component) section.
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -121,7 +120,7 @@ builder.Services.AddAuthorizationCore();
 
 :::zone-end
 
-Subclass <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync%2A> to create the user's authentication state. In the following example, all users are authenticated with the username `mrfibuli`. 
+Subclass <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> and override <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.GetAuthenticationStateAsync*> to create the user's authentication state. In the following example, all users are authenticated with the username `mrfibuli`. 
 
 `CustomAuthStateProvider.cs`:
 
@@ -152,7 +151,7 @@ public class CustomAuthStateProvider : AuthenticationStateProvider
 
 :::moniker range=">= aspnetcore-8.0"
 
-The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A>:
+The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*>:
 
 ```csharp
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
@@ -162,7 +161,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>:
 
 ```csharp
 builder.Services.AddServerSideBlazor();
@@ -174,7 +173,7 @@ builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>
 
 :::moniker range="< aspnetcore-6.0"
 
-In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped%2A> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor%2A>:
+In a Blazor Server app, register the service *scoped* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddScoped*> ***after*** the call to <xref:Microsoft.Extensions.DependencyInjection.ComponentServiceCollectionExtensions.AddServerSideBlazor*>:
 
 ```csharp
 services.AddServerSideBlazor();
@@ -188,7 +187,7 @@ services.AddScoped<AuthenticationStateProvider, CustomAuthStateProvider>();
 
 :::zone pivot="webassembly"
 
-The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *singleton* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton%2A>:
+The `CustomAuthStateProvider` service is registered in the `Program` file. Register the service *singleton* with <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton*>:
 
 ```csharp
 builder.Services.AddSingleton<AuthenticationStateProvider, CustomAuthStateProvider>();
@@ -196,7 +195,7 @@ builder.Services.AddSingleton<AuthenticationStateProvider, CustomAuthStateProvid
 
 :::zone-end
 
-If it isn't present, add an [`@using`](xref:mvc/views/razor#using) statement to the imports file (`_Imports.razor`) to make the <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace available across components:
+If it isn't present, add an [`@using`](../../mvc/views/razor.md#using) statement to the imports file (`_Imports.razor`) to make the <xref:Microsoft.AspNetCore.Components.Authorization?displayProperty=fullName> namespace available across components:
 
 ```razor
 @using Microsoft.AspNetCore.Components.Authorization;
@@ -217,7 +216,7 @@ Confirm or change the route view component to an <xref:Microsoft.AspNetCore.Comp
 ```
 
 > [!NOTE]
-> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> component. For more information, see [ASP.NET Core Blazor authentication and authorization](index.md#expose-the-authentication-state-as-a-cascading-parameter) with additional information presented in the article's [Customize unauthorized content with the `Router` component](index.md#customize-unauthorized-content-with-the-router-component) section.
 
 :::moniker-end
 
@@ -243,7 +242,7 @@ The location of the `Router` component differs depending on the type of app. Use
 ```
 
 > [!NOTE]
-> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components. For more information, see <xref:blazor/security/index#expose-the-authentication-state-as-a-cascading-parameter> with additional information presented in the article's [Customize unauthorized content with the `Router` component](xref:blazor/security/index#customize-unauthorized-content-with-the-router-component) section.
+> When you create a Blazor app from one of the Blazor project templates with authentication enabled, the app includes the <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> and <xref:Microsoft.AspNetCore.Components.Authorization.CascadingAuthenticationState> components. For more information, see [ASP.NET Core Blazor authentication and authorization](index.md#expose-the-authentication-state-as-a-cascading-parameter) with additional information presented in the article's [Customize unauthorized content with the `Router` component](index.md#customize-unauthorized-content-with-the-router-component) section.
 
 :::moniker-end
 
@@ -260,11 +259,11 @@ The following example <xref:Microsoft.AspNetCore.Components.Authorization.Author
 </AuthorizeView>
 ```
 
-For guidance on the use of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>, see <xref:blazor/security/index#authorizeview-component>.
+For guidance on the use of <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeView>, see [ASP.NET Core Blazor authentication and authorization](index.md#authorizeview-component).
 
 ## Authentication state change notifications
 
-A [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can invoke <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class to notify consumers of the authentication state change to rerender.
+A [custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) can invoke <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*> on the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> base class to notify consumers of the authentication state change to rerender.
 
 The following example is based on implementing a custom <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> by following the guidance in the [Implement a custom `AuthenticationStateProvider`](#implement-a-custom-authenticationstateprovider) section earlier in this article. If you already followed the guidance in that section, the following `CustomAuthStateProvider` replaces the one shown in the section.
 
@@ -336,7 +335,7 @@ In a component:
 }
 ```
 
-The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the authentication state provider can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged%2A>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
+The preceding approach can be enhanced to trigger notifications of authentication state changes via a custom service. The following `CustomAuthenticationService` class maintains the current user's claims principal in a backing field (`currentUser`) with an event (`UserChanged`) that the authentication state provider can subscribe to, where the event invokes <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider.NotifyAuthenticationStateChanged*>. With the additional configuration later in this section, the `CustomAuthenticationService` can be injected into a component with logic that sets the `CurrentUser` to trigger the `UserChanged` event.
 
 `CustomAuthenticationService.cs`:
 
@@ -468,19 +467,19 @@ The following component's `SignIn` method creates a claims principal for the use
 
 :::moniker range=">= aspnetcore-8.0"
 
-* [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler` set up using an `IHttpClientFactory`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/webassembly/standalone-with-identity/index>
+* [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](index.md#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
+* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler` set up using an `IHttpClientFactory`](additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware)
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](blazor-web-app-with-oidc.md)
+* [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](webassembly/standalone-with-identity/index.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-* [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](xref:blazor/security/index#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
-* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler` set up using an `IHttpClientFactory`](xref:blazor/security/additional-scenarios#access-authenticationstateprovider-in-outgoing-request-middleware)
-* <xref:blazor/security/blazor-web-app-oidc>
-* <xref:blazor/security/webassembly/standalone-with-identity/index>
-[Prerendering with authentication in hosted Blazor WebAssembly apps](xref:blazor/security/webassembly/additional-scenarios#prerendering-with-authentication)
+* [Server-side unauthorized content display while prerendering with a custom `AuthenticationStateProvider`](index.md#unauthorized-content-display-while-prerendering-with-a-custom-authenticationstateprovider)
+* [How to access an `AuthenticationStateProvider` from a `DelegatingHandler` set up using an `IHttpClientFactory`](additional-scenarios.md#access-authenticationstateprovider-in-outgoing-request-middleware)
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](blazor-web-app-with-oidc.md)
+* [Secure ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](webassembly/standalone-with-identity/index.md)
+[Prerendering with authentication in hosted Blazor WebAssembly apps](webassembly/additional-scenarios.md#prerendering-with-authentication)
 
 :::moniker-end

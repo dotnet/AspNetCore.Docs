@@ -3,7 +3,6 @@ title: Threat mitigation guidance for ASP.NET Core Blazor static server-side ren
 description: Learn how to mitigate security threats in static server-side Blazor.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/static-server-side-rendering
 ---
 # Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering
 
@@ -19,7 +18,7 @@ All of the general security considerations defined for the interactive rendering
 
 The server-side rendering (SSR) model is based on the traditional request/response model of HTTP. As such, there are common areas of concern between SSR and request/response HTTP. General security considerations and specific threats must be successfully mitigated. The framework provides built-in mechanisms for managing some of these threats, but other threats are specific to app code and must be handled by the app. These threats can be categorized as follows:
 
-* Authentication and authorization: The app must ensure that the user is authenticated and authorized to access the app and the resources it exposes. The framework provides built-in mechanisms for authentication and authorization, but the app must ensure that the mechanisms are properly configured and used. The built-in mechanisms for authentication and authorization are covered in the [Blazor documentation's *Server* security node](xref:blazor/security/index) and in the [ASP.NET Core documentation's *Security and Identity* node](xref:security/index), so they won't be covered here.
+* Authentication and authorization: The app must ensure that the user is authenticated and authorized to access the app and the resources it exposes. The framework provides built-in mechanisms for authentication and authorization, but the app must ensure that the mechanisms are properly configured and used. The built-in mechanisms for authentication and authorization are covered in the [Blazor documentation's *Server* security node](index.md) and in the [ASP.NET Core documentation's *Security and Identity* node](../../security/index.md), so they won't be covered here.
 
 * Input validation and sanitization: All input arriving from a client must be validated and sanitized before use. Otherwise, the app might be exposed to attacks, such as SQL injection, cross-site scripting, cross-site request forgery, open redirection, and other forms of attacks. The input might come from anywhere in the request.
 
@@ -46,9 +45,9 @@ Data that might have come from user input also must be sanitized before included
 The framework provides the following mechanisms to help with input validation and sanitization:
 
 * All bound form data is validated for basic correctness. If an input can't be parsed, the binding process reports an error that the app can discover before taking any action with the data. The built-in <xref:Microsoft.AspNetCore.Components.Forms.EditForm> component takes this into account before invoking the <xref:Microsoft.AspNetCore.Components.Forms.EditForm.OnValidSubmit> form callback. Blazor avoids executing the callback if there are one or more binding errors.
-* The framework uses an antiforgery token to protect against cross-site request forgery attacks. For more information, see <xref:blazor/security/index#antiforgery-support> and <xref:blazor/forms/index#antiforgery-support>.
+* The framework uses an antiforgery token to protect against cross-site request forgery attacks. For more information, see [ASP.NET Core Blazor authentication and authorization](index.md#antiforgery-support) and [ASP.NET Core Blazor forms overview](../forms/index.md#antiforgery-support).
 
-All input and permissions must be validated on the server at the time of performing a given action to ensure that the data is valid and accurate at that time and that the user is allowed to perform the action. This approach is consistent with the [security guidance provided for interactive server-side rendering](xref:blazor/security/interactive-server-side-rendering).
+All input and permissions must be validated on the server at the time of performing a given action to ensure that the data is valid and accurate at that time and that the user is allowed to perform the action. This approach is consistent with the [security guidance provided for interactive server-side rendering](interactive-server-side-rendering.md).
 
 ## Session management
 

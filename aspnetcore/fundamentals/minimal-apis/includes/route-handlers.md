@@ -49,7 +49,7 @@ Endpoint names must satisfy the following criteria:
 
 * Endpoint names are case sensitive.
 * Endpoint names must be globally unique.
-* Endpoint names are used as the OpenAPI operation identifier (ID) when OpenAPI support is enabled. For more information, see [Generate OpenAPI documents](xref:fundamentals/openapi/aspnetcore-openapi).
+* Endpoint names are used as the OpenAPI operation identifier (ID) when OpenAPI support is enabled. For more information, see [Generate OpenAPI documents](../../openapi/aspnetcore-openapi.md).
 
 ### Route parameters
 
@@ -96,7 +96,7 @@ The following table demonstrates the preceding route templates and their behavio
 | `/todos/{text}` | `/todos/something` |
 | `/posts/{slug:regex(^[a-z0-9_-]+$)}` | `/posts/mypost` |
 
-For more information, see [Route constraint reference](xref:fundamentals/routing#route-constraints) in <xref:fundamentals/routing>.
+For more information, see [Route constraint reference](../../routing.md#route-constraints) in [Routing in ASP.NET Core](../../routing.md).
 
 ### Route groups
 

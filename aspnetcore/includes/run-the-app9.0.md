@@ -6,7 +6,7 @@
 
   Visual Studio:
 
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Starts [Kestrel](../fundamentals/servers/index.md#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.
     * *port*: A randomly assigned port number for the app.
@@ -20,7 +20,7 @@
 
   Visual Studio Code:
 
-  * Starts [Kestrel](xref:fundamentals/servers/index#kestrel) server.
+  * Starts [Kestrel](../fundamentals/servers/index.md#kestrel) server.
   * Launches a browser.
   * Navigates to `http://localhost:port`, such as `http://localhost:7042`.
     * *port*: A randomly assigned port number for the app.

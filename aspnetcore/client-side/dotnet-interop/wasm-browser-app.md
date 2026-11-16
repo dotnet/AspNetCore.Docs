@@ -4,22 +4,21 @@ ai-usage: ai-assisted
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop in a WebAssembly Browser App project.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 09/16/2026
-uid: client-side/dotnet-interop/wasm-browser-app
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop with a WebAssembly Browser App project
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to setup a WebAssembly Browser App project to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop. For additional information and examples, see <xref:client-side/dotnet-interop/index>.
+This article explains how to setup a WebAssembly Browser App project to run .NET from JavaScript (JS) using JS `[JSImport]`/`[JSExport]` interop. For additional information and examples, see [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](index.md).
 
 For additional guidance, see the [Configuring and hosting .NET WebAssembly applications](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/features.md) guidance in the .NET Runtime (`dotnet/runtime`) GitHub repository.
 
 Existing JS apps can use the expanded client-side WebAssembly support to reuse .NET libraries from JS or to build novel .NET-based apps and frameworks.
 
 > [!NOTE]
-> This article focuses on running .NET from JS apps without any dependency on [Blazor](xref:blazor/index). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see <xref:blazor/js-interop/import-export-interop>.
+> This article focuses on running .NET from JS apps without any dependency on [Blazor](../../blazor/index.md). For guidance on using `[JSImport]`/`[JSExport]` interop in Blazor WebAssembly apps, see [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 
-These approaches are appropriate when you only expect the Blazor app to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser%2A?displayProperty=nameWithType>.
+These approaches are appropriate when you only expect the Blazor app to run on WebAssembly (:::no-loc text="WASM":::). Libraries can make a runtime check to determine if the app is running on :::no-loc text="WASM"::: by calling <xref:System.OperatingSystem.IsBrowser*?displayProperty=nameWithType>.
 
 ## Prerequisites
 
@@ -97,7 +96,7 @@ The following is an example project file (`.csproj`) after configuration. The `{
 :::moniker range=">= aspnetcore-10.0"
 
 > [!NOTE]
-> In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether [Hot Reload](xref:test/hot-reload) infrastructure is included in the build output. The property is set to `true` by default for the `Debug` configuration. Set the property to `false` to produce bundler-compatible build output, for example for use with webpack or Vite, without Hot Reload dependencies when building the app with `dotnet build`:
+> In .NET 10 and later, the `WasmEnableHotReload` MSBuild property controls whether [Hot Reload](../../test/hot-reload.md) infrastructure is included in the build output. The property is set to `true` by default for the `Debug` configuration. Set the property to `false` to produce bundler-compatible build output, for example for use with webpack or Vite, without Hot Reload dependencies when building the app with `dotnet build`:
 >
 > ```xml
 > <PropertyGroup>
@@ -221,7 +220,7 @@ const { setModuleImports, getAssemblyExports, getConfig, runMain } = await dotne
 
 setModuleImports('main.js', {
   dom: {
-    setInnerText: (selector, time) => 
+    setInnerText: (selector, time) =>
       document.querySelector(selector).innerText = time
   }
 });
@@ -283,7 +282,7 @@ import { dotnet } from './dotnet.js'
 const is_browser = typeof window != "undefined";
 if (!is_browser) throw new Error(`Expected to be running in a browser`);
 
-const { setModuleImports, getAssemblyExports, getConfig } = 
+const { setModuleImports, getAssemblyExports, getConfig } =
   await dotnet.create();
 
 setModuleImports("main.js", {
@@ -329,9 +328,9 @@ internal static partial string GetHRef();
 
 :::moniker-end
 
-In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func%601> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
+In the imported method signature, you can use .NET types for parameters and return values, which are marshalled automatically by the runtime. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1> to control how the imported method parameters are marshalled. For example, you might choose to marshal a `long` as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>. You can pass <xref:System.Action>/<xref:System.Func`1> callbacks as parameters, which are marshalled as callable JS functions. You can pass both JS and managed object references, and they are marshaled as proxy objects, keeping the object alive across the boundary until the proxy is garbage collected. You can also import and export asynchronous methods with a <xref:System.Threading.Tasks.Task> result, which are marshaled as [JS promises](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise). Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
 
-For additional type mapping information and examples, see <xref:client-side/dotnet-interop/index#type-mappings>.
+For additional type mapping information and examples, see [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](index.md#type-mappings).
 
 Functions accessible on the global namespace can be imported by using the [`globalThis`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/globalThis) prefix in the function name and by using the `[JSImport]` attribute without providing a module name. In the following example, [`console.log`](https://developer.mozilla.org/docs/Web/API/console/log) is prefixed with `globalThis`. The imported function is called by the C# `Log` method, which accepts a C# string message (`message`) and marshalls the C# string to a JS [`String`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) for `console.log`:
 
@@ -477,8 +476,8 @@ In the preceding example, the `{TARGET FRAMEWORK}` placeholder is the [target fr
 
 ## Related content
 
-* <xref:client-side/dotnet-interop/index>
-* <xref:blazor/js-interop/import-export-interop>
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop in .NET WebAssembly](index.md)
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md)
 * API documentation
   * [`[JSImport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSImportAttribute)
   * [`[JSExport]` attribute](xref:System.Runtime.InteropServices.JavaScript.JSExportAttribute)

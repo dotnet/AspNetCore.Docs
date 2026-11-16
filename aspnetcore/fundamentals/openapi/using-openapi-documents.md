@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/28/2026
-uid: fundamentals/openapi/using-openapi-documents
 ---
 # Use openAPI documents
 
@@ -17,7 +16,7 @@ By default, the `Microsoft.AspNetCore.OpenApi` package doesn't ship with built-i
 The `Swashbuckle.AspNetCore.SwaggerUi` package provides a bundle of Swagger UI's web assets for use in apps. This package can be used to render a UI for the generated document. To configure this:
 
 * Install the `Swashbuckle.AspNetCore.SwaggerUi` package.
-* Enable the swagger-ui middleware with a reference to the [OpenAPI route registered earlier](xref:fundamentals/openapi/aspnetcore-openapi#customize-the-openapi-endpoint-route).
+* Enable the swagger-ui middleware with a reference to the [OpenAPI route registered earlier](aspnetcore-openapi.md#customize-the-openapi-endpoint-route).
 
 [!code-csharp[](~/fundamentals/openapi/samples/9.x/WebMinOpenApi/Program.cs?name=snippet_swaggerui)]
 
@@ -127,7 +126,7 @@ public class CustomDocumentService(
 }
 ```
 
-Register the service in your DI container. Note that the service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi%2A>:
+Register the service in your DI container. Note that the service key should match the document name passed to <xref:Microsoft.Extensions.DependencyInjection.OpenApiServiceCollectionExtensions.AddOpenApi*>:
 
 ```csharp
 builder.Services.AddOpenApi(); // Adds "v1" by default

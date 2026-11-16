@@ -1,37 +1,37 @@
 ## Built-in ASP.NET Core Tag Helpers
 
-**[Anchor](xref:mvc/views/tag-helpers/builtin-th/anchor-tag-helper)**
+**[Anchor](../mvc/views/tag-helpers/built-in/anchor-tag-helper.md)**
 
-**[Cache](xref:mvc/views/tag-helpers/builtin-th/cache-tag-helper)**
+**[Cache](../mvc/views/tag-helpers/built-in/cache-tag-helper.md)**
 
-**[Component](xref:mvc/views/tag-helpers/builtin-th/component-tag-helper)**
+**[Component](../mvc/views/tag-helpers/built-in/component-tag-helper.md)**
 
-**[Distributed Cache](xref:mvc/views/tag-helpers/builtin-th/distributed-cache-tag-helper)**
+**[Distributed Cache](../mvc/views/tag-helpers/built-in/distributed-cache-tag-helper.md)**
 
-**[Environment](xref:mvc/views/tag-helpers/builtin-th/environment-tag-helper)**
+**[Environment](../mvc/views/tag-helpers/built-in/environment-tag-helper.md)**
 
-**[Form](xref:mvc/views/working-with-forms#the-form-tag-helper)**
+**[Form](../mvc/views/working-with-forms.md#the-form-tag-helper)**
 
-**[Form Action](xref:mvc/views/working-with-forms#the-form-action-tag-helper)**
+**[Form Action](../mvc/views/working-with-forms.md#the-form-action-tag-helper)**
 
-**[Image](xref:mvc/views/tag-helpers/builtin-th/image-tag-helper)**
+**[Image](../mvc/views/tag-helpers/built-in/image-tag-helper.md)**
 
-**[Input](xref:mvc/views/working-with-forms#the-input-tag-helper)**
+**[Input](../mvc/views/working-with-forms.md#the-input-tag-helper)**
 
-**[Label](xref:mvc/views/working-with-forms#the-label-tag-helper)**
+**[Label](../mvc/views/working-with-forms.md#the-label-tag-helper)**
 
-**[Link](xref:mvc/views/tag-helpers/builtin-th/link-tag-helper)**
+**[Link](../mvc/views/tag-helpers/built-in/link-tag-helper.md)**
 
-**[Partial](xref:mvc/views/tag-helpers/builtin-th/partial-tag-helper)**
+**[Partial](../mvc/views/tag-helpers/built-in/partial-tag-helper.md)**
 
-**[Persist Component State](xref:mvc/views/tag-helpers/builtin-th/persist-component-state-tag-helper)**
+**[Persist Component State](../mvc/views/tag-helpers/built-in/persist-component-state.md)**
 
-**[Script](xref:mvc/views/tag-helpers/builtin-th/script-tag-helper)**
+**[Script](../mvc/views/tag-helpers/built-in/script-tag-helper.md)**
 
-**[Select](xref:mvc/views/working-with-forms#the-select-tag-helper)**
+**[Select](../mvc/views/working-with-forms.md#the-select-tag-helper)**
 
-**[Textarea](xref:mvc/views/working-with-forms#the-textarea-tag-helper)**
+**[Textarea](../mvc/views/working-with-forms.md#the-textarea-tag-helper)**
 
-**[Validation Message](xref:mvc/views/working-with-forms#the-validation-message-tag-helper)**
+**[Validation Message](../mvc/views/working-with-forms.md#the-validation-message-tag-helper)**
 
-**[Validation Summary](xref:mvc/views/working-with-forms#the-validation-summary-tag-helper)**
+**[Validation Summary](../mvc/views/working-with-forms.md#the-validation-summary-tag-helper)**

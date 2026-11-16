@@ -16,11 +16,11 @@ ASP.NET Core 7.0
 
 ## Previous behavior
 
-`ASPNET_`-prefixed environment variables overrode command-line arguments and `DOTNET_`-prefixed environment variables when reading `WebApplicationBuilder`'s [default host configuration](/aspnet/core/fundamentals/configuration/#default-host-configuration-sources).
+`ASPNET_`-prefixed environment variables overrode command-line arguments and `DOTNET_`-prefixed environment variables when reading `WebApplicationBuilder`'s [default host configuration](../../fundamentals/configuration/index.md#default-host-configuration-sources).
 
 ## New behavior
 
-Command-line arguments and `DOTNET_`-prefixed environment variables override `ASPNET_`-prefixed environment variables when reading `WebApplicationBuilder`'s [default host configuration](/aspnet/core/fundamentals/configuration/#default-host-configuration-sources).
+Command-line arguments and `DOTNET_`-prefixed environment variables override `ASPNET_`-prefixed environment variables when reading `WebApplicationBuilder`'s [default host configuration](../../fundamentals/configuration/index.md#default-host-configuration-sources).
 
 ## Type of breaking change
 
@@ -40,4 +40,4 @@ If you were using `ASPNETCORE_`-prefixed environment variables to override comma
 
 ## See also
 
-- [Default host configuration sources](/aspnet/core/fundamentals/configuration/#default-host-configuration-sources)
+- [Default host configuration sources](../../fundamentals/configuration/index.md#default-host-configuration-sources)

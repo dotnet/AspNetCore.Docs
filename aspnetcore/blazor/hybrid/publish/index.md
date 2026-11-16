@@ -3,7 +3,6 @@ title: Publish ASP.NET Core Blazor Hybrid apps
 description: Learn about publishing ASP.NET Core Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/publish/index
 ---
 # Publish ASP.NET Core Blazor Hybrid apps
 
@@ -25,4 +24,4 @@ Blazor Hybrid supports .NET MAUI, WPF, and Windows Forms. The publishing steps f
 
 ## Blazor-specific considerations
 
-Blazor Hybrid apps require a :::no-loc text="Web View"::: on the host platform. For more information, see [Keep the :::no-loc text="Web View"::: current in deployed Blazor Hybrid apps](xref:blazor/hybrid/security/security-considerations#keep-the-web-view-current-in-deployed-apps).
+Blazor Hybrid apps require a :::no-loc text="Web View"::: on the host platform. For more information, see [Keep the :::no-loc text="Web View"::: current in deployed Blazor Hybrid apps](../security/security-considerations.md#keep-the-web-view-current-in-deployed-apps).

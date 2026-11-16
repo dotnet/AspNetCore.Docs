@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/20/2026
-uid: tutorials/signalr
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
 ---
@@ -218,10 +217,10 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 
 ## Next steps
 
-* [Use hubs](xref:signalr/hubs)
-* [Strongly typed hubs](xref:signalr/hubs#use-strongly-typed-hubs)
-* [Authentication and authorization in ASP.NET Core SignalR](xref:signalr/authn-and-authz)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [Use hubs](../signalr/hubs.md)
+* [Strongly typed hubs](../signalr/hubs.md#use-strongly-typed-hubs)
+* [Authentication and authorization in ASP.NET Core SignalR](../signalr/authn-and-authz.md)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end
 

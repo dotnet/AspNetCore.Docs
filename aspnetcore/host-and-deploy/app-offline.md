@@ -3,7 +3,6 @@ title: App Offline file (app_offline.htm)
 description: Learn how the App Offline file (`app_offline.htm`) works with the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 1/13/2020
-uid: host-and-deploy/iis/app-offline
 ---
 # App Offline file (`app_offline.htm`)
 

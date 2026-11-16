@@ -3,7 +3,6 @@ title: IIS modules with ASP.NET Core
 description: Discover active and inactive IIS modules for ASP.NET Core apps and how to manage IIS modules.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/modules
 ---
 # IIS modules with ASP.NET Core
 
@@ -22,36 +21,36 @@ The table indicates native IIS modules that are functional with ASP.NET Core app
 | **Client Certification Mapping Authentication**<br>`CertificateMappingAuthenticationModule`      | Yes | |
 | **CGI**<br>`CgiModule`                                                                           | No  | |
 | **Configuration Validation**<br>`ConfigurationValidationModule`                                  | Yes | |
-| **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | [Status code pages middleware](xref:fundamentals/error-handling#usestatuscodepages) |
+| **HTTP Errors**<br>`CustomErrorModule`                                                           | No  | [Status code pages middleware](../../fundamentals/error-handling.md#usestatuscodepages) |
 | **Custom Logging**<br>`CustomLoggingModule`                                                      | Yes | |
-| **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default files middleware](xref:fundamentals/static-files#serve-a-default-document) |
+| **Default Document**<br>`DefaultDocumentModule`                                                  | No  | [Default files middleware](../../fundamentals/static-files.md#serve-default-documents) |
 | **Digest Authentication**<br>`DigestAuthenticationModule`                                        | Yes | |
-| **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory-browsing middleware](xref:fundamentals/static-files#enable-directory-browsing) |
-| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](xref:performance/response-compression) |
-| **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index#dotnet-trace-tooling) |
-| **File Caching**<br>`FileCacheModule`                                                            | No  | [Response caching middleware](xref:performance/caching/middleware) |
-| **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response caching middleware](xref:performance/caching/middleware) |
-| **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | [ASP.NET Core Logging](xref:fundamentals/logging/index) |
-| **HTTP Redirection**<br>`HttpRedirectionModule`                                                  | Yes | [URL rewriting middleware](xref:fundamentals/url-rewriting) |
+| **Directory Browsing**<br>`DirectoryListingModule`                                               | No  | [Directory-browsing middleware](../../fundamentals/static-files.md#directory-browsing) |
+| **Dynamic Compression**<br>`DynamicCompressionModule`                                            | Yes | [Response compression middleware](../../performance/response-compression.md) |
+| **Failed Requests Tracing**<br>`FailedRequestsTracingModule`                                     | Yes | [ASP.NET Core Logging](../../fundamentals/logging/index.md#dotnet-trace-tooling) |
+| **File Caching**<br>`FileCacheModule`                                                            | No  | [Response caching middleware](../../performance/caching/middleware.md) |
+| **HTTP Caching**<br>`HttpCacheModule`                                                            | No  | [Response caching middleware](../../performance/caching/middleware.md) |
+| **HTTP Logging**<br>`HttpLoggingModule`                                                          | Yes | [ASP.NET Core Logging](../../fundamentals/logging/index.md) |
+| **HTTP Redirection**<br>`HttpRedirectionModule`                                                  | Yes | [URL rewriting middleware](../../fundamentals/url-rewriting.md) |
 | **HTTP Tracing**<br>`TracingModule`                                                              | Yes | |
 | **IIS Client Certificate Mapping Authentication**<br>`IISCertificateMappingAuthenticationModule` | Yes | |
 | **IP and Domain Restrictions**<br>`IpRestrictionModule`                                          | Yes | |
-| **ISAPI Filters**<br>`IsapiFilterModule`                                                         | Yes | [Middleware](xref:fundamentals/middleware/index) |
-| **ISAPI**<br>`IsapiModule`                                                                       | Yes | [Middleware](xref:fundamentals/middleware/index) |
+| **ISAPI Filters**<br>`IsapiFilterModule`                                                         | Yes | [Middleware](../../fundamentals/middleware/index.md) |
+| **ISAPI**<br>`IsapiModule`                                                                       | Yes | [Middleware](../../fundamentals/middleware/index.md) |
 | **Protocol Support**<br>`ProtocolSupportModule`                                                  | Yes | |
-| **Request Filtering**<br>`RequestFilteringModule`                                                | Yes | [URL rewriting middleware `IRule`](xref:fundamentals/url-rewriting#irule-based-rule) |
+| **Request Filtering**<br>`RequestFilteringModule`                                                | Yes | [URL rewriting middleware `IRule`](../../fundamentals/url-rewriting.md#irule-based-rule) |
 | **Request Monitor**<br>`RequestMonitorModule`                                                    | Yes | |
-| **URL Rewriting**&#8224;<br>`RewriteModule`                                                      | Yes | [URL rewriting middleware](xref:fundamentals/url-rewriting) |
+| **URL Rewriting**&#8224;<br>`RewriteModule`                                                      | Yes | [URL rewriting middleware](../../fundamentals/url-rewriting.md) |
 | **Server-Side Includes**<br>`ServerSideIncludeModule`                                            | No  | |
-| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response compression middleware](xref:performance/response-compression) |
-| **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](xref:fundamentals/static-files) |
+| **Static Compression**<br>`StaticCompressionModule`                                              | No  | [Response compression middleware](../../performance/response-compression.md) |
+| **Static Content**<br>`StaticFileModule`                                                         | No  | [Static file middleware](../../fundamentals/static-files.md) |
 | **Token Caching**<br>`TokenCacheModule`                                                          | Yes | |
 | **URI Caching**<br>`UriCacheModule`                                                              | Yes | |
-| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| **URL Authorization**<br>`UrlAuthorizationModule`                                                | Yes | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | **WebDav**<br>`WebDAV`                                                                           | No  | |
 | **Windows Authentication**<br>`WindowsAuthenticationModule`                                      | Yes | |
 
-&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](xref:host-and-deploy/directory-structure).
+&#8224;The URL Rewrite Module's `isFile` and `isDirectory` match types don't work with ASP.NET Core apps due to the changes in [directory structure](../directory-structure.md).
 
 ## Managed modules
 
@@ -62,15 +61,15 @@ Managed modules are *not* functional with hosted ASP.NET Core apps when the app 
 | AnonymousIdentification | |
 | DefaultAuthentication   | |
 | FileAuthorization       | |
-| FormsAuthentication     | [Cookie authentication middleware](xref:security/authentication/cookie) |
-| OutputCache             | [Response caching middleware](xref:performance/caching/middleware) |
+| FormsAuthentication     | [Cookie authentication middleware](../../security/authentication/cookie.md) |
+| OutputCache             | [Response caching middleware](../../performance/caching/middleware.md) |
 | Profile                 | |
 | RoleManager             | |
 | ScriptModule-4.0        | |
-| Session                 | [Session middleware](xref:fundamentals/app-state) |
+| Session                 | [Session middleware](../../fundamentals/app-state.md) |
 | UrlAuthorization        | |
-| UrlMappingsModule       | [URL rewriting middleware](xref:fundamentals/url-rewriting) |
-| UrlRoutingModule-4.0    | [ASP.NET Core Identity](xref:security/authentication/identity) |
+| UrlMappingsModule       | [URL rewriting middleware](../../fundamentals/url-rewriting.md) |
+| UrlRoutingModule-4.0    | [ASP.NET Core Identity](../../security/authentication/identity.md) |
 | WindowsAuthentication   | |
 
 ## IIS Manager application changes
