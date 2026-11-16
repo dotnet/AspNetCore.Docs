@@ -153,7 +153,7 @@ You can configure the system to protect keys at rest by calling any of the [`Pro
 
 :::moniker range=">= aspnetcore-9.0"
 
-You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadCertificateFromFile*?displayProperty=nameWithType>:
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadPkcs12FromFile*?displayProperty=nameWithType>:
 
 :::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
 
