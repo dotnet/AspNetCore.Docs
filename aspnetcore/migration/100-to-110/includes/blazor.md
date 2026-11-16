@@ -85,7 +85,7 @@ AppContext.SetSwitch(
 
 The switch only controls the rendered HTML element; sort and page state is read from and written to the URL query string regardless of the setting.
 
-For more information, see [QuickGrid sorting and pagination controls render as links](/aspnet/core/breaking-changes/11/quickgrid-controls-render-as-links).
+For more information, see [QuickGrid sorting and pagination controls render as links](../../../breaking-changes/11/quickgrid-controls-render-as-links.md).
 
 ### Upgrade from the experimental `ValidatableTypeAttribute` and `SkipValidationAttribute` in .NET 10
 
