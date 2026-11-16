@@ -3,7 +3,7 @@ title: Cache in-memory in ASP.NET Core
 ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Learn how to cache data in memory in ASP.NET Core.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/28/2026
 
 # customer intent: As an ASP.NET developer, I want to use in-memory caching in ASP.NET Core, so I can improve the performance and scalability of my app.
@@ -14,7 +14,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [John Luo](https://github.c
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Caching can significantly improve the performance and scalability of an app by reducing the work required to generate content. Caching works best with data that changes infrequently **and** is expensive to generate. Caching makes a copy of data that can be returned much faster than from the source. Apps should be written and tested to **never** depend on cached data.
 

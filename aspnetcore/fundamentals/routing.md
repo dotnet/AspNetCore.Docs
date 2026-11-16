@@ -3,7 +3,7 @@ title: Routing in ASP.NET Core
 ai-usage: ai-assisted
 content_well_notification: AI-contribution
 description: Discover how ASP.NET Core routing is responsible for matching HTTP requests and dispatching to executable endpoints.
-monikerRange: '>= aspnetcore-8.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/19/2026
 ---
 # Routing in ASP.NET Core
@@ -12,7 +12,7 @@ By [Ryan Nowak](https://github.com/rynowak), [Kirk Larkin](https://twitter.com/s
 
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 Routing is responsible for matching incoming HTTP requests and dispatching those requests to the app's executable endpoints. [Endpoints](#endpoints) are the app's units of executable request-handling code. Endpoints are defined in the app and configured when the app starts. The endpoint matching process can extract values from the request's URL and provide those values for request processing. Using endpoint information from the app, routing is also able to generate URLs that map to endpoints.
 
@@ -1039,7 +1039,7 @@ When a status code isn't supplied, <xref:Microsoft.AspNetCore.Routing.ShortCircu
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ## Guidance for library authors
 

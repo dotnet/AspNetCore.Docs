@@ -93,7 +93,7 @@ The following characteristics apply when hosting in-process:
 
 ## Get timing information
 
-See [Get detailed timing information with IHttpSysRequestTimingFeature](../../fundamentals/servers/httpsys.md?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+See [Get detailed timing information with IHttpSysRequestTimingFeature](/previous-versions/aspnet/core/fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 :::moniker-end
 

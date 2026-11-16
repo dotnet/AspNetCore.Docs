@@ -8,7 +8,7 @@
     @{
         var host3 = Configuration["host3"];
 
-        var theHost = HttpContext.Request.Host.Value;
+        var theHost = HttpContext.Request.Host.Value ?? string.Empty;
 
 
         if (!host3.Contains(theHost) && !theHost.Contains("localhost"))

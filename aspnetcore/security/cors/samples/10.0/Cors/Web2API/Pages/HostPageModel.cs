@@ -17,7 +17,7 @@ namespace WebAPI
                 h3 = "host1";
             }
             Host = configuration[h1];
-            var theHost = HttpContext.Request.Host.Value;
+            var theHost = HttpContext.Request.Host.Value ?? string.Empty;
             if (Host.Contains(theHost))
             {
                 Host = configuration[h3];
