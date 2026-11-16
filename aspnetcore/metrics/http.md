@@ -67,7 +67,7 @@ Attribute | Type | Description | Examples | Presence
 
 ## `Microsoft.AspNetCore.Routing`
 
-The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTTP requests](/aspnet/core/fundamentals/routing) to ASP.NET Core endpoints:
+The `Microsoft.AspNetCore.Routing` metrics report information about [routing HTTP requests](../fundamentals/routing.md) to ASP.NET Core endpoints:
 
 * [`aspnetcore.routing.match_attempts`](#metric-aspnetcoreroutingmatch_attempts)
 
@@ -85,7 +85,7 @@ Attribute | Type | Description | Examples | Presence
 
 ## `Microsoft.AspNetCore.RateLimiting`
 
-The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information from [ASP.NET Core rate-limiting middleware](/aspnet/core/performance/rate-limit):
+The `Microsoft.AspNetCore.RateLimiting` metrics report rate limiting information from [ASP.NET Core rate-limiting middleware](../performance/rate-limit.md):
 
 * [`aspnetcore.rate_limiting.active_request_leases`](#metric-aspnetcorerate_limitingactive_request_leases)
 * [`aspnetcore.rate_limiting.request_lease.duration`](#metric-aspnetcorerate_limitingrequest_leaseduration)
@@ -178,7 +178,7 @@ Attribute | Type | Description | Examples | Presence
 
 ## `Microsoft.AspNetCore.Server.Kestrel`
 
-The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection information from [ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel):
+The `Microsoft.AspNetCore.Server.Kestrel` metrics report HTTP connection information from [ASP.NET Core Kestrel web server](../fundamentals/servers/kestrel.md):
 
 * [`kestrel.active_connections`](#metric-kestrelactive_connections)
 * [`kestrel.connection.duration`](#metric-kestrelconnectionduration)
@@ -324,7 +324,7 @@ Attribute | Type | Description | Examples | Presence
 
 ## `Microsoft.AspNetCore.Http.Connections`
 
-The `Microsoft.AspNetCore.Http.Connections` metrics report connection information from [ASP.NET Core SignalR](/aspnet/core/signalr/introduction):
+The `Microsoft.AspNetCore.Http.Connections` metrics report connection information from [ASP.NET Core SignalR](../signalr/introduction.md):
 
 * [`signalr.server.connection.duration`](#metric-signalrserverconnectionduration)
 * [`signalr.server.active_connections`](#metric-signalrserveractive_connections)

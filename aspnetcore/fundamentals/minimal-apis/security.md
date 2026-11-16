@@ -39,19 +39,19 @@ In ASP.NET Core, both strategies are captured into an authorization requirement.
 
 To enable authentication, call the [AddAuthentication](/dotnet/api/microsoft.extensions.dependencyinjection.authenticationservicecollectionextensions.addauthentication) method to register the required authentication services on the app's service provider.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_1" highlight="2":::
 
 Typically, a specific authentication strategy is used. In the following sample, the app is configured with support for JSON Web Token (JWT) bearer-based authentication. This example makes use of the APIs available in the [Microsoft.AspNetCore.Authentication.JwtBearer](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.JwtBearer) NuGet package.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt1" highlight="2-3":::
 
 By default, the [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically registers the authentication and authorization middleware if certain authentication and authorization services are enabled. In the following sample, it's not necessary to invoke the [UseAuthentication](/dotnet/api/microsoft.aspnetcore.builder.authappbuilderextensions.useauthentication) or [UseAuthorization](/dotnet/api/microsoft.aspnetcore.builder.authorizationappbuilderextensions.useauthorization) methods to register the middleware. [WebApplication](/dotnet/api/microsoft.aspnetcore.builder.webapplication) automatically completes the registration after calling the `AddAuthentication` or `AddAuthorization` method.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_jwt2":::
 
 In some cases, such as controlling middleware order, it's necessary to explicitly register authentication and authorization. In the following sample, the authentication middleware runs _after_ the CORS middleware runs. For more information on middleware and this automatic behavior, see [Middleware in ASP.NET Core apps](../middleware/index.md#middleware-added-automatically-by-webapplication).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_after" highlight="9-11":::
 
 ### Configure authentication strategy
 
@@ -95,7 +95,7 @@ In the _Program.cs_ file, two JWT bearer-based authentication strategies are reg
 
 The scheme name is used to uniquely identify an authentication strategy. The name is also used as the lookup key when resolving authentication options from config, as shown in the following example:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_local" highlight="5":::
 
 Passing a custom scheme name such as `"LocalAuthIssuer"` to <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> identifies the scheme internally within ASP.NET Core for options resolution, policy schemes, and endpoint authorization. It does **not** change the HTTP `Authorization` header format expected by the handler. Per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750), <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> defaults to expecting the `Authorization: Bearer <token>` header format regardless of the registered scheme name.
 
@@ -144,7 +144,7 @@ The code creates a new authorization policy named `admin_greetings` that encapsu
 
 The `admin_greetings` policy is provided as a required policy to the `/hello` endpoint:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/7.0/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/security/samples/MinApiAuth/MinApiAuth/Program.cs" id="snippet_greet" highlight="5-9,13-14":::
 
 ## Use 'dotnet user-jwts' for development testing
 
