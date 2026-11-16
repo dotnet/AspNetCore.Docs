@@ -2,7 +2,7 @@
 title: Request Features in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn about web server implementation details related to HTTP requests and responses that are defined in interfaces for ASP.NET Core.
-ms.date: 11/05/2026
+ms.date: 11/16/2026
 ---
 # Request Features in ASP.NET Core
 
@@ -95,11 +95,15 @@ The following feature interfaces are from <xref:Microsoft.AspNetCore.Http.Featur
 <xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>: Defines support for [HTTP Upgrades](https://www.rfc-editor.org/rfc/rfc9110#field.upgrade), which allow the client to specify additional protocols if the server tries to switch protocols. To accept an HTTP upgrade request on the server, check <xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature.IsUpgradableRequest?displayProperty=nameWithType> and call <xref:Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature.UpgradeAsync?displayProperty=nameWithType>, which sends an HTTP `101 - Switching Protocols` response and returns the raw transport <xref:System.IO.Stream>:
 
   ```csharp
+  using Microsoft.AspNetCore.Http.Features;
+
   app.Map("/upgrade", async (HttpContext context) =>
   {
       var upgradeFeature = context.Features.Get<IHttpUpgradeFeature>();
-      if (upgradeFeature != null && upgradeFeature.IsUpgradableRequest)
+      if (upgradeFeature is not null && upgradeFeature.IsUpgradableRequest)
       {
+          // Specify the upgraded protocol on the response before upgrading:
+          context.Response.Headers.Upgrade = "custom-protocol";
           await using Stream stream = await upgradeFeature.UpgradeAsync();
           // Read and write directly to the upgraded transport stream...
       }
