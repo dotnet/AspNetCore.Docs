@@ -36,7 +36,7 @@ The HTTP 404 error doesn't make it obvious that an exception occurred on the ser
 
 ## Recommended action
 
-There are no API changes. All existing apps will continue to compile and run. The exception thrown is handled by the server. For example, the exception is converted to an HTTP 500 error response by [Kestrel](/aspnet/core/fundamentals/servers/kestrel) or [HTTP.sys](/aspnet/core/fundamentals/servers/httpsys).
+There are no API changes. All existing apps will continue to compile and run. The exception thrown is handled by the server. For example, the exception is converted to an HTTP 500 error response by [Kestrel](../../fundamentals/servers/kestrel.md) or [HTTP.sys](../../fundamentals/servers/httpsys.md).
 
 ## Affected APIs
 

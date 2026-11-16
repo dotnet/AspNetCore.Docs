@@ -7,6 +7,14 @@ items:
     href: get-started.md
   - name: What's new
     items:
+      - name: ASP.NET Core 12
+        items:
+          - name: Breaking changes
+            items:
+              - name: Overview
+                href: breaking-changes/12/overview.md
+              - name: Forwarded headers ignored when proxy has no IP address
+                href: breaking-changes/12/forwarded-headers-non-ip-transports.md
       - name: ASP.NET Core 11
         items:
           - name: What's new in 11
@@ -25,6 +33,8 @@ items:
                 href: breaking-changes/11/concurrencylimiter-removed.md
               - name: Hosting emits OpenTelemetry HTTP semantic-convention tags by default
                 href: breaking-changes/11/http-activity-otel-semconv.md
+              - name: Identity external login keys use ordinal equality
+                href: breaking-changes/11/identity-login-ordinal-equality.md
               - name: Kestrel tightens HTTP protocol compliance
                 href: breaking-changes/11/kestrel-strict-protocol-compliance.md
               - name: Microsoft.OpenApi upgraded to 3.x
@@ -43,6 +53,8 @@ items:
                 href: breaking-changes/11/openapi-server-url-trailing-slash.md
               - name: OpenApiVersion defaults to OpenApi3_2
                 href: breaking-changes/11/openapi-version-default-3-2.md
+              - name: OpenID Connect max_age validates auth_time
+                href: breaking-changes/11/openid-connect-max-age-validates-auth-time.md
               - name: Passkey sign-in enforces email/phone confirmation and lockout
                 href: breaking-changes/11/passkey-signin-enforces-confirmation-lockout.md
               - name: QuickGrid sorting and pagination controls render as links
@@ -848,6 +860,8 @@ items:
                 href: blazor/components/js-spa-frameworks.md
               - name: Components outside of ASP.NET Core
                 href: blazor/components/render-components-outside-of-aspnetcore.md
+              - name: AI components for agentic user interfaces
+                href: blazor/components/ai-components.md
               - name: Built-in components
                 href: blazor/components/built-in-components.md
           - name: Globalization and localization
