@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This article contains links to Azure host and deploy resources.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/27/2025
-uid: host-and-deploy/azure-apps/index
 ---
 # Deploy ASP.NET Core apps to Azure App Service
 
@@ -28,7 +27,7 @@ Subscribe to the [App Service Announcements](https://github.com/Azure/app-servic
 
 The following articles are available in ASP.NET Core documentation:
 
-<xref:tutorials/publish-to-azure-webapp-using-vs>  
+[Publish an ASP.NET Core app to Azure with Visual Studio](../../tutorials/publish-to-azure-webapp-using-vs.md)  
 Learn how to publish an ASP.NET Core app to Azure App Service using Visual Studio.
 
 [Create your first pipeline](/azure/devops/pipelines/get-started-yaml)  
@@ -37,14 +36,14 @@ Set up a CI build for an ASP.NET Core app, then create a continuous deployment r
 [Azure Web App sandbox](https://github.com/projectkudu/kudu/wiki/Azure-Web-App-sandbox)  
 Discover Azure App Service runtime execution limitations enforced by the Azure Apps platform.
 
-<xref:test/troubleshoot>  
+[Troubleshoot and debug ASP.NET Core projects](../../test/troubleshoot.md)  
 Understand and troubleshoot warnings and errors with ASP.NET Core projects.
 
 ## Application configuration
 
 ### Platform
 
-The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](../visual-studio-publish-profiles.md)) match the setting in the app's service configuration in the Azure portal.
 
 :::moniker range=">= aspnetcore-2.2"
 
@@ -64,7 +63,7 @@ For more information on .NET Core framework components and distribution methods,
 
 Include the following NuGet packages to provide automatic logging features for apps deployed to Azure App Service:
 
-* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](xref:fundamentals/configuration/platform-specific-configuration) to provide ASP.NET Core logging integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
+* [Microsoft.AspNetCore.AzureAppServices.HostingStartup](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServices.HostingStartup/) uses [IHostingStartup](../../fundamentals/host/platform-specific-configuration.md) to provide ASP.NET Core logging integration with Azure App Service. The added logging features are provided by the `Microsoft.AspNetCore.AzureAppServicesIntegration` package.
 * [Microsoft.AspNetCore.AzureAppServicesIntegration](https://www.nuget.org/packages/Microsoft.AspNetCore.AzureAppServicesIntegration/) executes <xref:Microsoft.Extensions.Logging.AzureAppServicesLoggerFactoryExtensions.AddAzureWebAppDiagnostics*> to add Azure App Service diagnostics logging providers in the `Microsoft.Extensions.Logging.AzureAppServices` package.
 * [Microsoft.Extensions.Logging.AzureAppServices](https://www.nuget.org/packages/Microsoft.Extensions.Logging.AzureAppServices/) provides logger implementations to support Azure App Service diagnostics logs and log streaming features.
 
@@ -75,11 +74,11 @@ The preceding packages must be explicitly referenced in the app's project file.
 App settings in the Azure portal permit you to set environment variables for the app. For more information, see the following resources:
 
 * [Configure an App Service app (Azure documentation)](/azure/app-service/configure-common)
-* <xref:fundamentals/configuration/index#environment-variables-configuration-provider>
+* [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md#environment-variables-configuration-provider)
 
 ## Proxy server and load balancer scenarios
 
-The [IIS integration middleware](xref:host-and-deploy/iis/index#enable-the-iisintegration-components), which configures forwarded headers middleware when hosting [out-of-process](xref:host-and-deploy/iis/index#out-of-process-hosting-model), and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer).
+The [IIS integration middleware](../iis/index.md#enable-the-iisintegration-components), which configures forwarded headers middleware when hosting [out-of-process](../iis/index.md#out-of-process-hosting-model), and the ASP.NET Core Module are configured to forward the scheme (HTTP/HTTPS) and the remote IP address where the request originated. Additional configuration might be required for apps hosted behind additional proxy servers and load balancers. For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](../proxy-load-balancer.md).
 
 ## Monitoring and logging
 
@@ -103,13 +102,13 @@ Learn how to review quotas and metrics for apps and App Service plans.
 [Enable diagnostics logging for apps in Azure App Service](/azure/app-service/web-sites-enable-diagnostic-log)  
 Discover how to enable and access diagnostic logging for HTTP status codes, failed requests, and web server activity.
 
-<xref:fundamentals/error-handling>  
+[Handle errors in ASP.NET Core](../../fundamentals/error-handling.md)  
 Understand common approaches to handling errors in ASP.NET Core apps.
 
-<xref:test/troubleshoot-azure-iis>  
+[Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md)  
 Learn how to diagnose issues with Azure App Service deployments with ASP.NET Core apps.
 
-<xref:host-and-deploy/azure-iis-errors-reference>  
+[Common error troubleshooting for Azure App Service and IIS with ASP.NET Core](../azure-iis-errors-reference.md)  
 See the common deployment configuration errors for apps hosted by Azure App Service/IIS with troubleshooting advice.
 
 ## Data Protection key ring and deployment slots
@@ -207,7 +206,7 @@ When the operation completes, the latest .NET Core preview is installed. Verify 
    The command returns `True` when the x64 preview runtime is installed.
 
 > [!NOTE]
-> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](xref:host-and-deploy/visual-studio-publish-profiles)) match the setting in the app's service configuration in the Azure portal.
+> The platform architecture (x86/x64) of an App Services app is set in the app's settings in the Azure portal for apps that are hosted on an A-series compute (Basic) or higher hosting tier. Confirm that the app's publish settings (for example, in the Visual Studio [publish profile (.pubxml)](../visual-studio-publish-profiles.md)) match the setting in the app's service configuration in the Azure portal.
 >
 > If the app is run in in-process mode and the platform architecture is configured for 64-bit (x64), the ASP.NET Core Module uses the 64-bit preview runtime, if present. Install the **ASP.NET Core {X.Y} (x64) Runtime** extension using the Azure portal.
 >
@@ -322,19 +321,19 @@ Secure protocol bindings allow specifying a certificate to use when responding t
 
 ## Transform web.config
 
-If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see <xref:host-and-deploy/iis/transform-webconfig>.
+If you need to transform *web.config* on publish (for example, set environment variables based on the configuration, profile, or environment), see [Transform web.config](../iis/transform-webconfig.md).
 
 ## Related content
 
 * [App Service overview](/azure/app-service/app-service-web-overview)
 * [Azure App Service diagnostics overview](/azure/app-service/app-service-diagnostics)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../web-farm.md)
 * [Tutorial: Connect to SQL Database from .NET App Service without secrets using a managed identity](/azure/app-service/tutorial-connect-msi-sql-database?tabs=efcore%2Cdotnetcore)
 
 Azure App Service on Windows Server uses [Internet Information Services (IIS)](https://www.iis.net/). [Kestrel and YARP](https://devblogs.microsoft.com/dotnet/bringing-kestrel-and-yarp-to-azure-app-services/) on the front end provides the load balancer. The following topics pertain to the underlying IIS technology:
 <!-- Kestrel can't replace IIS because it's needed for ASP.NET Framework ,FX 3.5 and 4.8 -->
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/aspnet-core-module>
-* <xref:host-and-deploy/iis/modules>
+* [Host ASP.NET Core on Windows with IIS](../iis/index.md)
+* [ASP.NET Core Module (ANCM) for IIS](../aspnet-core-module.md)
+* [IIS modules with ASP.NET Core](../iis/modules.md)
 * [Windows Server - IT administrator content for current and previous releases](/windows-server/windows-server-versions)

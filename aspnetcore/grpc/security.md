@@ -20,11 +20,11 @@ gRPC messages are sent and received using HTTP/2. We recommend:
 * gRPC services should only listen and respond over secured ports.
 
 :::moniker range=">= aspnetcore-5.0"
-TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel/endpoints).
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](../fundamentals/servers/kestrel/endpoints.md).
 :::moniker-end
 
 :::moniker range="< aspnetcore-5.0"
-TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](xref:fundamentals/servers/kestrel#endpoint-configuration).
+TLS is configured in Kestrel. For more information on configuring Kestrel endpoints, see [Kestrel endpoint configuration](../fundamentals/servers/kestrel.md#endpoint-configuration).
 :::moniker-end
 
 A [TLS termination proxy](https://wikipedia.org/wiki/TLS_termination_proxy) can be combined with TLS. The benefits of using TLS termination should be considered against the security risks of sending unsecured HTTP requests between apps in the private network.

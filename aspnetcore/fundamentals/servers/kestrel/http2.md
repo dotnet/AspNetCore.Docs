@@ -4,7 +4,6 @@ description: Learn about using HTTP/2 with Kestrel, the cross-platform web serve
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: linux-related-content
 ms.date: 08/15/2022
-uid: fundamentals/servers/kestrel/http2
 ---
 
 # Use HTTP/2 with the ASP.NET Core Kestrel web server
@@ -27,7 +26,7 @@ uid: fundamentals/servers/kestrel/http2
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](options.md#http2-limits) and [ListenOptions.Protocols](endpoints.md#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 
@@ -59,7 +58,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](options.md#http2-limits) and [ListenOptions.Protocols](endpoints.md#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 
@@ -91,7 +90,7 @@ Additional HTTP/2 features in Kestrel support gRPC, including support for respon
 
 If an HTTP/2 connection is established, [HttpRequest.Protocol](xref:Microsoft.AspNetCore.Http.HttpRequest.Protocol) reports `HTTP/2`.
 
-Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](xref:fundamentals/servers/kestrel/options#http2-limits) and [ListenOptions.Protocols](xref:fundamentals/servers/kestrel/endpoints#listenoptionsprotocols) sections.
+Starting with .NET Core 3.0, HTTP/2 is enabled by default. For more information on configuration, see the [Kestrel HTTP/2 limits](options.md#http2-limits) and [ListenOptions.Protocols](endpoints.md#listenoptionsprotocols) sections.
 
 ## Advanced HTTP/2 features
 

@@ -21,7 +21,7 @@ ASP.NET Core enables developers to configure and manage security. The following 
 
 These security features allow you to build robust and secure ASP.NET Core apps.
 
-For Blazor security coverage, which adds to or supersedes the guidance in this node, see <xref:blazor/security/index> and the other articles in Blazor's *Security and Identity* node.
+For Blazor security coverage, which adds to or supersedes the guidance in this node, see [ASP.NET Core Blazor authentication and authorization](../blazor/security/index.md) and the other articles in Blazor's *Security and Identity* node.
 
 ## ASP.NET Core security features
 
@@ -61,7 +61,7 @@ Managed identities are a secure way to authenticate to services without needing 
 * [Managed identities for App Service and Azure Functions](/azure/app-service/overview-managed-identity)
 * [Secure authentication flows](/entra/identity-platform/authentication-flows-app-scenarios#web-app-that-signs-in-a-user)
 
-When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](xref:fundamentals/configuration/index). Environment variables are commonly stored in plain, unencrypted text. If the machine or process is compromised, environment variables might be accessible to untrusted parties. We recommend against using environment variables to store a production connection string as it's not the most secure approach.
+When the app is deployed to a test server, an environment variable can be used to set the connection string to a test database server. For more information, see [Configuration](../fundamentals/configuration/index.md). Environment variables are commonly stored in plain, unencrypted text. If the machine or process is compromised, environment variables might be accessible to untrusted parties. We recommend against using environment variables to store a production connection string as it's not the most secure approach.
 
 Configuration data guidelines:
 

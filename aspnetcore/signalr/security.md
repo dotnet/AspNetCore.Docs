@@ -76,7 +76,7 @@ For more information on enabling CORS with endpoint routing, see [Enable CORS wi
 
 ## WebSocket Origin Restriction
 
-The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](xref:fundamentals/websockets#websocket-origin-restriction).
+The protections provided by CORS don't apply to WebSockets. For origin restriction on WebSockets, read [WebSockets origin restriction](../fundamentals/websockets.md#websocket-origin-restriction).
 
 ## ConnectionId
 
@@ -91,7 +91,7 @@ info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
       Request starting HTTP/1.1 GET http://localhost:5000/chathub?access_token=1234
 ```
 
-If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). For more information, see [Apply log filter rules in code](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) for more information. If you still want to log certain request information, you can [write middleware](xref:fundamentals/middleware/write) to log the data that you require and filter out the `access_token` query string value (if present).
+If you have concerns about logging this data with your server logs, you can disable this logging entirely by configuring the `Microsoft.AspNetCore.Hosting` logger to the `Warning` level or above (these messages are written at `Info` level). For more information, see [Apply log filter rules in code](../fundamentals/logging/index.md#apply-log-filter-rules-in-code) for more information. If you still want to log certain request information, you can [write middleware](../fundamentals/middleware/write.md) to log the data that you require and filter out the `access_token` query string value (if present).
 
 ## Exceptions
 

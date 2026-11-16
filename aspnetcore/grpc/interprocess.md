@@ -97,7 +97,7 @@ internal static bool CheckPipeConnectionOwnership(
 }
 ```
 
-Another option for validating the server is to [secure its endpoints with HTTPS](/aspnet/core/fundamentals/servers/kestrel/endpoints#configure-https) inside ASP.NET Core. The client can configure `SocketsHttpHandler` to validate the server is using the expected certificate when the connection is established.
+Another option for validating the server is to [secure its endpoints with HTTPS](../fundamentals/servers/kestrel/endpoints.md#configure-https) inside ASP.NET Core. The client can configure `SocketsHttpHandler` to validate the server is using the expected certificate when the connection is established.
 
 ```cs
 var socketsHttpHandler = new SocketsHttpHandler()

@@ -24,7 +24,7 @@ Identity is typically configured using a SQL Server database to store user names
 
 In this topic, you learn how to use Identity to register, log in, and log out a user. Note: the templates treat username and email as the same for users. For more detailed instructions about creating apps that use Identity, see [Next Steps](#next).
 
-For more information on Identity in Blazor apps, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation.
+For more information on Identity in Blazor apps, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md) and the articles that follow it in the Blazor documentation.
 
 ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/active-directory/develop/). Microsoft identity platform is:
 
@@ -33,7 +33,7 @@ ASP.NET Core Identity isn't related to the [Microsoft identity platform](/azure/
 
 [!INCLUDE[](~/includes/DuendeIdentityServer.md)]
 
-[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/identity/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 <a name="adi"></a>
 
@@ -81,7 +81,7 @@ Identity Razor components are described individually in the documentation for sp
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-For more information, see <xref:blazor/security/index> and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supersedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
+For more information, see [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md) and the articles that follow it in the Blazor documentation. Most of the articles in the *Security and Identity* area of the main ASP.NET Core documentation set apply to Blazor apps. However, the Blazor documentation set contains articles and guidance that supersedes or adds information. We recommend studying the general ASP.NET Core documentation set first, followed by accessing the articles in the Blazor *Security and Identity* documentation.
 
 ## Create a Razor Pages app with authentication
 
@@ -109,7 +109,7 @@ dotnet new webapp -au Individual -uld -o WebApp1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). The Identity Razor class library exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
 * `Areas/Identity/Pages/Account/Login`
@@ -143,7 +143,7 @@ dotnet new mvc -au Individual -uld -o WebApplication1
 
 ---
 
-The generated project provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](xref:razor-pages/ui-class). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
+The generated project provides [ASP.NET Core Identity](identity.md) as a [Razor class library (RCL)](../../razor-pages/ui-class.md). The Identity Razor class library is based on Razor Pages and exposes endpoints with the `Identity` area. For example:
 
 * `Areas/Identity/Pages/Account/Register`
 * `Areas/Identity/Pages/Account/Login`
@@ -192,13 +192,13 @@ Services are added in `Program.cs`. The typical pattern is to call methods in th
 
 :::code language="csharp" source="identity/samples/WebApp6x/Program.cs" id="snippet_":::
 
-The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](xref:fundamentals/dependency-injection).
+The preceding code configures Identity with default option values. Services are made available to the app through [dependency injection](../../fundamentals/dependency-injection.md).
 
-Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](xref:fundamentals/middleware/index) to the request pipeline.
+Identity is enabled by calling <xref:Microsoft.AspNetCore.Builder.AuthAppBuilderExtensions.UseAuthentication*>. `UseAuthentication` adds authentication [middleware](../../fundamentals/middleware/index.md) to the request pipeline.
 
 The template-generated app doesn't use [authorization](../authorization/secure-data.md). `app.UseAuthorization` is included to ensure it's added in the correct order should the app add authorization. `UseRouting`, `UseAuthentication`, and `UseAuthorization` must be called in the order shown in the preceding code.
 
-For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](xref:fundamentals/startup).
+For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identity.IdentityOptions> and [Application Startup](../../fundamentals/startup.md).
 
 :::moniker-end
 
@@ -208,7 +208,7 @@ For more information on `IdentityOptions`, see <xref:Microsoft.AspNetCore.Identi
 
 ASP.NET Core Identity metrics provide monitoring capabilities for user management and authentication processes. These metrics help you detect unusual sign-in patterns that might indicate security threats, track the performance of identity operations, and understand how users interact with authentication features, such as two-factor authentication. This observability is particularly valuable for apps with strict security requirements or those experiencing high authentication traffic.
 
-For complete details on available metrics and how to use them, see <xref:metrics/overview#aspnet-core-identity-metrics>.
+For complete details on available metrics and how to use them, see [ASP.NET Core metrics](../../metrics/overview.md#aspnet-core-identity-metrics).
 
 :::moniker-end
 
@@ -298,13 +298,13 @@ To explore Identity in more detail:
 
 ## Identity Components
 
-All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](xref:aspnetcore-3.0#use-the-aspnet-core-shared-framework).
+All the Identity-dependent NuGet packages are included in the [ASP.NET Core shared framework](../../release-notes/aspnetcore-3.0.md#use-the-aspnet-core-shared-framework).
 
 The primary package for Identity is [Microsoft.AspNetCore.Identity](https://www.nuget.org/packages/Microsoft.AspNetCore.Identity/). This package contains the core set of interfaces for ASP.NET Core Identity, and is included by `Microsoft.AspNetCore.Identity.EntityFrameworkCore`.
 
 ## Migrating to ASP.NET Core Identity
 
-For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](xref:migration/fx-to-core/examples/identity).
+For more information and guidance on migrating your existing Identity store, see [Migrate Authentication and Identity](../../migration/fx-to-core/examples/identity.md).
 
 ## Setting password strength
 
@@ -340,7 +340,7 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 
 ## Next Steps
 
-* <xref:blazor/security/index>
+* [ASP.NET Core Blazor authentication and authorization](../../blazor/security/index.md)
 * [ASP.NET Core Identity source code](https://github.com/dotnet/aspnetcore/tree/main/src/Identity)
 * [How to work with Roles in ASP.NET Core Identity](https://www.yogihosting.com/aspnet-core-identity-roles/)
 <!-- https://github.com/dotnet/AspNetCore.Docs/issues/7114 -->
@@ -349,10 +349,10 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Create an ASP.NET Core app with user data protected by authorization](../authorization/secure-data.md)
 * [Add, download, and delete user data to Identity in an ASP.NET Core project](add-user-data.md)
 * [Enable QR code generation for TOTP authentication](identity-enable-qrcodes.md)
-* <xref:migration/fx-to-core/examples/identity>
+* [Migrate Authentication and Identity to ASP.NET Core](../../migration/fx-to-core/examples/identity.md)
 * [Account confirmation and password recovery](accconfirm.md)
 * [Multi-factor authentication in ASP.NET Core](mfa.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 

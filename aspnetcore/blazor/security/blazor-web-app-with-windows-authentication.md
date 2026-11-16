@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to secure a Blazor Web App with Windows Authentication.
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 09/18/2026
-uid: blazor/security/blazor-web-app-windows-authentication
 ---
 # Secure an ASP.NET Core Blazor Web App with Windows Authentication
 
@@ -18,14 +17,14 @@ This article describes how to secure a Blazor Web App with [Windows Authenticati
 
 The app specification for the Blazor Web App:
 
-* Adopts the [Interactive Server render mode with global interactivity](xref:blazor/components/render-modes).
+* Adopts the [Interactive Server render mode with global interactivity](../components/render-modes.md).
 * Establishes an [authorization policy](../../security/authorization/policies.md) for a [Windows security identifier](/windows-server/identity/ad-ds/manage/understand-security-identifiers) to access a secure page.
 
 ## Sample app
 
 Access the sample through the latest version folder in the Blazor samples repository with the following link. The sample is in the `BlazorWebAppWinAuthServer` folder for .NET 9 or later.
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 ## Configuration
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Use Microsoft.Extensions.Validation in ASP.NET Core to validate models.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/20/2026
-uid: fundamentals/validation
 ---
 # Validation in ASP.NET Core
 
@@ -18,10 +17,10 @@ Asynchronous validation attributes and <xref:System.ComponentModel.DataAnnotatio
 
 :::moniker-end
 
-* Minimal APIs use the service to validate a request before the endpoint handler runs. For guidance on how validation is surfaced in an endpoint, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
-* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see <xref:blazor/forms/validation>.
+* Minimal APIs use the service to validate a request before the endpoint handler runs. For guidance on how validation is surfaced in an endpoint, see [Minimal APIs quick reference](minimal-apis.md#validation-support-in-minimal-apis).
+* Blazor uses the service through the <xref:Microsoft.AspNetCore.Components.Forms.DataAnnotationsValidator> component. For guidance on how validation is surfaced in a form, see [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md).
 
-While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see <xref:mvc/models/validation>.
+While the API in the [`Microsoft.Extensions.Validation` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Validation) can be used in scenarios outside ASP.NET Core, this article focuses on ASP.NET Core. The API isn't supported for MVC or Razor Pages. For validation guidance that applies to MVC and Razor Pages, see [Model validation in ASP.NET Core MVC](../mvc/models/validation.md).
 
 ## Register validation services
 
@@ -164,7 +163,7 @@ Apply <xref:Microsoft.Extensions.Validation.SkipValidationAttribute> to a proper
 
 ## Write custom validation rules
 
-When the [built-in validation attributes](xref:mvc/models/validation#built-in-attributes) don't express a rule, write a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the model. Both are discovered and executed by <xref:Microsoft.Extensions.Validation?displayProperty=fullName> in Blazor and Minimal API apps.
+When the [built-in validation attributes](../mvc/models/validation.md#built-in-attributes) don't express a rule, write a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or implement <xref:System.ComponentModel.DataAnnotations.IValidatableObject> on the model. Both are discovered and executed by <xref:Microsoft.Extensions.Validation?displayProperty=fullName> in Blazor and Minimal API apps.
 
 ### Custom validation attributes
 
@@ -251,7 +250,7 @@ For rules that require I/O, such as a database or web API call, see the [Asynchr
 :::moniker range=">= aspnetcore-11.0"
 
 > [!NOTE]
-> In a Blazor form that uses static server-side rendering (static SSR), custom attributes aren't enforced by the browser unless the attribute also supplies a client-side rule. For more information, see <xref:blazor/forms/validation-client-side>.
+> In a Blazor form that uses static server-side rendering (static SSR), custom attributes aren't enforced by the browser unless the attribute also supplies a client-side rule. For more information, see [ASP.NET Core Blazor client-side form validation in static SSR](../blazor/forms/validation-client-side.md).
 
 :::moniker-end
 
@@ -337,7 +336,7 @@ public class ValidateUser : IAsyncValidatableObject
 
     // Asynchronous validation path
     public async IAsyncEnumerable<ValidationResult> ValidateAsync(
-        ValidationContext validationContext, 
+        ValidationContext validationContext,
         [EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var userService = validationContext.GetService<IUserService>();
@@ -381,7 +380,7 @@ builder.Services.AddValidation();
 There's no separate package or additional opt-in call.
 
 > [!IMPORTANT]
-> `AddLocalization` registers localization services but doesn't select the culture for a request or circuit. Validation resource lookup uses <xref:System.Globalization.CultureInfo.CurrentUICulture>. For request culture providers, including query string, cookie, and `Accept-Language` header selection, see <xref:fundamentals/localization/select-language-culture>. For configuring culture selection across Blazor render modes, see <xref:blazor/globalization-localization>.
+> `AddLocalization` registers localization services but doesn't select the culture for a request or circuit. Validation resource lookup uses <xref:System.Globalization.CultureInfo.CurrentUICulture>. For request culture providers, including query string, cookie, and `Accept-Language` header selection, see [Strategies for selecting language and culture in a localized ASP.NET Core app](localization/select-language-culture.md). For configuring culture selection across Blazor render modes, see [ASP.NET Core Blazor globalization and localization](../blazor/globalization-localization.md).
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
@@ -438,7 +437,7 @@ builder.Services.AddLocalization(options => options.ResourcesPath = "Resources")
 builder.Services.AddValidation();
 ```
 
-Under the configured `ResourcesPath`, the type's full name minus the project's root namespace is used as a dotted path. For a project root namespace of `Contoso`, French messages for `Contoso.Models.Customer` are read from `Resources/Models/Customer.fr.resx` (equivalently `Resources/Models.Customer.fr.resx`). For a full description of the conventions, see <xref:fundamentals/localization/provide-resources>.
+Under the configured `ResourcesPath`, the type's full name minus the project's root namespace is used as a dotted path. For a project root namespace of `Contoso`, French messages for `Contoso.Models.Customer` are read from `Resources/Models/Customer.fr.resx` (equivalently `Resources/Models.Customer.fr.resx`). For a full description of the conventions, see [Provide localized resources for languages and cultures in an ASP.NET Core app](localization/provide-resources.md).
 
 For per-type lookup, place the resource files in the project that declares the validated type. For example, if a Blazor Web App's form models are declared in its `.Client` project, place their per-type resources in that project. The model assembly's root namespace and the configured `ResourcesPath` determine the resource name.
 
@@ -553,7 +552,7 @@ The preceding approach validates the types from both assemblies.
 
 For a Blazor Web App whose form models are declared in the `.Client` project, create the validation-registration extension method in that project and call it from the server project's `Program` file.
 
-For Minimal API endpoints and models defined in referenced assemblies, see <xref:fundamentals/minimal-apis#validation-support-in-minimal-apis>.
+For Minimal API endpoints and models defined in referenced assemblies, see [Minimal APIs quick reference](minimal-apis.md#validation-support-in-minimal-apis).
 
 ### Troubleshoot generated validation metadata
 
@@ -639,21 +638,21 @@ Whichever approach is adopted, denote the presence of the workaround for a futur
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
-  * <xref:blazor/forms/validation-client-side>
-  * <xref:blazor/forms/validation-advanced>
-* [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](xref:migration/100-to-110#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
-* <xref:fundamentals/minimal-apis>
-  * [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:mvc/models/validation>
+* [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md)
+  * [ASP.NET Core Blazor client-side form validation in static SSR](../blazor/forms/validation-client-side.md)
+  * [ASP.NET Core Blazor advanced form validation](../blazor/forms/validation-advanced.md)
+* [Upgrade from the experimental `ValidatableTypeAttribute`/`SkipValidationAttribute` in .NET 10](../migration/100-to-110.md#upgrade-from-the-experimental-validatabletypeattribute-and-skipvalidationattribute-in-net-10)
+* [Minimal APIs quick reference](minimal-apis.md)
+  * [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
+* [Make an ASP.NET Core app's content localizable](localization/make-content-localizable.md)
+* [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
-* <xref:blazor/forms/validation>
-* [Validation support in Minimal APIs](xref:fundamentals/minimal-apis#validation-support-in-minimal-apis)
-* <xref:mvc/models/validation>
+* [ASP.NET Core Blazor forms validation](../blazor/forms/validation.md)
+* [Validation support in Minimal APIs](minimal-apis.md#validation-support-in-minimal-apis)
+* [Model validation in ASP.NET Core MVC](../mvc/models/validation.md)
 
 :::moniker-end

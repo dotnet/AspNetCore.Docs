@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/extensibility
 title: Overview of extensibility
 description: Overview of extensibility
 ms.date: 04/03/2025
@@ -16,21 +15,21 @@ There are 2 main styles of extensibility for YARP, depending on the routing beha
 
 ## Middleware pipeline
 
-YARP uses the concept of [Routes](xref:fundamentals/servers/yarp/config-files#routes), [Clusters](xref:fundamentals/servers/yarp/config-files#clusters) and Destinations. These can be supplied through [configuration files](xref:fundamentals/servers/yarp/config-files) or [directly through code](xref:fundamentals/servers/yarp/config-providers). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
+YARP uses the concept of [Routes](config-files.md#define-configuration-routes), [Clusters](config-files.md#define-configuration-clusters) and Destinations. These can be supplied through [configuration files](config-files.md) or [directly through code](config-providers.md). Based on the routing rules, YARP picks a cluster and enumerates the possible destinations. It then uses the middleware pipeline to select the destination based on destination health, session affinity, load balancing etc.
 
 ![Middleware pipeline diagram](~/fundamentals/servers/yarp/media/yarp-pipeline.png)
 
 Most of the prebuilt pipeline can be customized through code:
 
-* [Configuration Providers](xref:fundamentals/servers/yarp/config-providers)
-* [Destination Enumeration](xref:fundamentals/servers/yarp/destination-resolvers)
-* [Session Affinity](xref:fundamentals/servers/yarp/session-affinity)
-* [Load Balancing](xref:fundamentals/servers/yarp/load-balancing)
-* [Health Checks](xref:fundamentals/servers/yarp/dests-health-checks)
-* [Request Transforms](xref:fundamentals/servers/yarp/transform-extensibility)
+* [Configuration Providers](config-providers.md)
+* [Destination Enumeration](destination-resolvers.md)
+* [Session Affinity](session-affinity.md)
+* [Load Balancing](load-balancing.md)
+* [Health Checks](dests-health-checks.md)
+* [Request Transforms](extensibility-transforms.md)
 * [HttpClient configuration](./http-client-config.md#code-configuration)
 
-You can also change the pipeline definition to replace modules with your own implementations or add additional modules as needed. For more information see [Middleware](xref:fundamentals/servers/yarp/middleware).
+You can also change the pipeline definition to replace modules with your own implementations or add additional modules as needed. For more information see [Middleware](middleware.md).
 
 ## HTTP forwarder
 
@@ -40,4 +39,4 @@ If the YARP pipeline is too rigid for your use case or the scale of routing rule
 
 The transform component can still be used if the forwarder is needed.
 
-For more information see [Direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding).
+For more information see [Direct forwarding](direct-forwarding.md).

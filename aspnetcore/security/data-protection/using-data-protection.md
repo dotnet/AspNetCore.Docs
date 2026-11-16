@@ -13,7 +13,7 @@ Basically, protecting data consists of the following steps:
 1. Call the `Protect` method with the data you want to protect.
 1. Call the `Unprotect` method with the data you want to turn back into plain text.
 
-Most frameworks and app models, such as ASP.NET Core or SignalR, already configure the data protection system and add it to a service container that is accessed via [dependency injection](xref:fundamentals/dependency-injection). The following sample demonstrates:
+Most frameworks and app models, such as ASP.NET Core or SignalR, already configure the data protection system and add it to a service container that is accessed via [dependency injection](../../fundamentals/dependency-injection.md). The following sample demonstrates:
 
 * Configuring a service container for dependency injection and registering the data protection stack.
 * Receiving the data protection provider via DI.

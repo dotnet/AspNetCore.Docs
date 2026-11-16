@@ -4,7 +4,6 @@ description: Learn how to host and deploy server-side Blazor apps (Blazor Web Ap
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/server/index
 ---
 # Host and deploy server-side Blazor apps
 
@@ -14,13 +13,13 @@ This article explains how to host and deploy server-side Blazor apps (Blazor Web
 
 ## Host configuration values
 
-Server-side Blazor apps can accept [Generic Host configuration values](xref:fundamentals/host/generic-host#host-configuration).
+Server-side Blazor apps can accept [Generic Host configuration values](../../../fundamentals/host/generic-host.md#set-up-host-configuration).
 
 ## Deployment
 
-Using a server-side hosting model, Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](xref:signalr/introduction) connection.
+Using a server-side hosting model, Blazor is executed on the server from within an ASP.NET Core app. UI updates, event handling, and JavaScript calls are handled over a [SignalR](../../../signalr/introduction.md) connection.
 
-A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes a server-side app project template. For more information on Blazor project templates, see <xref:blazor/project-structure>.
+A web server capable of hosting an ASP.NET Core app is required. Visual Studio includes a server-side app project template. For more information on Blazor project templates, see [ASP.NET Core Blazor project structure](../../project-structure.md).
 
 Publish an app in Release configuration and deploy the contents of the `bin/Release/{TARGET FRAMEWORK}/publish` folder, where the `{TARGET FRAMEWORK}` placeholder is the target framework.
 
@@ -33,8 +32,8 @@ When considering the scalability of a single server (scale up), the memory avail
 
 For guidance on building secure and scalable server-side Blazor apps, see the following resources:
 
-* <xref:blazor/security/static-server-side-rendering>
-* <xref:blazor/security/interactive-server-side-rendering>
+* [Threat mitigation guidance for ASP.NET Core Blazor static server-side rendering](../../security/static-server-side-rendering.md)
+* [Threat mitigation guidance for ASP.NET Core Blazor interactive server-side rendering](../../security/interactive-server-side-rendering.md)
 
 Each circuit uses approximately 250 KB of memory for a minimal *Hello World*-style app. The size of a circuit depends on the app's code and the state maintenance requirements associated with each component. We recommend that you measure resource demands during development for your app and infrastructure, but the following baseline can be a starting point in planning your deployment target: If you expect your app to support 5,000 concurrent users, consider budgeting at least 1.3 GB of server memory to the app (or ~273 KB per user).
 
@@ -51,21 +50,21 @@ The `ResourcePreloader` component in the `App` component's head content (`App.ra
 A Razor component is used instead of `<link>` elements because:
 
 * The component permits the base URL (`<base>` tag's `href` attribute value) to correctly identify the root of the Blazor app within an ASP.NET Core app.
-* The feature can be removed by removing the `ResourcePreloader` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](xref:blazor/fundamentals/startup#load-client-side-boot-resources) to modify URLs.
+* The feature can be removed by removing the `ResourcePreloader` component tag from the `App` component. This is helpful in cases where the app is using a [`loadBootResource` callback](../../fundamentals/startup.md#load-client-side-boot-resources) to modify URLs.
 
 :::moniker-end
 
 ## SignalR configuration
 
-[SignalR's hosting and scaling conditions](xref:signalr/publish-to-azure-web-app) apply to Blazor apps that use SignalR.
+[SignalR's hosting and scaling conditions](../../../signalr/publish-to-azure-web-app.md) apply to Blazor apps that use SignalR.
 
-For more information on SignalR in Blazor apps, including configuration guidance, see <xref:blazor/fundamentals/signalr>.
+For more information on SignalR in Blazor apps, including configuration guidance, see [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md).
 
 :::moniker range=">= aspnetcore-6.0"
 
 ### Transports
 
-Blazor works best when using [WebSockets](xref:fundamentals/websockets) as the SignalR transport due to lower latency, better reliability, and improved [security](../../../signalr/security.md). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
+Blazor works best when using [WebSockets](../../../fundamentals/websockets.md) as the SignalR transport due to lower latency, better reliability, and improved [security](../../../signalr/security.md). [Long Polling](https://github.com/dotnet/aspnetcore/blob/main/src/SignalR/docs/specs/TransportProtocols.md#long-polling-server-to-client-only) is used by SignalR when WebSockets isn't available or when the app is explicitly configured to use Long Polling.
 
 A console warning appears if Long Polling is utilized:
 
@@ -76,7 +75,7 @@ A console warning appears if Long Polling is utilized:
 Recommendations for global deployments to geographical data centers:
 
 * Deploy the app to the regions where most of the users reside.
-* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see <xref:blazor/fundamentals/signalr#control-when-the-reconnection-ui-appears>.
+* Take into consideration the increased latency for traffic across continents. To control the appearance of the reconnection UI, see [ASP.NET Core Blazor SignalR guidance](../../fundamentals/signalr.md#control-when-the-reconnection-ui-appears).
 * Consider using the [Azure SignalR Service](#azure-signalr-service).
 
 :::moniker-end
@@ -90,7 +89,7 @@ Hosting on Azure App Service requires configuration for WebSockets and session a
 
 Enable the following for the app's registration in Azure App Service:
 
-* [WebSockets](xref:fundamentals/websockets) to allow the WebSockets transport to function. The default setting is **Off**.
+* [WebSockets](../../../fundamentals/websockets.md) to allow the WebSockets transport to function. The default setting is **Off**.
 * Session affinity to route requests from a user back to the same App Service instance. The default setting is **On**.
 
 1. In the Azure portal, navigate to the web app in **App Services**.
@@ -100,7 +99,7 @@ Enable the following for the app's registration in Azure App Service:
 
 ## Azure SignalR Service
 
-The optional [Azure SignalR Service](xref:signalr/scale#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
+The optional [Azure SignalR Service](../../../signalr/scale.md#azure-signalr-service) works in conjunction with the app's SignalR hub for scaling up a server-side app to a large number of concurrent connections. In addition, the service's global reach and high-performance data centers significantly aid in reducing latency due to geography.
 
 The service isn't required for Blazor apps hosted in Azure App Service or Azure Container Apps but can be helpful in other hosting environments:
 
@@ -113,22 +112,22 @@ The Azure SignalR Service with SDK [v1.26.1](https://github.com/Azure/azure-sign
 
 :::moniker-end
 
-In the event that the app uses Long Polling or falls back to Long Polling instead of [WebSockets](xref:fundamentals/websockets), you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
+In the event that the app uses Long Polling or falls back to Long Polling instead of [WebSockets](../../../fundamentals/websockets.md), you may need to configure the maximum poll interval (`MaxPollIntervalInSeconds`, default: 5 seconds, limit: 1-300 seconds), which defines the maximum poll interval allowed for Long Polling connections in the Azure SignalR Service. If the next poll request doesn't arrive within the maximum poll interval, the service closes the client connection.
 
-For guidance on how to add the service as a dependency to a production deployment, see <xref:signalr/publish-to-azure-web-app>.
+For guidance on how to add the service as a dependency to a production deployment, see [Publish an ASP.NET Core SignalR app to Azure App Service](../../../signalr/publish-to-azure-web-app.md).
 
 For more information, see:
 
 * [Azure SignalR Service](https://azure.microsoft.com/products/signalr-service/)
 * [What is Azure SignalR Service?](/azure/azure-signalr/signalr-overview)
-* <xref:signalr/scale#azure-signalr-service>
-* <xref:signalr/publish-to-azure-web-app>
+* [ASP.NET Core SignalR production hosting and scaling](../../../signalr/scale.md#azure-signalr-service)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](../../../signalr/publish-to-azure-web-app.md)
 
 :::moniker range=">= aspnetcore-6.0"
 
 ## Azure Container Apps
 
-For a deeper exploration of scaling server-side Blazor apps on the Azure Container Apps service, see <xref:host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps>. The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
+For a deeper exploration of scaling server-side Blazor apps on the Azure Container Apps service, see [Scaling ASP.NET Core Apps on Azure](../../../host-and-deploy/scaling-aspnet-apps/scaling-aspnet-apps.md). The tutorial explains how to create and integrate the services required to host apps on Azure Container Apps. Basic steps are also provided in this section.
 
 1. Configure Azure Container Apps service for session affinity by following the guidance in [Session Affinity in Azure Container Apps (Azure documentation)](/azure/container-apps/sticky-sessions).
 
@@ -173,10 +172,10 @@ For a deeper exploration of scaling server-side Blazor apps on the Azure Contain
 
 When using IIS, enable:
 
-* [WebSockets on IIS](xref:fundamentals/websockets#enabling-websockets-on-iis).
+* [WebSockets on IIS](../../../fundamentals/websockets.md#enabling-websockets-on-iis).
 * [Session affinity with Application Request Routing](/iis/extensions/configuring-application-request-routing-arr/http-load-balancing-using-application-request-routing).
 
-For more information, see the guidance and external IIS resource cross-links in <xref:tutorials/publish-to-iis>.
+For more information, see the guidance and external IIS resource cross-links in [Publish an ASP.NET Core app to IIS](../../../tutorials/publish-to-iis.md).
 
 ## Kubernetes
 
@@ -196,16 +195,16 @@ metadata:
 
 ## Linux with Nginx
 
-Follow the guidance for an [ASP.NET Core SignalR app](xref:signalr/scale#linux-with-nginx) with the following changes:
+Follow the guidance for an [ASP.NET Core SignalR app](../../../signalr/scale.md#linux-with-nginx) with the following changes:
 
 * Change the `location` path from `/hubroute` (`location /hubroute { ... }`) to the root path `/` (`location / { ... }`).
 * Remove the configuration for proxy buffering (`proxy_buffering off;`) because the setting only applies to [Server-Sent Events (SSE)](https://developer.mozilla.org/docs/Web/API/Server-sent_events), which aren't relevant to Blazor app client-server interactions.
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:signalr/scale>
-* <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/proxy-load-balancer>
+* [ASP.NET Core SignalR production hosting and scaling](../../../signalr/scale.md)
+* [Host ASP.NET Core on Linux with Nginx](../../../host-and-deploy/linux-nginx.md)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
 * [NGINX as a WebSocket Proxy](https://www.nginx.com/blog/websocket-nginx/)
 * [WebSocket proxying](http://nginx.org/docs/http/websocket.html)
 * Consult developers on non-Microsoft support forums:
@@ -247,7 +246,7 @@ Check the browser console for WebSockets errors. Example errors:
 
 For more information and configuration guidance, consult the following resources:
 
-* <xref:host-and-deploy/proxy-load-balancer>
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../../host-and-deploy/proxy-load-balancer.md)
 * [Apache documentation](https://httpd.apache.org/docs/current/mod/mod_proxy.html)
 * Consult developers on non-Microsoft support forums:
   * [Stack Overflow (tag: `blazor`)](https://stackoverflow.com/questions/tagged/blazor)
@@ -256,7 +255,7 @@ For more information and configuration guidance, consult the following resources
 
 ## Measure network latency
 
-[JS interop](xref:blazor/js-interop/call-javascript-from-dotnet) can be used to measure network latency, as the following example demonstrates.
+[JS interop](../../javascript-interoperability/call-javascript-from-dotnet.md) can be used to measure network latency, as the following example demonstrates.
 
 `MeasureLatency.razor`:
 

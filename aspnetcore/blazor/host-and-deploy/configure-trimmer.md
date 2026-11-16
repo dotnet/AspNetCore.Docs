@@ -3,7 +3,6 @@ title: Configure the Trimmer for ASP.NET Core Blazor
 description: Learn how to control the Intermediate Language (IL) Trimmer when building a Blazor app.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 11/11/2025
-uid: blazor/host-and-deploy/configure-trimmer
 ---
 # Configure the Trimmer for ASP.NET Core Blazor
 
@@ -220,4 +219,4 @@ As a workaround in .NET 8, you can add the `_ExtraTrimmerArgs` MSBuild property 
 
 * [Trim self-contained deployments and executables](/dotnet/core/deploying/trimming/trim-self-contained)
 * [Prepare .NET libraries for trimming](/dotnet/core/deploying/trimming/prepare-libraries-for-trimming)
-* <xref:blazor/performance/app-download-size#intermediate-language-il-trimming>
+* [ASP.NET Core Blazor app download size performance best practices](../performance/app-download-size.md#intermediate-language-il-trimming)

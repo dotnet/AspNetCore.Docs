@@ -116,7 +116,7 @@ Update the default protocol in `appsettings.json`:
 }
 ```
 
-Alternatively, [configure Kestrel endpoints in startup code](xref:fundamentals/servers/kestrel/endpoints).
+Alternatively, [configure Kestrel endpoints in startup code](../../../fundamentals/servers/kestrel/endpoints.md).
 
 Enabling HTTP/1.1 and HTTP/2 on the same port requires TLS for protocol negotiation. For more information about configuring HTTP protocols in a gRPC app, see [ASP.NET Core gRPC protocol negotiation](../../aspnetcore.md#protocol-negotiation).
 

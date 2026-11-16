@@ -3,13 +3,12 @@ title: ASP.NET Core Blazor environments
 description: Learn about environments in Blazor, including how to set the environment.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 09/15/2026
-uid: blazor/fundamentals/environments
 ---
 # ASP.NET Core Blazor environments
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This article explains how to configure and read the [environment](xref:fundamentals/environments) in a Blazor app.
+This article explains how to configure and read the [environment](../../fundamentals/environments.md) in a Blazor app.
 
 When running an app locally, the environment defaults to `Development`. When the app is published, the environment defaults to `Production`.
                 
@@ -25,7 +24,7 @@ The environment is set using any of the following approaches:
 
 :::moniker range=">= aspnetcore-10.0"
 
-* Blazor Web App or Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
+* Blazor Web App or Blazor Server: Use any of the approaches described in [ASP.NET Core runtime environments](../../fundamentals/environments.md) for general ASP.NET Core apps.
 * Any Blazor app: [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
 * Standalone Blazor WebAssembly: `<WasmApplicationEnvironmentName>` property
 
@@ -83,7 +82,7 @@ There are several approaches for setting the environment in a standalone Blazor 
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-10.0"
 
-* Blazor Web App or Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
+* Blazor Web App or Blazor Server: Use any of the approaches described in [ASP.NET Core runtime environments](../../fundamentals/environments.md) for general ASP.NET Core apps.
 * Any Blazor app:
   * [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
   * [Azure App Service](#set-the-environment-for-azure-app-service)
@@ -97,7 +96,7 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 :::moniker range="< aspnetcore-8.0"
 
-* Blazor Server: Use any of the approaches described in <xref:fundamentals/environments> for general ASP.NET Core apps.
+* Blazor Server: Use any of the approaches described in [ASP.NET Core runtime environments](../../fundamentals/environments.md) for general ASP.NET Core apps.
 * Blazor Server or Blazor WebAssembly:
   * [Blazor start configuration](#set-the-client-side-environment-via-blazor-startup-configuration)
   * [Azure App Service](#set-the-environment-for-azure-app-service)
@@ -113,7 +112,7 @@ For a standalone Blazor WebAssembly app running locally, the development server 
 
 For app's running locally in development, the app defaults to the `Development` environment. Publishing the app defaults the environment to `Production`.
 
-For general guidance on ASP.NET Core environments, see <xref:fundamentals/environments>. For server-side app configuration to serve static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see <xref:fundamentals/static-files#static-files-in-non-development-environments>.
+For general guidance on ASP.NET Core environments, see [ASP.NET Core runtime environments](../../fundamentals/environments.md). For server-side app configuration to serve static files in environments other than the <xref:Microsoft.Extensions.Hosting.Environments.Development> environment during local development and testing (for example, <xref:Microsoft.Extensions.Hosting.Environments.Staging>), see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md#static-files-in-non-development-environments).
 
 ## Set the client-side environment via Blazor startup configuration
 
@@ -142,10 +141,10 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 > [!NOTE]
-> For Blazor Web Apps that set the `webAssembly` > `environment` property in `Blazor.start` configuration, it's wise to match the server-side environment to the environment set on the `environment` property. Otherwise, prerendering on the server operates under a different environment than rendering on the client, which results in arbitrary effects. For general guidance on setting the environment for a Blazor Web App, see <xref:fundamentals/environments>.
+> For Blazor Web Apps that set the `webAssembly` > `environment` property in `Blazor.start` configuration, it's wise to match the server-side environment to the environment set on the `environment` property. Otherwise, prerendering on the server operates under a different environment than rendering on the client, which results in arbitrary effects. For general guidance on setting the environment for a Blazor Web App, see [ASP.NET Core runtime environments](../../fundamentals/environments.md).
 
 :::moniker-end
 
@@ -170,7 +169,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -189,7 +188,7 @@ Console.WriteLine(
     $"Client Hosting Environment: {builder.HostEnvironment.Environment}");
 ```
 
-For more information on Blazor startup, see <xref:blazor/fundamentals/startup>.
+For more information on Blazor startup, see [ASP.NET Core Blazor startup](startup.md).
 
 :::moniker range="< aspnetcore-10.0"
 
@@ -222,7 +221,7 @@ In the following example for IIS, the custom header (`Blazor-Environment`) is ad
 ```
 
 > [!NOTE]
-> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see <xref:blazor/host-and-deploy/webassembly/iis#use-of-a-custom-webconfig>.
+> To use a custom `web.config` file for IIS that isn't overwritten when the app is published to the `publish` folder, see [Host and deploy ASP.NET Core Blazor WebAssembly with IIS](../host-and-deploy/webassembly/iis.md#use-of-a-custom-webconfig).
 
 ### Nginx
 
@@ -243,7 +242,7 @@ http {
 For more information, see the following resources:
 
 * [Nginx documentation](http://nginx.org/docs/http/ngx_http_headers_module.html)
-* <xref:blazor/host-and-deploy/webassembly/nginx>
+* [Host and deploy ASP.NET Core Blazor WebAssembly with Nginx](../host-and-deploy/webassembly/nginx.md)
 
 ### Apache
 
@@ -260,7 +259,7 @@ For Apache servers, use the `Header` directive from the `mod_headers` module:
 For more information, see the following resources:
 
 * [Apache documentation (search the latest release for "`mod_headers`")](https://httpd.apache.org/docs/)
-* <xref:blazor/host-and-deploy/webassembly/apache>
+* [Host and deploy ASP.NET Core Blazor WebAssembly with Apache](../host-and-deploy/webassembly/apache.md)
 
 ### Set the environment for Azure App Service
 
@@ -336,7 +335,7 @@ Assuming that prerendering isn't disabled for a component or the app, a componen
 
 > :::no-loc text="There is no registered service of type 'Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment'.":::
 
-To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Custom service implementation on the server](xref:blazor/components/prerender#custom-service-implementation-on-the-server) section of the *Prerendering* article, which appears later in the Blazor documentation.
+To address this, create a custom service implementation for <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEnvironment> on the server. For more information and an example implementation, see the [Create a service abstraction](../components/prerender.md#create-a-service-abstraction) section of the *Prerendering* article, which appears later in the Blazor documentation.
 
 :::moniker-end
 
@@ -378,6 +377,6 @@ The <xref:Microsoft.AspNetCore.Components.WebAssembly.Hosting.IWebAssemblyHostEn
 
 ## Related content
 
-* <xref:blazor/fundamentals/startup>
-* <xref:fundamentals/environments>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [ASP.NET Core Blazor startup](startup.md)
+* [ASP.NET Core runtime environments](../../fundamentals/environments.md)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](index.md#sample-apps))

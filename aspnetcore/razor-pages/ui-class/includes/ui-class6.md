@@ -1,7 +1,7 @@
 
 :::moniker range="= aspnetcore-6.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
 For information on how to integrate npm and webpack into the build process for a Razor Class Library, see [Build client web assets for your Razor Class Library](https://devblogs.microsoft.com/dotnet/build-client-web-assets-for-your-razor-class-library/).
 
@@ -131,7 +131,7 @@ To include TypeScript files in an RCL:
 
 The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and without a `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
-The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in:
+The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](../../../fundamentals/static-files.md) enabled in:
 
 [!code-csharp[](~/razor-pages/ui-class/samples/6/MvcProgram.cs?highlight=15)]
 
@@ -158,18 +158,18 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../../../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 
@@ -291,7 +291,7 @@ To include TypeScript files in an RCL:
 
 The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and without a `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
-The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
+The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](../../../fundamentals/static-files.md) enabled in `Startup.Configure`:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -344,15 +344,15 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* <xref:blazor/components/class-libraries>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-3.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 
@@ -450,7 +450,7 @@ The preceding commands:
 
 * Creates the `RazorUIClassLib` RCL.
 * Creates a Razor _Message page, and adds it to the RCL. The `-np` parameter creates the page without a `PageModel`.
-* Creates a [`_ViewStart.cshtml`](xref:mvc/views/layout#running-code-before-each-view) file and adds it to the RCL.
+* Creates a [`_ViewStart.cshtml`](../../../mvc/views/layout.md#running-code-before-each-view) file and adds it to the RCL.
 
 The `_ViewStart.cshtml` file is required to use the layout of the Razor Pages project (which is added in the next section).
 
@@ -472,7 +472,7 @@ The `_ViewStart.cshtml` file is required to use the layout of the Razor Pages pr
   dotnet new viewimports -o RazorUIClassLib/Areas/MyFeature/Pages
   ```
 
-  For more information on `_ViewImports.cshtml`, see [Importing Shared Directives](xref:mvc/views/layout#importing-shared-directives)
+  For more information on `_ViewImports.cshtml`, see [Importing Shared Directives](../../../mvc/views/layout.md#importing-shared-directives)
 
 * Build the class library to verify there are no compiler errors:
 
@@ -556,9 +556,9 @@ Suppose `RazorUIClassLib/Pages/Shared` contains two partial files: `_Header.csht
 
 :::moniker range="= aspnetcore-5.0"
 
-Razor views, pages, controllers, page models, [Razor components](xref:blazor/components/class-libraries), [View components](xref:mvc/views/view-components), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
+Razor views, pages, controllers, page models, [Razor components](../../../blazor/components/class-libraries.md), [View components](../../../mvc/views/view-components.md), and data models can be built into a Razor class library (RCL). The RCL can be packaged and reused. Applications can include the RCL and override the views and pages it contains. When a view, partial view, or Razor Page is found in both the web app and the RCL, the Razor markup (`.cshtml` file) in the web app takes precedence.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/razor-pages/ui-class/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Create a class library containing Razor UI
 
@@ -686,7 +686,7 @@ To include TypeScript files in an RCL:
 
 The files included in the `wwwroot` folder of the RCL are exposed to either the RCL or the consuming app under the prefix `_content/{PACKAGE ID}/`. For example, a library with an assembly name of `Razor.Class.Lib` and without a `<PackageId>` specified in its project file results in a path to static content at `_content/Razor.Class.Lib/`. When producing a NuGet package and the assembly name isn't the same as the package ID ([`<PackageId>`](/nuget/create-packages/creating-a-package-msbuild#set-properties) in the library's project file), use the package ID as specified in the project file for `{PACKAGE ID}`.
 
-The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](xref:fundamentals/static-files) enabled in `Startup.Configure`:
+The consuming app references static assets provided by the library with `<script>`, `<style>`, `<img>`, and other HTML tags. The consuming app must have [static file support](../../../fundamentals/static-files.md) enabled in `Startup.Configure`:
 
 ```csharp
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -739,7 +739,7 @@ When the app is published, the companion assets from all referenced projects and
 
 ## Additional resources
 
-* <xref:blazor/components/class-libraries>
-* <xref:blazor/components/css-isolation#razor-class-library-rcl-support>
+* [Consume ASP.NET Core Razor components from a Razor class library (RCL)](../../../blazor/components/class-libraries.md)
+* [ASP.NET Core Blazor CSS isolation](../../../blazor/components/css-isolation.md#razor-class-library-rcl-support)
 
 :::moniker-end

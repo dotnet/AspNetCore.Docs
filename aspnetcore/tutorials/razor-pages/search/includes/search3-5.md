@@ -55,7 +55,7 @@ The preceding route constraint allows searching the title as route data (a URL s
 
 ![Index view with the word ghost added to the Url and a returned movie list of two movies, Ghostbusters and Ghostbusters 2](~/tutorials/razor-pages/search/_static/g2.png)
 
-The ASP.NET Core runtime uses [model binding](xref:mvc/models/model-binding) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
+The ASP.NET Core runtime uses [model binding](../../../../mvc/models/model-binding.md) to set the value of the `SearchString` property from the query string (`?searchString=Ghost`) or route data (`https://localhost:5001/Movies/Ghost`). Model binding is ***not*** case sensitive.
 
 However, users cannot be expected to modify the URL to search for a movie. In this step, UI is added to filter movies. If you added the route constraint `"{searchString?}"`, remove it.
 
@@ -63,10 +63,10 @@ Open the `Pages/Movies/Index.cshtml` file, and add the markup highlighted in the
 
 [!code-cshtml[](~/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30/SnapShots/Index2.cshtml?highlight=14-19&range=1-22)]
 
-The HTML `<form>` tag uses the following [Tag Helpers](xref:mvc/views/tag-helpers/intro):
+The HTML `<form>` tag uses the following [Tag Helpers](../../../../mvc/views/tag-helpers/intro.md):
 
-* [Form Tag Helper](xref:mvc/views/working-with-forms#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
-* [Input Tag Helper](xref:mvc/views/working-with-forms#the-input-tag-helper)
+* [Form Tag Helper](../../../../mvc/views/working-with-forms.md#the-form-tag-helper). When the form is submitted, the filter string is sent to the *Pages/Movies/Index* page via query string.
+* [Input Tag Helper](../../../../mvc/views/working-with-forms.md#the-input-tag-helper)
 
 Save the changes and test the filter.
 
@@ -97,7 +97,7 @@ The `SelectList` of genres is created by projecting the distinct genres.
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Update the pages](xref:tutorials/razor-pages/da1)
-> [Next: Add a new field](xref:tutorials/razor-pages/new-field)
+> [Previous: Update the pages](../../da1.md)
+> [Next: Add a new field](../../new-field.md)
 
 :::moniker-end

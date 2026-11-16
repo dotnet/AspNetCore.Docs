@@ -15,7 +15,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT) and [Swiss-Devs](https://git
 
 This tutorial shows how to set up two-factor authentication (2FA) using SMS. Instructions are given for [twilio](https://www.twilio.com/) and ASPSMS (`https://www.aspsms.com/asp.net/identity/core/testcredits/`), but you can use any other SMS provider. We recommend you complete [Account Confirmation and Password Recovery](accconfirm.md) before starting this tutorial.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/2fa/samples/Web2FA). [How to download](xref:fundamentals/index#how-to-download-a-sample).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/2fa/samples/Web2FA). [How to download](../../fundamentals/index.md#how-to-download-a-sample).
 
 ## Create a new ASP.NET Core project
 
@@ -49,7 +49,7 @@ We will later store this value with the secret-manager tool within the key `SMSA
 
 ### Provide credentials for the SMS service
 
-We'll use the [Options pattern](xref:fundamentals/configuration/options) to access the user account and key settings.
+We'll use the [Options pattern](../../fundamentals/configuration/options.md) to access the user account and key settings.
 
 * Create a class to fetch the secure SMS key. For this sample, the `SMSoptions` class is created in the `Services/SMSoptions.cs` file.
 

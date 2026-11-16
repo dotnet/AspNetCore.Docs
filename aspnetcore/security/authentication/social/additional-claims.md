@@ -87,7 +87,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/6.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=49-53,73)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see [ASP.NET Core Blazor additional server-side security scenarios](../../../blazor/security/additional-scenarios.md#pass-tokens-to-a-server-side-blazor-app).
 
 ## How to add additional custom tokens
 
@@ -168,7 +168,7 @@ Authentication Properties
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end
 
@@ -176,7 +176,7 @@ Authentication Properties
 
 An ASP.NET Core app can establish additional claims and tokens from external authentication providers, such as Facebook, Google, Microsoft, and Twitter. Each provider reveals different information about users on its platform, but the pattern for receiving and transforming user data into additional claims is the same.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -255,7 +255,7 @@ The sample app saves the access token in `OnPostConfirmationAsync` (new user reg
 [!code-csharp[](additional-claims/samples/3.x/ClaimsSample/Areas/Identity/Pages/Account/ExternalLogin.cshtml.cs?name=snippet_OnPostConfirmationAsync&highlight=54-56)]
 
 > [!NOTE]
-> For information on passing tokens to the Razor components of a server-side Blazor app, see <xref:blazor/security/additional-scenarios#pass-tokens-to-a-server-side-blazor-app>.
+> For information on passing tokens to the Razor components of a server-side Blazor app, see [ASP.NET Core Blazor additional server-side security scenarios](../../../blazor/security/additional-scenarios.md#pass-tokens-to-a-server-side-blazor-app).
 
 ## How to add additional custom tokens
 
@@ -446,7 +446,7 @@ Authentication Properties
 
 An ASP.NET Core app can establish additional claims and tokens from external authentication providers, such as Facebook, Google, Microsoft, and Twitter. Each provider reveals different information about users on its platform, but the pattern for receiving and transforming user data into additional claims is the same.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/security/authentication/social/additional-claims/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 

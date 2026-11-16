@@ -3,7 +3,6 @@ title: ASP.NET Core Best Practices
 description: Tips for maximizing performance and reliability in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 12/29/2025
-uid: fundamentals/best-practices
 ---
 # ASP.NET Core Best Practices
 
@@ -15,7 +14,7 @@ This article provides guidelines for maximizing performance and reliability of A
 
 ## Cache aggressively
 
-Caching is discussed in several parts of this article. For more information, see <xref:performance/caching/overview>.
+Caching is discussed in several parts of this article. For more information, see [Overview of caching in ASP.NET Core](../performance/caching/overview.md).
 
 ## Understand hot code paths
 
@@ -52,8 +51,8 @@ A webpage shouldn't load large amounts of data all at once. When returning a col
 
 For more information on paging and limiting the number of returned records, see:
 
-* [Performance considerations](xref:data/ef-rp/intro#performance-considerations)
-* [Add paging to an ASP.NET Core app](xref:data/ef-rp/sort-filter-page#add-paging)
+* [Performance considerations](../data/ef-rp/intro.md#performance-considerations)
+* [Add paging to an ASP.NET Core app](../data/ef-rp/sort-filter-page.md#add-paging)
 
 ### Return `IEnumerable<T>` or `IAsyncEnumerable<T>`
 
@@ -87,7 +86,7 @@ Recommendations:
 
 * **Do** call all data access APIs asynchronously.
 * **Do not** retrieve more data than is necessary. Write queries to return just the data that's necessary for the current HTTP request.
-* **Do** consider caching frequently accessed data retrieved from a database or remote service if slightly out-of-date data is acceptable. Depending on the scenario, use a [MemoryCache](xref:performance/caching/memory) or a [DistributedCache](xref:performance/caching/distributed). For more information, see <xref:performance/caching/response>.
+* **Do** consider caching frequently accessed data retrieved from a database or remote service if slightly out-of-date data is acceptable. Depending on the scenario, use a [MemoryCache](../performance/caching/memory.md) or a [DistributedCache](../performance/caching/distributed.md). For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 * **Do** minimize network round trips. The goal is to retrieve the required data in a single call rather than several calls.
 * **Do** use [no-tracking queries](/ef/core/querying/tracking#no-tracking-queries) in Entity Framework Core when accessing data for read-only purposes. EF Core can return the results of no-tracking queries more efficiently.
 * **Do** filter and aggregate LINQ queries (with `.Where`, `.Select`, or `.Sum` statements, for example) so that the filtering is performed by the database.
@@ -131,8 +130,8 @@ Most requests to an ASP.NET Core app can be handled by a controller or page mode
 Recommendations:
 
 * **Do not** wait for long-running tasks to complete as part of ordinary HTTP request processing.
-* **Do** consider handling long-running requests with [background services](xref:fundamentals/host/hosted-services) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
-* **Do** use real-time communication options, such as [SignalR](xref:signalr/introduction), to communicate with clients asynchronously.
+* **Do** consider handling long-running requests with [background services](host/hosted-services.md) or out of process possibly with an [Azure Function](/azure/azure-functions/) and/or using a message broker like [Azure Service Bus](/azure/service-bus-messaging/service-bus-messaging-overview). Completing work out-of-process is especially beneficial for CPU-intensive tasks.
+* **Do** use real-time communication options, such as [SignalR](../signalr/introduction.md), to communicate with clients asynchronously.
 
 ## Minify client assets
 
@@ -143,16 +142,16 @@ ASP.NET Core apps with complex front-ends frequently serve many JavaScript, CSS,
 
 Recommendations:
 
-* **Do** use the [bundling and minification guidelines](xref:client-side/bundling-and-minification), which mention compatible tools and show how to use ASP.NET Core's `environment` tag to handle both `Development` and `Production` environments.
+* **Do** use the [bundling and minification guidelines](../client-side/bundling-and-minification.md), which mention compatible tools and show how to use ASP.NET Core's `environment` tag to handle both `Development` and `Production` environments.
 * **Do** consider other third-party tools, such as [Webpack](https://webpack.js.org/), for complex client asset management.
 
 ## Compress responses
 
- Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](xref:performance/response-compression).
+ Reducing the size of the response usually increases the responsiveness of an app, often dramatically. One way to reduce payload sizes is to compress an app's responses. For more information, see [Response compression](../performance/response-compression.md).
 
 ## Use the latest ASP.NET Core release
 
-Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](/dotnet/standard/memory-and-spans/memory-t-usage-guidelines). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](xref:aspnetcore-3.0) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
+Each new release of ASP.NET Core includes performance improvements. Optimizations in .NET and ASP.NET Core mean that newer versions generally outperform older versions. For example, .NET Core 2.1 added support for compiled regular expressions and benefitted from [Span\<T>](/dotnet/standard/memory-and-spans/memory-t-usage-guidelines). ASP.NET Core 2.2 added support for HTTP/2. [ASP.NET Core 3.0 adds many improvements](../release-notes/aspnetcore-3.0.md) that reduce memory usage and improve throughput. If performance is a priority, consider upgrading to the current version of ASP.NET Core.
 
 ## Minimize exceptions
 
@@ -173,13 +172,13 @@ All I/O in ASP.NET Core is asynchronous. Servers implement the `Stream` interfac
 **Do not do this:** The following example uses the <xref:System.IO.StreamReader.ReadToEnd*>. It blocks the current thread to wait for the result. This is an example of [sync over async](https://github.com/davidfowl/AspNetCoreDiagnosticScenarios/blob/master/AsyncGuidance.md#warning-sync-over-async
 ).
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet1)]
 
 In the preceding code, `Get` synchronously reads the entire HTTP request body into memory. If the client is slowly uploading, the app is doing sync over async. The app does sync over async because Kestrel does **NOT** support synchronous reads.
 
 **Do this:** The following example uses <xref:System.IO.StreamReader.ReadToEndAsync*> and does not block the thread while reading.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet2)]
 
 The preceding code asynchronously reads the entire HTTP request body into memory.
 
@@ -188,7 +187,7 @@ The preceding code asynchronously reads the entire HTTP request body into memory
 
 **Do this:** The following example is fully asynchronous using a non-buffered request body:
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MyFirstController.cs?name=snippet3)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MyFirstController.cs?name=snippet3)]
 
 The preceding code asynchronously de-serializes the request body into a C# object.
 
@@ -202,11 +201,11 @@ Use `HttpContext.Request.ReadFormAsync` instead of `HttpContext.Request.Form`.
 
 **Do not do this:** The following example uses `HttpContext.Request.Form`. `HttpContext.Request.Form` uses [sync over async](https://devblogs.microsoft.com/pfxteam/should-i-expose-synchronous-wrappers-for-asynchronous-methods/) and can lead to thread pool starvation.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MySecondController.cs?name=snippet1)]
 
 **Do this:** The following example uses `HttpContext.Request.ReadFormAsync` to read the form body asynchronously.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/MySecondController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/MySecondController.cs?name=snippet2)]
 
 <a name="arlb"></a>
 
@@ -247,7 +246,7 @@ The [IHttpContextAccessor.HttpContext](xref:Microsoft.AspNetCore.Http.IHttpConte
 
 **Do not do this:** The following example stores the `HttpContext` in a field and then attempts to use it later.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/MyType.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/MyType.cs?name=snippet1)]
 
 The preceding code frequently captures a null or incorrect `HttpContext` in the constructor.
 
@@ -256,7 +255,7 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Stores the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> in a field.
 * Uses the `HttpContext` field at the correct time and checks for `null`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/MyType.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/MyType.cs?name=snippet2)]
 
 ## Do not access HttpContext from multiple threads
 
@@ -264,11 +263,11 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 
 **Do not do this:** The following example makes three parallel requests and logs the incoming request path before and after the outgoing HTTP request. The request path is accessed from multiple threads, potentially in parallel.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncFirstController.cs?name=snippet1&highlight=25,28)]
 
 **Do this:** The following example copies all data from the incoming request before making the three parallel requests.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncFirstController.cs?name=snippet2&highlight=6,8,22,28)]
 
 ## Do not use the HttpContext after the request is complete
 
@@ -280,11 +279,11 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * The example code accesses the `HttpResponse` after the HTTP request is complete.
 * The late access crashes the process.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncBadVoidController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncBadVoidController.cs?name=snippet1)]
 
 **Do this:** The following example returns a `Task` to the framework, so the HTTP request doesn't complete until the action completes.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/AsyncSecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/AsyncSecondController.cs?name=snippet1)]
 
 ## Do not capture the HttpContext in background threads
 
@@ -293,22 +292,22 @@ The preceding code frequently captures a null or incorrect `HttpContext` in the 
 * Run outside of the request scope.
 * Attempt to read the wrong `HttpContext`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetFirstController.cs?name=snippet1)]
 
 **Do this:** The following example:
 
 * Copies the data required in the background task during the request.
 * Doesn't reference anything from the controller.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetFirstController.cs?name=snippet2)]
 
-Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](xref:fundamentals/host/hosted-services).
+Background tasks should be implemented as hosted services. For more information, see [Background tasks with hosted services](host/hosted-services.md).
 
 ## Do not capture services injected into the controllers on background threads
 
 **Do not do this:** The following example shows a closure that is capturing the `DbContext` from the `Controller` action parameter. This is a bad practice. The work item could run outside of the request scope. The `ContosoDbContext` is scoped to the request, resulting in an `ObjectDisposedException`.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet1)]
 
 **Do this:** The following example:
 
@@ -317,14 +316,14 @@ Background tasks should be implemented as hosted services. For more information,
 * Doesn't reference anything from the controller.
 * Doesn't capture the `ContosoDbContext` from the incoming request.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet2)]
 
 The following highlighted code:
 
 * Creates a scope for the lifetime of the background operation and resolves services from it.
 * Uses `ContosoDbContext` from the correct scope.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Controllers/FireAndForgetSecondController.cs?name=snippet2&highlight=9-16)]
 
 ## Do not modify the status code or headers after the response body has started
 
@@ -335,13 +334,13 @@ ASP.NET Core does not buffer the HTTP response body. The first time the response
 
 **Do not do this:** The following code tries to add response headers after the response has already started:
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet1)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet1)]
 
 In the preceding code, `context.Response.Headers["test"] = "test value";` will throw an exception if `next()` has written to the response.
 
 **Do this:** The following example checks if the HTTP response has started before modifying the headers.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet2)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet2)]
 
 **Do this:** The following example uses `HttpResponse.OnStarting` to set the headers before the response headers are flushed to the client.
 
@@ -350,7 +349,7 @@ Checking if the response has not started allows registering a callback that will
 * Provides the ability to append or override headers just in time.
 * Doesn't require knowledge of the next middleware in the pipeline.
 
-[!code-csharp[](~/performance/performance-best-practices/samples/3.0/Startup22.cs?name=snippet3)]
+[!code-csharp[](~/performance/performance-best-practices/samples/Startup22.cs?name=snippet3)]
 
 ## Do not call next() if you have already started writing to the response body
 
@@ -362,7 +361,7 @@ Using in-process hosting, an ASP.NET Core app runs in the same process as its II
 
 Projects default to the in-process hosting model in ASP.NET Core 3.0 or later.
 
-For more information, see [Host ASP.NET Core on Windows with IIS](xref:host-and-deploy/iis/index)
+For more information, see [Host ASP.NET Core on Windows with IIS](../host-and-deploy/iis/index.md)
 
 ## Don't assume that HttpRequest.ContentLength is not null
 

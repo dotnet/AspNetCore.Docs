@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 10/23/2026
-uid: fundamentals/servers/kestrel/endpoints
 ---
 # Configure endpoints for the ASP.NET Core Kestrel web server
 
@@ -69,7 +68,7 @@ The URLs indicate the IP or host addresses with ports and protocols that the ser
   http://*:80/
   ```
 
-  Anything not recognized as a valid IP address or `localhost` is treated as a wildcard that binds to all IPv4 and IPv6 addresses. Some developers prefer to use the asterisk `*` or plus symbol `+` to be more explicit. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](xref:fundamentals/servers/httpsys) or a reverse proxy server. Reverse proxy server examples include IIS, YARP, Nginx, and Apache.
+  Anything not recognized as a valid IP address or `localhost` is treated as a wildcard that binds to all IPv4 and IPv6 addresses. Some developers prefer to use the asterisk `*` or plus symbol `+` to be more explicit. To bind different host names to different ASP.NET Core apps on the same port, use [HTTP.sys](../httpsys.md) or a reverse proxy server. Reverse proxy server examples include IIS, YARP, Nginx, and Apache.
 
 * Host name `localhost` with port number or loopback IP with port number:
 
@@ -87,7 +86,7 @@ The URLs indicate the IP or host addresses with ports and protocols that the ser
   http://*:5000;http://localhost:5001;https://hostname:5002
   ```
 
-For more information, see [Override configuration](xref:fundamentals/host/web-host#override-configuration).
+For more information, see [Override configuration](../../host/web-host.md#override-the-web-host-configuration).
 
 #### HTTPS URL prefixes
 
@@ -266,7 +265,7 @@ The following example is for the _appsettings.json_ file, but any configuration 
 
 #### Schema notes
 
-* Endpoint names are [case-insensitive](xref:fundamentals/configuration/index#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
+* Endpoint names are [case-insensitive](../../configuration/index.md#configuration-keys-and-values). For example, `HTTPS` and `Https` are equivalent.
 * The `Url` parameter is required for each endpoint. The format for this parameter is the same as the top-level `Urls` configuration parameter, but it can have only a single value. For more information, see the [URL formats](#url-formats) section in this article.
 * These endpoints replace the values defined in the top-level `Urls` configuration rather than adding to them. Endpoints defined in code with the `Listen` API are cumulative with the endpoints defined in the configuration section.
 * The `Certificate` section is optional. If the `Certificate` section isn't specified, the defaults defined in `Certificates:Default` are used. If no defaults are available, the development certificate is used. If there are no defaults and the development certificate isn't present, the server throws an exception and fails to start.
@@ -380,6 +379,8 @@ The default value is <xref:Microsoft.AspNetCore.Server.Kestrel.Https.ClientCerti
 
 For more information, see [Configure certificate authentication in ASP.NET Core](../../../security/authentication/certauth.md).
 
+<a name="configurehttpsdefaults"></a>
+
 #### Configure HTTPS defaults in code
 
 The [ConfigureHttpsDefaults(Action\<HttpsConnectionAdapterOptions>)](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults(System.Action{Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions})) specifies a configuration `Action` to run for each HTTPS endpoint. Multiple calls to `ConfigureHttpsDefaults` replace prior `Action` instances with the last `Action` specified.
@@ -411,7 +412,7 @@ All websites must run on the same Kestrel instance. Kestrel doesn't support shar
 
 SNI can be configured in two ways:
 
-* Configure a mapping between host names and HTTPS options in [Configuration](xref:fundamentals/configuration/index). For example, specify JSON in the _appsettings.json_ file.
+* Configure a mapping between host names and HTTPS options in [Configuration](../../configuration/index.md). For example, specify JSON in the _appsettings.json_ file.
 * Create an endpoint in code and select a certificate by using the host name with the <xref:Microsoft.AspNetCore.Server.Kestrel.Https.HttpsConnectionAdapterOptions.ServerCertificateSelector> callback property.
 
 ### Configure SNI in appsettings.json
@@ -516,7 +517,7 @@ TLS is required to support more than one HTTP version. The TLS [Application-Laye
 | `Http2` | HTTP/2 | Can be used without TLS, only if the client supports a [Prior Knowledge mode](https://tools.ietf.org/html/rfc7540#section-3.4). |
 | `Http3` | HTTP/3 | **Requires TLS**. The client might need to be configured to use HTTP/3 only. |
 | `Http1AndHttp2` | HTTP/1.1 <br> HTTP/2 | HTTP/2 requires the client to select HTTP/2 in the TLS [Application-Layer Protocol Negotiation (ALPN)](https://tools.ietf.org/html/rfc7301#section-3) handshake. Otherwise, the connection defaults to HTTP/1.1. |
-| `Http1AndHttp2AndHttp3` | HTTP/1.1 <br> HTTP/2 <br> HTTP/3 | The first client request normally uses HTTP/1.1 or HTTP/2. The ['alt-svc' response header](xref:fundamentals/servers/kestrel/http3#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS. Otherwise, the connection defaults to HTTP/1.1. |
+| `Http1AndHttp2AndHttp3` | HTTP/1.1 <br> HTTP/2 <br> HTTP/3 | The first client request normally uses HTTP/1.1 or HTTP/2. The ['alt-svc' response header](http3.md#alt-svc) prompts the client to upgrade to HTTP/3. HTTP/2 and HTTP/3 requires TLS. Otherwise, the connection defaults to HTTP/1.1. |
 
 The default protocol value for an endpoint is `HttpProtocols.Http1AndHttp2`.
 
@@ -599,8 +600,8 @@ In the preceding example, only the account the server runs as is granted `Create
 
 ## Related content
 
-* [Kestrel web server in ASP.NET Core](xref:fundamentals/servers/kestrel)
-* [Configure options for the ASP.NET Core Kestrel web server](xref:fundamentals/servers/kestrel/options)
+* [Kestrel web server in ASP.NET Core](../kestrel.md)
+* [Configure options for the ASP.NET Core Kestrel web server](options.md)
 
 :::moniker-end
 

@@ -146,7 +146,7 @@ builder.Services.AddOpenApi(options =>
 
 ## Related content
 
-* <xref:fundamentals/openapi/using-openapi-documents>
+* [Use the generated OpenAPI documents](../using-openapi-documents.md)
 * [OpenAPI specification](https://spec.openapis.org/oas/v3.0.3)
 
 :::moniker-end

@@ -4,5 +4,5 @@ A new article and sample app has been added for .NET MAUI Blazor Hybrid and Web 
 
 For more information, see the following resources:
 
-* <xref:blazor/hybrid/security/maui-blazor-web-identity>
+* [.NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity](../../../blazor/hybrid/security/maui-blazor-web-identity.md)
 * [`MauiBlazorWebIdentity` sample app (`dotnet/blazor-samples` GitHub repository)](https://github.com/dotnet/blazor-samples/tree/main/9.0/MauiBlazorWebIdentity)

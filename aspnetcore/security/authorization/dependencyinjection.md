@@ -8,7 +8,7 @@ ms.date: 07/21/2026
 
 :::moniker range=">= aspnetcore-6.0"
 
-[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).
+[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration using [dependency injection](../../fundamentals/dependency-injection.md).
 
 Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization resolves and injects that into the constructor.
 
@@ -49,7 +49,7 @@ An instance of the handler is created when the app starts, and DI injects the re
 
 :::moniker range="< aspnetcore-6.0"
 
-[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration using [dependency injection](xref:fundamentals/dependency-injection).
+[Authorization handlers must be registered](policies.md#handler-registration) in the service collection during configuration using [dependency injection](../../fundamentals/dependency-injection.md).
 
 Suppose you had a repository of rules you wanted to evaluate inside an authorization handler and that repository was registered in the service collection. Authorization resolves and injects that into the constructor.
 

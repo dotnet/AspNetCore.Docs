@@ -1,8 +1,8 @@
 :::moniker range="< aspnetcore-5.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie30) ([how to download](../../../../fundamentals/index.md#how-to-download-a-sample)).
 
-The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](xref:fundamentals/dependency-injection) container in the `ConfigureServices` method in `Startup.cs`:
+The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. The database context is registered with the [Dependency Injection](../../../../fundamentals/dependency-injection.md) container in the `ConfigureServices` method in `Startup.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -14,7 +14,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the `appsettings.json` file.
+The ASP.NET Core [Configuration](../../../../fundamentals/configuration/index.md) system reads the `ConnectionString` key. For local development, configuration gets the connection string from the `appsettings.json` file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -121,7 +121,7 @@ The following exception occurs when `Update-Database` has not been run:
 
 # [Visual Studio](#tab/visual-studio)
 
-* Delete all the records in the database. Use the delete links in the browser or from [SSOX](xref:tutorials/razor-pages/new-field#ssox).
+* Delete all the records in the database. Use the delete links in the browser or from [SSOX](../../new-field.md#ssox).
 * Force the app to initialize by calling the methods in the `Startup` class, so the seed method runs. To force initialization, IIS Express must be stopped and restarted. Stop and restart IIS with any of the following approaches:
 
   * Right-click the IIS Express system tray icon in the notification area and tap **Exit** or **Stop Site**:
@@ -146,7 +146,7 @@ The app shows the seeded data:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Update the pages](xref:tutorials/razor-pages/da1)
+> [Previous: Scaffolded Razor Pages](../../page.md)
+> [Next: Update the pages](../../da1.md)
 
 :::moniker-end

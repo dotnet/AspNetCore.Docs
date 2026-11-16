@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/service-fabric-int
 title: YARP Service Fabric Integration
 description: YARP Service Fabric Integration
 ms.date: 04/03/2025

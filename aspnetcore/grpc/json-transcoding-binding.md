@@ -50,12 +50,12 @@ To bind a field on a nested message, specify the path to the field. In the follo
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
-Transcoding routes and [ASP.NET Core routes](xref:fundamentals/routing) have a similar syntax and feature set. However, some ASP.NET Core routing features aren't supported by transcoding. These include:
+Transcoding routes and [ASP.NET Core routes](../fundamentals/routing.md) have a similar syntax and feature set. However, some ASP.NET Core routing features aren't supported by transcoding. These include:
 
-* [Route constraints](xref:fundamentals/routing#route-constraints)
-* [Default values](xref:fundamentals/routing#route-templates)
-* [Optional parameters](xref:fundamentals/routing#route-templates)
-* [Complex segments](xref:fundamentals/routing#complex-segments)
+* [Route constraints](../fundamentals/routing.md#route-constraints)
+* [Default values](../fundamentals/routing.md#route-templates)
+* [Optional parameters](../fundamentals/routing.md#route-templates)
+* [Complex segments](../fundamentals/routing.md#complex-segments)
 
 ### Request body
 

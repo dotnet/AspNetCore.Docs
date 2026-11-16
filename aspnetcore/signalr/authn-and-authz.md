@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/22/2026
+ms.date: 10/30/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -56,7 +56,7 @@ In .NET 11 and later, a client can refresh the credentials for an active connect
 
 In a browser-based app, cookie authentication allows existing user credentials to automatically flow to SignalR connections. When the browser client is used, no extra configuration is needed. If the user is signed in to an app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](xref:signalr/dotnet-client) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but nonbrowser clients can send them. When the [.NET client](dotnet-client.md) is used, the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
 
 :::moniker-end
 
@@ -92,7 +92,7 @@ var connection = new HubConnectionBuilder()
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
 
-The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](dotnet-client.md), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 
@@ -381,6 +381,8 @@ By default, an unauthenticated user can call all methods in a hub. To require au
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
 
+Applying `[Authorize]` at the hub class level requires an authenticated user when connecting to the hub. If an unauthenticated client attempts to connect, the initial HTTP negotiate or WebSocket handshake request fails with an HTTP 401 Unauthorized status (or an HTTP 302 redirect if cookie authentication redirects to a login page), and the connection isn't established. To allow anonymous clients to connect while restricting specific hub methods to authenticated users, omit `[Authorize]` from the hub class and apply it only to the specific hub methods.
+
 The constructor arguments and properties of the `[Authorize]` attribute can be used to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, with the custom authorization policy called `MyAuthorizationPolicy`, only users matching that policy can access the hub by using the following code:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/6.0/SignalRAuthenticationSample/Hubs/ChatPolicyHub.cs?name=snippet&highlight=1)]
@@ -452,13 +454,13 @@ As an alternative to registering the `DomainRestricted` policy and referencing i
 
 * [Bearer token authentication in ASP.NET Core (blog)](https://devblogs.microsoft.com/dotnet/bearer-token-authentication-in-asp-net-core/)
 * [Resource-based authorization](../security/authorization/resource-based.md)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/authn-and-authz/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 ## Authenticate users connecting to a SignalR hub
 
@@ -493,7 +495,7 @@ public void Configure(IApplicationBuilder app)
 
 In a browser-based app, cookie authentication allows your existing user credentials to automatically flow to SignalR connections. When using the browser client, no additional configuration is needed. If the user is logged in to your app, the SignalR connection automatically inherits this authentication.
 
-Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](xref:signalr/dotnet-client), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
+Cookies are a browser-specific way to send access tokens, but non-browser clients can send them. When using the [.NET Client](dotnet-client.md), the `Cookies` property can be configured in the `.WithUrl` call to provide a cookie. However, using cookie authentication from the .NET client requires the app to provide an API to exchange authentication data for a cookie.
 
 ### Bearer token authentication
 
@@ -519,7 +521,7 @@ var connection = new HubConnectionBuilder()
 
 In standard web APIs, bearer tokens are sent in an HTTP header. However, browsers can't set custom headers, such as `Authorization`, on the WebSocket and Server-Sent Events APIs. Because of this browser limitation, SignalR sends the token as a query string parameter for those transports when the client runs in a browser.
 
-The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](xref:signalr/dotnet-client), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
+The query string fallback is a browser API constraint, not a limitation of SignalR or the WebSocket protocol. Non-browser clients, such as the [.NET client](dotnet-client.md), send the token in the `Authorization` header. A reverse proxy, such as [YARP](https://dotnet.github.io/yarp/) fronting a backend-for-frontend (BFF), can also add the `Authorization` header to the proxied WebSocket request, so the backend authenticates with the header instead of the query string.
 
 #### Built-in JWT authentication
 
@@ -640,6 +642,8 @@ services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 By default, all methods in a hub can be called by an unauthenticated user. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
 
 [!code-csharp[Restrict a hub to only authorized users](authn-and-authz/samples/Hubs/ChatHub.cs?range=8-10,32)]
+
+Applying `[Authorize]` at the hub class level requires an authenticated user when connecting to the hub. If an unauthenticated client attempts to connect, the initial HTTP negotiate or WebSocket handshake request fails with an HTTP 401 Unauthorized status (or an HTTP 302 redirect if cookie authentication redirects to a login page), and the connection isn't established. To allow anonymous clients to connect while restricting specific hub methods to authenticated users, omit `[Authorize]` from the hub class and apply it only to the specific hub methods.
 
 You can use the constructor arguments and properties of the `[Authorize]` attribute to restrict access to only users matching specific [authorization policies](../security/authorization/policies.md). For example, if you have a custom authorization policy called `MyAuthorizationPolicy` you can ensure that only users matching that policy can access the hub using the following code:
 

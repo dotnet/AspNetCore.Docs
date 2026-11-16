@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/transform-extensibility
 title: YARP Extensibility - Request and Response Transforms
 description: YARP Extensibility - Request and Response Transforms
 ms.date: 2/14/2025
@@ -13,11 +12,11 @@ ai-usage: ai-assisted
 
 When proxying a request it's common to modify parts of the request or response to adapt to the destination server's requirements or to flow additional data such as the client's original IP address. This process is implemented via Transforms. Types of transforms are defined globally for the application and then individual routes supply the parameters to enable and configure those transforms. The original request objects are not modified by these transforms, only the proxy requests.
 
-YARP includes a set of built-in request and response transforms that can be used. For more information, see <xref:fundamentals/servers/yarp/transforms>. If those transforms are not sufficient, then custom transforms can be added.
+YARP includes a set of built-in request and response transforms that can be used. For more information, see [YARP Request and Response Transforms](transforms.md). If those transforms are not sufficient, then custom transforms can be added.
 
 ## `RequestTransform`
 
-All request transforms must derive from the abstract base class [`RequestTransform`](xref:fundamentals/servers/yarp/transforms). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
+All request transforms must derive from the abstract base class [`RequestTransform`](transforms.md). These can freely modify the proxy `HttpRequestMessage`. Avoid reading or modifying the request body as this may disrupt the proxying flow. Consider also adding a parametrized extension method on `TransformBuilderContext` for discoverability and ease of use.
 
 A request transform may conditionally produce an immediate response such as for error conditions. This prevents any remaining transforms from running and the request from being proxied. This is indicated by setting the `HttpResponse.StatusCode` to a value other than 200, or calling `HttpResponse.StartAsync()`, or writing to the `HttpResponse.Body` or `BodyWriter`.
 
@@ -69,7 +68,7 @@ This sample requires YARP 1.1, see https://github.com/microsoft/reverse-proxy/pu
 });
 ```
 
-Custom transforms can only modify a request body if one is already present. They can't add a new body to a request that doesn't have one (for example, a POST request without a body or a GET request). If you need to add a body for a specific HTTP method and route, you must do so in [middleware](xref:fundamentals/middleware/index) that runs before YARP, not in a transform.
+Custom transforms can only modify a request body if one is already present. They can't add a new body to a request that doesn't have one (for example, a POST request without a body or a GET request). If you need to add a body for a specific HTTP method and route, you must do so in [middleware](../../middleware/index.md) that runs before YARP, not in a transform.
 
 The following middleware demonstrates how to add a body to a request that doesn't have one:
 

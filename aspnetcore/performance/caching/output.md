@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to configure and use output caching middleware in ASP.NET Core.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/13/2026
-uid: performance/caching/output
 ---
 # Output caching middleware in ASP.NET Core
 
@@ -14,11 +13,11 @@ By [Tom Dykstra](https://github.com/tdykstra)
 
 :::moniker range=">= aspnetcore-8.0"
 
-This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](xref:performance/caching/overview#output-caching).
+This article explains how to configure output caching middleware in an ASP.NET Core app. For an introduction to output caching, see [Output caching](overview.md#output-caching).
 
-The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](xref:fundamentals/minimal-apis), [Web API with controllers](../../web-api/index.md), [MVC](xref:mvc/overview), and [Razor Pages](xref:razor-pages/index). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
+The output caching middleware can be used in all types of ASP.NET Core apps: [Minimal APIs](../../fundamentals/minimal-apis.md), [Web API with controllers](../../web-api/index.md), [MVC](../../mvc/overview.md), and [Razor Pages](../../razor-pages/index.md). Code examples are provided for Minimal APIs and controller-based APIs. The controller-based API examples show how to use attributes to configure caching. These attributes can also be used in MVC and Razor Pages apps.
 
-The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample) and [Preprocessor directives](/dotnet/csharp/fundamentals/program-structure/preprocessor-directives).
+The code examples refer to a [Gravatar class](https://github.com/dotnet/AspNetCore.Docs/blob/main/aspnetcore/performance/caching/output/samples/7.x/Gravatar.cs) that generates an image and provides a "generated at" date and time. The class is defined and used only in [the sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/output/samples/7.x). Its purpose is to make it easy to see when cached output is being used. For more information, see [How to download a sample](../../fundamentals/index.md#how-to-download-a-sample) and [Preprocessor directives](/dotnet/csharp/fundamentals/program-structure/preprocessor-directives).
 
 ## Add the middleware to the app
 
@@ -123,7 +122,7 @@ The following code does the same for a controller action:
 
 :::code language="csharp" source="~/performance/caching/output/samples/9.x/OCControllers/Controllers/PostController.cs" id="snippet_post":::
 
-### Use an alternative default policy override 
+### Use an alternative default policy override
 
 Alternatively, use Dependency Injection (DI) to initialize an instance with the following changes to the custom policy class:
 
@@ -218,7 +217,7 @@ This base policy enables you to use the `tag-all` tag to evict everything in cac
 
 ## Disable resource locking
 
-By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](xref:performance/caching/overview#output-caching).
+By default, resource locking is enabled to mitigate the risk of [cache stampede and thundering herd](https://wikipedia.org/wiki/Thundering_herd_problem). For more information, see [Output Caching](overview.md#output-caching).
 
 To disable resource locking, call the [SetLocking(false)](xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder.SetLocking*) method while creating a policy, as shown in the following example:
 
@@ -259,8 +258,8 @@ An alternative is to use [Redis](https://redis.io/) cache. Redis cache provides 
   * The [options.Configuration](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.Configuration) property is a connection string to an on-premises Redis server or to a hosted offering such as [Azure Cache for Redis](/azure/azure-cache-for-redis/). For example, `<instance_name>.redis.cache.windows.net:6380,password=,pw,ssl=True,abortConnect=False` for Azure Cache for Redis.
 
   * (Optional) The [options.InstanceName](xref:Microsoft.Extensions.Caching.StackExchangeRedis.RedisCacheOptions.InstanceName) property specifies a logical partition for the cache.
- 
-  The configuration options are identical to the [Redis-based distributed caching options](xref:performance/caching/distributed#distributed-redis-cache).
+
+  The configuration options are identical to the [Redis-based distributed caching options](distributed.md#distributed-redis-cache).
 
 ### Not recommended: IDistributedCache
 
@@ -270,8 +269,8 @@ The recommended approach is to use the built-in support for Redis or create a cu
 
 ## Related content
 
-* [Overview of caching in ASP.NET Core](xref:performance/caching/overview)
-* [ASP.NET Core middleware](xref:fundamentals/middleware/index)
+* [Overview of caching in ASP.NET Core](overview.md)
+* [ASP.NET Core middleware](../../fundamentals/middleware/index.md)
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions>
 * <xref:Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder>
 

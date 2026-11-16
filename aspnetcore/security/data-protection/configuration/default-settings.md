@@ -60,7 +60,7 @@ We recommend not deleting data protection keys.
 ## Related content
 
 * [Key management extensibility in ASP.NET Core](../extensibility/key-management.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 

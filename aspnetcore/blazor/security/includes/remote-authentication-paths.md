@@ -2,7 +2,7 @@ Remote authentication paths are customized using <xref:Microsoft.AspNetCore.Comp
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-If an app [customizes a remote authentication path](xref:blazor/security/webassembly/additional-scenarios#customize-app-routes), take either of the following approaches:
+If an app [customizes a remote authentication path](../webassembly/additional-scenarios.md#customize-app-routes), take either of the following approaches:
 
 * Match the path in hard-coded strings around the app.
 

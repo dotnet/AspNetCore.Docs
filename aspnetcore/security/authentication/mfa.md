@@ -22,7 +22,7 @@ This article provides an overview of MFA in ASP.NET Core and the recommended aut
 * Send an MFA sign-in requirement to the OpenID Connect server.
 * Force the ASP.NET Core OpenID Connect client to require MFA.
 
-[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download the sample code](https://github.com/damienbod/AspNetCoreHybridFlowWithApi) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## MFA versus 2FA
 
@@ -511,7 +511,7 @@ Alternatively, when the user signs in by using OTP with Identity, the `amr` clai
 
 The OAuth and OIDC authentication handlers <xref:Microsoft.AspNetCore.Authentication.OAuth.OAuthOptions.AdditionalAuthorizationParameters> option allows customization of authorization message parameters that are commonly included as part of the redirect query string:
 
-:::code language="csharp" source="~/security/authentication/mfa/samples/9/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
+:::code language="csharp" source="~/security/authentication/mfa/samples/WebAddOpenIdConnect/Program.cs" id="snippet_1" :::
 
 ## Related content
 

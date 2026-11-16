@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/header-routing
 title: YARP Header Based Routing
 description: YARP Header Based Routing
 ms.date: 07/13/2026
@@ -10,7 +9,7 @@ ai-usage: ai-assisted
 
 # YARP Header Based Routing
 
-Proxy routes specified in [config](xref:fundamentals/servers/yarp/config-files) or via [code](xref:fundamentals/servers/yarp/config-providers) must include at least a path or host to match against. In addition to these, a route can also specify one or more headers that must be present on the request.
+Proxy routes specified in [config](config-files.md) or via [code](config-providers.md) must include at least a path or host to match against. In addition to these, a route can also specify one or more headers that must be present on the request.
 
 ### Precedence
 

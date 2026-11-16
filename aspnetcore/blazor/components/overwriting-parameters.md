@@ -3,7 +3,6 @@ title: Avoid overwriting parameters in ASP.NET Core Blazor
 description: Learn how to avoid overwriting parameters in Blazor apps during rerendering.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/overwriting-parameters
 ---
 # Avoid overwriting parameters in ASP.NET Core Blazor
 
@@ -79,8 +78,8 @@ After the following `ShowMoreExpander` component demonstrates an overwritten par
 
 The `ShowMoreExpander` component is added to the following `Expanders` parent component that may call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*>:
 
-* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in developer code notifies a component that its state has changed and typically enqueues component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is covered in more detail later in <xref:blazor/components/lifecycle> and <xref:blazor/components/rendering#statehaschanged>.
-* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in <xref:blazor/components/event-handling>.
+* Calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> in developer code notifies a component that its state has changed and typically enqueues component rerendering to update the UI. <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is covered in more detail later in [ASP.NET Core Razor component lifecycle](lifecycle.md) and [ASP.NET Core Razor component rendering](rendering.md#statehaschanged).
+* The button's `@onclick` directive attribute attaches an event handler to the button's `onclick` event. Event handling is covered in more detail later in [ASP.NET Core Blazor event handling](event-handling.md).
 
 `Expanders.razor`:
 
@@ -137,7 +136,7 @@ To maintain state in the preceding scenario, use a *private field* in the `ShowM
 The following revised `ShowMoreExpander` component:
 
 * Accepts the `InitiallyExpanded` component parameter value from the parent.
-* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](xref:blazor/components/lifecycle#component-initialization-oninitializedasync).
+* Assigns the component parameter value to a *private field* (`expanded`) in the [`OnInitialized` event](lifecycle.md#component-initialization-oninitializedasync).
 * Uses the private field to maintain its internal toggle state, which demonstrates how to avoid writing directly to a parameter.
 
 > [!NOTE]
@@ -269,8 +268,8 @@ The `ToggleExpander` component should be used with the `@bind-Expanded="{field}"
 
 For more information on parent-child binding, see the following resources:
 
-* [Binding with component parameters](xref:blazor/components/data-binding#binding-with-component-parameters)
-* [Bind across more than two components](xref:blazor/components/data-binding#bind-across-more-than-two-components)
+* [Binding with component parameters](data-binding.md#binding-with-component-parameters)
+* [Bind across more than two components](data-binding.md#bind-across-more-than-two-components)
 * [Blazor Two Way Binding Error (dotnet/aspnetcore #24599)](https://github.com/dotnet/aspnetcore/issues/24599)
 
-For more information on change detection, including information on the exact types that Blazor checks, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+For more information on change detection, including information on the exact types that Blazor checks, see [ASP.NET Core Razor component rendering](rendering.md#rendering-conventions-for-componentbase).

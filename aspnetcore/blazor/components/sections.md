@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor sections
 description: Learn how to control the content in a Razor component from a child Razor component.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/components/sections
 ---
 # ASP.NET Core Blazor sections
 
@@ -19,7 +18,7 @@ To control the content in a Razor component from a child Razor component, Blazor
 
 * <xref:Microsoft.AspNetCore.Components.Sections.SectionContent>: Provides content as a <xref:Microsoft.AspNetCore.Components.RenderFragment> to <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> components with a matching <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName> or <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId>. If several <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components have the same <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName> or <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId>, the matching <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> component renders the content of the last rendered <xref:Microsoft.AspNetCore.Components.Sections.SectionContent>.
 
-Sections can be used in both [layouts](xref:blazor/components/layouts) and across nested parent-child components.
+Sections can be used in both [layouts](layouts.md) and across nested parent-child components.
 
 Although the argument passed to <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionName> can use any type of casing, the documentation adopts kebab casing (for example, `top-bar`), which is a common casing choice for HTML element IDs. <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> receives a static `object` field, and we always recommend Pascal casing for C# field names (for example, `TopbarSection`).
 
@@ -49,7 +48,7 @@ When the `Counter` component is accessed at `/counter`, the `MainLayout` compone
 
 Instead of using a named section, you can pass a static `object` with the <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> parameter to identify the section. The following example also implements an increment counter button for the app's `Counter` component in the app's main layout.
 
-If you don't want other <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components to accidentally match the name of a <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet>, pass an object <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> parameter to identify the section. This can be useful when designing a [Razor class library (RCL)](xref:blazor/components/class-libraries). When a <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> in the RCL uses an object reference with <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> and the consumer places a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component with a matching <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> object, an accidental match by name isn't possible when consumers of the RCL implement other <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components.
+If you don't want other <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components to accidentally match the name of a <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet>, pass an object <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> parameter to identify the section. This can be useful when designing a [Razor class library (RCL)](class-libraries.md). When a <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet> in the RCL uses an object reference with <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> and the consumer places a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component with a matching <xref:Microsoft.AspNetCore.Components.Sections.SectionOutlet.SectionId> object, an accidental match by name isn't possible when consumers of the RCL implement other <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> components.
 
 The following example also implements an increment counter button for the app's `Counter` component in the app's main layout, using an object reference instead of a section name.
 
@@ -90,7 +89,7 @@ When a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent>'s <xref:Mi
 
 A section interacts with other Blazor features in the following ways:
 
-* [Cascading values](xref:blazor/components/cascading-values-and-parameters) flow into section content from where the content is defined by the <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
-* Unhandled exceptions are handled by [error boundaries](xref:blazor/fundamentals/handle-errors#error-boundaries) defined around a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
-* A Razor component configured for [streaming rendering](xref:blazor/components/rendering#streaming-rendering) also configures section content provided by a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component to use streaming rendering.
-* A section that contains interactive components is statically rendered (non-functional) in a layout component in a Blazor Web App that adopts per-page/component rendering. For more information, see <xref:blazor/components/layouts#statically-rendered-layout-components>.
+* [Cascading values](cascading-values-and-parameters.md) flow into section content from where the content is defined by the <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
+* Unhandled exceptions are handled by [error boundaries](../fundamentals/handle-errors.md#error-boundaries) defined around a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component.
+* A Razor component configured for [streaming rendering](rendering.md#streaming-rendering) also configures section content provided by a <xref:Microsoft.AspNetCore.Components.Sections.SectionContent> component to use streaming rendering.
+* A section that contains interactive components is statically rendered (non-functional) in a layout component in a Blazor Web App that adopts per-page/component rendering. For more information, see [ASP.NET Core Blazor layouts](layouts.md#statically-rendered-layout-components).

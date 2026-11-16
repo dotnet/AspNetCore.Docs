@@ -3,13 +3,12 @@ title: ASP.NET Core Blazor attribute splatting and arbitrary parameters
 description: Learn how components can capture and render additional attributes in addition to the component's declared parameters.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/attribute-splatting
 ---
 # ASP.NET Core Blazor attribute splatting and arbitrary parameters
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Components can capture and render additional attributes in addition to the component's declared parameters and fields. Additional attributes can be captured in a dictionary and then applied to an element, called *splatting*, when the component is rendered using the [`@attributes`](xref:mvc/views/razor#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters or fields.
+Components can capture and render additional attributes in addition to the component's declared parameters and fields. Additional attributes can be captured in a dictionary and then applied to an element, called *splatting*, when the component is rendered using the [`@attributes`](../../mvc/views/razor.md#attributes) Razor directive attribute. This scenario is useful for defining a component that produces a markup element that supports a variety of customizations. For example, it can be tedious to define attributes separately for an `<input>` that supports many parameters or fields.
 
 ## Attribute splatting
 
@@ -76,7 +75,7 @@ Although the preceding example uses fields for the first `<input>` element (`id=
 
 ## Arbitrary attributes
 
-To accept arbitrary attributes, define a [component parameter](xref:blazor/components/index#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
+To accept arbitrary attributes, define a [component parameter](index.md#component-parameters) with the <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property set to `true`:
 
 ```razor
 @code {
@@ -87,7 +86,7 @@ To accept arbitrary attributes, define a [component parameter](xref:blazor/compo
 
 The <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> property on [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) allows the parameter to match all attributes that don't match any other parameter. A component can only define a single parameter with <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues>. The property type used with <xref:Microsoft.AspNetCore.Components.ParameterAttribute.CaptureUnmatchedValues> must be assignable from [`Dictionary<string, object>`](xref:System.Collections.Generic.Dictionary`2) with string keys. Use of [`IEnumerable<KeyValuePair<string, object>>`](xref:System.Collections.Generic.IEnumerable`1) or [`IReadOnlyDictionary<string, object>`](xref:System.Collections.Generic.IReadOnlyDictionary`2) are also options in this scenario.
 
-The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the position of element attributes is important. When [`@attributes`](xref:mvc/views/razor#attributes) are splatted on the rendered element, the attributes are processed from right to left (last to first) with the first attribute winning for any common attributes. Consider the following example of a parent component that consumes a child component, where the child sets an "`extra`" attribute and the parent component splats an "`extra`" attribute on the child component.
+The position of [`@attributes`](../../mvc/views/razor.md#attributes) relative to the position of element attributes is important. When [`@attributes`](../../mvc/views/razor.md#attributes) are splatted on the rendered element, the attributes are processed from right to left (last to first) with the first attribute winning for any common attributes. Consider the following example of a parent component that consumes a child component, where the child sets an "`extra`" attribute and the parent component splats an "`extra`" attribute on the child component.
 
 `AttributeOrderChild1.razor`:
 
@@ -175,13 +174,13 @@ The position of [`@attributes`](xref:mvc/views/razor#attributes) relative to the
 
 :::moniker-end
 
-The `AttributeOrderChild1` component's `extra` attribute is set to the right of [`@attributes`](xref:mvc/views/razor#attributes). The `AttributeOrderParent1` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first) with the first "`extra`" attribute winning, which is the hard-coded `extra` HTML attribute of the `AttributeOrderParent1` component:
+The `AttributeOrderChild1` component's `extra` attribute is set to the right of [`@attributes`](../../mvc/views/razor.md#attributes). The `AttributeOrderParent1` component's rendered `<div>` contains `extra="5"` when passed through the additional attribute because the attributes are processed right to left (last to first) with the first "`extra`" attribute winning, which is the hard-coded `extra` HTML attribute of the `AttributeOrderParent1` component:
 
 ```html
 <div extra="5" />
 ```
 
-In the following example, the order of `extra` and [`@attributes`](xref:mvc/views/razor#attributes) is reversed in the child component's `<div>`. In this scenario, the `AttributeOrderParent2` component's rendered `<div>` contains `extra="10"` when passed through the additional attribute because the first "`extra`" attribute processed is the splatted `extra` HTML attribute from the parent component.
+In the following example, the order of `extra` and [`@attributes`](../../mvc/views/razor.md#attributes) is reversed in the child component's `<div>`. In this scenario, the `AttributeOrderParent2` component's rendered `<div>` contains `extra="10"` when passed through the additional attribute because the first "`extra`" attribute processed is the splatted `extra` HTML attribute from the parent component.
 
 `AttributeOrderChild2.razor`:
 

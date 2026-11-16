@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor advanced scenarios (render tree construction)
 description: Learn how to incorporate manual logic for building Blazor render trees (RenderTreeBuilder).
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/advanced-scenarios
 ---
 # ASP.NET Core Blazor advanced scenarios (render tree construction)
 

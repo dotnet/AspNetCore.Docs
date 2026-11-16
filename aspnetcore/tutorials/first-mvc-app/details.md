@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Part 10 of tutorial series on ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 01/22/2026
-uid: tutorials/first-mvc-app/details
 ---
 
 # Part 10, examine the Details and Delete methods of an ASP.NET Core app

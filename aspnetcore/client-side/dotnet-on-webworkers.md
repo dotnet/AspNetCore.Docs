@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a React app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 04/07/2026
-uid: client-side/dotnet-on-webworkers
 ---
 # .NET on Web Workers
 
@@ -21,14 +20,14 @@ This approach is particularly valuable when you need to perform complex calculat
 :::moniker range=">= aspnetcore-11.0"
 
 > [!TIP]
-> In .NET 11 or later, `dotnet new blazorwebworker` generates the worker scripts and starter `[JSExport]` code used by the Blazor integration. For the Blazor-specific walkthrough, see <xref:blazor/blazor-web-workers>.
+> In .NET 11 or later, `dotnet new blazorwebworker` generates the worker scripts and starter `[JSExport]` code used by the Blazor integration. For the Blazor-specific walkthrough, see [ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-11.0"
 
 > [!TIP]
-> For earlier versions, follow the manual `wasmbrowser` steps in this article. For the Blazor-specific walkthrough, see <xref:blazor/blazor-web-workers>.
+> For earlier versions, follow the manual `wasmbrowser` steps in this article. For the Blazor-specific walkthrough, see [ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md).
 
 :::moniker-end
 
@@ -404,4 +403,4 @@ See the [sample app](#sample-app) for a demonstration of the preceding concepts.
 
 ## Related content
 
-<xref:blazor/blazor-web-workers>
+[ASP.NET Core Blazor with .NET on Web Workers](../blazor/blazor-with-dotnet-on-web-workers.md)

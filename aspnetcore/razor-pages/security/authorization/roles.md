@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to restrict ASP.NET Core Razor Pages page access by passing roles to the Authorize attribute.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 03/24/2026
-uid: razor-pages/security/authorization/roles
 ---
 # Role-based authorization in ASP.NET Core Razor Pages
 
@@ -15,9 +14,9 @@ While roles are claims, not all claims are roles. Depending on the identity issu
 This article uses Razor Pages examples and focuses on Razor Pages authorization scenarios. For Blazor and MVC guidance, see the following resources:
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:mvc/security/authorization/roles>
+* [Role-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/roles.md)
 
-Examples throughout this article apply role-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, role-based authorization can be applied using *conventions*. For more information, see <xref:razor-pages/razor-pages-conventions#page-model-action-conventions>.
+Examples throughout this article apply role-based authorization via one or more [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute) on `PageModel` classes. Alternatively, role-based authorization can be applied using *conventions*. For more information, see [Razor Pages route and app conventions in ASP.NET Core](../../razor-pages-conventions.md#page-model-action-conventions).
 
 ## Add Role services to Identity
 
@@ -107,7 +106,7 @@ public class ControlPanelModel : PageModel
 
 Filter attributes, including the [`[Authorize]` attribute](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), can only be applied to the entire `PageModel` class and can't be applied to specific page handler methods. If you need to implement different authorization rules for different page handlers, adopt either of the following approaches.
 
-* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](xref:mvc/views/partial) for shared content.
+* Use separate Razor Pages for operations requiring different authorization levels, using [partial views](../../../mvc/views/partial.md) for shared content.
 
 * Inject <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService> and manually check the authorization policy by calling <xref:Microsoft.AspNetCore.Authorization.IAuthorizationService.AuthorizeAsync*?displayProperty=nameWithType> within handler methods. If authorization fails, the handler returns a `Forbid` result (<xref:Microsoft.AspNetCore.Mvc.ForbidResult>).
 
@@ -411,7 +410,7 @@ else
 
 :::moniker range=">= aspnetcore-9.0"
 
-For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in <xref:blazor/security/blazor-web-app-windows-authentication>. Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
+For a demonstration of related code that translates SID group claims into human-readable values in a Blazor app, see the `UserClaims` component in [Secure an ASP.NET Core Blazor Web App with Windows Authentication](../../../blazor/security/blazor-web-app-with-windows-authentication.md). Such an approach to retrieving SID group claims can be combined with [adding claims with an `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation) to create custom role claims when a user is authenticated.
 
 :::moniker-end
 
@@ -424,7 +423,7 @@ An approach similar to the preceding example for retrieving SID group claims can
 ## Related content
 
 * [Role-based authorization in ASP.NET Core](../../../security/authorization/roles.md)
-* <xref:blazor/security/index>
-* <xref:blazor/security/webassembly/meid-groups-roles>
-* <xref:mvc/security/authorization/roles>
+* [ASP.NET Core Blazor authentication and authorization](../../../blazor/security/index.md)
+* [ASP.NET Core Blazor WebAssembly with Microsoft Entra ID groups and roles](../../../blazor/security/webassembly/microsoft-entra-id-groups-and-roles.md)
+* [Role-based authorization in ASP.NET Core MVC](../../../mvc/security/authorization/roles.md)
 * [Extend or add custom claims, including role claims, using `IClaimsTransformation`](../../../security/authentication/claims.md#extend-or-add-custom-claims-using-iclaimstransformation)

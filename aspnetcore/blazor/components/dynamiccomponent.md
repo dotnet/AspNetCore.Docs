@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/14/2026
-uid: blazor/components/dynamiccomponent
 ---
 # Dynamically-rendered ASP.NET Core Razor components
 
@@ -149,7 +148,7 @@ In the preceding example:
 
 ## Pass parameters
 
-If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the <xref:Microsoft.AspNetCore.Components.DynamicComponent> as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
+If dynamically-rendered components have [component parameters](index.md#component-parameters), pass them into the <xref:Microsoft.AspNetCore.Components.DynamicComponent> as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
 
 The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be provided from a web API, a database, or a method. The only requirement is that the approach returns an `IDictionary<string, object>`.
 
@@ -518,7 +517,7 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
 ## Avoid catch-all parameters
 
-Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+Avoid the use of [catch-all parameters](../fundamentals/routing.md#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
 
 ## Access the dynamically-created component instance
 
@@ -654,5 +653,5 @@ Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocket
 
 ## Related content
 
-* <xref:blazor/components/event-handling#eventcallback>
+* [ASP.NET Core Blazor event handling](event-handling.md#eventcallback)
 * <xref:Microsoft.AspNetCore.Components.DynamicComponent>

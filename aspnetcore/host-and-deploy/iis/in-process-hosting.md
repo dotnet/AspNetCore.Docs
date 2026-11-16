@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn about in-Process hosting with IIS and the ASP.NET Core Module.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 4/4/2022
-uid: host-and-deploy/iis/in-process-hosting
 ---
 # In-process hosting with IIS and ASP.NET Core
 
@@ -45,7 +44,7 @@ After the IIS HTTP Server processes the request:
 1. The app's response is passed back to IIS through IIS HTTP Server.
 1. IIS sends the response to the client that initiated the request.
 
-`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](../../fundamentals/servers/kestrel.md).
 
 Apps published as a single file executable can't be loaded by the in-process hosting model.
 
@@ -53,7 +52,7 @@ Apps published as a single file executable can't be loaded by the in-process hos
 
 To configure IIS options, include a service configuration for <xref:Microsoft.AspNetCore.Builder.IISServerOptions> in `Program.cs`. The following example disables <xref:Microsoft.AspNetCore.Builder.IISServerOptions.AutomaticAuthentication>:
 
-[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/6.0/Program.cs?highlight=17-20)]
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/Program.cs?highlight=1-4&name=snippet_options)]
 
 | Option | Default | Setting |
 | ------ | :-----: | ------- |
@@ -66,23 +65,23 @@ To configure IIS options, include a service configuration for <xref:Microsoft.As
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](xref:tutorials/publish-to-iis#create-the-iis-site) section.
+* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](../../tutorials/publish-to-iis.md#create-the-iis-site) section.
 
 * Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted) cancellation token is cancelled when the client disconnects.
 
 * When hosting in-process, <xref:Microsoft.AspNetCore.Authentication.AuthenticationService.AuthenticateAsync*> isn't called internally to initialize a user. Therefore, an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation used to transform claims after every authentication isn't activated by default. When transforming claims with an <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation> implementation, call <xref:Microsoft.Extensions.DependencyInjection.AuthenticationServiceCollectionExtensions.AddAuthentication*> to add authentication services:
 
-[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/6.0/Program.cs?highlight=22-23)]
+[!code-csharp[](~/host-and-deploy/iis/in-process-hosting/samples/Program.cs?highlight=1-2&name=snippet_authentication)]
   
 * [Web Package (single-file) deployments](/aspnet/web-forms/overview/deployment/web-deployment-in-the-enterprise/deploying-web-packages) aren't supported.
 
@@ -94,7 +93,7 @@ The following characteristics apply when hosting in-process:
 
 ## Get timing information
 
-See [Get detailed timing information with IHttpSysRequestTimingFeature](xref:fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
+See [Get detailed timing information with IHttpSysRequestTimingFeature](/previous-versions/aspnet/core/fundamentals/servers/httpsys?view=aspnetcore-8.0&preserve-view=true#ihsrtf8).
 
 :::moniker-end
 
@@ -133,7 +132,7 @@ After the IIS HTTP Server processes the request:
 1. The app's response is passed back to IIS through IIS HTTP Server.
 1. IIS sends the response to the client that initiated the request.
 
-`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](xref:fundamentals/servers/kestrel).
+`CreateDefaultBuilder` adds an <xref:Microsoft.AspNetCore.Hosting.Server.IServer> instance by calling the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> method to boot the [CoreCLR](/dotnet/standard/glossary#coreclr) and host the app inside of the IIS worker process (`w3wp.exe` or `iisexpress.exe`). Performance tests indicate that hosting a .NET app in-process delivers significantly higher request throughput compared to hosting the app out-of-process and proxying requests to [Kestrel](../../fundamentals/servers/kestrel.md).
 
 Apps published as a single file executable can't be loaded by the in-process hosting model.
 
@@ -159,17 +158,17 @@ services.Configure<IISServerOptions>(options =>
 
 The following characteristics apply when hosting in-process:
 
-* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](xref:fundamentals/servers/kestrel) server. For in-process, [`CreateDefaultBuilder`](xref:fundamentals/host/generic-host#default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
+* IIS HTTP Server (`IISHttpServer`) is used instead of [Kestrel](../../fundamentals/servers/kestrel.md) server. For in-process, [`CreateDefaultBuilder`](../../fundamentals/host/generic-host.md#configure-default-builder-settings) calls <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderIISExtensions.UseIIS*> to:
 
   * Register the `IISHttpServer`.
   * Configure the port and base path the server should listen on when running behind the ASP.NET Core Module.
   * Configure the host to capture startup errors.
 
-* The [`requestTimeout` attribute](xref:host-and-deploy/iis/web-config#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
+* The [`requestTimeout` attribute](web-config.md#attributes-of-the-aspnetcore-element) doesn't apply to in-process hosting.
 
 * Sharing an app pool among apps isn't supported. Use one app pool per app.
 
-* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](xref:tutorials/publish-to-iis#create-the-iis-site) section.
+* The architecture (bitness) of the app and installed runtime (x64 or x86) must match the architecture of the app pool. For example, apps published for 32-bit (x86) must have 32-bit enabled for their IIS Application Pools. For more information, see the [Create the IIS site](../../tutorials/publish-to-iis.md#create-the-iis-site) section.
 
 * Client disconnects are detected. The [`HttpContext.RequestAborted`](xref:Microsoft.AspNetCore.Http.HttpContext.RequestAborted) cancellation token is cancelled when the client disconnects.
 

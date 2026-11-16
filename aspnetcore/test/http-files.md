@@ -5,7 +5,6 @@ description: Learn how to use .http files in Visual Studio 2022 to test ASPNET C
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/14/2026
 ms.topic: how-to
-uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
 

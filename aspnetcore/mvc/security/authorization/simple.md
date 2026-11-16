@@ -3,7 +3,6 @@ title: Simple authorization in ASP.NET Core MVC
 ai-usage: ai-assisted
 description: Learn how to use the [Authorize] attribute to restrict access in ASP.NET Core MVC apps.
 ms.date: 09/18/2026
-uid: mvc/security/authorization/simple
 ---
 # Simple authorization in ASP.NET Core MVC
 
@@ -78,4 +77,4 @@ For information on how to require authentication for all app users, see [Require
 ## Related content
 
 * [Simple authorization in ASP.NET Core](../../../security/authorization/simple.md)
-* <xref:razor-pages/security/authorization/simple>
+* [Simple authorization in ASP.NET Core Razor Pages](../../../razor-pages/security/authorization/simple.md)

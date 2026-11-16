@@ -3,7 +3,6 @@ title: Use connection middleware with the ASP.NET Core Kestrel web server
 description: Learn about using connection middleware with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 06/21/2023
-uid: fundamentals/servers/kestrel/connection-middleware
 ---
 
 # Connection middleware
@@ -17,7 +16,7 @@ Kestrel supports connection middleware. Connection middleware is software that i
 
 Connection delegates are used to build the connection pipeline. Connection delegates are configured with the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.ListenOptions.Use*?displayProperty=nameWithType> method.
 
-Connection middleware is different from <xref:fundamentals/middleware/index>. Connection middleware runs per-connection instead of per-request.
+Connection middleware is different from [ASP.NET Core middleware](../../middleware/index.md). Connection middleware runs per-connection instead of per-request.
 
 ## Connection logging
 
@@ -37,4 +36,4 @@ No encryption is used with a <xref:System.Security.Authentication.CipherAlgorith
 
 ## See also
 
-* <xref:fundamentals/servers/kestrel/endpoints>
+* [Configure endpoints for Kestrel web server](endpoints.md)

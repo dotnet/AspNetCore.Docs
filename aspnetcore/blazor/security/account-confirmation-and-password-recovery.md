@@ -3,7 +3,6 @@ title: Account confirmation and password recovery in ASP.NET Core Blazor
 description: Learn how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/security/account-confirmation-and-password-recovery
 ---
 # Account confirmation and password recovery in ASP.NET Core Blazor
 
@@ -12,7 +11,7 @@ uid: blazor/security/account-confirmation-and-password-recovery
 This article explains how to configure an ASP.NET Core Blazor Web App with email confirmation and password recovery.
 
 > [!NOTE]
-> This article only applies to Blazor Web Apps. To implement email confirmation and password recovery for standalone Blazor WebAssembly apps with ASP.NET Core Identity, see <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>.
+> This article only applies to Blazor Web Apps. To implement email confirmation and password recovery for standalone Blazor WebAssembly apps with ASP.NET Core Identity, see [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md).
 
 ## Namespace
 
@@ -115,7 +114,7 @@ public static class AzureHelper
 }
 ```
 
-Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](xref:fundamentals/configuration/options):
+Where services are registered in the server project's `Program` file, obtain and bind the secret with [Options configuration](../../fundamentals/configuration/options.md):
 
 ```csharp
 TokenCredential? credential;
@@ -156,7 +155,7 @@ builder.Configuration.GetSection(authMessageSenderOptions.EmailAuthKey)
 > var vaultUri = builder.Configuration.GetValue<string>("AzureAd:VaultUri")!;
 > ```
 >
-> For more information, see <xref:blazor/fundamentals/configuration>.
+> For more information, see [ASP.NET Core Blazor configuration](../fundamentals/configuration.md).
 
 ## Implement `IEmailSender`
 

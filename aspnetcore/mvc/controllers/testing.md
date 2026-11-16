@@ -3,7 +3,6 @@ title: Test controller logic in ASP.NET Core
 description: Learn how to test controller logic in ASP.NET Core with Moq and xUnit.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 7/22/2020
-uid: mvc/controllers/testing
 ---
 # Unit test controller logic in ASP.NET Core
 
@@ -15,13 +14,13 @@ By [Steve Smith](https://ardalis.com/)
 
 ## Unit testing controllers
 
-Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing), and [model binding](xref:mvc/models/model-binding). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
+Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](filters.md), [routing](../../fundamentals/routing.md), and [model binding](../models/model-binding.md). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see [Integration tests in ASP.NET Core](../../test/integration-tests.md).
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 
-To demonstrate controller unit tests, review the following controller in the sample app. 
+To demonstrate controller unit tests, review the following controller in the sample app.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 The Home controller displays a list of brainstorming sessions and allows the creation of new brainstorming sessions with a POST request:
 
@@ -30,8 +29,8 @@ The Home controller displays a list of brainstorming sessions and allows the cre
 The preceding controller:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/architecture/modern-web-apps-azure/architectural-principles#explicit-dependencies).
-* Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide an instance of `IBrainstormSessionRepository`.
-* Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests).
+* Expects [dependency injection (DI)](../../fundamentals/dependency-injection.md) to provide an instance of `IBrainstormSessionRepository`.
+* Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](../../test/integration-tests.md#introduction-to-integration-tests).
 
 The `HTTP GET Index` method has no looping or branching and only calls one method. The unit test for this action:
 
@@ -57,7 +56,7 @@ An invalid model state is tested by adding errors using <xref:Microsoft.AspNetCo
 
 [!code-csharp[](testing/samples/3.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs?name=snippet_ModelState_ValidOrInvalid&highlight=9,16-17,38-41)]
 
-When [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) isn't valid, the same `ViewResult` is returned as for a GET request. The test doesn't attempt to pass in an invalid model. Passing an invalid model isn't a valid approach, since model binding isn't running (although an [integration test](xref:test/integration-tests) does use model binding). In this case, model binding isn't tested. These unit tests are only testing the code in the action method.
+When [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) isn't valid, the same `ViewResult` is returned as for a GET request. The test doesn't attempt to pass in an invalid model. Passing an invalid model isn't a valid approach, since model binding isn't running (although an [integration test](../../test/integration-tests.md) does use model binding). In this case, model binding isn't tested. These unit tests are only testing the code in the action method.
 
 The second test verifies that when the `ModelState` is valid:
 
@@ -174,15 +173,15 @@ For a valid session `id`, the final test confirms that:
 
 :::moniker range="< aspnetcore-3.0"
 
-[Controllers](xref:mvc/controllers/actions) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
+[Controllers](actions.md) play a central role in any ASP.NET Core MVC app. As such, you should have confidence that controllers behave as intended. Automated tests can detect errors before the app is deployed to a production environment.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/mvc/controllers/testing/samples/) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Unit tests of controller logic
 
 [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test) involve testing a part of an app in isolation from its infrastructure and dependencies. When unit testing controller logic, only the contents of a single action are tested, not the behavior of its dependencies or of the framework itself.
 
-Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](xref:mvc/controllers/filters), [routing](xref:fundamentals/routing), and [model binding](xref:mvc/models/model-binding). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see <xref:test/integration-tests>.
+Set up unit tests of controller actions to focus on the controller's behavior. A controller unit test avoids scenarios such as [filters](filters.md), [routing](../../fundamentals/routing.md), and [model binding](../models/model-binding.md). Tests that cover the interactions among components that collectively respond to a request are handled by *integration tests*. For more information on integration tests, see [Integration tests in ASP.NET Core](../../test/integration-tests.md).
 
 If you're writing custom filters and routes, unit test them in isolation, not as part of tests on a particular controller action.
 
@@ -193,8 +192,8 @@ To demonstrate controller unit tests, review the following controller in the sam
 The preceding controller:
 
 * Follows the [Explicit Dependencies Principle](/dotnet/standard/modern-web-apps-azure-architecture/architectural-principles#explicit-dependencies).
-* Expects [dependency injection (DI)](xref:fundamentals/dependency-injection) to provide an instance of `IBrainstormSessionRepository`.
-* Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](xref:test/integration-tests#introduction-to-integration-tests).
+* Expects [dependency injection (DI)](../../fundamentals/dependency-injection.md) to provide an instance of `IBrainstormSessionRepository`.
+* Can be tested with a mocked `IBrainstormSessionRepository` service using a mock object framework, such as [Moq](https://www.nuget.org/packages/Moq/). A *mocked object* is a fabricated object with a predetermined set of property and method behaviors used for testing. For more information, see [Introduction to integration tests](../../test/integration-tests.md#introduction-to-integration-tests).
 
 The `HTTP GET Index` method has no looping or branching and only calls one method. The unit test for this action:
 
@@ -220,7 +219,7 @@ An invalid model state is tested by adding errors using <xref:Microsoft.AspNetCo
 
 [!code-csharp[](testing/samples/2.x/TestingControllersSample/tests/TestingControllersSample.Tests/UnitTests/HomeControllerTests.cs?name=snippet_ModelState_ValidOrInvalid&highlight=9,16-17,38-41)]
 
-When [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) isn't valid, the same `ViewResult` is returned as for a GET request. The test doesn't attempt to pass in an invalid model. Passing an invalid model isn't a valid approach, since model binding isn't running (although an [integration test](xref:test/integration-tests) does use model binding). In this case, model binding isn't tested. These unit tests are only testing the code in the action method.
+When [ModelState](xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary) isn't valid, the same `ViewResult` is returned as for a GET request. The test doesn't attempt to pass in an invalid model. Passing an invalid model isn't a valid approach, since model binding isn't running (although an [integration test](../../test/integration-tests.md) does use model binding). In this case, model binding isn't tested. These unit tests are only testing the code in the action method.
 
 The second test verifies that when the `ModelState` is valid:
 
@@ -337,7 +336,7 @@ For a valid session `id`, the final test confirms that:
 
 ## Related content
 
-* <xref:test/integration-tests>
+* [Integration tests in ASP.NET Core](../../test/integration-tests.md)
 * [Create and run unit tests with Visual Studio](/visualstudio/test/unit-test-your-code)
 * [MyTested.AspNetCore.Mvc - Fluent Testing Library for ASP.NET Core MVC](https://github.com/ivaylokenov/MyTested.AspNetCore.Mvc): Strongly-typed unit testing library, providing a fluent interface for testing MVC and web API apps. (*Not maintained or supported by Microsoft.*)
 * [JustMockLite](https://github.com/telerik/JustMockLite): A mocking framework for .NET developers. (*Not maintained or supported by Microsoft.*)

@@ -3,7 +3,6 @@ title: Session in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover approaches to preserve session between requests.
 ms.date: 04/24/2025
-uid: fundamentals/app-state
 ---
 # Session and state management in ASP.NET Core
 
@@ -13,7 +12,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-For Blazor state management guidance, which adds to or supersedes the guidance in this article, see <xref:blazor/state-management/index>.
+For Blazor state management guidance, which adds to or supersedes the guidance in this article, see [ASP.NET Core Blazor state management overview](../blazor/state-management/index.md).
 
 ## State management
 
@@ -31,7 +30,7 @@ State can be stored using several approaches. Each approach is described later i
 
 ## SignalR/Blazor Server and HTTP context-based state management
 
-[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+[SignalR](../signalr/introduction.md) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](../signalr/hubs.md). For more information and alternative state management approaches for Blazor Server apps, see [ASP.NET Core Blazor state management overview](../blazor/state-management/index.md) and [ASP.NET Core Blazor server-side state management](../blazor/state-management/server.md).
 
 ## Cookies
 
@@ -47,7 +46,7 @@ See the [European Union General Data Protection Regulations (GDPR)](https://ec.e
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data. The site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
 
-Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
+Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](../signalr/hubs.md) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID. The cookie session ID:
 
@@ -73,14 +72,14 @@ Session state exhibits the following behaviors:
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
-* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
 
 Middleware for managing session state is included in the framework. To enable the session middleware, `Program.cs` must contain:
 
-* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
+* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*>
 * A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*>
 
@@ -90,7 +89,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute`. See [Middleware Ordering](xref:fundamentals/middleware/index#middleware-order).
+The order of middleware is important.  Call `UseSession` after `UseRouting` and before `MapRazorPages` and `MapDefaultControllerRoute`. See [Middleware Ordering](middleware/index.md#middleware-order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -238,7 +237,7 @@ Data can be saved in hidden form fields and posted back on the next request. Thi
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
-In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
+In the following example, [middleware](middleware/index.md) adds `isVerified` to the `Items` collection:
 
 [!code-csharp[](app-state/samples/6.0/SessionSample/Program.cs?name=snippet_hci)]
 
@@ -252,11 +251,11 @@ Other code can access the value stored in `HttpContext.Items` using the key expo
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 
 Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-To cache application wide data, see <xref:performance/caching/memory>.
+To cache application wide data, see [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 ## Checking session state
 
@@ -268,7 +267,7 @@ Libraries that need to test session availability can use `HttpContext.Features.G
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md) and [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 If the session middleware fails to persist a session:
 
@@ -287,7 +286,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Kirk Larkin](https://twitt
 
 HTTP is a stateless protocol. By default, HTTP requests are independent messages that don't retain user values. This article describes several approaches to preserve user data between requests.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## State management
 
@@ -305,7 +304,7 @@ State can be stored using several approaches. Each approach is described later i
 
 ## SignalR/Blazor Server and HTTP context-based state management
 
-[SignalR](xref:signalr/introduction) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](xref:signalr/hubs). For more information and alternative state management approaches for Blazor Server apps, see <xref:blazor/state-management/index> and <xref:blazor/state-management/server>.
+[SignalR](../signalr/introduction.md) apps shouldn't use session state and other state management approaches that rely upon a stable HTTP context to store information. SignalR apps can store per-connection state in [`Context.Items` in the hub](../signalr/hubs.md). For more information and alternative state management approaches for Blazor Server apps, see [ASP.NET Core Blazor state management overview](../blazor/state-management/index.md) and [ASP.NET Core Blazor server-side state management](../blazor/state-management/server.md).
 
 ## Cookies
 
@@ -321,7 +320,7 @@ See the [European Union General Data Protection Regulations (GDPR)](https://ec.e
 
 Session state is an ASP.NET Core scenario for storage of user data while the user browses a web app. Session state uses a store maintained by the app to persist data across requests from a client. The session data is backed by a cache and considered ephemeral data. The site should continue to function without the session data. Critical application data should be stored in the user database and cached in session only as a performance optimization.
 
-Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](xref:signalr/hubs) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
+Session isn't supported in [SignalR](xref:signalr/index) apps because a [SignalR Hub](../signalr/hubs.md) may execute independent of an HTTP context. For example, this can occur when a long polling request is held open by a hub beyond the lifetime of the request's HTTP context.
 
 ASP.NET Core maintains session state by providing a cookie to the client that contains a session ID. The cookie session ID:
 
@@ -346,7 +345,7 @@ Session state exhibits the following behaviors:
 
 The in-memory cache provider stores session data in the memory of the server where the app resides. In a server farm scenario:
 
-* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see <xref:performance/caching/distributed>.
+* Use *sticky sessions* to tie each session to a specific app instance on an individual server. [Azure App Service](https://azure.microsoft.com/services/app-service/) uses [Application Request Routing (ARR)](/iis/extensions/planning-for-arr/using-the-application-request-routing-module) to enforce sticky sessions by default. However, sticky sessions can affect scalability and complicate web app updates. A better approach is to use a Redis, SQL Server, or Azure Postgres distributed cache, which doesn't require sticky sessions. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * The session cookie is encrypted via <xref:Microsoft.AspNetCore.DataProtection.IDataProtector>. Data Protection must be properly configured to read session cookies on each machine. For more information, see [ASP.NET Core Data Protection Overview](../security/data-protection/introduction.md) and [Key storage providers](../security/data-protection/implementation/key-storage-providers.md).
 
 ### Configure session state
@@ -358,7 +357,7 @@ The [Microsoft.AspNetCore.Session](https://www.nuget.org/packages/Microsoft.AspN
 
 To enable the session middleware, `Startup` must contain:
 
-* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see <xref:performance/caching/distributed>.
+* Any of the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> memory caches. The `IDistributedCache` implementation is used as a backing store for session. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md).
 * A call to <xref:Microsoft.Extensions.DependencyInjection.SessionServiceCollectionExtensions.AddSession*> in `ConfigureServices`.
 * A call to <xref:Microsoft.AspNetCore.Builder.SessionMiddlewareExtensions.UseSession*> in `Configure`.
 
@@ -368,7 +367,7 @@ The following code shows how to set up the in-memory session provider with a def
 
 The preceding code sets a short timeout to simplify testing.
 
-The order of middleware is important. Call `UseSession` after `UseRouting` and before `UseEndpoints`. For more information, see <xref:fundamentals/middleware/index#middleware-order>.
+The order of middleware is important. Call `UseSession` after `UseRouting` and before `UseEndpoints`. For more information, see [ASP.NET Core middleware](middleware/index.md#middleware-order).
 
 [HttpContext.Session](xref:Microsoft.AspNetCore.Http.HttpContext.Session) is available after session state is configured.
 
@@ -509,7 +508,7 @@ Data can be saved in hidden form fields and posted back on the next request. Thi
 
 The <xref:Microsoft.AspNetCore.Http.HttpContext.Items?displayProperty=nameWithType> collection is used to store data while processing a single request. The collection's contents are discarded after a request is processed. The `Items` collection is often used to allow components or middleware to communicate when they operate at different points in time during a request and have no direct way to pass parameters.
 
-In the following example, [middleware](xref:fundamentals/middleware/index) adds `isVerified` to the `Items` collection:
+In the following example, [middleware](middleware/index.md) adds `isVerified` to the `Items` collection:
 
 [!code-csharp[](app-state/samples/3.x/SessionSample/Startup.cs?name=snippet1)]
 
@@ -525,17 +524,17 @@ This approach also has the advantage of eliminating the use of key strings in th
 
 ## Cache
 
-Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see <xref:performance/caching/response>.
+Caching is an efficient way to store and retrieve data. The app can control the lifetime of cached items. For more information, see [Response caching in ASP.NET Core](../performance/caching/response.md).
 
 Cached data isn't associated with a specific request, user, or session. **Do not cache user-specific data that may be retrieved by other user requests.**
 
-To cache application wide data, see <xref:performance/caching/memory>.
+To cache application wide data, see [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 ## Common errors
 
 * "Unable to resolve service for type 'Microsoft.Extensions.Caching.Distributed.IDistributedCache' while attempting to activate 'Microsoft.AspNetCore.Session.DistributedSessionStore'."
 
-  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see <xref:performance/caching/distributed> and <xref:performance/caching/memory>.
+  This is typically caused by failing to configure at least one `IDistributedCache` implementation. For more information, see [Distributed caching in ASP.NET Core](../performance/caching/distributed.md) and [Cache in-memory in ASP.NET Core](../performance/caching/memory.md).
 
 If the session middleware fails to persist a session:
 
@@ -552,13 +551,13 @@ The recommended approach to check for errors is to call `await feature.Session.C
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
-* <xref:host-and-deploy/web-farm>
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/app-state/samples) ([how to download](index.md#how-to-download-a-sample))
+* [Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-<xref:host-and-deploy/web-farm>
+[Host ASP.NET Core in a web farm](../host-and-deploy/web-farm.md)
 
 :::moniker-end

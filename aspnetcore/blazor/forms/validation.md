@@ -3,8 +3,7 @@ title: ASP.NET Core Blazor forms validation
 ai-usage: ai-assisted
 description: Learn how to use validation in Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/23/2026
-uid: blazor/forms/validation
+ms.date: 11/06/2026
 ---
 # ASP.NET Core Blazor forms validation
 
@@ -18,22 +17,22 @@ Related articles provide more detail:
 
 :::moniker range=">= aspnetcore-11.0"
 
-* For writing and configuring model-based validation rules, including custom and asynchronous rules, nested object validation, and localization, see <xref:fundamentals/validation>.
-* For live browser validation in static server-side rendering (static SSR), see <xref:blazor/forms/validation-client-side>.
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For writing and configuring model-based validation rules, including custom and asynchronous rules, nested object validation, and localization, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
+* For live browser validation in static server-side rendering (static SSR), see [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md).
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
 
-* For writing and configuring model-based validation rules and nested object validation, see <xref:fundamentals/validation>.
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For writing and configuring model-based validation rules and nested object validation, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-10.0"
 
-* For complete validator-component and remote-validation implementations, see <xref:blazor/forms/validation-advanced>.
+* For complete validator-component and remote-validation implementations, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
@@ -111,7 +110,7 @@ For a static SSR form post, assign a unique `FormName` and receive the posted mo
 }
 ```
 
-For more information about form submission and model binding across render modes, see <xref:blazor/forms/index> and <xref:blazor/forms/binding>.
+For more information about form submission and model binding across render modes, see [ASP.NET Core Blazor forms overview](index.md) and [ASP.NET Core Blazor forms binding](binding.md).
 
 :::moniker-end
 
@@ -126,7 +125,7 @@ Blazor performs field validation and full-form validation:
 
 :::moniker range=">= aspnetcore-11.0"
 
-A static SSR form can provide live browser feedback with <xref:blazor/forms/validation-client-side>. The form is validated again authoritatively on the server when posted.
+A static SSR form can provide live browser feedback with [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md). The form is validated again authoritatively on the server when posted.
 
 :::moniker-end
 
@@ -168,7 +167,7 @@ The `AddValidation` call registers the package's validation services and activat
 | Generated metadata is available | Validates nested objects and collections. |
 | Generated metadata isn't available | Validates top-level properties only. |
 
-The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experimental in .NET 10. For details and available workarounds, see <xref:fundamentals/validation#experimental-api-in-apps-that-target-net-10>.
+The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experimental in .NET 10. For details and available workarounds, see [Validation in ASP.NET Core](../../fundamentals/validation.md#experimental-api-in-apps-that-target-net-10).
 
 :::moniker-end
 
@@ -176,7 +175,7 @@ The `ValidatableTypeAttribute` and `SkipValidationAttribute` APIs are experiment
 
 When using `Microsoft.Extensions.Validation`, declare model types in C# files (`.cs`) rather than Razor component files (`.razor`). The source generator creates validation metadata from C# source and can't include model types declared in Razor components.
 
-For configuration requirements, validation order, custom rules, nested object graphs, and generated metadata, see <xref:fundamentals/validation>.
+For configuration requirements, validation order, custom rules, nested object graphs, and generated metadata, see [Validation in ASP.NET Core](../../fundamentals/validation.md).
 
 :::moniker-end
 
@@ -220,7 +219,7 @@ For .NET 5 or earlier, use the experimental package's `ComparePropertyAttribute`
 
 ### Write model-based custom rules
 
-When built-in attributes can't express a rule, use a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. For detailed guidance, see <xref:fundamentals/validation#write-custom-validation-rules>.
+When built-in attributes can't express a rule, use a custom <xref:System.ComponentModel.DataAnnotations.ValidationAttribute> or <xref:System.ComponentModel.DataAnnotations.IValidatableObject>. For detailed guidance, see [Validation in ASP.NET Core](../../fundamentals/validation.md#write-custom-validation-rules).
 
 :::moniker-end
 
@@ -228,7 +227,7 @@ When built-in attributes can't express a rule, use a custom <xref:System.Compone
 
 ### Write model-based custom rules
 
-When built-in attributes can't express a rule, use a [custom validation attribute](xref:mvc/models/validation#custom-attributes) or implement [`IValidatableObject`](xref:mvc/models/validation#ivalidatableobject). Both run through `DataAnnotationsValidator`.
+When built-in attributes can't express a rule, use a [custom validation attribute](../../mvc/models/validation.md#custom-attributes) or implement [`IValidatableObject`](../../mvc/models/validation.md#ivalidatableobject). Both run through `DataAnnotationsValidator`.
 
 When returning a <xref:System.ComponentModel.DataAnnotations.ValidationResult> from a custom attribute, include the validated member name so the result can appear in that field's `ValidationMessage` component.
 
@@ -342,11 +341,11 @@ Static SSR doesn't provide live .NET field validation between requests.
 
 For asynchronous full-form validation, call `e.AddAsyncValidator` from an `OnValidationRequested` handler. For asynchronous field validation in an interactive form, call `EditContext.RegisterAsyncFieldValidator` from an `OnFieldChanged` handler. A new asynchronous validation for the same field supersedes and cancels the previous one.
 
-For model-based asynchronous validation attributes, see <xref:fundamentals/validation#asynchronous-validation-support>. For a complete reusable validator component, see <xref:blazor/forms/validation-advanced>.
+For model-based asynchronous validation attributes, see [Validation in ASP.NET Core](../../fundamentals/validation.md#asynchronous-validation-support). For a complete reusable validator component, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 :::moniker-end
 
-For a reusable implementation that encapsulates event subscriptions and its message store, see <xref:blazor/forms/validation-advanced#build-a-validator-component>.
+For a reusable implementation that encapsulates event subscriptions and its message store, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md#build-a-validator-component).
 
 <a id="validation-summary-and-validation-message-components"></a>
 
@@ -381,6 +380,16 @@ var fieldMessages = editContext.GetValidationMessages(
 ```
 
 These methods read the current validation state. They don't initiate validation.
+
+In interactive forms, `ValidationSummary` doesn't announce newly displayed errors to screen readers by default. To announce errors without moving focus, place the component inside a `div` with `role="alert"` within the `EditForm`:
+
+```razor
+<div role="alert" aria-atomic="true">
+    <ValidationSummary />
+</div>
+```
+
+Keep the wrapper rendered even when there are no errors, so the live region exists before its content changes. Don't place `role="alert"` directly on `ValidationSummary`: the component applies additional attributes to its generated `ul`, and replacing the list's role removes the list semantics required by its `li` elements.
 
 ## Customize validation appearance
 
@@ -633,19 +642,19 @@ When handling `OnSubmit`, call <xref:Microsoft.AspNetCore.Components.Forms.EditC
 
 ## Related content
 
-* <xref:blazor/forms/index>
-* <xref:blazor/forms/binding>
-* <xref:blazor/forms/input-components>
-* <xref:blazor/forms/validation-advanced>
+* [ASP.NET Core Blazor forms overview](index.md)
+* [ASP.NET Core Blazor forms binding](binding.md)
+* [ASP.NET Core Blazor input components](input-components.md)
+* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
 
 :::moniker range=">= aspnetcore-10.0"
 
-* <xref:fundamentals/validation>
+* [Validation in ASP.NET Core](../../fundamentals/validation.md)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-11.0"
 
-* <xref:blazor/forms/validation-client-side>
+* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 
 :::moniker-end

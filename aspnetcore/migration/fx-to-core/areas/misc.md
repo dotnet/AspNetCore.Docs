@@ -3,7 +3,6 @@ title: Technical differences between ASP.NET Framework and ASP.NET Core
 description: Important technical differences to understand when migrating from ASP.NET Framework to ASP.NET Core.
 ms.date: 07/17/2025
 ms.reviewer: tasou
-uid: migration/fx-to-core/areas/misc
 ---
 # Technical differences between ASP.NET Framework and ASP.NET Core
 
@@ -31,7 +30,7 @@ User Secrets require special handling. See [GitHub issue #27611](https://github.
 
 In ASP.NET Framework, <xref:System.Globalization.CultureInfo.CurrentCulture> was set for a request, but this is not done automatically in ASP.NET Core. Instead, you must add the appropriate middleware to your pipeline.
 
-**Recommendation**: See [ASP.NET Core Localization](/aspnet/core/fundamentals/localization#localization-middleware) for details on how to enable this.
+**Recommendation**: See [ASP.NET Core Localization](../../../fundamentals/localization.md#localization-middleware) for details on how to enable this.
 
 Simplest way to enable this with similar behavior as ASP.NET Framework would be to add the following to your pipeline:
 

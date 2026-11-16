@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor startup
 description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/14/2026
-uid: blazor/fundamentals/startup
 ---
 # ASP.NET Core Blazor startup
 
@@ -11,7 +10,7 @@ uid: blazor/fundamentals/startup
 
 This article explains Blazor app startup configuration.
 
-For general guidance on ASP.NET Core app configuration for server-side development, see <xref:fundamentals/configuration/index>.
+For general guidance on ASP.NET Core app configuration for server-side development, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 ## Startup process and configuration
 
@@ -34,7 +33,7 @@ The Blazor startup process is automatic and asynchronous via the Blazor script (
 
 :::moniker-end
 
-For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 To manually start Blazor:
 
@@ -71,7 +70,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -98,7 +97,7 @@ Standalone Blazor WebAssembly and Blazor Server:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -112,7 +111,7 @@ JavaScript (JS) initializers execute logic before and after a Blazor app loads. 
 * Initializing libraries before Blazor starts up.
 * Configuring Blazor settings.
 
-JS initializers are detected as part of the build process and imported automatically. Use of JS initializers often removes the need to [manually trigger script functions from the app](xref:blazor/fundamentals/startup#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](xref:blazor/components/class-libraries).
+JS initializers are detected as part of the build process and imported automatically. Use of JS initializers often removes the need to [manually trigger script functions from the app](startup.md#chain-to-the-promise-that-results-from-a-manual-start) when using [Razor class libraries (RCLs)](../components/class-libraries.md).
 
 To define a JS initializer, add a JS module to the project named `{NAME}.lib.module.js`, where the `{NAME}` placeholder is the assembly name, library name, or package identifier. Place the file in the project's web root, which is typically the `wwwroot` folder.
 
@@ -126,7 +125,7 @@ For Blazor Web Apps:
 * `afterWebStarted(blazor)`: Called after all `beforeWebStart` promises resolve. For example, `afterWebStarted` can be used to register Blazor event listeners and custom event types. The Blazor instance is passed to `afterWebStarted` as an argument (`blazor`).
 * `beforeServerStart(options, extensions)`: Called before the first Server runtime is started. Receives SignalR circuit start options (`options`) and any extensions (`extensions`) added during publishing.
 * `afterServerStarted(blazor)`: Called after the first Interactive Server runtime is started.
-* `beforeWebAssemblyStart(options, extensions)`: Called before the Interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+* `beforeWebAssemblyStart(options, extensions)`: Called before the Interactive WebAssembly runtime is started. Receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](startup.md#load-client-side-boot-resources).
 * `afterWebAssemblyStarted(blazor)`: Called after the Interactive WebAssembly runtime is started.
 
 > [!NOTE]
@@ -172,7 +171,7 @@ For Blazor Server, Blazor WebAssembly, and Blazor Hybrid apps:
 :::moniker range=">= aspnetcore-6.0"
 
 * `beforeStart(options, extensions)`: Called before Blazor starts. For example, `beforeStart` is used to customize the loading process, logging level, and other options specific to the hosting model.
-  * Client-side, `beforeStart` receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](xref:blazor/fundamentals/startup#load-client-side-boot-resources).
+  * Client-side, `beforeStart` receives the Blazor options (`options`) and any extensions (`extensions`) added during publishing. For example, options can specify the use of a custom [boot resource loader](startup.md#load-client-side-boot-resources).
   * Server-side, `beforeStart` receives SignalR circuit start options (`options`).
   * In a [`BlazorWebView`](/mobile-blazor-bindings/walkthroughs/hybrid-hello-world#mainrazor-native-ui-page), no options are passed.
 * `afterStarted(blazor)`: Called after Blazor is ready to receive calls from JS. For example, `afterStarted` is used to initialize libraries by making JS interop calls and registering custom elements. The Blazor instance is passed to `afterStarted` as an argument (`blazor`).
@@ -276,19 +275,19 @@ For examples of JS initializers, see the following resources:
 :::moniker range=">= aspnetcore-8.0"
 
 * [Blazor Web App loading indicator](#global-interactive-webassembly-rendering-without-prerendering) (*Global Interactive WebAssembly rendering without prerendering example*)
-* <xref:blazor/js-interop/ssr>
-* <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
-* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
-* <xref:blazor/security/qrcodes-for-authenticator-apps>
+* [ASP.NET Core Blazor JavaScript with static server-side rendering (static SSR)](../javascript-interoperability/static-server-rendering.md)
+* [Use Razor components in JavaScript apps and SPA frameworks](../components/js-spa-frameworks.md#render-razor-components-from-javascript) (*`quoteContainer2` example*)
+* [ASP.NET Core Blazor event handling](../components/event-handling.md#custom-event-arguments) (*Custom clipboard paste event example*)
+* [Enable QR code generation for TOTP authenticator apps in an ASP.NET Core Blazor Web App](../security/qrcodes-for-authenticator-apps.md)
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
-* <xref:blazor/components/js-spa-frameworks#render-razor-components-from-javascript> (*`quoteContainer2` example*)
-* <xref:blazor/components/event-handling#custom-event-arguments> (*Custom clipboard paste event example*)
-* <xref:blazor/host-and-deploy/webassembly/deployment-layout>
+* [Use Razor components in JavaScript apps and SPA frameworks](../components/js-spa-frameworks.md#render-razor-components-from-javascript) (*`quoteContainer2` example*)
+* [ASP.NET Core Blazor event handling](../components/event-handling.md#custom-event-arguments) (*Custom clipboard paste event example*)
+* [Deployment layout for ASP.NET Core hosted Blazor WebAssembly apps](../host-and-deploy/webassembly/deployment-layout.md)
 * [Basic Test App in the ASP.NET Core GitHub repository (`BasicTestApp.lib.module.js`)](https://github.com/dotnet/aspnetcore/blob/main/src/Components/test/testassets/BasicTestApp/wwwroot/BasicTestApp.lib.module.js)
 
 :::moniker-end
@@ -368,7 +367,7 @@ The following example starts Blazor when the document is ready:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 ## Chain to the `Promise` that results from a manual start
 
@@ -383,7 +382,7 @@ To perform additional tasks, such as JS interop initialization, use [`then`](htt
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -453,7 +452,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -482,7 +481,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -517,7 +516,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -548,28 +547,28 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
 When the `loadBootResource` function returns `null`, Blazor uses the default loading behavior for the resource. For example, the preceding code returns `null` for the `dotnetjs` boot resource (`dotnet.*.js`) because the `dotnetjs` boot resource must either return `null` for default loading behavior or a URI for the source of the `dotnetjs` boot resource.
 
-The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see <xref:blazor/host-and-deploy/webassembly/index#compression>.
+The `loadBootResource` function can also return a [`Response` promise](https://developer.mozilla.org/docs/Web/API/Response). For an example, see [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#compression).
 
-For more information, see <xref:blazor/host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures>.
+For more information, see [ASP.NET Core Blazor WebAssembly caching and integrity check failures](../host-and-deploy/webassembly/bundle-caching-and-integrity-check-failures.md).
 
 ## Control headers in C# code
 
 Control headers at startup in C# code using the following approaches.
 
-In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see <xref:blazor/security/content-security-policy>.
+In the following examples, a [Content Security Policy (CSP)](https://developer.mozilla.org/docs/Web/HTTP/Guides/CSP) is applied to the app via a CSP header. The `{POLICY STRING}` placeholder is the CSP policy string. For more information on CSPs, see [Enforce a Content Security Policy for ASP.NET Core Blazor](../security/content-security-policy.md).
 
 > [!NOTE]
-> Headers can't be set after the response starts. The approaches in this section only set headers before the response starts, so the approaches described here are safe. For more information, see <xref:blazor/components/httpcontext#dont-set-or-modify-headers-after-the-response-starts>.
+> Headers can't be set after the response starts. The approaches in this section only set headers before the response starts, so the approaches described here are safe. For more information, see [IHttpContextAccessor/HttpContext in ASP.NET Core Blazor apps](../components/httpcontext.md#dont-set-or-modify-headers-after-the-response-starts).
 
 ### Server-side and prerendered client-side scenarios
 
-Use [ASP.NET Core middleware](xref:fundamentals/middleware/index) to control the headers collection.
+Use [ASP.NET Core middleware](../../fundamentals/middleware/index.md) to control the headers collection.
 
 :::moniker range=">= aspnetcore-6.0"
 
@@ -591,7 +590,7 @@ app.Use(async (context, next) =>
 });
 ```
 
-The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see <xref:fundamentals/middleware/write>.
+The preceding example uses inline middleware, but you can also create a custom middleware class and call the middleware with an extension method in the `Program` file. For more information, see [Write custom ASP.NET Core middleware](../../fundamentals/middleware/write.md).
 
 :::moniker range="< aspnetcore-8.0"
 
@@ -660,7 +659,7 @@ Create a `ContentLoading` component in the `Layout` folder of the `.Client` app 
 * When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see [Control head content in ASP.NET Core Blazor apps](../components/control-head-content.md).
 
 `Layout/ContentLoading.razor`:
 
@@ -765,7 +764,7 @@ Create a `ContentLoading` component in the `Layout` folder of the `.Client` app 
 * When `false`, display a loading indicator.
 * When `true`, render the requested component's content.
 
-To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see [Control head content in ASP.NET Core Blazor apps](../components/control-head-content.md).
 
 `Layout/ContentLoading.razor`:
 
@@ -892,7 +891,7 @@ Replace the `<script>` tag with the following markup that starts Blazor manually
 </script>
 ```
 
-If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) of either the `MainLayout` or `Routes` components. For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
+If you notice a short delay between the loading indicator removal and the first page render, you can guarantee removal of the indicator after rendering by calling for indicator removal in the [`OnAfterRenderAsync` lifecycle method](../components/lifecycle.md#after-component-render-onafterrenderasync) of either the `MainLayout` or `Routes` components. For more information and a code example, see [Document an approach for a loading indicator that works with global Interactive WebAssembly without prerendering (`dotnet/AspNetCore.Docs` #35111)](https://github.com/dotnet/AspNetCore.Docs/issues/35111#issuecomment-2778796998).
 
 :::moniker-end
 
@@ -997,7 +996,7 @@ The `configureRuntime` function can also be used to [enable integration with a b
 
 For the placeholders in the following examples that set an environment variable:
 
-* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+* The `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name. For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 * The `{NAME}` placeholder is the environment variable's name.
 * The `{VALUE}` placeholder is the environment variable's value.
 
@@ -1024,7 +1023,7 @@ Blazor Web App:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1043,7 +1042,7 @@ Standalone Blazor WebAssembly:
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
@@ -1064,7 +1063,7 @@ Standalone Blazor WebAssembly:
 
 *This section applies to Blazor Web Apps.*
 
-To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navigation#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
+To disable [enhanced navigation and form handling](navigation.md#enhanced-navigation-and-form-handling), set `disableDomPreservation` to `true` for `Blazor.start`:
 
 ```html
 <script src="{BLAZOR SCRIPT}" autostart="false"></script>
@@ -1075,13 +1074,13 @@ To disable [enhanced navigation and form handling](xref:blazor/fundamentals/navi
 </script>
 ```
 
-**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see <xref:blazor/project-structure#location-of-the-blazor-script>.
+**In the preceding example, the `{BLAZOR SCRIPT}` placeholder is the Blazor script path and file name.** For the location of the script, see [ASP.NET Core Blazor project structure](../project-structure.md#location-of-the-blazor-script).
 
 :::moniker-end
 
 ## Related content
 
-* [Environments: Set the app's environment](xref:blazor/fundamentals/environments)
-* [SignalR (includes sections on SignalR startup configuration)](xref:blazor/fundamentals/signalr)
-* [Globalization and localization: Statically set the culture with `Blazor.start()` (*client-side only*)](xref:blazor/globalization-localization#statically-set-the-client-side-culture)
-* [Blazor WebAssembly compression](xref:blazor/host-and-deploy/webassembly/index#compression)
+* [Environments: Set the app's environment](environments.md)
+* [SignalR (includes sections on SignalR startup configuration)](signalr.md)
+* [Globalization and localization: Statically set the culture with `Blazor.start()` (*client-side only*)](../globalization-localization.md#statically-set-the-client-side-culture)
+* [Blazor WebAssembly compression](../host-and-deploy/webassembly/index.md#compression)

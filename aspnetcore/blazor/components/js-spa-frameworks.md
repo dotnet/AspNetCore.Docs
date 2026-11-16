@@ -3,7 +3,6 @@ title: Use Razor components in JavaScript apps and SPA frameworks
 description: Learn how to create and use Razor components in JavaScript apps and SPA frameworks.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/components/js-spa-frameworks
 ---
 # Use Razor components in JavaScript apps and SPA frameworks
 
@@ -28,9 +27,9 @@ The following sample apps demonstrate rendering a Razor component as a [Blazor c
 
 To migrate either of these .NET 7 samples, see the following resources:
 
-* <xref:migration/70-to-80>
-* <xref:migration/80-to-90>
-* <xref:migration/90-to-100>
+* [Migrate from ASP.NET Core in .NET 7 to .NET 8](../../migration/70-to-80.md)
+* [Migrate from ASP.NET Core in .NET 8 to ASP.NET Core in .NET 9](../../migration/80-to-90.md)
+* [Migrate from ASP.NET Core in .NET 9 to ASP.NET Core in .NET 10](../../migration/90-to-100.md)
 
 The principal updates to make are:
 
@@ -59,7 +58,7 @@ The example in this section renders the following Razor component into a page vi
 }
 ```
 
-In the `Program` file, add the [namespace for the location of the component](xref:blazor/components/index#component-name-class-name-and-namespace).
+In the `Program` file, add the [namespace for the location of the component](index.md#component-name-class-name-and-namespace).
 
 Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> on the app's root component collection to register a Razor component as a root component for JS rendering.
 
@@ -68,7 +67,7 @@ Call <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtension
 One or more initializer functions can be created and called by different component registrations. The typical use case is to reuse the same initializer function for multiple components, which is expected if the initializer function is configuring integration with custom elements or another JS-based SPA framework.
 
 > [!IMPORTANT]
-> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> with [JavaScript initializers](xref:blazor/fundamentals/startup#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
+> Don't confuse the `javaScriptInitializer` parameter of <xref:Microsoft.AspNetCore.Components.Web.JSComponentConfigurationExtensions.RegisterForJavaScript*> with [JavaScript initializers](../fundamentals/startup.md#javascript-initializers). The name of the parameter and the JS initializers feature is coincidental.
 
 The following example demonstrates the dynamic registration of the preceding `Quote` component with "`quote`" as the identifier.
 
@@ -141,7 +140,7 @@ const btn = document.querySelector("#showQuoteBtn");
 btn.addEventListener("click", showQuote);
 ```
 
-After the [Blazor script](xref:blazor/project-structure#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
+After the [Blazor script](../project-structure.md#location-of-the-blazor-script) is loaded, load the preceding scripts into the JS app:
 
 ```html
 <script src="_framework/{BLAZOR SCRIPT}"></script>
@@ -186,7 +185,7 @@ Quote &copy;1988-1999 Satellite of Love LLC: [*Mystery Science Theater 3000*](ht
 > rootComponent.dispose();
 > ```
 
-The preceding example dynamically renders the root component when the `showQuote()` JS function is called. To render a root component into a container element when Blazor starts, use a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) to render the component, as the following example demonstrates.
+The preceding example dynamically renders the root component when the `showQuote()` JS function is called. To render a root component into a container element when Blazor starts, use a [JavaScript initializer](../fundamentals/startup.md#javascript-initializers) to render the component, as the following example demonstrates.
 
 The following example builds on the preceding example, using the `Quote` component, the root component registration in the `Program` file, and the initialization of `jsComponentInitializers.js`. The `showQuote()` function (and the `script.js` file) aren't used.
 
@@ -196,7 +195,7 @@ In HTML, place the target container element, `quoteContainer2` for this example:
 <div id="quoteContainer2"></div>
 ```
 
-Using a [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers), add the root component to the target container element.
+Using a [JavaScript initializer](../fundamentals/startup.md#javascript-initializers), add the root component to the target container element.
 
 `wwwroot/{PACKAGE ID/ASSEMBLY NAME}.lib.module.js`:
 
@@ -257,7 +256,7 @@ Blazor custom elements:
 * Eliminate the need to manually manage the state and lifecycle of root Razor components using JavaScript APIs.
 * Are useful for gradually introducing Razor components into existing projects written in other technologies.
 
-Custom elements don't support [child content](xref:blazor/components/index#child-content-render-fragments) or [templated components](xref:blazor/components/templated-components).
+Custom elements don't support [child content](index.md#child-content-render-fragments) or [templated components](templated-components.md).
 
 ### Element name
 
@@ -484,4 +483,4 @@ Generate JavaScript (JS) components from Razor components for JavaScript technol
 
 ## Related content
 
-<xref:blazor/host-and-deploy/index>
+[Host and deploy ASP.NET Core Blazor](../host-and-deploy/index.md)

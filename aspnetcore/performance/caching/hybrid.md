@@ -5,11 +5,10 @@ description: Learn how to use HybridCache library in ASP.NET Core.
 monikerRange: '>= aspnetcore-9.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/06/2026
-uid: performance/caching/hybrid
 ---
 # HybridCache library in ASP.NET Core
 
-This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](xref:performance/caching/overview#hybridcache).
+This article explains how to configure and use the `HybridCache` library in an ASP.NET Core app. For an introduction to the library, see [the `HybridCache` section of the Caching overview](overview.md#hybridcache).
 
 ## Get the library
 
@@ -21,9 +20,9 @@ dotnet add package Microsoft.Extensions.Caching.Hybrid
 
 ## Register the service
 
-Add the `HybridCache` service to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
+Add the `HybridCache` service to the [dependency injection (DI)](../../fundamentals/dependency-injection.md) container by calling <xref:Microsoft.Extensions.DependencyInjection.HybridCacheServiceExtensions.AddHybridCache*>:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_noconfig" highlight="7":::
 
 The preceding code registers the `HybridCache` service with default options. The registration API can also configure [options](#options) and [serialization](#serialization).
 
@@ -42,7 +41,7 @@ A `HybridCache` instance ensures that only one concurrent caller for a given key
 
 The stateless overload of `GetOrCreateAsync` is recommended for most scenarios. The code to call it is relatively simple. Here's an example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreate" highlight="5-12":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_getorcreate" highlight="5-12":::
 
 ## Cache key guidance
 
@@ -92,7 +91,7 @@ Notice that the inline interpolated string syntax (`$"..."` in the preceding exa
 
 The alternative overload might reduce some overhead from [captured variables](/dotnet/csharp/language-reference/operators/lambda-expressions#capture-of-outer-variables-and-variable-scope-in-lambda-expressions) and per-instance callbacks, but at the expense of more complex code. For most scenarios, the performance increase doesn't outweigh the code complexity. Here's an example that uses the alternative overload:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreatestate" highlight="5-14":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_getorcreatestate" highlight="5-14":::
 
 ### The `SetAsync` method
 
@@ -113,7 +112,7 @@ Tags can be used to group cache entries and invalidate them together.
 
 Set tags when calling `GetOrCreateAsync`, as shown in the following example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight="7,17":::
 
 Remove all entries for a specified tag by calling <xref:Microsoft.Extensions.Caching.Hybrid.HybridCache.RemoveByTagAsync*> with the tag value. An overload lets you specify a collection of tag values.
 
@@ -134,11 +133,11 @@ The asterisk tag (`*`) is reserved as a wildcard and is disallowed against indiv
 
 The `AddHybridCache` method can be used to configure global defaults. The following example shows how to configure some of the available options:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_globaloptions" highlight = "6-15":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_globaloptions" highlight = "6-15":::
 
 The `GetOrCreateAsync` method can also take a `HybridCacheEntryOptions` object to override the global defaults for a specific cache entry. Here's an example:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight = "8-12,16":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal/Program.cs" id="snippet_getorcreateoptions" highlight = "8-12,16":::
 
 For more information about the options, see the source code:
 
@@ -159,11 +158,11 @@ handles `string` and `byte[]` internally, and uses `System.Text.Json` for everyt
 
 The following example configures the service to use a type-specific protobuf serializer:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializer" highlight="14-15":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal2/Program.cs" id="snippet_withserializer" highlight="14-15":::
 
 The following example configures the service to use a general-purpose protobuf serializer that can handle many protobuf types:
 
-:::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
+:::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal2/Program.cs" id="snippet_withserializerfactory" highlight="14":::
 
 The secondary cache requires a data store, such as Redis, SQL Server, or Postgres. To use [Azure Cache for Redis](https://azure.microsoft.com/products/cache), for example:
 
@@ -182,15 +181,15 @@ The secondary cache requires a data store, such as Redis, SQL Server, or Postgre
 
 * Register in DI the `IDistributedCache` implementation that the Redis package provides. To do that, call `AddStackExchangeRedisCache`, and pass in the connection string. For example:
 
-  :::code language="csharp" source="~/performance/caching/hybrid/samples/9.x/HCMinimal2/Program.cs" id="snippet_redis":::
+  :::code language="csharp" source="~/performance/caching/hybrid/samples/HCMinimal2/Program.cs" id="snippet_redis":::
 
 * The Redis `IDistributedCache` implementation is now available from the app's DI container. `HybridCache` uses it as the secondary cache and uses the serializer configured for it.
 
-For more information, see the [HybridCache serialization sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/hybrid/samples/9.x/HCMinimal2).
+For more information, see the [HybridCache serialization sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/performance/caching/hybrid/samples/HCMinimal2).
 
 ## Cache storage
 
-By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](xref:performance/caching/distributed), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
+By default `HybridCache` uses <xref:Microsoft.Extensions.Caching.Memory.MemoryCache> for its primary cache storage. Cache entries are stored in-process, so each server has a separate cache that's lost whenever the server process is restarted. For secondary out-of-process storage, such as Redis, SQL Server, or Postgres, `HybridCache` uses [the configured `IDistributedCache` implementation](distributed.md), if any. But even without an `IDistributedCache` implementation, the `HybridCache` service still provides in-process caching and [stampede protection](https://en.wikipedia.org/wiki/Cache_stampede).
 
 > [!NOTE]
 > When invalidating cache entries by key or by tags, they're invalidated in the current server and in the secondary out-of-process storage. However, the in-memory cache in other servers isn't affected.
@@ -249,7 +248,7 @@ A concrete implementation of the `HybridCache` abstract class is included in the
 
 * **Trimming**
 
-  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see <xref:fundamentals/native-aot>.
+  Make sure all types you cache are referenced in a way that prevents them from being trimmed by the AOT compiler. Using source generators for serialization helps with this requirement. For more information, see [ASP.NET Core support for Native AOT](../../fundamentals/native-aot.md).
 
 If you set up serialization and trimming correctly, `HybridCache` behaves the same way in Native AOT as in regular ASP.NET Core apps.
 

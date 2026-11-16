@@ -102,7 +102,7 @@ The data protection stack consists of five packages:
 ## Related content
 
 * [Get started with the Data Protection APIs in ASP.NET Core](using-data-protection.md)
-* <xref:host-and-deploy/web-farm>
+* [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end
 

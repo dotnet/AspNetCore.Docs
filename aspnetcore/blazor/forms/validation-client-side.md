@@ -4,13 +4,12 @@ ai-usage: ai-assisted
 description: Learn how Blazor validates static server-side rendered forms in the browser before they're submitted.
 monikerRange: '>= aspnetcore-11.0'
 ms.date: 09/22/2026
-uid: blazor/forms/validation-client-side
 ---
 # ASP.NET Core Blazor client-side form validation in static SSR
 
 <!-- UPDATE 11.0 - API Browser cross-links -->
 
-This article explains how Blazor adds live client-side validation to forms that use [static server-side rendering (static SSR)](xref:blazor/components/render-modes#static-server-side-rendering-static-ssr). The browser validates individual fields as the user edits them and validates the full form before it's submitted. If the client-side check passes, the form is submitted and validated again on the server.
+This article explains how Blazor adds live client-side validation to forms that use [static server-side rendering (static SSR)](../components/render-modes.md#static-server-side-rendering-static-ssr). The browser validates individual fields as the user edits them and validates the full form before it's submitted. If the client-side check passes, the form is submitted and validated again on the server.
 
 Forms that use an interactive render mode don't use the static SSR client-side validation feature described in this article. Both their per-field validation and full-form submit validation run in .NET through the form's <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
 
@@ -60,7 +59,7 @@ Submitting the form validates every tracked field. If any field is invalid, the 
 
 Client-side validation uses <xref:Microsoft.AspNetCore.Components.Forms.ValidationMessage`1> to display messages for individual fields and <xref:Microsoft.AspNetCore.Components.Forms.ValidationSummary> to display messages for the whole form, which is the same way that interactive validation reports messages to users.
 
-When validation localization is configured, error messages are localized on the server as the page is rendered, so client-side validation displays the same localized strings as the server-side experience. Localization requires <xref:Microsoft.Extensions.Validation?displayProperty=fullName>. For more information, see <xref:fundamentals/validation#localize-validation-messages>.
+When validation localization is configured, error messages are localized on the server as the page is rendered, so client-side validation displays the same localized strings as the server-side experience. Localization requires <xref:Microsoft.Extensions.Validation?displayProperty=fullName>. For more information, see [Validation in ASP.NET Core](../../fundamentals/validation.md#localize-validation-messages).
 
 ARIA attributes on input elements and validation message containers are managed by Blazor automatically, so assistive technologies announce validation errors without additional configuration.
 
@@ -142,7 +141,7 @@ Automatic startup (default) | A script immediately after `blazor.web.js`
 Manual `Blazor.start()` | The continuation returned by `Blazor.start()`
 Either startup style | A JavaScript initializer's `afterWebStarted` callback
 
-A [JavaScript initializer](xref:blazor/fundamentals/startup#javascript-initializers) works with either startup style. In a file named `{ASSEMBLY NAME}.lib.module.js` in the app's `wwwroot` folder:
+A [JavaScript initializer](../fundamentals/startup.md#javascript-initializers) works with either startup style. In a file named `{ASSEMBLY NAME}.lib.module.js` in the app's `wwwroot` folder:
 
 :::code language="javascript" source="~/../blazor-samples/11.0/BlazorSample_BlazorWebApp/wwwroot/BlazorSample.lib.module.js":::
 
@@ -193,14 +192,14 @@ Method | Description
 
 ## Limitations
 
-* Client-side rules are emitted only for fields included in server-side validation as well. Without <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, only top-level model properties are validated. Validating nested objects and collections requires the app to call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> and the model to be discovered. For more information, see <xref:fundamentals/validation#nested-objects-and-collections>. Note that this limitation is an intentional feature to help prevent bugs where the authoritative server validation would be missing due to misconfiguration.
-* Inputs added to an existing form by a later [streaming rendering](xref:blazor/components/rendering#streaming-rendering) update don't receive client-side validation. A form delivered in a single streamed batch is covered normally.
+* Client-side rules are emitted only for fields included in server-side validation as well. Without <xref:Microsoft.Extensions.Validation?displayProperty=fullName>, only top-level model properties are validated. Validating nested objects and collections requires the app to call <xref:Microsoft.Extensions.DependencyInjection.ValidationServiceCollectionExtensions.AddValidation*> and the model to be discovered. For more information, see [Validation in ASP.NET Core](../../fundamentals/validation.md#nested-objects-and-collections). Note that this limitation is an intentional feature to help prevent bugs where the authoritative server validation would be missing due to misconfiguration.
+* Inputs added to an existing form by a later [streaming rendering](../components/rendering.md#streaming-rendering) update don't receive client-side validation. A form delivered in a single streamed batch is covered normally.
 * Only the attributes listed in [Supported validation attributes](#supported-validation-attributes) have built-in client-side implementations. For example, a <xref:System.ComponentModel.DataAnnotations.RangeAttribute> with a non-numeric operand type is only enforced on the server. Other attributes require a [custom client-side validation rule](#custom-client-side-validation-rules).
-* Custom JavaScript validators are synchronous. Rules that require a network call or other asynchronous work must run on the server or use asynchronous validation with an interactive render mode. For more information, see <xref:blazor/forms/validation-advanced>.
+* Custom JavaScript validators are synchronous. Rules that require a network call or other asynchronous work must run on the server or use asynchronous validation with an interactive render mode. For more information, see [ASP.NET Core Blazor advanced form validation](validation-advanced.md).
 
 ## Related content
 
-* <xref:blazor/forms/validation>
-* <xref:blazor/forms/validation-advanced>
-* <xref:fundamentals/validation>
-* <xref:blazor/components/render-modes>
+* [ASP.NET Core Blazor forms validation](validation.md)
+* [ASP.NET Core Blazor advanced form validation](validation-advanced.md)
+* [Validation in ASP.NET Core](../../fundamentals/validation.md)
+* [ASP.NET Core Blazor render modes](../components/render-modes.md)

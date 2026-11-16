@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to log HTTP requests and responses.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 04/25/2025
-uid: fundamentals/http-logging/index
 ---
 # HTTP logging in ASP.NET Core
 
@@ -38,7 +37,7 @@ HTTP logging is enabled by calling <xref:Microsoft.Extensions.DependencyInjectio
 
 [!code-csharp[](~/fundamentals/http-logging/samples/8.x/Program.cs?name=snippet2&highlight=3,7)]
 
-The empty lambda in the preceding example of calling `AddHttpLogging` adds the middleware with the default configuration. By default, HTTP logging logs common properties such as path, status-code, and headers for requests and responses.
+The empty lambda in the preceding example of calling `AddHttpLogging` adds the middleware with the default configuration. By default, HTTP logging logs request properties, such as the path, and request headers. It also logs the response status code and response headers. The request path isn't repeated in separate response or body log entries.
 
 Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
@@ -76,6 +75,8 @@ info: Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware[2]
       Date: Tue, 24 Oct 2023 02:03:53 GMT
       Server: Kestrel
 ```
+
+To correlate separate log messages from the same request, enable [log scopes](../logging/index.md#log-scopes) on a logging provider that supports scopes. Alternatively, use [`CombineLogs`](#combinelogs) to combine the enabled request and response logs into one message.
 
 ## HTTP logging options
 
@@ -289,7 +290,7 @@ specifies how route parameters in the request path should be redacted, whether `
 
 ### `IncludeUnmatchedRoutes`
 
-<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](xref:fundamentals/routing) instead of logging `Unknown` value for path attribute:
+<xref:Microsoft.AspNetCore.Diagnostics.Logging.LoggingRedactionOptions.IncludeUnmatchedRoutes> allows reporting unmatched routes. If set to `true`, logs whole path of routes not identified by [Routing](../routing.md) instead of logging `Unknown` value for path attribute:
 
 [!code-csharp[](~/fundamentals/http-logging/samples/9.x/Program.cs?name=snippet_redactionOptions&highlight=18)]
 

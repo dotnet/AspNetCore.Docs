@@ -2,17 +2,16 @@
 title: Health checks in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to set up health checks for ASP.NET Core infrastructure, such as apps and databases.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/28/2026
-uid: host-and-deploy/health-checks
 ---
 # Health checks in ASP.NET Core
 
 By [Glenn Condron](https://github.com/glennc) and [Juergen Gutsch](https://twitter.com/sharpcms)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ASP.NET Core offers health checks middleware and libraries for reporting the health of app infrastructure components.
 
@@ -34,11 +33,11 @@ Register health check services with <xref:Microsoft.Extensions.DependencyInjecti
 
 The following example creates a health check endpoint at `/healthz`:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete" highlight="3,7":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete" highlight="3,7":::
 
 ### Docker `HEALTHCHECK`
 
-[Docker](xref:host-and-deploy/docker/index) includes a built-in `HEALTHCHECK` directive that you can use to check the status of an app that uses the basic health check configuration:
+[Docker](docker/index.md) includes a built-in `HEALTHCHECK` directive that you can use to check the status of an app that uses the basic health check configuration:
 
 ```dockerfile
 HEALTHCHECK CMD curl --fail http://localhost:5000/healthz || exit 1
@@ -52,7 +51,7 @@ Create health checks by implementing the <xref:Microsoft.Extensions.Diagnostics.
 
 The following example demonstrates the layout of a health check: 
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/SampleHealthCheck.cs" id="snippet_Class":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthChecks/SampleHealthCheck.cs" id="snippet_Class":::
 
 The health check's logic is placed in the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck.CheckHealthAsync*> method. The preceding example sets a dummy variable, `isHealthy`, to `true`. If the value of `isHealthy` is set to `false`, the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckRegistration.FailureStatus?displayProperty=nameWithType> status is returned.
 
@@ -74,55 +73,55 @@ Health checks don't run on a timer by default. They run each time the health end
 
 To register a health check service, call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Program.cs`:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecks":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecks":::
 
 The <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> overload shown in the following example sets the failure status (<xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>) to report when the health check reports a failure. If the failure status is set to `null` (default), <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is reported. This overload is a useful scenario for library authors, where the failure status indicated by the library is enforced by the app when a health check failure occurs if the health check implementation honors the setting.
 
 *Tags* can be used to filter health checks. Tags are described in the [Filter health checks](#filter-health-checks) section.
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksExtended":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksExtended":::
 
 <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderDelegateExtensions.AddCheck*> can also execute a lambda function. In the following example, the health check always returns a healthy result:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDelegate":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDelegate":::
 
 Call <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddTypeActivatedCheck*> to pass arguments to a health check implementation. In the following example, a type-activated health check accepts an integer and a string in its constructor:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_Class" highlight="6":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_Class" highlight="6":::
 
 To register the preceding health check, call `AddTypeActivatedCheck` with the integer and string passed as arguments:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksTypeActivated":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksTypeActivated":::
 
 ## Use Health Checks Routing
 
 In `Program.cs`, call `MapHealthChecks` on the endpoint builder with the endpoint URL or relative path:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecks":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecks":::
 
 ### Require host
 
 Call `RequireHost` to specify one or more permitted hosts for the health check endpoint. Use Unicode rather than punycode for hosts, and you can include a port. If you don't supply a collection, any host is accepted:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHost":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHost":::
 
 To restrict the health check endpoint to respond only on a specific port, specify a port in the call to `RequireHost`. Typically, use this approach in a container environment to expose a port for monitoring services:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPort":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPort":::
 
 [!INCLUDE[](~/includes/spoof.md)]
 
 To prevent unauthorized clients from spoofing the port, call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*>:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireHostPortAuth":::
 
-For more information, see [Host matching in routes with RequireHost](xref:fundamentals/routing#host-matching-in-routes-with-requirehost).
+For more information, see [Host matching in routes with RequireHost](../fundamentals/routing.md#host-matching-in-routes-with-requirehost).
 
 ### Require authorization
 
 Call <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> to run authorization middleware on the health check request endpoint. A `RequireAuthorization` overload accepts one or more authorization policies. If a policy isn't provided, the default authorization policy is used:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireAuthorization":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksRequireAuthorization":::
 
 ### Enable Cross-Origin Requests (CORS)
 
@@ -143,29 +142,29 @@ By default, the health checks middleware runs all registered health checks. To r
 
 The following example filters the health checks so that only those tagged with `sample` run:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksFilterTags":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksFilterTags":::
 
 ### Customize the HTTP status code
 
 Use <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResultStatusCodes> to customize the mapping of health status to HTTP status codes. The following <xref:Microsoft.AspNetCore.Http.StatusCodes> assignments are the default values used by the middleware. Change the status code values to meet your requirements:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResultStatusCodes":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResultStatusCodes":::
 
 ### Suppress cache headers
 
 <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.AllowCachingResponses> controls whether the health checks middleware adds HTTP headers to a probe response to prevent response caching. If the value is `false` (default), the middleware sets or overrides the `Cache-Control`, `Expires`, and `Pragma` headers to prevent response caching. If the value is `true`, the middleware doesn't modify the cache headers of the response:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksAllowCachingResponses":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksAllowCachingResponses":::
 
 ### Customize output
 
 To customize the output of a health checks report, set the <xref:Microsoft.AspNetCore.Diagnostics.HealthChecks.HealthCheckOptions.ResponseWriter?displayProperty=nameWithType> property to a delegate that writes the response:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResponseWriter":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksResponseWriter":::
 
 The default delegate writes a minimal plaintext response with the string value of [`HealthReport.Status`](xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport.Status). The following custom delegate outputs a custom JSON response using <xref:System.Text.Json?displayProperty=fullName>:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_WriteResponse":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_WriteResponse":::
 
 The health checks API doesn't provide built-in support for complex JSON return formats because the format is specific to your choice of monitoring system. Customize the response in the preceding examples as needed. For more information on JSON serialization with `System.Text.Json`, see [How to serialize and deserialize JSON in .NET](/dotnet/standard/serialization/system-text-json-how-to).
 
@@ -180,7 +179,7 @@ A health check can specify a database query to run as a boolean test to indicate
 
 To use this SQL Server health check, include a package reference to the [`AspNetCore.HealthChecks.SqlServer`](https://www.nuget.org/packages/AspNetCore.HealthChecks.SqlServer) NuGet package. The following example registers the SQL Server health check:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksSqlServer":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksSqlServer":::
 
 > [!NOTE]
 > Microsoft doesn't maintain or support [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks).
@@ -201,7 +200,7 @@ By default:
 
 The following example registers a `DbContext` and an associated `DbContextHealthCheck`:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDbContext":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksDbContext":::
 
 ## Separate readiness and liveness probes
 
@@ -214,19 +213,19 @@ Consider the following example: An app must download a large configuration file 
 
 The following background task simulates a startup process that takes roughly 15 seconds. Once it completes, the task sets the `StartupHealthCheck.StartupCompleted` property to true:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Services/StartupBackgroundService.cs" id="snippet_Class" highlight="13":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Services/StartupBackgroundService.cs" id="snippet_Class" highlight="13":::
 
 The `StartupHealthCheck` reports the completion of the long-running startup task and exposes the `StartupCompleted` property that the background service sets:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/StartupHealthCheck.cs" id="snippet_Class" highlight="5-9":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthChecks/StartupHealthCheck.cs" id="snippet_Class" highlight="5-9":::
 
 Register the health check with <xref:Microsoft.Extensions.DependencyInjection.HealthChecksBuilderAddCheckExtensions.AddCheck*> in `Program.cs` along with the hosted service. Because the hosted service sets the property on the health check, also register the health check in the service container as a singleton:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksReadinessLiveness":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_AddHealthChecksReadinessLiveness":::
 
 To create two different health check endpoints, call `MapHealthChecks` twice:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksReadinessLiveness":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksReadinessLiveness":::
 
 The preceding example creates the following health check endpoints:
 
@@ -262,11 +261,11 @@ spec:
 
 To distribute a health check as a library:
 
-1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](xref:fundamentals/dependency-injection), type activation, and [named options](xref:fundamentals/configuration/options) to access configuration data.
+1. Write a health check that implements the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheck> interface as a standalone class. The class can rely on [dependency injection (DI)](../fundamentals/dependency-injection.md), type activation, and [named options](../fundamentals/configuration/options.md) to access configuration data.
 
 1. Write an extension method with parameters that the consuming app calls in its `Program.cs` method. Consider the following example health check, which accepts `arg1` and `arg2` as constructor parameters:
 
-   :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_ctor":::
+   :::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthChecks/SampleHealthCheckWithArgs.cs" id="snippet_ctor":::
 
    The preceding signature indicates that the health check requires custom data to process the health check probe logic. The data is provided to the delegate used to create the health check instance when the health check is registered with an extension method. In the following example, the caller specifies:
 
@@ -276,7 +275,7 @@ To distribute a health check as a library:
    * `failureStatus`: An optional <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus>, which is reported for a failure status. If `null`, <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy?displayProperty=nameWithType> is used.
    * `tags`: An optional `IEnumerable<string>` collection of tags.
 
-   :::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Extensions/SampleHealthCheckBuilderExtensions.cs" id="snippet_Class":::
+   :::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Extensions/SampleHealthCheckBuilderExtensions.cs" id="snippet_Class":::
 
 ## Health Check Publisher
 
@@ -291,13 +290,13 @@ When an <xref:Microsoft.Extensions.Diagnostics.HealthChecks.IHealthCheckPublishe
 
 The following example shows the layout of a health publisher:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/HealthCheckPublishers/SampleHealthCheckPublisher.cs" id="snippet_Class":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthCheckPublishers/SampleHealthCheckPublisher.cs" id="snippet_Class":::
 
 The <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions> class provides properties for configuring the behavior of the health check publisher.
 
 The following example registers a health check publisher as a singleton and configures <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckPublisherOptions>:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_HealthCheckPublisherOptionsService":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_HealthCheckPublisherOptionsService":::
 
 [`AspNetCore.Diagnostics.HealthChecks`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks):
 
@@ -310,7 +309,7 @@ You can set [`Delay` and `Period`](https://github.com/dotnet/aspnetcore/blob/mai
 
 The following code sets the `Delay` and `Period` for the `SampleHealthCheck1`:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/8.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete2":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksComplete2":::
 
 ## Dependency Injection and Health Checks
 
@@ -318,11 +317,11 @@ It's possible to use dependency injection to consume an instance of a specific `
 
 The following example shows a sample Health Check that retrieves a configuration object via dependency injection:
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/HealthChecks/SampleHealthCheckWithDI.cs" id="snippet_Class":::
 
 The `SampleHealthCheckWithDiConfig` and the Health check needs to be added to the service container :
 
-:::code language="csharp" source="~/host-and-deploy/health-checks/samples/7.x/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
+:::code language="csharp" source="~/host-and-deploy/health-checks/samples/HealthChecksSample/Snippets/Program.cs" id="snippet_MapHealthChecksUsingDependencyInjection":::
 
 ## UseHealthChecks vs. MapHealthChecks
 
@@ -334,13 +333,13 @@ You can make health checks accessible to callers in two ways:
 By using `MapHealthChecks` instead of `UseHealthChecks`, you can use endpoint aware middleware, such as authorization, and you get greater fine-grained control over the matching policy. By using `UseHealthChecks` instead of `MapHealthChecks`, you control exactly where health checks runs in the middleware pipeline.
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckApplicationBuilderExtensions.UseHealthChecks*>:
-* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](xref:fundamentals/middleware/index) is often desirable because it avoids unnecessary work, such as logging and other middleware.
+* Terminates the pipeline when a request matches the health check endpoint. [Short-circuiting](../fundamentals/middleware/index.md) is often desirable because it avoids unnecessary work, such as logging and other middleware.
 * Is primarily used for configuring the health checks middleware in the pipeline.
 * Can match any path on a port with a `null` or empty `PathString`. Allows performing a health check on any request made to the specified port.
 * [Source code](https://github.com/dotnet/aspnetcore/blob/main/src/Middleware/HealthChecks/src/Builder/HealthCheckApplicationBuilderExtensions.cs)
 
 <xref:Microsoft.AspNetCore.Builder.HealthCheckEndpointRouteBuilderExtensions.MapHealthChecks*> allows:
-* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+* Terminating the pipeline when a request matches the health check endpoint, by calling <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*>. For example, `app.MapHealthChecks("/healthz").ShortCircuit();`. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 * Mapping specific routes or endpoints for health checks.
 * Customization of the URL or path where the health check endpoint is accessible.
 * Mapping multiple health check endpoints with different routes or configurations. Multiple endpoint support:
@@ -382,16 +381,13 @@ Call <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuild
 app.MapHealthChecks("/healthz").ShortCircuit();
 ```
 
-Because short-circuiting only bypasses middleware positioned after routing in the pipeline, it doesn't suppress server hosting logs (such as Kestrel or HTTP.sys request logs), middleware placed before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, or health check service logging. Combine <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> with logging category configuration to minimize probe noise. For more information, see [Short-circuit middleware after routing](xref:fundamentals/routing#short-circuit-middleware-after-routing).
+Because short-circuiting only bypasses middleware positioned after routing in the pipeline, it doesn't suppress server hosting logs (such as Kestrel or HTTP.sys request logs), middleware placed before <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*>, or health check service logging. Combine <xref:Microsoft.AspNetCore.Builder.RouteShortCircuitEndpointConventionBuilderExtensions.ShortCircuit*> with logging category configuration to minimize probe noise. For more information, see [Short-circuit middleware after routing](../fundamentals/routing.md#short-circuit-middleware-after-routing).
 
 ## Related content
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/host-and-deploy/health-checks/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 > [!NOTE]
 > This article was partially created with the help of artificial intelligence. Before publishing, an author reviewed and revised the content as needed. See [Our principles for using AI-generated content in Microsoft Learn](https://aka.ms/ai-content-principles).
 
 :::moniker-end
-
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks5.md)]
-[!INCLUDE[](~/host-and-deploy/health-checks/includes/health-checks6-7.md)]

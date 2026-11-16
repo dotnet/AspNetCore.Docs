@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that manages authentication with ASP.NET Core Identity.
 monikerRange: '>= aspnetcore-9.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/security/maui-blazor-web-identity
 ---
 # .NET MAUI Blazor Hybrid and Web App with ASP.NET Core Identity
 
@@ -30,16 +29,16 @@ For prerequisites and preliminary steps, see the [Build your first app](/dotnet/
 
 ## Sample app
 
-[Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) in the `MauiBlazorWebIdentity` folder of the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 9 or later).
+[Obtain the sample app](../../fundamentals/index.md#sample-apps) in the `MauiBlazorWebIdentity` folder of the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (.NET 9 or later).
 
 The sample app is a starter solution that contains a native, cross-platform MAUI Blazor Hybrid app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
-1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](xref:fundamentals/index#how-to-download-a-sample).
+1. Clone this repository or download a ZIP archive of the repository. For more information, see [How to download a sample](../../../fundamentals/index.md#how-to-download-a-sample).
 1. Make sure you have [the latest .NET installed with the MAUI workload](/dotnet/maui/get-started/installation).
 1. Open the solution in Visual Studio (2022 or later) or VS Code with the .NET MAUI extension installed.
 1. Set the `MauiBlazorWeb` MAUI project as the startup project. In Visual Studio, right-click the project and select **Set as Startup Project**.
 1. Start the `MauiBlazorWeb.Web` project without debugging. In Visual Studio, right-click on the project and select **Debug** > **Start without Debugging**.
-1. Inspect the Identity endpoints via [OpenAPI documentation](xref:fundamentals/openapi/overview). You can add a third-party OpenAPI-compliant visual UI/endpoint tester.
+1. Inspect the Identity endpoints via [OpenAPI documentation](../../../fundamentals/openapi/overview.md). You can add a third-party OpenAPI-compliant visual UI/endpoint tester.
 1. Navigate to `https://localhost:7157/account/register` to register a user in the Blazor Web App. Immediately after the user is registered, use the **Click here to confirm your account** link in the UI to confirm the user's email address because a real email sender isn't registered for account confirmation.
 1. Start (`F5`) the `MauiBlazorWeb` MAUI project. You can set the debug target to either **Windows** or an Android emulator.
 1. Notice you can only see the `Home` and `Login` pages.
@@ -52,7 +51,7 @@ The sample app is a starter solution that contains a native, cross-platform MAUI
 
 The shared UI is in the `MauiBlazorWeb.Shared` project. This project contains the Razor components that are shared between the MAUI and Blazor Web App projects (Home, Counter, and Weather pages). The `Counter` and `Weather` components are protected by [`[Authorize]` attributes](xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute), so users can't navigate to them unless they're logged into the app.
 
-In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
+In the [Razor directives](../../components/index.md#razor-syntax) at the tops of the `Counter` component (`MauiBlazorWeb.Shared/Pages/Counter.razor`) and `Weather` component (`MauiBlazorWeb.Shared/Pages/Weather.razor`) files:
 
 ```razor
 @using Microsoft.AspNetCore.Authorization
@@ -61,7 +60,7 @@ In the [Razor directives](xref:blazor/components/index#razor-syntax) at the tops
 
 ## MAUI app and Blazor Web App routing
 
-The `Routes` component uses an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> to route users based on their authentication status. If a user isn't authenticated, they're redirected to the `Login` page. For more information, see <xref:blazor/security/index#customize-unauthorized-content-with-the-router-component>.
+The `Routes` component uses an <xref:Microsoft.AspNetCore.Components.Authorization.AuthorizeRouteView> to route users based on their authentication status. If a user isn't authenticated, they're redirected to the `Login` page. For more information, see [ASP.NET Core Blazor authentication and authorization](../../security/index.md#customize-unauthorized-content-with-the-router-component).
 
 In `MauiBlazorWeb.Web/Components/Routes.razor`:
 
@@ -76,7 +75,7 @@ In `MauiBlazorWeb.Web/Components/Routes.razor`:
 </AuthorizeRouteView>   
 ```
 
-The [`NavMenu` component](xref:blazor/project-structure#blazor-web-app) contains the navigation menu that uses an [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) to show or hide links based on the user's authentication status.
+The [`NavMenu` component](../../project-structure.md#blazor-web-app) contains the navigation menu that uses an [`AuthorizeView` component](../../security/index.md#authorizeview-component) to show or hide links based on the user's authentication status.
 
 In `MauiBlazorWeb.Web/Components/Layout/NavMenu.razor`:
 
@@ -121,7 +120,7 @@ app.MapAdditionalIdentityEndpoints();
 
 ### Log in from the MAUI client
 
-The `Login` component (`/identity/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) shows the appropriate links based on the user's authentication status.
+The `Login` component (`/identity/login` endpoint) is where the user logs in. The component injects the `MauiAuthenticationStateProvider` (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) and uses the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationStateProvider> to authenticate the user and redirect them to the homepage if successful. When the state changes, the [`AuthorizeView` component](../../security/index.md#authorizeview-component) shows the appropriate links based on the user's authentication status.
 
 In `MauiBlazorWeb/Components/Pages/Login.razor`:
 
@@ -145,7 +144,7 @@ private async Task LoginUser()
 
 ### MAUI Authentication State Provider (`MauiAuthenticationStateProvider`)
 
-The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see <xref:blazor/hybrid/security/index?pivots=maui>.
+The `MauiAuthenticationStateProvider` class (`MauiBlazorWeb/Services/MauiAuthenticationStateProvider.cs`) is responsible for managing the user's authentication state and providing the <xref:Microsoft.AspNetCore.Components.Authorization.AuthenticationState> to the app. The `MauiAuthenticationStateProvider` class uses an <xref:System.Net.Http.HttpClient> to make requests to the server to authenticate the user. For more information, see [ASP.NET Core Blazor Hybrid authentication and authorization](index.md?pivots=maui).
 
 The `MauiAuthenticationStateProvider` class uses the `HttpClientHelper` (`MauiBlazorWeb/Services/HttpClientHelper.cs`) to handle calling localhost via the emulators and simulators for testing. For more information on calling local services from emulators and simulators, see [Connect to local web services from Android emulators and iOS simulators (.NET MAUI documentation)](/dotnet/maui/data-cloud/local-web-services).
 
@@ -153,7 +152,7 @@ The MAUI Authentication State Provider also uses the `TokenStorage` class (`Maui
 
 ### MAUI `MauiProgram` file
 
-The MAUI project's `MauiProgram` file (`MauiProgram.cs`) is where the `MauiAuthenticationStateProvider` is registered in the DI container. Authorization core components are also registered, where API such as [`AuthorizeView` component](xref:blazor/security/index#authorizeview-component) are defined.
+The MAUI project's `MauiProgram` file (`MauiProgram.cs`) is where the `MauiAuthenticationStateProvider` is registered in the DI container. Authorization core components are also registered, where API such as [`AuthorizeView` component](../../security/index.md#authorizeview-component) are defined.
 
 In `MauiBlazorWeb/MauiProgram.cs`, core functionality is added by calling <xref:Microsoft.Extensions.DependencyInjection.AuthorizationServiceCollectionExtensions.AddAuthorizationCore*>:
 

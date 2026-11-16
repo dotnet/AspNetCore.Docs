@@ -251,7 +251,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Interceptors are run in the order that they're added to the `InterceptorCollection`. If both global and single service interceptors are configured, then globally-configured interceptors are run before those configured for a single service.
 
-By default, gRPC server interceptors have a per-request lifetime. Overriding this behavior is possible through registering the interceptor type with [dependency injection](xref:fundamentals/dependency-injection). The following example registers the `ServerLoggerInterceptor` with a singleton lifetime:
+By default, gRPC server interceptors have a per-request lifetime. Overriding this behavior is possible through registering the interceptor type with [dependency injection](../fundamentals/dependency-injection.md). The following example registers the `ServerLoggerInterceptor` with a singleton lifetime:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -267,7 +267,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ### gRPC Interceptors versus middleware
 
-ASP.NET Core [middleware](xref:fundamentals/middleware/index) offers similar functionalities compared to interceptors in C-core-based gRPC apps. ASP.NET Core middleware and interceptors are conceptually similar. Both:
+ASP.NET Core [middleware](../fundamentals/middleware/index.md) offers similar functionalities compared to interceptors in C-core-based gRPC apps. ASP.NET Core middleware and interceptors are conceptually similar. Both:
 
 * Are used to construct a pipeline that handles a gRPC request.
 * Allow work to be performed before or after the next component in the pipeline.

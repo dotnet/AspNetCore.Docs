@@ -11,7 +11,7 @@ In this tutorial, you learn how to:
 > * Perform MongoDB CRUD operations from a web API
 > * Customize JSON serialization
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -225,7 +225,7 @@ The database is ready. You can start creating the ASP.NET Core web API.
    In the preceding code:
 
    * The configuration instance to which the `appsettings.json` file's `BookstoreDatabaseSettings` section binds is registered in the Dependency Injection (DI) container. For example, a `BookstoreDatabaseSettings` object's `ConnectionString` property is populated with the `BookstoreDatabaseSettings:ConnectionString` property in `appsettings.json`.
-   * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](xref:fundamentals/dependency-injection#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
+   * The `IBookstoreDatabaseSettings` interface is registered in DI with a singleton [service lifetime](../../../fundamentals/dependency-injection.md#service-lifetimes). When injected, the interface instance resolves to a `BookstoreDatabaseSettings` object.
 
 1. Add the following code to the top of `Startup.cs` to resolve the `BookstoreDatabaseSettings` and `IBookstoreDatabaseSettings` references:
 
@@ -354,7 +354,7 @@ To satisfy the preceding requirements, make the following changes:
 
 For more information on building ASP.NET Core web APIs, see the following resources:
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/3.x/SampleApp) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/first-mongo-app/samples/3.x/SampleApp) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 * [YouTube version of this article](https://www.youtube.com/watch?v=7uJt_sOenyo&feature=youtu.be)
 * [Create web APIs with ASP.NET Core](../../../web-api/index.md)
 * [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)

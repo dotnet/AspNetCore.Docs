@@ -155,7 +155,7 @@ For more information on creating clients, and calling different service methods,
 
 * [gRPC services with ASP.NET Core](aspnetcore.md)
 * [gRPC client factory integration in .NET](clientfactory.md)
-* [Create a .NET gRPC client and server in ASP.NET Core](xref:tutorials/grpc/grpc-start)
+* [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)
 
 :::moniker-end
 
@@ -277,6 +277,6 @@ For more information on creating clients, and calling different service methods,
 * [gRPC services with ASP.NET Core](aspnetcore.md)
 * [Call gRPC services with the .NET client](client.md)
 * [gRPC client factory integration in .NET](clientfactory.md)
-* <xref:tutorials/grpc/grpc-start>
+* [Create a .NET gRPC client and server in ASP.NET Core](../tutorials/grpc/grpc-start.md)
 
 :::moniker-end

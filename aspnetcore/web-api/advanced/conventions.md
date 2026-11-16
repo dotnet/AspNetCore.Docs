@@ -14,7 +14,7 @@ ms.date: 07/06/2026
 
 :::moniker-end
 
-Common [API documentation](xref:tutorials/web-api-help-pages-using-swagger) can be extracted and applied to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
+Common [API documentation](../../tutorials/web-api-help-pages-using-swagger.md) can be extracted and applied to multiple actions, controllers, or all controllers within an assembly. Web API conventions are a substitute for decorating individual actions with [`[ProducesResponseType]`](xref:Microsoft.AspNetCore.Mvc.ProducesResponseTypeAttribute).
 
 A convention allows you to:
 
@@ -29,7 +29,7 @@ Actions that follow the patterns in the `ValuesController.cs` work with the defa
 
 At runtime, <xref:Microsoft.AspNetCore.Mvc.ApiExplorer> understands conventions. `ApiExplorer` is MVC's abstraction to communicate with [OpenAPI](https://www.openapis.org/) (also known as Swagger) document generators. Attributes from the applied convention are associated with an action and are included in the action's OpenAPI documentation. [API analyzers](analyzers.md) also understand conventions. If your action is unconventional (for example, it returns a status code that isn't documented by the applied convention), a warning encourages you to document the status code.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/conventions/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/web-api/advanced/conventions/samples) ([how to download](../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Apply web API conventions
 
@@ -115,4 +115,4 @@ In the preceding example:
 * [Video: Create metadata for NSwagClient](/shows/beginners-series-to-web-apis/generating-api-clients-17-of-18--beginners-series-to-web-apis)
 * [Video: Beginner's Series to: Web APIs](/shows/beginners-series-to-web-apis/)
 * [Use web API analyzers](analyzers.md)
-* <xref:tutorials/web-api-help-pages-using-swagger>
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](../../tutorials/web-api-help-pages-using-swagger.md)

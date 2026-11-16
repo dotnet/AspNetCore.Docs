@@ -13,7 +13,7 @@ ms.date: 10/26/2026
 
 [ASP.NET Core Identity](identity.md) provides APIs that handle authentication, authorization, and identity management. The APIs make it possible to secure endpoints of a Web API backend with cookie-based authentication. A token-based option is available for clients that can't use cookies, but in using this you are responsible for ensuring the tokens are kept secure. We recommend using cookies for browser-based applications, because, by default, the browser automatically handles them without exposing them to JavaScript.
 
-This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](xref:blazor/security/webassembly/standalone-with-identity/index).
+This article shows how to use Identity to secure a Web API backend for SPAs such as Angular, React, and Vue apps. The same backend APIs can be used to secure [Blazor WebAssembly apps](../../blazor/security/webassembly/standalone-with-identity/index.md).
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ The steps shown in this article add authentication and authorization to an ASP.N
 * Targets `net8.0` or later.
 * Can be either Minimal API or controller-based API.
 
-Some of the testing instructions in this article use the [Swagger UI](/aspnet/core/tutorials/web-api-help-pages-using-swagger) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
+Some of the testing instructions in this article use the [Swagger UI](../../tutorials/web-api-help-pages-using-swagger.md) that's included with the project template. The Swagger UI isn't required to use Identity with a Web API backend.
 
 ## Install NuGet packages
 

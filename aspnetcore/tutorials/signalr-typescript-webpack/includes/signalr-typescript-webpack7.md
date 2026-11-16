@@ -11,7 +11,7 @@ In this tutorial, you learn how to:
 > * Configure the SignalR TypeScript client
 > * Enable communication between the client and the server
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/tutorials/signalr-typescript-webpack/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
@@ -242,13 +242,13 @@ Confirm that the app works with the following steps:
 
 ## Next steps
 
-* [Strongly typed hubs](xref:signalr/hubs#strongly-typed-hubs)
+* [Strongly typed hubs](../../../signalr/hubs.md#use-strongly-typed-hubs)
 * [Authentication and authorization in ASP.NET Core SignalR](../../../signalr/authn-and-authz.md)
-* [MessagePack Hub Protocol in SignalR for ASP.NET Core](xref:signalr/messagepackhubprotocol)
+* [MessagePack Hub Protocol in SignalR for ASP.NET Core](../../../signalr/messagepackhubprotocol.md)
 
 ## Related content
 
-* <xref:signalr/javascript-client>
-* <xref:signalr/hubs>
+* [ASP.NET Core SignalR JavaScript client](../../../signalr/javascript-client.md)
+* [Use hubs in ASP.NET Core SignalR](../../../signalr/hubs.md)
 
 :::moniker-end

@@ -2,7 +2,6 @@
 title: Cache Tag Helper in ASP.NET Core MVC
 description: Learn how to use the Cache Tag Helper.
 ms.date: 09/22/2025
-uid: mvc/views/tag-helpers/builtin-th/cache-tag-helper
 ---
 # Cache Tag Helper in ASP.NET Core MVC
 
@@ -10,7 +9,7 @@ By [Peter Kellner](https://peterkellner.net)
 
 The Cache Tag Helper provides the ability to improve the performance of your ASP.NET Core app by caching its content to the internal ASP.NET Core cache provider.
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
 The following Razor markup caches the current date:
 
@@ -106,7 +105,7 @@ Example:
 
 The `priority` attribute doesn't guarantee a specific level of cache retention. `CacheItemPriority` is only a suggestion. Setting this attribute to `NeverRemove` doesn't guarantee that cached items are always retained. See the topics in the [Related content](#related-content) section for more information.
 
-The Cache Tag Helper is dependent on the [memory cache service](xref:performance/caching/memory). The Cache Tag Helper adds the service if it hasn't been added.
+The Cache Tag Helper is dependent on the [memory cache service](../../../../performance/caching/memory.md). The Cache Tag Helper adds the service if it hasn't been added.
 
 ### `vary-by`
 
@@ -249,5 +248,5 @@ Using this attribute maintains the contents in cache through a sign-in and sign-
 
 ## Related content
 
-* <xref:performance/caching/memory>
+* [Cache in-memory in ASP.NET Core](../../../../performance/caching/memory.md)
 * [Introduction to Identity on ASP.NET Core](../../../../security/authentication/identity.md)

@@ -2,13 +2,13 @@
 
 This topic assumes a basic understanding of unit tests. If unfamiliar with test concepts, see the [Unit Testing in .NET Core and .NET Standard](/dotnet/core/testing/) topic and its linked content.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample))
 
 The sample app is a Razor Pages app and assumes a basic understanding of Razor Pages. If unfamiliar with Razor Pages, see the following topics:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
-* [Razor Pages unit tests](xref:test/razor-pages-tests)
+* [Introduction to Razor Pages](../../../razor-pages/index.md)
+* [Get started with Razor Pages](../../../tutorials/razor-pages/razor-pages-start.md)
+* [Razor Pages unit tests](../../razor-pages-tests.md)
 
 > [!NOTE]
 > For testing SPAs, we recommend a tool such as [Playwright for .NET](https://playwright.dev/dotnet/), which can automate a browser.
@@ -42,7 +42,7 @@ Entity Framework Core is also used in the tests. The app references:
 
 ## SUT environment
 
-If the SUT's [environment](xref:fundamentals/environments) isn't set, the environment defaults to `Development`.
+If the SUT's [environment](../../../fundamentals/environments.md) isn't set, the environment defaults to `Development`.
 
 ## Basic tests with the default WebApplicationFactory
 
@@ -54,7 +54,7 @@ The following test class, `BasicTests`, uses the `WebApplicationFactory` to boot
 
 <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.CreateClient> creates an instance of `HttpClient` that automatically follows redirects and handles cookies.
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/BasicTests.cs?name=snippet1)]
 
 By default, non-essential cookies aren't preserved across requests when the [GDPR consent policy](../../../security/gdpr.md) is enabled. To preserve non-essential cookies, such as those used by the TempData provider, mark them as essential in your tests. For instructions on marking a cookie as essential, see [Essential cookies](../../../security/gdpr.md#essential-cookies).
 
@@ -64,13 +64,13 @@ Web host configuration can be created independently of the test classes by inher
 
 1. Inherit from `WebApplicationFactory` and override <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1.ConfigureWebHost*>. The <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder> allows the configuration of the service collection with <xref:Microsoft.AspNetCore.Hosting.IStartup.ConfigureServices*>:
 
-   [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
+   [!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/CustomWebApplicationFactory.cs?name=snippet1)]
 
    Database seeding in the [sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/test/integration-tests/samples) is performed by the `InitializeDbForTests` method. The method is described in the [Integration tests sample: Test app organization](#test-app-organization) section.
 
-   The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. The execution order is a breaking change for the [Generic Host](xref:fundamentals/host/generic-host) with the release of ASP.NET Core 3.0. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureServices`.
+   The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. The execution order is a breaking change for the [Generic Host](../../../fundamentals/host/generic-host.md) with the release of ASP.NET Core 3.0. To use a different database for the tests than the app's database, the app's database context must be replaced in `builder.ConfigureServices`.
 
-   For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
+   For SUTs that still use the [Web Host](../../../fundamentals/host/web-host.md), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
 
    The sample app finds the service descriptor for the database context and uses the descriptor to remove the service registration. Next, the factory adds a new `ApplicationDbContext` that uses an in-memory database for the tests.
 
@@ -80,7 +80,7 @@ Web host configuration can be created independently of the test classes by inher
    * Call `UseSqlServer` with a connection string to the database.
 
    ```csharp
-   services.AddDbContext<ApplicationDbContext>((options, context) => 
+   services.AddDbContext<ApplicationDbContext>((options, context) =>
    {
        context.UseSqlServer(
            Configuration.GetConnectionString("TestingDbConnectionString"));
@@ -89,13 +89,13 @@ Web host configuration can be created independently of the test classes by inher
 
 2. Use the custom `CustomWebApplicationFactory` in test classes. The following example uses the factory in the `IndexPageTests` class:
 
-   [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
+   [!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet1)]
 
    The sample app's client is configured to prevent the `HttpClient` from following redirects. As explained later in the [Mock authentication](#mock-authentication) section, this permits tests to check the result of the app's first response. The first response is a redirect in many of these tests with a `Location` header.
 
 3. A typical test uses the `HttpClient` and helper methods to process the request and the response:
 
-   [!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
+   [!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet2)]
 
 Any POST request to the SUT must satisfy the antiforgery check that's automatically made by the app's [data protection antiforgery system](../../../security/data-protection/introduction.md). In order to arrange for a test's POST request, the test app must:
 
@@ -125,7 +125,7 @@ The `Post_DeleteMessageHandler_ReturnsRedirectToRoot` test method of the [sample
 
 Because another test in the `IndexPageTests` class performs an operation that deletes all of the records in the database and may run before the `Post_DeleteMessageHandler_ReturnsRedirectToRoot` method, the database is reseeded in this test method to ensure that a record is present for the SUT to delete. Selecting the first delete button of the `messages` form in the SUT is simulated in the request to the SUT:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet3)]
 
 ## Client options
 
@@ -159,28 +159,28 @@ The sample SUT includes a scoped service that returns a quote. The quote is embe
 
 `Services/IQuoteService.cs`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Services/IQuoteService.cs?name=snippet1)]
 
 `Services/QuoteService.cs`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Services/QuoteService.cs?name=snippet1)]
 
 `Startup.cs`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet2)]
 
 `Pages/Index.cshtml.cs`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml.cs?name=snippet1&highlight=4,9,20,26)]
 
 `Pages/Index.cs`:
 
-[!code-cshtml[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
+[!code-cshtml[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Pages/Index.cshtml?name=snippet_Quote)]
 
 The following markup is generated when the SUT app is run:
 
 ```html
-<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in 
+<input id="quote" type="hidden" value="Come on, Sarah. We&#x27;ve an appointment in
     London, and we&#x27;re already 30,000 years late.">
 ```
 
@@ -188,16 +188,16 @@ To test the service and quote injection in an integration test, a mock service i
 
 `IntegrationTests.IndexPageTests.cs`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet4)]
 
 `ConfigureTestServices` is called, and the scoped service is registered:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/IndexPageTests.cs?name=snippet5&highlight=7-10,17,20-21)]
 
 The markup produced during the test's execution reflects the quote text supplied by `TestQuoteService`, thus the assertion passes:
 
 ```html
-<input id="quote" type="hidden" value="Something&#x27;s interfering with time, 
+<input id="quote" type="hidden" value="Something&#x27;s interfering with time,
     Mr. Scarman, and time is my business.">
 ```
 
@@ -208,13 +208,13 @@ Tests in the `AuthTests` class check that a secure endpoint:
 * Redirects an unauthenticated user to the app's Login page.
 * Returns content for an authenticated user.
 
-In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](xref:razor-pages/security/authorization/conventions#require-authorization-to-access-a-page).
+In the SUT, the `/SecurePage` page uses an <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AuthorizePage*> convention to apply an <xref:Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter> to the page. For more information, see [Razor Pages authorization conventions](../../../razor-pages/security/authorization/conventions.md#require-authorization-to-access-a-page).
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/src/RazorPagesProject/Startup.cs?name=snippet1)]
 
 In the `Get_SecurePageRedirectsAnUnauthenticatedUser` test, a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions> is set to disallow redirects by setting <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions.AllowAutoRedirect> to `false`:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet2)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet2)]
 
 By disallowing the client to follow the redirect, the following checks can be made:
 
@@ -223,11 +223,11 @@ By disallowing the client to follow the redirect, the following checks can be ma
 
 The test app can mock an <xref:Microsoft.AspNetCore.Authentication.AuthenticationHandler`1> in <xref:Microsoft.AspNetCore.TestHost.WebHostBuilderExtensions.ConfigureTestServices*> in order to test aspects of authentication and authorization. A minimal scenario returns an <xref:Microsoft.AspNetCore.Authentication.AuthenticateResult.Success*?displayProperty=nameWithType>:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet4&highlight=11-18)]
 
 The `TestAuthHandler` is called to authenticate a user when the authentication scheme is set to `Test` where `AddAuthentication` is registered for `ConfigureTestServices`. It's important for the `Test` scheme to match the scheme your app expects. Otherwise, authentication won't work.
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/IntegrationTests/AuthTests.cs?name=snippet3&highlight=7-12)]
 
 For more information on `WebApplicationFactoryClientOptions`, see the [Client options](#client-options) section.
 
@@ -254,7 +254,7 @@ protected override IWebHostBuilder CreateWebHostBuilder() =>
 
 ## How the test infrastructure infers the app content root path
 
-The `WebApplicationFactory` constructor infers the app [content root](xref:fundamentals/index#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
+The `WebApplicationFactory` constructor infers the app [content root](../../../fundamentals/index.md#content-root) path by searching for a <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryContentRootAttribute> on the assembly containing the integration tests with a key equal to the `TEntryPoint` assembly `System.Reflection.Assembly.FullName`. In case an attribute with the correct key isn't found, `WebApplicationFactory` falls back to searching for a solution file (*.sln*) and appends the `TEntryPoint` assembly name to the solution directory. The app root directory (the content root path) is used to discover views and content files.
 
 ## Disable shadow copying
 
@@ -300,7 +300,7 @@ The SUT is a Razor Pages message system with the following characteristics:
 
 &#8224;The EF topic, [Test with InMemory](/ef/core/miscellaneous/testing/in-memory), explains how to use an in-memory database for tests with MSTest. This topic uses the [xUnit](https://xunit.net/) test framework. Test concepts and test implementations across different test frameworks are similar but not identical.
 
-Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](xref:mvc/controllers/testing) (the sample implements the repository pattern).
+Although the app doesn't use the repository pattern and isn't an effective example of the [Unit of Work (UoW) pattern](https://martinfowler.com/eaaCatalog/unitOfWork.html), Razor Pages supports these patterns of development. For more information, see [Designing the infrastructure persistence layer](/dotnet/standard/microservices-architecture/microservice-ddd-cqrs-patterns/infrastructure-persistence-layer-design) and [Test controller logic](../../../mvc/controllers/testing.md) (the sample implements the repository pattern).
 
 ### Test app organization
 
@@ -319,17 +319,17 @@ Integration tests usually require a small dataset in the database prior to the t
 
 The sample app seeds the database with three messages in `Utilities.cs` that tests can use when they execute:
 
-[!code-csharp[](~/test/integration-tests/samples/3.x/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
+[!code-csharp[](~/test/integration-tests/samples/IntegrationTestsSample/tests/RazorPagesProject.Tests/Helpers/Utilities.cs?name=snippet1)]
 
 The SUT's database context is registered in its `Startup.ConfigureServices` method. The test app's `builder.ConfigureServices` callback is executed *after* the app's `Startup.ConfigureServices` code is executed. To use a different database for the tests, the app's database context must be replaced in `builder.ConfigureServices`. For more information, see the [Customize WebApplicationFactory](#customize-webapplicationfactory) section.
 
-For SUTs that still use the [Web Host](xref:fundamentals/host/web-host), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
+For SUTs that still use the [Web Host](../../../fundamentals/host/web-host.md), the test app's `builder.ConfigureServices` callback is executed *before* the SUT's `Startup.ConfigureServices` code. The test app's `builder.ConfigureTestServices` callback is executed *after*.
 
 ## Related content
 
 * [Unit tests](/dotnet/articles/core/testing/unit-testing-with-dotnet-test)
-* <xref:test/razor-pages-tests>
-* <xref:fundamentals/middleware/index>
-* <xref:mvc/controllers/testing>
+* [Razor Pages unit tests in ASP.NET Core](../../razor-pages-tests.md)
+* [ASP.NET Core middleware](../../../fundamentals/middleware/index.md)
+* [Test controller logic in ASP.NET Core](../../../mvc/controllers/testing.md)
 
 :::moniker-end

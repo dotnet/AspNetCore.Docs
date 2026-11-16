@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/27/2026
-uid: tutorials/razor-pages/razor-pages-start
 ---
 
 # Tutorial: Get started with Razor Pages in ASP.NET Core
@@ -17,7 +16,7 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial is the first in a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
-For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](xref:razor-pages/index). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
+For a more advanced introduction aimed at developers who are familiar with controllers and views, see [Introduction to Razor Pages](../../razor-pages/index.md). For a video introduction, see [Entity Framework Core for Beginners](https://www.youtube.com/playlist?list=PLdo4fOcmZ0oXCPdC3fTFA3Z79-eVH3K-s).
 
 [!INCLUDE [Choose web UI](~/includes/choose-ui-link.md)]
 
@@ -103,7 +102,7 @@ Select **Yes** if you agree to trust the development certificate.
 
 Visual Studio:
 
-* Runs the app, which  launches the [Kestrel server](xref:fundamentals/servers/kestrel).
+* Runs the app, which  launches the [Kestrel server](../../fundamentals/servers/kestrel.md).
 * Launches the default browser at `https://localhost:<port>`, which displays the app's UI. `<port>` is the random port that is assigned when the app was created.
 
 Close the browser window.
@@ -144,15 +143,15 @@ Contains Razor pages and supporting files. Each Razor page is a pair of files:
 * A `.cshtml` file that has HTML markup with C# code by using Razor syntax.
 * A `.cshtml.cs` file that has C# code that handles page events.
 
-Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. `_Layout.cshtml` sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see <xref:mvc/views/layout>.
+Supporting files have names that begin with an underscore. For example, the `_Layout.cshtml` file configures UI elements common to all pages. `_Layout.cshtml` sets up the navigation menu at the top of the page and the copyright notice at the bottom of the page. For more information, see [Layout in ASP.NET Core](../../mvc/views/layout.md).
 
 ### wwwroot folder
 
-Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see <xref:fundamentals/static-files>.
+Contains static assets, like HTML files, JavaScript files, and CSS files. For more information, see [Serve static files in ASP.NET Core apps](../../fundamentals/static-files.md).
 
 ### `appsettings.json`
 
-Contains configuration data, like connection strings. For more information, see <xref:fundamentals/configuration/index>.
+Contains configuration data, like connection strings. For more information, see [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 ### Program.cs
 
@@ -161,7 +160,7 @@ Contains the following code:
 <!-- Throughout the tutoiral series, update code in working project (which becomes the clean finished sample) to compile and verify steps, then copy snippets to snapshot sample folder which contains all the various stages of code steps. -->
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program1Snip.cs?name=snippet_all)]
 
-The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](xref:fundamentals/dependency-injection), and build the app:
+The following lines of code in this file create a `WebApplicationBuilder` with preconfigured defaults, add Razor Pages support to the [Dependency Injection (DI) container](../../fundamentals/dependency-injection.md), and build the app:
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program1Snip.cs?name=snippet_di)]
 
@@ -171,25 +170,25 @@ The following code sets the exception endpoint to `/Error` and enables [HTTP Str
 
 [!code-csharp[](~/tutorials/razor-pages/razor-pages-start/samples/snapshot-10/Program1Snip.cs?name=snippet_env)]
 
-For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](xref:fundamentals/environments).
+For example, the preceding code runs when the app is in production or test mode. For more information, see [Use multiple environments in ASP.NET Core](../../fundamentals/environments.md).
 
-The following code enables various [Middleware](xref:fundamentals/middleware/index):
+The following code enables various [Middleware](../../fundamentals/middleware/index.md):
 
 * `app.UseHttpsRedirection();` : Redirects HTTP requests to HTTPS.
-* `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see <xref:fundamentals/routing>.
+* `app.UseRouting();` : Adds route matching to the middleware pipeline. For more information, see [Routing in ASP.NET Core](../../fundamentals/routing.md).
 * `app.UseAuthorization();` : Authorizes a user to access secure resources. This app doesn't use authorization, so you can remove this line.
-* `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see <xref:aspnetcore-9#optimizing-static-web-asset-delivery>.
+* `app.MapStaticAssets();` : Maps endpoints for static assets (such as HTML, CSS, images, and JavaScript) to optimize their delivery with build-time compression and fingerprinting. For more information, see [What's new in ASP.NET Core in .NET 9](../../release-notes/aspnetcore-9.0.md#static-asset-delivery-optimization).
 * `app.MapRazorPages().WithStaticAssets();`: Configures endpoint routing for Razor Pages and opts them into the static assets optimization system, allowing Tag Helpers to generate fingerprinted URLs, such as `/css/site.<hash>.css` (the `<hash>` placeholder is the file hash), for cache-busting.
 * `app.Run();` : Runs the app.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/razor-pages/razor-pages-start/samples/RazorPagesMovie10) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Next: Add a model](xref:tutorials/razor-pages/model)
+> [Next: Add a model](model.md)
 
 :::moniker-end
 

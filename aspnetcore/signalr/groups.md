@@ -12,7 +12,7 @@ By [Brennan Conroy](https://github.com/BrennanConroy)
 
 SignalR allows messages to be sent to all connections associated with a specific user and to named groups of connections.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/samples/) [(how to download)](xref:fundamentals/index#how-to-download-a-sample)
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/groups/samples/) [(how to download)](../fundamentals/index.md#how-to-download-a-sample)
 
 ## Users in SignalR
 
@@ -50,6 +50,6 @@ To protect access to resources while using groups, use [authentication and autho
 
 ## Related content
 
-* <xref:tutorials/signalr>
-* <xref:signalr/hubs>
-* <xref:signalr/publish-to-azure-web-app>
+* [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

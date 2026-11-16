@@ -3,7 +3,6 @@ title: What's new in ASP.NET Core 3.0
 description: Learn about the new features in ASP.NET Core 3.0.
 ms.date: 12/05/2019
 ai-usage: ai-assisted
-uid: aspnetcore-3.0
 ---
 # What's new in ASP.NET Core 3.0
 
@@ -27,7 +26,7 @@ Blazor framework supported scenarios:
 * Supply Razor components in Razor class libraries
 * JavaScript interop
 
-For more information, see <xref:blazor/index>.
+For more information, see [ASP.NET Core Blazor](../blazor/index.md).
 
 ### Blazor Server
 
@@ -70,7 +69,7 @@ For more information, see [Overview for gRPC on .NET](../grpc/index.md).
 
 ## SignalR
 
-See [Update SignalR code](xref:migration/22-to-30#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](xref:migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
+See [Update SignalR code](../migration/22-to-30.md#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
 
 In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
@@ -214,7 +213,7 @@ services
     });
 ```
 
-SignalR hubs use [Endpoint Routing](xref:fundamentals/routing). SignalR hub connection was previously done explicitly:
+SignalR hubs use [Endpoint Routing](../fundamentals/routing.md). SignalR hub connection was previously done explicitly:
 
 ```csharp
 app.UseSignalR(routes =>
@@ -308,8 +307,8 @@ To add Json.NET to ASP.NET Core 3.0, see [Add Newtonsoft.Json-based JSON format 
 
 The following list contains new Razor directives:
 
-* [`@attribute`](xref:mvc/views/razor#attribute): The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
-* [`@implements`](xref:mvc/views/razor#implements): The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
+* [`@attribute`](../mvc/views/razor.md#attribute): The `@attribute` directive applies the given attribute to the class of the generated page or view. For example, `@attribute [Authorize]`.
+* [`@implements`](../mvc/views/razor.md#implements): The `@implements` directive implements an interface for the generated class. For example, `@implements IDisposable`.
 
 ## IdentityServer4 supports authentication and authorization for web APIs and SPAs
 
@@ -356,7 +355,7 @@ Options for certificate authentication include the ability to:
 
 A default user principal is constructed from the certificate properties. The user principal contains an event that enables supplementing or replacing the principal. For more information, see [Configure certificate authentication in ASP.NET Core](../security/authentication/certauth.md).
 
-[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](xref:host-and-deploy/iis/index) and [HTTP.sys](xref:fundamentals/servers/httpsys). In ASP.NET Core 3.0, [Kestrel](xref:fundamentals/servers/kestrel) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
+[Windows Authentication](/windows-server/security/windows-authentication/windows-authentication-overview) has been extended onto Linux and macOS. In previous versions, Windows Authentication was limited to [IIS](../host-and-deploy/iis/index.md) and [HTTP.sys](../fundamentals/servers/httpsys.md). In ASP.NET Core 3.0, [Kestrel](../fundamentals/servers/kestrel.md) has the ability to use Negotiate, [Kerberos](/windows-server/security/kerberos/kerberos-authentication-overview), and [NTLM on Windows](/windows-server/security/kerberos/ntlm-overview), Linux, and macOS for Windows domain-joined hosts. Kestrel support of these authentication schemes is provided by the [Microsoft.AspNetCore.Authentication.Negotiate NuGet](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.Negotiate) package. As with the other authentication services, configure authentication app wide, then configure the service:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
@@ -395,7 +394,7 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use <xref:fundamentals/host/generic-host>. Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](xref:migration/22-to-30?view=aspnetcore-2.2#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md). Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
@@ -419,7 +418,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
 * Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
-For more information, see <xref:migration/22-to-30#kestrel>.
+For more information, see [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#kestrel).
 
 ## HTTP/2 enabled by default
 
@@ -443,7 +442,7 @@ Endpoint Routing, which allows frameworks (for example, MVC) to work well with m
 * Endpoints can implement a policy, such as CORS or authorization, in both middleware and MVC.
 * Filters and attributes can be placed on methods in controllers.
 
-For more information, see <xref:fundamentals/routing#routing-basics>.
+For more information, see [Routing in ASP.NET Core](../fundamentals/routing.md#routing-basics).
 
 ## Health Checks
 
@@ -464,8 +463,8 @@ Health Checks endpoints can:
 
 For more information, see the following articles:
 
-* <xref:migration/22-to-30#health-checks>
-* <xref:host-and-deploy/health-checks>
+* [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#health-checks)
+* [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md)
 
 ## Pipes on HttpContext
 
@@ -484,14 +483,14 @@ Startup errors when hosting ASP.NET Core apps in IIS now produce richer diagnost
 For more information, see:
 
 * [.NET Core Workers as Windows Services](https://devblogs.microsoft.com/aspnet/net-core-workers-as-windows-services/)
-* <xref:fundamentals/host/hosted-services>
-* <xref:host-and-deploy/windows-service>
+* [Background tasks with hosted services in ASP.NET Core](../fundamentals/host/hosted-services.md)
+* [Host ASP.NET Core in a Windows Service](../host-and-deploy/windows-service.md)
 
 ## Forwarded headers middleware improvements
 
-In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](xref:host-and-deploy/proxy-load-balancer#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
+In previous versions of ASP.NET Core, calling <xref:Microsoft.AspNetCore.Builder.HstsBuilderExtensions.UseHsts*> and  <xref:Microsoft.AspNetCore.Builder.HttpsPolicyBuilderExtensions.UseHttpsRedirection*> were problematic when deployed to an Azure Linux or behind any reverse proxy other than IIS. The fix for previous versions is documented in [Forward the scheme for Linux and non-IIS reverse proxies](../host-and-deploy/proxy-load-balancer.md#forward-the-scheme-for-linux-and-non-iis-reverse-proxies).
 
-This scenario is fixed in ASP.NET Core 3.0. The host enables the [forwarded headers middleware](xref:host-and-deploy/proxy-load-balancer#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
+This scenario is fixed in ASP.NET Core 3.0. The host enables the [forwarded headers middleware](../host-and-deploy/proxy-load-balancer.md#forwarded-headers-middleware-options) when the `ASPNETCORE_FORWARDEDHEADERS_ENABLED` environment variable is set to `true`. `ASPNETCORE_FORWARDEDHEADERS_ENABLED` is set to `true` in our container images.
 
 ## Performance improvements
 
@@ -512,7 +511,7 @@ For migration information, see [Port your code from .NET Framework to .NET Core]
 
 ## Use the ASP.NET Core shared framework
 
-The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
+The ASP.NET Core 3.0 shared framework, contained in the [Microsoft.AspNetCore.App metapackage](../fundamentals/metapackage-app.md), no longer requires an explicit `<PackageReference />` element in the project file. The shared framework is automatically referenced when using the `Microsoft.NET.Sdk.Web` SDK in the project file:
 
 ```xml
 <Project Sdk="Microsoft.NET.Sdk.Web">

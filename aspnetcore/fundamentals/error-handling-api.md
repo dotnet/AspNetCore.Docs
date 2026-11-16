@@ -4,7 +4,6 @@ description: Learn about error handling in ASP.NET Core APIs with Minimal APIs a
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/27/2026
-uid: fundamentals/error-handling-api
 ---
 
 # Handle errors in ASP.NET Core APIs
@@ -13,11 +12,11 @@ uid: fundamentals/error-handling-api
 
 #### [Minimal APIs](#tab/minimal-apis)
 
-This article describes how to handle errors in ASP.NET Core APIs. Documentation for Minimal APIs is selected. To see documentation for controller-based APIs, select the **Controllers** tab. For Blazor error handling guidance, see <xref:blazor/fundamentals/handle-errors>.
+This article describes how to handle errors in ASP.NET Core APIs. Documentation for Minimal APIs is selected. To see documentation for controller-based APIs, select the **Controllers** tab. For Blazor error handling guidance, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 #### [Controllers](#tab/controllers)
 
-This article describes how to handle errors in ASP.NET Core APIs. Documentation for Controller-based APIs is selected. To see documentation for **Minimal APIs**, select the **Minimal APIs** tab. For Blazor error handling guidance, see <xref:blazor/fundamentals/handle-errors>.
+This article describes how to handle errors in ASP.NET Core APIs. Documentation for Controller-based APIs is selected. To see documentation for **Minimal APIs**, select the **Minimal APIs** tab. For Blazor error handling guidance, see [Handle errors in ASP.NET Core Blazor apps](../blazor/fundamentals/handle-errors.md).
 
 ---
 
@@ -29,12 +28,12 @@ This article describes how to handle errors in ASP.NET Core APIs. Documentation 
 
 To see the Developer Exception Page in a Minimal API:
 
-* Run the sample app in the [`Development` environment](xref:fundamentals/environments).
+* Run the sample app in the [`Development` environment](environments.md).
 * Go to the `/exception` endpoint.
 
 This section refers to the following sample app to demonstrate ways to handle exceptions in a Minimal API. It throws an exception when the endpoint `/exception` is requested:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_ThrowExceptions" highlight="4-7":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_ThrowExceptions" highlight="4-7":::
 
 #### [Controllers](#tab/controllers)
 
@@ -44,20 +43,20 @@ To see the Developer Exception Page in a controller-based API:
 
   :::code language="csharp" source="~/web-api/handle-errors/samples/6.x/HandleErrorsSample/Controllers/ErrorsController.cs" id="snippet_Throw":::
 
-* Run the app in the [development environment](xref:fundamentals/environments).
+* Run the app in the [development environment](environments.md).
 * Go to the endpoint defined by the controller action.
 
 ---
 
 ## Exception handler
 
-In non-development environments, use the [exception handler middleware](xref:fundamentals/error-handling#exception-handler-page) to produce an error payload.
+In non-development environments, use the [exception handler middleware](error-handling.md#exception-handler-page) to produce an error payload.
 
 #### [Minimal APIs](#tab/minimal-apis)
 
 To configure the `exception handler middleware`, call <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*>. For example, the following code changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client. For more information, see the [Problem Details](#problem-details) section later in this article.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_WithUseExceptionHandler" highlight="4-7":::
 
 #### [Controllers](#tab/controllers)
 
@@ -74,7 +73,7 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 > [!WARNING]
 > Don't mark the error handler action method with HTTP method attributes, such as `HttpGet`. Explicit verbs prevent some requests from reaching the action method.
 >
-> For web APIs that use [Swagger / OpenAPI](xref:tutorials/web-api-help-pages-using-swagger), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
+> For web APIs that use [Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md), mark the error handler action with the [[ApiExplorerSettings]](xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute) attribute and set its <xref:Microsoft.AspNetCore.Mvc.ApiExplorerSettingsAttribute.IgnoreApi> property to `true`. This attribute configuration excludes the error handler action from the app's OpenAPI specification:
 >
 > ```csharp
 > [ApiExplorerSettings(IgnoreApi = true)]
@@ -90,16 +89,16 @@ The preceding `HandleError` action sends an [RFC 7807](https://tools.ietf.org/ht
 
 Consider the following Minimal API app.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_ClientAndServerErrorResponses":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_ClientAndServerErrorResponses":::
 
-The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` is greater than `0`, otherwise a `400 BAD REQUEST` status code without a response body. For more information about creating a response, see [Create responses in Minimal API apps](/aspnet/core/fundamentals/minimal-apis/responses).
+The `/users` endpoint produces `200 OK` with a `json` representation of `User` when `id` is greater than `0`, otherwise a `400 BAD REQUEST` status code without a response body. For more information about creating a response, see [Create responses in Minimal API apps](minimal-apis/responses.md).
 
 The [`Status Code Pages middleware`](#client-and-server-error-responses) can be configured to produce a common body content, **when empty**, for all HTTP client (`400`-`499`) or server (`500` -`599`) responses. The middleware is configured by calling the 
 [UseStatusCodePages](<xref:Microsoft.AspNetCore.Builder.StatusCodePagesExtensions.UseStatusCodePages*>) extension method.
 
 For example, the following example changes the app to respond with an [RFC 7807](https://tools.ietf.org/html/rfc7807)-compliant payload to the client for all client and server responses, including routing errors (for example, `404 NOT FOUND`). For more information, see the [Problem Details](#problem-details) section.
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_ClientAndServerErrorResponsesWithUseStatusCodePages" highlight="4-7":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_ClientAndServerErrorResponsesWithUseStatusCodePages" highlight="4-7":::
 
 #### [Controllers](#tab/controllers)
 
@@ -125,7 +124,7 @@ Minimal API apps can be configured to generate problem details response for all 
 
 The following code configures the app to generate problem details:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_ProblemDetails" highlight="2":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_ProblemDetails" highlight="2":::
 
 For more information on using `AddProblemDetails`, see [Problem Details](#problem-details)
 
@@ -154,7 +153,7 @@ builder.Services.Configure<RouteHandlerOptions>(options =>
 
 In the following code, `httpContext.Response.WriteAsync("Fallback: An error occurred.")` returns an error if the <xref:Microsoft.AspNetCore.Http.IProblemDetailsService> implementation isn't able to generate a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>:
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_IProblemDetailsServiceWithExceptionFallback" highlight="15":::
 
 The preceding code:
 
@@ -172,7 +171,7 @@ The preceding code:
 
 The following sample is similar to the preceding except that it calls the [`Status Code Pages middleware`](#client-and-server-error-responses).
 
-:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/8/Program.cs" id="snippet_IProblemDetailsServiceWithStatusCodePageFallback" highlight="15":::
+:::code language="csharp" source="~/fundamentals/minimal-apis/handle-errors/samples/Program.cs" id="snippet_IProblemDetailsServiceWithStatusCodePageFallback" highlight="15":::
 
 #### [Controllers](#tab/controllers)
 

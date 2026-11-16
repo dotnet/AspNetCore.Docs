@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/15/2026
-uid: blazor/tutorials/movie-database-app/part-3
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
@@ -19,7 +18,7 @@ This part of the tutorial series examines the Razor components in the project th
 
 Blazor apps are based on *Razor components*, often referred to as just *components*. A *component* is an element of UI, such as a page, dialog, or data entry form. Components are .NET C# classes built into [.NET assemblies](/dotnet/standard/assembly/).
 
-*Razor* refers to how components are usually written in the form of a [Razor](xref:mvc/views/razor) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity.
+*Razor* refers to how components are usually written in the form of a [Razor](../../../mvc/views/razor.md) markup page (`.razor` file extension) for client-side UI logic and composition. Razor is a syntax for combining HTML markup with C# code designed for developer productivity.
 
 Although developers and online resources use the term "Blazor components," the documentation uses the formal name "Razor components" (or just "components").
 
@@ -848,7 +847,7 @@ If there's a concurrency exception and the movie entity no longer exists at the 
 -->
 
 > [!NOTE]
-> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of <xref:blazor/tutorials/movie-database-app/part-4>, which is the next article in this tutorial.
+> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of [Build a Blazor movie database app (Part 4 - Work with a database)](part-4.md), which is the next article in this tutorial.
 
 :::moniker-end
 
@@ -875,16 +874,16 @@ To mitigate overposting, we recommend using a separate view model/data transfer 
 
 ## Related content
 
-* [`NavLink` component](xref:blazor/fundamentals/navigation#navlink-component)
-* <xref:blazor/components/layouts>
-* [Razor directives](xref:mvc/views/razor#directives) (Razor syntax article) / [Razor directives](xref:blazor/components/index#razor-syntax) (Blazor documentation)
-* <xref:blazor/components/quickgrid>
-* <xref:blazor/forms/index>
-* [Concurrency with EF Core in Blazor apps](xref:blazor/blazor-ef-core)
-* <xref:blazor/globalization-localization>: Explains how to render globalized and localized content to users in different cultures and languages, including how to accept comma number separators.
+* [`NavLink` component](../../fundamentals/navigation.md#navlink-component)
+* [ASP.NET Core Blazor layouts](../../components/layouts.md)
+* [Razor directives](../../../mvc/views/razor.md#directives) (Razor syntax article) / [Razor directives](../../components/index.md#razor-syntax) (Blazor documentation)
+* [ASP.NET Core Blazor \`QuickGrid\` component](../../components/quickgrid.md)
+* [ASP.NET Core Blazor forms overview](../../forms/index.md)
+* [Concurrency with EF Core in Blazor apps](../../blazor-ef-core.md)
+* [ASP.NET Core Blazor globalization and localization](../../globalization-localization.md): Explains how to render globalized and localized content to users in different cultures and languages, including how to accept comma number separators.
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add and scaffold a model](xref:blazor/tutorials/movie-database-app/part-2)
-> [Next: Work with a database](xref:blazor/tutorials/movie-database-app/part-4)
+> [Previous: Add and scaffold a model](part-2.md)
+> [Next: Work with a database](part-4.md)
