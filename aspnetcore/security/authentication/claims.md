@@ -251,7 +251,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Refer to the following article:
 
-[Add custom claims to Identity](mfa.md#extend-the-login-with-an-mfa-claim)
+[Extend the sign-in process with an MFA claim](mfa.md#extend-the-sign-in-process-with-an-mfa-claim)
 
 ## Map claims from external identity providers
 
