@@ -1,8 +1,10 @@
-﻿using Microsoft.Extensions.Options;
-using System.Threading.Tasks;
-using ASPSMS;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Options;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
+using Twilio.Types;
 
-namespace Web2FA.Services.ASPSMSClient
+namespace Web2FA.Services
 {
     // This class is used by the application to send Email and SMS
     // when you turn on two-factor authentication in ASP.NET Identity.
@@ -24,18 +26,18 @@ namespace Web2FA.Services.ASPSMSClient
 
         public Task SendSmsAsync(string number, string message)
         {
-            ASPSMS.SMS SMSSender = new ASPSMS.SMS();
+            // Plug in your SMS service here to send a text message.
+            // Your Account SID from twilio.com/console
+            var accountSid = Options.SMSAccountIdentification;
+            // Your Auth Token from twilio.com/console
+            var authToken = Options.SMSAccountPassword;
 
-            SMSSender.Userkey = Options.SMSAccountIdentification;
-            SMSSender.Password = Options.SMSAccountPassword;
-            SMSSender.Originator = Options.SMSAccountFrom;
+            TwilioClient.Init(accountSid, authToken);
 
-            SMSSender.AddRecipient(number);
-            SMSSender.MessageData = message;
-
-            SMSSender.SendTextSMS();
-
-            return Task.FromResult(0);
+            return MessageResource.CreateAsync(
+              to: new PhoneNumber(number),
+              from: new PhoneNumber(Options.SMSAccountFrom),
+              body: message);
         }
     }
 }
