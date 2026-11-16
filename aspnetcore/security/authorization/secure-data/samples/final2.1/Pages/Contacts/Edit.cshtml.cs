@@ -70,6 +70,7 @@ namespace ContactManager.Pages.Contacts
                 return new ChallengeResult();
             }
 
+            Contact.ContactId = id;
             Contact.OwnerID = contact.OwnerID;
 
             Context.Attach(Contact).State = EntityState.Modified;

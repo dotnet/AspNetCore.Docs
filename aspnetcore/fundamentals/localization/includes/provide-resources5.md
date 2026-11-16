@@ -73,7 +73,7 @@ The preceding code enables the successful resolution of resx files.
 
 ## Culture fallback behavior
 
-When searching for a resource, localization engages in "culture fallback". Starting from the requested culture, if not found, it reverts to the parent culture of that culture. As an aside, the <xref:System.Globalization.CultureInfo.Parent%2A?displayProperty=nameWithType> property represents the parent culture. This usually (but not always) means removing the national signifier from the language-and-culture code. For example, the dialect of Spanish spoken in Mexico is "es-MX". It has the parent "es"&mdash;Spanish non-specific to any country.
+When searching for a resource, localization engages in *culture fallback*. Starting from the requested culture, if not found, it reverts to the parent culture of that culture. As an aside, the <xref:System.Globalization.CultureInfo.Parent?displayProperty=nameWithType> property represents the parent culture. This usually (but not always) means removing the national signifier from the language-and-culture code. For example, the dialect of Spanish spoken in Mexico is `es-MX` with the parent `es`, which is non-specific Spanish.
 
 Imagine your site receives a request for a "Welcome" resource using culture "fr-CA". The localization system looks for the following resources, in order, and selects the first match:
 
@@ -95,15 +95,15 @@ Each language and culture combination (other than the default language) requires
 
 Localizing an app also involves the following tasks:
 
-* [Make the app's content localizable](xref:fundamentals/localization/make-content-localizable).
-* [Implement a strategy to select the language/culture for each request](xref:fundamentals/localization/select-language-culture)
+* [Make the app's content localizable](../make-content-localizable.md).
+* [Implement a strategy to select the language/culture for each request](../select-language-culture.md)
 
 ## Related content
 
-* <xref:fundamentals/localization>
-* <xref:fundamentals/localization/make-content-localizable>
-* <xref:fundamentals/localization/select-language-culture>
-* <xref:fundamentals/troubleshoot-aspnet-core-localization>
+* [Globalization and localization in ASP.NET Core](../../localization.md)
+* [Make an ASP.NET Core app's content localizable](../make-content-localizable.md)
+* [Strategies for selecting language and culture in a localized ASP.NET Core app](../select-language-culture.md)
+* [Troubleshoot ASP.NET Core localization](../../troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
 * [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)

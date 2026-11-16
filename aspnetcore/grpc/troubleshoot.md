@@ -5,7 +5,6 @@ description: Troubleshoot errors when using gRPC on .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.custom: linux-related-content
 ms.date: 07/23/2024
-uid: grpc/troubleshoot
 ---
 
 # Troubleshoot gRPC on .NET
@@ -35,7 +34,7 @@ info: Microsoft.Hosting.Lifetime[0]
 
 The .NET client must use `https` in the server address to make calls with a secured connection:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_StandardHTTPS)]
 
 All gRPC client implementations support TLS. gRPC clients from other languages typically require the channel configured with `SslCredentials`. `SslCredentials` specifies the certificate that the client will use, and it must be used instead of insecure credentials. For examples of configuring the different gRPC client implementations to use TLS, see [gRPC Authentication](https://www.grpc.io/docs/guides/auth/).
 
@@ -46,15 +45,15 @@ The .NET gRPC client requires the service to have a trusted certificate. The fol
 > Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
 > ---> System.Security.Authentication.AuthenticationException: The remote certificate is invalid according to the validation procedure.
 
-You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](xref:security/enforcing-ssl#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
+You may see this error if you are testing your app locally and the ASP.NET Core HTTPS development certificate is not trusted. For instructions to fix this issue, see [Trust the ASP.NET Core HTTPS development certificate on Windows and macOS](../security/enforcing-ssl.md#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos).
 
-If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback%2A?displayProperty=nameWithType> to allow calls without a trusted certificate:
+If you are calling a gRPC service on another machine and are unable to trust the certificate then the gRPC client can be configured to ignore the invalid certificate. The following code uses <xref:System.Net.Http.HttpClientHandler.ServerCertificateCustomValidationCallback?displayProperty=nameWithType> to allow calls without a trusted certificate:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificate)]
 
-The [gRPC client factory](xref:grpc/clientfactory) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method to configure the handler on the client:
+The [gRPC client factory](clientfactory.md) allows calls without a trusted certificate. Use the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method to configure the handler on the client:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_IgnoreInvalidCertificateClientFactory)]
 
 > [!WARNING]
 > Untrusted certificates should only be used during app development. Production apps should always use valid certificates.
@@ -66,10 +65,10 @@ The .NET gRPC client can call insecure gRPC services by specifying `http` in the
 There are some additional requirements to call insecure gRPC services depending on the .NET version an app is using:
 
 * .NET 5 or later requires [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client) version 2.32.0 or later.
-* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](xref:grpc/troubleshoot?view=aspnetcore-3.1#call-insecure-grpc-services-with-net-client-2):
+* .NET Core 3.x requires additional configuration. The app must set the `System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport` switch to `true`. For more information see [Asp.Net Core 3.x: Call insecure gRPC services with the .NET client](troubleshoot.md?view=aspnetcore-3.1&preserve-view=true#call-insecure-grpc-services-with-net-client-2):
 
 > [!IMPORTANT]
-> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](xref:grpc/aspnetcore#protocol-negotiation).
+> Insecure gRPC services must be hosted on a HTTP/2-only port. For more information, see [ASP.NET Core protocol negotiation](aspnetcore.md#protocol-negotiation).
 
 ## Unable to start ASP.NET Core gRPC app on macOS
 
@@ -77,7 +76,7 @@ Kestrel doesn't support HTTP/2 with TLS on macOS before .NET 8. The ASP.NET Core
 
 > Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
 
-To work around this issue in .NET 7 or earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [ASP.NET Core in .NET 7: Unable to start ASP.NET Core gRPC app on macOS](xref:grpc/troubleshoot?view=aspnetcore-7.0#unable-to-start-aspnet-core-grpc-app-on-macos).
+To work around this issue in .NET 7 or earlier, configure Kestrel and the gRPC client to use HTTP/2 *without* TLS. You should only do this during development. Not using TLS will result in gRPC messages being sent without encryption. For more information see [ASP.NET Core in .NET 7: Unable to start ASP.NET Core gRPC app on macOS](troubleshoot.md?view=aspnetcore-7.0&preserve-view=true#unable-to-start-aspnet-core-grpc-app-on-macos).
 
 ## gRPC C# assets are not code generated from `.proto` files
 
@@ -86,7 +85,7 @@ gRPC code generation of concrete clients and service base classes requires proto
 * `.proto` files you want to use in the `<Protobuf>` item group. [Imported `.proto` files](https://developers.google.com/protocol-buffers/docs/proto3#importing-definitions) must be referenced by the project.
 * Package reference to the gRPC tooling package [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/).
 
-For more information on generating gRPC C# assets, see <xref:grpc/basics>.
+For more information on generating gRPC C# assets, see [gRPC Services with C#](basics.md).
 
 An ASP.NET Core web app hosting gRPC services only needs the service base class generated:
 
@@ -113,7 +112,7 @@ WPF projects have a [known issue](https://github.com/dotnet/wpf/issues/810) that
 You can workaround this issue by:
 
 1. Create a new .NET class library project.
-2. In the new project, add references to enable [C# code generation from `.proto` files](xref:grpc/basics#generated-c-assets):
+2. In the new project, add references to enable [C# code generation from `.proto` files](basics.md#generated-c-assets):
     * Add the following package references:
         * [Grpc.Tools](https://www.nuget.org/packages/Grpc.Tools/)
         * [Grpc.Net.Client](https://www.nuget.org/packages/Grpc.Net.Client/)
@@ -134,11 +133,11 @@ The address path is ignored because gRPC has a standardized, prescriptive addres
 
 There are some scenarios when an app needs to include a path with gRPC calls. For example, when an ASP.NET Core gRPC app is hosted in an IIS directory and the directory needs to be included in the request. When a path is required, it can be added to the gRPC call using the custom `SubdirectoryHandler` specified below:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_SubdirectoryHandler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_SubdirectoryHandler)]
 
 `SubdirectoryHandler` is used when the gRPC channel is created.
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallSubdirectoryHandler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_CallSubdirectoryHandler)]
 
 The preceding code:
 
@@ -146,25 +145,25 @@ The preceding code:
 * Configures a channel to use `SubdirectoryHandler`.
 * Calls the gRPC service with `SayHelloAsync`. The gRPC call is sent to `https://localhost:5001/MyApp/greet.Greeter/SayHello`.
 
-Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+Alternatively, a client factory can be configured with `SubdirectoryHandler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
 ## Configure gRPC client to use HTTP/3
 
-The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. For more information, see <xref:fundamentals/servers/kestrel/http3>.
+The .NET gRPC client supports HTTP/3 with .NET 6 or later. If the server sends an `alt-svc` response header to the client that indicates the server supports HTTP/3, the client will automatically upgrade its connection to HTTP/3. For more information, see [Use HTTP/3 with the ASP.NET Core Kestrel web server](../fundamentals/servers/kestrel/http3.md).
 
 A <xref:System.Net.Http.DelegatingHandler> can be used to force a gRPC client to use HTTP/3. Forcing HTTP/3 avoids the overhead of upgrading the request. Force HTTP/3 with code similar to the following:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_Http3Handler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_Http3Handler)]
 
 `Http3Handler` is used when the gRPC channel is created. The following code creates a channel configured to use `Http3Handler`.
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_CallHttp3Handler)]
 
-Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>.
+Alternatively, a client factory can be configured with `Http3Handler` by using <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>.
 
 ## Building gRPC on Alpine Linux
 
-The `Grpc.Tools` package [generates .NET types from `.proto` files](xref:grpc/basics#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
+The `Grpc.Tools` package [generates .NET types from `.proto` files](basics.md#generated-c-assets) using a bundled native binary called `protoc`. Additional steps are required to build gRPC apps on platforms that aren't supported by the native binaries in `Grpc.Tools`, such as Alpine Linux.
 
 ### Generate code ahead of time
 
@@ -216,11 +215,11 @@ System.OperationCanceledException: The request was canceled due to the configure
 
 There are a couple of ways to fix this error. The first is to configure <xref:System.Net.Http.HttpClient.Timeout?displayProperty=nameWithType> to a larger value. <xref:System.Threading.Timeout.InfiniteTimeSpan?displayProperty=nameWithType> disables the timeout:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=3)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutHttpClient&highlight=3)]
 
 Alternatively, avoid creating `HttpClient` and set `GrpcChannel.HttpHandler` instead:
 
-[!code-csharp[](~/grpc/troubleshoot/samples/8.0/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=4)]
+[!code-csharp[](~/grpc/troubleshoot/samples/GrpcGreeterClient/Program.cs?name=snippet_CallTimeoutSetGrpcChannel&highlight=4)]
 
 :::moniker-end
 

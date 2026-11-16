@@ -3,7 +3,6 @@ title: Build a Windows Presentation Foundation (WPF) Blazor app
 description: Build a Windows Presentation Foundation (WPF) app step-by-step.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/tutorials/wpf
 ---
 # Build a Windows Presentation Foundation (WPF) Blazor app
 
@@ -90,7 +89,7 @@ In the project file's existing `<PropertyGroup>` add the following markup to set
 
 Save the changes to the project file (`WpfBlazor.csproj`).
 
-Add an `_Imports.razor` file to the root of the project with an [`@using`](xref:mvc/views/razor#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
+Add an `_Imports.razor` file to the root of the project with an [`@using`](../../../mvc/views/razor.md#using) directive for <xref:Microsoft.AspNetCore.Components.Web?displayProperty=fullName>.
 
 `_Imports.razor`:
 
@@ -315,4 +314,4 @@ In this tutorial, you learned how to:
 Learn more about Blazor Hybrid apps:
 
 > [!div class="nextstepaction"]
-> <xref:blazor/hybrid/index>
+> [ASP.NET Core Blazor Hybrid](../index.md)

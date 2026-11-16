@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/419
 ---
 # Kestrel: Configuration changes at runtime detected by default
 
-Kestrel now reacts to changes made to the `Kestrel` section of the project's `IConfiguration` instance (for example, *appsettings.json*) at runtime. To learn more about how to configure Kestrel using *appsettings.json*, see the *appsettings.json* example in [Endpoint configuration](/aspnet/core/fundamentals/servers/kestrel#endpoint-configuration).
+Kestrel now reacts to changes made to the `Kestrel` section of the project's `IConfiguration` instance (for example, *appsettings.json*) at runtime. To learn more about how to configure Kestrel using *appsettings.json*, see the *appsettings.json* example in [Endpoint configuration](../../fundamentals/servers/kestrel.md#endpoint-configuration).
 
 Kestrel will bind, unbind, and rebind endpoints as necessary to react to these configuration changes.
 
@@ -48,7 +48,7 @@ public class Program
 
 ## New behavior
 
-Kestrel reacts to configuration changes at runtime by default. To support that change, <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A> calls `KestrelServerOptions.Configure(IConfiguration, bool)` with `reloadOnChange: true` by default.
+Kestrel reacts to configuration changes at runtime by default. To support that change, <xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*> calls `KestrelServerOptions.Configure(IConfiguration, bool)` with `reloadOnChange: true` by default.
 
 ## Reason for change
 
@@ -92,7 +92,7 @@ It's also important to make sure the configuration source supports reloading. Fo
 
 ## Affected APIs
 
-<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults%2A?displayProperty=nameWithType>
+<xref:Microsoft.Extensions.Hosting.GenericHostBuilderExtensions.ConfigureWebHostDefaults*?displayProperty=nameWithType>
 
 <!--
 

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.14.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.3.1" />
   </ItemGroup>
 
 </Project>

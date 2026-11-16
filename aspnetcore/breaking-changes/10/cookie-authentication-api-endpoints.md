@@ -10,7 +10,7 @@ ms.date: 09/16/2026
 
 By default, unauthenticated and unauthorized requests made to known API endpoints protected by cookie authentication now result in 401 and 403 responses rather than redirecting to a login or access-denied URI.
 
-Known API [endpoints](/aspnet/core/fundamentals/routing) are identified using the new <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata> interface, and metadata implementing the new interface has been added automatically to the following:
+Known API [endpoints](../../fundamentals/routing.md) are identified using the new <xref:Microsoft.AspNetCore.Http.Metadata.IDisableCookieRedirectMetadata> interface, and metadata implementing the new interface has been added automatically to the following:
 
 * [`[ApiController]`](xref:Microsoft.AspNetCore.Mvc.ApiControllerAttribute) endpoints.
 * Minimal API endpoints that read JSON request bodies or write JSON responses.
@@ -55,7 +55,7 @@ To restore the previous behavior for the whole app, enable the `Microsoft.AspNet
 </ItemGroup>
 ```
 
-The switch is read once, the first time cookie authentication is used, so if you set it in code instead, call <xref:System.AppContext.SetSwitch%2A> before the host is built:
+The switch is read once, the first time cookie authentication is used, so if you set it in code instead, call <xref:System.AppContext.SetSwitch*> before the host is built:
 
 ```csharp
 AppContext.SetSwitch(

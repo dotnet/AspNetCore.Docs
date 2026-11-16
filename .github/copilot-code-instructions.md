@@ -1,12 +1,11 @@
 ---
-author: tdykstra
-ms.author: wpickett
 ms.date: 09-22-2025
 ---
 
 # Copilot Code Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
+
 This document contains code-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. For general instructions and documentation guidelines, please refer to the [copilot-instructions.md](./copilot-instructions.md) file.
 
 ## Code-Related Guidelines
@@ -95,6 +94,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
   * [ ] Reference the correct version-specific snippet file in markdown
 
 ### 2. Code Build and Testing Requirements
+
 * [ ] Ensure all code samples build successfully against the targeted .NET version
 * [ ] Include necessary using statements in code samples
 * [ ] When you're assigned an issue involving code changes, after you've completed your work and the workflows (status checks) have run, ensure there are no build warnings under the OpenPublishing.Build status check
@@ -105,6 +105,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
   * [ ] Provide fallback examples for current stable versions when possible
 
 ### 3. ASP.NET Core Code-Specific Guidelines
+
 * [ ] Use the latest supported version for examples unless otherwise specified
 * [ ] Include differences between Minimal API and controller-based approaches when relevant
 * [ ] For middleware content and examples, use the middleware class approach

@@ -3,7 +3,6 @@ title: Reliable gRPC services with deadlines and cancellation
 description: Learn how to create reliable gRPC services with deadlines and cancellation in .NET.
 monikerRange: '>= aspnetcore-3.0'
 ms.date: 09/07/2020
-uid: grpc/deadlines-cancellation
 ---
 # Reliable gRPC services with deadlines and cancellation
 
@@ -40,7 +39,7 @@ Using `ServerCallContext.CancellationToken` in a gRPC service:
 
 ### Deadlines and retries
 
-When a gRPC call is configured with [retry fault handling](xref:grpc/retries) and a deadline, the deadline tracks time across all retries for a gRPC call. If the deadline is exceeded, a gRPC call immediately aborts the underlying HTTP request, skips any remaining retries, and throws a `DeadlineExceeded` error.
+When a gRPC call is configured with [retry fault handling](retries.md) and a deadline, the deadline tracks time across all retries for a gRPC call. If the deadline is exceeded, a gRPC call immediately aborts the underlying HTTP request, skips any remaining retries, and throws a `DeadlineExceeded` error.
 
 ### Propagating deadlines
 
@@ -62,7 +61,7 @@ Manually propagating deadlines can be cumbersome. The deadline needs to be passe
 
 [!code-csharp[](~/grpc/deadlines-cancellation/clientfactory-propagate.cs?highlight=6)]
 
-For more information, see <xref:grpc/clientfactory#deadline-and-cancellation-propagation>.
+For more information, see [gRPC client factory integration in .NET](clientfactory.md#deadline-and-cancellation-propagation).
 
 ## Cancellation
 
@@ -74,9 +73,9 @@ A gRPC call can be canceled in the client by passing a cancellation token with [
 
 gRPC services that can be cancelled should:
 * Pass `ServerCallContext.CancellationToken` to async methods. Canceling async methods allows the call on the server to complete quickly.
-* Propagate the cancellation token to child calls. Propagating the cancellation token ensures that child calls are canceled with their parent. [gRPC client factory](xref:grpc/clientfactory) and `EnableCallContextPropagation()` automatically propagates the cancellation token.
+* Propagate the cancellation token to child calls. Propagating the cancellation token ensures that child calls are canceled with their parent. [gRPC client factory](clientfactory.md) and `EnableCallContextPropagation()` automatically propagates the cancellation token.
 
 ## Related content
 
-* <xref:grpc/client>
-* <xref:grpc/clientfactory>
+* [Call gRPC services with the .NET client](client.md)
+* [gRPC client factory integration in .NET](clientfactory.md)

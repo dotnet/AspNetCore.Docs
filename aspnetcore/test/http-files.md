@@ -5,7 +5,6 @@ description: Learn how to use .http files in Visual Studio 2022 to test ASPNET C
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 10/14/2026
 ms.topic: how-to
-uid: test/http-files
 ---
 # Use .http files in Visual Studio 2022
 
@@ -322,7 +321,7 @@ In this scenario, the "dev" environment request is sent to `https://contoso.com/
 
 ## ASP.NET Core user secrets
 
-To get a value from [user secrets](xref:security/app-secrets), use an environment file that is located in the same folder as the ASP.NET Core project. In the environment file, define a variable that has `provider` and `secretName` properties. Set the `provider` value to `AspnetUserSecrets` and set `secretName` to the name of the desired user secret. For example, the following environment file defines a variable named `ApiKeyDev` that gets its value from the `config:ApiKeyDev` user secret:
+To get a value from [user secrets](../security/app-secrets.md), use an environment file that is located in the same folder as the ASP.NET Core project. In the environment file, define a variable that has `provider` and `secretName` properties. Set the `provider` value to `AspnetUserSecrets` and set `secretName` to the name of the desired user secret. For example, the following environment file defines a variable named `ApiKeyDev` that gets its value from the `config:ApiKeyDev` user secret:
 
 ```json
 {

@@ -26,9 +26,9 @@ You can get to the endpoint from the `HttpContext`. However, there was no way to
 
 ## Recommended action
 
-If your app uses the endpoint resource, call <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint%2A> on the `HttpContext` to continue accessing the endpoint.
+If your app uses the endpoint resource, call <xref:Microsoft.AspNetCore.Http.EndpointHttpContextExtensions.GetEndpoint*> on the `HttpContext` to continue accessing the endpoint.
 
-You can revert to the old behavior with <xref:System.AppContext.SetSwitch%2A>. For example:
+You can revert to the old behavior with <xref:System.AppContext.SetSwitch*>. For example:
 
 ```csharp
 AppContext.SetSwitch(

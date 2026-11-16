@@ -3,7 +3,6 @@ title: Reuse Razor components in ASP.NET Core Blazor Hybrid apps
 description: Learn how to author and organize Razor components for the web and Web Views in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/reuse-razor-components
 ---
 # Reuse Razor components in ASP.NET Core Blazor Hybrid
 
@@ -23,9 +22,9 @@ In order to author Razor components that can seamlessly work across hosting mode
 
 * Place shared UI code in Razor class libraries (RCLs), which are containers designed to maintain reusable pieces of UI for use across different hosting models and platforms.
 * Implementations of unique features shouldn't exist in RCLs. Instead, the RCL should define abstractions (interfaces and base classes) that hosting models and platforms implement.
-* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> in a component as an optimization, but only use them with conditional casts and fallback implementations that rely on the universal <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> abstractions that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see <xref:blazor/js-interop/call-javascript-from-dotnet#synchronous-js-interop-in-client-side-components>. For more information on <xref:Microsoft.JSInterop.IJSInProcessObjectReference>, see <xref:blazor/js-interop/call-dotnet-from-javascript#synchronous-js-interop-in-client-side-components>.
+* Only opt-in to unique features by hosting model or platform. For example, Blazor WebAssembly supports the use of <xref:Microsoft.JSInterop.IJSInProcessRuntime> and <xref:Microsoft.JSInterop.IJSInProcessObjectReference> in a component as an optimization, but only use them with conditional casts and fallback implementations that rely on the universal <xref:Microsoft.JSInterop.IJSRuntime> and <xref:Microsoft.JSInterop.IJSObjectReference> abstractions that all hosting models and platforms support. For more information on <xref:Microsoft.JSInterop.IJSInProcessRuntime>, see [Call JavaScript functions from .NET methods in ASP.NET Core Blazor](../javascript-interoperability/call-javascript-from-dotnet.md#synchronous-js-interop-in-client-side-components). For more information on <xref:Microsoft.JSInterop.IJSInProcessObjectReference>, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#synchronous-js-interop-in-client-side-components).
 * As a general rule, use CSS for HTML styling in components. The most common case is for consistency in the look and feel of an app. In places where UI styles must differ across hosting models or platforms, use CSS to style the differences.
-* If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](xref:blazor/components/dynamiccomponent). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments) and [Render fragments for reusable rendering logic](xref:blazor/components/index#render-fragments-for-reusable-rendering-logic).
+* If some part of the UI requires additional or different content for a target hosting model or platform, the content can be encapsulated inside a component and rendered inside the RCL using [`DynamicComponent`](../components/dynamiccomponent.md). Additional UI can also be provided to components via <xref:Microsoft.AspNetCore.Components.RenderFragment> instances. For more information on <xref:Microsoft.AspNetCore.Components.RenderFragment>, see [Child content render fragments](../components/index.md#child-content-render-fragments) and [Render fragments for reusable rendering logic](../components/index.md#render-fragments-for-reusable-rendering-logic).
 
 ## Project code organization
 
@@ -68,13 +67,13 @@ The following example demonstrates the concepts for images in an app that organi
 
 :::moniker range=">= aspnetcore-8.0"
 
-For an example, see <xref:blazor/hybrid/tutorials/maui-blazor-web-app#using-interfaces-to-support-different-device-implementations>.
+For an example, see [Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](tutorials/maui-blazor-web-app.md#using-interfaces-to-support-different-device-implementations).
 
 :::moniker-end
 
 ## Related content
 
-* <xref:blazor/hybrid/class-libraries-best-practices>
+* [Combine Blazor Hybrid with .NET MAUI and Razor class libraries (RCLs)](class-libraries-best-practices.md)
 * eShop Reference Application (AdventureWorks): The .NET MAUI Blazor Hybrid app is in the `src/HybridApp` folder.
   * For Azure hosting: [`Azure-Samples/eShopOnAzure` GitHub repository](https://github.com/Azure-Samples/eShopOnAzure)
   * For general non-Azure hosting: [`dotnet/eShop` GitHub repository](https://github.com/dotnet/eShop).

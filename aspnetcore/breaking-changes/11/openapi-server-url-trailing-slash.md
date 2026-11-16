@@ -72,4 +72,4 @@ builder.Services.AddOpenApi(options =>
 ## Affected APIs
 
 - `Microsoft.AspNetCore.OpenApi.OpenApiRouteHandlerBuilderExtensions`
-- Generated `servers[0].url` in the OpenAPI document produced by [`AddOpenApi`](/aspnet/core/fundamentals/openapi/aspnetcore-openapi).
+- Generated `servers[0].url` in the OpenAPI document produced by [`AddOpenApi`](../../fundamentals/openapi/aspnetcore-openapi.md).

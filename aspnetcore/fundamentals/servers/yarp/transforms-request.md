@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/transforms-request
 title: YARP Request Transforms
 description: YARP Request Transforms
 ms.date: 2/6/2025
@@ -17,7 +16,7 @@ Notes:
 * The proxy request scheme (http/https), authority, and path base, are taken from the destination server address (`https://localhost:10001/Path/Base` in the example above) and should not be modified by transforms.
 * The Host header can be overridden by transforms independent of the authority, see [RequestHeader](#requestheader) below.
 * The request's original PathBase property is not used when constructing the proxy request, see [X-Forwarded](#x-forwarded).
-* All incoming request headers are copied to the proxy request by default with the exception of the Host header (see `Defaults`<!-- fix ](#defaults--> [Defaults](xref:fundamentals/servers/yarp/timeouts#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
+* All incoming request headers are copied to the proxy request by default with the exception of the Host header (see `Defaults`<!-- fix ](#defaults--> [Defaults](timeouts.md#defaults)). [X-Forwarded](#x-forwarded) headers are also added by default. These behaviors can be configured using the following transforms. Additional request headers can be specified, or request headers can be excluded by setting them to an empty value.
 
 The following are built in transforms identified by their primary config key. These transforms are applied in the order they are specified in the route configuration.
 
@@ -116,7 +115,7 @@ transformBuilderContext.AddPathRouteValues(
     pattern: new PathString("/my/{plugin}/api/{**remainder}"));
 ```
 
-This will set the request path with the given value and replace any `{}` segments with the associated route value. `{}` segments without a matching route value are removed. The final `{}` segment can be marked as `{**remainder}` to indicate this is a catch-all segment that may contain multiple path segments. See ASP.NET Core's [routing docs](/aspnet/core/fundamentals/routing#route-template-reference) for more information about route templates.
+This will set the request path with the given value and replace any `{}` segments with the associated route value. `{}` segments without a matching route value are removed. The final `{}` segment can be marked as `{**remainder}` to indicate this is a catch-all segment that may contain multiple path segments. See ASP.NET Core's [routing docs](../../routing.md#route-templates) for more information about route templates.
 
 Example:
 
@@ -431,7 +430,7 @@ routeConfig = routeConfig.WithTransformRequestHeadersAllowed("Header1", "header2
 transformBuilderContext.AddRequestHeadersAllowed("Header1", "header2");
 ```
 
-YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](xref:fundamentals/servers/yarp/transforms#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
+YARP copies most request headers to the proxy request by default (see [RequestHeadersCopy](#requestheaderscopy)). Some security models only allow specific headers to be proxied. This transform disables RequestHeadersCopy and only copies the given headers. Other transforms that modify or append to existing headers may be affected if not included in the allow list.
 
 Note that there are some headers YARP does not copy by default since they are connection specific or otherwise security sensitive (e.g. `Connection`, `Alt-Svc`). Putting those header names in the allow list will bypass that restriction but is strongly discouraged as it may negatively affect the functionality of the proxy or cause security vulnerabilities.
 
@@ -612,6 +611,6 @@ X-Client-Cert: SSdtIGEgY2VydGlmaWNhdGU...
 ```
 As the inbound and outbound connections are independent, there needs to be a way to pass any inbound client certificate to the destination server. This transform causes the client certificate taken from `HttpContext.Connection.ClientCertificate` to be Base64 encoded and set as the value for the given header name. The destination server may need that certificate to authenticate the client. There is no standard that defines this header and implementations vary, check your destination server for support.
 
-Servers do minimal validation on the incoming client certificate by default. The certificate should be validated either in the proxy or the destination, see the [client certificate auth](/aspnet/core/security/authentication/certauth) docs for details.
+Servers do minimal validation on the incoming client certificate by default. The certificate should be validated either in the proxy or the destination, see the [client certificate auth](../../../security/authentication/certauth.md) docs for details.
 
-This transform will only apply if the client certificate is already present on the connection. See the [optional certs doc](/aspnet/core/security/authentication/certauth#optional-client-certificates) if it needs to be requested from the client on a per-route basis.
+This transform will only apply if the client certificate is already present on the connection. See the [optional certs doc](../../../security/authentication/certauth.md#optional-client-certificates) if it needs to be requested from the client on a per-route basis.

@@ -157,16 +157,16 @@ In the preceding *Dockerfile*, the `*.csproj` files are copied and restored as d
 * [Docker build command](https://docs.docker.com/engine/reference/commandline/build)
 * [Docker run command](https://docs.docker.com/engine/reference/commandline/run)
 * [ASP.NET Core Docker sample](https://github.com/dotnet/dotnet-docker) (The one used in this tutorial.)
-* [Configure ASP.NET Core to work with proxy servers and load balancers](xref:host-and-deploy/proxy-load-balancer)
+* [Configure ASP.NET Core to work with proxy servers and load balancers](../../proxy-load-balancer.md)
 * [Working with Visual Studio Docker Tools](/visualstudio/containers/add-container-support)
 * [Debugging with Visual Studio Code](https://code.visualstudio.com/docs/nodejs/debugging-recipes#_debug-nodejs-in-docker-containers)
-* [GC using Docker and small containers](xref:performance/memory#gc-using-docker-and-small-containers)
-* [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](xref:host-and-deploy/docker/index#d128)
+* [GC using Docker and small containers](../../../performance/memory.md#gc-using-docker-and-small-containers)
+* [System.IO.IOException: The configured user limit (128) on the number of inotify instances has been reached](../index.md#d128)
 * [Updates to Docker images](https://andrewlock.net/exploring-the-dotnet-8-preview-updates-to-docker-images-in-dotnet-8/)
 
 ## Next steps
 
-The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/aspnetapp/README.md). In particular, learn how to implement HTTPS:
+The Git repository that contains the sample app also includes documentation. For an overview of the resources available in the repository, see [the README file](https://github.com/dotnet/dotnet-docker/blob/main/samples/AspNetCoreRazorApp/README.md). In particular, learn how to implement HTTPS:
 
 > [!div class="nextstepaction"]
 > [Developing ASP.NET Core Applications with Docker over HTTPS](https://github.com/dotnet/dotnet-docker/blob/main/samples/run-aspnetcore-https-development.md)
