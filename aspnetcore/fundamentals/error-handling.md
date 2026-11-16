@@ -95,7 +95,7 @@ Another way to use a lambda is to set the status code based on the exception typ
 
 Exception handling middleware iterates through registered exception handlers in order until one returns `true` from `TryHandleAsync`, indicating that the exception has been handled. If an exception handler handles an exception, it can return `true` to stop processing. If an exception isn't handled by any exception handler, then control falls back to the default behavior and options from the middleware.
 
-Starting in .NET 10, the default behavior is to suppress emission of diagnostics such as logs and metrics for handled exceptions (when `TryHandleAsync` returns `true`). This differs from earlier versions (.NET 8 and 9) where diagnostics were always emitted regardless of whether the exception was handled. The default behavior can be changed by setting [SuppressDiagnosticsCallback](#suppressdiagnosticscallback).
+Starting in .NET 10, the default behavior is to suppress emission of diagnostics such as logs and metrics for handled exceptions (when `TryHandleAsync` returns `true`). This differs from earlier versions (.NET 8 and 9) where diagnostics were always emitted regardless of whether the exception was handled. In .NET 8 and 9, to suppress the middleware's unhandled exception log message when custom exception handlers log and handle the error, configure a logging filter setting `Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware` to `LogLevel.None` (or `"None"` in `appsettings.json`). In .NET 10 and later, the default behavior can be changed by setting [SuppressDiagnosticsCallback](#suppressdiagnosticscallback).
 
 The following example shows an `IExceptionHandler` implementation:
 
@@ -161,6 +161,9 @@ app.UseExceptionHandler(new ExceptionHandlerOptions
     SuppressDiagnosticsCallback = context => context.Exception is ArgumentException
 });
 ```
+
+> [!NOTE]
+> In .NET 8 and 9, `SuppressDiagnosticsCallback` is not available. To suppress the middleware's unhandled exception log message when an `IExceptionHandler` handles an error, configure the logging level for `Microsoft.AspNetCore.Diagnostics.ExceptionHandlerMiddleware` to `LogLevel.None` in logging configuration or `appsettings.json`.
 
 When an exception isn't handled by any `IExceptionHandler` implementation (all handlers return `false` from `TryHandleAsync`), control falls back to the default behavior and options from the middleware, and diagnostics are emitted according to the middleware's standard behavior.
 
