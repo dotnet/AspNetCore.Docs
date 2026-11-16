@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor `QuickGrid` component
 ai-usage: ai-assisted
 description: The QuickGrid component is a Razor component for quickly and efficiently displaying data in tabular form.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 11/02/2026
+ms.date: 11/11/2026
 ---
 # ASP.NET Core Blazor `QuickGrid` component
 
@@ -379,7 +379,7 @@ The feature includes built-in CSS styling that applies a pointer cursor to click
 
 ##### Event propagation from interactive cell content
 
-The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick>. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](event-handling.md#stop-event-propagation):
+The row click handler is registered on the row's `tr` element, so a click on an interactive control inside a cell, such as a button, a checkbox, or a link, bubbles up and also invokes <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick>. Keyboard activation of a control can also generate a click that invokes the row callback. To run only the control's own handler, stop propagation on the control with the [`@onclick:stopPropagation` directive attribute](event-handling.md#stop-event-propagation):
 
 ```razor
 <QuickGrid Items="@people.AsQueryable()" 
@@ -392,18 +392,6 @@ The row click handler is registered on the row's `tr` element, so a click on an 
         </button>
     </TemplateColumn>
 </QuickGrid>
-```
-
-##### Accessibility
-
-<xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.OnRowClick> is a pointer-based convenience. By design, it doesn't change the grid's table semantics, so rows don't receive keyboard focus, don't respond to <kbd>Enter</kbd> or <kbd>Space</kbd>, and aren't announced as interactive by assistive technologies. Making a row focusable with `tabindex` and `role="button"` isn't a supported workaround, as it breaks the table semantics that assistive technologies rely on to navigate the grid.
-
-Treat a row click as a shortcut for pointer users rather than the only path to an action. For any action that a row click performs, provide a keyboard-accessible control in a cell, such as a button or a link:
-
-```razor
-<TemplateColumn Title="Details">
-    <a href="@($"/person/{context.Id}")">View</a>
-</TemplateColumn>
 ```
 
 :::moniker-end

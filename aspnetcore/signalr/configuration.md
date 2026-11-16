@@ -112,7 +112,7 @@ When increasing this limit or setting it to `null` (unlimited), consider the fol
 
 Use `HttpConnectionDispatcherOptions` to configure advanced settings related to transports and memory buffer management. These options are configured by passing a delegate to the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method in `Program.cs`.
 
-[!code-csharp[](~/signalr/configuration/samples/6.x/Program.cs?highlight=24-30)]
+[!code-csharp[](~/signalr/configuration/samples/Program.cs?highlight=24-30)]
 
 The following table describes options for configuring ASP.NET Core SignalR's advanced HTTP options.
 

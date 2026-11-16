@@ -1,9 +1,0 @@
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "None",
-      "Microsoft": "None",
-      "Microsoft.Hosting.Lifetime": "None"
-    }
-  }
-}

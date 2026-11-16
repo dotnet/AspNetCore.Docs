@@ -46,6 +46,12 @@ To ensure authentication succeeds only if PAR is used, use the [PushedAuthorizat
 
 :::moniker-end
 
+:::moniker range=">= aspnetcore-11.0"
+
+To preserve `max_age` validation for PAR, set `max_age` in `OnRedirectToIdentityProvider`. While validation is active, changes to `max_age` in `OnPushAuthorization` are rejected unless the handler skips the push. See [OpenID Connect `max_age` validates `auth_time`](../../breaking-changes/11/openid-connect-max-age-validates-auth-time.md).
+
+:::moniker-end
+
 :::moniker range=">= aspnetcore-6.0"
 
 ## Name claim and role claim mapping
