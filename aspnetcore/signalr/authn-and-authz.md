@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/16/2026
+ms.date: 11/17/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -392,7 +392,7 @@ public class CustomUserIdProvider : IUserIdProvider
 
         // Identify the hub type using endpoint metadata
         var endpoint = httpContext.GetEndpoint();
-        var hubMetadata = endpoint?.Metadata.Get<HubMetadata>();
+        var hubMetadata = endpoint?.Metadata.GetMetadata<HubMetadata>();
 
         if (hubMetadata?.HubType == typeof(AdminHub))
         {
@@ -687,7 +687,7 @@ public class CustomUserIdProvider : IUserIdProvider
 
         // Identify the hub type using endpoint metadata
         var endpoint = httpContext.GetEndpoint();
-        var hubMetadata = endpoint?.Metadata.Get<HubMetadata>();
+        var hubMetadata = endpoint?.Metadata.GetMetadata<HubMetadata>();
 
         if (hubMetadata?.HubType == typeof(AdminHub))
         {
