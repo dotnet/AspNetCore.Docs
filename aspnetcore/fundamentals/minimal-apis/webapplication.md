@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use WebApplication and WebApplicationBuilder in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 08/18/2026
-uid: fundamentals/minimal-apis/webapplication
 ---
 
 # WebApplication and WebApplicationBuilder in ASP.NET Core apps

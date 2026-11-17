@@ -1,7 +1,10 @@
-﻿public class CourseViewModel
+﻿namespace ContosoUniversity.Models.SchoolViewModels
 {
-    public int CourseID { get; set; }
-    public string Title { get; set; }
-    public int Credits { get; set; }
-    public string DepartmentName { get; set; }
+    public class CourseViewModel
+    {
+        public int CourseID { get; set; }
+        public string Title { get; set; }
+        public int Credits { get; set; }
+        public string DepartmentName { get; set; }
+    }
 }

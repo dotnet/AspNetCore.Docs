@@ -1,4 +1,4 @@
-// This code is imported by uid: tutorials/razor-pages/page
+// This code is imported by tutorials/razor-pages/page.md
 #region snippetALL
 // Unused usings removed.
 using Microsoft.AspNetCore.Mvc;

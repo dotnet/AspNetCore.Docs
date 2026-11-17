@@ -3,7 +3,6 @@ title: Transform web.config
 description: Learn how to transform the web.config file when publishing an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.2'
 ms.date: 01/13/2020
-uid: host-and-deploy/iis/transform-webconfig
 ---
 # Transform web.config
 
@@ -21,7 +20,7 @@ Transformations to the *web.config* file can be applied automatically when an ap
 These transformations occur for either of the following *web.config* generation scenarios:
 
 * Generated automatically by the `Microsoft.NET.Sdk.Web` SDK.
-* Provided by the developer in the [content root](xref:fundamentals/index#content-root) of the app.
+* Provided by the developer in the [content root](../../fundamentals/index.md#content-root) of the app.
 
 ## Build configuration
 
@@ -97,7 +96,7 @@ If no profile is passed, the default profile name is **FileSystem** and *web.Fil
 
 Environment transformations are run third, after [Build configuration](#build-configuration) and [Profile](#profile) transforms.
 
-Include a *web.{ENVIRONMENT}.config* file for each [environment](xref:fundamentals/environments) requiring a *web.config* transformation.
+Include a *web.{ENVIRONMENT}.config* file for each [environment](../../fundamentals/environments.md) requiring a *web.config* transformation.
 
 In the following example, an environment-specific environment variable is set in *web.Production.config* for the `Production` environment:
 
@@ -127,7 +126,7 @@ dotnet publish --configuration Release /p:EnvironmentName=Production
 
 The MSBuild property for the environment is `$(EnvironmentName)`.
 
-When publishing from Visual Studio and using a publish profile, see <xref:host-and-deploy/visual-studio-publish-profiles#set-the-environment>.
+When publishing from Visual Studio and using a publish profile, see [Visual Studio publish profiles (.pubxml) for ASP.NET Core app deployment](../visual-studio-publish-profiles.md#set-the-environment).
 
 The `ASPNETCORE_ENVIRONMENT` environment variable is automatically added to the *web.config* file when the environment name is specified.
 

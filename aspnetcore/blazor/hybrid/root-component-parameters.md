@@ -3,7 +3,6 @@ title: Pass root component parameters in ASP.NET Core Blazor Hybrid
 description: Learn how to pass an optional dictionary of parameters to the root component in an ASP.NET Core Blazor Hybrid app.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/hybrid/root-component-parameters
 ---
 # Pass root component parameters in ASP.NET Core Blazor Hybrid
 
@@ -155,7 +154,7 @@ public MainPage()
 }
 ```
 
-The following example [cascades](xref:blazor/components/cascading-values-and-parameters) the object (`KeypadViewModel`) down component hierarchies in the Blazor portion of the app as a [`CascadingValue`](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component).
+The following example [cascades](../components/cascading-values-and-parameters.md) the object (`KeypadViewModel`) down component hierarchies in the Blazor portion of the app as a [`CascadingValue`](../components/cascading-values-and-parameters.md#cascadingvalue-component).
 
 In the `Main` component (`Main.razor`):
 
@@ -168,7 +167,7 @@ In the `Main` component (`Main.razor`):
   }
   ```
 
-* Cascade the `KeypadViewModel` with the [`CascadingValue` component](xref:blazor/components/cascading-values-and-parameters#cascadingvalue-component). Update the `<Found>` XAML content to the following markup:
+* Cascade the `KeypadViewModel` with the [`CascadingValue` component](../components/cascading-values-and-parameters.md#cascadingvalue-component). Update the `<Found>` XAML content to the following markup:
 
   ```xaml
   <Found Context="routeData">
@@ -184,7 +183,7 @@ At this point, the cascaded type is available to Razor components throughout the
 The following `Keypad` component example:
 
 * Displays the current value of `KeypadViewModel.DisplayText`.
-* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by the call to <xref:System.Windows.Input.ICommand.CanExecute%2A?displayProperty=nameWithType>.
+* Permits character deletion by calling the `KeypadViewModel.DeleteCharCommand` command if the display string length is greater than 0 (zero), which is checked by the call to <xref:System.Windows.Input.ICommand.CanExecute*?displayProperty=nameWithType>.
 * Permits adding characters by calling `KeypadViewModel.AddCharCommand` with the key pressed in the UI.
 
 `Pages/Keypad.razor`:
@@ -271,4 +270,4 @@ Create a sidebar navigation entry in the `NavMenu` component (`Shared/NavMenu.ra
 
 * [Host a Blazor web app in a .NET MAUI app using BlazorWebView](/dotnet/maui/user-interface/controls/blazorwebview)
 * [Data binding and MVVM: Commanding (.NET MAUI documentation)](/dotnet/maui/xaml/fundamentals/mvvm#commanding)
-* <xref:blazor/components/cascading-values-and-parameters>
+* [ASP.NET Core Blazor cascading values and parameters](../components/cascading-values-and-parameters.md)

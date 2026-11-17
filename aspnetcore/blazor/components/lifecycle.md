@@ -3,7 +3,6 @@ title: ASP.NET Core Razor component lifecycle
 description: Learn about the ASP.NET Core Razor component lifecycle and how to use lifecycle events.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/components/lifecycle
 ---
 # ASP.NET Core Razor component lifecycle
 
@@ -49,14 +48,14 @@ The `Render` lifecycle:
 
 1. Avoid further rendering operations on the component when both of the following conditions are met:
    * It is not the first render.
-   * [`ShouldRender`](xref:blazor/components/rendering#suppress-ui-refreshing-shouldrender) returns `false`.
+   * [`ShouldRender`](rendering.md#suppress-ui-refreshing-shouldrender) returns `false`.
 1. Build the render tree diff (difference) and render the component.
 1. Await the DOM to update.
 1. Call [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync). The synchronous method is called prior to the asynchronous method.
 
 ![Render lifecycle](~/blazor/components/lifecycle/_static/lifecycle3.png)
 
-Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a rerender. For more information, see <xref:blazor/components/rendering#statehaschanged>.
+Developer calls to [`StateHasChanged`](#state-changes-statehaschanged) result in a rerender. For more information, see [ASP.NET Core Razor component rendering](rendering.md#statehaschanged).
 
 ## Quiescence during prerendering
 
@@ -64,27 +63,27 @@ In server-side Blazor apps, prerendering waits for *quiescence*, which means tha
 
 ## When parameters are set (`SetParametersAsync`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets parameters supplied by the component's parent in the render tree or from route parameters.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> sets parameters supplied by the component's parent in the render tree or from route parameters.
 
-The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter contains the set of [component parameter](xref:blazor/components/index#component-parameters) values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> is called. By overriding the <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> method, developer code can interact directly with <xref:Microsoft.AspNetCore.Components.ParameterView>'s parameters.
+The method's <xref:Microsoft.AspNetCore.Components.ParameterView> parameter contains the set of [component parameter](index.md#component-parameters) values for the component each time <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> is called. By overriding the <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> method, developer code can interact directly with <xref:Microsoft.AspNetCore.Components.ParameterView>'s parameters.
 
-The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
+The default implementation of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*> sets the value of each property with the [`[Parameter]`](xref:Microsoft.AspNetCore.Components.ParameterAttribute) or [`[CascadingParameter]` attribute](xref:Microsoft.AspNetCore.Components.CascadingParameterAttribute) that has a corresponding value in the <xref:Microsoft.AspNetCore.Components.ParameterView>. Parameters that don't have a corresponding value in <xref:Microsoft.AspNetCore.Components.ParameterView> are left unchanged.
 
-Generally, your code should call the base class method (`await base.SetParametersAsync(parameters);`) when overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. In advanced scenarios, developer code can interpret the incoming parameters' values in any way required by not invoking the base class method. For example, there's no requirement to assign the incoming parameters to the properties of the class. However, you must refer to the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) when structuring your code without calling the base class method because it calls other lifecycle methods and triggers rendering in a complex fashion.
+Generally, your code should call the base class method (`await base.SetParametersAsync(parameters);`) when overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*>. In advanced scenarios, developer code can interpret the incoming parameters' values in any way required by not invoking the base class method. For example, there's no requirement to assign the incoming parameters to the properties of the class. However, you must refer to the [`ComponentBase` reference source](https://github.com/dotnet/aspnetcore/blob/main/src/Components/Components/src/ComponentBase.cs) when structuring your code without calling the base class method because it calls other lifecycle methods and triggers rendering in a complex fashion.
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
-If you want to rely on the initialization and rendering logic of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
+If you want to rely on the initialization and rendering logic of <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*?displayProperty=nameWithType> but not process incoming parameters, you have the option of passing an empty <xref:Microsoft.AspNetCore.Components.ParameterView> to the base class method:
 
 ```csharp
 await base.SetParametersAsync(ParameterView.Empty);
 ```
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see <xref:blazor/components/component-disposal>.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
-In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
+In the following example, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue*?displayProperty=nameWithType> assigns the `Param` parameter's value to `value` if parsing a route parameter for `Param` is successful. When `value` isn't `null`, the value is displayed by the component.
 
-Although [route parameter matching is case insensitive](xref:blazor/fundamentals/routing#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> only matches case-sensitive parameter names in the route template. The following example requires the use of `/{Param?}` in the route template in order to get the value with <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A>, not `/{param?}`. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue%2A> returns `false` and `message` isn't set to either `message` string.
+Although [route parameter matching is case insensitive](../fundamentals/routing.md#route-parameters), <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue*> only matches case-sensitive parameter names in the route template. The following example requires the use of `/{Param?}` in the route template in order to get the value with <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue*>, not `/{param?}`. If `/{param?}` is used in this scenario, <xref:Microsoft.AspNetCore.Components.ParameterView.TryGetValue*> returns `false` and `message` isn't set to either `message` string.
 
 `SetParamsAsync.razor`:
 
@@ -126,13 +125,13 @@ Although [route parameter matching is case insensitive](xref:blazor/fundamentals
 
 ## Component initialization (`OnInitialized{Async}`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> are used exclusively to initialize a component for the entire lifetime of the component instance. Parameter values and parameter value changes shouldn't affect the initialization performed in these methods. For example, loading static options into a dropdown list that doesn't change for the lifetime of the component and that isn't dependent on parameter values is performed in one of these lifecycle methods. If parameter values or changes in parameter values affect component state, use [`OnParametersSet{Async}`](#when-parameters-are-set-setparametersasync) instead.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> are used exclusively to initialize a component for the entire lifetime of the component instance. Parameter values and parameter value changes shouldn't affect the initialization performed in these methods. For example, loading static options into a dropdown list that doesn't change for the lifetime of the component and that isn't dependent on parameter values is performed in one of these lifecycle methods. If parameter values or changes in parameter values affect component state, use [`OnParametersSet{Async}`](#when-parameters-are-set-setparametersasync) instead.
 
-These methods are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A>. The synchronous method is called prior to the asynchronous method.
+These methods are invoked when the component is initialized after having received its initial parameters in <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*>. The synchronous method is called prior to the asynchronous method.
 
 If synchronous parent component initialization is used, the parent initialization is guaranteed to complete before child component initialization. If asynchronous parent component initialization is used, the completion order of parent and child component initialization can't be determined because it depends on the initialization code running.
 
-For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A>:
+For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*>:
 
 `OnInit.razor`:
 
@@ -172,7 +171,7 @@ For a synchronous operation, override <xref:Microsoft.AspNetCore.Components.Comp
 
 :::moniker-end
 
-To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
+To perform an asynchronous operation, override <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> and use the [`await`](/dotnet/csharp/language-reference/operators/await) operator:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -181,7 +180,7 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> on the base class:
+If a custom [base class](index.md#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> on the base class:
 
 ```csharp
 protected override async Task OnInitializedAsync()
@@ -192,52 +191,52 @@ protected override async Task OnInitializedAsync()
 }
 ```
 
-It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
-A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
+A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of [ASP.NET Core Blazor synchronization context](synchronization-context.md) and [ASP.NET Core Razor component disposal](component-disposal.md).
 
-Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> *twice*:
+Blazor apps that prerender their content on the server call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> *twice*:
 
 * Once when the component is initially rendered statically as part of the page.
 * A second time when the browser renders the component.
 
 :::moniker range=">= aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. The content in the section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/integration#persist-prerendered-state>.
+To prevent developer code in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> from running twice when prerendering, see the [Stateful reconnection after prerendering](#stateful-reconnection-after-prerendering) section. Although the content in the section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](integration.md#persist-prerendered-state).
 
 :::moniker-end
 
 While a Blazor app is prerendering, certain actions, such as calling into JavaScript (JS interop), aren't possible. Components may need to render differently when prerendered. For more information, see the [Prerendering with JavaScript interop](#prerendering-with-javascript-interop) section.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see <xref:blazor/components/component-disposal>.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
 ::: moniker range=">= aspnetcore-8.0"
 
-Use *streaming rendering* with static server-side rendering (static SSR) or prerendering to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> to fully render. For more information, see the following resources:
+Use *streaming rendering* with static server-side rendering (static SSR) or prerendering to improve the user experience for components that perform long-running asynchronous tasks in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> to fully render. For more information, see the following resources:
 
 * [Handle incomplete asynchronous actions at render](#handle-incomplete-asynchronous-actions-at-render) (this article)
-* <xref:blazor/components/rendering#streaming-rendering>
+* [ASP.NET Core Razor component rendering](rendering.md#streaming-rendering)
 
 :::moniker-end
 
 ## After parameters are set (`OnParametersSet{Async}`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> are called:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> are called:
 
-* After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized%2A> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A>.
+* After the component is initialized in <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitialized*> or <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*>.
 
 * When the parent component rerenders and supplies:
 
   * Known or primitive immutable types when at least one parameter has changed.
   * Complex-typed parameters. The framework can't know whether the values of a complex-typed parameter have mutated internally, so the framework always treats the parameter set as changed when one or more complex-typed parameters are present.
   
-  For more information on rendering conventions, see <xref:blazor/components/rendering#rendering-conventions-for-componentbase>.
+  For more information on rendering conventions, see [ASP.NET Core Razor component rendering](rendering.md#rendering-conventions-for-componentbase).
 
 The synchronous method is called prior to the asynchronous method.
 
@@ -251,7 +250,7 @@ For the following example component, navigate to the component's page at a URL:
 :::moniker range=">= aspnetcore-5.0"
 
 > [!NOTE]
-> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](xref:blazor/fundamentals/routing#route-constraints) and [make the parameter optional](xref:blazor/fundamentals/routing#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](xref:mvc/views/razor#page) directives to handle routing with and without a supplied date segment in the URL.
+> In a component route, it isn't possible to both constrain a <xref:System.DateTime> parameter with the [route constraint `datetime`](../fundamentals/routing.md#route-constraints) and [make the parameter optional](../fundamentals/routing.md#route-parameters). Therefore, the following `OnParamsSet` component uses two [`@page`](../../mvc/views/razor.md#page) directives to handle routing with and without a supplied date segment in the URL.
 
 :::moniker-end
 
@@ -293,7 +292,7 @@ For the following example component, navigate to the component's page at a URL:
 
 :::moniker-end
 
-Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> lifecycle event:
+Asynchronous work when applying parameters and property values must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> lifecycle event:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -302,7 +301,7 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> on the base class:
+If a custom [base class](index.md#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> on the base class:
 
 ```csharp
 protected override async Task OnParametersSetAsync()
@@ -313,41 +312,41 @@ protected override async Task OnParametersSetAsync()
 }
 ```
 
-It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
-A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
+A component must ensure that it's in a valid state for rendering when <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> awaits a potentially incomplete <xref:System.Threading.Tasks.Task>. If the method returns an incomplete <xref:System.Threading.Tasks.Task>, the part of the method that completes synchronously must leave the component in a valid state for rendering. For more information, see the introductory remarks of [ASP.NET Core Blazor synchronization context](synchronization-context.md) and [ASP.NET Core Razor component disposal](component-disposal.md).
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see <xref:blazor/components/component-disposal>.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
-If a disposable component doesn't use a <xref:System.Threading.CancellationToken>, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> should check if the component is disposed. If <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync%2A> returns an incomplete <xref:System.Threading.Tasks.Task>, the component must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering. For more information, see the introductory remarks of <xref:blazor/components/sync-context> and <xref:blazor/components/component-disposal>.
+If a disposable component doesn't use a <xref:System.Threading.CancellationToken>, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSet*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> should check if the component is disposed. If <xref:Microsoft.AspNetCore.Components.ComponentBase.OnParametersSetAsync*> returns an incomplete <xref:System.Threading.Tasks.Task>, the component must ensure that the part of the method that completes synchronously leaves the component in a valid state for rendering. For more information, see the introductory remarks of [ASP.NET Core Blazor synchronization context](synchronization-context.md) and [ASP.NET Core Razor component disposal](component-disposal.md).
 
-For more information on route parameters and constraints, see <xref:blazor/fundamentals/routing>.
+For more information on route parameters and constraints, see [ASP.NET Core Blazor routing](../fundamentals/routing.md).
 
-For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see <xref:blazor/performance/rendering#implement-setparametersasync-manually>.
+For an example of implementing `SetParametersAsync` manually to improve performance in some scenarios, see [ASP.NET Core Blazor rendering performance best practices](../performance/rendering.md#implement-setparametersasync-manually).
 
 ## After component render (`OnAfterRender{Async}`)
 
 :::moniker range=">= aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> are invoked after a component has rendered interactively and the UI has finished updating (for example, after elements are added to the browser DOM). Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
 
 These methods aren't invoked during prerendering or static server-side rendering (static SSR) on the server because those processes aren't attached to a live browser DOM and are already complete before the DOM is updated.
 
-For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
+For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> are called after a component has finished rendering. Element and component references are populated at this point. Use this stage to perform additional initialization steps with the rendered content, such as JS interop calls that interact with the rendered DOM elements. The synchronous method is called prior to the asynchronous method.
 
 These methods aren't invoked during prerendering because prerendering isn't attached to a live browser DOM and is already complete before the DOM is updated.
 
-For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
+For <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*>, the component doesn't automatically rerender after the completion of any returned `Task` to avoid an infinite render loop.
 
 :::moniker-end
 
-The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>:
+The `firstRender` parameter for <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*>:
 
 * Is set to `true` the first time that the component instance is rendered.
 * Can be used to ensure that initialization work is only performed once.
@@ -396,7 +395,7 @@ The `AfterRender.razor` sample produces following output to console when the pag
 > :::no-loc text="HandleClick called":::  
 > :::no-loc text="OnAfterRender: firstRender = False":::
 
-Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> lifecycle event:
+Asynchronous work immediately after rendering must occur during the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> lifecycle event:
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -405,7 +404,7 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 }
 ```
 
-If a custom [base class](xref:blazor/components/index#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> on the base class:
+If a custom [base class](index.md#specify-a-base-class) is used with custom initialization logic, call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> on the base class:
 
 ```csharp
 protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -416,22 +415,22 @@ protected override async Task OnAfterRenderAsync(bool firstRender)
 }
 ```
 
-It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
+It isn't necessary to call <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*?displayProperty=nameWithType> unless a custom base class is used with custom logic. For more information, see the [Base class lifecycle methods](#base-class-lifecycle-methods) section.
 
-Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. This is different from the other lifecycle methods, which schedule a further render cycle once a returned <xref:System.Threading.Tasks.Task> completes.
+Even if you return a <xref:System.Threading.Tasks.Task> from <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*>, the framework doesn't schedule a further render cycle for your component once that task completes. This is to avoid an infinite render loop. This is different from the other lifecycle methods, which schedule a further render cycle once a returned <xref:System.Threading.Tasks.Task> completes.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering. When the app prerenders:
+<xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> *aren't called during the prerendering process on the server*. The methods are called when the component is rendered interactively after prerendering. When the app prerenders:
 
-1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> aren't called.
-1. When the Blazor script (`blazor.{server|webassembly|web}.js`) starts in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender%2A> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync%2A> **are** called because the app isn't in the prerendering phase any longer.
+1. The component executes on the server to produce some static HTML markup in the HTTP response. During this phase, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> aren't called.
+1. When the Blazor script (`blazor.{server|webassembly|web}.js`) starts in the browser, the component is restarted in an interactive rendering mode. After a component is restarted, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRender*> and <xref:Microsoft.AspNetCore.Components.ComponentBase.OnAfterRenderAsync*> **are** called because the app isn't in the prerendering phase any longer.
 
-If event handlers are provided in developer code, unhook them on disposal. For more information, see <xref:blazor/components/component-disposal>.
+If event handlers are provided in developer code, unhook them on disposal. For more information, see [ASP.NET Core Razor component disposal](component-disposal.md).
 
 ## Base class lifecycle methods
 
 When overriding Blazor's lifecycle methods, it isn't necessary to call base class lifecycle methods for <xref:Microsoft.AspNetCore.Components.ComponentBase>. However, a component should call an overridden base class lifecycle method in the following situations:
 
-* When overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync%2A?displayProperty=nameWithType>, `await base.SetParametersAsync(parameters);` is usually invoked because the base class method calls other lifecycle methods and triggers rendering in a complex fashion. For more information, see the [When parameters are set (`SetParametersAsync`)](#when-parameters-are-set-setparametersasync) section.
+* When overriding <xref:Microsoft.AspNetCore.Components.ComponentBase.SetParametersAsync*?displayProperty=nameWithType>, `await base.SetParametersAsync(parameters);` is usually invoked because the base class method calls other lifecycle methods and triggers rendering in a complex fashion. For more information, see the [When parameters are set (`SetParametersAsync`)](#when-parameters-are-set-setparametersasync) section.
 * If the base class method contains logic that must be executed. Library consumers usually call base class lifecycle methods when inheriting a base class because library base classes often have custom lifecycle logic to execute. If the app uses a base class from a library, consult the library's documentation for guidance.
 
 In the following example, `base.OnInitialized();` is called to ensure that the base class's `OnInitialized` method is executed. Without the call, `BlazorRocksBase2.OnInitialized` doesn't execute.
@@ -514,17 +513,17 @@ In the following example, `base.OnInitialized();` is called to ensure that the b
 
 ## State changes (`StateHasChanged`)
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> enqueues a rerender that occurs when the app's main thread is free.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> notifies the component that its state has changed. When applicable, calling <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> enqueues a rerender that occurs when the app's main thread is free.
 
-<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see <xref:blazor/components/event-handling#eventcallback>.
+<xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*> is called automatically for <xref:Microsoft.AspNetCore.Components.EventCallback> methods. For more information on event callbacks, see [ASP.NET Core Blazor event handling](event-handling.md#eventcallback).
 
-For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged%2A>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync%2A?displayProperty=nameWithType>, see <xref:blazor/components/rendering>.
+For more information on component rendering and when to call <xref:Microsoft.AspNetCore.Components.ComponentBase.StateHasChanged*>, including when to invoke it with <xref:Microsoft.AspNetCore.Components.ComponentBase.InvokeAsync*?displayProperty=nameWithType>, see [ASP.NET Core Razor component rendering](rendering.md).
 
 ## Handle incomplete asynchronous actions at render
 
 Asynchronous actions performed in lifecycle events might not have completed before the component is rendered. Objects might be `null` or incompletely populated with data while the lifecycle method is executing. Provide rendering logic to confirm that objects are initialized. Render placeholder UI elements (for example, a loading message) while objects are `null`.
 
-In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> is overridden to asynchronously execute a long-running task. While `isLoading` is `true`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> completes, the component is rerendered with the updated state, showing the "`Finished!`" message.
+In the following `Slow` component, <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> is overridden to asynchronously execute a long-running task. While `isLoading` is `true`, a loading message is displayed to the user. After the `Task` returned by <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> completes, the component is rerendered with the updated state, showing the "`Finished!`" message.
 
 `Slow.razor`:
 
@@ -580,7 +579,7 @@ else
 }
 ```
 
-Prerendering waits for *quiescence*, which means that a component doesn't render until all of the components in the render tree have finished rendering. This means that a loading message doesn't display while a child component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> method is executing a long-running task during prerendering. To demonstrate this behavior, place the preceding `Slow` component into a test app's `Home` component:
+Prerendering waits for *quiescence*, which means that a component doesn't render until all of the components in the render tree have finished rendering. This means that a loading message doesn't display while a child component's <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> method is executing a long-running task during prerendering. To demonstrate this behavior, place the preceding `Slow` component into a test app's `Home` component:
 
 ```razor
 @page "/"
@@ -595,13 +594,13 @@ Welcome to your new app.
 ```
 
 > [!NOTE]
-> Although the examples in this section discuss the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync%2A> lifecycle method, other lifecycle methods that execute during prerendering may delay final rendering of a component. Only [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync) isn't executed during prerendering and is immune to delays due to quiescence.
+> Although the examples in this section discuss the <xref:Microsoft.AspNetCore.Components.ComponentBase.OnInitializedAsync*> lifecycle method, other lifecycle methods that execute during prerendering may delay final rendering of a component. Only [`OnAfterRender{Async}`](#after-component-render-onafterrenderasync) isn't executed during prerendering and is immune to delays due to quiescence.
 
 During prerendering, the `Home` component doesn't render until the `Slow` component is rendered, which takes ten seconds. The UI is blank during this ten-second period, and there's no loading message. After prerendering, the `Home` component renders, and the `Slow` component's loading message is displayed. After ten more seconds, the `Slow` component finally displays the finished message.
 
 :::moniker range=">= aspnetcore-8.0"
 
-As the preceding demonstration illustrates, quiescence during prerendering results in a poor user experience. To improve the user experience, begin by implementing [streaming rendering](xref:blazor/components/rendering#streaming-rendering) to avoid waiting for the asynchronous task to complete while prerendering.
+As the preceding demonstration illustrates, quiescence during prerendering results in a poor user experience. To improve the user experience, begin by implementing [streaming rendering](rendering.md#streaming-rendering) to avoid waiting for the asynchronous task to complete while prerendering.
 
 Add the [`[StreamRendering]` attribute](xref:Microsoft.AspNetCore.Components.StreamRenderingAttribute) to the `Slow` component (use `[StreamRendering(true)]` in .NET 8):
 
@@ -718,20 +717,20 @@ By combining streaming rendering with persistent component state:
 
 For more information, see the following resources:
 
-* <xref:blazor/components/rendering#streaming-rendering>
-* <xref:blazor/state-management/prerendered-state-persistence>.
+* [ASP.NET Core Razor component rendering](rendering.md#streaming-rendering)
+* [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](xref:blazor/components/integration#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than .NET 8, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
+Quiescence during prerendering results in a poor user experience. The delay can be addressed in apps that target .NET 8 or later with a feature called *streaming rendering*, usually combined with [persisting component state during prerendering](integration.md#persist-prerendered-state) to avoid waiting for the asynchronous task to complete. In versions of .NET earlier than .NET 8, executing a [long-running background task](#cancelable-background-work) that loads the data after final rendering can address a long rendering delay due to quiescence.
 
 :::moniker-end
 
 ## Handle errors
 
-For information on handling errors during lifecycle method execution, see <xref:blazor/fundamentals/handle-errors>.
+For information on handling errors during lifecycle method execution, see [Handle errors in ASP.NET Core Blazor apps](../fundamentals/handle-errors.md).
 
 ## Stateful reconnection after prerendering
 
@@ -742,9 +741,9 @@ When prerendering on the server, a component is initially rendered statically as
 
 This can result in a noticeable change in the data displayed in the UI when the component is finally rendered. To avoid this behavior, pass in an identifier to cache the state during prerendering and to retrieve the state after prerendering.
 
-The following code demonstrates a `WeatherForecastService` that avoids the change in data display due to prerendering. The awaited <xref:System.Threading.Tasks.Task.Delay%2A> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
+The following code demonstrates a `WeatherForecastService` that avoids the change in data display due to prerendering. The awaited <xref:System.Threading.Tasks.Task.Delay*> (`await Task.Delay(...)`) simulates a short delay before returning data from the `GetForecastAsync` method.
 
-Add <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> services with <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache%2A> on the service collection in the app's `Program` file:
+Add <xref:Microsoft.Extensions.Caching.Memory.IMemoryCache> services with <xref:Microsoft.Extensions.DependencyInjection.MemoryCacheServiceCollectionExtensions.AddMemoryCache*> on the service collection in the app's `Program` file:
 
 ```csharp
 builder.Services.AddMemoryCache();
@@ -788,17 +787,17 @@ builder.Services.AddMemoryCache();
 
 :::moniker-end
 
-For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see <xref:blazor/fundamentals/signalr#server-side-render-mode>.
+For more information on the <xref:Microsoft.AspNetCore.Mvc.TagHelpers.ComponentTagHelper.RenderMode>, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#server-side-rendering).
 
 :::moniker range=">= aspnetcore-8.0"
 
-The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/state-management/prerendered-state-persistence>.
+The content in this section focuses on Blazor Web Apps and stateful SignalR *reconnection*. To preserve state during the execution of initialization code while prerendering, see [ASP.NET Core Blazor prerendered state persistence](../state-management/prerendered-state-persistence.md).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see <xref:blazor/components/integration#persist-prerendered-state>.
+Although the content in this section focuses on Blazor Server and stateful SignalR *reconnection*, the scenario for prerendering in hosted Blazor WebAssembly solutions (<xref:Microsoft.AspNetCore.Mvc.Rendering.RenderMode.WebAssemblyPrerendered>) involves similar conditions and approaches to prevent executing developer code twice. To preserve state during the execution of initialization code while prerendering, see [Integrate ASP.NET Core Razor components with MVC or Razor Pages](integration.md#persist-prerendered-state).
 
 :::moniker-end
 
@@ -821,8 +820,8 @@ Other reasons why background work items might require cancellation include:
 To implement a cancelable background work pattern in a component:
 
 * Use a <xref:System.Threading.CancellationTokenSource> and <xref:System.Threading.CancellationToken>.
-* Upon [disposal of the component](xref:blazor/components/component-disposal) and at any point cancellation is desired by manually canceling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel%2A) to signal that the background work should be cancelled.
-* After the asynchronous call returns, call <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested%2A> on the token.
+* Upon [disposal of the component](component-disposal.md) and at any point cancellation is desired by manually canceling the token, call [`CancellationTokenSource.Cancel`](xref:System.Threading.CancellationTokenSource.Cancel*) to signal that the background work should be cancelled.
+* After the asynchronous call returns, call <xref:System.Threading.CancellationToken.ThrowIfCancellationRequested*> on the token.
 
 In the following example:
 
@@ -872,7 +871,7 @@ To display a loading indicator while the background work is taking place, use th
 Create a loading indicator component with a `Loading` parameter that can display child content in a <xref:Microsoft.AspNetCore.Components.RenderFragment>. For the `Loading` parameter:
 
 * When `true`, display a loading indicator.
-* When `false`, render the component's content (`ChildContent`). For more information, see [Child content render fragments](xref:blazor/components/index#child-content-render-fragments).
+* When `false`, render the component's content (`ChildContent`). For more information, see [Child content render fragments](index.md#child-content-render-fragments).
 
 `ContentLoading.razor`:
 
@@ -897,7 +896,7 @@ else
 
 :::moniker range=">= aspnetcore-6.0"
 
-To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see <xref:blazor/components/control-head-content>.
+To load CSS styles for the indicator, add the styles to `<head>` content with the <xref:Microsoft.AspNetCore.Components.Web.HeadContent> component. For more information, see [Control head content in ASP.NET Core Blazor apps](control-head-content.md).
 
 ```razor
 @if (Loading)
@@ -943,8 +942,8 @@ Wrap the component's Razor markup with the `ContentLoading` component and pass a
 
 ## Blazor Server reconnection events
 
-The component lifecycle events covered in this article operate separately from [server-side reconnection event handlers](xref:blazor/fundamentals/signalr#reflect-the-server-side-connection-state-in-the-ui). When the SignalR connection to the client is lost, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see <xref:blazor/fundamentals/signalr>.
+The component lifecycle events covered in this article operate separately from [server-side reconnection event handlers](../fundamentals/signalr.md#reflect-the-server-side-connection-state-in-the-ui). When the SignalR connection to the client is lost, only UI updates are interrupted. UI updates are resumed when the connection is re-established. For more information on circuit handler events and configuration, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md).
 
 ## Related content
 
-[Handle caught exceptions outside of a Razor component's lifecycle](xref:blazor/components/sync-context#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)
+[Handle caught exceptions outside of a Razor component's lifecycle](synchronization-context.md#handle-caught-exceptions-outside-of-a-razor-components-lifecycle)

@@ -5,7 +5,6 @@ description: Learn how to build an ASP.NET Core app with email confirmation and 
 ms.custom: sfi-image-nochange
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 05/11/2026
-uid: security/authentication/accconfirm
 
 # customer intent: As an ASP.NET developer, I want to confirm user accounts and recover passwords, so I can verify user email addresses and allow password resets in my ASP.NET Core app.
 ---
@@ -15,16 +14,16 @@ By [Rick Anderson](https://twitter.com/RickAndMSFT), [Ponant](https://github.com
 
 This tutorial shows how to build an ASP.NET Core app with email confirmation and password reset. This tutorial is **not** a beginning article. You should be familiar with:
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
+* [Authentication](identity.md)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)
 
 :::moniker range=">= aspnetcore-8.0"
 
 For Blazor guidance, which adds to or supersedes the guidance in this article, see the following resources:
 
-* <xref:blazor/security/account-confirmation-and-password-recovery>
-* <xref:blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery>
+* [Account confirmation and password recovery in ASP.NET Core Blazor](../../blazor/security/account-confirmation-and-password-recovery.md)
+* [Account confirmation and password recovery in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity](../../blazor/security/webassembly/standalone-with-identity/account-confirmation-and-password-recovery.md)
 
 :::moniker-end
 
@@ -61,7 +60,7 @@ After registration completes, you're redirected to the `/Identity/Account/Regist
 
 1. Select the **Personal data** tab, and then select **Delete**.
 
-The `Click here to confirm your account` link displays because the [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) interface isn't yet implemented and registered with the [dependency injection container](xref:fundamentals/dependency-injection). For more information, see the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L71-L74).
+The `Click here to confirm your account` link displays because the [IEmailSender](https://github.com/dotnet/aspnetcore/blob/1dcf7acfacf0fe154adcc23270cb0da11ff44ace/src/Identity/UI/src/Areas/Identity/Services/EmailSender.cs) interface isn't yet implemented and registered with the [dependency injection container](../../fundamentals/dependency-injection.md). For more information, see the [RegisterConfirmation source](https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L71-L74).
 
 [!INCLUDE[](~/includes/aspnetcore-repo-ref-source-links.md)]
 
@@ -79,7 +78,7 @@ Create a class to fetch the secure email key. For this sample, create the _Servi
 
 #### Configure SendGrid user secrets
 
-Set the `SendGridKey` value with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SendGridKey` value with the [secret-manager tool](../app-secrets.md). For example:
 
 ```dotnetcli
 dotnet user-secrets set SendGridKey <key>
@@ -97,7 +96,7 @@ The contents of the _secrets.json_ file aren't encrypted. The following markup s
 }
 ```
 
-For more information, see the [Options pattern](xref:fundamentals/configuration/options) and <xref:fundamentals/configuration/index>.
+For more information, see the [Options pattern](../../fundamentals/configuration/options.md) and [Configuration in ASP.NET Core](../../fundamentals/configuration/index.md).
 
 ### Install SendGrid
 
@@ -196,7 +195,7 @@ The default token lifespan of [the Identity user tokens](https://github.com/dotn
 
 The following code shows how to change the email token lifespan.
 
-Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> class and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> class:
+Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider`1> class and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions> class:
 
 [!code-csharp[](accconfirm/samples/WebPWrecover60/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -225,7 +224,7 @@ If the email process isn't working as expected, try these troubleshooting steps:
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. For more information, see <xref:security/authentication/social/index>.
+To complete this section, you must first enable an external authentication provider. For more information, see [Using external login providers with Identity in ASP.NET Core](social/index.md).
 
 In this sequence, the email address `RickAndMSFT@gmail.com` is first created as a local login. However, you can create the account as a social login first, and then add a local login.
 
@@ -297,7 +296,7 @@ Create a class to fetch the secure email key. For this sample, create `Services/
 
 #### Configure SendGrid user secrets
 
-Set the `SendGridKey` with the [secret-manager tool](xref:security/app-secrets). For example:
+Set the `SendGridKey` with the [secret-manager tool](../app-secrets.md). For example:
 
 ```dotnetcli
 dotnet user-secrets set SendGridKey <SG.key>
@@ -315,7 +314,7 @@ The contents of the `secrets.json` file aren't encrypted. The following markup s
 }
 ```
 
-For more information, see the [Options pattern](xref:fundamentals/configuration/options) and [configuration](xref:fundamentals/configuration/index).
+For more information, see the [Options pattern](../../fundamentals/configuration/options.md) and [configuration](../../fundamentals/configuration/index.md).
 
 ### Install SendGrid
 
@@ -360,7 +359,7 @@ Add the following code to the `ConfigureServices` method in the `Startup.cs` fil
 
 ## Scaffold RegisterConfirmation
 
-Follow the instructions for [Scaffold Identity](xref:security/authentication/scaffold-identity) and scaffold `Account\RegisterConfirmation`.
+Follow the instructions for [Scaffold Identity](scaffold-identity.md) and scaffold `Account\RegisterConfirmation`.
 
 <!-- .NET 5 fixes this, see
 https://github.com/dotnet/aspnetcore/blob/main/src/Identity/UI/src/Areas/Identity/Pages/V4/Account/RegisterConfirmation.cshtml.cs#L74-L77
@@ -409,7 +408,7 @@ The built in Identity user tokens (see [AspNetCore/src/Identity/Extensions.Core/
 
 The default token lifespan of [the Identity user tokens](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Extensions.Core/src/TokenOptions.cs) is [one day](https://github.com/dotnet/AspNetCore/blob/v2.2.2/src/Identity/Core/src/DataProtectionTokenProviderOptions.cs). This section shows how to change the email token lifespan.
 
-Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider%601> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
+Add a custom <xref:Microsoft.AspNetCore.Identity.DataProtectorTokenProvider`1> and <xref:Microsoft.AspNetCore.Identity.DataProtectionTokenProviderOptions>:
 
 [!code-csharp[](accconfirm/samples/WebPWrecover30/TokenProviders/CustomTokenProvider.cs?name=snippet1)]
 
@@ -434,7 +433,7 @@ If you can't get email working:
 
 ## Combine social and local login accounts
 
-To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+To complete this section, you must first enable an external authentication provider. See [Facebook, Google, and external provider authentication](social/index.md).
 
 You can combine local and social accounts by clicking on your email link. In the following sequence, "RickAndMSFT@gmail.com" is first created as a local login; however, you can create the account as a social login first, then add a local login.
 
@@ -461,6 +460,6 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 ## Related content
 
-* [Razor Pages in ASP.NET Core](xref:tutorials/razor-pages/razor-pages-start)
-* [Authentication](xref:security/authentication/identity)
-* [Entity Framework Core](xref:data/ef-mvc/intro)
+* [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
+* [Authentication](identity.md)
+* [Entity Framework Core](../../data/ef-mvc/intro.md)

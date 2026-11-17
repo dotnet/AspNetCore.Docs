@@ -5,7 +5,7 @@ ai-usage: ai-assisted
 
 Minimal APIs are architected to create HTTP APIs with minimal dependencies. They're ideal for microservices and apps that want to include only the minimum files, features, and dependencies in ASP.NET Core.
 
-This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see <xref:fundamentals/apis>. For a tutorial on creating an API project based on [controllers](xref:web-api/index) that contains more features, see [Create a web API](xref:tutorials/first-web-api).
+This tutorial teaches the basics of building a Minimal API with ASP.NET Core. Another approach to creating APIs in ASP.NET Core is to use controllers. For help with choosing between Minimal APIs and controller-based APIs, see [APIs overview](../../../fundamentals/apis.md). For a tutorial on creating an API project based on [controllers](../../../web-api/index.md) that contains more features, see [Create a web API](../../first-web-api.md).
 
 ## Overview
 
@@ -92,7 +92,7 @@ Press Ctrl+F5 to run without the debugger.
 
 [!INCLUDE[](~/includes/trustCertVS22.md)]
 
-Visual Studio launches the [Kestrel web server](xref:fundamentals/servers/kestrel) and opens a browser window.
+Visual Studio launches the [Kestrel web server](../../../fundamentals/servers/kestrel.md) and opens a browser window.
 
 `Hello World!` is displayed in the browser. The `Program.cs` file contains a minimal but complete app.
 
@@ -155,7 +155,7 @@ The preceding code defines the *database context*, which is the main class that 
 
 [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_all)]
 
-The following highlighted code adds the database context to the [dependency injection (DI)](xref:fundamentals/dependency-injection) container and enables displaying database-related exceptions:
+The following highlighted code adds the database context to the [dependency injection (DI)](../../../fundamentals/dependency-injection.md) container and enables displaying database-related exceptions:
 
 [!code-csharp[](~/tutorials/min-web-api/samples/8.x/todo/Program.cs?name=snippet_DI&highlight=2-3)]
 
@@ -163,7 +163,7 @@ The DI container provides access to the database context and other services.
 
 # [Visual Studio](#tab/visual-studio)
 
-This tutorial uses [Endpoints Explorer and .http files](xref:test/http-files#use-endpoints-explorer) to test the API.
+This tutorial uses [Endpoints Explorer and .http files](../../../test/http-files.md#use-endpoints-explorer) to test the API.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
@@ -177,7 +177,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see <xref:tutorials/web-api-help-pages-using-swagger>.
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -198,7 +198,7 @@ The previous command adds the [NSwag.AspNetCore](https://www.nuget.org/packages/
 In the previous code:
 
   * `builder.Services.AddEndpointsApiExplorer();`: Enables the API Explorer, which is a service that provides metadata about the HTTP API. The API Explorer is used by Swagger to generate the Swagger document.
-  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see <xref:tutorials/get-started-with-nswag#customize-api-documentation>
+  * `builder.Services.AddOpenApiDocument(config => {...});`: Adds the Swagger OpenAPI document generator to the application services and configures it to provide more information about the API, such as its title and version. For information on providing more robust API details, see [Get started with NSwag and ASP.NET Core](../../getting-started-with-NSwag.md#customize-api-documentation)
 
 * Add the following highlighted code to the next line after `app` is defined in line `var app = builder.Build();`
 
@@ -245,26 +245,26 @@ The POST endpoint will be used to add data to the app.
 
   ```
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
   ```
-  
+
   The preceding code adds a Content-Type header and a JSON request body. The TodoApi.http file should now look like the following example, but with your port number:
-  
+
   ```
   @TodoApi_HostAddress = https://localhost:7057
-  
+
   Post {{TodoApi_HostAddress}}/todoitems
   Content-Type: application/json
-  
+
   {
     "name":"walk dog",
     "isComplete":true
   }
-  
+
   ###
   ```
 
@@ -299,7 +299,7 @@ The POST endpoint will be used to add data to the app.
 
   ![Swagger with Post request](~/tutorials/min-web-api/static/8.x/swagger-post-1.png)
 
-Swagger provides a **Responses** pane below the **Execute** button. 
+Swagger provides a **Responses** pane below the **Execute** button.
 
   ![Swagger with Post response](~/tutorials/min-web-api/static/8.x/swagger-post-responses.png)
 
@@ -379,7 +379,7 @@ Test the app by calling the `GET` endpoints from a browser or by using **Endpoin
     "isComplete": true
   }
   ```
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Test the app by calling the endpoints from a browser or Swagger.
@@ -426,7 +426,7 @@ ASP.NET Core automatically serializes the object to [JSON](https://www.json.org)
 
 The return types can represent a wide range of HTTP status codes. For example, `GET /todoitems/{id}` can return two different status values:
 
-* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound%2A> error code.
+* If no item matches the requested ID, the method returns a [404 status](https://developer.mozilla.org/docs/Web/HTTP/Status/404) <xref:Microsoft.AspNetCore.Mvc.ControllerBase.NotFound*> error code.
 * Otherwise, the method returns 200 with a JSON response body. Returning `item` results in an HTTP 200 response.
 
 ## Examine the PUT endpoint
@@ -473,7 +473,7 @@ Update the to-do item that has `Id = 1` and set its name to `"feed fish"`.
 * Select the **Send request** link that is above the new PUT request line.
 
   The PUT request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PUT request:
@@ -512,7 +512,7 @@ This method is similar to the `MapPut` method, except it uses HTTP PATCH and onl
 The PATCH endpoint uses a `TodoPatchDto` class with nullable properties to properly handle partial updates. Using nullable properties allows the endpoint to distinguish between a field that wasn't provided (null) versus a field explicitly set to a value (including false for boolean fields). Without nullable properties, a non-nullable bool would default to false, potentially overwriting an existing true value when that field wasn't included in the request.
 
 > [!NOTE]
-> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see <xref:web-api/jsonpatch>.
+> PATCH operations allow partial updates to resources. For more advanced partial updates using JSON Patch documents, see [JsonPatch in ASP.NET Core web API](../../../web-api/jsonpatch.md).
 
 ## Test the PATCH endpoint
 
@@ -549,7 +549,7 @@ Update only the `name` property of the to-do item that has `Id = 1` and set its 
 * Select the **Send request** link that is above the new PATCH request line.
 
   The PATCH request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a PATCH request:
@@ -593,7 +593,7 @@ The sample app implements a single DELETE endpoint using `MapDelete`:
 * Select the **Send request** link for the DELETE request.
 
   The DELETE request is sent to the app and the response is displayed in the **Response** pane. The response body is empty, and the status code is 204.
-  
+
 # [Visual Studio Code](#tab/visual-studio-code)
 
 Use Swagger to send a DELETE request:
@@ -607,7 +607,7 @@ Use Swagger to send a DELETE request:
 
 ## Use the MapGroup API
 
-The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup%2A> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization%2A> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata%2A>.
+The sample app code repeats the `todoitems` URL prefix each time it sets up an endpoint. APIs often have groups of endpoints with a common URL prefix, and the <xref:Microsoft.AspNetCore.Builder.EndpointRouteBuilderExtensions.MapGroup*> method is available to help organize such groups. It reduces repetitive code and allows for customizing entire groups of endpoints with a single call to methods like <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> and <xref:Microsoft.AspNetCore.Builder.RoutingEndpointConventionBuilderExtensions.WithMetadata*>.
 
 Replace the contents of `Program.cs` with the following code:
 
@@ -631,7 +631,7 @@ Test the endpoints to verify that they work the same.
 
 ## Use the TypedResults API
 
-Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](xref:fundamentals/minimal-apis/responses#typedresults-versus-results).
+Returning <xref:Microsoft.AspNetCore.Http.TypedResults> rather than <xref:Microsoft.AspNetCore.Http.Results> has several advantages, including testability and automatically returning the response type metadata for OpenAPI to describe the endpoint. For more information, see [`TypedResults` versus `Results`](../../../fundamentals/minimal-apis/responses.md#typedresults-versus-results).
 
 The `Map<HttpVerb>` methods can call route handler methods instead of using lambdas. To see an example, update *Program.cs* with the following code:
 
@@ -657,7 +657,7 @@ Unit tests can call these methods and test that they return the correct type. Fo
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/8.x/todoTypedResults/Program.cs" id="snippet_getalltodos":::
 
-Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601.Value) is returned from the handler method. For example:
+Unit test code can verify that an object of type [Ok\<Todo[]>](xref:Microsoft.AspNetCore.Http.HttpResults.Ok`1.Value) is returned from the handler method. For example:
 
 ```csharp
 public async Task GetAllTodos_ReturnsOkOfTodosResult()
@@ -716,19 +716,19 @@ Verify you can post and get all fields except the secret field.
 
 ## Troubleshooting with the completed sample
 
-If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+If you run into a problem you can't resolve, compare your code to the completed project. [View or download completed project](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/tutorials/min-web-api/samples) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)).
 
 ## Next steps
 
-* [Configure JSON serialization options](xref:fundamentals/minimal-apis/responses#configure-json-serialization-options).
-* Handle errors and exceptions: The [developer exception page](xref:fundamentals/error-handling-api#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](xref:fundamentals/error-handling-api).
+* [Configure JSON serialization options](../../../fundamentals/minimal-apis/responses.md#configure-json-serialization-options).
+* Handle errors and exceptions: The [developer exception page](../../../fundamentals/error-handling-api.md#developer-exception-page) is enabled by default in the `Development` environment for Minimal API apps. For information about how to handle errors and exceptions, see [Handle errors in ASP.NET Core APIs](../../../fundamentals/error-handling-api.md).
 * For an example of testing a Minimal API app, see [this GitHub sample](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample).
-* [OpenAPI support in Minimal APIs](xref:fundamentals/openapi/aspnetcore-openapi).
+* [OpenAPI support in Minimal APIs](../../../fundamentals/openapi/aspnetcore-openapi.md).
 * [Quickstart: Publish to Azure](/azure/app-service/quickstart-dotnetcore).
 * [Organizing ASP.NET Core Minimal APIs](https://www.tessferrandez.com/blog/2023/10/31/organizing-minimal-apis.html).
 
 ### Learn more
 
-See <xref:fundamentals/minimal-apis>
+See [Minimal APIs quick reference](../../../fundamentals/minimal-apis.md)
 
 :::moniker-end

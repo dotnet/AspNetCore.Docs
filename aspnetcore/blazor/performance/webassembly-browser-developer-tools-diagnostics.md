@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 description: Learn about browser developer tools diagnostics in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
 ms.date: 11/11/2025
-uid: blazor/performance/webassembly-browser-developer-tools
 ---
 # ASP.NET Core Blazor WebAssembly browser developer tools diagnostics
 
@@ -17,7 +16,7 @@ This article describes browser developer tools diagnostic tools in Blazor WebAss
 
 ## Prerequisite
 
-Install the [.NET WebAssembly build tools](xref:blazor/tooling/webassembly#net-webassembly-build-tools):
+Install the [.NET WebAssembly build tools](../webassembly-build-tools-and-aot.md#net-webassembly-build-tools):
 
 ```dotnetcli
 dotnet workload install wasm-tools
@@ -29,7 +28,7 @@ App code can be manually profiled using the diagnostic profiler in a browser's d
 
 Built-in diagnostic features are available to track:
 
-* [Ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation)
+* [Ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation)
 * Call specification (":::no-loc text="callspec":::", sequence and timing of function calls) and instrumentation
 
 The MSBuild properties in the following table enable profiler integration.
@@ -62,7 +61,7 @@ Alternatively, enable features when the app is built with the .NET CLI. The foll
 /p:WasmProfilers=browser /p:WasmNativeStrip=false /p:WasmNativeDebugSymbols=true
 ```
 
-Setting WebAssembly profilers with `<WasmProfilers>` doesn't require [ahead-of-time (AOT) compilation](xref:blazor/tooling/webassembly).
+Setting WebAssembly profilers with `<WasmProfilers>` doesn't require [ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md).
 
 The browser developer tools profiler can be used with AOT (`<RunAOTCompilation>`/`<RunAOTCompilationAfterBuild>` set to `true`) and without WebAssembly profilers (`<WasmProfilers>` removed).
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Explore ASP.NET Core SignalR, where you can add real-time capabilities to your apps with automatic connection management and scalable messaging solutions.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 05/20/2026
-uid: signalr/introduction
 
 # customer intent: As an ASP.NET developer, I want to use SignalR with ASP.NET Core, so I can add real-time capabilities to my apps.
 ---
@@ -25,14 +24,14 @@ This article provides an introduction to working with SignalR in your ASP.NET Co
 
 ## Features and source code
 
-SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs invoke functions on clients from server-side .NET code. There are several [supported platforms](xref:signalr/supported-platforms), each with their respective client SDK. The programming language invoked by the RPC call varies based on the platform.
+SignalR provides an API for creating server-to-client [remote procedure calls (RPC)](https://wikipedia.org/wiki/Remote_procedure_call). The RPCs invoke functions on clients from server-side .NET code. There are several [supported platforms](supported-platforms.md), each with their respective client SDK. The programming language invoked by the RPC call varies based on the platform.
 
 SignalR for ASP.NET Core provides developers with many features:
 
 * Handle connection management automatically
 * Send messages to all connected clients simultaneously (for example, a chat room)
 * Send messages to specific clients or groups of clients
-* Scale to handle increasing traffic with options like the [Azure SignalR Service](xref:signalr/scale) and [Redis backplane](xref:signalr/redis-backplane)
+* Scale to handle increasing traffic with options like the [Azure SignalR Service](scale.md) and [Redis backplane](redis-backplane.md)
 * Support trimming and native ahead-of-time (AOT) compilation for supported scenarios
 * Support polymorphic type handling in hub methods
 * Support distributed tracing with `ActivitySource` for SignalR hub server and .NET client
@@ -44,7 +43,7 @@ The source is hosted in the [ASP.NET Core SignalR repository on GitHub](https://
 
 SignalR supports the following techniques for handling real-time communication (in order of graceful fallback):
 
-* [WebSockets](xref:fundamentals/websockets)
+* [WebSockets](../fundamentals/websockets.md)
 * Server-sent events
 * Long polling
 
@@ -59,19 +58,19 @@ A hub is a high-level pipeline that a client and server use to call methods on e
 SignalR supports two built-in hub protocols:
 
 - A text protocol based on JSON (default)
-- A binary protocol based on MessagePack. MessagePack generally creates smaller messages compared to JSON. For more information, see <xref:signalr/messagepackhubprotocol>.
+- A binary protocol based on MessagePack. MessagePack generally creates smaller messages compared to JSON. For more information, see [Use MessagePack Hub Protocol in SignalR for ASP.NET Core](messagepackhubprotocol.md).
 
 Hubs call client-side code by sending messages that contain the name and parameters of the client-side method. The configured protocol deserializes objects sent as method parameters. The client tries to match the name to a method in the client-side code. When the client finds a match, it calls the method and passes the deserialized parameter data.
 
 ## Related content
 
-* <xref:tutorials/signalr>
-* <xref:signalr/supported-platforms>
-* <xref:signalr/hubs>
-* <xref:signalr/diagnostics>
-* <xref:signalr/scale>
-* <xref:signalr/javascript-client>
-* <xref:blazor/fundamentals/signalr>
+* [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
+* [ASP.NET Core SignalR supported platforms](supported-platforms.md)
+* [Use hubs in ASP.NET Core SignalR](hubs.md)
+* [Logging and diagnostics in ASP.NET Core SignalR](diagnostics.md)
+* [ASP.NET Core SignalR production hosting and scaling](scale.md)
+* [ASP.NET Core SignalR JavaScript client](javascript-client.md)
+* [ASP.NET Core Blazor SignalR guidance](../blazor/fundamentals/signalr.md)
 
 :::moniker-end
 

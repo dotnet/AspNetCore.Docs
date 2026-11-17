@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 7 - Add a new field)
 description: This part of the Blazor movie database app tutorial explains how to add a new field to the movie class, CRUD pages, and database.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-7
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 7 - Add a new field)
@@ -376,5 +375,5 @@ After deleting all of the records, run the app. The initializer reseeds the data
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:blazor/tutorials/movie-database-app/part-6)
-> [Next: Add interactivity](xref:blazor/tutorials/movie-database-app/part-8)
+> [Previous: Add Search](part-6.md)
+> [Next: Add interactivity](part-8.md)

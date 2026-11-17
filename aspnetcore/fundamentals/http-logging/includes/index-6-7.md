@@ -25,23 +25,27 @@ HTTP Logging ***can reduce the performance of an app***, especially when logging
 
 ## Enabling HTTP logging
 
-HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging%2A>, which adds HTTP logging middleware.
+HTTP Logging is enabled with <xref:Microsoft.AspNetCore.Builder.HttpLoggingBuilderExtensions.UseHttpLogging*>, which adds HTTP logging middleware.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet2&highlight=5)]
 
-By default, HTTP Logging logs common properties such as path, status-code, and headers for requests and responses. Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
+By default, HTTP logging logs request properties, such as the path, and request headers. It also logs the response status code and response headers. The request path isn't repeated in separate response or body log entries.
+
+Add the following line to the `appsettings.Development.json` file at the `"LogLevel": {` level so the HTTP logs are displayed:
 
 ```json
  "Microsoft.AspNetCore.HttpLogging.HttpLoggingMiddleware": "Information"
  ```
 
-The output is logged as a single message at `LogLevel.Information`.
+Request and response details are logged as separate messages at `LogLevel.Information`. The following example shows the request message:
 
 ![Sample request output](~/fundamentals/http-logging/_static/requestlog.png)
 
+To correlate separate log messages from the same request, enable [log scopes](../../logging/index.md#log-scopes) on a logging provider that supports scopes.
+
 ## HTTP Logging options
 
-To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging%2A> in `Program.cs`.
+To configure the HTTP logging middleware, call <xref:Microsoft.Extensions.DependencyInjection.HttpLoggingServicesExtensions.AddHttpLogging*> in `Program.cs`.
 
 [!code-csharp[](~/fundamentals/http-logging/samples/6.x/Program.cs?name=snippet_Addservices)]
 
@@ -68,9 +72,9 @@ This approach can also be used to enable logging for data that is not logged by 
 
 #### `MediaTypeOptions` methods
 
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary%2A>
-* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear%2A>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddText*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.AddBinary*>
+* <xref:Microsoft.AspNetCore.HttpLogging.MediaTypeOptions.Clear*>
 
 ### `RequestBodyLogLimit` and `ResponseBodyLogLimit`
 

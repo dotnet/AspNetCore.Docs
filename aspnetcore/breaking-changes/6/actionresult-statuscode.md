@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/485
 ---
 # ActionResult\<T> sets StatusCode to 200
 
-When returning a `T` in an MVC/API controller action that declares the return type as <xref:Microsoft.AspNetCore.Mvc.ActionResult%601>, the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> is always set to 200, except when the `T` is a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
+When returning a `T` in an MVC/API controller action that declares the return type as <xref:Microsoft.AspNetCore.Mvc.ActionResult`1>, the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> is always set to 200, except when the `T` is a <xref:Microsoft.AspNetCore.Mvc.ProblemDetails>.
 
 This change can cause unexpected behavior in some scenarios where you set the status code manually, since previously the <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode?displayProperty=nameWithType> was `null`. Also, an action filter could be affected by this change if it expects a null value instead of 200.
 
@@ -46,7 +46,7 @@ This change can affect [source compatibility](/dotnet/core/compatibility/categor
 
 ## Reason for change
 
-Returning a status code of `200 OK` is [documented since ASP.NET Core 3.1](/aspnet/core/web-api/action-return-types#actionresultt-type). However, it keeps <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> as `null` and eventually generates a `200 OK` response only because it's the default. Since the default internal behavior could change, we decided to avoid relying on the default and to explicitly set <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> to the expected `200 OK`.
+Returning a status code of `200 OK` is [documented since ASP.NET Core 3.1](../../web-api/action-return-types.md#actionresultt-type). However, it keeps <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> as `null` and eventually generates a `200 OK` response only because it's the default. Since the default internal behavior could change, we decided to avoid relying on the default and to explicitly set <xref:Microsoft.AspNetCore.Mvc.ObjectResult.StatusCode> to the expected `200 OK`.
 
 ## Recommended action
 
@@ -90,4 +90,4 @@ public Model Get()
 
 ## See also
 
-- [ActionResult\<T> type](/aspnet/core/web-api/action-return-types#actionresultt-type)
+- [ActionResult\<T> type](../../web-api/action-return-types.md#actionresultt-type)

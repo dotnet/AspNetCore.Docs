@@ -2,20 +2,19 @@
 title: Key encryption at rest in Windows and Azure using ASP.NET Core
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
 ms.date: 06/06/2025
-uid: security/data-protection/implementation/key-encryption-at-rest
 ---
 # Key encryption at rest in Windows and Azure using ASP.NET Core
 
-The data protection system [employs a discovery mechanism by default](xref:security/data-protection/configuration/default-settings) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
+The data protection system [employs a discovery mechanism by default](../configuration/default-settings.md) to determine how cryptographic keys should be encrypted at rest. The developer can override the discovery mechanism and manually specify how keys should be encrypted at rest.
 
 > [!WARNING]
-> If you specify an explicit [key persistence location](xref:security/data-protection/implementation/key-storage-providers), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](xref:security/data-protection/implementation/key-encryption-at-rest) for production deployments. The encryption-at-rest mechanism options are described in this topic.
+> If you specify an explicit [key persistence location](key-storage-providers.md), the data protection system deregisters the default key encryption at rest mechanism. Consequently, keys are no longer encrypted at rest. We recommend that you [specify an explicit key encryption mechanism](key-encryption-at-rest.md) for production deployments. The encryption-at-rest mechanism options are described in this topic.
 
 :::moniker range=">= aspnetcore-2.1"
 
 ## Azure Key Vault
 
-For more information, see <xref:security/data-protection/configuration/overview#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault>.
+For more information, see [Configure ASP.NET Core Data Protection](../configuration/overview.md#protect-keys-with-azure-key-vault-protectkeyswithazurekeyvault).
 
 :::moniker-end
 
@@ -23,7 +22,7 @@ For more information, see <xref:security/data-protection/configuration/overview#
 
 **Only applies to Windows deployments.**
 
-When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory). To configure DPAPI key-at-rest encryption, call one of the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi%2A>) extension methods:
+When Windows DPAPI is used, key material is encrypted with [CryptProtectData](/windows/desktop/api/dpapi/nf-dpapi-cryptprotectdata) before being persisted to storage. DPAPI is an appropriate encryption mechanism for data that's never read outside of the current machine (though it's possible to back these keys up to Active Directory). To configure DPAPI key-at-rest encryption, call one of the <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapi*>) extension methods:
 
 ```csharp
 // Only the local user account can decrypt the keys
@@ -45,14 +44,14 @@ services.AddDataProtection()
 
 If the app is spread across multiple machines, it may be convenient to distribute a shared X.509 certificate (`.pfx` format) across the machines and configure the hosted apps to use the certificate for encryption of keys at rest.
 
-In the following example, the certificate's thumbprint is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>:
+In the following example, the certificate's thumbprint is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
 services.AddDataProtection()
     .ProtectKeysWithCertificate("{CERTIFICATE THUMBPRINT}");
 ```
 
-In the following example, an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate%2A>:
+In the following example, an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
 var cert = new X509Certificate2(...);
@@ -81,7 +80,7 @@ Due to .NET Framework limitations, only certificates with CAPI private keys are 
 
 Beginning with Windows 8, Windows OS supports DPAPI-NG (also called CNG DPAPI). For more information, see [About CNG DPAPI](/windows/desktop/SecCNG/cng-dpapi).
 
-The principal is encoded as a protection descriptor rule. In the following example that calls <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG%2A>, only the domain-joined user with the specified SID can decrypt the key ring:
+The principal is encoded as a protection descriptor rule. In the following example that calls <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithDpapiNG*>, only the domain-joined user with the specified SID can decrypt the key ring:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to build Blazor Hybrid apps with the tutorials listed in this article.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/tutorials/index
 ---
 # ASP.NET Core Blazor Hybrid tutorials
 
@@ -16,12 +15,12 @@ The following tutorials provide a basic working experience for building a Blazor
 
 :::moniker range=">= aspnetcore-8.0"
 
-* <xref:blazor/hybrid/tutorials/maui-blazor-web-app>
+* [Build a .NET MAUI Blazor Hybrid app with a Blazor Web App](maui-blazor-web-app.md)
 
 :::moniker-end
 
-* <xref:blazor/hybrid/tutorials/windows-forms>
+* [Build a Windows Forms Blazor app](windows-forms.md)
 
-* <xref:blazor/hybrid/tutorials/wpf>
+* [Build a Windows Presentation Foundation (WPF) Blazor app](wpf.md)
 
-For an overview of Blazor and reference articles, see <xref:blazor/index> and the articles that follow it in the table of contents.
+For an overview of Blazor and reference articles, see [ASP.NET Core Blazor](../../index.md) and the articles that follow it in the table of contents.
