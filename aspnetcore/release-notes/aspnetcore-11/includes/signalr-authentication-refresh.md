@@ -63,4 +63,4 @@ await connection.StartAsync();
 await connection.RefreshAuthenticationAsync();
 ```
 
-For more information, see [Authentication refresh](/aspnet/core/signalr/authn-and-authz#authentication-refresh).
+For more information, see [Authentication and authorization in SignalR: Authentication refresh](../../../signalr/authn-and-authz.md#authentication-refresh).
