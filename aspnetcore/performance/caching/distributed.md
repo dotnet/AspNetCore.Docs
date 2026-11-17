@@ -2,7 +2,7 @@
 title: Distributed caching in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/07/2026
 ms.sfi.ropc: t
 ---
@@ -10,9 +10,9 @@ ms.sfi.ropc: t
 
 By [Mohsin Nasir](https://github.com/mohsinnasir) and [smandia](https://github.com/smandia)
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 A distributed cache is a cache shared by multiple app servers. The cache is typically maintained as an external service for the app servers that access it. A distributed cache can improve the performance and scalability of an ASP.NET Core app, especially when a cloud service or a server farm hosts the app.
 
@@ -104,7 +104,7 @@ An app configures the cache implementation with a <xref:Microsoft.Extensions.Cac
 
 The following code enables the Azure Cache for Redis:
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Program.cs?name=snippet_AddStackExchangeRedisCache)]
 
 The preceding code assumes the primary connection string (StackExchange.Redis) is saved in configuration with the key name `MyRedisConStr`.
 
@@ -120,7 +120,7 @@ The distributed memory cache is a useful implementation for development and test
 
 The sample app makes use of the distributed memory cache when the app runs in the `Development` environment in the _Program.cs_ file.
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedMemoryCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Program.cs?name=snippet_AddDistributedMemoryCache)]
 
 ### Distributed SQL Server cache
 
@@ -147,7 +147,7 @@ The table created by the `sql-cache` tool has the following schema:
 
 The sample app implements the <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache> class in a nondevelopment (`Development`) environment in the _Program.cs_ file:
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Program.cs?name=snippet_AddDistributedSqlServerCache)]
 
 > [!NOTE]
 > Properties like <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.ConnectionString> (and optionally, <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.SchemaName> and <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCacheOptions.TableName>) are typically stored outside of source control. For example, the [Secret Manager](../../security/app-secrets.md) or the _appsettings.json_ or _appsettings.{Environment}.json_ file might store the properties. The connection string can contain credentials that should be kept out of source control systems.
@@ -238,7 +238,7 @@ To configure NCache:
 
 1. Add the following code to the _Program.cs_ file:
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Program.cs?name=snippet_AddNCache_Cache)]
 
 ### Distributed Azure Cosmos DB cache
 
@@ -282,7 +282,7 @@ To use the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> int
 
 When the sample app starts, the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instance is injected into the _Program.cs_ file. The current time is cached by using the <xref:Microsoft.Extensions.Hosting.IHostApplicationLifetime> interface. (For more information, see [.NET Generic Host: IHostApplicationLifetime](../../fundamentals/host/generic-host.md#ihostapplicationlifetime).)
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Program.cs?name=snippet_Configure)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Program.cs?name=snippet_Configure)]
 
 The sample app injects the <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instance into the `IndexModel` object for use by the Index page.
 
@@ -290,7 +290,7 @@ Each time the Index page loads, the cache is checked for the cached time by usin
 
 Immediately update the cached time to the current time by selecting the **Reset Cached Time** option. This action triggers the `OnPostResetCachedTime` handler method.
 
-[!code-csharp[](~/performance/caching/distributed/samples/6.x/DistCacheSample/Pages/Index.cshtml.cs?name=snippet_IndexModel&highlight=7,14-20,25-29)]
+[!code-csharp[](~/performance/caching/distributed/samples/10.x/DistCacheSample/Pages/Index.cshtml.cs?name=snippet_IndexModel&highlight=7,14-20,25-29)]
 
 > [!NOTE]
 > You don't need to use a Singleton or Scoped lifetime for <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache> instances with a built-in implementation.
@@ -325,6 +325,3 @@ If SQL Server is the distributed cache backing store, and the cache and app data
 * [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/performance/caching/distributed/includes/distributed6-7.md)]
-[!INCLUDE[](~/performance/caching/distributed/includes/distributed5.md)]
