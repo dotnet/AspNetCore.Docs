@@ -151,9 +151,9 @@ The SignalR ActivitySource named `Microsoft.AspNetCore.SignalR.Server` emits eve
 The following example uses the [Aspire dashboard](/dotnet/aspire/fundamentals/dashboard/overview?tabs=bash#use-the-dashboard-with-aspire-projects) and the [OpenTelemetry](https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting) packages:
 
 ```xml
-<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.9.0" />
-<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.9.0" />
-<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.9.0" />
+<PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.21.0" />
+<PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.21.0" />
+<PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.21.0" />
 ```
 
 Add the following startup code to the `Program.cs` file:
