@@ -2,7 +2,7 @@
 title: Compare gRPC services with HTTP APIs
 description: Learn how gRPC compares with HTTP APIs and what it's recommend scenarios are.
 monikerRange: '>= aspnetcore-3.0'
-ms.date: 11/16/2026
+ms.date: 11/17/2026
 ---
 # Compare gRPC services with HTTP APIs
 
@@ -123,11 +123,11 @@ Both gRPC and [SignalR](../signalr/introduction.md) support real-time streaming 
 | ------- | ---- | ------- |
 | **Primary focus** | High-performance service-to-service RPC and microservices | Real-time push notifications and duplex client-server communication |
 | **Communication pattern** | Point-to-point RPC, client/server/bidirectional streaming | Hub-based publish/subscribe, direct client messaging, and broadcasting |
-| **Browser support** | Requires [gRPC-Web](grpcweb.md) and proxy configuration | First-class native browser support with automatic transport fallback |
+| **Browser support** | Limited; requires [gRPC-Web](grpcweb.md) (with middleware or proxy) or [JSON transcoding](json-transcoding.md) | First-class native browser support with automatic transport fallback |
 | **Transports** | HTTP/2, Unix domain sockets, named pipes | WebSockets, Server-Sent Events, Long Polling |
 | **Payload format** | [Protobuf (binary)](#performance) | JSON or [MessagePack](../signalr/messagepackhubprotocol.md) |
 | **Contract** | Required (`.proto`) | Optional (strongly typed hubs supported in .NET) |
-| **Client targeting** | Single connection per RPC call | Individual connections, [users](../signalr/authn-and-authz.md#use-claims-to-customize-identity-handling), or arbitrary [groups](../signalr/groups.md) |
+| **Client targeting** | Caller-specific (each RPC serves only the calling client; no built-in broadcasting or group management) | Individual connections, [users](../signalr/authn-and-authz.md#use-claims-to-customize-identity-handling), or arbitrary [groups](../signalr/groups.md) |
 
 ### When to choose gRPC
 
