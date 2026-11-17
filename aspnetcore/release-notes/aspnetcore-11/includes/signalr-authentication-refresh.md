@@ -62,3 +62,5 @@ await connection.StartAsync();
 // Refresh immediately after acquiring a token with updated claims.
 await connection.RefreshAuthenticationAsync();
 ```
+
+For more information, see [Authentication refresh](/aspnet/core/signalr/authn-and-authz#authentication-refresh).
