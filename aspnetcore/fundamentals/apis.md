@@ -2,7 +2,7 @@
 title: APIs overview
 description: Learn how to build fast HTTP APIs with ASP.NET Core using Minimal APIs, the recommended approach for new projects.
 ai-usage: ai-assisted
-ms.date: 11/16/2026
+ms.date: 11/17/2026
 ms.reviewer: jeliknes
 monikerRange: '>= aspnetcore-6.0'
 ---
@@ -47,7 +47,6 @@ Minimal APIs support the configuration and customization needed to scale to mult
 Getting started with Minimal APIs:
 
 * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
-* [Minimal APIs quick reference](minimal-apis.md)
 * For a list of common scenarios with code examples, see [Minimal APIs quick reference](minimal-apis.md).
 
 ## Controller-based APIs - alternative approach
