@@ -2,15 +2,14 @@
 title: Logging in .NET and ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use the ASP.NET Core logging framework provided by the Microsoft.Extensions.Logging NuGet package.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/18/2026
-uid: fundamentals/logging/index
 ---
 # Logging in .NET and ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-This article describes logging in ASP.NET Core apps. For general guidance on logging in .NET, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For Blazor logging guidance, which adds to or supersedes this guidance, see <xref:blazor/fundamentals/logging>.
+This article describes logging in ASP.NET Core apps. For general guidance on logging in .NET, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For Blazor logging guidance, which adds to or supersedes this guidance, see [ASP.NET Core Blazor logging](../../blazor/fundamentals/logging.md).
 
 ## Logging providers
 
@@ -18,9 +17,7 @@ ASP.NET Core supports high performance, structured logging via the <xref:Microso
 
 Most logging providers write log messages to a data storage system. For example, the Azure Application Insights logging provider stores logs in [Azure Application Insights](/azure/azure-monitor/app/app-insights-overview). One provider, the `Console` provider, only displays log messages. The `Console` provider is useful when running an app locally for monitoring and debugging in real time.
 
-:::moniker range=">= aspnetcore-6.0"
-
-Apps created from an ASP.NET Core web app project template call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType> in the app's `Program` file, which adds the following default logging providers:
+Apps created from an ASP.NET Core web app project template call <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType> in the app's `Program` file, which adds the following default logging providers:
 
 * [`Console`](#console)
 * [`Debug`](#debug)
@@ -31,7 +28,7 @@ Apps created from an ASP.NET Core web app project template call <xref:Microsoft.
 var builder = WebApplication.CreateBuilder(args);
 ```
 
-To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging%2A?displayProperty=nameWithType> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
+To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging?displayProperty=nameWithType> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -40,7 +37,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 ```
 
-Alternatively, the preceding code can be written as follows with <xref:Microsoft.Extensions.Logging.ILoggingBuilder> of <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A>:
+Alternatively, the preceding code can be written as follows with <xref:Microsoft.Extensions.Logging.ILoggingBuilder> of <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging*>:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -51,39 +48,6 @@ builder.Host.ConfigureLogging(logging =>
     logging.AddConsole();
 });
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-Apps created from an ASP.NET Core web app project template call <xref:Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder%2A?displayProperty=nameWithType>, which adds the following default logging providers:
-
-* [`Console`](#console)
-* [`Debug`](#debug)
-* [`EventSource`](#eventsource)
-* [Windows `EventLog`](#windows-eventlog)
-
-```csharp
-Host.CreateDefaultBuilder(args)
-```
-
-To override the default logging providers, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances from the <xref:Microsoft.Extensions.Logging.ILoggingBuilder> and use logging provider extension methods to add logging providers. The following example only sets up the [`Console`](#console) logging provider:
-
-```csharp
-public static IHostBuilder CreateHostBuilder(string[] args) =>
-    Host.CreateDefaultBuilder(args)
-        .ConfigureLogging(logging =>
-        {
-            logging.ClearProviders();
-            logging.AddConsole();
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-```
-
-:::moniker-end
 
 Additional providers are covered in the [Built-in logging providers](#built-in-logging-providers) and [Third-party logging providers](#third-party-logging-providers) sections.
 
@@ -100,14 +64,14 @@ Logs created by the [default logging providers](#logging-providers) are displaye
 
 ## Create log messages
 
-To create log messages, use an <xref:Microsoft.Extensions.Logging.ILogger%601> object from [dependency injection (DI)](xref:fundamentals/dependency-injection).
+To create log messages, use an <xref:Microsoft.Extensions.Logging.ILogger`1> object from [dependency injection (DI)](../dependency-injection.md).
 
 The following examples:
 
 * Create an <xref:Microsoft.Extensions.Logging.ILogger> that specifies a log *category* based on the fully qualified name of the type. The log category is a string that is associated with each log, which is useful for identifying, sorting, and filtering log messages. More information on [log categories](#log-category) is provided later in this article.
-* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The log *level* indicates the severity of the logged event. More information on [log levels](#log-level) is provided later in this article.
+* Calls <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> to log at the <xref:Microsoft.Extensions.Logging.LogLevel.Information> level. The log *level* indicates the severity of the logged event. More information on [log levels](#log-level) is provided later in this article.
 
-In the following counter page (`Counter` Razor component) in a Blazor app, an `ILogger<Counter>` is injected with the [`@inject` directive](xref:mvc/views/razor#inject). The logger instance (`Logger`) is used to log information when the `IncrementCount` method is called.
+In the following counter page (`Counter` Razor component) in a Blazor app, an `ILogger<Counter>` is injected with the [`@inject` directive](../../mvc/views/razor.md#inject). The logger instance (`Logger`) is used to log information when the `IncrementCount` method is called.
 
 `Pages/Counter.razor`:
 
@@ -132,13 +96,6 @@ In the following counter page (`Counter` Razor component) in a Blazor app, an `I
     }
 }
 ```
-
-:::moniker range="< aspnetcore-6.0"
-
-> [!NOTE]
-> In .NET 5 or earlier, an [`@using` directive](xref:mvc/views/razor#using) for <xref:Microsoft.Extensions.Logging> is required to support [IntelliSense](/visualstudio/ide/using-intellisense) logging API completions in Razor components.
-
-:::moniker-end
 
 Log message:
 
@@ -201,9 +158,7 @@ When logging to Azure Table Storage:
 
 ## Log at app startup
 
-:::moniker range=">= aspnetcore-6.0"
-
-The following example calls <xref:Microsoft.AspNetCore.Builder.WebApplication.Logger%2A?displayProperty=nameWithType> in the `Program` file to log informational messages:
+The following example calls <xref:Microsoft.AspNetCore.Builder.WebApplication.Logger?displayProperty=nameWithType> in the `Program` file to log informational messages:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -219,7 +174,7 @@ app.Logger.LogInformation("Starting the app");
 app.Run();
 ```
 
-The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole%2A> and logs at the `/Test` endpoint:
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddConsole*> and logs at the `/Test` endpoint:
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -239,7 +194,7 @@ app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 app.Run();
 ```
 
-The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole%2A>, disables color output with a [console formatter option](xref:Microsoft.Extensions.Logging.Console.SimpleConsoleFormatterOptions), and logs at the `/Test` endpoint:
+The following example calls <xref:Microsoft.Extensions.Logging.ConsoleLoggerExtensions.AddSimpleConsole*>, disables color output with a [console formatter option](xref:Microsoft.Extensions.Logging.Console.SimpleConsoleFormatterOptions), and logs at the `/Test` endpoint:
 
 ```csharp
 using Microsoft.Extensions.Logging.Console;
@@ -262,50 +217,15 @@ app.MapGet("/Test", async (ILogger<Program> logger, HttpResponse response) =>
 app.Run();
 ```
 
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-The following code logs in `Program.Main` by obtaining an <xref:Microsoft.Extensions.Logging.ILogger> instance from DI after building the host:
-
-```csharp
-public static void Main(string[] args)
-{
-    var host = CreateHostBuilder(args).Build();
-
-    var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation("Host created.");
-
-    host.Run();
-}
-```
-
-The following example shows how to inject an <xref:Microsoft.Extensions.Logging.ILogger> into `Startup.Configure`:
-
-```csharp
-public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
-{
-    logger.LogInformation("'Startup'.Configure' logging");
-
-    ...
-}
-```
-
-Logger injection into the `Startup` constructor or into the `Startup.ConfigureServices` method isn't supported because logging depends on dependency injection (DI) and on configuration, which in turns depends on DI. The DI container isn't set up until `ConfigureServices` finishes executing.
-
-For information on configuring a service that depends on <xref:Microsoft.Extensions.Logging.ILogger> or why constructor injection of a logger into `Startup` worked in earlier versions, see the [Configure a service that depends on `ILogger`](#configure-a-service-that-depends-on-ilogger) section.
-
-:::moniker-end
-
 ## Configure logging
 
 When an <xref:Microsoft.Extensions.Logging.ILogger> object is created, a *category* is specified. That category is included with each log message created by that instance of the logger.
 
-The log level determines the level of detail for log messages at a default level for the app as a whole and for specific app assemblies. The log level can be set by any of the [configuration providers](xref:fundamentals/configuration/index).
+The log level determines the level of detail for log messages at a default level for the app as a whole and for specific app assemblies. The log level can be set by any of the [configuration providers](../configuration/index.md).
 
 ### App settings
 
-Logging configuration is commonly provided by the `Logging` section of `appsettings.{ENVIRONMENT}.json` files, where the `{ENVIRONMENT}` placeholder is the [environment](xref:fundamentals/environments). The following `appsettings.Development.json` file is generated by the ASP.NET Core web app templates:
+Logging configuration is commonly provided by the `Logging` section of `appsettings.{ENVIRONMENT}.json` files, where the `{ENVIRONMENT}` placeholder is the [environment](../environments.md). The following `appsettings.Development.json` file is generated by the ASP.NET Core web app templates:
 
 ```json
 {
@@ -495,7 +415,7 @@ setx Logging__LogLevel__Microsoft Information /M
 
 On [Azure App Service](https://azure.microsoft.com/services/app-service/), follow the guidance in [Configure an App Service app](/azure/app-service/configure-common?tabs=portal#configure-app-settings) to set logging environment variables.
 
-For more information, see [Azure Apps: Override app configuration using the Azure portal](xref:host-and-deploy/azure-apps/index#override-app-configuration-using-the-azure-portal).
+For more information, see [Azure Apps: Override app configuration using the Azure portal](../../host-and-deploy/azure-apps/index.md#override-app-configuration-using-the-azure-portal).
 
 ## Log category
 
@@ -515,7 +435,7 @@ In a Razor Pages page class model, where the type `T` is `PrivacyModel` for a pr
 public class PrivacyModel(ILogger<PrivacyModel> logger) : PageModel
 ```
 
-If further categorization is desired, the convention is to use a hierarchical name by appending a subcategory to the fully qualified class name using <xref:Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger%2A?displayProperty=nameWithType>. This approach is useful for scoping log messages to component or class methods.
+If further categorization is desired, the convention is to use a hierarchical name by appending a subcategory to the fully qualified class name using <xref:Microsoft.Extensions.Logging.ILoggerFactory.CreateLogger*?displayProperty=nameWithType>. This approach is useful for scoping log messages to component or class methods.
 
 The following `Counter` component logs from the `IncrementByOne` method with the `BlazorSample.Components.Pages.Counter.IncrementByOne` category and from the `IncrementByTen` method with the `BlazorSample.Components.Pages.Privacy.IncrementByTen` category.
 
@@ -623,15 +543,15 @@ The following table describes the logging levels from lowest to highest severity
 
 `LogLevel` | Value | Method | Description
 --- | --- | --- | ---
-<xref:Microsoft.Extensions.Logging.LogLevel.Trace> | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace%2A> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production.
-<xref:Microsoft.Extensions.Logging.LogLevel.Debug> | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug%2A> | For debugging and development. Use with caution in production due to the high volume of messages logged.
-<xref:Microsoft.Extensions.Logging.LogLevel.Information> | 2 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> | Tracks the general flow of the app.
-<xref:Microsoft.Extensions.Logging.LogLevel.Warning> | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning%2A> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.
-<xref:Microsoft.Extensions.Logging.LogLevel.Error> | 4 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError%2A> | Typically used for unhandled errors and exceptions. These messages indicate a failure in the current operation or request, not an app-wide failure.
-<xref:Microsoft.Extensions.Logging.LogLevel.Critical> | 5 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogCritical%2A> | For failures that require immediate attention, such as data loss or out of disk space.
+<xref:Microsoft.Extensions.Logging.LogLevel.Trace> | 0 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogTrace*> | Contain the most detailed messages. These messages may contain sensitive app data. These messages are disabled by default and should ***not*** be enabled in production.
+<xref:Microsoft.Extensions.Logging.LogLevel.Debug> | 1 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogDebug*> | For debugging and development. Use with caution in production due to the high volume of messages logged.
+<xref:Microsoft.Extensions.Logging.LogLevel.Information> | 2 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> | Tracks the general flow of the app.
+<xref:Microsoft.Extensions.Logging.LogLevel.Warning> | 3 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogWarning*> | For abnormal or unexpected events. Typically includes errors or conditions that don't cause the app to fail.
+<xref:Microsoft.Extensions.Logging.LogLevel.Error> | 4 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogError*> | Typically used for unhandled errors and exceptions. These messages indicate a failure in the current operation or request, not an app-wide failure.
+<xref:Microsoft.Extensions.Logging.LogLevel.Critical> | 5 | <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogCritical*> | For failures that require immediate attention, such as data loss or out of disk space.
 <xref:Microsoft.Extensions.Logging.LogLevel.None> | 6 | &mdash; | Specifies that a logging category shouldn't write messages.
 
-The <xref:Microsoft.Extensions.Logging.LoggerExtensions.Log%2A> method's first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call <xref:Microsoft.Extensions.Logging.LoggerExtensions> methods. For example, the following two logging calls are functionally equivalent and produce the same based on an injected `ILogger<T>` instance (`Logger`) in a Razor component:
+The <xref:Microsoft.Extensions.Logging.LoggerExtensions.Log*> method's first parameter, <xref:Microsoft.Extensions.Logging.LogLevel>, indicates the severity of the log. Rather than calling `Log(LogLevel, ...)`, most developers call <xref:Microsoft.Extensions.Logging.LoggerExtensions> methods. For example, the following two logging calls are functionally equivalent and produce the same based on an injected `ILogger<T>` instance (`Logger`) in a Razor component:
 
 ```csharp
 Logger.Log(LogLevel.Information, LogEvent.TestItem, routeInfo);
@@ -655,11 +575,11 @@ Log at an appropriate level to control how much log output is written to a parti
 
 ## Change log levels in a running app
 
-The Logging API doesn't include support for changing log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](xref:fundamentals/configuration/index#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload%2A?displayProperty=nameWithType> to update the app's logging configuration.
+The Logging API doesn't include support for changing log levels while an app is running. However, some configuration providers are capable of reloading configuration, which takes immediate effect on logging configuration. For example, the [File Configuration Provider](../configuration/index.md#file-configuration-provider), reloads logging configuration by default. If configuration is changed in code while an app is running, the app can call <xref:Microsoft.Extensions.Configuration.IConfigurationRoot.Reload*?displayProperty=nameWithType> to update the app's logging configuration.
 
 ## How filtering rules are applied
 
-When an <xref:Microsoft.Extensions.Logging.ILogger%601> object is created, the <xref:Microsoft.Extensions.Logging.ILoggerFactory> object selects a single rule per provider to apply to that logger. All messages written by an <xref:Microsoft.Extensions.Logging.ILogger> instance are filtered based on the selected rules. The most specific rule for each provider and category pair is selected from the available rules.
+When an <xref:Microsoft.Extensions.Logging.ILogger`1> object is created, the <xref:Microsoft.Extensions.Logging.ILoggerFactory> object selects a single rule per provider to apply to that logger. All messages written by an <xref:Microsoft.Extensions.Logging.ILogger> instance are filtered based on the selected rules. The most specific rule for each provider and category pair is selected from the available rules.
 
 The following algorithm is used for each provider when an <xref:Microsoft.Extensions.Logging.ILogger> is created for a given category:
 
@@ -670,7 +590,7 @@ The following algorithm is used for each provider when an <xref:Microsoft.Extens
 
 ## `ILogger` and `ILoggerFactory`
 
-The <xref:Microsoft.Extensions.Logging.ILogger%601> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET SDK. They are also available in the following NuGet packages:  
+The <xref:Microsoft.Extensions.Logging.ILogger`1> and <xref:Microsoft.Extensions.Logging.ILoggerFactory> interfaces and implementations are included in the .NET SDK. They are also available in the following NuGet packages:  
 
 * The interfaces are in the [`Microsoft.Extensions.Logging.Abstractions` NuGet package](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Abstractions).
 * The default implementations are in the [`Microsoft.Extensions.Logging` NuGet package](https://www.nuget.org/packages/microsoft.extensions.logging).
@@ -704,7 +624,7 @@ Exception logging is provider-specific.
 
 If the default log level isn't explicitly set, the default log level is <xref:Microsoft.Extensions.Logging.LogLevel.Information>.
 
-If the default log level isn't set in configuration, it can be set with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A?displayProperty=nameWithType>. The following example sets the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level as the default logging level:
+If the default log level isn't set in configuration, it can be set with <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel*?displayProperty=nameWithType>. The following example sets the <xref:Microsoft.Extensions.Logging.LogLevel.Warning> level as the default logging level:
 
 ```csharp
 var builder = WebApplication.CreateBuilder();
@@ -794,7 +714,7 @@ A *scope* can group a set of logical operations. This grouping can be used to at
 
 A scope:
 
-* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope%2A> method.
+* Is an <xref:System.IDisposable> type that's returned by the <xref:Microsoft.Extensions.Logging.ILogger.BeginScope*> method.
 * Lasts until it's disposed.
 
 The following providers support scopes:
@@ -847,7 +767,7 @@ The following logging providers are provided by Microsoft, but not as part of th
 
 ASP.NET Core doesn't include a logging provider for writing logs to files. To write logs to files from an ASP.NET Core app, consider using a [third-party logging provider](#third-party-logging-providers).
 
-For information on `stdout` and debug logging with the ASP.NET Core Module, see <xref:test/troubleshoot-azure-iis> and <xref:host-and-deploy/aspnet-core-module#log-creation-and-redirection>.
+For information on `stdout` and debug logging with the ASP.NET Core Module, see [Troubleshoot ASP.NET Core on Azure App Service and IIS](../../test/troubleshoot-azure-iis.md) and [ASP.NET Core Module (ANCM) for IIS](../../host-and-deploy/aspnet-core-module.md#log-creation-and-redirection).
 
 ### `Console`
 
@@ -866,13 +786,9 @@ On Linux, the `Debug` provider log location is distribution-dependent and may be
 
 <xref:Microsoft.Extensions.Logging.EventSource.EventSourceLoggerProvider> writes to a cross-platform event source with the name `Microsoft-Extensions-Logging`. On Windows, the provider uses [ETW](/windows/win32/etw/event-tracing-portal).
 
-:::moniker range=">= aspnetcore-7.0"
-
 #### `ServerReady` event to measure startup time
 
 The ASP.NET Core hosting <xref:System.Diagnostics.Tracing.EventSource> emits the <!--keep-->[`ServerReady`](https://source.dot.net/#Microsoft.AspNetCore.Hosting/Internal/HostingEventSource.cs,76) event in <xref:Microsoft.AspNetCore.Hosting?displayProperty=fullName>, which represents the point where the server is ready to respond to requests and can be used to measure startup time.
-
-:::moniker-end
 
 #### `dotnet-trace` tooling
 
@@ -1032,7 +948,7 @@ Use the `dotnet-trace` tooling to collect a trace from an app:
 
 1. Open the trace with [Perfview](#perfview). Open the `trace.nettrace` file and explore the trace events.
 
-If the app doesn't build the host with <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder%2A?displayProperty=nameWithType>, add the [`EventSource` provider](#eventsource) to the app's logging configuration.
+If the app doesn't build the host with <xref:Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder*?displayProperty=nameWithType>, add the [`EventSource` provider](#eventsource) to the app's logging configuration.
 
 For more information, see:
 
@@ -1064,7 +980,7 @@ To log events lower than <xref:Microsoft.Extensions.Logging.LogLevel.Warning?dis
 }
 ```
 
-<xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A> overloads can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
+<xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog*> overloads can pass in <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>. If `null` or not specified, the following default settings are used:
 
 * `LogName`: "`Application`"
 * `SourceName`: "`.NET Runtime`"
@@ -1081,7 +997,7 @@ builder.Logging.AddEventLog(eventLogSettings =>
 });
 ```
 
-When the app calls the <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A> overload with <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>, a new instance of <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> is created with the provided settings. If there's already an <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> instance registered, which is the case if the app doesn't call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances, the new settings don't replace the existing ones. If you want to ensure that the <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings> are used, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders%2A> before calling <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog%2A>.
+When the app calls the <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog*> overload with <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings>, a new instance of <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> is created with the provided settings. If there's already an <xref:Microsoft.Extensions.Logging.EventLog.EventLogLoggerProvider> instance registered, which is the case if the app doesn't call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> to remove all the <xref:Microsoft.Extensions.Logging.ILoggerProvider> instances, the new settings don't replace the existing ones. If you want to ensure that the <xref:Microsoft.Extensions.Logging.EventLog.EventLogSettings> are used, call <xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.ClearProviders*> before calling <xref:Microsoft.Extensions.Logging.EventLoggerFactoryExtensions.AddEventLog*>.
 
 #### Azure App Service
 
@@ -1090,8 +1006,6 @@ The [`Microsoft.Extensions.Logging.AzureAppServices` provider NuGet package](htt
 The provider package isn't included in the shared framework. To use the provider, add the provider package to the project.
 
 To configure provider settings, use <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureFileLoggerOptions> and <xref:Microsoft.Extensions.Logging.AzureAppServices.AzureBlobLoggerOptions>, as shown in the following example:
-
-:::moniker range=">= aspnetcore-6.0"
 
 ```csharp
 using Microsoft.Extensions.Logging.AzureAppServices;
@@ -1112,44 +1026,6 @@ builder.Services.Configure<AzureBlobLoggerOptions>(options =>
     options.BlobName = "log.txt";
 });
 ```
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-6.0"
-
-```csharp
-public class Scopes
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureLogging(logging => logging.AddAzureWebAppDiagnostics())
-                .ConfigureServices(serviceCollection => serviceCollection
-                    .Configure<AzureFileLoggerOptions>(options =>
-                    {
-                        options.FileName = "azure-diagnostics-";
-                        options.FileSizeLimit = 50 * 1024;
-                        options.RetainedFileCountLimit = 5;
-                    })
-                    .Configure<AzureBlobLoggerOptions>(options =>
-                    {
-                        options.BlobName = "log.txt";
-                    }))
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
-```
-
-:::moniker-end
 
 When deployed to Azure App Service, the app uses the settings in the [App Service logs](/azure/app-service/troubleshoot-diagnostic-logs) section of the **App Service** page of the Azure portal. When the following settings are updated, the changes take effect immediately without requiring a restart or redeployment of the app.
 
@@ -1217,7 +1093,7 @@ For more information, see the provider's documentation. Third-party logging prov
 
 ## Non-host console app logging
 
-For logging in a console app without the Generic Host, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For an additional example, see the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples), which is covered by <xref:fundamentals/host/hosted-services>.
+For logging in a console app without the Generic Host, see [Logging in C# and .NET](/dotnet/core/extensions/logging). For an additional example, see the [Background Tasks sample app](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/host/hosted-services/samples), which is covered by [Background tasks with hosted services in ASP.NET Core](../host/hosted-services.md).
 
 ## No asynchronous logger methods
 
@@ -1225,9 +1101,9 @@ Logging should be so fast that it isn't worth the performance cost of asynchrono
 
 ## Apply log filter rules in code
 
-The preferred approach for setting log filter rules is by [app configuration](xref:fundamentals/configuration/index).
+The preferred approach for setting log filter rules is by [app configuration](../configuration/index.md).
 
-The following example shows how to register filter rules in code by calling <xref:Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions.AddFilter%2A> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging%2A?displayProperty=nameWithType>:
+The following example shows how to register filter rules in code by calling <xref:Microsoft.Extensions.Logging.FilterLoggingBuilderExtensions.AddFilter*> on <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder.Logging?displayProperty=nameWithType>:
 
 ```csharp
 using Microsoft.Extensions.Logging.Console;
@@ -1255,13 +1131,7 @@ In the preceding example:
   * All categories starting with "`Microsoft`".
   * Log level <xref:Microsoft.Extensions.Logging.LogLevel.Trace> and higher.
 
-:::moniker range=">= aspnetcore-5.0"
-
 ## Specify the trace context for logging scopes
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-6.0"
 
 The logging libraries implicitly create a scope object with <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>. The following fields indicate the options (<xref:Microsoft.Extensions.Logging.ActivityTrackingOptions>):
 
@@ -1296,43 +1166,6 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 ```
 
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0 < aspnetcore-6.0"
-
-## Automatically log scope with `SpanId`, `TraceId`, and `ParentId`
-
-The logging libraries implicitly create a scope object with `SpanId`, `TraceId`, and `ParentId`. This behavior is configured via <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>.
-
-
-The logging libraries implicitly create a scope object with <xref:Microsoft.Extensions.Logging.LoggerFactoryOptions.ActivityTrackingOptions>. The following fields indicate the options (<xref:Microsoft.Extensions.Logging.ActivityTrackingOptions>):
-
-* `SpanId`
-* `TraceId`
-* `ParentId`
-
-`SpanId`, `TraceId`, `ParentId` are enabled by default.
-
-In the following example, only the `SpanId` and `TraceId` are specified:
-
-```csharp
-var loggerFactory = LoggerFactory.Create(logging =>
-{
-    logging.Configure(options =>
-    {
-        options.ActivityTrackingOptions = 
-            ActivityTrackingOptions.SpanId | ActivityTrackingOptions.TraceId;
-    }).AddSimpleConsole(options =>
-    {
-        options.IncludeScopes = true;
-    });
-});
-```
-
-:::moniker-end
-
-:::moniker range=">= aspnetcore-5.0"
-
 If the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/) `traceparent` http request header is set:
 
 * The [`ParentId`](xref:Microsoft.Extensions.Logging.ActivityTrackingOptions) in the log scope shows the `parent-id` from in-bound `traceparent` header.
@@ -1340,80 +1173,9 @@ If the [W3C Trace Context specification](https://www.w3.org/TR/trace-context/) `
 
 For more information, see [Mutating the traceparent Field](https://www.w3.org/TR/trace-context/#mutating-the-traceparent-field).
 
-:::moniker-end
-
 ## Create a custom logger
 
 To create a custom logger, see [Implement a custom logging provider in .NET](/dotnet/core/extensions/custom-logging-provider).
-
-:::moniker range="< aspnetcore-6.0"
-
-## Log during host construction
-
-Logging during host construction isn't directly supported. However, a separate logger can be used. In the following example, a [Serilog](https://serilog.net/) logger is used to log in <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateHostBuilder%2A>. `AddSerilog` uses the static configuration specified in `Log.Logger`, which is provided by the [Serilog NuGet package](https://www.nuget.org/packages/serilog).
-
-In the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory%601.CreateHostBuilder%2A> method of the app's `Program` file:
-
-```csharp
-var builtConfig = new ConfigurationBuilder()
-    .AddJsonFile("appsettings.json")
-    .AddCommandLine(args)
-    .Build();
-
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File(builtConfig["Logging:FilePath"])
-    .CreateLogger();
-
-try
-{
-    return Host.CreateDefaultBuilder(args)
-        .ConfigureServices((context, services) =>
-        {
-            services.AddRazorPages();
-        })
-        .ConfigureAppConfiguration((hostingContext, config) =>
-        {
-            config.AddConfiguration(builtConfig);
-        })
-        .ConfigureLogging(logging =>
-        {   
-            logging.AddSerilog();
-        })
-        .ConfigureWebHostDefaults(webBuilder =>
-        {
-            webBuilder.UseStartup<Startup>();
-        });
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Host builder error");
-
-    throw;
-}
-finally
-{
-    Log.CloseAndFlush();
-}
-```
-
-## Configure a service that depends on `ILogger`
-
-Constructor injection of a logger into `Startup` works in earlier versions of ASP.NET Core because a separate DI container is created for the [Web Host](xref:fundamentals/host/web-host). For information about why only one container is created for the [Generic Host](xref:fundamentals/host/generic-host), see the [breaking change announcement](https://github.com/aspnet/Announcements/issues/353).
-
-To configure a service that depends on <xref:Microsoft.Extensions.Logging.ILogger>, use constructor injection or provide a factory method. The factory method approach is recommended only if there's no other option. For example, consider a service that requires a logger instance provided by dependency injection (DI):
-
-```csharp
-services.AddSingleton<ILoggingService>((container) =>
-{
-    var logger = container.GetRequiredService<ILogger<LoggingService>>();
-    return new LoggingService() { Logger = logger };
-});
-```
-
-The preceding code is a <xref:System.Func%602> that runs the first time the DI container constructs an instance of `LoggerService`. Access any registered service using this pattern.
-
-:::moniker-end
 
 ## Logging bug reports
 
@@ -1543,9 +1305,9 @@ Static files
 
 ## Related content
 
-* <xref:blazor/fundamentals/logging>
+* [ASP.NET Core Blazor logging](../../blazor/fundamentals/logging.md)
 * [Improving logging performance with source generators](https://andrewlock.net/exploring-dotnet-6-part-8-improving-logging-performance-with-source-generators/)
 * [Behind `[LogProperties]` and the new telemetry logging source generator](https://andrewlock.net/behind-logproperties-and-the-new-telemetry-logging-source-generator/)
 * [`Microsoft.Extensions.Logging` reference source (`dotnet/runtime`) GitHub repository](https://github.com/dotnet/runtime/tree/main/src/libraries/Microsoft.Extensions.Logging)
 * [High performance logging](/dotnet/core/extensions/high-performance-logging)
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/logging) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/logging) ([how to download](../index.md#how-to-download-a-sample))

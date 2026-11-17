@@ -2,7 +2,6 @@
 title: ASP.NET Core load/stress testing
 description: Learn about several tools and approaches for load testing and stress testing ASP.NET Core apps.
 ms.date: 4/05/2019
-uid: test/loadtests
 ---
 # ASP.NET Core load/stress testing
 
@@ -35,4 +34,4 @@ The following list contains third-party web performance tools with various featu
 
 ## Load and stress test with release builds
 
-Load and stress tests should be done in release and [production](xref:fundamentals/environments) mode and not in debug and development mode. [Release configurations](/visualstudio/debugger/how-to-set-debug-and-release-configurations) are fully optimized with minimal logging. Debug configuration is not optimized. [Development](xref:fundamentals/environments) mode enables more information logging that can impact performance.
+Load and stress tests should be done in release and [production](../fundamentals/environments.md) mode and not in debug and development mode. [Release configurations](/visualstudio/debugger/how-to-set-debug-and-release-configurations) are fully optimized with minimal logging. Debug configuration is not optimized. [Development](../fundamentals/environments.md) mode enables more information logging that can impact performance.

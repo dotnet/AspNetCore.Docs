@@ -2,15 +2,14 @@
 title: Environment Tag Helper in ASP.NET Core
 description: ASP.NET Core Environment Tag Helper defined including all properties
 ms.date: 10/10/2018
-uid: mvc/views/tag-helpers/builtin-th/environment-tag-helper
 ---
 # Environment Tag Helper in ASP.NET Core
 
 By [Peter Kellner](https://peterkellner.net) and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
 
-The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](xref:fundamentals/environments). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
+The Environment Tag Helper conditionally renders its enclosed content based on the current [hosting environment](../../../../fundamentals/environments.md). The Environment Tag Helper's single attribute, `names`, is a comma-separated list of environment names. If any of the provided environment names match the current environment, the enclosed content is rendered.
 
-For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
+For an overview of Tag Helpers, see [Tag Helpers in ASP.NET Core](../intro.md).
 
 ## Environment Tag Helper Attributes
 
@@ -18,7 +17,7 @@ For an overview of Tag Helpers, see <xref:mvc/views/tag-helpers/intro>.
 
 `names` accepts a single hosting environment name or a comma-separated list of hosting environment names that trigger the rendering of the enclosed content.
 
-Environment values are compared to the current value returned by [IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*). The comparison ignores case.
+Environment values are compared to the current value returned by [IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName). The comparison ignores case.
 
 The following example uses an Environment Tag Helper. The content is rendered if the hosting environment is Staging or Production:
 
@@ -36,7 +35,7 @@ The following example uses an Environment Tag Helper. The content is rendered if
 
 ### include
 
-The `include` property exhibits similar behavior to the `names` attribute. An environment listed in the `include` attribute value must match the app's hosting environment ([IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName*)) to render the content of the `<environment>` tag.
+The `include` property exhibits similar behavior to the `names` attribute. An environment listed in the `include` attribute value must match the app's hosting environment ([IWebHostEnvironment.EnvironmentName](xref:Microsoft.AspNetCore.Hosting.IHostingEnvironment.EnvironmentName)) to render the content of the `<environment>` tag.
 
 ```cshtml
 <environment include="Staging,Production">
@@ -58,4 +57,4 @@ In contrast to the `include` attribute, the content of the `<environment>` tag i
 
 ## Related content
 
-* <xref:fundamentals/environments>
+* [ASP.NET Core runtime environments](../../../../fundamentals/environments.md)

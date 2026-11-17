@@ -31,7 +31,7 @@ If you're using named parameters in the `RequestImageFile` API, update the `maxW
 
 ## Affected APIs
 
-<xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync%2A?displayProperty=nameWithType>
+<xref:Microsoft.AspNetCore.Components.Forms.BrowserFileExtensions.RequestImageFileAsync*?displayProperty=nameWithType>
 
 <!--
 

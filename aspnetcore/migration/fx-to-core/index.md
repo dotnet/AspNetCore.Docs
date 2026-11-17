@@ -3,7 +3,6 @@ title: Migrate from ASP.NET Framework to ASP.NET Core
 ai-usage: ai-assisted
 description: Your complete guide to migrating ASP.NET Framework applications to ASP.NET Core, with practical approaches and step-by-step guidance.
 ms.date: 07/03/2026
-uid: migration/fx-to-core/index
 ---
 # Migrate from ASP.NET Framework to ASP.NET Core
 
@@ -37,7 +36,7 @@ Many applications have cross-cutting concerns that span multiple layers and need
 * **Configuration management** - Managing settings that need to be shared or synchronized between applications.
 * **Dependency injection** - Migrating from various DI containers to ASP.NET Core's built-in container.
 
-The generic host pattern can help address several of these concerns by bringing modern .NET infrastructure to ASP.NET Framework applications. For details, see <xref:migration/fx-to-core/areas/hosting>.
+The generic host pattern can help address several of these concerns by bringing modern .NET infrastructure to ASP.NET Framework applications. For details, see [.NET Generic Host in ASP.NET Framework](areas/hosting.md).
 
 ### Library dependency chains
 
@@ -59,14 +58,14 @@ The fundamental differences between ASP.NET Framework and ASP.NET Core create ex
 
 These challenges make incremental migration the preferred approach for most production applications. This approach allows teams to address these issues gradually while maintaining a working application in production.
 
-For documentation around important areas that changed, see the associated topics available at <xref:migration/fx-to-core/areas>.
+For documentation around important areas that changed, see the associated topics available at [Complex migration scenarios - Deep dive areas](areas/index.md).
 
 ## Start here: Choose your migration path
 
 You can successfully move your ASP.NET Framework application to ASP.NET Core. The key is choosing the right approach for your specific situation.
 
 > [!TIP]
-> Regardless of the path you choose, the [GitHub Copilot app modernization agent](/dotnet/core/porting/github-copilot-app-modernization/overview) can assess your solution, generate an upgrade plan, and automate many of the migration steps. For more information, see <xref:migration/fx-to-core/tooling>.
+> Regardless of the path you choose, the [GitHub Copilot app modernization agent](/dotnet/core/porting/github-copilot-app-modernization/overview) can assess your solution, generate an upgrade plan, and automate many of the migration steps. For more information, see [Learn to upgrade from ASP.NET MVC, Web API, and Web Forms to ASP.NET Core](tooling.md).
 
 ### Quick decision guide
 
@@ -88,8 +87,8 @@ You can successfully move your ASP.NET Framework application to ASP.NET Core. Th
 
 ## Incremental migration
 
-Incremental migration is an implementation of the Strangler Fig pattern. It's best for larger projects or projects that need to continue to stay in production throughout a migration. To get started migrating an application incrementally, see <xref:migration/fx-to-core/start>.
+Incremental migration is an implementation of the Strangler Fig pattern. It's best for larger projects or projects that need to continue to stay in production throughout a migration. To get started migrating an application incrementally, see [Get started with incremental ASP.NET to ASP.NET Core migration](start.md).
 
 ## In place migration
 
-In place migration can work for sufficiently small applications. If possible, this approach allows for a quick replacement of the application. However, small issues can compound if you decide to do an in place migration. For information on migration tooling options, see <xref:migration/fx-to-core/tooling>.
+In place migration can work for sufficiently small applications. If possible, this approach allows for a quick replacement of the application. However, small issues can compound if you decide to do an in place migration. For information on migration tooling options, see [Learn to upgrade from ASP.NET MVC, Web API, and Web Forms to ASP.NET Core](tooling.md).

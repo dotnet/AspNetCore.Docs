@@ -51,7 +51,7 @@ The `200` status code is returned with `application/json` Content-Type header an
 
 |Behavior|Content-Type|
 |--|--|
-| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync%2A).| Decided by the `IResult` implementation.
+| The framework calls [IResult.ExecuteAsync](xref:Microsoft.AspNetCore.Http.IResult.ExecuteAsync*).| Decided by the `IResult` implementation.
 
 The `IResult` interface defines a contract that represents the result of an HTTP endpoint. The static [Results](<xref:Microsoft.AspNetCore.Http.Results>) class and the static [TypedResults](<xref:Microsoft.AspNetCore.Http.TypedResults>) are used to create various `IResult` objects that represent different types of responses.
 
@@ -62,7 +62,7 @@ The <xref:Microsoft.AspNetCore.Http.Results> and <xref:Microsoft.AspNetCore.Http
 Returning `TypedResults` rather than `Results` has the following advantages:
 
 * `TypedResults` helpers return strongly typed objects, which can improve code readability, unit testing, and reduce the chance of runtime errors.
-* The implementation type [automatically provides the response type metadata for OpenAPI](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types) to describe the endpoint.
+* The implementation type [automatically provides the response type metadata for OpenAPI](../../openapi/aspnetcore-openapi.md#describe-response-types) to describe the endpoint.
 
 Consider the following endpoint, for which a `200 OK` status code with the expected JSON response is produced.
 
@@ -72,7 +72,7 @@ In order to document this endpoint correctly the extensions method `Produces` is
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_112b":::
 
-For more information about describing a response type, see [OpenAPI support in Minimal APIs](/aspnet/core/fundamentals/openapi/aspnetcore-openapi#describe-response-types-1).
+For more information about describing a response type, see [OpenAPI support in Minimal APIs](../../openapi/aspnetcore-openapi.md#describe-response-types-1).
 
 As mentioned previously, when using `TypedResults`, a conversion is not needed. Consider the following Minimal API which returns a `TypedResults` class
 
@@ -84,7 +84,7 @@ The following test checks for the full concrete type:
 
 Because all methods on `Results` return `IResult` in their signature, the compiler automatically infers that as the request delegate return type when returning different results from a single endpoint. `TypedResults` requires the use of `Results<T1, TN>` from such delegates.
 
-The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetCore.Http.Results.Ok%2A) and [`Results.NotFound`](xref:Microsoft.AspNetCore.Http.Results.NotFound%2A) are declared as returning `IResult`, even though the actual concrete types of the objects returned are different:
+The following method compiles because both [`Results.Ok`](xref:Microsoft.AspNetCore.Http.Results.Ok*) and [`Results.NotFound`](xref:Microsoft.AspNetCore.Http.Results.NotFound*) are declared as returning `IResult`, even though the actual concrete types of the objects returned are different:
 
 :::code language="csharp" source="~/tutorials/min-web-api/samples/7.x/todo/Program.cs" id="snippet_1a":::
 
@@ -137,7 +137,7 @@ The following sections demonstrate the usage of the common result helpers.
 app.MapGet("/hello", () => Results.Json(new { Message = "Hello World" }));
 ```
 
-<xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> is an alternative way to return JSON:
+<xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync*> is an alternative way to return JSON:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasync":::
 
@@ -161,15 +161,15 @@ app.MapGet("/text", () => Results.Text("This is some text"));
 
 [`Results.Stream`](/dotnet/api/microsoft.aspnetcore.http.results.stream?view=aspnetcore-7.0&preserve-view=true) overloads allow access to the underlying HTTP response stream without buffering. The following example uses [ImageSharp](https://sixlabors.com/products/imagesharp) to return a reduced size of the specified image:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet)]
 
 The following example streams an image from [Azure Blob storage](/azure/storage/blobs/storage-blobs-introduction):
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_abs)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet_abs)]
 
 The following example streams a video from an Azure Blob:
 
-[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/7.0/ResultsStreamSample/Program.cs?name=snippet_video)]
+[!code-csharp[](~/fundamentals/minimal-apis/resultsStream/samples/ResultsStreamSample/Program.cs?name=snippet_video)]
 
 #### Redirect
 
@@ -194,13 +194,13 @@ The following interfaces in the <xref:Microsoft.AspNetCore.Http> namespace provi
 * <xref:Microsoft.AspNetCore.Http.INestedHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IStatusCodeHttpResult>
 * <xref:Microsoft.AspNetCore.Http.IValueHttpResult>
-* <xref:Microsoft.AspNetCore.Http.IValueHttpResult%601>
+* <xref:Microsoft.AspNetCore.Http.IValueHttpResult`1>
 
 Here's an example of a filter that uses one of these interfaces:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/HttpResultInterfaces/Program.cs" id="snippet_filter":::
 
-For more information, see [Filters in Minimal API apps](xref:fundamentals/minimal-apis/min-api-filters) and [IResult implementation types](xref:fundamentals/minimal-apis/test-min-api#iresult-implementation-types).
+For more information, see [Filters in Minimal API apps](../min-api-filters.md) and [IResult implementation types](../test-min-api.md#unit-test-iresult-implementation-types).
 
 ## Customizing responses
 
@@ -235,7 +235,7 @@ By default, Minimal API apps use [`Web defaults`](/dotnet/standard/serialization
 
 ### Configure JSON serialization options globally
 
-Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions%2A>. The following example includes public fields and formats JSON output.
+Options can be configured globally for an app by invoking <xref:Microsoft.Extensions.DependencyInjection.HttpJsonServiceExtensions.ConfigureHttpJsonOptions*>. The following example includes public fields and formats JSON output.
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_confighttpjsonoptions" highlight="3-6":::
 
@@ -243,16 +243,16 @@ Since fields are included, the preceding code reads `NameField` and includes it 
 
 ### Configure JSON serialization options for an endpoint
 
-To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json%2A?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
+To configure serialization options for an endpoint, invoke <xref:Microsoft.AspNetCore.Http.Results.Json*?displayProperty=nameWithType> and pass to it a <xref:System.Text.Json.JsonSerializerOptions> object, as shown in the following example:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_resultsjsonwithoptions" highlight="5-6,9":::
 
-As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync%2A> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
+As an alternative, use an overload of <xref:Microsoft.AspNetCore.Http.HttpResponseJsonExtensions.WriteAsJsonAsync*> that accepts a <xref:System.Text.Json.JsonSerializerOptions> object. The following example uses this overload to format the output JSON:
 
 :::code language="csharp" source="~/fundamentals/minimal-apis/samples/7.0/WebMinJson/Program.cs" id="snippet_writeasjsonasyncwithoptions" highlight="5-6,10":::
 
 ## Related content
 
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](../security.md)
 
 :::moniker-end

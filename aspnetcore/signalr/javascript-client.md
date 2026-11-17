@@ -5,7 +5,6 @@ description: Work with the ASP.NET Core SignalR JavaScript client, including pac
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: devx-track-js
 ms.date: 09/20/2026
-uid: signalr/javascript-client
 
 # customer intent: As an ASP.NET developer, I want to configure the ASP.NET Core SignalR JavaScript client, so I can connect to a SignalR hub and use hub and client methods in JavaScript.
 ---
@@ -15,7 +14,7 @@ uid: signalr/javascript-client
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side SignalR hub code. This article describes how to use the APIs to connect to a SignalR hub, and call the JavaScript hub and client methods.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -24,7 +23,7 @@ The SignalR JavaScript client library is delivered as an [npm](https://www.npmjs
 - Run `npm` commands in Visual Studio **Package Manager Console**.
 - Run `npm` commands in the integrated terminal in Visual Studio Code.
 - Reference a copy of the client library hosted on a Content Delivery Network (CDN).
-- Use [LibMan](xref:client-side/libman/index) and install specific client library files from a CDN-hosted client library.
+- Use [LibMan](../client-side/libman/index.md) and install specific client library files from a CDN-hosted client library.
 
 ### Install with npm
 
@@ -76,9 +75,9 @@ The code example specifies version 6.0.1. To get the latest client library versi
 
 ### Install with LibMan
 
-Another approach is to use [LibMan](xref:client-side/libman/index) and install only specific client library files from the CDN-hosted client library. For example, you can add only the minified JavaScript file to the project.
+Another approach is to use [LibMan](../client-side/libman/index.md) and install only specific client library files from the CDN-hosted client library. For example, you can add only the minified JavaScript file to the project.
 
-For details on this approach, see [Add the SignalR client library](xref:tutorials/signalr#add-the-signalr-client-library).
+For details on this approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
 ## Connect to a hub
 
@@ -90,13 +89,13 @@ The following code creates and starts a connection. The hub name is case insensi
 
 Typically, browsers load connections from the same domain as the requested page. However, there are occasions when a connection to another domain is required.
 
-For [cross domain requests](xref:signalr/security#cross-origin-resource-sharing), the client code ***must*** use an absolute URL rather than a relative URL. When you use cross domain requests, change `.withUrl("/chathub")` to `.withUrl("https://{App domain name}/chathub")`.
+For [cross domain requests](security.md#cross-origin-resource-sharing), the client code ***must*** use an absolute URL rather than a relative URL. When you use cross domain requests, change `.withUrl("/chathub")` to `.withUrl("https://{App domain name}/chathub")`.
 
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable [CORS](xref:security/cors):
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](../security/cors.md) are disabled by default. To allow a cross-origin request, enable [CORS](../security/cors.md):
 
 [!code-csharp[](javascript-client/samples/6.x/SignalRChat/Program.cs?highlight=8-18,35-36,39)]
 
-The <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors%2A> method must be called before calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub%2A> method.
+The <xref:Microsoft.AspNetCore.Builder.CorsMiddlewareExtensions.UseCors*> method must be called before calling the <xref:Microsoft.AspNetCore.Builder.HubEndpointRouteBuilderExtensions.MapHub*> method.
 
 ## Call hub methods from the client
 
@@ -128,7 +127,7 @@ In the following example, the method name is `ReceiveMessage`. The argument name
 
 [!code-javascript[](javascript-client/samples/6.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-The preceding code in `connection.on` runs when server-side code calls it by using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it by using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/6.x/SignalRChat/Hubs/ChatHub.cs)]
 
@@ -195,7 +194,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 
 Because the connection looks entirely new to the server, a new `connectionId` is provided to the `onreconnected` callback.
 
-The `onreconnected` callback's `connectionId` parameter is ***undefined*** if the `HubConnection` is configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+The `onreconnected` callback's `connectionId` parameter is ***undefined*** if the `HubConnection` is configured to [skip negotiation](configuration.md#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -356,7 +355,7 @@ const connection = new signalR.HubConnectionBuilder()
 
 Each refresh calls `accessTokenFactory` again to obtain a new token. To refresh immediately, for example after the app obtains updated claims, call `connection.refreshAuthentication()`.
 
-For the refresh options, the success and failure handlers, and the server configuration that enables the feature, see <xref:signalr/authn-and-authz#authentication-refresh>.
+For the refresh options, the success and failure handlers, and the server configuration that enables the feature, see [SignalR authentication and authorization](authn-and-authz.md#authentication-refresh).
 
 :::moniker-end
 
@@ -364,11 +363,11 @@ For the refresh options, the success and failure handlers, and the server config
 
 ## Related content
 
-* [JavaScript tutorial](xref:tutorials/signalr)
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
+* [JavaScript tutorial](../tutorials/signalr.md)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
+* [Hubs](hubs.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)
 
 :::moniker-end
 
@@ -378,7 +377,7 @@ By [Rachel Appel](https://twitter.com/rachelappel)
 
 The ASP.NET Core SignalR JavaScript client library enables developers to call server-side hub code.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 ## Install the SignalR client package
 
@@ -415,7 +414,7 @@ The client library is available on the following CDNs:
 
 ### Install with LibMan
 
-[LibMan](xref:client-side/libman/index) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](xref:tutorials/signalr#add-the-signalr-client-library).
+[LibMan](../client-side/libman/index.md) can be used to install specific client library files from the CDN-hosted client library. For example, only add the minified JavaScript file to the project. For details on that approach, see [Add the SignalR client library](../tutorials/signalr.md#add-the-signalr-client-library).
 
 ## Connect to a hub
 
@@ -430,7 +429,7 @@ Typically, browsers load connections from the same domain as the requested page.
 > [!IMPORTANT]
 > The client code must use an absolute URL instead of a relative URL. Change `.withUrl("/chathub")` to `.withUrl("https://myappurl/chathub")`.
 
-To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](xref:security/cors) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
+To prevent a malicious site from reading sensitive data from another site, [cross-origin connections](../security/cors.md) are disabled by default. To allow a cross-origin request, enable it in the `Startup` class:
 
 [!code-csharp[](javascript-client/samples/3.x/SignalRChat/Startup.cs?highlight=16-23,40)]
 
@@ -466,7 +465,7 @@ In the following example, the method name is `ReceiveMessage`. The argument name
 
 [!code-javascript[](javascript-client/samples/3.x/SignalRChat/wwwroot/chat.js?name=snippet_ReceiveMessage)]
 
-The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync%2A> method:
+The preceding code in `connection.on` runs when server-side code calls it using the <xref:Microsoft.AspNetCore.SignalR.ClientProxyExtensions.SendAsync*> method:
 
 [!code-csharp[Call client-side](javascript-client/samples/3.x/SignalRChat/Hubs/ChatHub.cs?name=snippet_SendMessage)]
 
@@ -526,7 +525,7 @@ If the client successfully reconnects within its first four attempts, the `HubCo
 Since the connection looks entirely new to the server, a new `connectionId` will be provided to the `onreconnected` callback.
 
 > [!WARNING]
-> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](xref:signalr/configuration#configure-client-options).
+> The `onreconnected` callback's `connectionId` parameter will be undefined if the `HubConnection` was configured to [skip negotiation](configuration.md#configure-client-options).
 
 ```javascript
 connection.onreconnected(connectionId => {
@@ -669,13 +668,13 @@ For the preceding code example:
 ## Related content
 
 * [JavaScript API reference](/javascript/api/@microsoft/signalr)
-* [JavaScript tutorial](xref:tutorials/signalr)
-* [WebPack and TypeScript tutorial](xref:tutorials/signalr-typescript-webpack)
-* [Hubs](xref:signalr/hubs)
-* [.NET client](xref:signalr/dotnet-client)
-* [Publish to Azure](xref:signalr/publish-to-azure-web-app)
-* [Cross-Origin Requests (CORS)](xref:security/cors)
+* [JavaScript tutorial](../tutorials/signalr.md)
+* [WebPack and TypeScript tutorial](../tutorials/signalr-typescript-webpack.md)
+* [Hubs](hubs.md)
+* [.NET client](dotnet-client.md)
+* [Publish to Azure](publish-to-azure-web-app.md)
+* [Cross-Origin Requests (CORS)](../security/cors.md)
 * [Azure SignalR Service serverless documentation](/azure/azure-signalr/signalr-concept-serverless-development-config)
-* [Troubleshoot connection errors](xref:signalr/troubleshoot)
+* [Troubleshoot connection errors](troubleshoot.md)
 
 :::moniker-end

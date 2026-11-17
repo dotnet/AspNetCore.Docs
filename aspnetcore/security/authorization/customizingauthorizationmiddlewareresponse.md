@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: This article explains how to customize the result handling of AuthorizationMiddleware.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 07/21/2026
-uid: security/authorization/authorizationmiddlewareresulthandler
 ---
 # Customize the behavior of authorization middleware
 

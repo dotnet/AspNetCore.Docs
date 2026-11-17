@@ -1,6 +1,7 @@
 ﻿#define Default // or Limits
 
 using System;
+using System.Text.Encodings.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Hosting.Server.Features;
@@ -35,12 +36,13 @@ namespace KestrelSample
                 {
                     await context.Response
                         .WriteAsync("<p>Listening on the following addresses: " +
-                            string.Join(", ", serverAddressesFeature.Addresses) +
+                            HtmlEncoder.Default.Encode(
+                                string.Join(", ", serverAddressesFeature.Addresses)) +
                             "</p>");
                 }
 
                 await context.Response.WriteAsync("<p>Request URL: " +
-                    $"{context.Request.GetDisplayUrl()}<p>");
+                    $"{HtmlEncoder.Default.Encode(context.Request.GetDisplayUrl())}<p>");
             });
         }
         // </snippet_Configure>
@@ -83,12 +85,13 @@ namespace KestrelSample
                 {
                     await context.Response
                         .WriteAsync("<p>Listening on the following addresses: " +
-                            string.Join(", ", serverAddressesFeature.Addresses) +
+                            HtmlEncoder.Default.Encode(
+                                string.Join(", ", serverAddressesFeature.Addresses)) +
                             "</p>");
                 }
 
                 await context.Response.WriteAsync("<p>Request URL: " +
-                    $"{context.Request.GetDisplayUrl()}<p>");
+                    $"{HtmlEncoder.Default.Encode(context.Request.GetDisplayUrl())}<p>");
             });
         }
 #endif
