@@ -196,8 +196,6 @@ In the preceding example:
 Conventional routing only matches a combination of action and controller that the app defines. This approach simplifies cases where conventional routes overlap.
 When you add routes by using <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapControllerRoute*>, <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapDefaultControllerRoute*>, and <xref:Microsoft.AspNetCore.Builder.ControllerEndpointRouteBuilderExtensions.MapAreaControllerRoute*>, the endpoints automatically get an order value based on the order you invoke these methods. Matches from a route that appears earlier in the list have a higher priority. Conventional routing depends on order. In general, place routes with areas earlier because they're more specific than routes without an area. [Dedicated conventional routes](#dcr) with catch-all route parameters, such as `{*article}`, can make a route too [greedy](../../fundamentals/routing.md#complex-segments). A greedy route matches URLs that you intended to be matched by other routes. Put the greedy routes later in the route table to prevent greedy matches.
 
-[!INCLUDE[](~/includes/catchall.md)]
-
 <a name="best"></a>
 
 ### Resolving ambiguous actions
