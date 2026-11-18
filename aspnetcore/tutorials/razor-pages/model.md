@@ -7,10 +7,6 @@ ms.date: 10/20/2026
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
-
 In this tutorial, you add classes for managing movies in a database. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write the model classes first, and EF Core creates the database.
 
 The model classes are known as POCO classes (from "**P**lain-**O**ld **C**LR **O**bjects") because they don't have a dependency on EF Core. They define the properties of the data that are stored in the database.
@@ -277,5 +273,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 > [!div class="step-by-step"]
 > [Previous: Get Started](razor-pages-start.md)
 > [Next: Scaffolded Razor Pages](page.md)
-
-:::moniker-end

@@ -7,11 +7,7 @@ ms.date: 05/11/2026
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
 
 In this section, [Entity Framework Core (EF Core)](/ef/core/get-started/aspnetcore/new-db) is used to define the database schema based on the app's model class:
 
@@ -159,7 +155,7 @@ For more information, see the following resources:
 * [Data seeding](/ef/core/modeling/data-seeding)
 * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
-1. Delete the migration folder.  
+1. Delete the migration folder.
 
 1. Use the following commands to recreate the database.
 
@@ -178,5 +174,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [!div class="step-by-step"]
 > [Previous: Add Search](search.md)
 > [Next: Add Validation](validation.md)
-
-:::moniker-end

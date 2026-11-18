@@ -8,13 +8,9 @@ ms.date: 01/08/2026
 
 # Part 3, scaffolded Razor Pages in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](model.md).
-
-:::moniker range=">= aspnetcore-10.0"
 
 ## The Create, Delete, Details, and Edit pages
 
@@ -185,5 +181,3 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 > [!div class="step-by-step"]
 > [Previous: Add a model](model.md)
 > [Next: Work with a database](sql.md)
-
-:::moniker-end

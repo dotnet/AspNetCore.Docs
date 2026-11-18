@@ -7,10 +7,6 @@ ms.date: 01/08/2026
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
-
 The scaffolded movie app is a good start, but the presentation isn't ideal. **ReleaseDate** should be two words, **Release Date**.
 
 :::image type="content" source="~/tutorials/razor-pages/sql/media/seed-data-in-app.png" alt-text="Movie application open in Chrome.":::
@@ -132,5 +128,3 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 > [!div class="step-by-step"]
 > [Previous: Work with a database](sql.md)
 > [Next: Add search](search.md)
-
-:::moniker-end
