@@ -89,7 +89,7 @@ builder.Services.AddRateLimiter(options =>
 ```
 
 > [!NOTE]
-> <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*> does not dispose its inner limiters when the returned chained limiter is disposed. When partitions are evicted from the partition cache, only the top-level limiter is disposed. If inner limiters manage background resources, such as an auto-replenishing <xref:System.Threading.RateLimiting.TokenBucketRateLimiter>, return an owning wrapper that disposes the inner limiters in both <xref:System.Threading.RateLimiting.RateLimiter.Dispose*> and <xref:System.Threading.RateLimiting.RateLimiter.DisposeAsync*>.
+> <xref:System.Threading.RateLimiting.RateLimiter.CreateChained*> doesn't dispose its inner limiters when the returned chained limiter is disposed. When partitions are evicted from the partition cache, only the top-level limiter is disposed. If inner limiters manage background resources, such as an auto-replenishing <xref:System.Threading.RateLimiting.TokenBucketRateLimiter>, return an owning wrapper that disposes the inner limiters in both <xref:System.Threading.RateLimiting.RateLimiter.Dispose*> and <xref:System.Threading.RateLimiting.RateLimiter.DisposeAsync*>.
 
 For more information, see [Chain limiters in a named policy](rate-limit.md#chain-limiters-in-a-named-policy).
 
