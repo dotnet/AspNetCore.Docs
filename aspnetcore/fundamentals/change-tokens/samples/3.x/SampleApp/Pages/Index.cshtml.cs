@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc;
@@ -60,7 +61,8 @@ namespace ChangeTokenSample.Pages
             var fileContent = await _fileService.GetFileContents("poem.txt");
             #endregion
 
-            FileContents = new HtmlString(fileContent.Replace("\r\n", "<br>"));
+            FileContents = new HtmlString(
+                HtmlEncoder.Default.Encode(fileContent).Replace("\r\n", "<br>"));
         }
 
         #region snippet2

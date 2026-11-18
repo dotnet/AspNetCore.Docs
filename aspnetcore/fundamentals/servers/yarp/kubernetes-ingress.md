@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/kubernetes-ingress
 title: YARP Kubernetes Ingress Controller
 description: YARP Kubernetes Ingress Controller
 ms.date: 04/03/2025

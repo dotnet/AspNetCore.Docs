@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/lets-encrypt
 title: YARP Lets Encrypt
 description: YARP Lets Encrypt
 monikerRange: '<= aspnetcore-7.0'

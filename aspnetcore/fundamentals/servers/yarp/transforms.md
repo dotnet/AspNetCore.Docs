@@ -5,7 +5,6 @@ content_well_notification: AI-contribution
 description: Learn how to use YARP Request and Response Transforms to modify parts of the request or response to adapt to the destination server's requirements or to flow additional data such as the client's original IP address.
 ms.date: 10/06/2026
 ms.topic: concept-article
-uid: fundamentals/servers/yarp/transforms
 ---
 
 # YARP Request and Response Transforms
@@ -154,4 +153,4 @@ For more advanced control see `ITransformProvider`<!-- fix #x-forwarded#itransfo
 
 Built-in transforms can also be used with `IHttpForwarder` without configuring routes or clusters. Register the direct forwarding services with `AddHttpForwarder`, resolve `ITransformBuilder` from dependency injection, and call `Create` to configure the transforms. Pass the returned `HttpTransformer` to `IHttpForwarder.SendAsync` or `MapForwarder`.
 
-The `Create` callback accepts a `TransformBuilderContext` with the same transform extension methods as `AddTransforms`. It isn't associated with a route or cluster, so `Route` and `Cluster` aren't populated. For a working example, see [Transforms with direct forwarding](xref:fundamentals/servers/yarp/direct-forwarding#transforms).
+The `Create` callback accepts a `TransformBuilderContext` with the same transform extension methods as `AddTransforms`. It isn't associated with a route or cluster, so `Route` and `Cluster` aren't populated. For a working example, see [Transforms with direct forwarding](direct-forwarding.md#transforms).

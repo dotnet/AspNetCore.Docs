@@ -1,6 +1,5 @@
 ---
 title: Breaking changes in ASP.NET Core 6
-titleSuffix: ""
 description: Navigate to the breaking changes in ASP.NET Core 6.
 ms.date: 07/28/2023
 no-loc: [Blazor, Razor, Kestrel]
@@ -11,10 +10,10 @@ If you're migrating an app to ASP.NET Core 6, the breaking changes listed here m
 
 [!INCLUDE [binary-source-compat](../includes/binary-source-compat.md)]
 
-| Title | Binary compatible | Source compatible |
-| - | :-: | :-: |
-| [ActionResult\<T> sets StatusCode to 200](actionresult-statuscode.md) | ✔️ | ❌ |
-| [AddDataAnnotationsValidation method made obsolete](adddataannotationsvalidation-obsolete.md) | ✔️ | ❌ |
+| Title                                                                                         | Binary compatible | Source compatible |
+|-----------------------------------------------------------------------------------------------|:-----------------:|:-----------------:|
+| [ActionResult\<T> sets StatusCode to 200](actionresult-statuscode.md)                         | ✔️               | ❌                 |
+| [AddDataAnnotationsValidation method made obsolete](adddataannotationsvalidation-obsolete.md) | ✔️               | ❌                 |
 | [Assemblies removed from Microsoft.AspNetCore.App shared framework](assemblies-removed-from-shared-framework.md) | ❌ | ✔️ |
 | [Blazor: Parameter name changed in RequestImageFileAsync method](blazor-parameter-name-changed-in-method.md) | ✔️ | ❌ |
 | [Blazor: WebEventDescriptor.EventArgsType property replaced](blazor-eventargstype-property-replaced.md) | ❌ | ❌ |

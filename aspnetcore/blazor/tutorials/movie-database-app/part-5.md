@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 5 - Add validation)
 description: This part of the Blazor movie database app tutorial explains how metadata (data annotations) of the movie model is used to validate user input in the forms that create and edit movies.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-5
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 5 - Add validation)
@@ -57,7 +56,7 @@ Add the following data annotations to the `Movie` class properties. To update al
        public DateOnly ReleaseDate { get; set; }
 
      And the following text:
-     
+
      The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) with a <xref:System.ComponentModel.DataAnnotations.DisplayAttribute.Name> is used to present the name of the property as `Release Date`, which includes a space.
 
      Update the following example to include the added attribute. Setting the Title
@@ -193,16 +192,16 @@ Required | <span aria-hidden="true">✔️</span><span class="visually-hidden">Y
 
 ## Related content
 
-* <xref:mvc/views/working-with-forms>
-* <xref:fundamentals/localization>
-* <xref:mvc/views/tag-helpers/intro>
-* <xref:mvc/views/tag-helpers/authoring>
+* [Tag Helpers in forms in ASP.NET Core](../../../mvc/views/working-with-forms.md)
+* [Globalization and localization in ASP.NET Core](../../../fundamentals/localization.md)
+* [Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/intro.md)
+* [Author Tag Helpers in ASP.NET Core](../../../mvc/views/tag-helpers/authoring.md)
 * [Migrations overview (EF Core documentation)](/ef/core/managing-schemas/migrations/)
 * [nchar and nvarchar (Transact-SQL) (SQL Server documentation)](/sql/t-sql/data-types/nchar-and-nvarchar-transact-sql#remarks)
-* [Blazor enhanced forms](xref:blazor/forms/index#enhanced-form-handling)
+* [Blazor enhanced forms](../../forms/index.md#enhanced-form-handling)
 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Work with a database](xref:blazor/tutorials/movie-database-app/part-4)
-> [Next: Add search](xref:blazor/tutorials/movie-database-app/part-6)
+> [Previous: Work with a database](part-4.md)
+> [Next: Add search](part-6.md)

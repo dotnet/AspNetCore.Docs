@@ -3,7 +3,6 @@ title: Inter-process communication with gRPC and Unix domain sockets
 description: Learn how to use gRPC for inter-process communication with Unix domain sockets.
 monikerRange: '>= aspnetcore-5.0'
 ms.date: 01/18/2023
-uid: grpc/interprocess-uds
 ---
 # Inter-process communication with gRPC and Unix domain sockets
 
@@ -11,7 +10,7 @@ uid: grpc/interprocess-uds
 
 By [James Newton-King](https://twitter.com/jamesnk)
 
-.NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](xref:grpc/interprocess).
+.NET supports inter-process communication (IPC) using gRPC. For more information about getting started with using gRPC to communicate between processes, see [Inter-process communication with gRPC](interprocess.md).
 
 [Unix domain sockets (UDS)](https://wikipedia.org/wiki/Unix_domain_socket) is a widely supported IPC transport that's more efficient than TCP when the client and server are on the same machine. This article discusses how to configure gRPC communication over UDS.
 
@@ -22,7 +21,7 @@ By [James Newton-King](https://twitter.com/jamesnk)
 
 ## Server configuration
 
-Unix domain sockets are supported by [Kestrel](xref:fundamentals/servers/kestrel), which is configured in `Program.cs`:
+Unix domain sockets are supported by [Kestrel](../fundamentals/servers/kestrel.md), which is configured in `Program.cs`:
 
 ```csharp
 var socketPath = Path.Combine(Path.GetTempPath(), "socket.tmp");
@@ -39,9 +38,9 @@ builder.WebHost.ConfigureKestrel(serverOptions =>
 
 The preceding example:
 
-* Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel%2A>.
-* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket%2A> to listen to a UDS with the specified path.
-* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](xref:fundamentals/servers/kestrel/endpoints#listenoptionsusehttps).
+* Configures Kestrel's endpoints in <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderKestrelExtensions.ConfigureKestrel*>.
+* Calls <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ListenUnixSocket*> to listen to a UDS with the specified path.
+* Creates a UDS endpoint that isn't configured to use HTTPS. For information about enabling HTTPS, see [Kestrel HTTPS endpoint configuration](../fundamentals/servers/kestrel/endpoints.md#listenoptionsusehttps).
 
 ## Client configuration
 

@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to build a .NET MAUI Blazor Hybrid app with a Blazor Web App that uses a shared user interface via a Razor class library (RCL).
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/tutorials/maui-blazor-web-app
 ---
 # Build a .NET MAUI Blazor Hybrid app with a Blazor Web App
 
@@ -34,7 +33,7 @@ Create a solution from the project template with the following .NET CLI command,
 * `WebAssembly`: Adopts the Interactive WebAssembly render mode and produces two Blazor projects, a server project and a `.Client` project.
 * `Auto`: Adopts the Interactive Auto render mode and produces two Blazor projects, a server project and a `.Client` project.
 
-For more information on the preceding render modes and the projects produced, see <xref:blazor/components/render-modes#render-modes> and the [Use Blazor render modes](#use-blazor-render-modes) section later in this article.
+For more information on the preceding render modes and the projects produced, see [ASP.NET Core Blazor render modes](../../components/render-modes.md#render-modes) and the [Use Blazor render modes](#use-blazor-render-modes) section later in this article.
 
 ```dotnetcli
 dotnet new maui-blazor-web -o MauiBlazorWeb -I {INTERACTIVITY}
@@ -43,7 +42,7 @@ dotnet new maui-blazor-web -o MauiBlazorWeb -I {INTERACTIVITY}
 In the preceding command:
 
 * The `-o|--output` option creates a new folder for the app named `MauiBlazorWeb`.
-* The `-I|--InteractivityPlatform` option sets the interactivity render mode. The `{INTERACTIVITY}` placeholder is the interactive Blazor render mode. All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see <xref:blazor/components/render-modes#render-modes> and the [Use Blazor render modes](#use-blazor-render-modes) section.
+* The `-I|--InteractivityPlatform` option sets the interactivity render mode. The `{INTERACTIVITY}` placeholder is the interactive Blazor render mode. All three interactive Blazor render modes (`Server`, `WebAssembly`, and `Auto`) are supported by the project template. For more information, see [ASP.NET Core Blazor render modes](../../components/render-modes.md#render-modes) and the [Use Blazor render modes](#use-blazor-render-modes) section.
 
 The preceding command produces a Blazor app that adopts global interactivity, which is important because MAUI apps always run interactively and throw errors on Razor component pages that explicitly specify a render mode. For more information, see [BlazorWebView needs a way to enable overriding ResolveComponentForRenderMode (`dotnet/aspnetcore` #51235)](https://github.com/dotnet/aspnetcore/issues/51235).
 
@@ -53,7 +52,7 @@ The preceding command produces a Blazor app that adopts global interactivity, wh
 
 ## .NET MAUI Blazor Hybrid and Web App sample app
 
-[Obtain the sample app](xref:blazor/fundamentals/index#sample-apps) named `MauiBlazorWeb` from the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (`8.0` or `9.0` folder).
+[Obtain the sample app](../../fundamentals/index.md#sample-apps) named `MauiBlazorWeb` from the [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) (`8.0` or `9.0` folder).
 
 The sample app is a starter solution that contains a .NET MAUI Blazor Hybrid (native, cross-platform) app, a Blazor Web App, and a Razor class library (RCL) that contains the shared UI (Razor components) used by the native and web apps.
 
@@ -193,7 +192,7 @@ If you receive a build error that the RCL's assembly can't be resolved, build th
 
 :::moniker range=">= aspnetcore-9.0"
 
-Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](xref:blazor/components/render-modes) in the Blazor Web App but ignore the render mode assignments in the MAUI project.
+Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](../../components/render-modes.md) in the Blazor Web App but ignore the render mode assignments in the MAUI project.
 
 Render mode specification subsections:
 
@@ -207,7 +206,7 @@ Render mode specification subsections:
 
 :::moniker range="< aspnetcore-9.0"
 
-Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](xref:blazor/components/render-modes) for a given interactivity location in the Blazor Web App but ignore the render mode assignments in the MAUI project.
+Use the guidance in one of the following subsections that matches your app's specifications for applying Blazor [render modes](../../components/render-modes.md) for a given interactivity location in the Blazor Web App but ignore the render mode assignments in the MAUI project.
 
 Render mode and interactivity specification subsections:
 
@@ -385,7 +384,7 @@ Project references:
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
 
-Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
+Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
 :::moniker-end
 
@@ -419,7 +418,7 @@ Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.Additiona
 
 :::moniker range=">= aspnetcore-9.0"
 
-Add the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) with the following <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> call in the `MauiBlazorWeb.Web` project's `Program.cs` file:
+Add the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) with the following <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies*> call in the `MauiBlazorWeb.Web` project's `Program.cs` file:
 
 ```csharp
 app.MapRazorComponents<App>()    
@@ -587,7 +586,7 @@ Project references:
 * `MauiBlazorWeb.Web` has a project reference to `MauiBlazorWeb.Web.Client`.
 * `MauiBlazorWeb.Web.Client` and `MauiBlazorWeb.Shared` have a project reference to `MauiBlazorWeb.Shared.Client`.
 
-Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies%2A> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
+Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.AdditionalAssemblies> parameter to the `Router` component instance for the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) in the `MauiBlazorWeb.Shared` project's `Routes.razor` file:
 
 ```razor
 <Router AppAssembly="@typeof(Routes).Assembly" 
@@ -599,7 +598,7 @@ Add the following <xref:Microsoft.AspNetCore.Components.Routing.Router.Additiona
 </Router>
 ```
 
-Add the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) with the following <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies%2A> call in the `MauiBlazorWeb.Web` project's `Program.cs` file:
+Add the `MauiBlazorWeb.Shared.Client` project assembly (via its imports file, `_Imports.razor`) with the following <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.AddAdditionalAssemblies*> call in the `MauiBlazorWeb.Web` project's `Program.cs` file:
 
 ```csharp
 app.MapRazorComponents<App>()    
@@ -813,6 +812,6 @@ You can also use compiler preprocessor directives in your RCL to implement diffe
 
 ## Related content
 
-* <xref:blazor/hybrid/security/index?pivots=maui>
-* <xref:blazor/components/render-modes>
-* <xref:blazor/hybrid/reuse-razor-components>
+* [ASP.NET Core Blazor Hybrid authentication and authorization](../security/index.md?pivots=maui)
+* [ASP.NET Core Blazor render modes](../../components/render-modes.md)
+* [Reuse Razor components in ASP.NET Core Blazor Hybrid apps](../reuse-razor-components.md)

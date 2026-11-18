@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/load-balancing
 title: YARP Load Balancing
 description: YARP Load Balancing
 ms.date: 2/6/2025

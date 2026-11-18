@@ -3,7 +3,6 @@ title: File Providers in ASP.NET Core
 description: Learn how ASP.NET Core abstracts file system access through the use of File Providers.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 04/06/2020
-uid: fundamentals/file-providers
 ---
 # File Providers in ASP.NET Core
 
@@ -15,12 +14,12 @@ By [Steve Smith](https://ardalis.com/)
 
 ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework. For example:
 
-* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
-* [Static file middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
-* [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
+* <xref:Microsoft.AspNetCore.Hosting.IWebHostEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
+* [Static file middleware](static-files.md) uses File Providers to locate static files.
+* [Razor](../mvc/views/razor.md) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## File Provider interfaces
 
@@ -38,9 +37,9 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.Length> (in bytes)
 * <xref:Microsoft.Extensions.FileProviders.IFileInfo.LastModified> date
 
-You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream%2A?displayProperty=nameWithType> method.
+You can read from the file using the <xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*?displayProperty=nameWithType> method.
 
-The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The `FileProviderSample` sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](dependency-injection.md).
 
 ## File Provider implementations
 
@@ -54,7 +53,7 @@ The following table lists implementations of `IFileProvider`.
 
 ### Physical File Provider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](dependency-injection.md).
 
 > [!WARNING]
 > `PhysicalFileProvider` scopes access to its root directory and child paths, but this doesn't guarantee a security sandbox. Symbolic links under the root can still expose files outside the root directory.
@@ -102,7 +101,7 @@ The `FileProviderSample` sample app creates an `ManifestEmbeddedFileProvider` an
 `Startup.cs`:
 
 ```csharp
-var manifestEmbeddedProvider = 
+var manifestEmbeddedProvider =
     new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
@@ -114,7 +113,7 @@ Additional overloads allow you to:
 
 | Overload | Description |
 | -------- | ----------- |
-| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents%2A> to those resources under the provided path. |
+| `ManifestEmbeddedFileProvider(Assembly, String)` | Accepts an optional `root` relative path parameter. Specify the `root` to scope calls to <xref:Microsoft.Extensions.FileProviders.IFileProvider.GetDirectoryContents*> to those resources under the provided path. |
 | `ManifestEmbeddedFileProvider(Assembly, String, DateTimeOffset)` | Accepts an optional `root` relative path parameter and a `lastModified` date (<xref:System.DateTimeOffset>) parameter. The `lastModified` date scopes the last modification date for the <xref:Microsoft.Extensions.FileProviders.IFileInfo> instances returned by the <xref:Microsoft.Extensions.FileProviders.IFileProvider>. |
 | `ManifestEmbeddedFileProvider(Assembly, String, String, DateTimeOffset)` | Accepts an optional `root` relative path, `lastModified` date, and `manifestName` parameters. The `manifestName` represents the name of the embedded resource containing the manifest. |
 
@@ -128,7 +127,7 @@ In the `FileProviderSample` sample app, a `PhysicalFileProvider` and a `Manifest
 
 ## Watch for changes
 
-The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch%2A?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
+The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch*?displayProperty=nameWithType> method provides a scenario to watch one or more files or directories for changes. The `Watch` method:
 
 * Accepts a file path string, which can use [glob patterns](#glob-patterns) to specify multiple files.
 * Returns an <xref:Microsoft.Extensions.Primitives.IChangeToken>.
@@ -136,7 +135,7 @@ The <xref:Microsoft.Extensions.FileProviders.IFileProvider.Watch%2A?displayPrope
 The resulting change token exposes:
 
 * <xref:Microsoft.Extensions.Primitives.IChangeToken.HasChanged>: A property that can be inspected to determine if a change has occurred.
-* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback%2A>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
+* <xref:Microsoft.Extensions.Primitives.IChangeToken.RegisterChangeCallback*>: Called when changes are detected to the specified path string. Each change token only calls its associated callback in response to a single change. To enable constant monitoring, use a <xref:System.Threading.Tasks.TaskCompletionSource`1> (shown below) or recreate `IChangeToken` instances in response to changes.
 
 The `WatchConsole` sample app writes a message whenever a `.txt` file in the `TextFiles` directory is modified:
 
@@ -148,10 +147,10 @@ Some file systems, such as Docker containers and network shares, may not reliabl
 
 File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
 
-**`*`**  
+**`*`**
 Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
 
-**`**`**  
+**`**`**
 Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
 The following table provides common examples of glob patterns.
@@ -169,12 +168,12 @@ The following table provides common examples of glob patterns.
 
 ASP.NET Core abstracts file system access through the use of File Providers. File Providers are used throughout the ASP.NET Core framework:
 
-* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](xref:fundamentals/index#content-root) and [web root](xref:fundamentals/index#web-root) as `IFileProvider` types.
-* [Static file middleware](xref:fundamentals/static-files) uses File Providers to locate static files.
-* [Razor](xref:mvc/views/razor) uses File Providers to locate pages and views.
+* <xref:Microsoft.Extensions.Hosting.IHostingEnvironment> exposes the app's [content root](index.md#content-root) and [web root](index.md#web-root) as `IFileProvider` types.
+* [Static file middleware](static-files.md) uses File Providers to locate static files.
+* [Razor](../mvc/views/razor.md) uses File Providers to locate pages and views.
 * .NET tooling uses File Providers and glob patterns to specify which files should be published.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/file-providers/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## File Provider interfaces
 
@@ -194,7 +193,7 @@ The primary interface is <xref:Microsoft.Extensions.FileProviders.IFileProvider>
 
 You can read from the file using the [IFileInfo.CreateReadStream](xref:Microsoft.Extensions.FileProviders.IFileInfo.CreateReadStream*) method.
 
-The sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](xref:fundamentals/dependency-injection).
+The sample app demonstrates how to configure a File Provider in `Startup.ConfigureServices` for use throughout the app via [dependency injection](dependency-injection.md).
 
 ## File Provider implementations
 
@@ -208,7 +207,7 @@ Three implementations of `IFileProvider` are available.
 
 ### PhysicalFileProvider
 
-The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](xref:fundamentals/dependency-injection).
+The <xref:Microsoft.Extensions.FileProviders.PhysicalFileProvider> provides access to the physical file system. `PhysicalFileProvider` uses the <xref:System.IO.File?displayProperty=fullName> type (for the physical provider) and scopes all paths to a directory and its children. This scoping prevents access to the file system outside of the specified directory and its children. The most common scenario for creating and using a `PhysicalFileProvider` is to request an `IFileProvider` in a constructor through [dependency injection](dependency-injection.md).
 
 When instantiating this provider directly, a directory path is required and serves as the base path for all requests made using the provider.
 
@@ -249,7 +248,7 @@ The sample app creates an `ManifestEmbeddedFileProvider` and passes the currentl
 `Startup.cs`:
 
 ```csharp
-var manifestEmbeddedProvider = 
+var manifestEmbeddedProvider =
     new ManifestEmbeddedFileProvider(typeof(Program).Assembly);
 ```
 
@@ -290,24 +289,24 @@ Some file systems, such as Docker containers and network shares, may not reliabl
 
 File system paths use wildcard patterns called *glob (or globbing) patterns*. Specify groups of files with these patterns. The two wildcard characters are `*` and `**`:
 
-**`*`**  
+**`*`**
 Matches anything at the current folder level, any filename, or any file extension. Matches are terminated by `/` and `.` characters in the file path.
 
-**`**`**  
+**`**`**
 Matches anything across multiple directory levels. Can be used to recursively match many files within a directory hierarchy.
 
 **Glob pattern examples**
 
-**`directory/file.txt`**  
+**`directory/file.txt`**
 Matches a specific file in a specific directory.
 
-**`directory/*.txt`**  
+**`directory/*.txt`**
 Matches all files with *.txt* extension in a specific directory.
 
-**`directory/*/appsettings.json`**  
+**`directory/*/appsettings.json`**
 Matches all `appsettings.json` files in directories exactly one level below the *directory* folder.
 
-**`directory/**/*.txt`**  
+**`directory/**/*.txt`**
 Matches all files with *.txt* extension found anywhere under the *directory* folder.
 
 :::moniker-end

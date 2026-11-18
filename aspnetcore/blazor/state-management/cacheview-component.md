@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use the CacheView component to cache the rendered output of a Razor component subtree during static server-side rendering (static SSR).
 monikerRange: '>= aspnetcore-11.0'
 ms.date: 10/20/2026
-uid: blazor/state-management/cacheview-component
 ---
 # ASP.NET Core Blazor `CacheView` component
 
@@ -104,7 +103,7 @@ Here, `currentPermission` is the current permission value used by the child cont
 
 Without a matching vary-by parameter, requests with different values share the same cached output.
 
-If a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> without an explicit `action` attribute is rendered inside a `CacheView`, its [automatically generated `action` URL](xref:blazor/forms/index#handle-form-submission), including the query string, is cached with the markup. Configure `VaryByQuery` on the `CacheView` so that requests with different query strings don't share a cached form `action`.
+If a `<form>` or <xref:Microsoft.AspNetCore.Components.Forms.EditForm> without an explicit `action` attribute is rendered inside a `CacheView`, its [automatically generated `action` URL](../forms/index.md#handle-form-submission), including the query string, is cached with the markup. Configure `VaryByQuery` on the `CacheView` so that requests with different query strings don't share a cached form `action`.
 
 ## Expiration and cache storage
 

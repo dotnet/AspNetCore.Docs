@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use Web Workers to enable JavaScript to run on separate threads that don't block the main UI thread for improved app performance in a Blazor WebAssembly app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 04/07/2026
-uid: blazor/blazor-web-workers
 ---
 # ASP.NET Core Blazor with .NET on Web Workers
 
@@ -18,7 +17,7 @@ Modern Blazor WebAssembly apps often handle CPU-intensive work alongside rich UI
 
 :::moniker range=">= aspnetcore-11.0"
 
-The Blazor Web Worker project template (`blazorwebworker`) contains a Web Worker client for Blazor WebAssembly apps. The template generates the required JavaScript worker scripts, a C# `WebWorkerClient` class, and a starter `WorkerMethods.cs` file, which removes the need to write the interop layer manually. To learn about Web Workers with React or other custom JavaScript frontends, see <xref:client-side/dotnet-on-webworkers>.
+The Blazor Web Worker project template (`blazorwebworker`) contains a Web Worker client for Blazor WebAssembly apps. The template generates the required JavaScript worker scripts, a C# `WebWorkerClient` class, and a starter `WorkerMethods.cs` file, which removes the need to write the interop layer manually. To learn about Web Workers with React or other custom JavaScript frontends, see [.NET on Web Workers](../client-side/dotnet-on-webworkers.md).
 
 > [!NOTE]
 > Use of a Web Worker is primarily useful with Blazor WebAssembly apps to improve performance but can be implemented for the client-side project (`.Client`) of a Blazor Web App. Typically, a Blazor Web App performs demanding work server-side, where the server can handle the work faster than the client and the app avoids the small delay setting up a Web Worker. However, use of a Web Worker via the Blazor Web Worker template client-side in a Blazor Web App is supported.
@@ -219,7 +218,7 @@ public sealed class WebWorkerClient : IAsyncDisposable
 
 :::moniker range="< aspnetcore-11.0"
 
-The guidance in this article mirrors the concepts from the React-focused *.NET on Web Workers* walkthrough, but adapts every step to a Blazor frontend. It highlights the same QR-code generation scenario implemented in this repository. To learn about Web Workers with React, see <xref:client-side/dotnet-on-webworkers>.
+The guidance in this article mirrors the concepts from the React-focused *.NET on Web Workers* walkthrough, but adapts every step to a Blazor frontend. It highlights the same QR-code generation scenario implemented in this repository. To learn about Web Workers with React, see [.NET on Web Workers](../client-side/dotnet-on-webworkers.md).
 
 > [!NOTE]
 > Use of a Web Worker is primarily useful with Blazor WebAssembly apps to improve performance but can be implemented for the client-side project (`.Client`) of a Blazor Web App. Typically, a Blazor Web App performs demanding work server-side, where the server can handle the work faster than the client and the app avoids the small delay setting up a Web Worker. However, use of a Web Worker client-side in a Blazor Web App is supported.
@@ -468,7 +467,7 @@ You can use the app's Home page to demonstrate the flow.
 </div>
 ```
 
-The following code-behind file initializes the client and generates the QR code. The [`OnAfterRenderAsync` lifecycle method](xref:blazor/components/lifecycle#after-component-render-onafterrenderasync) code guarantees that the JavaScript module is loaded before the user clicks the button, while the `GenerateQR` handler makes a single asynchronous worker request.
+The following code-behind file initializes the client and generates the QR code. The [`OnAfterRenderAsync` lifecycle method](components/lifecycle.md#after-component-render-onafterrenderasync) code guarantees that the JavaScript module is loaded before the user clicks the button, while the `GenerateQR` handler makes a single asynchronous worker request.
 
 `Home.razor.cs`:
 
@@ -522,4 +521,4 @@ public partial class Home : ComponentBase
 
 ## Related content
 
-<xref:client-side/dotnet-on-webworkers>
+[.NET on Web Workers](../client-side/dotnet-on-webworkers.md)

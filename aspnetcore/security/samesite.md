@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to use to SameSite cookies in ASP.NET Core
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 5/20/2022
-uid: security/samesite
 no-loc: Electron
 ---
 # Work with SameSite cookies in ASP.NET Core
@@ -37,7 +36,7 @@ The following sample can be downloaded and tested:
 
 | Sample | Document |
 |--------|----------|
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages) | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 ## .NET support for the sameSite attribute
 
@@ -174,7 +173,7 @@ Versions of Electron include older versions of Chromium. For example, the versio
 
 | Sample | Document |
 |--------|----------|
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 :::moniker-end
 
@@ -184,7 +183,7 @@ The following sample can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 ## .NET Core support for the sameSite attribute
 
@@ -325,7 +324,7 @@ Versions of Electron include older versions of Chromium. For example, the versio
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | <xref:security/samesite/rp31> |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore31RazorPages)  | [ASP.NET Core 3.1 Razor Pages SameSite cookie sample](samesite/rp31.md) |
 
 :::moniker-end
 
@@ -335,8 +334,8 @@ The following samples can be downloaded and tested:
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | [ASP.NET Core 2.1 MVC SameSite cookie sample](samesite/mvc21.md) |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | [ASP.NET Core 2.1 Razor Pages SameSite cookie sample](samesite/rp21.md) |
 
 ## December patch behavior changes
 
@@ -460,7 +459,7 @@ Versions of Electron include older versions of Chromium. For example, the versio
 
 | Sample               | Document |
 | ----------------- | ------------ |
-| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | <xref:security/samesite/mvc21> |
-| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | <xref:security/samesite/rp21> |
+| [MVC](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21MVC)  | [ASP.NET Core 2.1 MVC SameSite cookie sample](samesite/mvc21.md) |
+| [Razor Pages](https://github.com/blowdart/AspNetSameSiteSamples/tree/master/AspNetCore21RazorPages)  | [ASP.NET Core 2.1 Razor Pages SameSite cookie sample](samesite/rp21.md) |
 
 :::moniker-end

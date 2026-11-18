@@ -3,7 +3,6 @@ title: JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
 description: Learn how to run .NET from JavaScript with [JSImport]/[JSExport] interop.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 12/19/2025
-uid: client-side/dotnet-interop/index
 ---
 # JavaScript `[JSImport]`/`[JSExport]` interop in .NET WebAssembly
 
@@ -15,8 +14,8 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 
 `[JSImport]`/`[JSExport]` interop is applicable when running a .NET WebAssembly module in a JS host in the following scenarios:
 
-* <xref:client-side/dotnet-interop/wasm-browser-app>.
-* <xref:blazor/js-interop/import-export-interop>.
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md).
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 * Other .NET WebAssembly platforms that support `[JSImport]`/`[JSExport]` interop.
 
 ## Prerequisites
@@ -25,15 +24,15 @@ This article explains how to interact with JavaScript (JS) in client-side WebAss
 
 Any of the following project types:
 
-* A WebAssembly Browser App project created according to <xref:client-side/dotnet-interop/wasm-browser-app>.
-* A Blazor client-side project created according to <xref:blazor/js-interop/import-export-interop>.
+* A WebAssembly Browser App project created according to [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md).
+* A Blazor client-side project created according to [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md).
 * A project created for a commercial or open-source platform that supports `[JSImport]`/`[JSExport]` interop (<xref:System.Runtime.InteropServices.JavaScript?displayProperty=fullName> API).
 
 :::moniker range=">= aspnetcore-8.0"
 
 ## Sample app
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps)): Select an 8.0 or later version folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `WASMBrowserAppImportExportInterop`.
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../../blazor/fundamentals/index.md#sample-apps)): Select an 8.0 or later version folder that matches the version of .NET that you're adopting. Within the version folder, access the sample named `WASMBrowserAppImportExportInterop`.
 
 :::moniker-end
 
@@ -107,47 +106,47 @@ JS declarations which are intended to be imported with `[JSImport]` are typicall
 * A `<script>...</script>` block declaring inline JS.
 * A script source (`src`) declaration (`<script src="./some.js"></script>`) that loads an external JS file (`.js`).
 * A JS ES6 module (`<script type='module' src="./moduleName.js"></script>`).
-* A JS ES6 module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> from .NET WebAssembly.
+* A JS ES6 module loaded using <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> from .NET WebAssembly.
 
-Examples in this article use <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>. When calling <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A>, client-side .NET WebAssembly requests the file using the `moduleUrl` parameter, and thus it expects the file to be accessible as a static web asset, much the same way as a `<script>` tag retrieves a file with a `src` URL. For example, the following C# code within a WebAssembly Browser App project maintains the JS file (`.js`) at the path `/wwwroot/scripts/ExampleShim.js`:
+Examples in this article use <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType>. When calling <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*>, client-side .NET WebAssembly requests the file using the `moduleUrl` parameter, and thus it expects the file to be accessible as a static web asset, much the same way as a `<script>` tag retrieves a file with a `src` URL. For example, the following C# code within a WebAssembly Browser App project maintains the JS file (`.js`) at the path `/wwwroot/scripts/ExampleShim.js`:
 
 ```csharp
 await JSHost.ImportAsync("ExampleShim", "/scripts/ExampleShim.js");
 ```
 
-Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such as `./scripts/`, might refer to an incorrect subdirectory, such as `/_framework/scripts/`, because the WebAssembly package is initialized by framework scripts under `/_framework/`. In that case, prefixing the URL with `../scripts/` refers to the correct path. Prefixing with `/scripts/` works if the site is hosted at the root of the domain. A typical approach involves configuring the correct base path for the given environment with an HTML `<base>` tag and using the `/scripts/` prefix to refer to the path relative to the base path. Tilde notation `~/` prefixes aren't supported by <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType>.
+Depending on the platform that's loading WebAssembly, a dot-prefixed URL, such as `./scripts/`, might refer to an incorrect subdirectory, such as `/_framework/scripts/`, because the WebAssembly package is initialized by framework scripts under `/_framework/`. In that case, prefixing the URL with `../scripts/` refers to the correct path. Prefixing with `/scripts/` works if the site is hosted at the root of the domain. A typical approach involves configuring the correct base path for the given environment with an HTML `<base>` tag and using the `/scripts/` prefix to refer to the path relative to the base path. Tilde notation `~/` prefixes aren't supported by <xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType>.
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > If JS is loaded from a JavaScript module, then `[JSImport]` attributes must include the module name as the second parameter. For example, `[JSImport("globalThis.callAlert", "ExampleShim")]` indicates the imported method was declared in a JavaScript module named "`ExampleShim`."
 
 :::moniker range=">= aspnetcore-10.0"
 
-<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of the following features:
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can take advantage of the following features:
 
-* [Import map for module scripts (Blazor Web Apps)](xref:blazor/fundamentals/static-files#importmap-component)
-* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](xref:blazor/fundamentals/static-files#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
+* [Import map for module scripts (Blazor Web Apps)](../../blazor/fundamentals/static-files.md#importmap-component)
+* [Fingerprinting client-side static assets (standalone Blazor WebAssembly apps)](../../blazor/fundamentals/static-files.md#fingerprint-client-side-static-assets-in-standalone-blazor-webassembly-apps)
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-9.0"
 
-<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync%2A?displayProperty=nameWithType> can take advantage of an [import map for module scripts](xref:blazor/fundamentals/static-files#importmap-component) in a Blazor Web App.
+<xref:System.Runtime.InteropServices.JavaScript.JSHost.ImportAsync*?displayProperty=nameWithType> can take advantage of an [import map for module scripts](../../blazor/fundamentals/static-files.md#importmap-component) in a Blazor Web App.
 
 :::moniker-end
 
 ## Type mappings
 
-Parameters and return types in the .NET method signature are automatically converted to or from appropriate JS types at runtime if a unique mapping is supported. This may result in values converted by value or references wrapped in a proxy type. This process is known as *type marshalling*. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> to control how the imported method parameters and return types are marshalled. 
+Parameters and return types in the .NET method signature are automatically converted to or from appropriate JS types at runtime if a unique mapping is supported. This may result in values converted by value or references wrapped in a proxy type. This process is known as *type marshalling*. Use <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1> to control how the imported method parameters and return types are marshalled.
 
-Some types don't have a default type mapping. For example, a `long` can be marshalled as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>, so the <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601> is required to avoid a compile-time error. 
+Some types don't have a default type mapping. For example, a `long` can be marshalled as <xref:System.Runtime.InteropServices.JavaScript.JSType.Number?displayProperty=nameWithType> or <xref:System.Runtime.InteropServices.JavaScript.JSType.BigInt?displayProperty=nameWithType>, so the <xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1> is required to avoid a compile-time error.
 
 The following type mapping scenarios are supported:
 
-* Passing <xref:System.Action> or <xref:System.Func%601> as parameters, which are marshalled as callable JS methods. This allows .NET code to invoke listeners in response to JS callbacks or events.
+* Passing <xref:System.Action> or <xref:System.Func`1> as parameters, which are marshalled as callable JS methods. This allows .NET code to invoke listeners in response to JS callbacks or events.
 * Passing JS references and .NET managed object references in either direction, which as marshaled as proxy objects and kept alive across the interop boundary until the proxy is garbage collected.
-* Marshalling asynchronous JS methods or a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) with a <xref:System.Threading.Tasks.Task> result, and vice versa. 
+* Marshalling asynchronous JS methods or a [JS `Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) with a <xref:System.Threading.Tasks.Task> result, and vice versa.
 
-Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods. 
+Most of the marshalled types work in both directions, as parameters and as return values, on both imported and exported methods.
 
 The following table indicates the supported type mappings.
 
@@ -244,11 +243,11 @@ The following conditions apply to type mapping and marshalled values:
   * `MemoryView` created for a `Span` is only valid for the duration of the interop call. As `Span` is allocated on the call stack, which doesn't persist after the interop call, it isn't possible to export a .NET method that returns a `Span`.
   * `MemoryView` created for an `ArraySegment` survives after the interop call and is useful for sharing a buffer. Calling `dispose()` on a `MemoryView` created for an `ArraySegment` disposes the proxy and unpins the underlying .NET array. We recommend calling `dispose()` in a `try-finally` block for `MemoryView`.
 
-Some combinations of type mappings that require nested generic types in [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601) aren't currently supported. For example, attempting to materialize an array from a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile-time error. An appropriate workaround varies depending on the scenario, but this specific scenario is further explored in the [Type mapping limitations](#type-mapping-limitations) section.
+Some combinations of type mappings that require nested generic types in [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1) aren't currently supported. For example, attempting to materialize an array from a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile-time error. An appropriate workaround varies depending on the scenario, but this specific scenario is further explored in the [Type mapping limitations](#type-mapping-limitations) section.
 
 ## JS primitives
 
-The following example demonstrates `[JSImport]` leveraging type mappings of several primitive JS types and the use of [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601), where explicit mappings are required at compile time.
+The following example demonstrates `[JSImport]` leveraging type mappings of several primitive JS types and the use of [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1), where explicit mappings are required at compile time.
 
 `PrimitivesShim.js`:
 
@@ -266,17 +265,17 @@ await PrimitivesUsage.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="Printed from JSImport of console.log()":::  
-> :::no-loc text="1":::  
-> :::no-loc text="I'm a string from .NET in your browser!":::  
-> :::no-loc text="boolean true":::  
-> :::no-loc text="number 58":::  
-> :::no-loc text="number 67":::  
-> :::no-loc text="number 12":::  
-> :::no-loc text="number 9007199254740990":::  
-> :::no-loc text="bigint 1234567890123456789n":::  
-> :::no-loc text="number 3.140000104904175":::  
-> :::no-loc text="number 3.14":::  
+> :::no-loc text="Printed from JSImport of console.log()":::
+> :::no-loc text="1":::
+> :::no-loc text="I'm a string from .NET in your browser!":::
+> :::no-loc text="boolean true":::
+> :::no-loc text="number 58":::
+> :::no-loc text="number 67":::
+> :::no-loc text="number 12":::
+> :::no-loc text="number 9007199254740990":::
+> :::no-loc text="bigint 1234567890123456789n":::
+> :::no-loc text="number 3.140000104904175":::
+> :::no-loc text="number 3.14":::
 > :::no-loc text="string A string":::
 
 ## JS `Date` objects
@@ -301,7 +300,7 @@ await DateUsage.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="Date: Sat Dec 21 1968 07:51:00 GMT-0500 (Eastern Standard Time)":::  
+> :::no-loc text="Date: Sat Dec 21 1968 07:51:00 GMT-0500 (Eastern Standard Time)":::
 > :::no-loc text="Date: Sun Dec 22 1968 07:51:00 GMT-0500 (Eastern Standard Time)":::
 
 The preceding timezone information (`GMT-0500 (Eastern Standard Time)`) depends on local timezone of your computer/browser.
@@ -328,9 +327,9 @@ await JSObjectUsage.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="{name: 'Example JS Object', answer: 41, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
-> :::no-loc text="{name: 'Example JS Object', answer: 42, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
-> :::no-loc text="{name: 'Example JS Object', answer: 42, question: 'What is the answer?', Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::  
+> :::no-loc text="{name: 'Example JS Object', answer: 41, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::
+> :::no-loc text="{name: 'Example JS Object', answer: 42, question: null, Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::
+> :::no-loc text="{name: 'Example JS Object', answer: 42, question: 'What is the answer?', Symbol(wasm cs_owned_js_handle): 5, summarize: ƒ}":::
 > :::no-loc text="Summary: Question: \"What is the answer?\" Answer: 42":::
 
 ## Asynchronous interop
@@ -345,11 +344,11 @@ JS with a callback, such as a `setTimeout`, can be wrapped in a [`Promise`](http
 
 :::code language="javascript" source="~/../blazor-samples/8.0/WASMBrowserAppImportExportInterop/wwwroot/PromisesShim.js":::
 
-Don't use the `async` keyword in the C# method signature. Returning <xref:System.Threading.Tasks.Task> or <xref:System.Threading.Tasks.Task%601> is sufficient.
+Don't use the `async` keyword in the C# method signature. Returning <xref:System.Threading.Tasks.Task> or <xref:System.Threading.Tasks.Task`1> is sufficient.
 
 When calling asynchronous JS methods, we often want to wait until the JS method completes execution. If loading a resource or making a request, we likely want the following code to assume the action is completed.
 
-If the JS shim returns a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), then C# can treat it as an awaitable <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.Task%601>.
+If the JS shim returns a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise), then C# can treat it as an awaitable <xref:System.Threading.Tasks.Task>/<xref:System.Threading.Tasks.Task`1>.
 
 `PromisesInterop.cs`:
 
@@ -363,16 +362,16 @@ await PromisesUsage.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="Waited 2.0s.":::  
-> :::no-loc text="Waited .5s for WaitGetString: 'String From Resolve'":::  
-> :::no-loc text="Waited .5s for WaitGetDate: '11/24/1988 12:00:00 AM'":::  
-> :::no-loc text="responseText.Length: 582":::  
-> :::no-loc text="Waited 2.0s for AsyncFunction.":::  
+> :::no-loc text="Waited 2.0s.":::
+> :::no-loc text="Waited .5s for WaitGetString: 'String From Resolve'":::
+> :::no-loc text="Waited .5s for WaitGetDate: '11/24/1988 12:00:00 AM'":::
+> :::no-loc text="responseText.Length: 582":::
+> :::no-loc text="Waited 2.0s for AsyncFunction.":::
 > :::no-loc text="JS Exception Caught: 'Reject: ShouldSucceed == false'":::
 
 ## Type mapping limitations
 
-Some type mappings requiring nested generic types in the [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute%601) definition aren't currently supported. For example, returning a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) for an array such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile-time error. An appropriate workaround varies depending on the scenario, but one option is to represent the array as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference. This may be sufficient if accessing individual elements within .NET isn't necessary and the reference can be passed to other JS methods that act on the array. Alternatively, a dedicated method can take the <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference as a parameter and return the materialized array, as demonstrated by the following `UnwrapJSObjectAsIntArray` example. In this case, the JS method has no type checking, and the developer has the responsibility to ensure a <xref:System.Runtime.InteropServices.JavaScript.JSObject> wrapping the appropriate array type is passed.
+Some type mappings requiring nested generic types in the [`JSMarshalAs`](xref:System.Runtime.InteropServices.JavaScript.JSMarshalAsAttribute`1) definition aren't currently supported. For example, returning a [`Promise`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise) for an array such as `[return: JSMarshalAs<JSType.Promise<JSType.Array<JSType.Number>>>()]` generates a compile-time error. An appropriate workaround varies depending on the scenario, but one option is to represent the array as a <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference. This may be sufficient if accessing individual elements within .NET isn't necessary and the reference can be passed to other JS methods that act on the array. Alternatively, a dedicated method can take the <xref:System.Runtime.InteropServices.JavaScript.JSObject> reference as a parameter and return the materialized array, as demonstrated by the following `UnwrapJSObjectAsIntArray` example. In this case, the JS method has no type checking, and the developer has the responsibility to ensure a <xref:System.Runtime.InteropServices.JavaScript.JSObject> wrapping the appropriate array type is passed.
 
 ```javascript
 export function waitGetIntArrayAsObject() {
@@ -400,7 +399,7 @@ export function unwrapJSObjectAsIntArray(jsObject) {
 [return: JSMarshalAs<JSType.Promise<JSType.Object>>()]
 public static partial Task<JSObject> WaitGetIntArrayAsObject();
 
-// Takes a JSObject reference to a JS number array, and returns the array as a C# 
+// Takes a JSObject reference to a JS number array, and returns the array as a C#
 // int array.
 [JSImport("unwrapJSObjectAsIntArray", "PromisesShim")]
 [return: JSMarshalAs<JSType.Array<JSType.Number>>()]
@@ -435,10 +434,10 @@ JSObjectBenchmark.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="JS interop elapsed time: .2536 seconds at .000254 ms per operation":::  
-> :::no-loc text=".NET elapsed time: .0210 seconds at .000021 ms per operation":::  
-> :::no-loc text="Begin Object Creation":::  
-> :::no-loc text="JS interop elapsed time: 2.1686 seconds at .002169 ms per operation":::  
+> :::no-loc text="JS interop elapsed time: .2536 seconds at .000254 ms per operation":::
+> :::no-loc text=".NET elapsed time: .0210 seconds at .000021 ms per operation":::
+> :::no-loc text="Begin Object Creation":::
+> :::no-loc text="JS interop elapsed time: 2.1686 seconds at .002169 ms per operation":::
 > :::no-loc text=".NET elapsed time: .1089 seconds at .000109 ms per operation":::
 
 ## Subscribing to JS events
@@ -466,18 +465,18 @@ await EventsUsage.Run();
 
 The preceding example displays the following output in the browser's debug console:
 
-> :::no-loc text="Subscribed to btn1 & 2.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
-> :::no-loc text="In C# event listener: Event click from ID btn2":::  
-> :::no-loc text="Unsubscribed btn2.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
-> :::no-loc text="Subscribed to btn1.":::  
-> :::no-loc text="In C# event listener: Event click from ID btn1":::  
+> :::no-loc text="Subscribed to btn1 & 2.":::
+> :::no-loc text="In C# event listener: Event click from ID btn1":::
+> :::no-loc text="In C# event listener: Event click from ID btn2":::
+> :::no-loc text="Unsubscribed btn2.":::
+> :::no-loc text="In C# event listener: Event click from ID btn1":::
+> :::no-loc text="Subscribed to btn1.":::
+> :::no-loc text="In C# event listener: Event click from ID btn1":::
 > :::no-loc text="Unsubscribed btn1.":::
 
 ## JS `[JSImport]`/`[JSExport]` interop scenarios
 
 The following articles focus on running a .NET WebAssembly module in a JS host, such as a browser:
 
-* <xref:client-side/dotnet-interop/wasm-browser-app>
-* <xref:blazor/js-interop/import-export-interop>
+* [JavaScript \`\[JSImport\]\`/\`\[JSExport\]\` interop with a WebAssembly Browser App project](wasm-browser-app.md)
+* [JavaScript JSImport/JSExport interop with ASP.NET Core Blazor](../../blazor/javascript-interoperability/import-export-interop.md)
