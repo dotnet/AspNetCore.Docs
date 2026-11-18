@@ -3,7 +3,7 @@ title: Strategies for selecting language and culture in a localized ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 11/18/2026
+ms.date: 11/17/2026
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
 
