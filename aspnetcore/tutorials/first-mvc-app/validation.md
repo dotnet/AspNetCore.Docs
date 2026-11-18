@@ -2,13 +2,13 @@
 title: Part 9, add validation to an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 9 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/26/2026
 ---
 
 # Part 9, add validation to an ASP.NET Core MVC app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -177,13 +177,3 @@ For more information, see [Resetting all migrations](/ef/core/managing-schemas/m
 > [Next](~/tutorials/first-mvc-app/details.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/validation/includes/validation3-5.md)]
