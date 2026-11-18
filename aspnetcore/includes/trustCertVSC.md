@@ -3,11 +3,8 @@
   ```dotnetcli
   dotnet dev-certs https --trust
   ```
-  :::moniker range="<=aspnetcore-8.0"
 
-  The preceding command requires .NET 9 or later SDK on Linux. For Linux on .NET 8.0.401 or earlier SDK, see your Linux distribution's documentation for trusting a certificate.
-
-  :::moniker-end
+  On Linux, this command requires the .NET 9 SDK or later. For earlier SDKs, see your Linux distribution's documentation for trusting a certificate.
 
   The preceding command displays the following dialog, provided the certificate was not previously trusted:
 
