@@ -31,7 +31,7 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Resource file naming issues
 
-ASP.NET Core has predefined rules and guidelines for localization resources file naming, which are described in [Globalization and localization in ASP.NET Core](localization.md#resource-file-naming).
+ASP.NET Core has predefined rules and guidelines for localization resources file naming, which are described in [Resource file naming](localization/provide-resources.md#resource-file-naming).
 
 ## Missing resources
 
@@ -100,7 +100,7 @@ A common reason for a custom provider not working properly is that it isn't the 
 
 ## Root namespace issues
 
-When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue use the [`RootNamespace` attribute](xref:Microsoft.Extensions.Localization.RootNamespaceAttribute), which is described in [Globalization and localization in ASP.NET Core](localization.md#resource-file-naming).
+When the root namespace of an assembly is different than the assembly name, localization doesn't work by default. To avoid this issue use the [`RootNamespace` attribute](xref:Microsoft.Extensions.Localization.RootNamespaceAttribute), which is described in the [`RootNamespaceAttribute` section](localization/provide-resources.md#rootnamespaceattribute).
 
 > [!WARNING]
 > A root namespace issue can occur when a project's name isn't a valid .NET identifier. For instance, `my-project-name.csproj` uses the root namespace `my_project_name` and the assembly name `my-project-name`, which results in this error. 
