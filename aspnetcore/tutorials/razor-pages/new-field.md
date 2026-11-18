@@ -99,7 +99,7 @@ The name "Rating" is arbitrary and is used to name the migration file. It's help
 
 The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
-To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [Sql Server Object Explorer](sql.md#ssox) (SSOX).
+To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [SQL Server Object Explorer](sql.md#sql-server-express-localdb) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
@@ -107,7 +107,7 @@ Another option is to delete the database and use migrations to re-create the dat
 1. Right-click on the database, and select **Delete**.
 1. Check **Close existing connections**.
 1. Select **OK**.
-1. In the [PMC](new-field.md#pmc), update the database:
+1. In the [PMC](#add-a-migration-for-the-rating-field), update the database:
 
    ```powershell
    Update-Database
