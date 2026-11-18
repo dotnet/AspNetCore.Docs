@@ -7,6 +7,14 @@ items:
     href: get-started.md
   - name: What's new
     items:
+      - name: ASP.NET Core 12
+        items:
+          - name: Breaking changes
+            items:
+              - name: Overview
+                href: breaking-changes/12/overview.md
+              - name: Forwarded headers ignored when proxy has no IP address
+                href: breaking-changes/12/forwarded-headers-non-ip-transports.md
       - name: ASP.NET Core 11
         items:
           - name: What's new in 11
@@ -2076,8 +2084,6 @@ items:
                 href: security/authentication/accconfirm.md
               - name: Enable QR code generation in Identity
                 href: security/authentication/identity-enable-qrcodes.md
-              - name: Two-factor authentication with SMS
-                href: security/authentication/2fa.md
               - name: Passkeys (WebAuthn)
                 items:
                   - name: Overview

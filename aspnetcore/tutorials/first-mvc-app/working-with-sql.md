@@ -2,14 +2,14 @@
 title: Part 5, work with a database in an ASP.NET Core MVC app
 ai-usage: ai-assisted
 description: Part 5 of tutorial series on ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 10/22/2026
 ---
 
 # Part 5, work with a database in an ASP.NET Core MVC app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -142,13 +142,3 @@ And a refresh of the `Movie` table shows the same data.
 > [Next: Adding controller methods and views](~/tutorials/first-mvc-app/controller-methods-views.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/working-with-sql/includes/working-with-sql3-5.md)]

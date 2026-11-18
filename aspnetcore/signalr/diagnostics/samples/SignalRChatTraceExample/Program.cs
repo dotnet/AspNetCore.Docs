@@ -18,7 +18,6 @@ builder.Services.AddOpenTelemetry()
         }
 
         tracing.AddAspNetCoreInstrumentation();
-        tracing.AddSource("Microsoft.AspNetCore.SignalR.Server");
     });
 
 builder.Services.ConfigureOpenTelemetryTracerProvider(tracing => tracing.AddOtlpExporter());

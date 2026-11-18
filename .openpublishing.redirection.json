@@ -13,6 +13,11 @@
             "redirect_url": "/aspnet/core/fundamentals/openapi/aspnetcore-openapi#generate-openapi-documents-at- build-time"
         },
         {
+            "source_path": "aspnetcore/security/authentication/2fa.md",
+            "redirect_url": "/previous-versions/aspnet/core/security/authentication/2fa",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/security/authentication/samples.md",
             "redirect_url": "/aspnet/core/security/authorization/introduction"
         },
