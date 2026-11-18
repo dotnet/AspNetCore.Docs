@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -408,6 +408,12 @@ public class CustomUserIdProvider : IUserIdProvider
 
 Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
 
+Register `CustomUserIdProvider` in `Program.cs`:
+
+```csharp
+builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+```
+
 ## Authorize users to access hubs and hub methods
 
 By default, an unauthenticated user can call all methods in a hub. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
@@ -702,6 +708,12 @@ public class CustomUserIdProvider : IUserIdProvider
 ```
 
 Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
+
+Register `CustomUserIdProvider` in `Startup.ConfigureServices`:
+
+```csharp
+services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+```
 
 ## Authorize users to access hubs and hub methods
 
