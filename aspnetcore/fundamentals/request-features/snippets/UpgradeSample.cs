@@ -6,10 +6,13 @@ var app = builder.Build();
 // <snippet_Upgrade>
 app.Map("/upgrade", async (HttpContext context) =>
 {
-    var upgradeFeature = context.Features.Get<IHttpUpgradeFeature>();
+    var upgradeFeature = context.Features
+        .Get<Microsoft.AspNetCore.Http.Features.IHttpUpgradeFeature>();
     if (upgradeFeature is not null &&
         upgradeFeature.IsUpgradableRequest &&
-        context.Request.Headers.Upgrade.Any(h => h?.Contains("custom-protocol", StringComparison.OrdinalIgnoreCase) == true))
+        context.Request.Headers.Upgrade.Any(h =>
+            h?.Contains("custom-protocol",
+                StringComparison.OrdinalIgnoreCase) == true))
     {
         // Specify the upgraded protocol on the response before upgrading:
         context.Response.Headers.Upgrade = "custom-protocol";
