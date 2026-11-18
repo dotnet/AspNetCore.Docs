@@ -2,7 +2,7 @@
 title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/27/2026
 ---
 
@@ -197,9 +197,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 [!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start3.md)]

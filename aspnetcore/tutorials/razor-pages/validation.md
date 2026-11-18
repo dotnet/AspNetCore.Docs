@@ -2,6 +2,7 @@
 title: Part 8, add validation
 ai-usage: ai-assisted
 description: Part 8 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/06/2026
 ---
 # Part 8 of tutorial series on Razor Pages
@@ -284,7 +285,3 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 [!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation3-5.md)]

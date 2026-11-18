@@ -2,6 +2,7 @@
 title: Part 4, work with a database
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/20/2026
 ---
 
@@ -158,9 +159,3 @@ The app shows the seeded data:
 [!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql8.md)]
 
 [!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql3.md)]
