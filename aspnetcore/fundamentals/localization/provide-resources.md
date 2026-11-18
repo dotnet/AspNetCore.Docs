@@ -2,7 +2,7 @@
 title: Provide localized resources for languages and cultures in an ASP.NET Core app
 description: Learn how to provide localized resources for localizing content of an ASP.NET Core app into different languages and cultures.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 06/20/2025
+ms.date: 11/18/2026
 ---
 # Provide localized resources for languages and cultures in an ASP.NET Core app
 
