@@ -521,7 +521,7 @@ Arbitrary JSON-serializable types aren't supported. For example, a user-defined 
 Persist temporary data between HTTP requests during static server-side rendering (static SSR) with <xref:Microsoft.AspNetCore.Components.ITempData>. Temporary data is ideal for scenarios such as flash messages after form submissions, passing data during redirects (POST-Redirect-GET pattern), and one-time notifications.
 
 > [!IMPORTANT]
-> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), temporary data isn't supplied, and the data retains it default values.
+> This feature is only available during static server-side rendering (static SSR). During interactive SSR and interactive client-side rendering (CSR), temporary data isn't supplied, and the data retains its default values.
 
 `ITempData`:
 
