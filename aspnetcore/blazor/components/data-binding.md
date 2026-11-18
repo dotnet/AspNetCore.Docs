@@ -4,7 +4,6 @@ description: Learn about data binding features for Razor components and DOM elem
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: sfi-ropc-nochange
 ms.date: 11/11/2025
-uid: blazor/components/data-binding
 ---
 # ASP.NET Core Blazor data binding
 
@@ -14,7 +13,7 @@ This article explains data binding features for Razor components and DOM element
 
 ## Binding features
 
-Razor components provide data binding features with the [`@bind`](xref:mvc/views/razor#bind) Razor directive attribute with a field, property, or Razor expression value.
+Razor components provide data binding features with the [`@bind`](../../mvc/views/razor.md#bind) Razor directive attribute with a field, property, or Razor expression value.
 
 The following example binds:
 
@@ -103,7 +102,7 @@ As a demonstration of how data binding composes in HTML, the following example b
 
 :::moniker-end
 
-When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](xref:mvc/views/razor#bind) handles cases where type conversions are performed. In general, [`@bind`](xref:mvc/views/razor#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
+When the `BindTheory` component is rendered, the `value` of the HTML demonstration `<input>` element comes from the `InputValue` property. When the user enters a value in the text box and changes element focus, the `onchange` event is fired and the `InputValue` property is set to the changed value. In reality, code execution is more complex because [`@bind`](../../mvc/views/razor.md#bind) handles cases where type conversions are performed. In general, [`@bind`](../../mvc/views/razor.md#bind) associates the current value of an expression with the `value` attribute of the `<input>` and handles changes using the registered handler.
 
 Default binding with `@bind` uses the [`change`](https://developer.mozilla.org/docs/Web/API/HTMLElement/change_event) DOM event (`onchange`). Binding can also take place on the [`input`](https://developer.mozilla.org/docs/Web/API/HTMLElement/input_event) DOM event using the `@bind:event="{EVENT}"` attribute, where the `{EVENT}` placeholder is either `oninput` or `onchange` (default).
 
@@ -151,14 +150,14 @@ The following example binds the `InputValue` property to the `<input>` element's
 
 To bind on other DOM events, use either of the following approaches:
 
-* [Delegate event handlers](xref:blazor/components/event-handling#delegate-event-handlers)
-* [Custom event arguments](xref:blazor/components/event-handling#custom-event-arguments)
+* [Delegate event handlers](event-handling.md#delegate-event-handlers)
+* [Custom event arguments](event-handling.md#custom-event-arguments)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-6.0"
 
-To bind on other DOM events, use [delegate event handlers](xref:blazor/components/event-handling#delegate-event-handlers).
+To bind on other DOM events, use [delegate event handlers](event-handling.md#delegate-event-handlers).
 
 :::moniker-end
 
@@ -175,7 +174,7 @@ Razor attribute binding is case-sensitive:
 
 To execute asynchronous logic after binding, use `@bind:after="{DELEGATE}"`, where the `{DELEGATE}` placeholder is a C# delegate (method). An assigned C# delegate isn't executed until the bound value is assigned synchronously.
 
-Using an [event callback parameter (`EventCallback`/`EventCallback<T>`)](xref:blazor/components/event-handling#eventcallback) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
+Using an [event callback parameter (`EventCallback`/`EventCallback<T>`)](event-handling.md#eventcallback) with `@bind:after` isn't supported. Instead, pass a method that returns an <xref:System.Action> or <xref:System.Threading.Tasks.Task> to `@bind:after`.
 
 In the following example:
 
@@ -234,7 +233,7 @@ Additional examples
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
+For more information on the `InputText` component, see [ASP.NET Core Blazor input components](../forms/input-components.md).
 
 Components support two-way data binding by defining a pair of `@bind` attributes with either a `:get` or `:set` modifier. The `{PARAMETER}` placeholder in the following examples is used to bind a component parameter:
 
@@ -267,7 +266,7 @@ For component parameters, the following syntaxes for a hypothetical `Child` comp
 
 With `:get`/`:set` modifier binding, you can react to a value change before it's applied to the DOM, and you can change the applied value, if necessary. Whereas with `@bind:event="{EVENT}"` attribute binding, where the `{EVENT}` placeholder is a DOM event, you receive the notification after the DOM is updated, and there's no capacity to modify the applied value while binding.
 
-The following `BindGetSet` component demonstrates `:get`/`:set` syntax for `<input>` elements and the [`InputText` component](xref:blazor/forms/input-components) used by [Blazor forms](xref:blazor/forms/index) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
+The following `BindGetSet` component demonstrates `:get`/`:set` syntax for `<input>` elements and the [`InputText` component](../forms/input-components.md) used by [Blazor forms](../forms/index.md) in synchronous (`Set`) and asynchronous (`SetAsync`) scenarios.
 
 `BindGetSet.razor`:
 
@@ -305,7 +304,7 @@ The following `BindGetSet` component demonstrates `:get`/`:set` syntax for `<inp
 }
 ```
 
-For more information on the `InputText` component, see <xref:blazor/forms/input-components>.
+For more information on the `InputText` component, see [ASP.NET Core Blazor input components](../forms/input-components.md).
 
 For another example use of `:get` and `:set` modifiers, see the [Bind across more than two components](#bind-across-more-than-two-components) section later in this article.
 
@@ -417,16 +416,16 @@ Using `:get`/`:set` modifiers both controls the underlying value of `inputValue`
 :::moniker range=">= aspnetcore-7.0"
 
 > [!NOTE]
-> Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
+> Across multiple components, two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> in the property's setter. For two-way data binding, we recommend using `@bind:get`/`@bind:set` modifiers. For more information, see the [`@bind:get`/`@bind:set` guidance](#binding-features) earlier in this article.
 >
-> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
+> To see an example of how the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> is discarded in .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of the *Bind across more than two components* section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-7.0"
 
 > [!NOTE]
-> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in .NET 7 or later versions of this article.
+> Two-way binding to a property with `get`/`set` accessors requires discarding the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType>. For an example, see [the `NestedChild` component of the *Bind across more than two components* section](#bind-across-more-than-two-components). For two-way data binding in .NET 7 or later, we recommend using `@bind:get`/`@bind:set` modifiers, which are described in .NET 7 or later versions of this article.
 
 :::moniker-end
 
@@ -434,7 +433,7 @@ Using `:get`/`:set` modifiers both controls the underlying value of `inputValue`
 
 ## Multiple option selection with `<select>` elements
 
-Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](xref:mvc/views/razor#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](xref:blazor/components/event-handling#event-arguments). The value must be bound to an array type.
+Binding supports [`multiple`](https://developer.mozilla.org/docs/Web/HTML/Attributes/multiple) option selection with `<select>` elements. The [`@onchange`](../../mvc/views/razor.md#onevent) event provides an array of the selected elements via [event arguments (`ChangeEventArgs`)](event-handling.md#built-in-event-arguments). The value must be bound to an array type.
 
 `BindMultipleInput.razor`:
 
@@ -624,7 +623,7 @@ For the `oninput` event (`@bind:event="oninput"`), a value reversion occurs afte
 
 * Don't use the `oninput` event. Use the default `onchange` event, where an invalid value isn't reverted until the element loses focus.
 * Bind to a nullable type, such as `int?` or `string` and either use `@bind:get`/`@bind:set` modifiers (described earlier in this article) or [bind to a property with custom `get` and `set` accessor logic](#binding-to-a-property-with-c-get-and-set-accessors) to handle invalid entries.
-* Use an [input component](xref:blazor/forms/input-components), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber%601> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate%601>, with [form validation](xref:blazor/forms/validation). Input components together with form validation components provide built-in support to manage invalid inputs:
+* Use an [input component](../forms/input-components.md), such as <xref:Microsoft.AspNetCore.Components.Forms.InputNumber`1> or <xref:Microsoft.AspNetCore.Components.Forms.InputDate`1>, with [form validation](../forms/validation.md). Input components together with form validation components provide built-in support to manage invalid inputs:
   * Permit the user to provide invalid input and receive validation errors on the associated <xref:Microsoft.AspNetCore.Components.Forms.EditContext>.
   * Display validation errors in the UI without interfering with the user entering additional webform data.
 
@@ -693,11 +692,11 @@ Specifying a format for the `date` field type isn't recommended because Blazor h
 
 A common scenario is binding a property of a child component to a property in its parent component. This scenario is called a *chained bind* because multiple levels of binding occur simultaneously.
 
-You can't implement chained binds with [`@bind`](xref:mvc/views/razor#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](xref:mvc/views/razor#bind) syntax to set up data binding with the child component.
+You can't implement chained binds with [`@bind`](../../mvc/views/razor.md#bind) syntax in a child component. An event handler and value must be specified separately to support updating the property in the parent from the child component. The parent component still leverages [`@bind`](../../mvc/views/razor.md#bind) syntax to set up data binding with the child component.
 
-The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback%601>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback%601> is named `YearChanged`.
+The following `ChildBind` component has a `Year` component parameter and an <xref:Microsoft.AspNetCore.Components.EventCallback`1>. By convention, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> for the parameter must be named as the component parameter name with a "`Changed`" suffix. The naming syntax is `{PARAMETER NAME}Changed`, where the `{PARAMETER NAME}` placeholder is the parameter name. In the following example, the <xref:Microsoft.AspNetCore.Components.EventCallback`1> is named `YearChanged`.
 
-<xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
+<xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> invokes the delegate associated with the binding with the provided argument and dispatches an event notification for the changed property.
 
 `ChildBind.razor`:
 
@@ -737,7 +736,7 @@ The following `ChildBind` component has a `Year` component parameter and an <xre
 
 :::moniker-end
 
-For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback%601>, see the *EventCallback* section of the <xref:blazor/components/event-handling#eventcallback> article.
+For more information on events and <xref:Microsoft.AspNetCore.Components.EventCallback`1>, see the *EventCallback* section of the [ASP.NET Core Blazor event handling](event-handling.md#eventcallback) article.
 
 In the following `Parent1` component, the `year` field is bound to the `Year` parameter of the child component. The `Year` parameter is bindable because it has a companion `YearChanged` event that matches the type of the `Year` parameter.
 
@@ -807,8 +806,8 @@ By convention, a property can be bound to a corresponding event handler by inclu
 In a more sophisticated and real-world example, the following `PasswordEntry` component:
 
 * Sets an `<input>` element's value to a `password` field.
-* Exposes changes of a `Password` property to a parent component with an [`EventCallback`](xref:blazor/components/event-handling#eventcallback) that passes in the current value of the child's `password` field as its argument.
-* Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see <xref:blazor/components/event-handling>.
+* Exposes changes of a `Password` property to a parent component with an [`EventCallback`](event-handling.md#eventcallback) that passes in the current value of the child's `password` field as its argument.
+* Uses the `onclick` event to trigger the `ToggleShowPassword` method. For more information, see [ASP.NET Core Blazor event handling](event-handling.md).
 
 [!INCLUDE[](~/blazor/security/includes/secure-authentication-flows.md)]
 
@@ -893,7 +892,7 @@ The `PasswordEntry` component is used in another component, such as the followin
 When the `PasswordBinding` component is initially rendered, the `password` value of `Not set` is displayed in the UI. After initial rendering, the value of `password` reflects changes made to the `Password` component parameter value in the `PasswordEntry` component.
 
 > [!NOTE]
-> The preceding example binds the password one-way from the child `PasswordEntry` component to the parent `PasswordBinding` component. Two-way binding isn't a requirement in this scenario if the goal is for the app to have a shared password entry component for reuse around the app that merely passes the password to the parent. For an approach that permits two-way binding without [writing directly to the child component's parameter](xref:blazor/components/overwriting-parameters), see the `NestedChild` component example in the [Bind across more than two components](#bind-across-more-than-two-components) section of this article.
+> The preceding example binds the password one-way from the child `PasswordEntry` component to the parent `PasswordBinding` component. Two-way binding isn't a requirement in this scenario if the goal is for the app to have a shared password entry component for reuse around the app that merely passes the password to the parent. For an approach that permits two-way binding without [writing directly to the child component's parameter](overwriting-parameters.md), see the `NestedChild` component example in the [Bind across more than two components](#bind-across-more-than-two-components) section of this article.
 
 Perform checks or trap errors in the handler. The following revised `PasswordEntry` component provides immediate feedback to the user if a space is used in the password's value.
 
@@ -995,7 +994,7 @@ In the following `NestedChild` component, the `NestedGrandchild` component:
 * Assigns the value of `ChildMessage` to `GrandchildMessage` with `@bind:get` syntax.
 * Updates `GrandchildMessage` when `ChildMessageChanged` executes with `@bind:set` syntax.
 
-Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync%2A?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
+Prior to the release of .NET 7, two-way binding across components uses `get`/`set` accessors with a third property that discards the <xref:System.Threading.Tasks.Task> returned by <xref:Microsoft.AspNetCore.Components.EventCallback.InvokeAsync*?displayProperty=nameWithType> in its setter. To see an example of this approach for .NET 6 or earlier before `@bind:get`/`@bind:set` modifiers became a framework feature, see [the `NestedChild` component of this section in the .NET 6 version of this article](?view=aspnetcore-6.0&preserve-view=true#bind-across-more-than-two-components).
 
 The reason to avoid directly changing the value of a component parameter is that it effectively mutates the parent's state from the child component. This can interfere with Blazor's change detection process and trigger extra render cycles because parameters are meant to be *inputs*, they're not meant to be mutable state. In chained scenarios where data is passed among components, directly writing to a component parameter can lead to unintended effects, such as infinite rerenders that hang the app.
 
@@ -1055,7 +1054,7 @@ If you mutate `defaultValue` directly, you're breaking the contract. Instead, th
 :::moniker range="< aspnetcore-7.0"
 
 > [!WARNING]
-> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see <xref:blazor/components/overwriting-parameters>.
+> Generally, avoid creating components that write directly to their own component parameters. The preceding `NestedChild` component makes use of a `BoundValue` property instead of writing directly to its `ChildMessage` parameter. For more information, see [Avoid overwriting parameters in ASP.NET Core Blazor](overwriting-parameters.md).
 
 :::moniker-end
 
@@ -1097,7 +1096,7 @@ If you mutate `defaultValue` directly, you're breaking the contract. Instead, th
 
 :::moniker-end
 
-For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see <xref:blazor/state-management/index>.
+For an alternative approach suited to sharing data in memory and across components that aren't necessarily nested, see [ASP.NET Core Blazor state management overview](../state-management/index.md).
 
 ## Bound field or property expression tree
 
@@ -1183,9 +1182,9 @@ The following `ChildParameterExpression` component identifies the `Year` express
 
 ## Related content
 
-* [Parameter change detection and additional guidance on Razor component rendering](xref:blazor/components/rendering)
-* <xref:blazor/forms/index>
-* [Binding to radio buttons in a form](xref:blazor/forms/binding#radio-buttons)
-* [Binding `InputSelect` options to C# object `null` values](xref:blazor/forms/binding#binding-inputselect-options-to-c-object-null-values)
-* [ASP.NET Core Blazor event handling: `EventCallback` section](xref:blazor/components/event-handling#eventcallback)
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Parameter change detection and additional guidance on Razor component rendering](rendering.md)
+* [ASP.NET Core Blazor forms overview](../forms/index.md)
+* [Binding to radio buttons in a form](../forms/binding.md#radio-buttons)
+* [Binding `InputSelect` options to C# object `null` values](../forms/input-components.md#binding-inputselect-options-to-c-object-null-values)
+* [ASP.NET Core Blazor event handling: `EventCallback` section](event-handling.md#eventcallback)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

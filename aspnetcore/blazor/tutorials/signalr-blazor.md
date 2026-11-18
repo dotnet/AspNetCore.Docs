@@ -3,7 +3,6 @@ title: Use ASP.NET Core SignalR with Blazor
 description: Create a chat app that uses ASP.NET Core SignalR with Blazor.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/tutorials/signalr-blazor
 ---
 # Use ASP.NET Core SignalR with Blazor
 
@@ -11,8 +10,8 @@ uid: blazor/tutorials/signalr-blazor
 
 This tutorial provides a basic working experience for building a real-time app using SignalR with Blazor. This article is useful for developers who are already familiar with SignalR and are seeking to understand how to use SignalR in a Blazor app. For detailed guidance on the SignalR and Blazor frameworks, see the following reference documentation sets and the API documentation:
 
-* <xref:signalr/introduction>
-* <xref:blazor/index>
+* [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
+* [ASP.NET Core Blazor](../index.md)
 * [.NET API browser](/dotnet/api/)
 
 Learn how to:
@@ -40,7 +39,7 @@ Install the latest releases of the following:
 * [C# Dev Kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
 * [.NET SDK](https://dotnet.microsoft.com/download/dotnet)
 
-For more information, see <xref:blazor/debug#visual-studio-code-prerequisites>.
+For more information, see [Debug ASP.NET Core Blazor apps](../debug.md#visual-studio-code-prerequisites).
 
 The Visual Studio Code instructions use the .NET CLI for ASP.NET Core development functions such as project creation. You can follow these instructions on macOS, Linux, or Windows and with any code editor. Minor changes may be required if you use an integrated development environment (IDE) other than Visual Studio Code.
 
@@ -64,7 +63,7 @@ Downloading the tutorial's sample chat app isn't required for this tutorial. The
 
 :::moniker-end
 
-[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+[View or download sample code](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -211,7 +210,7 @@ builder.Services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration. Place the following line of code immediately after the line that builds the app (`var app = builder.Build();`):
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -239,7 +238,7 @@ Add an entry to the `NavMenu` component to reach the chat page. In `Components/L
 ```
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 ## Run the app
 
@@ -306,7 +305,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln). For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -316,8 +315,8 @@ Confirm that a hosted Blazor WebAssembly app was created: Confirm the presence o
 
 To configure Visual Studio Code debugging assets, see:
 
-* <xref:blazor/tooling?pivots=linux-macos> (use the guidance for the *Linux / macOS* operating system regardless of platform)
-* <xref:blazor/debug>
+* [Tooling for ASP.NET Core Blazor](../tooling.md?pivots=linux-macos) (use the guidance for the *Linux / macOS* operating system regardless of platform)
+* [Debug ASP.NET Core Blazor apps](../debug.md)
 
 # [.NET CLI](#tab/net-cli)
 
@@ -327,7 +326,7 @@ In a command shell, execute the following command:
 dotnet new blazorwasm -ho -o BlazorWebAssemblySignalRApp
 ```
 
-The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](xref:blazor/tooling#visual-studio-solution-file-sln).
+The `-ho|--hosted` option creates a hosted Blazor WebAssembly [solution](../tooling.md#visual-studio-solution-file-sln).
 
 The `-o|--output` option creates a folder for the solution. If you've created a folder for the solution and the command shell is open in that folder, omit the `-o|--output` option and value to create the solution.
 
@@ -363,7 +362,7 @@ To add an earlier version of the package, supply the `--version {VERSION}` optio
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command:
+In a command shell from the [solution's](../tooling.md#visual-studio-solution-file-sln) folder, execute the following command:
 
 ```dotnetcli
 dotnet add Client package Microsoft.AspNetCore.SignalR.Client
@@ -431,7 +430,7 @@ builder.Services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration immediately after the line that builds the app:
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -466,7 +465,7 @@ services.AddResponseCompression(opts =>
 ```
 
 Use response compression middleware at the top of the processing pipeline's configuration:
-   
+
 ```csharp
 app.UseResponseCompression();
 ```
@@ -516,7 +515,7 @@ Replace the markup with the following code:
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-8.0"
 
 > [!NOTE]
-> Disable response compression middleware in the `Development` environment when using [Hot Reload](xref:test/hot-reload). For more information, see <xref:blazor/fundamentals/signalr#disable-response-compression-for-hot-reload>.
+> Disable response compression middleware in the `Development` environment when using [Hot Reload](../../test/hot-reload.md). For more information, see [ASP.NET Core Blazor SignalR guidance](../fundamentals/signalr.md#disable-response-compression-for-hot-reload).
 
 :::moniker-end
 
@@ -531,34 +530,34 @@ Follow the guidance for your tooling:
 In **Solution Explorer**, select the `BlazorWebAssemblySignalRApp.Server` project. Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](../tooling.md#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in <xref:blazor/tooling>.
+For information on configuring VS Code assets in the `.vscode` folder, see the **Linux** operating system guidance in [Tooling for ASP.NET Core Blazor](../tooling.md).
 
 Press <kbd>F5</kbd> to run the app with debugging or <kbd>Ctrl</kbd>+<kbd>F5</kbd> to run the app without debugging.
 
 > [!IMPORTANT]
-> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
+> When executing a hosted Blazor WebAssembly app, run the app from the [solution's](../tooling.md#visual-studio-solution-file-sln) **:::no-loc text="Server":::** project.
 >
 > Google Chrome or Microsoft Edge must be the selected browser for a debugging session.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
 # [.NET CLI](#tab/net-cli/)
 
-In a command shell from the [solution's](xref:blazor/tooling#visual-studio-solution-file-sln) folder, execute the following command to change the directory to the `Server` project folder:
+In a command shell from the [solution's](../tooling.md#visual-studio-solution-file-sln) folder, execute the following command to change the directory to the `Server` project folder:
 
 ```dotnetcli
 cd Server
@@ -572,9 +571,9 @@ dotnet watch
 
 > [!IMPORTANT]
 > When executing a hosted Blazor WebAssembly app, run the app from the solution's **:::no-loc text="Server":::** project.
-> 
+>
 > If the app fails to start in the browser:
-> 
+>
 > * In the .NET console, confirm that the solution is running from the ":::no-loc text="Server":::" project.
 > * Refresh the browser using the browser's reload button.
 
@@ -604,14 +603,14 @@ In this tutorial, you learned how to:
 For detailed guidance on the SignalR and Blazor frameworks, see the following reference documentation sets:
 
 > [!div class="nextstepaction"]
-> <xref:signalr/introduction>
-> <xref:blazor/index>
+> [Overview of ASP.NET Core SignalR](../../signalr/introduction.md)
+> [ASP.NET Core Blazor](../index.md)
 
 ## Related content
 
-* [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](xref:signalr/authn-and-authz#bearer-token-authentication)
-* [Secure a SignalR hub in Blazor WebAssembly apps](xref:blazor/security/webassembly/index#secure-a-signalr-hub)
-* [SignalR cross-origin negotiation for authentication](xref:blazor/fundamentals/signalr#client-side-signalr-cross-origin-negotiation-for-authentication)
-* [SignalR configuration](xref:blazor/host-and-deploy/server/index#signalr-configuration)
-* <xref:blazor/debug>
-* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](xref:blazor/fundamentals/index#sample-apps))
+* [Bearer token authentication with Identity Server, WebSockets, and Server-Sent Events](../../signalr/authn-and-authz.md#bearer-token-authentication)
+* [Secure a SignalR hub in Blazor WebAssembly apps](../security/webassembly/index.md#secure-a-signalr-hub)
+* [SignalR cross-origin negotiation for authentication](../fundamentals/signalr.md#client-side-signalr-cross-origin-negotiation-for-authentication)
+* [SignalR configuration](../host-and-deploy/server/index.md#signalr-configuration)
+* [Debug ASP.NET Core Blazor apps](../debug.md)
+* [Blazor samples GitHub repository (`dotnet/blazor-samples`)](https://github.com/dotnet/blazor-samples) ([how to download](../fundamentals/index.md#sample-apps))

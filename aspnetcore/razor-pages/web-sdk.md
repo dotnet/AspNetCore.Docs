@@ -2,7 +2,6 @@
 title: ASP.NET Core Web SDK
 description: Overview of Microsoft.NET.Sdk.Web.
 ms.date: 01/25/2023
-uid: razor-pages/web-sdk
 ---
 
 # ASP.NET Core Web SDK
@@ -28,7 +27,7 @@ Features enabled by using the Web SDK:
 
 * Implicitly references:
 
-  * The [ASP.NET Core shared framework](xref:fundamentals/metapackage-app).
+  * The [ASP.NET Core shared framework](../fundamentals/metapackage-app.md).
   * [Analyzers](/visualstudio/extensibility/getting-started-with-roslyn-analyzers) designed for building ASP.NET Core apps.
 * The Web SDK imports MSBuild targets that enable the use of publish profiles and publishing using WebDeploy.
 

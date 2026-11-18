@@ -3,7 +3,6 @@ title: Test Razor components in ASP.NET Core Blazor
 description: Learn how to test Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/test
 ---
 # Test Razor components in ASP.NET Core Blazor
 
@@ -81,7 +80,7 @@ bUnit works with general-purpose testing frameworks, such as [MSTest](/dotnet/co
 > [!NOTE]
 > Test concepts and test implementations across different test frameworks are similar but not identical. Refer to the test framework's documentation for guidance.
 
-The following demonstrates the structure of a bUnit test on the `Counter` component in an app based on a [Blazor project template](xref:blazor/project-structure). The `Counter` component displays and increments a counter based on the user selecting a button in the page:
+The following demonstrates the structure of a bUnit test on the `Counter` component in an app based on a [Blazor project template](project-structure.md). The `Counter` component displays and increments a counter based on the user selecting a button in the page:
 
 ```razor
 @page "/counter"

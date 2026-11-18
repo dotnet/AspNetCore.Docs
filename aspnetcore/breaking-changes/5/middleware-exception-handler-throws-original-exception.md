@@ -6,7 +6,7 @@ ms.custom: https://github.com/aspnet/Announcements/issues/434
 ---
 # Middleware: Exception handler middleware throws original exception if handler not found
 
-Before ASP.NET Core 5.0, the [exception handler middleware](xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler%2A) executes the configured exception handler when an exception has occurred. If the exception handler, configured via <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.ExceptionHandlingPath>, can't be found, an HTTP 404 response is produced. The response is misleading in that it:
+Before ASP.NET Core 5.0, the [exception handler middleware](xref:Microsoft.AspNetCore.Builder.ExceptionHandlerExtensions.UseExceptionHandler*) executes the configured exception handler when an exception has occurred. If the exception handler, configured via <xref:Microsoft.AspNetCore.Builder.ExceptionHandlerOptions.ExceptionHandlingPath>, can't be found, an HTTP 404 response is produced. The response is misleading in that it:
 
 * Seems to be a user error.
 * Obscures the fact that an exception occurred on the server.
@@ -36,7 +36,7 @@ The HTTP 404 error doesn't make it obvious that an exception occurred on the ser
 
 ## Recommended action
 
-There are no API changes. All existing apps will continue to compile and run. The exception thrown is handled by the server. For example, the exception is converted to an HTTP 500 error response by [Kestrel](/aspnet/core/fundamentals/servers/kestrel) or [HTTP.sys](/aspnet/core/fundamentals/servers/httpsys).
+There are no API changes. All existing apps will continue to compile and run. The exception thrown is handled by the server. For example, the exception is converted to an HTTP 500 error response by [Kestrel](../../fundamentals/servers/kestrel.md) or [HTTP.sys](../../fundamentals/servers/httpsys.md).
 
 ## Affected APIs
 

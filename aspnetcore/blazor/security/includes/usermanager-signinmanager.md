@@ -2,7 +2,7 @@
 
 Set the user identifier claim type when a Server app requires:
 
-* <xref:Microsoft.AspNetCore.Identity.UserManager%601> or <xref:Microsoft.AspNetCore.Identity.SignInManager%601> in an API endpoint.
+* <xref:Microsoft.AspNetCore.Identity.UserManager`1> or <xref:Microsoft.AspNetCore.Identity.SignInManager`1> in an API endpoint.
 * <xref:Microsoft.AspNetCore.Identity.IdentityUser> details, such as the user's name, email address, or lockout end time.
 
 In `Program.cs` for ASP.NET Core in .NET 6 or later:
@@ -27,7 +27,7 @@ services.Configure<IdentityOptions>(options =>
     options.ClaimsIdentity.UserIdClaimType = ClaimTypes.NameIdentifier);
 ```
 
-The following `WeatherForecastController` logs the <xref:Microsoft.AspNetCore.Identity.IdentityUser%601.UserName> when the `Get` method is called.
+The following `WeatherForecastController` logs the <xref:Microsoft.AspNetCore.Identity.IdentityUser`1.UserName> when the `Get` method is called.
 
 > [!NOTE]
 > The following example uses:

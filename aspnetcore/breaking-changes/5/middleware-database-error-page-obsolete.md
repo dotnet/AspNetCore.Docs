@@ -24,7 +24,7 @@ For discussion, see the GitHub issue at [dotnet/aspnetcore#24987](https://github
 
 ## Reason for change
 
-`DatabaseErrorPageMiddleware` was migrated to an extensible API for the [developer exception page](/aspnet/core/fundamentals/error-handling#developer-exception-page). For more information on the extensible API, see GitHub issue [dotnet/aspnetcore#8536](https://github.com/dotnet/aspnetcore/issues/8536).
+`DatabaseErrorPageMiddleware` was migrated to an extensible API for the [developer exception page](../../fundamentals/error-handling.md#developer-exception-page). For more information on the extensible API, see GitHub issue [dotnet/aspnetcore#8536](https://github.com/dotnet/aspnetcore/issues/8536).
 
 ## Recommended action
 
@@ -42,7 +42,7 @@ Complete the following steps:
     }
     ```
 
-1. Add the developer exception page to your project. For example, call the <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage%2A> method in `Startup.Configure`:
+1. Add the developer exception page to your project. For example, call the <xref:Microsoft.AspNetCore.Builder.DeveloperExceptionPageExtensions.UseDeveloperExceptionPage*> method in `Startup.Configure`:
 
     ```csharp
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

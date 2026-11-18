@@ -3,7 +3,6 @@ title: Test Minimal API apps
 description: Unit and integration tests in Minimal API apps
 ms.date: 09/15/2025
 monikerRange: '>= aspnetcore-7.0'
-uid: fundamentals/minimal-apis/test-min-api
 ---
 
 # Unit and integration tests in Minimal API apps
@@ -24,18 +23,18 @@ The following example shows how to unit test minimal route handlers that return 
 
 Public <xref:Microsoft.AspNetCore.Http.IResult> implementation types in the <xref:Microsoft.AspNetCore.Http.HttpResults?displayProperty=fullName> namespace can be used to unit test minimal route handlers when using named methods instead of lambdas.
 
-The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound%601> class:
+The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound`1> class:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_" highlight="8":::
 
-The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601> class:
+The following code uses the <xref:Microsoft.AspNetCore.Http.HttpResults.Ok`1> class:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_1" highlight="18":::
 
-In the previous examples, the result is cast to a concrete type because the endpoint under test can return multiple types (a <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound%601> or <xref:Microsoft.AspNetCore.Http.HttpResults.Ok%601>) result.
+In the previous examples, the result is cast to a concrete type because the endpoint under test can return multiple types (a <xref:Microsoft.AspNetCore.Http.HttpResults.NotFound`1> or <xref:Microsoft.AspNetCore.Http.HttpResults.Ok`1>) result.
 However, if the endpoint returns a single <xref:Microsoft.AspNetCore.Http.TypedResults> type, then the result is automatically inferred to that type and no casting is required.
 
-The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok%2A> class, and the value's type is a collection of `Todo`:
+The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok*> class, and the value's type is a collection of `Todo`:
 
 :::code language="csharp" source="~/../AspNetCore.Docs.Samples/fundamentals/minimal-apis/samples/MinApiTestsSample/UnitTests/TodoInMemoryTests.cs" id="snippet_11" highlight="26":::
 
@@ -43,7 +42,7 @@ The following code uses the <xref:Microsoft.AspNetCore.Http.TypedResults.Ok%2A> 
 
 * [Basic authentication tests](https://github.com/blowdart/idunno.Authentication/tree/dev/test/idunno.Authentication.Basic.Test) is not a .NET repository but was written by a member of the .NET team. It provides examples of basic authentication testing.
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/minimal-apis/samples/MinApiTestsSample)
-* <xref:fundamentals/minimal-apis/security>
+* [Authentication and authorization in Minimal APIs](security.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
-* <xref:mvc/controllers/testing>
-* <xref:test/razor-pages-tests>
+* [Test controller logic in ASP.NET Core](../../mvc/controllers/testing.md)
+* [Razor Pages unit tests in ASP.NET Core](../../test/razor-pages-tests.md)

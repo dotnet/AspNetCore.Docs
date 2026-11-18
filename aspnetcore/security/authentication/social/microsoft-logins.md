@@ -3,7 +3,6 @@ title: Microsoft Account external login setup with ASP.NET Core
 description: This sample demonstrates the integration of Microsoft account user authentication into an existing ASP.NET Core app.
 ms.date: 04/07/2026
 monikerRange: '>= aspnetcore-3.1'
-uid: security/authentication/microsoft-logins
 ---
 # Microsoft Account external login setup with ASP.NET Core
 
@@ -11,7 +10,7 @@ By [Valeriy Novytskyy](https://github.com/01binary) and [Rick Anderson](https://
 
 :::moniker range=">= aspnetcore-6.0"
 
-This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core  project created on the [previous page](xref:security/authentication/social/index).
+This sample shows how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core  project created on the [previous page](index.md).
 
 ## Create the app in the Microsoft Entra admin center
 
@@ -24,9 +23,9 @@ Generate a client secret in the Microsoft Entra admin center by following the st
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** created in the previous step with [Secret Manager](../../app-secrets.md). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](../../app-secrets.md#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`. The `<client-id>` is listed on the Azure App registrations blade under **Application (client) ID**. The `<client-secret>` is on listed under **Certificates & secrets** as the **Value**, not the **Secret ID**. 
 
     ```dotnetcli
@@ -54,7 +53,7 @@ For more information about configuration options supported by Microsoft Account 
 
 You're now logged in using your Microsoft credentials.
 
-To use multiple authentication providers, see <xref:security/authentication/social/index#multiple-authentication-providers>.
+To use multiple authentication providers, see [Using external login providers with Identity in ASP.NET Core](index.md#multiple-authentication-providers).
 
 [!INCLUDE[Forward request information when behind a proxy or load balancer section](includes/forwarded-headers-middleware.md)]
 
@@ -70,7 +69,7 @@ To use multiple authentication providers, see <xref:security/authentication/soci
 
 ## Next steps
 
-* This article showed how to authenticate with Microsoft. Follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
+* This article showed how to authenticate with Microsoft. Follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 * Once the web site is published to Azure web app, create a new client secrets in the Microsoft Entra admin center.
 * Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in the Microsoft Entra admin center. The configuration system is set up to read keys from environment variables.
 
@@ -78,7 +77,7 @@ To use multiple authentication providers, see <xref:security/authentication/soci
 
 :::moniker range="< aspnetcore-6.0"
 
-This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 3.0 project created on the [previous page](xref:security/authentication/social/index).
+This sample shows you how to enable users to sign in with their work, school, or personal Microsoft account using the ASP.NET Core 3.0 project created on the [previous page](index.md).
 
 ## Create the app in the Microsoft Entra admin center
 
@@ -91,9 +90,9 @@ Generate a client secret in the Microsoft Entra admin center by following the st
 
 ## Store the Microsoft client ID and secret
 
-Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** you created in the previous step with [Secret Manager](xref:security/app-secrets). For this sample, use the following steps:
+Store sensitive settings such as the Microsoft **Application (client) ID** and **Client Secret** you created in the previous step with [Secret Manager](../../app-secrets.md). For this sample, use the following steps:
 
-1. Initialize the project for secret storage per the instructions at [Enable secret storage](xref:security/app-secrets#enable-secret-storage).
+1. Initialize the project for secret storage per the instructions at [Enable secret storage](../../app-secrets.md#enable-secret-storage).
 1. Store the sensitive settings in the local secret store with the secret keys `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret`:
 
     ```dotnetcli
@@ -133,7 +132,7 @@ You're now logged in using your Microsoft credentials.
 
 ## Next steps
 
-* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](xref:security/authentication/social/index).
+* This article showed how you can authenticate with Microsoft. You can follow a similar approach to authenticate with other providers listed on the [previous page](index.md).
 * Once you publish your web site to Azure web app, create a new client secrets in the Microsoft Entra admin center.
 * Set the `Authentication:Microsoft:ClientId` and `Authentication:Microsoft:ClientSecret` as application settings in Microsoft Entra admin center. The configuration system is set up to read keys from environment variables.
 
@@ -141,4 +140,4 @@ You're now logged in using your Microsoft credentials.
 
 ## Related content
 
-[Multiple authentication providers](xref:security/authentication/social/index#multiple-authentication-providers)
+[Multiple authentication providers](index.md#multiple-authentication-providers)

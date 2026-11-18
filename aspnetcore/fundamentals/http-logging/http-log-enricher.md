@@ -4,7 +4,6 @@ description: Learn how to enrich incoming HTTP request logs with custom data usi
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 06/08/2026
-uid: fundamentals/http-logging/http-log-enricher
 ---
 
 # Enrich HTTP request logs in ASP.NET Core
@@ -75,7 +74,7 @@ HTTP log enrichers differ from general-purpose log enrichers (<xref:Microsoft.Ex
 
 ## See also
 
-- [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/httplogging/httplogenricher) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+- [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/fundamentals/httplogging/httplogenricher) ([how to download](../index.md#how-to-download-a-sample))
 - [HTTP logging in ASP.NET Core](~/fundamentals/http-logging/index.md)
 
 :::moniker-end

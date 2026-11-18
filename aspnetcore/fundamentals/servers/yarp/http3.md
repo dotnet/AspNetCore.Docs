@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/http3
 title: YARP HTTP/3
 description: YARP HTTP/3
 ms.date: 2/6/2025

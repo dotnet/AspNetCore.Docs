@@ -2,7 +2,6 @@
 title: What's new in ASP.NET Core 2.0
 description: Learn about the new features in ASP.NET Core 2.0.
 ms.date: 12/05/2019
-uid: aspnetcore-2.0
 ---
 
 # What's new in ASP.NET Core 2.0
@@ -15,14 +14,14 @@ Razor Pages is a new feature of ASP.NET Core MVC that makes coding page-focused 
 
 For more information, see the introduction and tutorial:
 
-* [Introduction to Razor Pages](xref:razor-pages/index)
-* [Get started with Razor Pages](xref:tutorials/razor-pages/razor-pages-start)
+* [Introduction to Razor Pages](../razor-pages/index.md)
+* [Get started with Razor Pages](../tutorials/razor-pages/razor-pages-start.md)
 
 ## ASP.NET Core metapackage
 
 A new ASP.NET Core metapackage includes all of the packages made and supported by the ASP.NET Core and Entity Framework Core teams, along with their internal and 3rd-party dependencies. You no longer need to choose individual ASP.NET Core features by package. All features are included in the [Microsoft.AspNetCore.All](https://www.nuget.org/packages/Microsoft.AspNetCore.All) package. The default templates use this package.
 
-For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](xref:fundamentals/metapackage).
+For more information, see [Microsoft.AspNetCore.All metapackage for ASP.NET Core 2.0](../fundamentals/metapackage.md).
 
 ## Runtime Store
 
@@ -46,7 +45,7 @@ For information about the status of planned documentation, see the [GitHub issue
 
 In ASP.NET Core 2.0, logging is incorporated into the dependency injection (DI) system by default. You add providers and configure filtering in the `Program.cs` file instead of in the `Startup.cs` file. And the default `ILoggerFactory` supports filtering in a way that lets you use one flexible approach for both cross-provider filtering and specific-provider filtering.
 
-For more information, see [Introduction to Logging](xref:fundamentals/logging/index).
+For more information, see [Introduction to Logging](../fundamentals/logging/index.md).
 
 ## Authentication update
 
@@ -62,13 +61,13 @@ We've made it easier to build secure web APIs using Identity in ASP.NET Core 2.0
 
 For more information on authentication changes in 2.0, see the following resources:
 
-* [Account confirmation and password recovery in ASP.NET Core](xref:security/authentication/accconfirm)
-* [Enable QR Code generation for authenticator apps in ASP.NET Core](xref:security/authentication/identity-enable-qrcodes)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Account confirmation and password recovery in ASP.NET Core](../security/authentication/accconfirm.md)
+* [Enable QR Code generation for authenticator apps in ASP.NET Core](../security/authentication/identity-enable-qrcodes.md)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
 
 ## SPA templates
 
-Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](xref:client-side/spa-services#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see <xref:client-side/spa-services>.
+Single Page Application (SPA) project templates for Angular, Aurelia, Knockout.js, React.js, and React.js with Redux are available. The Angular template has been updated to Angular 4. The Angular and React templates are available by default; for information about how to get the other templates, see [Create a new SPA project](../client-side/spa-services.md#create-a-new-project). For information about how to build a SPA in ASP.NET Core, see [Use JavaScript Services to Create Single Page Applications in ASP.NET Core](../client-side/spa-services.md).
 
 ## Kestrel improvements
 
@@ -78,13 +77,13 @@ The Kestrel web server has new features that make it more suitable as an Interne
 * Maximum request body size
 * Minimum request body data rate
 
-For more information, see [Kestrel web server implementation in ASP.NET Core](xref:fundamentals/servers/kestrel).
+For more information, see [Kestrel web server implementation in ASP.NET Core](../fundamentals/servers/kestrel.md).
 
 ## WebListener renamed to HTTP.sys
 
 The packages `Microsoft.AspNetCore.Server.WebListener` and `Microsoft.Net.Http.Server` have been merged into a new package `Microsoft.AspNetCore.Server.HttpSys`. The namespaces have been updated to match.
 
-For more information, see [HTTP.sys web server implementation in ASP.NET Core](xref:fundamentals/servers/httpsys).
+For more information, see [HTTP.sys web server implementation in ASP.NET Core](../fundamentals/servers/httpsys.md).
 
 ## Enhanced HTTP header support
 
@@ -112,13 +111,13 @@ For information about the status of planned documentation, see the [GitHub issue
 
 ASP.NET Core has always helped HTML-encode content by default, but with the new version an extra step is taken to help prevent cross-site request forgery (XSRF) attacks. ASP.NET Core will now emit antiforgery tokens by default and validate them on form POST actions and pages without extra configuration.
 
-For more information, see <xref:security/anti-request-forgery>.
+For more information, see [Prevent Cross-Site Request Forgery (XSRF/CSRF) attacks in ASP.NET Core](../security/anti-request-forgery.md).
 
 ## Automatic precompilation
 
 Razor view pre-compilation is enabled during publish by default, reducing the publish output size and application startup time.
 
-For more information, see [Razor view compilation and precompilation in ASP.NET Core](xref:mvc/views/view-compilation).
+For more information, see [Razor view compilation and precompilation in ASP.NET Core](../mvc/views/view-compilation.md).
 
 ## Razor support for C# 7.1
 
@@ -132,19 +131,19 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 ## Other documentation updates for 2.0
 
-* [Visual Studio publish profiles for ASP.NET Core app deployment](xref:host-and-deploy/visual-studio-publish-profiles)
-* [Key Management](xref:security/data-protection/implementation/key-management)
-* [Configure Facebook authentication](xref:security/authentication/facebook-logins)
-* [Configure Twitter authentication](xref:security/authentication/twitter-logins)
-* [Configure Google authentication](xref:security/authentication/google-logins)
-* [Configure Microsoft Account authentication](xref:security/authentication/microsoft-logins)
+* [Visual Studio publish profiles for ASP.NET Core app deployment](../host-and-deploy/visual-studio-publish-profiles.md)
+* [Key Management](../security/data-protection/implementation/key-management.md)
+* [Configure Facebook authentication](../security/authentication/social/facebook-logins.md)
+* [Configure Twitter authentication](../security/authentication/social/twitter-logins.md)
+* [Configure Google authentication](../security/authentication/social/google-logins.md)
+* [Configure Microsoft Account authentication](../security/authentication/social/microsoft-logins.md)
 
 ## Migration guidance
 
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:
 
-* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](xref:migration/1x-to-2x/index)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](xref:migration/1x-to-2x/identity-2x)
+* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](../migration/1x-to-2x/index.md)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
 
 ## Breaking changes
 

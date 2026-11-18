@@ -1,12 +1,12 @@
 ### Adopt simplified authentication state serialization for Blazor Web Apps
 
-Blazor Web Apps can optionally adopt [simplified authentication state serialization](xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps).
+Blazor Web Apps can optionally adopt [simplified authentication state serialization](../../../release-notes/aspnetcore-9.0.md#simplified-authentication-state-serialization-for-blazor-web-apps).
 
 In the server project:
 
 * Remove the Persisting Authentication State Provider (`PersistingAuthenticationStateProvider.cs`).
 
-* Remove the service registration from the `Program` file. Instead, chain a call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization%2A> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents%2A>:
+* Remove the service registration from the `Program` file. Instead, chain a call to <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyRazorComponentsBuilderExtensions.AddAuthenticationStateSerialization*> on <xref:Microsoft.Extensions.DependencyInjection.RazorComponentsServiceCollectionExtensions.AddRazorComponents*>:
 
   ```diff
   - builder.Services.AddScoped<AuthenticationStateProvider, PersistingAuthenticationStateProvider>();
@@ -27,18 +27,18 @@ In the client project (`.Client`):
 
 * Remove the Persistent Authentication State Provider (`PersistentAuthenticationStateProvider.cs`).
 
-* Remove the service registration from the `Program` file. Instead, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization%2A> on the service collection:
+* Remove the service registration from the `Program` file. Instead, call <xref:Microsoft.Extensions.DependencyInjection.WebAssemblyAuthenticationServiceCollectionExtensions.AddAuthenticationStateDeserialization*> on the service collection:
 
   ```diff
   - builder.Services.AddSingleton<AuthenticationStateProvider, PersistentAuthenticationStateProvider>();
   + builder.Services.AddAuthenticationStateDeserialization();
   ```
 
-For more information, see <xref:aspnetcore-9#simplified-authentication-state-serialization-for-blazor-web-apps>.
+For more information, see [What's new in ASP.NET Core in .NET 9](../../../release-notes/aspnetcore-9.0.md#simplified-authentication-state-serialization-for-blazor-web-apps).
 
 ### Streaming rendering attribute no longer requires the `true` parameter
 
-In .NET 8, [streaming rendering](xref:blazor/components/rendering?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
+In .NET 8, [streaming rendering](../../../blazor/components/rendering.md?view=aspnetcore-8.0&preserve-view=true#streaming-rendering) required you to pass `true` for the `enabled` parameter:
 
 ```razor
 @attribute [StreamRendering(true)]
