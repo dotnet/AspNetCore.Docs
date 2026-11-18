@@ -2,8 +2,7 @@
 title: Custom Model Binding in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how model binding allows controller actions to work directly with model types in ASP.NET Core.
-ms.date: 02/23/2026
-uid: mvc/advanced/custom-model-binding
+ms.date: 11/18/2026
 ---
 # Custom Model Binding in ASP.NET Core
 
@@ -123,10 +122,9 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 [!code-csharp[](custom-model-binding/samples/3.x/PolymorphicModelBindingSample/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
-> [!NOTE]
-> The custom model binding implementation shown in this section relies on <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValueProvider%2A>, which reads values from form data (`multipart/form-data` or `application/x-www-form-urlencoded`), query strings, and route data. It does not bind request bodies formatted as JSON (`application/json`).
->
-> In ASP.NET Core, JSON request bodies are handled by input formatters (<xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter>) using `System.Text.Json` rather than model binders. For polymorphic deserialization of JSON payloads, use [System.Text.Json polymorphic type discrimination](/dotnet/standard/serialization/system-text-json/polymorphism) (such as the `[JsonPolymorphic]` and `[JsonDerivedType]` attributes) or a custom <xref:System.Text.Json.Serialization.JsonConverter>.
+The custom model binding implementation shown in this section relies on <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValueProvider%2A>, which reads values from form data (`multipart/form-data` or `application/x-www-form-urlencoded`), query strings, and route data. It doesn't bind request bodies formatted as JSON (`application/json`).
+
+JSON request bodies are handled by input formatters (<xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter>) using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) ([NuGet package](xref:System.Text.Json)) rather than model binders. For polymorphic deserialization of JSON payloads, use [`System.Text.Json` polymorphic type discrimination](/dotnet/standard/serialization/system-text-json/polymorphism), such as the [`[JsonPolymorphic]` attribute](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) and [`[JsonDerivedType]` attribute](xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute), or a custom <xref:System.Text.Json.Serialization.JsonConverter>.
 
 ## Recommendations and best practices
 
@@ -249,10 +247,9 @@ However, if an app requires polymorphic model binding, an implementation might l
 
 [!code-csharp[](custom-model-binding/samples/3.x/PolymorphicModelBindingSample/ModelBinders/PolymorphicModelBinder.cs?name=snippet)]
 
-> [!NOTE]
-> The custom model binding implementation shown in this section relies on <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValueProvider%2A>, which reads values from form data (`multipart/form-data` or `application/x-www-form-urlencoded`), query strings, and route data. It does not bind request bodies formatted as JSON (`application/json`).
->
-> In ASP.NET Core, JSON request bodies are handled by input formatters (<xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter>) using `System.Text.Json` rather than model binders. For polymorphic deserialization of JSON payloads, use [System.Text.Json polymorphic type discrimination](/dotnet/standard/serialization/system-text-json/polymorphism) (such as the `[JsonPolymorphic]` and `[JsonDerivedType]` attributes) or a custom <xref:System.Text.Json.Serialization.JsonConverter>.
+The custom model binding implementation shown in this section relies on <xref:Microsoft.AspNetCore.Mvc.ModelBinding.ModelBindingContext.ValueProvider%2A>, which reads values from form data (`multipart/form-data` or `application/x-www-form-urlencoded`), query strings, and route data. It doesn't bind request bodies formatted as JSON (`application/json`).
+
+JSON request bodies are handled by input formatters (<xref:Microsoft.AspNetCore.Mvc.Formatters.InputFormatter>) using [`System.Text.Json`](https://www.nuget.org/packages/System.Text.Json) ([NuGet package](xref:System.Text.Json)) rather than model binders. For polymorphic deserialization of JSON payloads, use [`System.Text.Json` polymorphic type discrimination](/dotnet/standard/serialization/system-text-json/polymorphism), such as the [`[JsonPolymorphic]` attribute](xref:System.Text.Json.Serialization.JsonPolymorphicAttribute) and [`[JsonDerivedType]` attribute](xref:System.Text.Json.Serialization.JsonDerivedTypeAttribute), or a custom <xref:System.Text.Json.Serialization.JsonConverter>.
 
 ## Recommendations and best practices
 
