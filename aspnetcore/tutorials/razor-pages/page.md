@@ -2,7 +2,7 @@
 title: Part 3, scaffolded Razor Pages
 ai-usage: ai-assisted
 description: Part 3 of tutorial series on Razor Pages.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/08/2026
 ---
 
@@ -187,9 +187,3 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 > [Next: Work with a database](sql.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page7.md)]

@@ -2,7 +2,7 @@
 title: Part 7, add a new field
 ai-usage: ai-assisted
 description: Part 7 of tutorial series on Razor Pages.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 05/11/2026
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
@@ -180,9 +180,3 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 > [Next: Add Validation](validation.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]

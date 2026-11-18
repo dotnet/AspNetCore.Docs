@@ -2,7 +2,7 @@
 title: Part 2, add a model
 ai-usage: ai-assisted
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/20/2026
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
@@ -279,9 +279,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 > [Next: Scaffolded Razor Pages](page.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model7.md)]

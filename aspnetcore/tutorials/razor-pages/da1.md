@@ -2,7 +2,7 @@
 title: Part 5, update the generated pages
 ai-usage: ai-assisted
 description: Part 5 of tutorial series on Razor Pages.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/08/2026
 ---
 # Part 5, update the generated pages in an ASP.NET Core app
@@ -134,9 +134,3 @@ The HTTP GET methods in the Index, Create, and Delete Razor pages follow a simil
 > [Next: Add search](search.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/da1/includes/da1-9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/da1/includes/da1_8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/da1/includes/da1_7.md)]

@@ -2,7 +2,7 @@
 title: Part 6, add search
 ai-usage: ai-assisted
 description: Part 6 of tutorial series on Razor Pages.
-monikerRange: '>= aspnetcore-7.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/08/2026
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
@@ -114,9 +114,3 @@ Test the app by searching by genre, by movie title, and by both:
 > [Next: Add a new field](new-field.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search7.md)]
