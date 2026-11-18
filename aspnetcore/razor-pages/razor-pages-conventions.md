@@ -465,7 +465,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-[!code-csharp[](~/mvc/controllers/routing/samples/3.x/main/StartupSlugifyParamTransformer.cs?name=snippet2)]
+[!code-csharp[](~/mvc/controllers/routing/samples/10.x/main/SlugifyParameterTransformer.cs)]
 
 [!INCLUDE[](~/includes/regex.md)]
 

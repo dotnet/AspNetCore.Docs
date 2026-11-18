@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor startup
+ai-usage: ai-assisted
 description: Learn how to configure Blazor startup.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 07/14/2026
+ms.date: 11/06/2026
 ---
 # ASP.NET Core Blazor startup
 
@@ -351,6 +352,46 @@ export function beforeStart(options, extensions) {
 ### Import map
 
 [Import maps](https://developer.mozilla.org/docs/Web/HTML/Element/script/type/importmap) are supported by ASP.NET Core and Blazor.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+## Configure Blazor client behavior from the server
+
+Blazor apps can configure browser startup behavior in server-side C# instead of writing `Blazor.start` JavaScript. Use <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointConventionBuilderExtensions.WithBrowserOptions*> to set defaults for Razor component endpoints. The settings are sent to the browser when the page contains an interactive component. Settings can cover all render modes or apply only to static server rendering, Interactive Server, or Interactive WebAssembly.
+
+<!-- UPDATE 11.0 - Track on engineering issue for updates -->
+
+> [!NOTE]
+> The `WithBrowserOptions` API, released with .NET 11, has known issues. For more information, see [Blazor browser options are ignored or applied incorrectly (`dotnet/aspnetcore` #70510)](https://github.com/dotnet/aspnetcore/issues/70510).
+
+```csharp
+app.MapRazorComponents<App>()
+    .WithBrowserOptions(options =>
+    {
+        options.InteractiveServer.ReconnectionDialogId = "reconnect-dialog";
+        options.InteractiveServer.ReconnectionMaxRetries = 10;
+        options.InteractiveWebAssembly.EnvironmentName = "Staging";
+        options.InteractiveWebAssembly.EnvironmentVariables["PUBLIC_API_URL"] =
+            "https://api.example.com";
+    });
+```
+
+The <xref:Microsoft.AspNetCore.Components.ConfigureBrowser> component supports request-specific settings when no endpoint-wide defaults are configured with `WithBrowserOptions`. When combined with `WithBrowserOptions`, overrides currently modify shared endpoint defaults and can affect subsequent requests, so don't use this combination for request- or user-specific settings. Render the component in server-rendered content:
+
+```razor
+<ConfigureBrowser Options="RequestBrowserOptions" />
+
+@code {
+    private BrowserOptions RequestBrowserOptions => new()
+    {
+        InteractiveServer = { ReconnectionDialogId = "reconnect-dialog" }
+    };
+}
+```
+
+Only options that can be serialized to the browser are supported. Options that require JavaScript callbacks, such as `loadBootResource` or `configureSignalR`, must be configured with `Blazor.start` or a JavaScript initializer. Values in `EnvironmentVariables` are sent to the browser and are visible to users, so don't use them to store secrets.
 
 :::moniker-end
 

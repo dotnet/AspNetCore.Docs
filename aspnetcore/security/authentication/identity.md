@@ -2,12 +2,12 @@
 title: Introduction to Identity on ASP.NET Core
 ai-usage: ai-assisted
 description: Use Identity with an ASP.NET Core app. Learn how to set password requirements (RequireDigit, RequiredLength, RequiredUniqueChars, and more).
-monikerRange: '>= aspnetcore-3.0'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 09/18/2026
 ---
 # Introduction to Identity on ASP.NET Core
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 ASP.NET Core Identity:
 
@@ -212,7 +212,7 @@ For complete details on available metrics and how to use them, see [ASP.NET Core
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-8.0"
+:::moniker range=">= aspnetcore-10.0"
 
 <!-- Start here for .NET 6 -->
 
@@ -355,5 +355,3 @@ To prevent publishing static Identity assets (stylesheets and JavaScript files f
 * [Host ASP.NET Core in a web farm](../../host-and-deploy/web-farm.md)
 
 :::moniker-end
-
-[!INCLUDE[](./identity/includes/identity6.md)]

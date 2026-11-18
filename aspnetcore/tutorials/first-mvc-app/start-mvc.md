@@ -1,12 +1,12 @@
 ---
 title: Get started with ASP.NET Core MVC
 description: Learn how to get started with ASP.NET Core MVC.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/22/2026
 ---
 # Get started with ASP.NET Core MVC
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -154,15 +154,3 @@ In the next tutorial in this series, you learn about MVC and start writing some 
 > [Next: Add a controller](~/tutorials/first-mvc-app/adding-controller.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc9.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc8.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc7.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc6.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc5.md)]
-
-[!INCLUDE[](~/tutorials/first-mvc-app/start-mvc/includes/start-mvc3.md)]
