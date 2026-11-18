@@ -2,7 +2,7 @@
 title: Globalization and localization in ASP.NET Core
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 11/17/2026
+ms.date: 11/18/2026
 ---
 # Globalization and localization in ASP.NET Core
 
@@ -41,10 +41,6 @@ Globalizing and localizing an app involves the following tasks:
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples) ([how to download](index.md#how-to-download-a-sample))
 
-:::moniker-end
-
-[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
-
 ## Related content
 
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
@@ -57,3 +53,7 @@ Globalizing and localizing an app involves the following tasks:
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](https://hishambinateya.com/localization-and-generics)
 * [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
+
+:::moniker-end
+
+[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
