@@ -134,13 +134,13 @@ public class MiddlewareInjection : IHostingStartup
     {
         builder.ConfigureServices(services =>
         {
-            services.AddTransient<IStartupFilter, RequestMiddlewareStartupFilter>();
+            services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
         });
     }
 }
 ```
 
-For more information, see [Startup filters](xref:fundamentals/startup#startup-filters).
+For more information, see [Startup filters](../startup.md#startup-filters).
 
 ### Console app without an entry point
 
@@ -561,13 +561,13 @@ public class MiddlewareInjection : IHostingStartup
     {
         builder.ConfigureServices(services =>
         {
-            services.AddTransient<IStartupFilter, RequestMiddlewareStartupFilter>();
+            services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
         });
     }
 }
 ```
 
-For more information, see [Startup filters](xref:fundamentals/startup#startup-filters).
+For more information, see [Startup filters](../startup.md#startup-filters).
 
 ### Console app without an entry point
 
