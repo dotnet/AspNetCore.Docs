@@ -3,7 +3,7 @@ title: Use hosting startup assemblies in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how to enhance an ASP.NET Core app from an external assembly using an IHostingStartup implementation.
 monikerRange: '>= aspnetcore-2.1'
-ms.date: 09/16/2026
+ms.date: 11/18/2026
 ---
 # Use hosting startup assemblies in ASP.NET Core
 
@@ -120,6 +120,27 @@ The app's Index page reads and renders the configuration values for the two keys
 `HostingStartupApp/Pages/Index.cshtml.cs`:
 
 [!code-csharp[](platform-specific-configuration/samples/3.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
+
+### Avoid `Configure` (`builder.Configure(...)`) calls inside `IHostingStartup` implementations
+
+Don't call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure*> (`builder.Configure(...)`) inside <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementations. The ASP.NET Core web host supports only a single `Configure` delegate. Calling `builder.Configure` from a hosting startup overrides and bypasses the main application's `Startup.Configure` method.
+
+To configure middleware from a hosting startup assembly, register an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> in the dependency injection container via `builder.ConfigureServices`:
+
+```csharp
+public class MiddlewareInjection : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+        {
+            services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
+        });
+    }
+}
+```
+
+For more information, see [Startup filters](../startup.md#startup-filters).
 
 ### Console app without an entry point
 
@@ -526,6 +547,27 @@ The app's Index page reads and renders the configuration values for the two keys
 `HostingStartupApp/Pages/Index.cshtml.cs`:
 
 [!code-csharp[](platform-specific-configuration/samples/2.x/HostingStartupApp/Pages/Index.cshtml.cs?name=snippet1&highlight=7-8,13-14)]
+
+### Avoid `Configure` (`builder.Configure(...)`) calls inside `IHostingStartup` implementations
+
+Don't call <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure*> (`builder.Configure(...)`) inside <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementations. The ASP.NET Core web host supports only a single `Configure` delegate. Calling `builder.Configure` from a hosting startup overrides and bypasses the main application's `Startup.Configure` method.
+
+To configure middleware from a hosting startup assembly, register an <xref:Microsoft.AspNetCore.Hosting.IStartupFilter> in the dependency injection container via `builder.ConfigureServices`:
+
+```csharp
+public class MiddlewareInjection : IHostingStartup
+{
+    public void Configure(IWebHostBuilder builder)
+    {
+        builder.ConfigureServices(services =>
+        {
+            services.AddTransient<IStartupFilter, CustomResponseHeaderFilter>();
+        });
+    }
+}
+```
+
+For more information, see [Startup filters](../startup.md#startup-filters).
 
 ### Console app without an entry point
 

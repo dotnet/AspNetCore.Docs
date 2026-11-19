@@ -2,19 +2,15 @@
 title: Part 3, scaffolded Razor Pages
 ai-usage: ai-assisted
 description: Part 3 of tutorial series on Razor Pages.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/08/2026
 ---
 
 # Part 3, scaffolded Razor Pages in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 This tutorial examines the Razor Pages created by scaffolding in the [previous tutorial](model.md).
-
-:::moniker range=">= aspnetcore-10.0"
 
 ## The Create, Delete, Details, and Edit pages
 
@@ -185,15 +181,3 @@ For more information on Tag Helpers such as `<form method="post">`, see [Tag Hel
 > [!div class="step-by-step"]
 > [Previous: Add a model](model.md)
 > [Next: Work with a database](sql.md)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/page/includes/page3-5.md)]

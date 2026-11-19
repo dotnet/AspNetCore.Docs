@@ -31,7 +31,7 @@ This timeout is not enforced when a debugger is attached to the Kestrel process.
 
 Both connection limits default to `null` (unlimited). Don't set a connection cap solely because an app is internet-facing. Monitor active and rejected connections and consider expected traffic before deciding whether a limit is appropriate. A limit that's too low or an unexpected traffic surge can cause legitimate connections to be rejected.
 
-The value `100` in the following examples demonstrates configuration syntax, not a recommended production limit. Connection limits aren't a substitute for upstream DDoS protection. For more information, see [Edge server guidance](security-considerations.md?view=aspnetcore-10.0#edge-server-direct-internet-exposure).
+The value `100` in the following examples demonstrates configuration syntax, not a recommended production limit. Connection limits aren't a substitute for upstream DDoS protection. For more information, see [Edge server guidance](security-considerations.md#edge-server-direct-internet-exposure).
 
 <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxConcurrentConnections> gets or sets the maximum number of open connections:
 

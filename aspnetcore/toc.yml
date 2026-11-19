@@ -2084,8 +2084,6 @@ items:
                 href: security/authentication/accconfirm.md
               - name: Enable QR code generation in Identity
                 href: security/authentication/identity-enable-qrcodes.md
-              - name: Two-factor authentication with SMS
-                href: security/authentication/2fa.md
               - name: Passkeys (WebAuthn)
                 items:
                   - name: Overview

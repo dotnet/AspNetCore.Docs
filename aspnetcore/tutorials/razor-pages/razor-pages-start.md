@@ -2,17 +2,13 @@
 title: "Tutorial: Get started with Razor Pages in ASP.NET Core"
 ai-usage: ai-assisted
 description: This is the first tutorial of a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/27/2026
 ---
 
 # Tutorial: Get started with Razor Pages in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
 
 This tutorial is the first in a series that teaches the basics of building an ASP.NET Core Razor Pages web app.
 
@@ -127,8 +123,8 @@ In Visual Studio Code, from the *Run* menu, select *Stop Debugging* or press <kb
 
 ---
 
-<!-- 
-Each new version, change the layout file to use the non-minified CSS. 
+<!--
+Each new version, change the layout file to use the non-minified CSS.
 See https://github.com/dotnet/AspNetCore.Docs/issues/21193
 -->
 
@@ -189,17 +185,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 
 > [!div class="step-by-step"]
 > [Next: Add a model](model.md)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/razor-pages-start/includes/razor-pages-start3.md)]
