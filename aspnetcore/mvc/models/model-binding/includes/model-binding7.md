@@ -326,7 +326,7 @@ public IActionResult OnPost(
     [Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](../../../../data/ef-mvc/crud.md#overpost).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](/previous-versions/aspnet/core/data/ef-mvc/crud#overpost).
 
 ### [ModelBinder] attribute
 
@@ -959,7 +959,7 @@ public IActionResult OnPost(
     [Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](../../../../data/ef-mvc/crud.md#overpost).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](/previous-versions/aspnet/core/data/ef-mvc/crud#overpost).
 
 ### [ModelBinder] attribute
 
@@ -1600,7 +1600,7 @@ In the following example, only the specified properties of the `Instructor` mode
 public IActionResult OnPost([Bind("LastName,FirstMidName,HireDate")] Instructor instructor)
 ```
 
-The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](../../../../data/ef-mvc/crud.md#overpost).
+The `[Bind]` attribute can be used to protect against overposting in *create* scenarios. It doesn't work well in edit scenarios because excluded properties are set to null or a default value instead of being left unchanged. For protection against overposting, view models are recommended rather than the `[Bind]` attribute. For more information, see [Protect against overposting](/previous-versions/aspnet/core/data/ef-mvc/crud#overpost).
 
 ### [ModelBinder] attribute
 

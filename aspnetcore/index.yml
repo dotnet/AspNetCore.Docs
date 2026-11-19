@@ -124,9 +124,6 @@ conceptualContent:
         - url: data/ef-rp/intro.md
           itemType: tutorial
           text: "Entity Framework Core with Razor Pages"
-        - url: data/ef-mvc/intro.md
-          itemType: tutorial
-          text: "Entity Framework Core with ASP.NET Core MVC"
         - url: tutorials/first-mvc-app/start-mvc.md
           itemType: tutorial
           text: "Get started with ASP.NET Core MVC (SQL Server Express and SQLite)"

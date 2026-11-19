@@ -23,7 +23,7 @@ To migrate existing apps to ASP.NET Core 2.0 Identity, the data in these tables 
 
 ## ASP.NET Core Identity 2.0 schema
 
-ASP.NET Core 2.0 follows the [Identity](/aspnet/identity/index) principle introduced in ASP.NET 4.5. Though the principle is shared, the implementation between the frameworks is different, even between versions of ASP.NET Core (see [Migrate authentication and Identity to ASP.NET Core 2.0](../../1x-to-2x/index.md)).
+ASP.NET Core 2.0 follows the [Identity](/aspnet/identity/index) principle introduced in ASP.NET 4.5. Though the principle is shared, the implementation between the frameworks is different, even between versions of ASP.NET Core (see [Migrate authentication and Identity to ASP.NET Core 2.0](/previous-versions/aspnet/core/migration/1x-to-2x/index)).
 
 The fastest way to view the schema for ASP.NET Core 2.0 Identity is to create a new ASP.NET Core 2.0 app. Follow these steps in Visual Studio 2017:
 

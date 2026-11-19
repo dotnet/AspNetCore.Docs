@@ -61,7 +61,7 @@ When an `IQueryable` is created or modified, no query is sent to the database. T
 
 [!code-csharp[Main](intro/samples/cu30snapshots/3-sorting/Pages/Students/Index1.cshtml.cs?name=snippet_SortOnlyRtn)]
 
-`OnGetAsync` could get verbose with a large number of sortable columns. For information about an alternative way to code this functionality, see [Use dynamic LINQ to simplify code](../ef-mvc/advanced.md#dynamic-linq) in the MVC version of this tutorial series.
+`OnGetAsync` could get verbose with a large number of sortable columns. For information about an alternative way to code this functionality, see [Use dynamic LINQ to simplify code](/previous-versions/aspnet/core/data/ef-mvc/advanced#dynamic-linq) in the MVC version of this tutorial series.
 
 ### Add column heading hyperlinks to the Student Index page
 
