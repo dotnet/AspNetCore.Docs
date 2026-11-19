@@ -1,12 +1,12 @@
 ---
 title: Provide localized resources for languages and cultures in an ASP.NET Core app
 description: Learn how to provide localized resources for localizing content of an ASP.NET Core app into different languages and cultures.
-monikerRange: '>= aspnetcore-5.0'
-ms.date: 06/20/2025
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/18/2026
 ---
 # Provide localized resources for languages and cultures in an ASP.NET Core app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range="> aspnetcore-5.0"
 
@@ -124,5 +124,3 @@ Localizing an app also involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [provide-resources5](~/fundamentals/localization/includes/provide-resources5.md)]

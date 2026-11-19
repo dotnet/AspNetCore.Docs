@@ -2,15 +2,12 @@
 title: Part 8, add validation
 ai-usage: ai-assisted
 description: Part 8 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/06/2026
 ---
 # Part 8 of tutorial series on Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
 
 In this section, you add validation logic to the `Movie` model. The app enforces the validation rules any time a user creates or edits a movie.
 
@@ -277,14 +274,3 @@ Thanks for completing this introduction to Razor Pages. [Get started with Razor 
 
 > [!div class="step-by-step"]
 > [Previous: Add a new field](new-field.md)
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/validation/includes/validation3-5.md)]

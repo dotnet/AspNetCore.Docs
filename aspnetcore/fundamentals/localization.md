@@ -1,16 +1,14 @@
 ---
 title: Globalization and localization in ASP.NET Core
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-monikerRange: '>= aspnetcore-3.1'
-ms.date: 06/20/2025
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/18/2026
 ---
 # Globalization and localization in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
-:::moniker range="> aspnetcore-5.0"
-
-By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://twitter.com/hishambinateya)
+By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://github.com/hishamco)
 
 A multilingual website allows a website to reach a wider audience. ASP.NET Core provides services and middleware for localizing into different languages and cultures.
 
@@ -39,50 +37,17 @@ Globalizing and localizing an app involves the following tasks:
 * [Provide localized resources for the cultures the app supports](localization/provide-resources.md)
 * [Implement a strategy to select the culture for each request](localization/select-language-culture.md)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples) ([how to download](index.md#how-to-download-a-sample))
-
-:::moniker-end
-
-[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/10.x/Localization) ([how to download](index.md#how-to-download-a-sample))
 
 ## Related content
 
-:::moniker range="> aspnetcore-5.0"
-
 * [Url culture provider using middleware as filters in ASP.NET Core](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/)
 * [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/)
-* [`IStringLocalizer`](localization/make-content-localizable.md) : Uses the <xref:System.Resources.ResourceManager> and <xref:System.Resources.ResourceReader> to provide culture-specific resources at run time. The interface has an indexer and an `IEnumerable` for returning localized strings.
-* [`IHtmlLocalizer`](localization/make-content-localizable.md#ihtmllocalizer): For resources that contain HTML.
-* [View and DataAnnotations](localization/make-content-localizable.md#view-localization)
-* [Troubleshoot ASP.NET Core localization](troubleshoot-aspnet-core-localization.md)
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end
-
-:::moniker range="= aspnetcore-5.0"
-
 * [Make an ASP.NET Core app's content localizable](localization/make-content-localizable.md)
-* [Provide localized resources for languages and cultures in an ASP.NET Core app](localization/provide-resources.md)
-* [Strategies for selecting language and culture in a localized ASP.NET Core app](localization/select-language-culture.md)
+* [Provide localized resources for the cultures the app supports](localization/provide-resources.md)
+* [Implement a strategy to select the culture for each request](localization/select-language-culture.md)
 * [Troubleshoot ASP.NET Core localization](troubleshoot-aspnet-core-localization.md)
 * [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
+* [Localization & Generics](https://hishambinateya.com/localization-and-generics)
 * [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-5.0"
-
-* [Troubleshoot ASP.NET Core localization](troubleshoot-aspnet-core-localization.md)
-* [Localization.StarterWeb project](https://github.com/aspnet/Entropy/tree/master/samples/Localization.StarterWeb) used in the article.
-* [Globalizing and localizing .NET applications](/dotnet/standard/globalization-localization/index)
-* [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
-* [Localization & Generics](http://hishambinateya.com/localization-and-generics)
-* [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end

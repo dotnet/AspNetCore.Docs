@@ -370,7 +370,7 @@ Verify the code added by the scaffolder calls <xref:Microsoft.EntityFrameworkCor
 
 [!code-csharp[Main](intro/samples/cu60/Program.cs?name=snippet_sqlite&highlight=1-2,7-8)]
 
-See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#sqlite-ss-6) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/first-mvc-app/adding-model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
@@ -535,7 +535,7 @@ For more information, see [Performance considerations (EF)](/ef/core/performance
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/first-mvc-app/adding-model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
 > [Next tutorial](crud.md)
@@ -884,7 +884,7 @@ Verify the code added by the scaffolder calls `UseSqlite`.
 
 [!code-csharp[Main](intro/samples/cu30/StartupSQLite.cs?name=snippet_ConfigureServices&highlight=5-6)]
 
-See [Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
+See [Use SQLite for development, SQL Server for production](../../tutorials/first-mvc-app/adding-model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production) for information on using a production database.
 
 ---
 
@@ -1049,7 +1049,7 @@ For more information, see [Performance considerations (EF)](/dotnet/framework/da
 
 ## Next steps
 
-[Use SQLite for development, SQL Server for production](../../tutorials/razor-pages/model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
+[Use SQLite for development, SQL Server for production](../../tutorials/first-mvc-app/adding-model.md?tabs=visual-studio-code#use-sqlite-for-development-sql-server-for-production)
 
 > [!div class="step-by-step"]
 > [Next tutorial](crud.md)
