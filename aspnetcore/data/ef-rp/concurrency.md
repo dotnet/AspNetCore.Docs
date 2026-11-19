@@ -1,7 +1,7 @@
 ---
 title: Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency
 description: Part 8 of Razor Pages and Entity Framework tutorial series.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/29/2025
 ---
 # Part 8, Razor Pages with EF Core in ASP.NET Core - Concurrency

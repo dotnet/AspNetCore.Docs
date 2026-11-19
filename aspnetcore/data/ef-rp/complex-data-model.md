@@ -1,7 +1,7 @@
 ---
 title: Part 5, Razor Pages with EF Core in ASP.NET Core - Data Model
 description: Part 5 of Razor Pages and Entity Framework tutorial series.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 04/10/2025
 ---
 
