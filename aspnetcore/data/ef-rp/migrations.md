@@ -10,7 +10,6 @@ ms.date: 07/22/2019
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
-:::moniker range=">= aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
