@@ -18,7 +18,7 @@
 
   <Target Name="DisableCompileTimeOpenApiXmlGenerator" BeforeTargets="CoreCompile">
     <ItemGroup>
-      <Analyzer Remove="$([MSBuild]::NormalizePath('$(PkgMicrosoft_AspNetCore_OpenApi)/analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll'))" />
+      <Analyzer Remove=$(PkgMicrosoft_AspNetCore_OpenApi)\analyzers\dotnet\cs\Microsoft.AspNetCore.OpenApi.SourceGenerators.dll" />
     </ItemGroup>
   </Target>
 
