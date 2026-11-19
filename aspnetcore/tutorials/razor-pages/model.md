@@ -2,14 +2,10 @@
 title: Part 2, add a model
 ai-usage: ai-assisted
 description: Part 2 of tutorial series on Razor Pages. In this section, model classes are added.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/20/2026
-monikerRange: '>= aspnetcore-3.1'
 ---
 # Part 2, add a model to a Razor Pages app in ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-10.0"
 
 In this tutorial, you add classes for managing movies in a database. The app's model classes use [Entity Framework Core (EF Core)](/ef/core) to work with the database. EF Core is an object-relational mapper (O/RM) that simplifies data access. You write the model classes first, and EF Core creates the database.
 
@@ -277,17 +273,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 > [!div class="step-by-step"]
 > [Previous: Get Started](razor-pages-start.md)
 > [Next: Scaffolded Razor Pages](page.md)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/model/includes/model3.md)]

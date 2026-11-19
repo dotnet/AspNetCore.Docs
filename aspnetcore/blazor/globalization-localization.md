@@ -305,7 +305,7 @@ In ***client-side development***, dynamically setting the culture from the `Acce
 > [!NOTE]
 > If the app's specification requires limiting the supported cultures to an explicit list, see the [Dynamically set the client-side culture by user preference](#dynamically-set-the-client-side-culture-by-user-preference) section of this article.
 
-Apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Apps are localized using [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 Add the following line to the `Program` file where services are registered:
 
@@ -492,7 +492,7 @@ Use the `CultureExample1` component shown in the [Demonstration component](#demo
 
 :::moniker range=">= aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -528,7 +528,7 @@ For information on ordering the localization middleware in the middleware pipeli
 
 :::moniker range="< aspnetcore-6.0"
 
-Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In `Startup.ConfigureServices` (`Startup.cs`):
 
@@ -784,7 +784,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the `Program` file:
 
@@ -1416,7 +1416,7 @@ Add the [`Microsoft.Extensions.Localization` package](https://www.nuget.org/pack
 
 [!INCLUDE[](~/includes/package-reference.md)]
 
-Server-side apps are localized using [localization middleware](../fundamentals/localization.md#localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
+Server-side apps are localized using [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware). Add localization services to the app with <xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization*>.
 
 In the server project's `Program` file where services are registered:
 
@@ -1547,7 +1547,7 @@ builder.Services.AddLocalization();
 
 ### Server-side localization
 
-Use [localization middleware](../fundamentals/localization.md#localization-middleware) to set the app's culture.
+Use [localization middleware](../fundamentals/localization/select-language-culture.md#configure-localization-middleware) to set the app's culture.
 
 If the app doesn't already support dynamic culture selection:
 

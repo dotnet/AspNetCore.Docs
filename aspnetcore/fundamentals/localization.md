@@ -1,14 +1,12 @@
 ---
 title: Globalization and localization in ASP.NET Core
 description: Learn how ASP.NET Core provides services and middleware for localizing content into different languages and cultures.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 11/18/2026
 ---
 # Globalization and localization in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range="> aspnetcore-5.0"
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 By [Rick Anderson](https://twitter.com/RickAndMSFT), [Damien Bowden](https://github.com/damienbod), [Bart Calixto](https://twitter.com/bartmax), [Nadeem Afana](https://afana.me/), and [Hisham Bin Ateya](https://github.com/hishamco)
 
@@ -39,7 +37,7 @@ Globalizing and localizing an app involves the following tasks:
 * [Provide localized resources for the cultures the app supports](localization/provide-resources.md)
 * [Implement a strategy to select the culture for each request](localization/select-language-culture.md)
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples) ([how to download](index.md#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/localization/samples/10.x/Localization) ([how to download](index.md#how-to-download-a-sample))
 
 ## Related content
 
@@ -53,7 +51,3 @@ Globalizing and localizing an app involves the following tasks:
 * [Resources in .resx Files](/dotnet/framework/resources/working-with-resx-files-programmatically)
 * [Localization & Generics](https://hishambinateya.com/localization-and-generics)
 * [Tim Heuer's ResX Viewer and Editor (Visual Studio Code)](https://marketplace.visualstudio.com/items?itemName=TimHeuer.resx-editor)
-
-:::moniker-end
-
-[!INCLUDE [localization35](~/fundamentals/localization/includes/localization35.md)]

@@ -2,12 +2,12 @@
 title: Strategies for selecting language and culture in a localized ASP.NET Core app
 ai-usage: ai-assisted
 description: Learn how to select a language and culture when localizing content into different languages and cultures in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-5.0'
-ms.date: 06/20/2025
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/17/2026
 ---
 # Implement a strategy to select the language/culture for each request in a localized ASP.NET Core app
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -19,7 +19,7 @@ One task for localizing an app is to implement a strategy for selecting the appr
 
 The current culture on a request is set in the localization [Middleware](../middleware/index.md). The localization middleware is enabled in `Program.cs`. The localization middleware must be configured before any middleware that might check the request culture (for example, `app.UseMvcWithDefaultRoute()`).
 
-[!code-csharp[](~/fundamentals/localization/samples/8.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
+[!code-csharp[](~/fundamentals/localization/samples/10.x/Localization/Program.cs?name=snippet_RequestLocalizationOptionsConfiguration)]
 
 <xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization*> initializes a <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> object. On every request the list of <xref:Microsoft.AspNetCore.Localization.RequestCultureProvider> in the <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> is enumerated and the first provider that can successfully determine the request culture is used. The default providers come from the `RequestLocalizationOptions` class:
 
@@ -96,12 +96,90 @@ app.UseRequestLocalization(new RequestLocalizationOptions
 
 ## Apply the RouteDataRequest CultureProvider
 
-The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` route value. See [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) for information on:
+The <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> sets the culture based on the value of the `culture` and `ui-culture` route values in the request URL.
 
-* Using the middleware as filters feature of ASP.NET Core.
-* How to use `RouteDataRequestCultureProvider` to set the culture of an app from the url.
+To configure `RouteDataRequestCultureProvider`, register the provider in <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions> and define route patterns containing the `{culture}` route parameter:
 
-See [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/) for information on how to apply the `RouteDataRequestCultureProvider` globally.
+```csharp
+var supportedCultures = new[] { "en-US", "fr-FR", "ru" };
+
+var localizationOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture("en-US")
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+// Insert RouteDataRequestCultureProvider at the beginning so route data takes precedence
+localizationOptions.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
+
+app.UseRouting();
+
+app.UseRequestLocalization(localizationOptions);
+```
+
+> [!NOTE]
+> When using `RouteDataRequestCultureProvider`, `app.UseRequestLocalization` must be called after `app.UseRouting` so that route data is available when resolving the culture.
+
+### Localized route templates and fallback
+
+To support both culture-prefixed URLs, such as `/ru/Home/Index` or `/ru/Index`, and culture-less URLs, such as `/Home/Index` or `/Index`, while allowing fallback to other culture providers—for example, cookies or `Accept-Language` headers, configure a route with a `{culture}` segment alongside a default route.
+
+**Controllers:**
+
+Map a localized route with a `{culture}` segment, followed by the default route without a culture prefix:
+
+```csharp
+app.MapControllerRoute(
+    name: "localized",
+    pattern: "{culture}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+```
+
+With this configuration:
+
+* Requests with a culture prefix, such as `/ru/Home/Index`, match the `localized` route. <xref:Microsoft.AspNetCore.Localization.Routing.RouteDataRequestCultureProvider> determines the request culture from route data.
+* If the culture value is absent or unsupported, culture resolution falls back to the next registered provider, such as a cookie or an `Accept-Language` header, or to <xref:Microsoft.AspNetCore.Builder.RequestLocalizationOptions.DefaultRequestCulture>.
+
+**Razor Pages:**
+
+In Razor Pages, relative `@page` templates append parameters to the existing page route—for example, `@page "{culture?}"` on `Pages/Index.cshtml` matches `/Index/ru` rather than `/ru/Index`. To support a culture prefix without replacing the default page route, configure an additional page route using <xref:Microsoft.Extensions.DependencyInjection.PageConventionCollectionExtensions.AddPageRoute*>:
+
+```csharp
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddPageRoute("/Index", "{culture}/Index");
+});
+```
+
+To add culture-prefixed routes to all pages in a folder, use <xref:Microsoft.AspNetCore.Mvc.ApplicationModels.PageConventionCollection.AddFolderRouteModelConvention*>:
+
+```csharp
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AddFolderRouteModelConvention("/", model =>
+    {
+        var selectorCount = model.Selectors.Count;
+        for (var i = 0; i < selectorCount; i++)
+        {
+            var selector = model.Selectors[i];
+            model.Selectors.Add(new()
+            {
+                AttributeRouteModel = new()
+                {
+                    Order = 1,
+                    Template = AttributeRouteModel.CombineTemplates(
+                        "{culture}",
+                        selector.AttributeRouteModel?.Template)
+                }
+            });
+        }
+    });
+});
+```
+
+For more information, see [Url culture provider using middleware as filters](https://andrewlock.net/url-culture-provider-using-middleware-as-mvc-filter-in-asp-net-core-1-1-0/) and [Applying the RouteDataRequest CultureProvider globally with middleware as filters](https://andrewlock.net/applying-the-routedatarequest-cultureprovider-globally-with-middleware-as-filters/).
 
 ## Use a custom provider
 
@@ -164,15 +242,15 @@ The [RequestLocalizationOptions.CultureInfoUseUserOverride](xref:Microsoft.AspNe
 
 This sample **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) contains UI to set the `Culture`. The `Views/Shared/_SelectLanguagePartial.cshtml` file allows you to select the culture from the list of supported cultures:
 
-[!code-cshtml[](~/fundamentals/localization/samples/8.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
+[!code-cshtml[](~/fundamentals/localization/samples/10.x/Localization/Views/Shared/_SelectLanguagePartial.cshtml)]
 
 The `Views/Shared/_SelectLanguagePartial.cshtml` file is added to the `footer` section of the layout file so it will be available to all views:
 
-[!code-cshtml[](~/fundamentals/localization/samples/8.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
+[!code-cshtml[](~/fundamentals/localization/samples/10.x/Localization/Views/Shared/_Layout.cshtml?range=43-56&highlight=10)]
 
 The `SetLanguage` method sets the culture cookie.
 
-[!code-csharp[](~/fundamentals/localization/samples/8.x/Localization/Controllers/HomeController.cs?range=57-67)]
+[!code-csharp[](~/fundamentals/localization/samples/10.x/Localization/Controllers/HomeController.cs?range=57-67)]
 
 You can't plug in the `_SelectLanguagePartial.cshtml` to sample code for this project. The **Localization.StarterWeb** project on [GitHub](https://github.com/aspnet/entropy) has code to flow the `RequestLocalizationOptions` to a Razor partial through the [Dependency Injection](~/fundamentals/dependency-injection.md) container.
 
@@ -201,6 +279,3 @@ Localizing an app also involves the following tasks:
 * [Localization & Generics](http://hishambinateya.com/localization-and-generics)
 
 :::moniker-end
-
-[!INCLUDE [select-language-culture67](~/fundamentals/localization/includes/select-language-culture67.md)]
-[!INCLUDE [select-language-culture5](~/fundamentals/localization/includes/select-language-culture5.md)]

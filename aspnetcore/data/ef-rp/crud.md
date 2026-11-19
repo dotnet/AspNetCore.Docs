@@ -72,7 +72,7 @@ The generated code uses the [FirstOrDefaultAsync](xref:Microsoft.EntityFramework
 
 ### Route data vs. query string
 
-The URL for the **Details** page is `https://localhost:<port>/Students/Details?id=1`. The entity's primary key value is in the query string. Some developers prefer to pass the key value in route data: `https://localhost:<port>/Students/Details/1`. For more information, see [Update the generated pages (Tutorial 5 of 8)](../../tutorials/razor-pages/da1.md#update-the-generated-code).
+The URL for the **Details** page is `https://localhost:<port>/Students/Details?id=1`. The entity's primary key value is in the query string. Some developers prefer to pass the key value in route data: `https://localhost:<port>/Students/Details/1`. For more information, see [Update the generated pages (Tutorial 5 of 8)](../../tutorials/razor-pages/da1.md#add-route-template).
 
 ## Update the Create page
 
