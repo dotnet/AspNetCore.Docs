@@ -27,7 +27,7 @@ The following APIs were added:
 - <xref:Microsoft.AspNetCore.OutputCaching.CacheVaryByRules.VaryByHost?displayProperty=nameWithType>
 - <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.AddPolicy(System.String,System.Action{Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder},System.Boolean)?displayProperty=nameWithType>
 - <xref:Microsoft.AspNetCore.OutputCaching.OutputCacheOptions.AddBasePolicy(System.Action{Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder},System.Boolean)?displayProperty=nameWithType>
-- <xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput%60%601(%60%600,System.Action{Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder},System.Boolean)?displayProperty=fullName>
+- <xref:Microsoft.Extensions.DependencyInjection.OutputCacheConventionBuilderExtensions.CacheOutput``1(``0,System.Action{Microsoft.AspNetCore.OutputCaching.OutputCachePolicyBuilder},System.Boolean)?displayProperty=fullName>
 
 ## Version introduced
 

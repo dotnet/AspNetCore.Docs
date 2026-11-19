@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how parameters are populated before invoking minimal route handlers.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 10/21/2026
-uid: fundamentals/minimal-apis/parameter-binding
 ---
 
 # Parameter Binding in Minimal API apps

@@ -3,11 +3,10 @@ title: HttpRepl telemetry
 description: Learn about the telemetry collected by the HttpRepl.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2020
-uid: web-api/http-repl/telemetry
 ---
 # HttpRepl telemetry
 
-The [HttpRepl](xref:web-api/http-repl) includes a telemetry feature that collects usage data. It's important that the HttpRepl team understands how the tool is used so it can be improved.
+The [HttpRepl](index.md) includes a telemetry feature that collects usage data. It's important that the HttpRepl team understands how the tool is used so it can be improved.
 
 ## How to opt out
 

@@ -1,5 +1,4 @@
 ---
-uid: fundamentals/servers/yarp/dests-health-checks
 title: YARP Destination health checks
 description: YARP Destination health checks
 ms.date: 04/06/2025

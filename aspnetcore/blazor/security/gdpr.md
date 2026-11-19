@@ -3,7 +3,6 @@ title: EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blaz
 description: Learn how to implement EU General Data Protection Regulation (GDPR) support in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 11/11/2025
-uid: blazor/security/gdpr
 zone_pivot_groups: blazor-app-models
 ---
 # EU General Data Protection Regulation (GDPR) support in ASP.NET Core Blazor
@@ -16,8 +15,8 @@ This article explains how to implement support for [EU General Data Protection R
 
 In the `Program` file:
 
-* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see <xref:security/samesite>.
-* Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor%2A>.
+* Add <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions> configuration to require user consent for non-essential cookies and set the same-site policy to none. For more information, see [Work with SameSite cookies in ASP.NET Core](../../security/samesite.md).
+* Add the default implementation for the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> service by calling <xref:Microsoft.Extensions.DependencyInjection.HttpServiceCollectionExtensions.AddHttpContextAccessor*>.
 
 ```csharp
 builder.Services.Configure<CookiePolicyOptions>(options =>
@@ -32,13 +31,13 @@ builder.Services.AddHttpContextAccessor();
 
 :::moniker range=">= aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.RazorComponentsEndpointRouteBuilderExtensions.MapRazorComponents*>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>:
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-8.0"
 
-In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub%2A>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy%2A>:
+In the `Program` file before the call to <xref:Microsoft.AspNetCore.Builder.ComponentEndpointRouteBuilderExtensions.MapBlazorHub*>, add cookie policy middleware by calling <xref:Microsoft.AspNetCore.Builder.CookiePolicyAppBuilderExtensions.UseCookiePolicy*>:
 
 :::moniker-end
 
@@ -48,7 +47,7 @@ app.UseCookiePolicy();
 
 Add the following `CookieConsent` component to handle cookie policy consent.
 
-The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Confirm or adjust the path to the collocated file in the `OnAfterRenderAsync` method. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
+The component uses a [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component), named `CookieConsent.razor.js`, to load a module. Confirm or adjust the path to the collocated file in the `OnAfterRenderAsync` method. The following component assumes that the component and its companion JavaScript file are in the `Components` folder of the app.
 
 `CookieConsent.razor`:
 
@@ -119,7 +118,7 @@ The component uses a [collocated JavaScript file](xref:blazor/js-interop/javascr
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
+Add the following [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `acceptPolicy` function in a JavaScript module.
 
 `CookieConsent.razor.js`:
 
@@ -137,7 +136,7 @@ Within `<main>` Razor markup of the `MainLayout` component (`MainLayout.razor`),
 
 ## Customize the cookie consent value
 
-Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue%2A?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
+Specify the cookie consent value by assigning a custom string to <xref:Microsoft.AspNetCore.Builder.CookiePolicyOptions.ConsentCookieValue?displayProperty=nameWithType>. The following example changes the default value of "`yes`" to "`true`":
 
 ```csharp
 options.ConsentCookieValue = "true";
@@ -217,7 +216,7 @@ Add the following `CookieConsent` component to handle cookie policy consent.
 }
 ```
 
-Add the following [collocated JavaScript file](xref:blazor/js-interop/javascript-location#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions in a JavaScript module.
+Add the following [collocated JavaScript file](../javascript-interoperability/location-of-javascript.md#load-a-script-from-an-external-javascript-file-js-collocated-with-a-component) to maintain the `setCookiePolicyAccepted` and `getCookiePolicyAccepted` functions in a JavaScript module.
 
 `Shared/CookieConsent.razor.js`:
 

@@ -3,7 +3,6 @@ title: Identity model customization in ASP.NET Core
 ai-usage: ai-assisted
 description: This article describes how to customize the underlying Entity Framework Core data model for ASP.NET Core Identity.
 ms.date: 11/03/2025
-uid: security/authentication/customize_identity_model
 ---
 <!-- ms.sfi.ropc: t -->
 # Identity model customization in ASP.NET Core
@@ -75,7 +74,7 @@ public class DesignTimeApplicationDbContextFactory
 
 > [!NOTE]
 > You cannot access `options.Stores.MaxLengthForKeys` directly inside `OnModelCreating` because dependency injection isn't available at design time. Instead, specify the configured value directly (such as `HasMaxLength(256)`), or use a design-time mechanism to pass settings if needed.
-> For more details, see <xref:security/authentication/identity-configuration>.
+> For more details, see [Configure ASP.NET Core Identity](identity-configuration.md).
 
 > [!TIP]
 > Always verify the resulting model snapshot reflects the intended key lengths or schema version after adding a migration.
@@ -108,7 +107,7 @@ The [entity types](#entity-types) are related to each other in the following way
 
 ### Default model configuration
 
-Identity defines many *context classes* that inherit from <xref:Microsoft.EntityFrameworkCore.DbContext> to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating%2A> method of the context class. The default configuration is:
+Identity defines many *context classes* that inherit from <xref:Microsoft.EntityFrameworkCore.DbContext> to configure and use the model. This configuration is done using the [EF Core Code First Fluent API](/ef/core/modeling/) in the <xref:Microsoft.EntityFrameworkCore.DbContext.OnModelCreating*> method of the context class. The default configuration is:
 
 ```csharp
 builder.Entity<TUser>(b =>
@@ -289,7 +288,7 @@ public abstract class IdentityDbContext<
          where TUserToken : IdentityUserToken<TKey>
 ```
 
-It's also possible to use Identity without roles (only claims), in which case an <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext%601> class should be used:
+It's also possible to use Identity without roles (only claims), in which case an <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserContext`1> class should be used:
 
 ```csharp
 // Uses the built-in non-role Identity types except with a custom User type
@@ -348,7 +347,7 @@ dotnet ef migrations add CreateIdentitySchema
 dotnet ef database update
  -->
 
-[Custom user data](xref:security/authentication/add-user-data) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
+[Custom user data](add-user-data.md) is supported by inheriting from `IdentityUser`. It's customary to name this type `ApplicationUser`:
 
 ```csharp
 public class ApplicationUser : IdentityUser
@@ -392,7 +391,7 @@ services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireCo
         .AddEntityFrameworkStores<ApplicationDbContext>();                                    
 ```
 
-Calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity%2A> is equivalent to the following code:
+Calling <xref:Microsoft.Extensions.DependencyInjection.IdentityServiceCollectionUIExtensions.AddDefaultIdentity*> is equivalent to the following code:
 
 ```csharp
 services.AddAuthentication(o =>
@@ -411,10 +410,10 @@ services.AddIdentityCore<TUser>(o =>
 .AddDefaultTokenProviders();
 ```
 
-Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
+Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`. For more information, see:
 
-* [Scaffold Identity](xref:security/authentication/scaffold-identity)
-* [Add, download, and delete custom user data to Identity](xref:security/authentication/add-user-data)
+* [Scaffold Identity](scaffold-identity.md)
+* [Add, download, and delete custom user data to Identity](add-user-data.md)
 
 ### Change the primary key type
 
@@ -424,7 +423,7 @@ Follow these steps to change the PK type:
 
 1. If the database was created before the PK change, run `Drop-Database` (PMC) or `dotnet ef database drop` (.NET CLI) to delete it.
 2. After confirming deletion of the database, remove the initial migration with `Remove-Migration` (PMC) or `dotnet ef migrations remove` (.NET CLI).
-3. Update the `ApplicationDbContext` class to derive from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext%603>. Specify the new key type for `TKey`. For example, to use a `Guid` key type:
+3. Update the `ApplicationDbContext` class to derive from <xref:Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext`3>. Specify the new key type for `TKey`. For example, to use a `Guid` key type:
  
    ```csharp
    public class ApplicationDbContext
@@ -437,7 +436,7 @@ Follow these steps to change the PK type:
    }
    ```
 
-   In the preceding code, the generic classes <xref:Microsoft.AspNetCore.Identity.IdentityUser%601> and <xref:Microsoft.AspNetCore.Identity.IdentityRole%601> must be specified to use the new key type.
+   In the preceding code, the generic classes <xref:Microsoft.AspNetCore.Identity.IdentityUser`1> and <xref:Microsoft.AspNetCore.Identity.IdentityRole`1> must be specified to use the new key type.
 
    `Startup.ConfigureServices` must be updated to use the generic user:
 
@@ -472,7 +471,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 5. If a custom `ApplicationRole` class is being used, update the class to inherit from `IdentityRole<TKey>`. For example:
 
@@ -488,7 +487,7 @@ Follow these steps to change the PK type:
 
    The primary key's data type is inferred by analyzing the <xref:Microsoft.EntityFrameworkCore.DbContext> object.
 
-   Identity is provided as a Razor class library. For more information, see <xref:security/authentication/scaffold-identity>. Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI%2A>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
+   Identity is provided as a Razor class library. For more information, see [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md). Consequently, the preceding code requires a call to <xref:Microsoft.AspNetCore.Identity.IdentityBuilderUIExtensions.AddDefaultUI*>. If the Identity scaffolder was used to add Identity files to the project, remove the call to `AddDefaultUI`.
 
 ### Add navigation properties
 
@@ -913,7 +912,7 @@ In this section, support for lazy-loading proxies in the Identity model is added
 Entity types can be made suitable for lazy-loading in several ways, as described in the [EF Core documentation](/ef/core/querying/related-data#lazy-loading). For simplicity, use lazy-loading proxies, which requires:
 
 * Installation of the [Microsoft.EntityFrameworkCore.Proxies](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Proxies/) package.
-* A call to <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies%2A> inside <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext%2A>.
+* A call to <xref:Microsoft.EntityFrameworkCore.ProxiesExtensions.UseLazyLoadingProxies*> inside <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*>.
 * Public entity types with `public virtual` navigation properties.
 
 The following example demonstrates calling `UseLazyLoadingProxies` in `Startup.ConfigureServices`:
@@ -933,4 +932,4 @@ Refer to the preceding examples for guidance on adding navigation properties to 
 
 ## Related content
 
-* <xref:security/authentication/scaffold-identity>
+* [Scaffold Identity in ASP.NET Core projects](scaffold-identity.md)

@@ -3,8 +3,7 @@ title: Configure JWT bearer authentication in ASP.NET Core
 ai-usage: ai-assisted
 description: JWT bearer tokens protect ASP.NET Core APIs from unauthorized calls. See how to add AddJwtBearer, set validation parameters, and support multiple issuer schemes.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/18/2026
-uid: security/authentication/configure-jwt-bearer-authentication
+ms.date: 11/18/2026
 ---
 # Configure JWT bearer authentication in ASP.NET Core
 
@@ -99,8 +98,8 @@ A [403 Forbidden](https://developer.mozilla.org/docs/Web/HTTP/Status/403) respon
 
 In ASP.NET Core, you can enforce authorization using:
 
-- [Requirements and policies](/aspnet/core/security/authorization/policies): Define custom requirements, such as "Must be an administrator," and associate them with policies.
-- [Role-based authorization](/aspnet/core/security/authorization/roles): Assign users to roles, such as "Admin" or "Editor," and restrict access based on those roles.
+- [Requirements and policies](../authorization/policies.md): Define custom requirements, such as "Must be an administrator," and associate them with policies.
+- [Role-based authorization](../authorization/roles.md): Assign users to roles, such as "Admin" or "Editor," and restrict access based on those roles.
 
 ## What role has OIDC and/or OAuth when using bearer tokens?
 
@@ -109,7 +108,7 @@ When an API uses JWT access tokens for authorization, the API only validates the
 OpenID Connect (OIDC) and OAuth 2.0 provide standardized, secure frameworks for token acquisition. Token acquisition varies depending on the type of app. Due to the complexity of secure token acquisition, it's highly recommended to rely on these standards:
 
 * For apps acting on behalf of a user and an application: Use OIDC to enable delegated user access. In web apps, use the confidential code flow with [Proof Key for Code Exchange](https://oauth.net/2/pkce/) (PKCE) for enhanced security.
-  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](/aspnet/core/security/authentication/configure-oidc-web-authentication), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync%2A).
+  * If the calling app is an ASP.NET Core app with server-side [OIDC authentication](configure-oidc-web-authentication.md), use the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property to store the access token in a cookie for later use via [`HttpContext.GetTokenAsync("access_token")`](xref:Microsoft.AspNetCore.Authentication.AuthenticationHttpContextExtensions.GetTokenAsync*).
 * If the app has no user: Use the OAuth 2.0 client credentials flow to obtain application access tokens.
 
 ## Implementing JWT bearer token authentication
@@ -129,7 +128,7 @@ If any of these claims or values are incorrect, the API should return a 401 resp
 
 ### JWT bearer token basic validation
 
-A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
+A basic implementation of the <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> can validate just the audience and the issuer. The signature must be validated so that the token can be trusted and that it hasn't been tampered with.
 
 ```csharp
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -142,11 +141,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 ### JWT bearer token explicit validation
 
-The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer%2A> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
+The <xref:Microsoft.Extensions.DependencyInjection.JwtBearerExtensions.AddJwtBearer*> method provides multiple configurations. Some secure token providers use a non-standard metadata address and the parameter can be setup explicitly. The API can accept multiple issuers or audiences.
 
 Explicitly defining the parameters is not required. The definitions depends on the access token claim values and the secure token server used to validate the access token. You should use the default values if possible. 
 
-See [Mapping claims](xref:security/authentication/claims#claims-namespaces-default-namespaces) MapInboundClaims details.
+See [Mapping claims](claims.md#claims-namespaces-default-namespaces) MapInboundClaims details.
 
 ```csharp
 builder.Services.AddAuthentication()
@@ -169,16 +168,19 @@ builder.Services.AddAuthentication()
 });
 ```
 
+> [!NOTE]
+> Specifying a custom scheme name in `AddJwtBearer("<scheme>", ...)` registers the scheme (the `<scheme>` placeholder) within ASP.NET Core, but doesn't change the HTTP header format expected by the handler. By default, <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerHandler> expects the `Authorization: Bearer <token>` header format per [RFC 6750](https://www.rfc-editor.org/rfc/rfc6750). If clients send tokens using an alternative header prefix or custom header, configure <xref:Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents.OnMessageReceived?displayProperty=nameWithType> to extract the token manually.
+
 ### JWT with multiple schemes
 
 APIs often need to accommodate access tokens from various issuers. You can support multiple token issuers in an API by using the following approaches:
 
 * **Separate APIs**: Create distinct APIs with dedicated authentication schemes for each issuer.
-* [AddPolicyScheme](xref:security/authentication/policyschemes): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
+* [AddPolicyScheme](policyschemes.md): Define multiple authentication schemes and implement logic to select the appropriate scheme based on token properties, such as the issuer or claims. This approach offers greater flexibility within a single API.
 
 ### Require authentication for all API endpoints
 
-Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy%2A> to require an authenticated user for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata:
+Use <xref:Microsoft.AspNetCore.Authorization.AuthorizationBuilder.SetFallbackPolicy*> to require an authenticated user for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata:
 
 ```csharp
 var requireAuthPolicy = new AuthorizationPolicyBuilder()
@@ -189,7 +191,7 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The default policy applies to `[Authorize]` without a policy name and requires an authenticated user unless the app changes it. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The default policy applies to `[Authorize]` without a policy name and requires an authenticated user unless the app changes it. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../authorization/policies.md#default-and-fallback-policies).
 
 You can also use the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to force authentication. If you use multiple schemes, set the bearer scheme as the default authentication scheme or specify it by using `[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme])`.
 
@@ -227,7 +229,7 @@ You should **NOT** create an access token from a username/password request. User
 
 ### Use cookies
 
-For secure web apps, a backend is required to store access tokens on a trusted server.  Only a secure HTTP only cookie is shared on the client browser. See the [OIDC authentication documentation](/aspnet/core/security/authentication/configure-oidc-web-authentication) for how to do this in an ASP.NET Core web app.
+For secure web apps, a backend is required to store access tokens on a trusted server.  Only a secure HTTP only cookie is shared on the client browser. See the [OIDC authentication documentation](configure-oidc-web-authentication.md) for how to do this in an ASP.NET Core web app.
 
 ## Downstream APIs
 
@@ -263,9 +265,9 @@ This is easy to implement but the client application has full application access
 
 ## Handling access tokens
 
-When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> property.
+When using access tokens in a client application, the access tokens must be rotated, persisted, and stored on the server. In a web app, cookies are used to secure the session and can be used to store tokens via the <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> property.
 
-<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens%2A> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-yarp-and-aspire#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
+<xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.SaveTokens> doesn't refresh access tokens automatically, but this functionality is planned for a future release. In the meantime, you can manually refresh the access token as [demonstrated in the Blazor Web App with OIDC documentation](/aspnet/core/blazor/security/blazor-web-app-with-oidc?pivots=with-yarp-and-aspire#token-refresh) or use a third-party NuGet package, such as [`Duende.AccessTokenManagement.OpenIdConnect`](https://www.nuget.org/packages/Duende.AccessTokenManagement.OpenIdConnect). For more information, see [Duende token management](https://docs.duendesoftware.com/identityserver/v7/quickstarts/3a_token_management/).
 
 > [!NOTE]
 > If deploying to production, the cache should work in a multi-instance deployment. A persistent cache is normally required.
@@ -287,14 +289,14 @@ Some secure token servers encrypt access tokens. Access tokens don't require any
 
 For Blazor examples that use YARP to implement the BFF pattern, see the following articles:
 
-* <xref:blazor/security/blazor-web-app-entra?pivots=with-yarp-and-aspire>
-* <xref:blazor/security/blazor-web-app-oidc?pivots=with-yarp-and-aspire>
+* [Secure an ASP.NET Core Blazor Web App with Microsoft Entra ID](../../blazor/security/blazor-web-app-with-entra.md?pivots=with-yarp-and-aspire)
+* [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md?pivots=with-yarp-and-aspire)
 
 :::moniker-end
 
 :::moniker range="< aspnetcore-9.0"
 
-For a Blazor example that uses YARP to implement the BFF pattern, see <xref:blazor/security/blazor-web-app-oidc?pivots=with-yarp-and-aspire>.
+For a Blazor example that uses YARP to implement the BFF pattern, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md?pivots=with-yarp-and-aspire).
 
 :::moniker-end
 
@@ -302,7 +304,7 @@ For more information, see [auth0: The Backend for Frontend Pattern](https://auth
 
 ## Testing APIs
 
-Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](/aspnet/core/security/authentication/jwt-authn).
+Integration tests and containers with access tokens can be used to test secure APIs. Access tokens can be created using the [dotnet user-jwts tool](jwt-authn.md).
 
 > [!WARNING]
 > Ensure that security problems are **not** introduced into the API for testing purposes. Testing becomes more challenging when delegated access tokens are used, as these tokens can only be created through a UI and an OpenID Connect flow. If a test tool is used to create delegated access tokens, security features must be disabled for testing. It's essential that these features are only disabled in the test environment.
@@ -322,7 +324,7 @@ When implementing a Swagger UI for an API, you should normally not deploy the UI
 
 Refer to the following document:
 
-[Mapping, customizing, and transforming claims in ASP.NET Core](xref:security/authentication/claims)
+[Mapping, customizing, and transforming claims in ASP.NET Core](claims.md)
 
 ## Standards
 

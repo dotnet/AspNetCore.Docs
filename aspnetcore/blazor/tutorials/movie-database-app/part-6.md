@@ -3,7 +3,6 @@ title: Build a Blazor movie database app (Part 6 - Add search)
 description: This part of the Blazor movie database app tutorial explains how to add a search feature to filter movies by title.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 11/11/2025
-uid: blazor/tutorials/movie-database-app/part-6
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 6 - Add search)
@@ -24,7 +23,7 @@ The [`QuickGrid` component](xref:Microsoft.AspNetCore.Components.QuickGrid) is u
 </QuickGrid>
 ```
 
-The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory%601.CreateDbContext%2A>) of the injected database context factory (`DbFactory`).
+The <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter receives an `IQueryable<TGridItem>`, where `TGridItem` is the type of data represented by each row in the grid (`Movie`). <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> is assigned a collection of movie entities (`DbSet<Movie>`) obtained from the created database context (<xref:Microsoft.EntityFrameworkCore.IDbContextFactory`1.CreateDbContext*>) of the injected database context factory (`DbFactory`).
 
 To make the `QuickGrid` component filter on the movie title, the `Index` component should:
 
@@ -44,18 +43,18 @@ private IQueryable<Movie> FilteredMovies =>
 
 `TitleFilter` is the filter string. The property is provided the [`[SupplyParameterFromQuery]` attribute](xref:Microsoft.AspNetCore.Components.SupplyParameterFromQueryAttribute), which lets Blazor know that the value of `TitleFilter` should be assigned from the query string when the query string contains a field of the same name (for example, `?titleFilter=road+warrior` yields a `TitleFilter` value of `road warrior`). Note that query string field names, such as `titleFilter`, aren't case sensitive.
 
-The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the QuickGrid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), an empty string (`string.Empty`) is used for the <xref:System.String.Contains%2A> clause. Therefore, no movies are filtered for display.
+The `FilteredMovies` property is an `IQueryable<Movie>`, which is the type for assignment to the QuickGrid's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter. The property filters the list of movies based on the supplied `TitleFilter`. If a `TitleFilter` isn't assigned a value from the query string (`TitleFilter` is `null`), an empty string (`string.Empty`) is used for the <xref:System.String.Contains*> clause. Therefore, no movies are filtered for display.
 
-Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid%601.Items%2A> parameter to use the `movies` collection:
+Change the `QuickGrid` component's <xref:Microsoft.AspNetCore.Components.QuickGrid.QuickGrid`1.Items> parameter to use the `movies` collection:
 
 ```diff
 - <QuickGrid Class="table" Items="context.Movie">
 + <QuickGrid Class="table" Items="FilteredMovies">
 ```
 
-The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where%2A> or <xref:System.String.Contains%2A> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where%2A>, <xref:System.String.Contains%2A>, or <xref:System.Linq.Queryable.OrderBy%2A>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
+The `movie => movie.Title!.Contains(...)` code is a *lambda expression*. Lambdas are used in method-based LINQ queries as arguments to standard query operator methods such as the <xref:System.Linq.Queryable.Where*> or <xref:System.String.Contains*> methods. LINQ queries aren't executed when they're defined or when they're modified by calling a method, such as <xref:System.Linq.Queryable.Where*>, <xref:System.String.Contains*>, or <xref:System.Linq.Queryable.OrderBy*>. Rather, query execution is deferred. The evaluation of an expression is delayed until its realized value is iterated.
 
-The <xref:System.Linq.Queryable.Where%2A> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains%2A> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query.
+The <xref:System.Linq.Queryable.Where*> method is run on the database, not in the C# code. The case sensitivity of the query depends on the database and the collation. For SQL Server, <xref:System.String.Contains*> maps to [SQL `LIKE`](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with default collation provides a mixture of case-sensitive and case-insensitive filtering, depending on the query.
 
 Run the app and navigate to the movies `Index` page at `/movies`. The movies in the database load:
 
@@ -200,5 +199,5 @@ Stop the app by closing the browser's window and pressing <kbd>Ctrl</kbd>+<kbd>C
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add validation](xref:blazor/tutorials/movie-database-app/part-5)
-> [Next: Add a new field](xref:blazor/tutorials/movie-database-app/part-7)
+> [Previous: Add validation](part-5.md)
+> [Next: Add a new field](part-7.md)
