@@ -22,7 +22,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
     * [ ] If the snippet is version-specific:
       * [ ] Create a subfolder inside the `snippets` folder named for the version (for example, `9.0` for .NET 9 or ASP.NET Core 9).
       * [ ] Place the code in a file with the correct extension inside the version subfolder.
-      * [ ] Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build .the snippet.
+      * [ ] Add a project file (`.csproj`) to the version subfolder targeting the matching .NET version, if necessary to run or build the snippet.
 * [ ] Reference snippets using triple-colon syntax:
   * [ ] **Use file-relative paths** for snippets located in the same file as the articles that refer to it.
 
