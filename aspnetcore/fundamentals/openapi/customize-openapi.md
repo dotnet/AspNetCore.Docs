@@ -3,7 +3,7 @@ title: Customize OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to customize OpenAPI documents in an ASP.NET Core app
 monikerRange: '>= aspnetcore-9.0'
-ms.date: 11/16/2026
+ms.date: 11/19/2026
 ---
 # Customize OpenAPI documents
 
