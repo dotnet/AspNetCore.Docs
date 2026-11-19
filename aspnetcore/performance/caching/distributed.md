@@ -3,7 +3,7 @@ title: Distributed caching in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to use an ASP.NET Core distributed cache to improve app performance and scalability, especially in a cloud or server farm environment.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 10/07/2026
+ms.date: 11/19/2026
 ms.sfi.ropc: t
 ---
 # Distributed caching in ASP.NET Core
@@ -142,7 +142,7 @@ The table created by the `sql-cache` tool has the following schema:
 
 :::image type="content" source="~/performance/caching/distributed/_static/SqlServerCacheTable.png" alt-text="Screenshot that shows the schema of a SQL Server cache table created with the 'sql-cache create' command.":::
 
-Alternatively, you can create the table and index directly using T-SQL (for example, via SQL Server Management Studio or database migration scripts):
+Alternatively, you can create the table and index directly using T-SQL—for example, via SQL Server Management Studio or database migration scripts:
 
 ```sql
 CREATE TABLE [dbo].[TestCache](
@@ -158,7 +158,7 @@ CREATE NONCLUSTERED INDEX Index_ExpiresAtTime ON [dbo].[TestCache](ExpiresAtTime
 ```
 
 > [!NOTE]
-> `Id` is configured with a maximum length of 449 characters to ensure the primary key remains within SQL Server's 900-byte index limit, and uses the `SQL_Latin1_General_CP1_CS_AS` collation to maintain case-sensitive cache keys. The `Index_ExpiresAtTime` nonclustered index enables efficient deletion of expired cache entries.
+> `Id` is configured with a maximum length of 449 characters to ensure the primary key remains within SQL Server's 900-byte index limit and uses the `SQL_Latin1_General_CP1_CS_AS` collation to maintain case-sensitive cache keys. The `Index_ExpiresAtTime` nonclustered index enables efficient deletion of expired cache entries.
 
 > [!NOTE]
 > An app should manipulate cache values by using an instance of <xref:Microsoft.Extensions.Caching.Distributed.IDistributedCache>, not an instance of <xref:Microsoft.Extensions.Caching.SqlServer.SqlServerCache>.
