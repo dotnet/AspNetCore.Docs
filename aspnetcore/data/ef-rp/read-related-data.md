@@ -291,7 +291,6 @@ The next tutorial shows how to update related data.
 >[Next tutorial](update-related-data.md)
 
 :::moniker-end
-
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
 
 This tutorial shows how to read and display related data. Related data is data that EF Core loads into navigation properties.

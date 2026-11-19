@@ -11,8 +11,6 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-:::moniker range=">= aspnetcore-3.0"
-
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
 When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial series started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes, the database needs to be dropped. The next time the app runs, the call to `EnsureCreated` re-creates the database to match the new data model. The `DbInitializer` class then runs to seed the new database.
@@ -138,21 +136,13 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-The solution may be to run `dotnet ef database update` at a command prompt.
-
-:::moniker-end
-
+The solution might be to run `dotnet ef database update` at a command prompt.
 
 ### Related content
-
-:::moniker range=">= aspnetcore-3.0"
 
 * [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
-
-:::moniker-end
-
 
 ## Next steps
 

@@ -232,9 +232,7 @@ Run the app and test the Delete page.
 > [Next tutorial](concurrency.md)
 
 :::moniker-end
-
 :::moniker range=">= aspnetcore-3.0 < aspnetcore-5.0"
-
 
 This tutorial shows how to update related data. The following illustrations show some of the completed pages.
 
