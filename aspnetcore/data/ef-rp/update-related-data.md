@@ -65,7 +65,7 @@ The preceding code makes the following changes:
 
 The Razor Page uses the [Select Tag Helper](../../mvc/views/working-with-forms.md#the-select-tag-helper):
 
-[!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
 Test the Create page. The Create page displays the department name rather than the department ID.
 
@@ -284,7 +284,7 @@ The preceding code makes the following changes:
 
 The Razor Page uses the [Select Tag Helper](../../mvc/views/working-with-forms.md#the-select-tag-helper):
 
-[!code-cshtml[](intro/samples/cu/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
+[!code-cshtml[](intro/samples/cu30/Pages/Courses/Create.cshtml?range=28-35&highlight=3-6)]
 
 Test the Create page. The Create page displays the department name rather than the department ID.
 

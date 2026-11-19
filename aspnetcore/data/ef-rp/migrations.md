@@ -10,7 +10,6 @@ ms.date: 07/22/2019
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
-
 :::moniker range=">= aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
@@ -138,19 +137,13 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-The solution may be to run `dotnet ef database update` at a command prompt.
-
-:::moniker-end
+The solution might be to run `dotnet ef database update` at a command prompt.
 
 ### Related content
-
-:::moniker range=">= aspnetcore-3.0"
 
 * [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
-
-:::moniker-end
 
 ## Next steps
 

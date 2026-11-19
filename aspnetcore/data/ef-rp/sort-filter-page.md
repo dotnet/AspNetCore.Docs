@@ -11,8 +11,6 @@ By [Tom Dykstra](https://github.com/tdykstra), [Jeremy Likness](https://twitter.
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
 
-:::moniker range=">= aspnetcore-3.0"
-
 This tutorial adds sorting, filtering, and paging functionality to the Students pages.
 
 The following illustration shows a completed page. The column headings are clickable links to sort the column. Click a column heading repeatedly to switch between ascending and descending sort order.
@@ -264,6 +262,3 @@ In the next tutorial, the app uses migrations to update the data model.
 > [!div class="step-by-step"]
 > [Previous tutorial](crud.md)
 > [Next tutorial](migrations.md)
-
-:::moniker-end
-
