@@ -2,15 +2,12 @@
 title: Part 6, add search
 ai-usage: ai-assisted
 description: Part 6 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 01/08/2026
 ---
 # Part 6, add search to ASP.NET Core Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
 
 In the following sections, you add the ability to search movies by *genre* or *name*.
 
@@ -45,7 +42,7 @@ The `s => s.Title.Contains()` code is a [Lambda Expression](/dotnet/csharp/progr
 
 > [!NOTE]
 > The <xref:System.Data.Objects.DataClasses.EntityCollection`1.Contains*> method runs on the database, not in the C# code. The case sensitivity on the query depends on the database and the collation. On SQL Server, `Contains` maps to [SQL LIKE](/sql/t-sql/language-elements/like-transact-sql), which is case insensitive. SQLite with the default collation is a mixture of case sensitive and case ***IN***sensitive, depending on the query. For information on making case insensitive SQLite queries, see the following:
-> 
+>
 > * [How to use case-insensitive query with Sqlite provider? (`dotnet/efcore` #11414)](https://github.com/dotnet/efcore/issues/11414)
 > * [How to make a SQLite column case insensitive (`dotnet/AspNetCore.Docs` #22314)](https://github.com/dotnet/AspNetCore.Docs/issues/22314)
 > * [Collations and Case Sensitivity](/ef/core/miscellaneous/collations-and-case-sensitivity)
@@ -111,15 +108,3 @@ Test the app by searching by genre, by movie title, and by both:
 > [!div class="step-by-step"]
 > [Previous: Update the pages](da1.md)
 > [Next: Add a new field](new-field.md)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/search/includes/search3-5.md)]

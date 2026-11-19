@@ -2,16 +2,13 @@
 title: Part 4, work with a database
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/20/2026
 ---
 
 # Part 4 of tutorial series on Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Joe Audette](https://twitter.com/joeaudette)
-
-:::moniker range=">= aspnetcore-10.0"
 
 The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. Register the database context with the [dependency injection](../../fundamentals/dependency-injection.md) container in `Program.cs`:
 
@@ -150,17 +147,3 @@ The app shows the seeded data:
 > [!div class="step-by-step"]
 > [Previous: Scaffolded Razor Pages](page.md)
 > [Next: Update the pages](da1.md)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql3.md)]
