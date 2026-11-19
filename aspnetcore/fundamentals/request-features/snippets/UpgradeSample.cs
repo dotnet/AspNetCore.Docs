@@ -1,3 +1,7 @@
+#!/usr/bin/env -S dotnet --
+#:sdk Microsoft.NET.Sdk.Web
+#:property PublishAot=false
+
 using Microsoft.AspNetCore.Http.Features;
 
 var builder = WebApplication.CreateBuilder(args);
