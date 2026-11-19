@@ -11,8 +11,9 @@ app.Map("/upgrade", async (HttpContext context) =>
     if (upgradeFeature is not null &&
         upgradeFeature.IsUpgradableRequest &&
         context.Request.Headers.Upgrade.Any(h =>
-            h?.Contains("custom-protocol",
-                StringComparison.OrdinalIgnoreCase) == true))
+            h?.Split(',', StringSplitOptions.TrimEntries)
+              .Contains("custom-protocol",
+                  StringComparer.OrdinalIgnoreCase) == true))
     {
         // Specify the upgraded protocol on the response before upgrading:
         context.Response.Headers.Upgrade = "custom-protocol";
