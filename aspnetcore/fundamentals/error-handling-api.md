@@ -3,7 +3,7 @@ title: Handle errors in ASP.NET Core APIs
 description: Learn about error handling in ASP.NET Core APIs with Minimal APIs and controller-based approaches.
 ai-usage: ai-assisted
 monikerRange: '>= aspnetcore-7.0'
-ms.date: 11/18/2026
+ms.date: 11/19/2026
 ---
 # Handle errors in ASP.NET Core APIs
 
@@ -258,14 +258,13 @@ app.MapGet("/login-provider", Results<RedirectHttpResult, ProblemHttpResult> (st
         return TypedResults.Problem(
             title: "Provider not supported",
             detail: $"The provider '{provider}' is not supported.",
-            statusCode: StatusCodes.Status501NotImplemented);
+            statusCode: StatusCodes.Status400BadRequest);
     }
 
     return TypedResults.Redirect($"/auth/{provider}");
 })
 .Produces(StatusCodes.Status302Found)
-.ProducesProblem(StatusCodes.Status400BadRequest)
-.ProducesProblem(StatusCodes.Status501NotImplemented);
+.ProducesProblem(StatusCodes.Status400BadRequest);
 
 app.Run();
 ```
