@@ -1164,15 +1164,6 @@ Quote &copy;2005 [Universal Pictures](https://www.uphe.com): [Serenity](https://
 
 Support for [C# union types](/dotnet/csharp/language-reference/builtin-types/union) allows a single component parameter to represent a value that's exactly one of a fixed set of types with compiler-enforced exhaustive pattern matching. A component parameter is set by direct assignment when a component is rendered from Razor markup or through <xref:Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder.AddComponentParameter*?displayProperty=nameWithType>.
 
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
-
 The following C# union type, `SlotContent`, accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
 ```csharp
@@ -1235,7 +1226,7 @@ The following `SlotExample` component uses the preceding `SlotContent` type and 
 
 <h1>Plain text</h1>
 
-<Slot Content="@("Simple plain text slot")" />
+<Slot Content="Simple plain text slot" />
 
 <h1><code>MarkupString</code></h1>
 
@@ -1265,10 +1256,6 @@ The following `SlotExample` component uses the preceding `SlotContent` type and 
     private void Increment() => currentCount++;
 }
 ```
-
-<!-- UPDATE 11.0 - Remove the following paragraph per resolution of the PU issue -->
-
-The string-literal shortcut applies only to parameters declared as `string`. A parameter declared as a C# union type, even one whose cases include `string`, isn't a `string`-typed parameter, so the attribute value must be a C# expression. Use the `@` prefix, as demonstrated by `Content="@("Simple plain text slot")"` in the preceding example.
 
 <!-- UPDATE 11.0 - Track on https://github.com/dotnet/razor/issues/13200 for 
                    the following feature. -->
