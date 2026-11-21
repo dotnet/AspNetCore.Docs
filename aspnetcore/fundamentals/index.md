@@ -314,7 +314,7 @@ On startup, an ASP.NET Core app builds a *host*. The host encapsulates all of th
 
 There are three different hosts capable of running an ASP.NET Core app:
 
-* [ASP.NET Core WebApplication](minimal-apis/webapplication.md) (also known as the [Minimal Host](../migration/50-to-60.md#new-hosting-model))
+* [ASP.NET Core WebApplication](minimal-apis/webapplication.md) (also known as the [Minimal Host](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model))
 * [.NET Generic Host](host/generic-host.md)
 * [ASP.NET Core WebHost](host/web-host.md)
 

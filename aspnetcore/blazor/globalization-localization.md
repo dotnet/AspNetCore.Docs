@@ -56,7 +56,7 @@ In this article, *language* refers to selections made by a user in their browser
 The guidance in this article doesn't cover setting the page's HTML language attribute ([`<html lang="...">`](https://developer.mozilla.org/docs/Web/HTML/Global_attributes/lang)), which accessibility tools use. You can set the value statically by assigning a language to the `lang` attribute of the `<html>` tag or to `document.documentElement.lang` in JavaScript. You can dynamically set the value of `document.documentElement.lang` with [JS interop](javascript-interoperability/index.md).
 
 > [!NOTE]
-> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the article's examples.
+> The code examples in this article adopt [nullable reference types (NRTs) and .NET compiler null-state static analysis](/previous-versions/aspnet/core/migration/50-to-60#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis), which are supported in ASP.NET Core in .NET 6 or later. When targeting .NET 5 or earlier, remove the null type designation (`?`) from the article's examples.
 
 ## Globalization
 

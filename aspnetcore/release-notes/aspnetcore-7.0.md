@@ -448,7 +448,7 @@ When .NET 6 was released last year, the HTML markup of the `_Host` page (`Pages/
 
 In .NET 7, the HTML markup has been recombined with the `_Host` page in project templates.
 
-Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see [Migrate from ASP.NET Core in .NET 6 to .NET 7](../migration/60-to-70.md#blazor).
+Several additional changes were made to the Blazor project templates. It isn't feasible to list every change to the templates in the documentation. To migrate an app to .NET 7 in order to adopt all of the changes, see [Migrate from ASP.NET Core in .NET 6 to .NET 7](/previous-versions/aspnet/core/migration/60-to-70#blazor).
 
 ### Experimental `QuickGrid` component
 

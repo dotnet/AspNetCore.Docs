@@ -2443,49 +2443,49 @@ items:
             href: migration/90-to-100.md
           - name: 8 to 9
             displayName: migrate, migration
-            href: migration/80-to-90.md
+            href: /previous-versions/aspnet/core/migration/80-to-90
           - name: 7 to 8
             displayName: migrate, migration
-            href: migration/70-to-80.md
+            href: /previous-versions/aspnet/core/migration/70-to-80
           - name: 6 to 7
             displayName: migrate, migration
-            href: migration/60-to-70.md
+            href: /previous-versions/aspnet/core/migration/60-to-70
           - name: 5 to 6
             displayName: migrate, migration
-            href: migration/50-to-60.md
+            href: /previous-versions/aspnet/core/migration/50-to-60
           - name: 3.1/5.0 Code to 6
             displayName: migrate, migration
-            href: migration/50-to-60-samples.md
+            href: /previous-versions/aspnet/core/migration/50-to-60-samples
           - name: 3.1 to 6 LTS
             displayName: migrate, migration, LTS
-            href: migration/31-to-60.md
+            href: /previous-versions/aspnet/core/migration/31-to-60
           - name: Older versions
             items:
               - name: 3.1 to 5.0
                 displayName: migrate, migration
-                href: migration/31-to-50.md
+                href: /previous-versions/aspnet/core/migration/31-to-50
               - name: 3.0 to 3.1
                 displayName: migrate, migration
-                href: migration/30-to-31.md
+                href: /previous-versions/aspnet/core/migration/30-to-31
               - name: 2.2 to 3.0
                 displayName: migrate, migration
-                href: migration/22-to-30.md
+                href: /previous-versions/aspnet/core/migration/22-to-30
               - name: 2.1 to 2.2
                 displayName: migrate, migration
-                href: migration/21-to-22.md
+                href: /previous-versions/aspnet/core/migration/21-to-22
               - name: Logging 2.1 to 2.2 or 3.0
                 displayName: migrate, migration
-                href: migration/Logging-nonaspnetcore.md
+                href: /previous-versions/aspnet/core/migration/logging-nonaspnetcore
               - name: 2.0 to 2.1
                 displayName: migrate, migration
-                href: migration/20-to-21.md
+                href: /previous-versions/aspnet/core/migration/20-to-21
               - name: 1.x to 2.0
                 displayName: migrate, migration
                 items:
                   - name: Overview
-                    href: migration/1x-to-2x/index.md
+                    href: /previous-versions/aspnet/core/migration/1x-to-2x/index
                   - name: Authentication and Identity
-                    href: migration/1x-to-2x/identity-2x.md
+                    href: /previous-versions/aspnet/core/migration/1x-to-2x/identity-2x
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:

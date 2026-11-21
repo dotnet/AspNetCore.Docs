@@ -99,7 +99,7 @@ Other options for authenticating SPAs exist, such as the use of SameSite cookies
 :::moniker-end
 
 > [!IMPORTANT]
-> For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../../migration/50-to-60.md#project-templates-use-duende-identity-server).
+> For versions of ASP.NET Core that adopt Duende Identity Server in Blazor project templates, [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#project-templates-use-duende-identity-server).
 
 ## Authentication process with OIDC
 

@@ -25,7 +25,7 @@ For more information, see the following articles:
 
 * [ASP.NET Core Blazor fundamentals](../blazor/fundamentals/index.md?view=aspnetcore-8.0&preserve-view=true): New sections on rendering and static/interactive concepts appear at the top of the article.
 * [ASP.NET Core Blazor render modes](../blazor/components/render-modes.md?view=aspnetcore-8.0&preserve-view=true)
-* **Migration coverage**: [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#blazor)
+* **Migration coverage**: [Migrate from ASP.NET Core in .NET 7 to .NET 8](/previous-versions/aspnet/core/migration/70-to-80#blazor)
 
 Examples throughout the Blazor documentation have been updated for use in Blazor Web Apps. Blazor Server examples remain in content versioned for .NET 7 or earlier.
 
@@ -319,7 +319,7 @@ For more information, see the following resources:
 
 Routing and deep linking for Blazor Server with Yarp work correctly in .NET 8.
 
-For more information, see [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#drop-blazor-server-with-yarp-routing-workaround).
+For more information, see [Migrate from ASP.NET Core in .NET 7 to .NET 8](/previous-versions/aspnet/core/migration/70-to-80#drop-blazor-server-with-yarp-routing-workaround).
 
 ### Multiple Blazor Web Apps per server project
 

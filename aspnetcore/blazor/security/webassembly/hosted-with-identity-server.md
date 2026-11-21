@@ -14,7 +14,7 @@ This article explains how to create a [hosted Blazor WebAssembly solution](../..
 :::moniker range=">= aspnetcore-6.0"
 
 > [!IMPORTANT]
-> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../../migration/50-to-60.md#project-templates-use-duende-identity-server).
+> [Duende Software](https://duendesoftware.com/) might require you to pay a license fee for production use of Duende Identity Server. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#project-templates-use-duende-identity-server).
 
 :::moniker-end
 

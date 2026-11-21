@@ -11,7 +11,7 @@ ms.date: 04/22/2026
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model).
 
 ## Set up a host
 

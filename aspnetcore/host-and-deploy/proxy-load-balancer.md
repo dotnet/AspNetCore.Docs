@@ -145,7 +145,7 @@ app.UseRouting();
 ```
 
 > [!NOTE]
-> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../fundamentals/routing.md).
+> When using <xref:Microsoft.AspNetCore.Builder.WebApplication> (see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model)), [`app.UseRouting`](xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*) must be called after `UsePathBase` so that the routing middleware can observe the modified path before matching routes. Otherwise, routes are matched before `UsePathBase` rewrites the path as described in [ASP.NET Core middleware](../fundamentals/middleware/index.md#middleware-order) and [Routing in ASP.NET Core](../fundamentals/routing.md).
 
 The original path and path base are reapplied when the middleware is called again in reverse. For more information on middleware order processing, see [ASP.NET Core middleware](../fundamentals/middleware/index.md).
 
