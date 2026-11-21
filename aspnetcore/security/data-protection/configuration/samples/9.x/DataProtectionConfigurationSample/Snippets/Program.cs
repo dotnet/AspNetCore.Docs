@@ -71,9 +71,11 @@ public static class Program
                 builder.Configuration["CertificatePath"] ?? 
                 throw new Exception("No path")))
             .ProtectKeysWithCertificate(
-                X509CertificateLoader.LoadCertificateFromFile(
+                X509CertificateLoader.LoadPkcs12FromFile(
                 builder.Configuration["CertificateFileName"] ?? 
-                throw new Exception("No file name")));
+                throw new Exception("No file name"),
+                builder.Configuration["CertificatePassword"] ??
+                throw new Exception("No password")));
         // </snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2>
     }
 
