@@ -41,3 +41,4 @@ jobs:
           title: "Monthly chores: Use relative links"
           commit-message: "Bot 🤖 generated CleanRepo tool run"
           body: "Find and replace absolute links with relative links. Contributes to #..."
+          token: ${{ secrets.PAT_TOKEN }}
