@@ -52,7 +52,7 @@ var connection = new HubConnectionBuilder()
 
 #### Switch to Newtonsoft.Json
 
-If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson).
+If your app requires features in the [Newtonsoft.Json](https://www.nuget.org/packages/Microsoft.AspNetCore.Mvc.NewtonsoftJson) package that aren't supported in `System.Text.Json`, see [Switch to Newtonsoft.Json](/previous-versions/aspnet/core/migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 

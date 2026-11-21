@@ -35,7 +35,7 @@ var connection = new HubConnectionBuilder()
 
 ### Switch to Newtonsoft.Json
 
-If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](../../../migration/22-to-30.md#switch-to-newtonsoftjson).
+If you need features of `Newtonsoft.Json` that aren't supported in `System.Text.Json`, see [Switch to `Newtonsoft.Json`](/previous-versions/aspnet/core/migration/22-to-30#switch-to-newtonsoftjson).
 
 ### MessagePack serialization options
 

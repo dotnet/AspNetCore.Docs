@@ -502,7 +502,7 @@ For more information, see the following resources:
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
 > * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
 > * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
-> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](/previous-versions/aspnet/core/migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 
@@ -519,7 +519,7 @@ The Blazor framework provides project templates for creating new apps. The templ
 > * [ASP.NET Core Blazor](index.md#build-a-full-stack-web-app-with-blazor)
 > * [What's new in ASP.NET Core in .NET 8](../release-notes/aspnetcore-8.0.md#new-blazor-web-app-template)
 > * [ASP.NET Core Blazor project structure](project-structure.md#blazor-web-app)
-> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](../migration/70-to-80.md#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
+> * [Migrate from ASP.NET Core in .NET 7 to .NET 8](/previous-versions/aspnet/core/migration/70-to-80#convert-a-hosted-blazor-webassembly-app-into-a-blazor-web-app)
 
 :::moniker-end
 

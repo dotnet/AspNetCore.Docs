@@ -162,7 +162,7 @@ For more information, see [Compatibility version for ASP.NET Core MVC](../mvc/co
 
 ## Migrate from 2.0 to 2.1
 
-See [Migrate from ASP.NET Core 2.0 to 2.1](../migration/20-to-21.md).
+See [Migrate from ASP.NET Core 2.0 to 2.1](/previous-versions/aspnet/core/migration/20-to-21).
 
 ## Breaking changes
 

@@ -16,7 +16,7 @@ Minimal APIs are architected to create HTTP APIs with minimal dependencies. They
 * [Tutorial: Create a Minimal API with ASP.NET Core](../tutorials/min-web-api.md)
 * [Differences between Minimal APIs and APIs with controllers](../fundamentals/apis.md#choosing-between-approaches)
 * [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
-* [Code samples migrated to the new minimal hosting model in 6.0](../migration/50-to-60-samples.md)
+* [Code samples migrated to the new minimal hosting model in 6.0](/previous-versions/aspnet/core/migration/50-to-60-samples)
 
 ## SignalR
 
@@ -458,7 +458,7 @@ Several .NET compiler platform analyzers were added that inspect application cod
 
 The web app templates:
 
-* Use the new [minimal hosting model](../migration/50-to-60.md#new-hosting-model).
+* Use the new [minimal hosting model](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model).
 * Significantly reduces the number of files and lines of code required to create an app. For example, the ASP.NET Core empty web app creates one C# file with four lines of code and is a complete app.
 * Unifies `Startup.cs` and `Program.cs` into a single `Program.cs` file.
 * Uses [top-level statements](/dotnet/csharp/fundamentals/program-structure/top-level-statements) to minimize the code required for an app.
@@ -704,5 +704,5 @@ Use the articles in [Breaking changes in .NET](/dotnet/core/compatibility/breaki
 
 ## Related content
 
-* [Code samples migrated to the new minimal hosting model in 6.0](../migration/50-to-60-samples.md)
+* [Code samples migrated to the new minimal hosting model in 6.0](/previous-versions/aspnet/core/migration/50-to-60-samples)
 * [What's new in .NET 6](/dotnet/core/whats-new/dotnet-6)

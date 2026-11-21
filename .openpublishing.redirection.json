@@ -66,6 +66,66 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/migration/20-to-21.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/20-to-21",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/21-to-22.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/21-to-22",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/22-to-30.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/22-to-30",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/30-to-31.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/30-to-31",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/31-to-50.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/31-to-50",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/31-to-60.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/31-to-60",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/50-to-60-samples.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/50-to-60-samples",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/50-to-60.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/50-to-60",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/60-to-70.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/60-to-70",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/70-to-80.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/70-to-80",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/80-to-90.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/80-to-90",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/migration/Logging-nonaspnetcore.md",
+            "redirect_url": "/previous-versions/aspnet/core/migration/logging-nonaspnetcore",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/web-api/microsoft.dotnet-openapi.md",
             "redirect_url": "/aspnet/core/fundamentals/openapi/openapi-tools"
         },
@@ -677,15 +737,15 @@
         },
         {
             "source_path": "aspnetcore/aspnetcore-1.1.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-1.1"
+            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-1.1"
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.0.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.0"
+            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-2.0"
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.1.md",
-            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.1"
+            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-2.1"
         },
         {
             "source_path": "aspnetcore/choose-aspnet-framework.md",
@@ -1415,19 +1475,19 @@
         },
         {
             "source_path": "aspnetcore/migration/60-70.md",
-            "redirect_url": "/aspnet/core/migration/60-to-70"
+            "redirect_url": "/previous-versions/aspnet/core/migration/60-to-70"
         },
         {
             "source_path": "aspnetcore/migration/70-80.md",
-            "redirect_url": "/aspnet/core/migration/70-to-80"
+            "redirect_url": "/previous-versions/aspnet/core/migration/70-to-80"
         },
         {
             "source_path": "aspnetcore/migration/80-90.md",
-            "redirect_url": "/aspnet/core/migration/80-to-90"
+            "redirect_url": "/previous-versions/aspnet/core/migration/80-to-90"
         },
         {
             "source_path": "aspnetcore/migration/20_21.md",
-            "redirect_url": "/aspnet/core/migration/20-to-21"
+            "redirect_url": "/previous-versions/aspnet/core/migration/20-to-21"
         },
         {
             "source_path": "aspnetcore/security/authorization/iard.md",

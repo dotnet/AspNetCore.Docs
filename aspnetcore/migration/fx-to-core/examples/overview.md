@@ -50,7 +50,7 @@ In ASP.NET Core 3.0 or later projects, .NET Framework is no longer a supported t
 <Project Sdk="Microsoft.NET.Sdk.Web">
 ```
 
-For more information, see [Framework reference](../../22-to-30.md#framework-reference).
+For more information, see [Framework reference](/previous-versions/aspnet/core/migration/22-to-30#framework-reference).
 
 In ASP.NET Core, the `Startup` class:
 
@@ -65,7 +65,7 @@ In the ASP.NET Core project, open the `Startup.cs` file:
 
 ASP.NET Core apps must opt in to framework features with middleware. The previous template-generated code adds the following services and middleware:
 
-* The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](../../22-to-30.md#mvc-service-registration)
+* The <xref:Microsoft.Extensions.DependencyInjection.MvcServiceCollectionExtensions.AddControllersWithViews*> extension method registers MVC service support for controllers, API-related features, and views. For more information on MVC service registration options, see [MVC service registration](/previous-versions/aspnet/core/migration/22-to-30#mvc-service-registration)
 * The <xref:Microsoft.AspNetCore.Builder.StaticFileExtensions.UseStaticFiles*> extension method adds the static file handler `Microsoft.AspNetCore.StaticFiles`. The `UseStaticFiles` extension method must be called before `UseRouting`. For more information, see [Serve static files in ASP.NET Core apps](../../../fundamentals/static-files.md).
 * The <xref:Microsoft.AspNetCore.Builder.EndpointRoutingApplicationBuilderExtensions.UseRouting*> extension method adds routing. For more information, see [Routing in ASP.NET Core](../../../fundamentals/routing.md).
 

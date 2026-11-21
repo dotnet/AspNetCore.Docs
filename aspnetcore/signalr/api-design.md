@@ -75,4 +75,4 @@ In this case, the new client is also tolerant of an old server that doesn't prov
 
 ## Related content
 
-* [SignalR assemblies in shared framework](../migration/22-to-30.md#signalr-assemblies-in-shared-framework)
+* [SignalR assemblies in shared framework](/previous-versions/aspnet/core/migration/22-to-30#signalr-assemblies-in-shared-framework)

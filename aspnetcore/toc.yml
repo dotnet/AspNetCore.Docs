@@ -438,8 +438,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC (archived)
-            href: /previous-versions/aspnet/core/data/ef-mvc/index
       - name: Learn modules
         items:
           - name: Web apps >>
@@ -1892,8 +1890,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC (archived)
-            href: /previous-versions/aspnet/core/data/ef-mvc/index
       - name: Scaffold a data model with dotnet scaffold in RP
         href: data/scaffold_RP.md
       - name: EF 6 with ASP.NET Core
@@ -2396,46 +2392,6 @@ items:
           - name: 9 to 10
             displayName: migrate, migration
             href: migration/90-to-100.md
-          - name: 8 to 9
-            displayName: migrate, migration
-            href: migration/80-to-90.md
-          - name: 7 to 8
-            displayName: migrate, migration
-            href: migration/70-to-80.md
-          - name: 6 to 7
-            displayName: migrate, migration
-            href: migration/60-to-70.md
-          - name: 5 to 6
-            displayName: migrate, migration
-            href: migration/50-to-60.md
-          - name: 3.1/5.0 Code to 6
-            displayName: migrate, migration
-            href: migration/50-to-60-samples.md
-          - name: 3.1 to 6 LTS
-            displayName: migrate, migration, LTS
-            href: migration/31-to-60.md
-          - name: Older versions
-            items:
-              - name: 3.1 to 5.0
-                displayName: migrate, migration
-                href: migration/31-to-50.md
-              - name: 3.0 to 3.1
-                displayName: migrate, migration
-                href: migration/30-to-31.md
-              - name: 2.2 to 3.0
-                displayName: migrate, migration
-                href: migration/22-to-30.md
-              - name: 2.1 to 2.2
-                displayName: migrate, migration
-                href: migration/21-to-22.md
-              - name: Logging 2.1 to 2.2 or 3.0
-                displayName: migrate, migration
-                href: migration/Logging-nonaspnetcore.md
-              - name: 2.0 to 2.1
-                displayName: migrate, migration
-                href: migration/20-to-21.md
-              - name: 1.x to 2.0 (archived)
-                href: /previous-versions/aspnet/core/migration/1x-to-2x/index
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:

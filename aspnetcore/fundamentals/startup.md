@@ -411,11 +411,11 @@ An <xref:Microsoft.AspNetCore.Hosting.IHostingStartup> implementation allows add
 
 ## The `Startup` class (`ConfigureServices` and `Configure` methods)
 
-*Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../migration/50-to-60.md#new-hosting-model).*
+*Although supported in ASP.NET Core apps that target .NET 6 or later, using a `Startup` class isn't recommended. For more information, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model).*
 
 For information on using the <xref:Microsoft.AspNetCore.Hosting.StartupBase.ConfigureServices*> and <xref:Microsoft.AspNetCore.Hosting.StartupBase.Configure*> methods with the minimal hosting model, see the following:
 
-* [Use a `Startup` class with the minimal hosting model](../migration/50-to-60.md#use-a-startup-class-with-the-new-minimal-hosting-model)
+* [Use a `Startup` class with the minimal hosting model](/previous-versions/aspnet/core/migration/50-to-60#use-a-startup-class-with-the-new-minimal-hosting-model)
 * [The `Startup` class (.NET 5 version of this article)](?view=aspnetcore-5.0&preserve-view=true#the-startup-class)
 
 :::moniker-end
