@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor navigation
 ai-usage: ai-assisted
 description: Learn about navigation in Blazor, including how to use the Navigation Manager and NavLink component for navigation.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/15/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor navigation
 
@@ -77,13 +77,7 @@ There are two <xref:Microsoft.AspNetCore.Components.Routing.NavLinkMatch> option
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API cross-link
-
-<xref:Microsoft.AspNetCore.Components.Routing.NavLink.RelativeToCurrentUri?displayProperty=nameWithType>
-
--->
-
-Set `NavLink.RelativeToCurrentUri` to `true` to resolve the `href` relative to the current page path instead of the app's base URI:
+Set <xref:Microsoft.AspNetCore.Components.Routing.NavLink.RelativeToCurrentUri?displayProperty=nameWithType> to `true` to resolve the `href` relative to the current page path instead of the app's base URI:
 
 ```razor
 <NavLink href="details" RelativeToCurrentUri="true">View Details</NavLink>
@@ -824,16 +818,10 @@ Pass <xref:Microsoft.AspNetCore.Components.NavigationOptions> to <xref:Microsoft
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API cross-link
-
-<xref:Microsoft.AspNetCore.Components.NavigationOptions.RelativeToCurrentUri>
-
--->
-
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ForceLoad>: Bypass client-side routing and force the browser to load the new page from the server, whether or not the URI is handled by the client-side router. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.ReplaceHistoryEntry>: Replace the current entry in the history stack. If `false`, append the new entry to the history stack. The default value is `false`.
 * <xref:Microsoft.AspNetCore.Components.NavigationOptions.HistoryEntryState>: Gets or sets the state to append to the history entry.
-* `RelativeToCurrentUri`: When `true`, the URI is resolved relative to the current page path instead of the app's base URI. The default value is `false`.
+* <xref:Microsoft.AspNetCore.Components.NavigationOptions.RelativeToCurrentUri>: When `true`, the URI is resolved relative to the current page path instead of the app's base URI. The default value is `false`.
 
 In the following example:
 
@@ -1230,9 +1218,9 @@ For more information on JavaScript isolation with JavaScript modules, see [Call 
 
 ## Navigate to an element at the current URI
 
-<!-- UPDATE 11.0 - API Browser cross-links and improve the example -->
+<!-- UPDATE 11.0 - Improve the example -->
 
-Use the `GetUriWithFragment` extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
+Use the <xref:Microsoft.AspNetCore.Components.NavigationManagerExtensions.GetUriWithFragment*> extension method to construct a URI with a hash fragment. This helper method provides an efficient, zero-allocation way to append hash fragments to the current URI. The following example demonstrates two use cases:
 
 * Inline call that jumps to Section 1 (`id="section-1"`) of the rendered page.
 * Method call that receives a section identifier (`sectionId`) and navigates to the section of the page.

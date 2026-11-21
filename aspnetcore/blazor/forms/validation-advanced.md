@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor advanced form validation
 ai-usage: ai-assisted
 description: Learn how to implement validator components and remote validation for Blazor forms.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/22/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor advanced form validation
 
@@ -135,13 +135,8 @@ To implement a business rule inside the validator component instead of accepting
 
 The same component pattern supports asynchronous work:
 
-<!-- UPDATE 11.0 - API Browser cross-ref
-
-                   <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*>
--->
-
 * In an `OnValidationRequested` handler, call `e.AddAsyncValidator` to register form-level work. `EditForm` awaits it before invoking `OnValidSubmit` or `OnInvalidSubmit`.
-* In an `OnFieldChanged` handler, call `EditContext.RegisterAsyncFieldValidator` to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
+* In an `OnFieldChanged` handler, call <xref:Microsoft.AspNetCore.Components.Forms.EditContext.RegisterAsyncFieldValidator*?displayProperty=nameWithType> to start validation for that field. Starting another validation for the same field supersedes and cancels the previous operation.
 
 For form-level asynchronous validation:
 
@@ -425,25 +420,15 @@ The [.NET 10 remote-validation sample](https://github.com/dotnet/blazor-samples/
 
 ## Related content
 
-:::moniker range=">= aspnetcore-11.0"
+:::moniker range=">= aspnetcore-10.0"
 
-* [ASP.NET Core Blazor forms validation](validation.md)
-* [ASP.NET Core Blazor client-side form validation in static SSR](validation-client-side.md)
 * [Validation in ASP.NET Core](../../fundamentals/validation.md)
 * [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end
 
-:::moniker range=">= aspnetcore-10.0 < aspnetcore-11.0"
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-10.0"
 
-* [ASP.NET Core Blazor forms validation](validation.md)
-* [Validation in ASP.NET Core](../../fundamentals/validation.md)
-* [Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-10.0"
-
-[ASP.NET Core Blazor forms validation](validation.md)
+[Minimal APIs quick reference](../../fundamentals/minimal-apis.md)
 
 :::moniker-end

@@ -3,7 +3,7 @@ title: Dynamically-rendered ASP.NET Core Razor components
 ai-usage: ai-assisted
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/14/2026
+ms.date: 11/13/2026
 ---
 # Dynamically-rendered ASP.NET Core Razor components
 

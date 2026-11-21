@@ -1,26 +1,24 @@
 ### New `DisplayName` component and support for `[Display]` and `[DisplayName]` attributes
 
-<!-- UPDATE 11.0 - API cross-link
+The <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1> component can be used to display property names from metadata attributes.
 
-<xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1>
--->
-The `DisplayName` component can be used to display property names from metadata attributes:
-
-```csharp
-[Required, DisplayName("Production Date")]
-public DateTime ProductionDate { get; set; }
-```
-
-The [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property is supported:
+Use the [`[Display]` attribute](xref:System.ComponentModel.DataAnnotations.DisplayAttribute) on the model class property:
 
 ```csharp
 [Required, Display(Name = "Production Date")]
 public DateTime ProductionDate { get; set; }
 ```
 
-Of the two approaches, the `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over `[DisplayName]`. If neither attribute is present, the component falls back to the property name.
+The [`[DisplayName]` attribute](xref:System.ComponentModel.DisplayNameAttribute) is also supported:
 
-Use the `DisplayName` component in labels or table headers:
+```csharp
+[Required, DisplayName("Production Date")]
+public DateTime ProductionDate { get; set; }
+```
+
+The `[Display]` attribute is recommended, which makes additional properties available. The `[Display]` attribute also enables assigning a resource type for localization. When both attributes are present, `[Display]` takes precedence over the `[DisplayName]` attribute. If neither attribute is present, the component falls back to the property name.
+
+Use the <xref:Microsoft.AspNetCore.Components.Forms.DisplayName`1> component in labels or table headers:
 
 ```razor
 <label>
