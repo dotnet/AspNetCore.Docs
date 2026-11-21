@@ -1,6 +1,61 @@
 {
     "redirections": [
         {
+            "source_path": "aspnetcore/data/ef-mvc/advanced.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/advanced",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/complex-data-model.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/complex-data-model",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/concurrency.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/concurrency",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/crud.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/crud",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/index.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/index",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/inheritance.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/inheritance",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/intro.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/intro",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/migrations.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/migrations",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/read-related-data.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/read-related-data",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/sort-filter-page.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/sort-filter-page",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/data/ef-mvc/update-related-data.md",
+            "redirect_url": "/previous-versions/aspnet/core/data/ef-mvc/update-related-data",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/migration/1x-to-2x/identity-2x.md",
             "redirect_url": "/previous-versions/aspnet/core/migration/1x-to-2x/identity-2x",
             "redirect_document_id": false

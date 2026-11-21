@@ -438,31 +438,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC
-            displayName: tutorial
-            items:
-              - name: Overview
-                href: data/ef-mvc/index.md
-              - name: Get started
-                href: data/ef-mvc/intro.md
-              - name: Create, Read, Update, and Delete
-                href: data/ef-mvc/crud.md
-              - name: Sort, filter, page, and group
-                href: data/ef-mvc/sort-filter-page.md
-              - name: Migrations
-                href: data/ef-mvc/migrations.md
-              - name: Create a complex data model
-                href: data/ef-mvc/complex-data-model.md
-              - name: Read related data
-                href: data/ef-mvc/read-related-data.md
-              - name: Update related data
-                href: data/ef-mvc/update-related-data.md
-              - name: Handle concurrency conflicts
-                href: data/ef-mvc/concurrency.md
-              - name: Inheritance
-                href: data/ef-mvc/inheritance.md
-              - name: Advanced topics
-                href: data/ef-mvc/advanced.md
       - name: Learn modules
         items:
           - name: Web apps >>
@@ -1915,30 +1890,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC
-            items:
-              - name: Overview
-                href: data/ef-mvc/index.md
-              - name: Get started
-                href: data/ef-mvc/intro.md
-              - name: Create, Read, Update, and Delete
-                href: data/ef-mvc/crud.md
-              - name: Sort, filter, page, and group
-                href: data/ef-mvc/sort-filter-page.md
-              - name: Migrations
-                href: data/ef-mvc/migrations.md
-              - name: Create a complex data model
-                href: data/ef-mvc/complex-data-model.md
-              - name: Read related data
-                href: data/ef-mvc/read-related-data.md
-              - name: Update related data
-                href: data/ef-mvc/update-related-data.md
-              - name: Handle concurrency conflicts
-                href: data/ef-mvc/concurrency.md
-              - name: Inheritance
-                href: data/ef-mvc/inheritance.md
-              - name: Advanced topics
-                href: data/ef-mvc/advanced.md
       - name: Scaffold a data model with dotnet scaffold in RP
         href: data/scaffold_RP.md
       - name: EF 6 with ASP.NET Core
@@ -2441,51 +2392,6 @@ items:
           - name: 9 to 10
             displayName: migrate, migration
             href: migration/90-to-100.md
-          - name: 8 to 9
-            displayName: migrate, migration
-            href: /previous-versions/aspnet/core/migration/80-to-90
-          - name: 7 to 8
-            displayName: migrate, migration
-            href: /previous-versions/aspnet/core/migration/70-to-80
-          - name: 6 to 7
-            displayName: migrate, migration
-            href: /previous-versions/aspnet/core/migration/60-to-70
-          - name: 5 to 6
-            displayName: migrate, migration
-            href: /previous-versions/aspnet/core/migration/50-to-60
-          - name: 3.1/5.0 Code to 6
-            displayName: migrate, migration
-            href: /previous-versions/aspnet/core/migration/50-to-60-samples
-          - name: 3.1 to 6 LTS
-            displayName: migrate, migration, LTS
-            href: /previous-versions/aspnet/core/migration/31-to-60
-          - name: Older versions
-            items:
-              - name: 3.1 to 5.0
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/31-to-50
-              - name: 3.0 to 3.1
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/30-to-31
-              - name: 2.2 to 3.0
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/22-to-30
-              - name: 2.1 to 2.2
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/21-to-22
-              - name: Logging 2.1 to 2.2 or 3.0
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/logging-nonaspnetcore
-              - name: 2.0 to 2.1
-                displayName: migrate, migration
-                href: /previous-versions/aspnet/core/migration/20-to-21
-              - name: 1.x to 2.0
-                displayName: migrate, migration
-                items:
-                  - name: Overview
-                    href: /previous-versions/aspnet/core/migration/1x-to-2x/index
-                  - name: Authentication and Identity
-                    href: /previous-versions/aspnet/core/migration/1x-to-2x/identity-2x
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:
