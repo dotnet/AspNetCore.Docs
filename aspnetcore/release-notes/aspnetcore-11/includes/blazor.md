@@ -422,15 +422,17 @@ The feature includes built-in CSS styling that applies a pointer cursor to click
 
 By default, client-side prerendering on the server (`.Client` project in a Blazor Web App) persists the server's <xref:System.Globalization.CultureInfo.CurrentCulture> and <xref:System.Globalization.CultureInfo.CurrentUICulture> into component state and applies them on the client before satellite assemblies load.
 
-Apps that require the client to choose a culture independently of the server can opt out with `WebAssemblyComponentsOptions.UseCultureFromServer` in the Blazor Web App's `Program` file:
+The server's culture is persisted when localization services are registered in the server project (<xref:Microsoft.Extensions.DependencyInjection.LocalizationServiceCollectionExtensions.AddLocalization%2A>). To turn the behavior on or off explicitly, set the `Components:UseCultureFromServer` configuration value to `true` or `false`. For example, in the server project's `appsettings.json` file:
 
-```csharp
-builder.Services.AddRazorComponents()
-    .AddInteractiveWebAssemblyComponents(options =>
-    {
-        options.UseCultureFromServer = false;
-    });
+```json
+{
+  "Components": {
+    "UseCultureFromServer": false
+  }
+}
 ```
+
+The stored culture is applied after the code in the `.Client` project's `Program` file runs. It replaces a culture set there, for example from browser local storage as shown in the [Dynamically set the client-side culture by user preference](xref:blazor/globalization-localization#dynamically-set-the-client-side-culture-by-user-preference) section. Apps that choose the culture on the client must either set `Components:UseCultureFromServer` to `false` or make the server use the same culture, for example with a localization cookie and the Request Localization Middleware (<xref:Microsoft.AspNetCore.Builder.ApplicationBuilderExtensions.UseRequestLocalization%2A>).
 
 ### Persist session data between HTTP requests during static server-side rendering (static SSR)
 
