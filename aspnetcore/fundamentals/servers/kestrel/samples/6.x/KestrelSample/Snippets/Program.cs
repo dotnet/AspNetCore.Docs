@@ -4,6 +4,7 @@ using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Connections.Features;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
@@ -287,21 +288,12 @@ public static class Program
 
     public static void IServerAddressesFeature(WebApplication app)
     {
-#pragma warning disable CS1998
         // <snippet_IServerAddressesFeature>
-        app.Run(async (context) =>
-        {
-            var serverAddressFeature = context.Features.Get<IServerAddressesFeature>();
+        var serverAddressesFeature = app.Services.GetRequiredService<IServer>()
+                                        .Features.GetRequiredFeature<IServerAddressesFeature>();
 
-            if (serverAddressFeature is not null)
-            {
-                var listenAddresses = string.Join(", ", serverAddressFeature.Addresses);
-
-                // ...
-            }
-        });
+        app.MapGet("/", () => $"Server listening on: {string.Join(", ", serverAddressesFeature.Addresses)}");
         // </snippet_IServerAddressesFeature>
-#pragma warning restore CS1998
     }
 
     public static void ConfigureKestrelProtocols(string[] args)
