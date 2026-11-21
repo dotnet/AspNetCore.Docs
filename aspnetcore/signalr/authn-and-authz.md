@@ -3,7 +3,7 @@ title: SignalR authentication and authorization
 ai-usage: ai-assisted
 description: Learn how to use authentication and authorization in your ASP.NET Core apps with SignalR, and compare the process for using cookies versus bearer tokens.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/30/2026
+ms.date: 11/18/2026
 ---
 
 # Authentication and authorization in ASP.NET Core SignalR
@@ -375,6 +375,45 @@ Register this component in the `Program.cs` file:
 builder.Services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
 ```
 
+### Identify the hub being accessed
+
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+
+```csharp
+public class CustomUserIdProvider : IUserIdProvider
+{
+    public string? GetUserId(HubConnectionContext connection)
+    {
+        var httpContext = connection.GetHttpContext();
+        if (httpContext == null)
+        {
+            return connection.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        // Identify the hub type using endpoint metadata
+        var endpoint = httpContext.GetEndpoint();
+        var hubMetadata = endpoint?.Metadata.GetMetadata<HubMetadata>();
+
+        if (hubMetadata?.HubType == typeof(AdminHub))
+        {
+            // Use employee ID or admin claim for AdminHub
+            return connection.User?.FindFirst("EmployeeId")?.Value;
+        }
+
+        // Default to email or name identifier for other hubs
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+    }
+}
+```
+
+Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
+
+Register `CustomUserIdProvider` in `Program.cs`:
+
+```csharp
+builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+```
+
 ## Authorize users to access hubs and hub methods
 
 By default, an unauthenticated user can call all methods in a hub. To require authentication, apply the <xref:Microsoft.AspNetCore.Authorization.AuthorizeAttribute> attribute to the hub:
@@ -635,6 +674,45 @@ Register this component in your `Startup.ConfigureServices`.
 
 ```csharp
 services.AddSingleton<IUserIdProvider, EmailBasedUserIdProvider>();
+```
+
+### Identify the hub being accessed
+
+Because `IUserIdProvider` is registered as an application-wide singleton service, apps with multiple hubs share the same provider instance. To vary the user identifier logic depending on which hub is accessed, use <xref:Microsoft.AspNetCore.SignalR.GetHttpContextExtensions.GetHttpContext*> on the <xref:Microsoft.AspNetCore.SignalR.HubConnectionContext> to inspect the current request:
+
+```csharp
+public class CustomUserIdProvider : IUserIdProvider
+{
+    public string? GetUserId(HubConnectionContext connection)
+    {
+        var httpContext = connection.GetHttpContext();
+        if (httpContext == null)
+        {
+            return connection.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        }
+
+        // Identify the hub type using endpoint metadata
+        var endpoint = httpContext.GetEndpoint();
+        var hubMetadata = endpoint?.Metadata.GetMetadata<HubMetadata>();
+
+        if (hubMetadata?.HubType == typeof(AdminHub))
+        {
+            // Use employee ID or admin claim for AdminHub
+            return connection.User?.FindFirst("EmployeeId")?.Value;
+        }
+
+        // Default to email or name identifier for other hubs
+        return connection.User?.FindFirst(ClaimTypes.Email)?.Value;
+    }
+}
+```
+
+Alternatively, you can inspect `httpContext.Request.Path` to determine the route of the hub being accessed.
+
+Register `CustomUserIdProvider` in `Startup.ConfigureServices`:
+
+```csharp
+services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 ```
 
 ## Authorize users to access hubs and hub methods
