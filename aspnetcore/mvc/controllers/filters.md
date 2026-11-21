@@ -28,7 +28,7 @@ This document applies to Razor Pages, API controllers, and controllers with view
 
 ## How filters work
 
-Filters run within the *ASP.NET Core action invocation pipeline*, sometimes referred to as the *filter pipeline*. The filter pipeline runs after ASP.NET Core selects the action to execute:
+With endpoint routing, the endpoint middleware executes the MVC or Razor Pages endpoint selected by routing. The *filter pipeline* runs during invocation of the controller action or Razor Page handler.
 
 :::image source="~/mvc/controllers/filters/_static/filter-pipeline-1.png" alt-text="The request is processed through other middleware, routing middleware, Action Selection, and the Action Invocation Pipeline. The request processing continues back through Action Selection, routing middleware, and various other middleware before becoming a response sent to the client.":::
 
