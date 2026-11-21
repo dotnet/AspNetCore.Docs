@@ -450,7 +450,7 @@ Delete the test department from the second tab. A concurrency error is display w
 
 ## Next steps
 
-This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](../ef-mvc/index.md).
+This is the last tutorial in the series. Additional topics are covered in the [MVC version of this tutorial series](/previous-versions/aspnet/core/data/ef-mvc/index).
 
 > [!div class="step-by-step"]
 > [Previous tutorial](update-related-data.md)

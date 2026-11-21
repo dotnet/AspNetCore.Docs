@@ -104,7 +104,7 @@ Even if the app doesn't have a `Secret` field on the **Create** or **Update** pa
 
 Whatever value the hacker specified for the `Secret` form field is updated in the database. The following image shows the Fiddler tool adding the `Secret` field with the value "OverPost" to the posted form values.
 
-:::image type="content" source="../ef-mvc/crud/_static/fiddler.png" border="false" alt-text="Screenshot of the Composer view in Fiddler showing the Secret field added in the request body.":::
+:::image type="content" source="crud/_static/fiddler.png" border="false" alt-text="Screenshot of the Composer view in Fiddler showing the Secret field added in the request body.":::
 
 The value "OverPost" is successfully added to the `Secret` property of the inserted row. This result occurs even though the app designer never intended to set the `Secret` property with the **Create** page.
 
