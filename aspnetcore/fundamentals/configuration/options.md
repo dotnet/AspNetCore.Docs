@@ -3,7 +3,7 @@ title: Options pattern in ASP.NET Core
 ai-usage: ai-assisted
 description: Discover how to use the options pattern to represent groups of related settings in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 09/21/2026
+ms.date: 11/17/2026
 --- 
 # Options pattern in ASP.NET Core
 
@@ -18,7 +18,7 @@ Options also provide a mechanism to validate configuration data, which is descri
 
 This article provides information on the options pattern in ASP.NET Core. For information on using the options pattern in console apps, see [Options pattern in .NET](/dotnet/core/extensions/options).
 
-The examples in this article rely on a general understanding of injecting services into classes. For more information, see [Dependency injection in ASP.NET Core](../dependency-injection.md). Examples are based on [Blazor's Razor components](../../blazor/index.md). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](/dotnet/csharp/whats-new/tutorials/primary-constructors) ([Primary constructors (C# Guide)](/dotnet/csharp/programming-guide/classes-and-structs/instance-constructors#primary-constructors)) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
+The examples in this article rely on a general understanding of injecting services into classes. For more information, see [Dependency injection in ASP.NET Core](../dependency-injection.md). Examples are based on [Blazor's Razor components](../../blazor/index.md). To see Razor Pages examples, see the [7.0 version of this article](?view=aspnetcore-7.0&preserve-view=true). The examples in the .NET 8 or later versions of this article use [primary constructors](../index.md#primary-constructors) and [nullable reference types (NRTs) with .NET compiler null-state static analysis](../../migration/50-to-60.md#nullable-reference-types-nrts-and-net-compiler-null-state-static-analysis).
 
 ## How to use the options pattern
 
