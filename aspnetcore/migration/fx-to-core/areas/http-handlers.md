@@ -82,6 +82,9 @@ One solution is to branch the pipeline for requests with a given extension, usin
 
 Middleware added to the pipeline before the branch will be invoked on all requests; the branch will have no impact on them.
 
+> [!NOTE]
+> <xref:Microsoft.AspNetCore.Builder.MapWhenExtensions.MapWhen*> creates a separate branch. When the predicate returns `true`, only the middleware added to the branch runs, and middleware registered on the main pipeline after `MapWhen` doesn't run for that request. To run middleware conditionally and then continue with the rest of the pipeline, use <xref:Microsoft.AspNetCore.Builder.UseWhenExtensions.UseWhen*> instead. `UseWhen` doesn't create a separate branch, so middleware registered after it runs whether the predicate returns `true` or `false`, unless the conditional middleware short-circuits the request. For more information, see [Branch the middleware pipeline](../../../fundamentals/middleware/index.md#branch-the-middleware-pipeline).
+
 For additional details, see the [middleware documentation](../../../fundamentals/middleware/index.md) for additional ways to use middleware to replace your usage of handlers. 
 
 ## Migrating to the new HttpContext
