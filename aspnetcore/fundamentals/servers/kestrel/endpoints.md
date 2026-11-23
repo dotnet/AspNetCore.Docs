@@ -3,7 +3,7 @@ title: Configure endpoints for Kestrel web server
 ai-usage: ai-assisted
 description: Learn about configuring endpoints with Kestrel, the cross-platform web server for ASP.NET Core.
 monikerRange: '>= aspnetcore-5.0'
-ms.date: 10/23/2026
+ms.date: 11/23/2026
 uid: fundamentals/servers/kestrel/endpoints
 ---
 # Configure endpoints for the ASP.NET Core Kestrel web server
@@ -191,7 +191,7 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 When port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine the ports bound by Kestrel at runtime:
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/samples/6.x/KestrelSample/Snippets/Program.cs" id="snippet_IServerAddressesFeature":::
+:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/snippets/Program.cs" id="snippet_IServerAddressesFeature":::
 
 > [!NOTE]
 > Dynamic port binding isn't supported when binding to `localhost`. Bind to an explicit IP address such as `127.0.0.1:0`, `[::1]:0`, or `0.0.0.0:0`.
