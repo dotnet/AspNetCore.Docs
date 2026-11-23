@@ -56,7 +56,7 @@ The properties and items in the following table are used to configure inputs and
 | -------- | ----------- |
 | `RazorOutputPath` | The Razor output directory. |
 | `RazorCompileToolset` | Used to determine the toolset used to build the Razor assembly. Valid values are `Implicit`, `RazorSDK`, and `PrecompilationTool`. |
-| [EnableDefaultContentItems](https://github.com/dotnet/sdk/blob/main/src/WebSdk/ProjectSystem/Targets/Microsoft.NET.Sdk.Web.ProjectSystem.targets) | Default is `true`. When `true`, includes *web.config*, `.json`, and `.cshtml` files as content in the project. When referenced via `Microsoft.NET.Sdk.Web`, files under *wwwroot* and config files are also included. |
+| `EnableDefaultContentItems` | Defaults to `true`. When `true`, the Razor SDK implicitly includes `.cshtml` and `.razor` files as `Content` items. The Web SDK (`Microsoft.NET.Sdk.Web`) also includes files under *wwwroot* and configuration files such as *web.config* and *appsettings.json*. |
 | `EnableDefaultRazorGenerateItems` | When `true`, includes `.cshtml` files from `Content` items in `RazorGenerate` items. |
 | `GenerateRazorTargetAssemblyInfo` | Not used in .NET 6 or later. |
 | `EnableDefaultRazorTargetAssemblyInfoAttributes` | Not used in .NET 6 or later. |
