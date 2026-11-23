@@ -3,7 +3,7 @@ title: ASP.NET Core Blazor globalization and localization
 ai-usage: ai-assisted
 description: Learn how to render globalized and localized content to users in different cultures and languages.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 08/26/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Blazor globalization and localization
 
@@ -196,7 +196,7 @@ A data file is included to make timezone information correct. If the app doesn't
 
 :::moniker range=">= aspnetcore-11.0"
 
-<!-- UPDATE 11.0 - API Browser cross-link -->
+<!-- UPDATE 11.0 - API Browser cross-links -->
 
 ## Client-side prerendering in a Blazor Web App preserves the server's culture
 

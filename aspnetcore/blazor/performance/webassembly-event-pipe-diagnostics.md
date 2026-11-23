@@ -1,8 +1,9 @@
 ---
 title: ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
+ai-usage: ai-assisted
 description: Learn about Event Pipe diagnostics and how to get a Garbage Collector heap dump in ASP.NET Core Blazor WebAssembly apps.
 monikerRange: '>= aspnetcore-10.0'
-ms.date: 11/11/2025
+ms.date: 11/11/2026
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 

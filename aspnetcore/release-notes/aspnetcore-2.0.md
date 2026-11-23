@@ -63,7 +63,7 @@ For more information on authentication changes in 2.0, see the following resourc
 
 * [Account confirmation and password recovery in ASP.NET Core](../security/authentication/accconfirm.md)
 * [Enable QR Code generation for authenticator apps in ASP.NET Core](../security/authentication/identity-enable-qrcodes.md)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](/previous-versions/aspnet/core/migration/1x-to-2x/identity-2x)
 
 ## SPA templates
 
@@ -142,8 +142,8 @@ For information about the status of C# 7.1 features, see [the Roslyn GitHub repo
 
 For guidance on how to migrate ASP.NET Core 1.x applications to ASP.NET Core 2.0, see the following resources:
 
-* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](../migration/1x-to-2x/index.md)
-* [Migrate Authentication and Identity to ASP.NET Core 2.0](../migration/1x-to-2x/identity-2x.md)
+* [Migrate from ASP.NET Core 1.x to ASP.NET Core 2.0](/previous-versions/aspnet/core/migration/1x-to-2x/index)
+* [Migrate Authentication and Identity to ASP.NET Core 2.0](/previous-versions/aspnet/core/migration/1x-to-2x/identity-2x)
 
 ## Breaking changes
 

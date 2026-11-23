@@ -1,1 +1,0 @@
-This project is used for providing snippets to [the EF MVC Core tutorial series](https://learn.microsoft.com/aspnet/core/data/ef-mvc/intro). The sample project that's built by following the tutorials is at https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-mvc/intro/samples/cu-final.

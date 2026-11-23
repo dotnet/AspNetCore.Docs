@@ -278,7 +278,7 @@ public class UploadResult
 
 A security best practice for production apps is to avoid sending error messages to clients that might reveal sensitive information about an app, server, or network. Providing detailed error messages can aid a malicious user in devising attacks on an app, server, or network. The example code in this section only sends back an error code number (`int`) for display by the component client-side if a server-side error occurs. If a user requires assistance with a file upload, they provide the error code to support personnel for support ticket resolution without ever knowing the exact cause of the error.
 
-<!-- UPDATE 11.0 HOLD moniker range="< aspnetcore-11.0" 
+<!-- UPDATE 12.0 HOLD moniker range="< aspnetcore-12.0" 
                  https://github.com/dotnet/aspnetcore/issues/47301
                  No doc issue yet, but tracked by ...
                  https://github.com/dotnet/AspNetCore.Docs/issues/34437 -->
@@ -287,9 +287,9 @@ The following `LazyBrowserFileStream` class defines a custom stream type that la
 
 `LazyBrowserFileStream.cs`:
 
-<!-- UPDATE 11.0 HOLD moniker-end -->
+<!-- UPDATE 12.0 HOLD moniker-end -->
 
-<!-- UPDATE 11.0 HOLD for next line: < aspnetcore-11.0 -->
+<!-- UPDATE 12.0 HOLD for next line: < aspnetcore-12.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -354,7 +354,7 @@ The following `FileUpload2` component:
 
 :::moniker-end
 
-<!-- UPDATE 11.0 HOLD for the next line: < aspnetcore-11.0 -->
+<!-- UPDATE 12.0 HOLD for the next line: < aspnetcore-12.0 -->
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -1282,7 +1282,7 @@ Possible causes:
 
 * Not reading the stream to completion. This isn't a framework issue. Trap the exception and investigate it further in your local environment/network.
 
-<!-- UPDATE 11.0 - Version the following out at 11.0 when the
+<!-- UPDATE 12.0 - Version the following out at 12.0 when the
                    the `LazyBrowserFileStream` class is dropped
                    because the underlying problem is fixed. -->
 

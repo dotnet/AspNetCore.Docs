@@ -16,7 +16,7 @@ This tutorial shows how to build an ASP.NET Core app with email confirmation and
 
 * [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](../../data/ef-mvc/intro.md)
+* [Entity Framework Core](/previous-versions/aspnet/core/data/ef-mvc/intro)
 
 :::moniker range=">= aspnetcore-8.0"
 
@@ -462,4 +462,4 @@ Enabling account confirmation on a site with users locks out all the existing us
 
 * [Razor Pages in ASP.NET Core](../../tutorials/razor-pages/razor-pages-start.md)
 * [Authentication](identity.md)
-* [Entity Framework Core](../../data/ef-mvc/intro.md)
+* [Entity Framework Core](/previous-versions/aspnet/core/data/ef-mvc/intro)

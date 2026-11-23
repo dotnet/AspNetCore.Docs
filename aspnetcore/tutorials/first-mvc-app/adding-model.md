@@ -177,7 +177,7 @@ The following highlighted code in `Program.cs` shows how to use SQLite in develo
 
 ## Initial migration
 
-Use the EF Core [Migrations](../../data/ef-mvc/migrations.md) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
+Use the EF Core [Migrations](/previous-versions/aspnet/core/data/ef-mvc/migrations) feature to create the database. *Migrations* is a set of tools that create and update a database to match the data model.
 
 # [Visual Studio](#tab/visual-studio)
 

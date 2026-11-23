@@ -62,7 +62,7 @@ This tutorial is advanced. You should be familiar with:
 * [Authentication and ASP.NET Core Identity](../authentication/identity.md)
 * [Account confirmation and password recovery](../authentication/accconfirm.md)
 * [Authorization](introduction.md)
-* [Entity Framework Core](../../data/ef-mvc/intro.md)
+* [Entity Framework Core](/previous-versions/aspnet/core/data/ef-mvc/intro)
 
 ## The starter and completed app
 
@@ -439,7 +439,7 @@ This tutorial is advanced. You should be familiar with:
 * [Authentication](../authentication/identity.md)
 * [Account Confirmation and Password Recovery](../authentication/accconfirm.md)
 * [Authorization](introduction.md)
-* [Entity Framework Core](../../data/ef-mvc/intro.md)
+* [Entity Framework Core](/previous-versions/aspnet/core/data/ef-mvc/intro)
 
 ## The starter and completed app
 

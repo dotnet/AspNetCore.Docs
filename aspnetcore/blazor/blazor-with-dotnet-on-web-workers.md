@@ -7,7 +7,7 @@ ms.date: 04/07/2026
 ---
 # ASP.NET Core Blazor with .NET on Web Workers
 
-<!-- UPDATE 11.0 - Activate
+<!-- UPDATE 11.0 - Activate ...
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 

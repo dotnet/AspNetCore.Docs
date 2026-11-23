@@ -3,7 +3,7 @@ title: ASP.NET Core Razor components
 ai-usage: ai-assisted
 description: Learn how to create and use Razor components in Blazor apps, including guidance on Razor syntax, component naming, namespaces, and component parameters.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 07/14/2026
+ms.date: 11/13/2026
 ---
 # ASP.NET Core Razor components
 
