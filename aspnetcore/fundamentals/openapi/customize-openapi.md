@@ -165,6 +165,9 @@ Use this approach instead of document transformers when conditional logic based 
 Many OpenAPI.NET objects supplied to transformers are exposed through interfaces that have get-only properties, such as <xref:Microsoft.OpenApi.IOpenApiParameter> or <xref:Microsoft.OpenApi.IOpenApiSchema>. To mutate these properties, pattern match or cast the interface to its concrete implementation type, such as <xref:Microsoft.OpenApi.OpenApiParameter>, which exposes property setters:
 
 ```csharp
+// using Microsoft.OpenApi;
+// using System.Text.Json.Nodes;
+
 builder.Services.AddOpenApi(options =>
 {
     options.AddOperationTransformer((operation, context, cancellationToken) =>
