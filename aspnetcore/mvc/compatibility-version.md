@@ -3,7 +3,6 @@ title: Compatibility version for ASP.NET Core MVC
 description: Discover how the Startup class in ASP.NET Core configures services and the app's request pipeline.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 08/05/2026
-uid: mvc/compatibility-version
 ---
 # Compatibility version for ASP.NET Core MVC
 
@@ -15,7 +14,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.S
 
 * The next minor version of ASP.NET Core may provide a new `CompatibilityVersion` value.
 * `CompatibilityVersion` values `Version_2_0` through `Version_2_2` are marked `[Obsolete(...)]`.
-* The compatibility version APIs are removed in ASP.NET Core 11. For more information, see [MVC compatibility options removed](/aspnet/core/breaking-changes/11/mvc-compatibility-options-removed).
+* The compatibility version APIs are removed in ASP.NET Core 11. For more information, see [MVC compatibility options removed](../breaking-changes/11/mvc-compatibility-options-removed.md).
 * See [Breaking API changes in Antiforgery, CORS, Diagnostics, Mvc, and Routing](https://github.com/aspnet/Announcements/issues/387). This list includes breaking changes for compatibility switches.
 
 To see how `SetCompatibilityVersion` works with ASP.NET Core 2.x apps, select the [ASP.NET Core 2.2 version of this article](?view=aspnetcore-2.2&preserve-view=true).
@@ -28,7 +27,7 @@ The <xref:Microsoft.Extensions.DependencyInjection.MvcCoreMvcBuilderExtensions.S
 
 The following code sets the compatibility mode to ASP.NET Core 2.2:
 
-[!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup.cs?name=snippet1)]
+[!code-csharp[Main](compatibility-version/samples/CompatibilityVersionSample/Startup.cs?name=snippet1)]
 
 We recommend you test your app using the latest version (`CompatibilityVersion.Latest`). We anticipate that most apps won't have breaking behavior changes using the latest version.
 
@@ -44,7 +43,7 @@ The following code sets the compatibility mode to ASP.NET Core 2.2, except for t
 * <xref:Microsoft.AspNetCore.Mvc.MvcOptions.AllowCombiningAuthorizeFilters>
 * <xref:Microsoft.AspNetCore.Mvc.MvcOptions.InputFormatterExceptionPolicy>
 
-[!code-csharp[Main](compatibility-version/samples/2.x/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
+[!code-csharp[Main](compatibility-version/samples/CompatibilityVersionSample/Startup2.cs?name=snippet1)]
 
 For apps that encounter breaking behavior changes, using the appropriate compatibility switches:
 

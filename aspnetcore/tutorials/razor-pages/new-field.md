@@ -2,16 +2,12 @@
 title: Part 7, add a new field
 ai-usage: ai-assisted
 description: Part 7 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 05/11/2026
-uid: tutorials/razor-pages/new-field
 ---
 # Part 7, add a new field to a Razor Page in ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Rick Anderson](https://twitter.com/RickAndMSFT)
-
-:::moniker range=">= aspnetcore-10.0"
 
 In this section, [Entity Framework Core (EF Core)](/ef/core/get-started/aspnetcore/new-db) is used to define the database schema based on the app's model class:
 
@@ -103,7 +99,7 @@ The name "Rating" is arbitrary and is used to name the migration file. It's help
 
 The `Update-Database` command tells the framework to apply the schema changes to the database and to preserve existing data.
 
-To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [Sql Server Object Explorer](xref:tutorials/razor-pages/sql#ssox) (SSOX).
+To delete all the records in the database, the initializer seeds the database and includes the `Rating` field. You can delete records by using the delete links in the browser or from [SQL Server Object Explorer](sql.md#sql-server-express-localdb) (SSOX).
 
 Another option is to delete the database and use migrations to re-create the database. To delete the database in SSOX:
 
@@ -111,7 +107,7 @@ Another option is to delete the database and use migrations to re-create the dat
 1. Right-click on the database, and select **Delete**.
 1. Check **Close existing connections**.
 1. Select **OK**.
-1. In the [PMC](xref:tutorials/razor-pages/new-field#pmc), update the database:
+1. In the [PMC](#add-a-migration-for-the-rating-field), update the database:
 
    ```powershell
    Update-Database
@@ -159,7 +155,7 @@ For more information, see the following resources:
 * [Data seeding](/ef/core/modeling/data-seeding)
 * [SQLite ALTER TABLE statement](https://sqlite.org/lang_altertable.html)
 
-1. Delete the migration folder.  
+1. Delete the migration folder.
 
 1. Use the following commands to recreate the database.
 
@@ -176,19 +172,5 @@ Run the app and verify you can create, edit, and display movies with a `Rating` 
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Add Search](xref:tutorials/razor-pages/search)
-> [Next: Add Validation](xref:tutorials/razor-pages/validation)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/new-field/includes/new-field3.md)]
+> [Previous: Add Search](search.md)
+> [Next: Add Validation](validation.md)

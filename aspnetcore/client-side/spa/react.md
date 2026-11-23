@@ -1,17 +1,14 @@
 ---
 title: Use React with ASP.NET Core
 description: Learn how to get started with the ASP.NET Core Single Page Application (SPA) project template for React and Create React App (CRA).
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 04/24/2026
-uid: spa/react
 
 # customer intent: As an ASP.NET developer, I want to get started with the SPA project template for React and CRA, so I can use React and create apps.
 ---
 # Use React with ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
-:::moniker range=">= aspnetcore-8.0"
+[!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 [!INCLUDE [spa-templates-recommend-vs](../../includes/spa-templates-recommend-vs.md)]
 
@@ -23,10 +20,6 @@ For more information, see [JavaScript and TypeScript in Visual Studio](/visualst
 
 [!INCLUDE [spa-templates-new-vs-old](../../includes/spa-templates-new-vs-old.md)]
 
-:::moniker-end
-
-[!INCLUDE[](~/client-side/spa/includes/react3-7.md)]
-
 ## Related content
 
-<xref:security/authentication/identity/spa>
+[Use Identity to secure a Web API backend for SPAs](../../security/authentication/identity-api-authorization.md)

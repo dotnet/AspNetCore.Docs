@@ -4,21 +4,72 @@ ai-usage: ai-assisted
 description: This tutorial demonstrates how to use WS-Federation in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
-ms.date: 08/22/2026
-uid: security/authentication/ws-federation
+ms.date: 11/03/2026
 ---
 # Authenticate users with WS-Federation in ASP.NET Core
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](xref:security/authentication/social/index).
+This tutorial demonstrates how to enable users to sign in with a WS-Federation authentication provider like Active Directory Federation Services (ADFS) or [Microsoft Entra ID](/azure/active-directory/). It uses the ASP.NET Core sample app described in [Facebook, Google, and external provider authentication](social/index.md).
 
 For ASP.NET Core apps, WS-Federation support is provided by [Microsoft.AspNetCore.Authentication.WsFederation](https://www.nuget.org/packages/Microsoft.AspNetCore.Authentication.WsFederation). This component is ported from [Microsoft.Owin.Security.WsFederation](https://www.nuget.org/packages/Microsoft.Owin.Security.WsFederation) and shares many of that component's mechanics. However, the components differ in a couple of important ways.
 
 By default, the new middleware:
 
 * Doesn't allow unsolicited logins. This feature of the WS-Federation protocol is vulnerable to XSRF attacks. However, it can be enabled with the `AllowUnsolicitedLogins` option.
-* Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath%2A?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions> class. This path can be shared with other authentication providers by enabling the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.SkipUnrecognizedRequests%2A> option.
+* Doesn't check every form post for sign-in messages. Only requests to the `CallbackPath` are checked for sign-ins. `CallbackPath` defaults to `/signin-wsfed` but can be changed via the inherited <xref:Microsoft.AspNetCore.Authentication.RemoteAuthenticationOptions.CallbackPath?displayProperty=nameWithType> property of the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions> class. This path can be shared with other authentication providers by enabling the <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.SkipUnrecognizedRequests> option.
+
+## Remote sign-out
+
+The handler processes GET requests containing `wa=wsignoutcleanup1.0` at <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationOptions.RemoteSignOutPath?displayProperty=nameWithType>, which defaults to `/signin-wsfed`. It calls `SignOutAsync` for the configured `SignOutScheme`. Cleanup messages aren't signed or bound to a session, so the handler can't verify that they came from the identity provider.
+
+The samples use `AddDefaultIdentity`, which sets `Identity.External` as the default sign-in scheme. WS-Federation defaults `SignOutScheme` to its `SignInScheme`, so a cleanup message in these samples signs out the temporary external cookie rather than the application session. For an Identity app that requires provider-initiated sign-out of the application cookie, set `SignOutScheme` to `IdentityConstants.ApplicationScheme` in the options passed to `AddWsFederation`:
+
+```csharp
+options.SignOutScheme = IdentityConstants.ApplicationScheme;
+```
+
+Only configure this scheme if provider-initiated sign-out should end the app's Identity session.
+
+If the app doesn't require the identity provider to initiate a process for users to sign out, disable it by setting `RemoteSignOutPath` to <xref:Microsoft.AspNetCore.Http.PathString.Empty?displayProperty=nameWithType>:
+
+```csharp
+options.RemoteSignOutPath = PathString.Empty;
+```
+
+Microsoft Entra ID sends cleanup messages to a reply URL that isn't deterministic, so disabling the feature is generally the practical choice when using Entra ID. If the app must remotely sign out users, use <xref:Microsoft.AspNetCore.Authentication.WsFederation.WsFederationEvents.OnRemoteSignOut?displayProperty=nameWithType> to filter requests based on the headers your identity provider actually sends. For example:
+
+```csharp
+options.Events.OnRemoteSignOut = context =>
+{
+    var referer = context.Request.Headers["Referer"].ToString();
+    if (!referer.StartsWith("https://adfs.contoso.com/", StringComparison.OrdinalIgnoreCase))
+    {
+        // Reject missing Referer headers and requests from other origins.
+        context.HandleResponse();
+    }
+
+    return Task.CompletedTask;
+};
+```
+
+This check helps prevent another site from triggering sign-out through the user's browser. It rejects missing `Referer` headers, and the trailing `/` prevents matching look-alike host names. Before enabling the filter, verify that cleanup requests from the identity provider include the expected `Referer`.
+
+For cleanup requests in a cross-site iframe or image, the browser might reject the cookie-deletion response under its `SameSite` rules. If that occurs, set `SameSite=None` and `Secure` on the deletion response. The cookie handler's `OnSigningOut` event runs before the cookie is deleted, so these settings don't change the attributes used when the app issues the authentication cookie:
+
+```csharp
+services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnSigningOut = context =>
+    {
+        context.CookieOptions.SameSite = SameSiteMode.None;
+        context.CookieOptions.Secure = true;
+        return Task.CompletedTask;
+    };
+});
+```
+
+Browser restrictions on third-party cookies can still prevent the browser from sending or removing the cookie.
 
 ## Register the app with Active Directory
 
@@ -43,7 +94,7 @@ By default, the new middleware:
 ![Add Relying Party Trust Wizard: Configure URL](ws-federation/_static/AdfsConfigureUrl.png)
 
 > [!NOTE]
-> This must be an HTTPS URL. IIS Express can provide a self-signed certificate when hosting the app during development. Kestrel requires manual certificate configuration. See the [Kestrel documentation](xref:fundamentals/servers/kestrel) for more details.
+> This must be an HTTPS URL. IIS Express can provide a self-signed certificate when hosting the app during development. Kestrel requires manual certificate configuration. See the [Kestrel documentation](../../fundamentals/servers/kestrel.md) for more details.
 
 * Click **Next** through the rest of the wizard and **Close** at the end.
 

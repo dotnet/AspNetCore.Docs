@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to set up OpenID Connect authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
 ms.date: 09/18/2026
-uid: security/authentication/configure-oidc-web-authentication
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core
 
@@ -40,6 +39,13 @@ OpenID Connect comes in many variations and all server implementations have slig
 > [!NOTE]
 > From .NET 9, [OAuth 2.0 Pushed Authorization Requests (PAR) RFC 9126](https://datatracker.ietf.org/doc/html/rfc9126) is used per default, if the OpenID Connect server supports this. This is a three step flow and not a two step flow as shown above. (User Info request is an optional step.)
 
+:::moniker range=">= aspnetcore-11.0"
+
+> [!IMPORTANT]
+> When an authorization request includes `max_age`, the OpenID Connect handler validates the signed ID token's `auth_time` against that value and the configured clock skew. Ensure that the identity provider honors `max_age` and returns a valid `auth_time`. For PAR, set `max_age` in `OnRedirectToIdentityProvider`, not `OnPushAuthorization`. For details and a temporary compatibility switch, see [OpenID Connect `max_age` validates `auth_time`](../../breaking-changes/11/openid-connect-max-age-validates-auth-time.md).
+
+:::moniker-end
+
 ## Create an Open ID Connect code flow client using Razor Pages
 
 The following section shows how to implement an OpenID Connect client in an empty ASP.NET Core Razor page project. The same logic can be applied to any ASP.NET Core web project with only the UI integration being different.
@@ -54,7 +60,7 @@ Add the authentication to the web application using the builder.Services in the 
 
 The OpenID Connect handler is used for challenges and signout. The cookie is used to handle the session in the web application. The default schemes for the authentication can be specified as required. 
 
-For more information, see the [ASP.NET Core `authentication-handler` guidance](xref:security/authentication/index#authentication-handler).
+For more information, see the [ASP.NET Core `authentication-handler` guidance](index.md#authentication-handler).
 
 ```csharp
 builder.Services.AddAuthentication(options =>
@@ -83,9 +89,9 @@ builder.Services.AddAuthentication(options =>
 });
 ```
 
-For details on the different OpenID Connect options, see <xref:blazor/security/blazor-web-app-oidc>.
+For details on the different OpenID Connect options, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md).
 
-For the different claims mapping possibilities, see <xref:security/authentication/claims>.
+For the different claims mapping possibilities, see [Map, customize, transform claims in ASP.NET Core](claims.md).
 
 > [!NOTE]
 > The following namespaces are required:
@@ -99,7 +105,7 @@ For the different claims mapping possibilities, see <xref:security/authenticatio
 
 ### Setup the configuration properties
 
-Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more information, see <xref:security/app-secrets>.
+Add the OpenID Connect client settings to the application configuration properties. The settings must match the client configuration in the OpenID Connect server. No secrets should be persisted in application settings where they might get accidentally checked in. Secrets should be stored in a secure location like Azure Key Vault in production environments or in user secrets in a development environment. For more information, see [Safe storage of app secrets in development](../app-secrets.md).
 
 ```json
 "OpenIDConnectSettings": {
@@ -113,7 +119,7 @@ Add the OpenID Connect client settings to the application configuration properti
 
 ### Signed-out callback path configuration
 
-The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath%2A> (configuration key: "`SignedOutCallbackPath`") is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from the identity provider. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri%2A> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri%2A>, if specified.
+The <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutCallbackPath> (configuration key: "`SignedOutCallbackPath`") is the request path within the app's base path intercepted by the OpenID Connect handler where the user agent is first returned after signing out from the identity provider. The sample app doesn't set a value for the path because the default value of "`/signout-callback-oidc`" is used. After intercepting the request, the OpenID Connect handler redirects to the <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignedOutRedirectUri> or <xref:Microsoft.AspNetCore.Authentication.AuthenticationProperties.RedirectUri>, if specified.
 
 Configure the signed-out callback path in the app's OIDC provider registration. In the following example, the `{PORT}` placeholder is the app's port:
 
@@ -156,7 +162,7 @@ builder.Services.AddAuthorizationBuilder()
     .SetFallbackPolicy(requireAuthPolicy);
 ```
 
-The fallback policy requires authentication for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. For complete policy selection rules, see <xref:security/authorization/policies#default-and-fallback-policies>.
+The fallback policy requires authentication for requests processed by the authorization middleware when no authorization policy is produced from endpoint metadata. For complete policy selection rules, see [Policy-based authorization in ASP.NET Core](../authorization/policies.md#default-and-fallback-policies).
 
 Opt out of authorization at public endpoints by applying the [`[AllowAnonymous]` attribute](xref:Microsoft.AspNetCore.Authorization.AllowAnonymousAttribute) to the public endpoints. For examples, see the [Add a new `Logout.cshtml` and `SignedOut.cshtml` Razor pages to the project](#add-a-new-logoutcshtml-and-signedoutcshtml-razor-pages-to-the-project) and [Implement `Login` page](#implement-login-page) sections.
 
@@ -361,7 +367,7 @@ IdentityModelEventSource.ShowPII = true;
 app.Run();
 ```
 
-For more information, see [Logging](xref:fundamentals/logging/index#configuration).
+For more information, see [Logging](../../fundamentals/logging/index.md#configure-logging).
 
 > [!NOTE]
 > You may want to lower the configured log level to see all the required logs.
@@ -372,11 +378,11 @@ The OAuth and OIDC authentication handlers (<xref:Microsoft.AspNetCore.Authentic
 
 ## Map claims from OpenID Connect
 
-For more information, see <xref:security/authentication/claims>.
+For more information, see [Map, customize, transform claims in ASP.NET Core](claims.md).
 
 ## Blazor OpenID Connect
 
-For more information, see <xref:blazor/security/blazor-web-app-oidc>.
+For more information, see [Secure an ASP.NET Core Blazor Web App with OpenID Connect (OIDC)](../../blazor/security/blazor-web-app-with-oidc.md).
 
 ## Standards
 

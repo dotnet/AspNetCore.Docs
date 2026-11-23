@@ -4,13 +4,12 @@ description: Get started with incremental ASP.NET to ASP.NET Core migration
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 12/04/2025
 ms.topic: concept-article
-uid: migration/fx-to-core/start
 ---
 
 # Get started with incremental ASP.NET to ASP.NET Core migration
 
 > [!IMPORTANT]
-> **Before you begin**: This article assumes you have read the [ASP.NET Core migration overview](xref:migration/fx-to-core/index). If you haven't read it yet, please start there to understand the concepts, approach, and benefits of incremental migration.
+> **Before you begin**: This article assumes you have read the [ASP.NET Core migration overview](index.md). If you haven't read it yet, please start there to understand the concepts, approach, and benefits of incremental migration.
 
 For a large migration, we recommend setting up an ASP.NET Core app that proxies to the original .NET Framework app. The new proxy enabled app is shown in the following image:
 
@@ -22,7 +21,7 @@ This article provides the practical steps to proceed with an incremental migrati
 
 Before starting your incremental migration, ensure you have:
 
-1. **Read the overview**: [Incremental ASP.NET to ASP.NET Core migration](xref:migration/fx-to-core/index)
+1. **Read the overview**: [Incremental ASP.NET to ASP.NET Core migration](index.md)
 2. **A working ASP.NET Framework application** that you want to migrate
 3. **Visual Studio 2022** with the latest updates
 4. **.NET 8 or later SDK** installed
@@ -47,8 +46,8 @@ The first step is to create the new ASP.NET Core application that will serve as 
 * Set up the basic infrastructure for incremental migration
 
 **Detailed instructions:**
-* See <xref:migration/fx-to-core/inc/remote-app-setup> to understand how to set up an application for incremental migration.
-* See <xref:migration/fx-to-core/tooling> for help in setting up projects required for incremental migration using Visual Studio tooling.
+* See [Remote app setup](inc/remote-app-setup.md) to understand how to set up an application for incremental migration.
+* See [Learn to upgrade from ASP.NET MVC, Web API, and Web Forms to ASP.NET Core](tooling.md) for help in setting up projects required for incremental migration using Visual Studio tooling.
 
 ## Remediate Technical Debt
 
@@ -97,17 +96,17 @@ The following sections cover the most common cross-cutting concerns. Configure o
 
 **Configure this if:** Your ASP.NET Framework application uses session state.
 
-See the general [session migration documentation](xref:migration/fx-to-core/areas/session#remote-app-session-state) for guidance here.
+See the general [session migration documentation](areas/session.md#remote-app-session-state) for guidance here.
 
-Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core, but the APIs are much different. When upgrading libraries that use session state, you'll need to configure session support. See the documentation on [remote session support](xref:migration/fx-to-core/areas/session) for detailed guidance on how to enable session state sharing between your applications.
+Session is a commonly used feature of ASP.NET that shares the name with a feature in ASP.NET Core, but the APIs are much different. When upgrading libraries that use session state, you'll need to configure session support. See the documentation on [remote session support](areas/session.md) for detailed guidance on how to enable session state sharing between your applications.
 
 ### Authentication Configuration
 
 **Configure this if:** Your ASP.NET Framework application uses authentication and you want to share authentication state between the old and new applications.
 
-See the general [authentication migration documentation](xref:migration/fx-to-core/areas/authentication) for guidance here.
+See the general [authentication migration documentation](areas/authentication.md) for guidance here.
 
-It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the System.Web adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the original ASP.NET app. See the documentation on [remote authentication](xref:migration/fx-to-core/areas/authentication#remote-authentication) for more details.
+It is possible to share authentication between the original ASP.NET app and the new ASP.NET Core app by using the System.Web adapters remote authentication feature. This feature allows the ASP.NET Core app to defer authentication to the original ASP.NET app. See the documentation on [remote authentication](areas/authentication.md#remote-authentication) for more details.
 
 ### Other Cross-Cutting Concerns to Consider
 

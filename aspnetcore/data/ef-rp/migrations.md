@@ -1,8 +1,8 @@
 ---
 title: Part 4, Razor Pages with EF Core in ASP.NET Core - Migrations
 description: Part 4 of Razor Pages and Entity Framework tutorial series.
+monikerRange: '>= aspnetcore-3.1'
 ms.date: 07/22/2019
-uid: data/ef-rp/migrations
 ---
 
 # Part 4, Razor Pages with EF Core migrations in ASP.NET Core
@@ -10,8 +10,6 @@ uid: data/ef-rp/migrations
 By [Tom Dykstra](https://github.com/tdykstra), [Jon P Smith](https://twitter.com/thereformedprog), and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 [!INCLUDE [about the series](~/includes/RP-EF/intro.md)]
-
-:::moniker range=">= aspnetcore-3.0"
 
 This tutorial introduces the EF Core migrations feature for managing data model changes.
 
@@ -79,7 +77,7 @@ dotnet ef database update
 
 ### Remove EnsureCreated
 
-This tutorial series started by using <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated%2A>. `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
+This tutorial series started by using <xref:Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade.EnsureCreated*>. `EnsureCreated` doesn't create a migrations history table and so can't be used with migrations. It's designed for testing or rapid prototyping where the database is dropped and re-created frequently.
 
 From this point forward, the tutorials will use migrations.
 
@@ -121,7 +119,7 @@ See [Resetting all migrations](/ef/core/managing-schemas/migrations/managing?tab
 
 ## Applying migrations in production
 
-We recommend that production apps **not** call [Database.Migrate](xref:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate%2A) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
+We recommend that production apps **not** call [Database.Migrate](xref:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate*) at application startup. `Migrate` shouldn't be called from an app that is deployed to a server farm. If the app is scaled out to multiple server instances, it's hard to ensure database schema updates don't happen from multiple servers or conflict with read/write access.
 
 Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
 
@@ -138,187 +136,18 @@ The login failed.
 Login failed for user 'user name'.
 ```
 
-The solution may be to run `dotnet ef database update` at a command prompt.
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-In this tutorial, the EF Core migrations feature for managing data model changes is used.
-
-If you run into problems you can't solve, download the [completed app](
-https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples).
-
-When a new app is developed, the data model changes frequently. Each time the model changes, the model gets out of sync with the database. This tutorial started by configuring the Entity Framework to create the database if it doesn't exist. Each time the data model changes:
-
-* The DB is dropped.
-* EF creates a new one that matches the model.
-* The app seeds the DB with test data.
-
-This approach to keeping the DB in sync with the data model works well until the app needs to be deployed to production. When the app is running in production, it's usually storing data that needs to be maintained. The app can't start with a test DB each time a change is made (such as adding a new column). The EF Core Migrations feature solves this problem by enabling EF Core to update the DB schema instead of creating a new DB.
-
-Rather than dropping and recreating the DB when the data model changes, migrations updates the schema and retains existing data.
-
-## Drop the database
-
-Use **SQL Server Object Explorer** (SSOX) or the `database drop` command:
-
-# [Visual Studio](#tab/visual-studio)
-
-In the **Package Manager Console** (PMC), run the following command:
-
-```powershell
-Drop-Database
-```
-
-Run `Get-Help about_EntityFrameworkCore` from the PMC to get help information.
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-Open a command window and navigate to the project folder. The project folder contains the `Startup.cs` file.
-
-Enter the following in the command window:
-
- ```dotnetcli
- dotnet ef database drop
- ```
-
----
-
-## Create an initial migration and update the DB
-
-Build the project and create the first migration.
-
-# [Visual Studio](#tab/visual-studio)
-
-```powershell
-Add-Migration InitialCreate
-Update-Database
-```
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-```dotnetcli
-dotnet ef migrations add InitialCreate
-dotnet ef database update
-```
-
----
-
-### Examine the Up and Down methods
-
-The EF Core `migrations add` command generated code to create the database. This migrations code is in the `Migrations\<timestamp>_InitialCreate.cs` file. The `Up` method of the `InitialCreate` class creates the database tables that correspond to the data model entity sets. The `Down` method deletes them, as shown in the following example:
-
-[!code-csharp[](intro/samples/cu21/Migrations/20180626224812_InitialCreate.cs?range=7-24,77-88)]
-
-Migrations calls the `Up` method to implement the data model changes for a migration. When a command is entered to roll back the update, migrations calls the `Down` method.
-
-The preceding code is for the initial migration. That code was created when the `migrations add InitialCreate` command was run. The migration name parameter ("InitialCreate" in the example) is used for the file name. The migration name can be any valid file name. It's best to choose a word or phrase that summarizes what is being done in the migration. For example, a migration that added a department table might be called "AddDepartmentTable."
-
-If the initial migration is created and the DB exists:
-
-* The DB creation code is generated.
-* The DB creation code doesn't need to run because the DB already matches the data model. If the DB creation code is run, it doesn't make any changes because the DB already matches the data model.
-
-When the app is deployed to a new environment, the DB creation code must be run to create the DB.
-
-Previously the DB was dropped and doesn't exist, so migrations creates the new DB.
-
-### The data model snapshot
-
-Migrations create a *snapshot* of the current database schema in `Migrations/SchoolContextModelSnapshot.cs`. When you add a migration, EF determines what changed by comparing the data model to the snapshot file.
-
-To delete a migration, use the following command:
-
-# [Visual Studio](#tab/visual-studio)
-
-Remove-Migration
-
-# [Visual Studio Code](#tab/visual-studio-code)
-
-```dotnetcli
-dotnet ef migrations remove
-```
-
-For more information, see [dotnet ef migrations remove](/ef/core/miscellaneous/cli/dotnet#dotnet-ef-migrations-remove).
-
----
-
-The remove migrations command deletes the migration and ensures the snapshot is correctly reset.
-
-### Remove EnsureCreated and test the app
-
-For early development, `EnsureCreated` was used. In this tutorial, migrations are used. `EnsureCreated` has the following limitations:
-
-* Bypasses migrations and creates the DB and schema.
-* Doesn't create a migrations table.
-* Can *not* be used with migrations.
-* Is designed for testing or rapid prototyping where the DB is dropped and re-created frequently.
-
-Remove `EnsureCreated`:
-
-```csharp
-context.Database.EnsureCreated();
-```
-
-Run the app and verify the DB is seeded.
-
-### Inspect the database
-
-Use **SQL Server Object Explorer** to inspect the DB. Notice the addition of an `__EFMigrationsHistory` table. The `__EFMigrationsHistory` table keeps track of which migrations have been applied to the DB. View the data in the `__EFMigrationsHistory` table, it shows one row for the first migration. The last log in the preceding CLI output example shows the INSERT statement that creates this row.
-
-Run the app and verify that everything works.
-
-## Applying migrations in production
-
-We recommend production apps should **not** call [Database.Migrate](xref:Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.Migrate%2A) at application startup. `Migrate` shouldn't be called from an app in server farm. For example, if the app has been cloud deployed with scale-out (multiple instances of the app are running).
-
-Database migration should be done as part of deployment, and in a controlled way. Production database migration approaches include:
-
-* Using migrations to create SQL scripts and using the SQL scripts in deployment.
-* Running `dotnet ef database update` from a controlled environment.
-
-EF Core uses the `__MigrationsHistory` table to see if any migrations need to run. If the DB is up-to-date, no migration is run.
-
-## Troubleshooting
-
-Download the [completed app](
-https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/data/ef-rp/intro/samples/cu21snapshots/Part-4-Migrations).
-
-The app generates the following exception:
-
-```text
-SqlException: Cannot open database "ContosoUniversity" requested by the login.
-The login failed.
-Login failed for user 'user name'.
-```
-
-Solution: Run `dotnet ef database update`
-
-:::moniker-end
+The solution might be to run `dotnet ef database update` at a command prompt.
 
 ### Related content
-
-:::moniker range=">= aspnetcore-3.0"
 
 * [EF Core CLI](/ef/core/miscellaneous/cli/dotnet).
 * [dotnet ef migrations CLI commands](/ef/core/miscellaneous/cli/dotnet)
 * [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
-
-:::moniker-end
-
-:::moniker range="< aspnetcore-3.0"
-
-* [YouTube version of this tutorial](https://www.youtube.com/watch?v=OWSUuMLKTJo)
-* [.NET CLI](/ef/core/miscellaneous/cli/dotnet).
-* [Package Manager Console (Visual Studio)](/ef/core/miscellaneous/cli/powershell)
-
-:::moniker-end
 
 ## Next steps
 
 The next tutorial builds out the data model, adding entity properties and new entities.
 
 > [!div class="step-by-step"]
-> [Previous tutorial](xref:data/ef-rp/sort-filter-page)
-> [Next tutorial](xref:data/ef-rp/complex-data-model)
+> [Previous tutorial](sort-filter-page.md)
+> [Next tutorial](complex-data-model.md)

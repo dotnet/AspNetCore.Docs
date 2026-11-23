@@ -2,19 +2,15 @@
 title: Part 4, work with a database
 ai-usage: ai-assisted
 description: Part 4 of tutorial series on Razor Pages.
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 10/20/2026
-uid: tutorials/razor-pages/sql
 ---
 
 # Part 4 of tutorial series on Razor Pages
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Joe Audette](https://twitter.com/joeaudette)
 
-:::moniker range=">= aspnetcore-10.0"
-
-The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. Register the database context with the [dependency injection](xref:fundamentals/dependency-injection) container in `Program.cs`:
+The `RazorPagesMovieContext` object handles the task of connecting to the database and mapping `Movie` objects to database records. Register the database context with the [dependency injection](../../fundamentals/dependency-injection.md) container in `Program.cs`:
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -26,7 +22,7 @@ The `RazorPagesMovieContext` object handles the task of connecting to the databa
 
 ---
 
-The ASP.NET Core [Configuration](xref:fundamentals/configuration/index) system reads the `ConnectionString` key. For local development, the configuration gets the connection string from the `appsettings.json` file.
+The ASP.NET Core [Configuration](../../fundamentals/configuration/index.md) system reads the `ConnectionString` key. For local development, the configuration gets the connection string from the `appsettings.json` file.
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -149,19 +145,5 @@ The app shows the seeded data:
 ## Next steps
 
 > [!div class="step-by-step"]
-> [Previous: Scaffolded Razor Pages](xref:tutorials/razor-pages/page)
-> [Next: Update the pages](xref:tutorials/razor-pages/da1)
-
-:::moniker-end
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql9.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql8.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql7.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql6.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql5.md)]
-
-[!INCLUDE[](~/tutorials/razor-pages/sql/includes/sql3.md)]
+> [Previous: Scaffolded Razor Pages](page.md)
+> [Next: Update the pages](da1.md)

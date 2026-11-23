@@ -3,7 +3,6 @@ title: ASP.NET Core code generator tool (`aspnet-codegenerator`)
 description: The ASP.NET Core code generator tool scaffolds ASP.NET Core projects.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 11/09/2024
-uid: fundamentals/tools/dotnet-aspnet-codegenerator
 ---
 # ASP.NET Core code generator tool (`aspnet-codegenerator`)
 
@@ -61,14 +60,14 @@ The code generator to run. The available generators are shown in the following t
 
 Generator         | Operation
 ----------------- | ---
-`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
-`blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](xref:blazor/components/quickgrid#quickgrid-scaffolder).
+`area`            | [Scaffolds an area](../../mvc/controllers/areas.md).
+`blazor`          | [Scaffolds Blazor create, read, update, delete, and list pages](../../blazor/components/quickgrid.md#quickgrid-scaffolder).
 `blazor-identity` | Generates Blazor Identity files.
-`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
-`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`controller`      | [Scaffolds a controller](../../tutorials/first-mvc-app/adding-model.md).
+`identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
-`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
-`view`            | [Scaffolds a view](xref:mvc/views/overview).
+`razorpage`       | [Scaffolds Razor Pages](../../tutorials/razor-pages/model.md).
+`view`            | [Scaffolds a view](../../mvc/views/overview.md).
 
 :::moniker-end
 
@@ -76,12 +75,12 @@ Generator         | Operation
 
 Generator         | Operation
 ----------------- | ---
-`area`            | [Scaffolds an area](xref:mvc/controllers/areas).
-`controller`      | [Scaffolds a controller](xref:tutorials/first-mvc-app/adding-model).
-`identity`        | [Scaffolds Identity](xref:security/authentication/scaffold-identity).
+`area`            | [Scaffolds an area](../../mvc/controllers/areas.md).
+`controller`      | [Scaffolds a controller](../../tutorials/first-mvc-app/adding-model.md).
+`identity`        | [Scaffolds Identity](../../security/authentication/scaffold-identity.md).
 `minimalapi`      | Generates an endpoints file (with CRUD API endpoints) given a model and optional database context.
-`razorpage`       | [Scaffolds Razor Pages](xref:tutorials/razor-pages/model).
-`view`            | [Scaffolds a view](xref:mvc/views/overview).
+`razorpage`       | [Scaffolds Razor Pages](../../tutorials/razor-pages/model.md).
+`view`            | [Scaffolds a view](../../mvc/views/overview.md).
 
 :::moniker-end
 
@@ -205,9 +204,9 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator blazor -h
 ```
 
-For an example that uses the `blazor` generator, see <xref:blazor/tutorials/movie-database-app/index>.
+For an example that uses the `blazor` generator, see [Build a Blazor movie database app (Overview)](../../blazor/tutorials/movie-database-app/index.md).
 
-For more information, see <xref:blazor/components/quickgrid#quickgrid-scaffolder>.
+For more information, see [ASP.NET Core Blazor \`QuickGrid\` component](../../blazor/components/quickgrid.md#quickgrid-scaffolder).
 
 ### Blazor Identity options
 
@@ -256,11 +255,11 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator controller -h
 ```
 
-For an example that uses the `controller` generator, see <xref:tutorials/first-mvc-app/adding-model>.
+For an example that uses the `controller` generator, see [Part 4, add a model to an ASP.NET Core MVC app](../../tutorials/first-mvc-app/adding-model.md).
 
 ### Identity options
 
-For more information, see <xref:security/authentication/scaffold-identity>.
+For more information, see [Scaffold Identity in ASP.NET Core projects](../../security/authentication/scaffold-identity.md).
 
 ### Minimal API options
 
@@ -337,7 +336,7 @@ Use the `-h|--help` option for help:
 dotnet aspnet-codegenerator razorpage -h
 ```
 
-For an example that uses the `razorpage` generator, see <xref:tutorials/razor-pages/model>.
+For an example that uses the `razorpage` generator, see [Part 2, add a model](../../tutorials/razor-pages/model.md).
 
 ### View options
 

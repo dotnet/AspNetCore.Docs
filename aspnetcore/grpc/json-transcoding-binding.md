@@ -3,7 +3,6 @@ title: Configure HTTP and JSON for gRPC JSON transcoding ASP.NET Core apps
 description: Learn how to configure HTTP and JSON for gRPC JSON transcoding apps.
 monikerRange: '>= aspnetcore-7.0'
 ms.date: 09/20/2022
-uid: grpc/json-transcoding-binding
 ---
 # Configure HTTP and JSON for gRPC JSON transcoding
 
@@ -51,12 +50,12 @@ To bind a field on a nested message, specify the path to the field. In the follo
 
 [!code-protobuf[](~/grpc/json-transcoding-binding/route.proto?highlight=4,11)]
 
-Transcoding routes and [ASP.NET Core routes](xref:fundamentals/routing) have a similar syntax and feature set. However, some ASP.NET Core routing features aren't supported by transcoding. These include:
+Transcoding routes and [ASP.NET Core routes](../fundamentals/routing.md) have a similar syntax and feature set. However, some ASP.NET Core routing features aren't supported by transcoding. These include:
 
-* [Route constraints](xref:fundamentals/routing#route-constraints)
-* [Default values](xref:fundamentals/routing#route-templates)
-* [Optional parameters](xref:fundamentals/routing#route-templates)
-* [Complex segments](xref:fundamentals/routing#complex-segments)
+* [Route constraints](../fundamentals/routing.md#route-constraints)
+* [Default values](../fundamentals/routing.md#route-templates)
+* [Optional parameters](../fundamentals/routing.md#route-templates)
+* [Complex segments](../fundamentals/routing.md#complex-segments)
 
 ### Request body
 
@@ -117,9 +116,9 @@ message TestMessage {
 }
 ```
 
-Transcoding doesn't support advanced JSON customization. Apps requiring precise JSON structure control should consider using [ASP.NET Core Web API](xref:web-api/index).
+Transcoding doesn't support advanced JSON customization. Apps requiring precise JSON structure control should consider using [ASP.NET Core Web API](../web-api/index.md).
 
 ## Related content
 
-* <xref:grpc/json-transcoding>
+* [gRPC JSON transcoding in ASP.NET Core gRPC apps](json-transcoding.md)
 * [HttpRule specification](https://cloud.google.com/service-infrastructure/docs/service-management/reference/rpc/google.api#google.api.HttpRule)

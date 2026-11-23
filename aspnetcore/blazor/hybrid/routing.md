@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to manage request routing and navigation in Blazor Hybrid apps.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 08/31/2026
-uid: blazor/hybrid/routing
 zone_pivot_groups: blazor-hybrid-frameworks
 ---
 # ASP.NET Core Blazor Hybrid routing and navigation
@@ -199,7 +198,7 @@ In `App.xaml.cs`, create the `MainPage` as a <xref:Microsoft.Maui.Controls.Navig
 </ContentPage>
 ```
 
-In the following `NavigationExample` code file, the `CloseButton_Clicked` event handler for the close button calls <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to pop the <xref:Microsoft.Maui.Controls.ContentPage> off of the navigation stack.
+In the following `NavigationExample` code file, the `CloseButton_Clicked` event handler for the close button calls <xref:Microsoft.Maui.Controls.INavigation.PopAsync*> to pop the <xref:Microsoft.Maui.Controls.ContentPage> off of the navigation stack.
 
 `Views/NavigationExample.xaml.cs`:
 
@@ -223,8 +222,8 @@ public partial class NavigationExample : ContentPage
 In a Razor component:
 
 * Add the namespace for the app's content pages. In the following example, the namespace is `MauiApp1.Views`.
-* Add an HTML `button` element with an [`@onclick` event handler](xref:blazor/components/event-handling) to open the content page. The event handler method is named `OpenPage`.
-* In the event handler, call <xref:Microsoft.Maui.Controls.INavigation.PushAsync%2A> to push the <xref:Microsoft.Maui.Controls.ContentPage>, `NavigationExample`, onto the navigation stack.
+* Add an HTML `button` element with an [`@onclick` event handler](../components/event-handling.md) to open the content page. The event handler method is named `OpenPage`.
+* In the event handler, call <xref:Microsoft.Maui.Controls.INavigation.PushAsync*> to push the <xref:Microsoft.Maui.Controls.ContentPage>, `NavigationExample`, onto the navigation stack.
 
 The following example is based on the `Index` component in the .NET MAUI Blazor project template.
 
@@ -252,14 +251,14 @@ Welcome to your new app.
 
 To change the preceding example to modal navigation:
 
-* In the `CloseButton_Clicked` method (`Views/NavigationExample.xaml.cs`), change <xref:Microsoft.Maui.Controls.INavigation.PopAsync%2A> to <xref:Microsoft.Maui.Controls.INavigation.PopModalAsync%2A>:
+* In the `CloseButton_Clicked` method (`Views/NavigationExample.xaml.cs`), change <xref:Microsoft.Maui.Controls.INavigation.PopAsync*> to <xref:Microsoft.Maui.Controls.INavigation.PopModalAsync*>:
 
   ```diff
   - await Navigation.PopAsync();
   + await Navigation.PopModalAsync();
   ```
 
-* In the `OpenPage` method (`Pages/Index.razor`), change <xref:Microsoft.Maui.Controls.INavigation.PushAsync%2A> to <xref:Microsoft.Maui.Controls.INavigation.PushModalAsync%2A>:
+* In the `OpenPage` method (`Pages/Index.razor`), change <xref:Microsoft.Maui.Controls.INavigation.PushAsync*> to <xref:Microsoft.Maui.Controls.INavigation.PushModalAsync*>:
 
   ```diff
   - await App.Current.MainPage.Navigation.PushAsync(new NavigationExample());

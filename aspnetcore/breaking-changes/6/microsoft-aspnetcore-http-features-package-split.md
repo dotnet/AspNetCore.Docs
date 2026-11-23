@@ -31,8 +31,8 @@ The following types have been moved to the new Microsoft.Extensions.Features ass
 
 - <xref:Microsoft.AspNetCore.Http.Features.IFeatureCollection>
 - <xref:Microsoft.AspNetCore.Http.Features.FeatureCollection>
-- <xref:Microsoft.AspNetCore.Http.Features.FeatureReference%601>
-- <xref:Microsoft.AspNetCore.Http.Features.FeatureReferences%601>
+- <xref:Microsoft.AspNetCore.Http.Features.FeatureReference`1>
+- <xref:Microsoft.AspNetCore.Http.Features.FeatureReferences`1>
 
 These types are still in the `Microsoft.AspNetCore.Http.Features` namespace, and type forwards have been added for compatibility.
 
@@ -69,8 +69,8 @@ For questions, see [dotnet/aspnetcore#32307](https://github.com/dotnet/aspnetcor
 
 - <xref:Microsoft.AspNetCore.Http.Features.IFeatureCollection?displayProperty=fullName>
 - <xref:Microsoft.AspNetCore.Http.Features.FeatureCollection?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.Features.FeatureReference%601?displayProperty=fullName>
-- <xref:Microsoft.AspNetCore.Http.Features.FeatureReferences%601?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Http.Features.FeatureReference`1?displayProperty=fullName>
+- <xref:Microsoft.AspNetCore.Http.Features.FeatureReferences`1?displayProperty=fullName>
 
 <!--
 
@@ -82,7 +82,7 @@ ASP.NET Core
 
 - `T:Microsoft.AspNetCore.Http.Features.IFeatureCollection`
 - `T:Microsoft.AspNetCore.Http.Features.FeatureCollection`
-- `T:Microsoft.AspNetCore.Http.Features.FeatureReference%601`
-- `T:Microsoft.AspNetCore.Http.Features.FeatureReferences%601`
+- `T:Microsoft.AspNetCore.Http.Features.FeatureReference`1`
+- `T:Microsoft.AspNetCore.Http.Features.FeatureReferences`1`
 
 -->

@@ -5,7 +5,6 @@ monikerRange: '>= aspnetcore-8.0'
 content_well_notification: AI-contribution
 ms.date: 9/23/2023
 ms.topic: concept-article
-uid: fundamentals/aot/request-delegate-generator/rdg-ids
 ai-usage: ai-assisted
 ---
 # ASP.NET Core Request Delegate Generator (RDG) diagnostics
@@ -23,22 +22,22 @@ The ASP.NET Core Request Delegate Generator (RDG) is a tool that generates reque
 The following list contains the <!--keep--> [RDG diagnostics](https://source.dot.net/#Microsoft.AspNetCore.Http.RequestDelegateGenerator/DiagnosticDescriptors.cs,44128aef6daa9b5e) for ASP.NET Core:
 
 <!--
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg001>
+* [RDG001: Unable to resolve route pattern](diagnostics/rdg001.md)
 -->
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg002>
+* [RDG002: Unable to resolve endpoint handler](diagnostics/rdg002.md)
 <!--
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg003>
+* [RDG003: Unable to resolve parameter](diagnostics/rdg003.md)
 -->
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg004>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg005>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg006>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg007>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg008>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg009>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg010>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg011>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg012>
-* <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg013>
+* [RDG004: Unable to resolve anonymous type](diagnostics/rdg004.md)
+* [RDG005: Invalid abstract type](diagnostics/rdg005.md)
+* [RDG006: Invalid constructor parameters](diagnostics/rdg006.md)
+* [RDG007: No valid constructor found](diagnostics/rdg007.md)
+* [RDG008: Multiple public constructors](diagnostics/rdg008.md)
+* [RDG009: Invalid nested AsParameters](diagnostics/rdg009.md)
+* [RDG010:  InvalidAsParameters Nullable](diagnostics/rdg010.md)
+* [RDG011: Type parameters not supported](diagnostics/rdg011.md)
+* [RDG012: Unable to resolve inaccessible type](diagnostics/rdg012.md)
+* [RDG013: Invalid source attributes](diagnostics/rdg013.md)
 <!--
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg014>
 * <xref:fundamentals/aot/request-delegate-generator/diagnostics/rdg015>

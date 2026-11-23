@@ -3,19 +3,18 @@ title: ASP.NET Core Blazor WebAssembly native dependencies
 description: Learn how to build Blazor WebAssembly apps with native dependencies built to run on WebAssembly in the browser.
 monikerRange: '>= aspnetcore-6.0'
 ms.date: 07/06/2026
-uid: blazor/webassembly-native-dependencies
 ---
 # ASP.NET Core Blazor WebAssembly native dependencies
 
 [!INCLUDE[](~/includes/not-latest-version.md)]
 
-Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the **.NET WebAssembly build tools**, the same tools used to [ahead-of-time (AOT) compile](xref:blazor/tooling/webassembly#ahead-of-time-aot-compilation) a Blazor app to WebAssembly and to [relink the runtime to remove unused features](xref:blazor/tooling/webassembly#runtime-relinking).
+Blazor WebAssembly apps can use native dependencies built to run on WebAssembly. You can statically link native dependencies into the .NET WebAssembly runtime using the **.NET WebAssembly build tools**, the same tools used to [ahead-of-time (AOT) compile](webassembly-build-tools-and-aot.md#ahead-of-time-aot-compilation) a Blazor app to WebAssembly and to [relink the runtime to remove unused features](performance/webassembly-runtime-performance.md#runtime-relinking).
 
 *This article only applies to Blazor WebAssembly.*
 
 ## .NET WebAssembly build tools
 
-The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. For more information on the build tools, including installation, see <xref:blazor/tooling/webassembly>.
+The .NET WebAssembly build tools are based on [Emscripten](https://emscripten.org/), a compiler toolchain for the web platform. For more information on the build tools, including installation, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](webassembly-build-tools-and-aot.md).
 
 Add native dependencies to a Blazor WebAssembly app by adding `NativeFileReference` items in the app's project file. When the project is built, each `NativeFileReference` is passed to Emscripten by the .NET WebAssembly build tools so that they are compiled and linked into the runtime. Next, [`p/invoke`](/dotnet/standard/native-interop/pinvoke) into the native code from the app's .NET code.
 
@@ -149,5 +148,5 @@ Build the app, which might take several minutes. Run the app and navigate to the
 
 ## Related content
 
-* [.NET WebAssembly build tools](xref:blazor/tooling/webassembly)
+* [.NET WebAssembly build tools](webassembly-build-tools-and-aot.md)
 * [Mono/WebAssembly MSBuild properties and targets (`WasmApp.targets`, `dotnet/runtime` GitHub repository)](https://github.com/dotnet/runtime/blob/main/src/mono/wasm/build/WasmApp.Common.targets)

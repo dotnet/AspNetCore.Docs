@@ -12,4 +12,4 @@ Duende IdentityServer is an OpenID Connect and OAuth 2.0 framework for ASP.NET C
 
 For more information, see [Overview of Duende IdentityServer](https://docs.duendesoftware.com).
 
-For more information on other authentication providers, see [Community OSS authentication options for ASP.NET Core](xref:security/authentication/community)
+For more information on other authentication providers, see [Community OSS authentication options for ASP.NET Core](../security/authentication/community.md)

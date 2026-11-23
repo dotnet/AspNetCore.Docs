@@ -38,7 +38,7 @@ The previous eager-binding behavior occurs without regard to the configured envi
 
 ## Recommended action
 
-If you weren't using the default `https://localhost:5001` binding, no changes are required. However, if you were using this binding, see [Configure endpoints for the ASP.NET Core Kestrel web server](/aspnet/core/fundamentals/servers/kestrel/endpoints) to learn how you can update your server to enable HTTPS.
+If you weren't using the default `https://localhost:5001` binding, no changes are required. However, if you were using this binding, see [Configure endpoints for the ASP.NET Core Kestrel web server](../../fundamentals/servers/kestrel/endpoints.md) to learn how you can update your server to enable HTTPS.
 
 ## Affected APIs
 

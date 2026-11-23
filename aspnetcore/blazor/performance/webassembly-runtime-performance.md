@@ -3,7 +3,6 @@ title: ASP.NET Core Blazor WebAssembly runtime performance
 description: Learn about ASP.NET Core Blazor WebAssembly runtime performance.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 11/11/2025
-uid: blazor/performance/webassembly-runtime-performance
 ---
 # ASP.NET Core Blazor WebAssembly runtime performance
 
@@ -44,18 +43,18 @@ Disable the trimming property if it prevents your app from running normally:
 
 ## Heap size for some mobile device browsers
 
-When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see <xref:blazor/host-and-deploy/webassembly/index#decrease-maximum-heap-size-for-some-mobile-device-browsers>.
+When building a Blazor app that runs on the client and targets mobile device browsers, especially Safari on iOS, decreasing the maximum memory for the app with the MSBuild property `EmccMaximumHeapSize` may be required. For more information, see [Host and deploy ASP.NET Core Blazor WebAssembly](../host-and-deploy/webassembly/index.md#decrease-maximum-heap-size-for-some-mobile-device-browsers).
 
 ## Runtime relinking
 
 One of the largest parts of a Blazor WebAssembly app is the WebAssembly-based .NET runtime (`dotnet.wasm`) that the browser must download when the app is first accessed by a user's browser. Relinking the .NET WebAssembly runtime trims unused runtime code and thus improves download speed.
 
-Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see <xref:blazor/tooling#net-webassembly-build-tools>.
+Runtime relinking requires installation of the .NET WebAssembly build tools. For more information, see [ASP.NET Core Blazor WebAssembly build tools and ahead-of-time (AOT) compilation](../webassembly-build-tools-and-aot.md#net-webassembly-build-tools).
 
-With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see <xref:blazor/globalization-localization#invariant-globalization>.
+With the .NET WebAssembly build tools installed, runtime relinking is performed automatically when an app is **published** in the `Release` configuration. The size reduction is particularly dramatic when disabling globalization. For more information, see [ASP.NET Core Blazor globalization and localization](../globalization-localization.md#invariant-globalization).
 
 > [!IMPORTANT]
-> Runtime relinking trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see <xref:blazor/js-interop/call-dotnet-from-javascript#avoid-trimming-javascript-invokable-net-methods>.
+> Runtime relinking trims class instance JavaScript-invokable .NET methods unless they're protected. For more information, see [Call .NET methods from JavaScript functions in ASP.NET Core Blazor](../javascript-interoperability/call-dotnet-from-javascript.md#avoid-trimming-javascript-invokable-net-methods).
 
 ## Single Instruction, Multiple Data (SIMD)
 
@@ -93,7 +92,7 @@ For more information, see [Configuring and hosting .NET WebAssembly applications
 
 ## Related content
 
-* <xref:blazor/performance/webassembly-browser-developer-tools>
-* <xref:blazor/performance/webassembly-event-pipe>
+* [ASP.NET Core Blazor WebAssembly browser developer tools diagnostics](webassembly-browser-developer-tools-diagnostics.md)
+* [ASP.NET Core Blazor WebAssembly Event Pipe diagnostics](webassembly-event-pipe-diagnostics.md)
 * [What diagnostic tools are available in .NET Core?](/dotnet/core/diagnostics/)
 * [.NET diagnostic tools](/dotnet/core/diagnostics/tools-overview)

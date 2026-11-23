@@ -1,12 +1,11 @@
 ---
-author: tdykstra
-ms.author: wpickett
 ms.date: 09-22-2025
 ---
 
 # Copilot Code Instructions for `dotnet/AspNetCore.Docs`
 
 ## Introduction
+
 This document contains code-specific instructions for GitHub Copilot when assisting with the `dotnet/AspNetCore.Docs` repository. For general instructions and documentation guidelines, please refer to the [copilot-instructions.md](./copilot-instructions.md) file.
 
 ## Code-Related Guidelines
@@ -17,7 +16,9 @@ This document contains code-specific instructions for GitHub Copilot when assist
   * [ ] Create a subfolder named after the document the snippet supports.
   * [ ] Create a `snippets` folder inside that subfolder.
   * [ ] For the code file:
-    * [ ] If the snippet is not version-specific, place the code in a file with the appropriate extension (for example, `.cs` for C#) in the `snippets` folder.
+    * [ ] If the snippet is not version-specific (preferable):
+      * [ ] Place the code in a file with the appropriate extension (for example, `.cs` for C#) in the `snippets` folder.
+      * [ ] Add a project file or ensure the code file builds as a file-based app (dotnet build file.cs).
     * [ ] If the snippet is version-specific:
       * [ ] Create a subfolder inside the `snippets` folder named for the version (for example, `9.0` for .NET 9 or ASP.NET Core 9).
       * [ ] Place the code in a file with the correct extension inside the version subfolder.
@@ -56,12 +57,7 @@ This document contains code-specific instructions for GitHub Copilot when assist
   Console                | console       | 2
   Text                   | -             | 2
 
-* [ ] Code Snippet Folder Structure Requirements:
-  * [ ] For code snippets longer than 6 lines, create proper folder structure: article-name/snippets/version/filename.cs (e.g., cookie/snippets/6.0/Program.cs)
-  * [ ] Create version-specific subfolders: 3.x, 6.0, 8.0, 9.0, etc.
-  * [ ] Use file-relative paths for snippets in same article folder
-  * [ ] Use repository root-relative paths (~/) for shared snippets
-* [ ] Code Snippet Markers in .cs Files - CRITICAL:
+* [ ] Code Snippet Markers in .cs Files:
   * [ ] NEVER use #region snippet_name and #endregion syntax in .cs files
   * [ ] ALWAYS use // <snippet_name> and // </snippet_name> format (all lowercase)
   * [ ] Examples of correct .cs file snippet markers:
@@ -83,28 +79,25 @@ This document contains code-specific instructions for GitHub Copilot when assist
 * [ ] Code Comments and Localization:
   * [ ] Rely on markdown prose before/after code snippets for explanations instead of inline comments
   * [ ] Only keep comments that are essential to the code's functionality
-* [ ] Common Syntax Errors to Avoid:
+* [ ] Common Errors to Avoid:
   * [ ] Using `range="5-10"` when the intended selection is the named snippet marker `id="snippet_name"`
   * [ ] Using `name="snippet_name"` instead of `id="snippet_name"`
   * [ ] Mixing old [!code-csharp[]] syntax with new triple-colon syntax.  Use triple-colon syntax.
   * [ ] Using absolute line numbers in highlight="" instead of relative to snippet
   * [ ] Using #region/#endregion in .cs files instead of // <snippet_name> format
-* [ ] Version-Specific Considerations:
-  * [ ] Create separate snippet files for different .NET versions (3.x, 6.0, 8.0, 9.0+)
-  * [ ] Ensure examples use appropriate syntax for the target version
-  * [ ] Reference the correct version-specific snippet file in markdown
 
 ### 2. Code Build and Testing Requirements
+
 * [ ] Ensure all code samples build successfully against the targeted .NET version
-* [ ] Include necessary using statements in code samples
-* [ ] When you're assigned an issue involving code changes, after you've completed your work and the workflows (status checks) have run, ensure there are no build warnings under the OpenPublishing.Build status check
+* [ ] Include necessary using directives in code samples
 * [ ] Use `#nullable enable` in C# code samples that use nullable reference types
-* [ ] For Minimal API examples, use the latest patterns including group-based routing where appropriate
+* [ ] For Minimal API examples, use the latest patterns, including group-based routing, where appropriate
 * [ ] For code samples targeting preview versions:
   * [ ] Clearly indicate in comments or surrounding documentation that the code targets a preview version
   * [ ] Provide fallback examples for current stable versions when possible
 
 ### 3. ASP.NET Core Code-Specific Guidelines
+
 * [ ] Use the latest supported version for examples unless otherwise specified
 * [ ] Include differences between Minimal API and controller-based approaches when relevant
 * [ ] For middleware content and examples, use the middleware class approach

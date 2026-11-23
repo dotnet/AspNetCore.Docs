@@ -4,7 +4,6 @@ ai-usage: ai-assisted
 description: Learn how to map claims, perform claims transformations, and customize claims in ASP.NET Core apps.
 monikerRange: '>= aspnetcore-3.1'
 ms.date: 10/26/2026
-uid: security/authentication/claims
 
 # customer intent: As an ASP.NET developer, I want to work with claims in my ASP.NET Core app, so I can map claims, do transformations, and make customizations.
 ---
@@ -20,7 +19,7 @@ This article describes how to configure and map claims by using an [OpenID Conne
 
 * Set name and role claims
 * Reset the claims namespaces
-* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A> method
+* Customize and extend the claims with the <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*> method
 
 ## Map claims with OpenID Connect authentication
 
@@ -44,6 +43,12 @@ Another way to get the user claims is to use the OpenID Connect User Info API. T
 :::code language="csharp" source="~/release-notes/aspnetcore-9/samples/PAR/Program.cs" id="snippet_1" highlight="8-99":::
 
 To ensure authentication succeeds only if PAR is used, use the [PushedAuthorizationBehavior.Require](xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.PushedAuthorizationBehavior) enum instead. This change also introduces a new <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents.OnPushAuthorization> event to <xref:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectEvents>, which can be used to customize the pushed authorization request or handle it manually. For more information, see the [API proposal in GitHub dotnet/aspnetcore issue #51686](https://github.com/dotnet/aspnetcore/issues/51686) - _Support for Pushed Authorization Requests in OidcHandler_.
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-11.0"
+
+To preserve `max_age` validation for PAR, set `max_age` in `OnRedirectToIdentityProvider`. While validation is active, changes to `max_age` in `OnPushAuthorization` are rejected unless the handler skips the push. See [OpenID Connect `max_age` validates `auth_time`](../../breaking-changes/11/openid-connect-max-age-validates-auth-time.md).
 
 :::moniker-end
 
@@ -102,12 +107,12 @@ builder.Services.AddTransient<IClaimsTransformation, MyClaimsTransformation>();
 
 Refer to the following document:
 
-[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+[Add claims to Identity using IUserClaimsPrincipalFactory](add-user-data.md#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
 -->
 
 ## Map claims from external identity providers
 
-If you want to map claims from external identity providers for your app, see [Persist other claims and tokens from external providers in ASP.NET Core](xref:security/authentication/social/additional-claims).
+If you want to map claims from external identity providers for your app, see [Persist other claims and tokens from external providers in ASP.NET Core](social/additional-claims.md).
 
 :::moniker-end
 
@@ -119,7 +124,7 @@ This article covers the following areas:
 * How to configure and map claims using an [OpenID Connect](https://openid.net/developers/how-connect-works/) client
 * Set the name and role claim
 * Reset the claims namespaces
-* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync%2A>
+* Customize, extend the claims using <xref:Microsoft.AspNetCore.Authentication.IClaimsTransformation.TransformAsync*>
 
 ## Mapping claims using OpenID Connect authentication
 
@@ -244,15 +249,15 @@ public void ConfigureServices(IServiceCollection services)
 
 ## Extend or add custom claims in ASP.NET Core Identity
 
-Refer to the following document:
+Refer to the following article:
 
-[Add claims to Identity using IUserClaimsPrincipalFactory](xref:security/authentication/add-user-data#add-claims-to-identity-using-iuserclaimsprincipalfactoryapplicationuser)
+[Extend the sign-in process with an MFA claim](mfa.md#extend-the-sign-in-process-with-an-mfa-claim)
 
 ## Map claims from external identity providers
 
 Refer to the following document:
 
-[Persist additional claims and tokens from external providers in ASP.NET Core](xref:security/authentication/social/additional-claims)
+[Persist additional claims and tokens from external providers in ASP.NET Core](social/additional-claims.md)
 
 :::moniker-end
 

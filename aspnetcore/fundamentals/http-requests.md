@@ -3,7 +3,6 @@ title: HTTP requests with IHttpClientFactory - ASP.NET Core
 description: Learn about using the IHttpClientFactory interface to manage logical HttpClient instances in ASP.NET Core.
 monikerRange: '>= aspnetcore-2.1'
 ms.date: 10/08/2026
-uid: fundamentals/http-requests
 
 # customer intent: As an ASP.NET developer, I want to use the IHttpClientFactory interface in ASP.NET Core, so I can manage logical HttpClient instances.
 ---
@@ -44,13 +43,13 @@ Register `IHttpClientFactory` by calling the `AddHttpClient` method in the _Prog
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientBasic" highlight="4":::
 
-An `IHttpClientFactory` can be requested by using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested by using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Pages/Consumption/Basic.cshtml.cs" id="snippet_Class" highlight="5-6,23":::
 
 In the example, the call to `IHttpClientFactory` is a good way to refactor an existing app. This approach has no effect on how `HttpClient` is used.
 
-In scenarios where `HttpClient` instances are created in an existing app, replace the occurrences with calls to the <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
+In scenarios where `HttpClient` instances are created in an existing app, replace the occurrences with calls to the <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
@@ -70,7 +69,7 @@ In the code snippet, the client is configured with:
 
 #### CreateClient method
 
-For each call to the <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>:
+For each call to the <xref:System.Net.Http.IHttpClientFactory.CreateClient*>:
 
 * A new instance of `HttpClient` is created.
 * The configuration action is called.
@@ -101,7 +100,7 @@ In the code snippet:
 
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetCoreDocsBranches` method encapsulates code to retrieve docs GitHub branches.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in the _Program.cs_ file to register the `GitHubService` typed client class:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> in the _Program.cs_ file to register the `GitHubService` typed client class:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientTyped":::
 
@@ -120,7 +119,7 @@ The configuration for a typed client can also be specified during its registrati
 
 ### Generated clients
 
-The `IHttpClientFactory` interface can be used in combination with third-party libraries such as [Refit](https://github.com/reactiveui/refit). Refit is a REST library for .NET that converts REST APIs into live interfaces. Call the `AddRefitClient` method to generate a dynamic implementation of an interface. The method uses `HttpClient` to make the external HTTP calls.
+The `IHttpClientFactory` interface can be used in combination with third-party libraries such as [Refit](https://github.com/reactiveui/refit). Refit is a REST library for .NET that converts C# interfaces into HTTP clients using source generation at compile time. Call the `AddRefitClient` method to register the interface as a typed `HttpClient` for making external HTTP calls.
 
 A custom interface represents the external API:
 
@@ -153,8 +152,8 @@ In the preceding code, the `CreateItemAsync` method:
 
 * Serializes the `TodoItem` parameter to JSON by using `System.Text.Json`.
 * Creates an instance of <xref:System.Net.Http.StringContent> to package the serialized JSON for sending in the HTTP request body.
-* Calls the <xref:System.Net.Http.HttpClient.PostAsync%2A> to send the JSON content to the specified URL. The value is a relative URL that is added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
-* Calls the <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> to throw an exception if the response status code doesn't indicate success.
+* Calls the <xref:System.Net.Http.HttpClient.PostAsync*> to send the JSON content to the specified URL. The value is a relative URL that is added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Calls the <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode*> to throw an exception if the response status code doesn't indicate success.
 
 `HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
 
@@ -162,13 +161,13 @@ The following example shows an HTTP PUT request:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/TodoClient.cs" id="snippet_PUT":::
 
-The code snippet is similar to the POST example. The `SaveItemAsync` method calls the <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
+The code snippet is similar to the POST example. The `SaveItemAsync` method calls the <xref:System.Net.Http.HttpClient.PutAsync*> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/TodoClient.cs" id="snippet_DELETE":::
 
-In the code snippet, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
+In the code snippet, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync*>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
 To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
@@ -183,17 +182,17 @@ To learn more about using different HTTP verbs with `HttpClient`, see <xref:Syst
 To create a delegating handler:
 
 * Derive from the <xref:System.Net.Http.DelegatingHandler>.
-* Override the <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
+* Override the <xref:System.Net.Http.DelegatingHandler.SendAsync*>. Execute code before passing the request to the next handler in the pipeline:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Handlers/ValidateHeaderHandler.cs" id="snippet_Class":::
 
 The code snippet checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, the code returns the <xref:System.Net.HttpStatusCode.BadRequest> status code.
 
-More than one handler can be added to the configuration for an `HttpClient` instance by using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A>:
+More than one handler can be added to the configuration for an `HttpClient` instance by using the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*>:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpMessageHandler":::
 
-In the code snippet, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. After registration, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the code snippet, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. After registration, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -225,7 +224,7 @@ Use one of the following approaches to share per-request state with message hand
 
 * Pass data into the handler by using the <xref:System.Net.Http.HttpRequestMessage.Options>.
 * Use the <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
-* Create a custom <xref:System.Threading.AsyncLocal%601> storage object for passing the data.
+* Create a custom <xref:System.Threading.AsyncLocal`1> storage object for passing the data.
 
 ## Use Polly-based handlers
 
@@ -235,7 +234,7 @@ Extension methods are provided to enable the use of Polly policies with configur
 
 ### Handle transient faults
 
-Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> allows a policy to be defined to handle transient errors. Policies configured with the `AddTransientHttpErrorPolicy` method handle the following responses:
+Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> allows a policy to be defined to handle transient errors. Policies configured with the `AddTransientHttpErrorPolicy` method handle the following responses:
 
 * <xref:System.Net.Http.HttpRequestException>
 * HTTP 5xx
@@ -249,7 +248,7 @@ In the code snippet, a `WaitAndRetryAsync` policy is defined. Failed requests ar
 
 ### Dynamically select policies
 
-Extension methods are provided to add Polly-based handlers, for example, the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
+Extension methods are provided to add Polly-based handlers, for example, the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientPollyDynamic":::
 
@@ -263,7 +262,7 @@ It's common practice to nest Polly policies:
 
 This example adds two handlers:
 
-* The first handler uses the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> to add a retry policy. Failed requests are retried up to three times.
+* The first handler uses the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> to add a retry policy. Failed requests are retried up to three times.
 
 * The second `AddTransientHttpErrorPolicy` call adds a circuit breaker policy. Further external requests are blocked for 30 seconds if five failed attempts occur sequentially. Circuit breaker policies are stateful. All calls through this client share the same circuit state.
 
@@ -273,7 +272,7 @@ An approach to managing regularly used policies is to define them once and regis
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Snippets/Program.cs" id="snippet_AddHttpClientPollyRegistry":::
 
-The code snippet adds two policies to the Polly registry, `Regular` and `Long`. The code calls the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> to configure individual named clients to use these policies from the Polly registry.
+The code snippet adds two policies to the Polly registry, `Regular` and `Long`. The code calls the <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> to configure individual named clients to use these policies from the Polly registry.
 
 For more information on `IHttpClientFactory` and Polly integrations, see the [Polly wiki](https://github.com/App-vNext/Polly/wiki/Polly-and-HttpClientFactory).
 
@@ -289,7 +288,7 @@ The default handler lifetime is 2 minutes. The default value can be overridden o
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientHandlerLifetime":::
 
-`HttpClient` instances can generally be treated as .NET objects that **don't** require disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
+`HttpClient` instances can generally be treated as .NET objects that **don't** require disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
@@ -327,7 +326,7 @@ Including the name of the client in the log category enables log filtering for s
 
 It might be necessary to control the configuration of the inner `HttpMessageHandler` used by a client.
 
-An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
+An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientConfigureHttpMessageHandler":::
 
@@ -340,7 +339,7 @@ For apps that require cookies, consider:
 * Disabling automatic cookie handling
 * Avoiding `IHttpClientFactory`
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
 
 :::code language="csharp" source="http-requests/samples/6.x/HttpRequestsSample/Program.cs" id="snippet_AddHttpClientNoAutomaticCookies":::
 
@@ -353,7 +352,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> and `GitHubService` are registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> and `GitHubService` are registered in the [Generic Host's](host/generic-host.md) service container.
 * `GitHubService` is requested from DI, which in-turn requests an instance of `IHttpClientFactory`.
 * `GitHubService` uses `IHttpClientFactory` to create an instance of `HttpClient`, which it uses to retrieve docs GitHub branches.
 
@@ -384,7 +383,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -405,11 +404,11 @@ The best approach depends upon the app's requirements.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
-An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
-Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no effect on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
+Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no effect on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
@@ -429,7 +428,7 @@ In the preceding code the client is configured with:
 
 #### CreateClient
 
-Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
+Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient*> is called:
 
 * A new instance of `HttpClient` is created.
 * The configuration action is called.
@@ -466,7 +465,7 @@ The preceding code can be written as:
 -->
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Startup.ConfigureServices` to register a typed client class:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> in `Startup.ConfigureServices` to register a typed client class:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet3":::
 
@@ -563,8 +562,8 @@ In the preceding code, the `CreateItemAsync` method:
 
 * Serializes the `TodoItem` parameter to JSON using `System.Text.Json`. This uses an instance of <xref:System.Text.Json.JsonSerializerOptions> to configure the serialization process.
 * Creates an instance of <xref:System.Net.Http.StringContent> to package the serialized JSON for sending in the HTTP request's body.
-* Calls <xref:System.Net.Http.HttpClient.PostAsync%2A> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
-* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> to throw an exception if the response status code doesn't indicate success.
+* Calls <xref:System.Net.Http.HttpClient.PostAsync*> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode*> to throw an exception if the response status code doesn't indicate success.
 
 `HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
 
@@ -572,13 +571,13 @@ The following example shows an HTTP PUT request:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_PUT":::
 
-The preceding code is similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
+The preceding code is similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync*> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_DELETE":::
 
-In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
+In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync*>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
 To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
@@ -598,17 +597,17 @@ To learn more about using different HTTP verbs with `HttpClient`, see <xref:Syst
 To create a delegating handler:
 
 * Derive from <xref:System.Net.Http.DelegatingHandler>.
-* Override <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
+* Override <xref:System.Net.Http.DelegatingHandler.SendAsync*>. Execute code before passing the request to the next handler in the pipeline:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs" id="snippet1":::
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
-More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A?displayProperty=fullName>:
+More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
-In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -636,9 +635,9 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options%2A?displayProperty=nameWithType>.
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Options?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
-* Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
+* Create a custom <xref:System.Threading.AsyncLocal`1> storage object to pass the data.
 
 ## Use Polly-based handlers
 
@@ -648,7 +647,7 @@ Extension methods are provided to enable the use of Polly policies with configur
 
 ### Handle transient faults
 
-Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> allows a policy to be defined to handle transient errors. Policies configured with `AddTransientHttpErrorPolicy` handle the following responses:
+Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> allows a policy to be defined to handle transient errors. Policies configured with `AddTransientHttpErrorPolicy` handle the following responses:
 
 * <xref:System.Net.Http.HttpRequestException>
 * HTTP 5xx
@@ -662,7 +661,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 ### Dynamically select policies
 
-Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
+Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
 
@@ -677,7 +676,7 @@ It's common to nest Polly policies:
 In the preceding example:
 
 * Two handlers are added.
-* The first handler uses <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> to add a retry policy. Failed requests are retried up to three times.
+* The first handler uses <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> to add a retry policy. Failed requests are retried up to three times.
 * The second `AddTransientHttpErrorPolicy` call adds a circuit breaker policy. Further external requests are blocked for 30 seconds if five failed attempts occur sequentially. Circuit breaker policies are stateful. All calls through this client share the same circuit state.
 
 ### Add policies from the Polly registry
@@ -687,7 +686,7 @@ An approach to managing regularly used policies is to define them once and regis
 In the following code:
 
 * The "regular" and "long" policies are added.
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> adds the "regular" and "long" policies from the registry.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
 
@@ -705,7 +704,7 @@ The default handler lifetime is two minutes. The default value can be overridden
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs" id="snippet1":::
 
-`HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
+`HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
@@ -734,7 +733,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 * Disabling automatic cookie handling
 * Avoiding `IHttpClientFactory`
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet13":::
 
@@ -754,7 +753,7 @@ Including the name of the client in the log category enables log filtering for s
 
 It might be necessary to control the configuration of the inner `HttpMessageHandler` used by a client.
 
-An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
+An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs" id="snippet1":::
 
@@ -767,7 +766,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
@@ -802,7 +801,7 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances. Automatic management avoids common DNS (Domain Name System) problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample)).
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample)).
 
 The sample code in this topic version uses <xref:System.Text.Json> to deserialize JSON content returned in HTTP responses. For samples that use `Json.NET` and `ReadAsAsync<T>`, use the version selector to select a 2.x version of this topic.
 
@@ -823,11 +822,11 @@ The best approach depends upon the app's requirements.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet1" highlight="13":::
 
-An `IHttpClientFactory` can be requested using [dependency injection (DI)](xref:fundamentals/dependency-injection). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
+An `IHttpClientFactory` can be requested using [dependency injection (DI)](dependency-injection.md). The following code uses `IHttpClientFactory` to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
-Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no effect on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
+Using `IHttpClientFactory` like in the preceding example is a good way to refactor an existing app. It has no effect on how `HttpClient` is used. In places where `HttpClient` instances are created in an existing app, replace those occurrences with calls to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
@@ -847,7 +846,7 @@ In the preceding code the client is configured with:
 
 #### CreateClient
 
-Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A> is called:
+Each time <xref:System.Net.Http.IHttpClientFactory.CreateClient*> is called:
 
 * A new instance of `HttpClient` is created.
 * The configuration action is called.
@@ -880,7 +879,7 @@ In the preceding code:
 
 API-specific methods can be created that expose `HttpClient` functionality. For example, the `GetAspNetDocsIssues` method encapsulates code to retrieve open issues.
 
-The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> in `Startup.ConfigureServices` to register a typed client class:
+The following code calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> in `Startup.ConfigureServices` to register a typed client class:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet3":::
 
@@ -977,8 +976,8 @@ In the preceding code, the `CreateItemAsync` method:
 
 * Serializes the `TodoItem` parameter to JSON using `System.Text.Json`. This uses an instance of <xref:System.Text.Json.JsonSerializerOptions> to configure the serialization process.
 * Creates an instance of <xref:System.Net.Http.StringContent> to package the serialized JSON for sending in the HTTP request's body.
-* Calls <xref:System.Net.Http.HttpClient.PostAsync%2A> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
-* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode%2A> to throw an exception if the response status code doesn't indicate success.
+* Calls <xref:System.Net.Http.HttpClient.PostAsync*> to send the JSON content to the specified URL. This is a relative URL that gets added to the [HttpClient.BaseAddress](xref:System.Net.Http.HttpClient.BaseAddress).
+* Calls <xref:System.Net.Http.HttpResponseMessage.EnsureSuccessStatusCode*> to throw an exception if the response status code doesn't indicate success.
 
 `HttpClient` also supports other types of content. For example, <xref:System.Net.Http.MultipartContent> and <xref:System.Net.Http.StreamContent>. For a complete list of supported content, see <xref:System.Net.Http.HttpContent>.
 
@@ -986,13 +985,13 @@ The following example shows an HTTP PUT request:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_PUT":::
 
-The preceding code is similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync%2A> instead of `PostAsync`.
+The preceding code is similar to the POST example. The `SaveItemAsync` method calls <xref:System.Net.Http.HttpClient.PutAsync*> instead of `PostAsync`.
 
 The following example shows an HTTP DELETE request:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpRequestsSample/Models/TodoClient.cs" id="snippet_DELETE":::
 
-In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync%2A>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
+In the preceding code, the `DeleteItemAsync` method calls <xref:System.Net.Http.HttpClient.DeleteAsync*>. Because HTTP DELETE requests typically contain no body, the `DeleteAsync` method doesn't provide an overload that accepts an instance of `HttpContent`.
 
 To learn more about using different HTTP verbs with `HttpClient`, see <xref:System.Net.Http.HttpClient>.
 
@@ -1012,17 +1011,17 @@ To learn more about using different HTTP verbs with `HttpClient`, see <xref:Syst
 To create a delegating handler:
 
 * Derive from <xref:System.Net.Http.DelegatingHandler>.
-* Override <xref:System.Net.Http.DelegatingHandler.SendAsync%2A>. Execute code before passing the request to the next handler in the pipeline:
+* Override <xref:System.Net.Http.DelegatingHandler.SendAsync*>. Execute code before passing the request to the next handler in the pipeline:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Handlers/ValidateHeaderHandler.cs" id="snippet1":::
 
 The preceding code checks if the `X-API-KEY` header is in the request. If `X-API-KEY` is missing, <xref:System.Net.HttpStatusCode.BadRequest> is returned.
 
-More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A?displayProperty=fullName>:
+More than one handler can be added to the configuration for an `HttpClient` with <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*?displayProperty=fullName>:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup2.cs" id="snippet1":::
 
-In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the type for the handler.
+In the preceding code, `ValidateHeaderHandler` is registered with DI as a transient service. A delegating handler **must** be registered in DI as a transient service, rather than singleton or scoped. Delegating handlers can't be reused across multiple HTTP client pipelines, and registering a handler as a singleton results in an <xref:System.InvalidOperationException> when the handler is reused. Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the type for the handler.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -1050,9 +1049,9 @@ Handlers can depend upon services of any scope. Services that handlers depend up
 
 Use one of the following approaches to share per-request state with message handlers:
 
-* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties%2A?displayProperty=nameWithType>.
+* Pass data into the handler using <xref:System.Net.Http.HttpRequestMessage.Properties?displayProperty=nameWithType>.
 * Use <xref:Microsoft.AspNetCore.Http.IHttpContextAccessor> to access the current request.
-* Create a custom <xref:System.Threading.AsyncLocal%601> storage object to pass the data.
+* Create a custom <xref:System.Threading.AsyncLocal`1> storage object to pass the data.
 
 ## Use Polly-based handlers
 
@@ -1062,7 +1061,7 @@ Extension methods are provided to enable the use of Polly policies with configur
 
 ### Handle transient faults
 
-Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> allows a policy to be defined to handle transient errors. Policies configured with `AddTransientHttpErrorPolicy` handle the following responses:
+Faults typically occur when external HTTP calls are transient. <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> allows a policy to be defined to handle transient errors. Policies configured with `AddTransientHttpErrorPolicy` handle the following responses:
 
 * <xref:System.Net.Http.HttpRequestException>
 * HTTP 5xx
@@ -1076,7 +1075,7 @@ In the preceding code, a `WaitAndRetryAsync` policy is defined. Failed requests 
 
 ### Dynamically select policies
 
-Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler%2A>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
+Extension methods are provided to add Polly-based handlers, for example, <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandler*>. The following `AddPolicyHandler` overload inspects the request to decide which policy to apply:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup.cs" id="snippet8":::
 
@@ -1091,7 +1090,7 @@ It's common to nest Polly policies:
 In the preceding example:
 
 * Two handlers are added.
-* The first handler uses <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy%2A> to add a retry policy. Failed requests are retried up to three times.
+* The first handler uses <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddTransientHttpErrorPolicy*> to add a retry policy. Failed requests are retried up to three times.
 * The second `AddTransientHttpErrorPolicy` call adds a circuit breaker policy. Further external requests are blocked for 30 seconds if five failed attempts occur sequentially. Circuit breaker policies are stateful. All calls through this client share the same circuit state.
 
 ### Add policies from the Polly registry
@@ -1101,7 +1100,7 @@ An approach to managing regularly used policies is to define them once and regis
 In the following code:
 
 * The "regular" and "long" policies are added.
-* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry%2A> adds the "regular" and "long" policies from the registry.
+* <xref:Microsoft.Extensions.DependencyInjection.PollyHttpClientBuilderExtensions.AddPolicyHandlerFromRegistry*> adds the "regular" and "long" policies from the registry.
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup4.cs" id="snippet1":::
 
@@ -1119,7 +1118,7 @@ The default handler lifetime is two minutes. The default value can be overridden
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup5.cs" id="snippet1":::
 
-`HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
+`HttpClient` instances can generally be treated as .NET objects **not** requiring disposal. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
@@ -1148,7 +1147,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 * Disabling automatic cookie handling
 * Avoiding `IHttpClientFactory`
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet13":::
 
@@ -1168,7 +1167,7 @@ Including the name of the client in the log category enables log filtering for s
 
 It might be necessary to control the configuration of the inner `HttpMessageHandler` used by a client.
 
-An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
+An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 :::code language="csharp" source="http-requests/samples/3.x/HttpClientFactorySample/Startup6.cs" id="snippet1":::
 
@@ -1181,7 +1180,7 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
 * `Main` creates a scope to execute the service's `GetPage` method and write the first 500 characters of the webpage content to the console.
 
@@ -1216,11 +1215,11 @@ An <xref:System.Net.Http.IHttpClientFactory> can be registered and used to confi
 * Manages the pooling and lifetime of underlying `HttpClientMessageHandler` instances to avoid common DNS problems that occur when manually managing `HttpClient` lifetimes.
 * Adds a configurable logging experience (via `ILogger`) for all requests sent through clients created by the factory.
 
-[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+[View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample))
 
 ## Prerequisites
 
-Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](xref:fundamentals/metapackage-app) already include the `Microsoft.Extensions.Http` package.
+Projects targeting .NET Framework require installation of the [Microsoft.Extensions.Http](https://www.nuget.org/packages/Microsoft.Extensions.Http/) NuGet package. Projects that target .NET Core and reference the [Microsoft.AspNetCore.App metapackage](metapackage-app.md) already include the `Microsoft.Extensions.Http` package.
 
 ## Consumption patterns
 
@@ -1239,11 +1238,11 @@ The `IHttpClientFactory` can be registered by calling the `AddHttpClient` extens
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet1":::
 
-Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](xref:fundamentals/dependency-injection). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
+Once registered, code can accept an `IHttpClientFactory` anywhere services can be injected with [dependency injection (DI)](dependency-injection.md). The `IHttpClientFactory` can be used to create an `HttpClient` instance:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Pages/BasicUsage.cshtml.cs" id="snippet1" highlight="9-12,21":::
 
-Using `IHttpClientFactory` in this fashion is a good way to refactor an existing app. It has no effect on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to <xref:System.Net.Http.IHttpClientFactory.CreateClient%2A>.
+Using `IHttpClientFactory` in this fashion is a good way to refactor an existing app. It has no effect on the way `HttpClient` is used. In places where `HttpClient` instances are currently created, replace those occurrences with a call to <xref:System.Net.Http.IHttpClientFactory.CreateClient*>.
 
 ### Named clients
 
@@ -1276,7 +1275,7 @@ A typed client accepts an `HttpClient` parameter in its constructor:
 
 In the preceding code, the configuration is moved into the typed client. The `HttpClient` object is exposed as a `public` property. It's possible to define API-specific methods that expose `HttpClient` functionality. The `GetAspNetDocsIssues` method encapsulates the code needed to query for and parse out the latest open issues from a GitHub repository.
 
-To register a typed client, the generic <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> extension method can be used within `Startup.ConfigureServices`, specifying the typed client class:
+To register a typed client, the generic <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient*> extension method can be used within `Startup.ConfigureServices`, specifying the typed client class:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet3":::
 
@@ -1368,7 +1367,7 @@ In the preceding code, the `ValidateHeaderHandler` is registered with DI. The ha
 * The handler's services could be disposed before the handler goes out of scope.
 * The disposed handler services cause the handler to fail.
 
-Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler%2A> can be called, passing in the handler type.
+Once registered, <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.AddHttpMessageHandler*> can be called, passing in the handler type.
 
 Multiple handlers can be registered in the order that they should execute. Each handler wraps the next handler until the final `HttpClientHandler` executes the request:
 
@@ -1433,11 +1432,11 @@ A new `HttpClient` instance is returned each time `CreateClient` is called on th
 
 Pooling of handlers is desirable as each handler typically manages its own underlying HTTP connections. Creating more handlers than necessary can result in connection delays. Some handlers also keep connections open indefinitely, which can prevent the handler from reacting to DNS changes.
 
-The default handler lifetime is two minutes. The default value can be overridden on a per-named client basis. To override it, call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.SetHandlerLifetime%2A> on the `IHttpClientBuilder` that is returned when creating the client:
+The default handler lifetime is two minutes. The default value can be overridden on a per-named client basis. To override it, call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.SetHandlerLifetime*> on the `IHttpClientBuilder` that is returned when creating the client:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet11":::
 
-Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose%2A>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
+Disposal of the client isn't required. Disposal cancels outgoing requests and guarantees the given `HttpClient` instance can't be used after calling <xref:System.IDisposable.Dispose*>. `IHttpClientFactory` tracks and disposes resources used by `HttpClient` instances. The `HttpClient` instances can generally be treated as .NET objects not requiring disposal.
 
 Keeping a single `HttpClient` instance alive for a long duration is a common pattern used before the inception of `IHttpClientFactory`. This pattern becomes unnecessary after migrating to `IHttpClientFactory`.
 
@@ -1466,7 +1465,7 @@ The pooled `HttpMessageHandler` instances results in `CookieContainer` objects b
 * Disabling automatic cookie handling
 * Avoiding `IHttpClientFactory`
 
-Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> to disable automatic cookie handling:
+Call <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> to disable automatic cookie handling:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet13":::
 
@@ -1486,7 +1485,7 @@ Including the name of the client in the log category enables log filtering for s
 
 It might be necessary to control the configuration of the inner `HttpMessageHandler` used by a client.
 
-An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler%2A> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
+An `IHttpClientBuilder` is returned when adding named or typed clients. The <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> extension method can be used to define a delegate. The delegate is used to create and configure the primary `HttpMessageHandler` used by that client:
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactorySample/Startup.cs" id="snippet12":::
 
@@ -1499,9 +1498,9 @@ In a console app, add the following package references to the project:
 
 In the following example:
 
-* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](xref:fundamentals/host/generic-host) service container.
+* <xref:System.Net.Http.IHttpClientFactory> is registered in the [Generic Host's](host/generic-host.md) service container.
 * `MyService` creates a client factory instance from the service, which is used to create an `HttpClient`. `HttpClient` is used to retrieve a webpage.
-* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see <xref:fundamentals/dependency-injection#call-services-from-main>.
+* The service's `GetPage` method is executed to write the first 500 characters of the webpage content to the console. For more information on calling services from `Program.Main`, see [Dependency injection in ASP.NET Core](dependency-injection.md#resolve-a-service-at-app-startup).
 
 :::code language="csharp" source="http-requests/samples/2.x/HttpClientFactoryConsoleSample/Program.cs" highlight="14-15,22":::
 
@@ -1528,7 +1527,7 @@ Header propagation is a community supported middleware to propagate HTTP headers
 
 :::moniker range=">= aspnetcore-6.0"
 
-* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](xref:fundamentals/index#how-to-download-a-sample))
+* [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/fundamentals/http-requests/samples) ([how to download](index.md#how-to-download-a-sample))
 
 :::moniker-end
 

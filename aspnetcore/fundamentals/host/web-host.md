@@ -2,7 +2,6 @@
 title: ASP.NET Core Web Host
 description: Learn about Web Host in ASP.NET Core, which is responsible for app startup and lifetime management.
 ms.date: 04/22/2026
-uid: fundamentals/host/web-host
 
 # customer intent: As an ASP.NET developer, I want to explore the Web Host in ASP.NET Core, so I can configure startup and management for my web app.
 ---
@@ -12,11 +11,11 @@ uid: fundamentals/host/web-host
 
 ASP.NET Core apps configure and launch a *host*. The host is responsible for app startup and lifetime management. At a minimum, the host configures a server and a request processing pipeline. The host can also set up logging, dependency injection, and configuration.
 
-This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see <xref:migration/50-to-60#new-hosting-model>.
+This article covers the Web Host, which remains available only for backward compatibility. The ASP.NET Core templates create a <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>, which is recommended for web apps. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
 
 ## Set up a host
 
-Create a host by using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This task is typically performed in the app's entry point, the `Main` method in the _Program.cs_ file. A typical app calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method to start setting up a host:
+Create a host by using an instance of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. This task is typically performed in the app's entry point, the `Main` method in the _Program.cs_ file. A typical app calls the <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> method to start setting up a host:
 
 ```csharp
 public class Program
@@ -36,9 +35,9 @@ The code that calls `CreateDefaultBuilder` is in a method named `CreateWebHostBu
 
 The `CreateDefaultBuilder` method performs the following tasks:
 
-* Configures [Kestrel](xref:fundamentals/servers/kestrel) server as the web server by using the app's hosting configuration providers. For the Kestrel server's default options, see <xref:fundamentals/servers/kestrel/options>.
+* Configures [Kestrel](../servers/kestrel.md) server as the web server by using the app's hosting configuration providers. For the Kestrel server's default options, see [Configure options for the ASP.NET Core Kestrel web server](../servers/kestrel/options.md).
 
-* Sets the [content root](xref:fundamentals/index#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory%2A>.
+* Sets the [content root](../index.md#content-root) to the path returned by <xref:System.IO.Directory.GetCurrentDirectory*>.
 
 * Loads the [host configuration](#set-web-host-configuration-values) from the following sources:
   * Environment variables prefixed with `ASPNETCORE_` (for example, `ASPNETCORE_ENVIRONMENT`)
@@ -47,32 +46,32 @@ The `CreateDefaultBuilder` method performs the following tasks:
 * Loads the app configuration in the following order:
   * _appsettings.json_ file
   * _appsettings.{Environment}.json_ file
-  * [User secrets](xref:security/app-secrets) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
+  * [User secrets](../../security/app-secrets.md) (Loaded when the app runs in the `Development` environment by using the entry assembly.)
   * Environment variables
   * Command-line arguments
 
-* Configures [logging](xref:fundamentals/logging/index) for console and debug output. Logging includes [log filtering](xref:fundamentals/logging/index#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an _appsettings.json_ or _appsettings.{Environment}.json_ file.
+* Configures [logging](../logging/index.md) for console and debug output. Logging includes [log filtering](../logging/index.md#apply-log-filter-rules-in-code) rules specified in a Logging configuration section of an _appsettings.json_ or _appsettings.{Environment}.json_ file.
 
-* When the application runs behind IIS with the [ASP.NET Core Module](xref:host-and-deploy/aspnet-core-module), `CreateDefaultBuilder` enables [IIS Integration](xref:host-and-deploy/iis/index), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see <xref:host-and-deploy/iis/index#iis-options>.
+* When the application runs behind IIS with the [ASP.NET Core Module](../../host-and-deploy/aspnet-core-module.md), `CreateDefaultBuilder` enables [IIS Integration](../../host-and-deploy/iis/index.md), which configures the application base address and port. IIS Integration also configures the app to [capture startup errors](#capture-startup-errors). For the IIS default options, see [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md#iis-options).
 
-* Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
+* Sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true`, if the application environment is `Development`. For more information, see [Configure scope validation](#configure-scope-validation).
 
-The [content root](xref:fundamentals/index#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
+The [content root](../index.md#content-root) determines where the host searches for content files, such as MVC view files. When the app launches from the project root folder, that folder is used as the content root. This behavior is the default for [Visual Studio](https://visualstudio.microsoft.com) and the [dotnet new templates](/dotnet/core/tools/dotnet-new).
 
-For more information on app configuration, see <xref:fundamentals/configuration/index>.
+For more information on app configuration, see [Configuration in ASP.NET Core](../configuration/index.md).
 
 > [!NOTE]
 > As an alternative to using the static `CreateDefaultBuilder` method, you can create a host from <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> with ASP.NET Core 2.x.
 
-When you set up a host, you can use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure%2A> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureServices%2A> methods. If a `Startup` class is specified, it must define a `Configure` method. For more information, see <xref:fundamentals/startup>. Multiple calls to `ConfigureServices` append each other. Multiple calls to `Configure` or `UseStartup` on the `WebHostBuilder` instance replace any previous settings.
+When you set up a host, you can use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.Configure*> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.ConfigureServices*> methods. If a `Startup` class is specified, it must define a `Configure` method. For more information, see [App startup in ASP.NET Core](../startup.md). Multiple calls to `ConfigureServices` append each other. Multiple calls to `Configure` or `UseStartup` on the `WebHostBuilder` instance replace any previous settings.
 
 ### Methods for overriding the configuration
 
-You can override and augment the configuration defined by `CreateDefaultBuilder`. Use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging%2A> methods, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
+You can override and augment the configuration defined by `CreateDefaultBuilder`. Use the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration*> and <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureLogging*> methods, and other methods and extension methods of <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>.
 
 Here are some examples:
 
-* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration%2A> is used to specify other `IConfiguration` properties for the app. The following call to the `ConfigureAppConfiguration` method adds a delegate to include app configuration in the _appsettings.xml_ file. `ConfigureAppConfiguration` can be called multiple times. This configuration doesn't apply to the host (for example, server URLs or environment). For more information, see the [Host configuration values](#set-web-host-configuration-values) section.
+* <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.ConfigureAppConfiguration*> is used to specify other `IConfiguration` properties for the app. The following call to the `ConfigureAppConfiguration` method adds a delegate to include app configuration in the _appsettings.xml_ file. `ConfigureAppConfiguration` can be called multiple times. This configuration doesn't apply to the host (for example, server URLs or environment). For more information, see the [Host configuration values](#set-web-host-configuration-values) section.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -83,7 +82,7 @@ Here are some examples:
         ...
     ```
 
-* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel%2A>) to <xref:Microsoft.Extensions.Logging.LogLevel#microsoft-extensions-logging-loglevel-warning>. This setting overrides the settings in the _appsettings.Development.json_ file (`LogLevel.Debug`) and _appsettings.Production.json_ file (`LogLevel.Error`) configured by the `CreateDefaultBuilder` method. `ConfigureLogging` can be called multiple times.
+* The following `ConfigureLogging` call adds a delegate to configure the minimum logging level (<xref:Microsoft.Extensions.Logging.LoggingBuilderExtensions.SetMinimumLevel*>) to <xref:Microsoft.Extensions.Logging.LogLevel#microsoft-extensions-logging-loglevel-warning>. This setting overrides the settings in the _appsettings.Development.json_ file (`LogLevel.Debug`) and _appsettings.Production.json_ file (`LogLevel.Error`) configured by the `CreateDefaultBuilder` method. `ConfigureLogging` can be called multiple times.
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -94,7 +93,7 @@ Here are some examples:
         ...
     ```
 
-* The following call to `ConfigureKestrel` overrides the default [Limits.MaxRequestBodySize](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize%2A) of 30,000,000 bytes established when Kestrel is configured with the `CreateDefaultBuilder` method:
+* The following call to `ConfigureKestrel` overrides the default [Limits.MaxRequestBodySize](xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerLimits.MaxRequestBodySize) of 30,000,000 bytes established when Kestrel is configured with the `CreateDefaultBuilder` method:
 
     ```csharp
     WebHost.CreateDefaultBuilder(args)
@@ -110,9 +109,9 @@ The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder> instance relies on the fo
 
 * The host builder configuration, which includes environment variables that use the format `ASPNETCORE_{configurationKey}`. For example, `ASPNETCORE_ENVIRONMENT`.
 
-* Extensions, such as <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseContentRoot%2A> and <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A>. For more information, see [Override the Web Host configuration](#override-the-web-host-configuration).
+* Extensions, such as <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseContentRoot*> and <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*>. For more information, see [Override the Web Host configuration](#override-the-web-host-configuration).
 
-* The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.UseSetting%2A> method and the associated key. When you set a value with `UseSetting`, the value is set as a string, regardless of the type.
+* The <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder.UseSetting*> method and the associated key. When you set a value with `UseSetting`, the value is set as a string, regardless of the type.
 
 The host uses whichever option sets a value last. For more information, see [Override the Web Host configuration](#override-the-web-host-configuration).
 
@@ -128,7 +127,7 @@ Defines the name of the assembly that contains the entry point for the applicati
 **Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_APPLICATIONNAME`
 
-The `IWebHostEnvironment.ApplicationName` property is automatically set when the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup%2A> or <xref:Microsoft.AspNetCore.Hosting.IStartup.Configure%2A> method is called during host construction. To set the value explicitly, use the <xref:Microsoft.AspNetCore.Hosting.WebHostDefaults.ApplicationKey> field.
+The `IWebHostEnvironment.ApplicationName` property is automatically set when the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseStartup*> or <xref:Microsoft.AspNetCore.Hosting.IStartup.Configure*> method is called during host construction. To set the value explicitly, use the <xref:Microsoft.AspNetCore.Hosting.WebHostDefaults.ApplicationKey> field.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -162,7 +161,7 @@ Determines where ASP.NET Core begins searching for content files.
 **Set using**: `UseContentRoot`  
 **Environment variable**: `ASPNETCORE_CONTENTROOT`
 
-The content root is also used as the base path for the [web root](xref:fundamentals/index#web-root). If the content root path doesn't exist, the host fails to start.
+The content root is also used as the base path for the [web root](../index.md#web-root). If the content root path doesn't exist, the host fails to start.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -171,7 +170,7 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Content root](xref:fundamentals/index#content-root)
+* [Fundamentals: Content root](../index.md#content-root)
 * [Web root](#web-root)
 
 ### Detailed errors
@@ -203,7 +202,7 @@ Sets the application environment.
 
 The environment can be set to any value. Framework-defined values include `Development`, `Staging`, and `Production`. Values aren't case sensitive.
 
-By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When you use [Visual Studio](https://visualstudio.microsoft.com), environment variables can be set in the _launchSettings.json_ file. For more information, see <xref:fundamentals/environments>.
+By default, the *Environment* is read from the `ASPNETCORE_ENVIRONMENT` environment variable. When you use [Visual Studio](https://visualstudio.microsoft.com), environment variables can be set in the _launchSettings.json_ file. For more information, see [ASP.NET Core runtime environments](../environments.md).
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -237,7 +236,7 @@ Sets the HTTPS port for redirection if you get a non-HTTPS connection.
 **Set using**: `UseSetting`  
 **Environment variable**: `ASPNETCORE_HTTPS_PORT`
 
-This setting is used in [enforcing HTTPS](xref:security/enforcing-ssl). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
+This setting is used in [enforcing HTTPS](../../security/enforcing-ssl.md). This setting doesn't cause the server to listen on the specified port. That is, it's possible to accidentally redirect requests to an unused port.
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -276,7 +275,7 @@ WebHost.CreateDefaultBuilder(args)
 
 ### Prevent hosting startup
 
-Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see <xref:fundamentals/configuration/platform-specific-configuration>.
+Prevents the automatic loading of hosting startup assemblies, including hosting startup assemblies configured by the app's assembly. For more information, see [Use hosting startup assemblies in ASP.NET Core](platform-specific-configuration.md).
 
 **Key**: `preventHostingStartup`  
 **Type**: *bool* (`true` or `1`)  
@@ -306,7 +305,7 @@ WebHost.CreateDefaultBuilder(args)
     .UseUrls("http://*:5000;http://localhost:5001;https://hostname:5002")
 ```
 
-Kestrel has its own endpoint configuration API. For more information, see <xref:fundamentals/servers/kestrel/endpoints>.
+Kestrel has its own endpoint configuration API. For more information, see [Configure endpoints for Kestrel web server](../servers/kestrel/endpoints.md).
 
 ### Shutdown timeout
 
@@ -318,11 +317,11 @@ Specifies the amount of time to wait for the Web Host to shut down.
 **Set using**: `UseShutdownTimeout`  
 **Environment variable**: `ASPNETCORE_SHUTDOWNTIMEOUTSECONDS`
 
-Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseShutdownTimeout%2A> extension method takes a <xref:System.TimeSpan> parameter.
+Although the key accepts an *int* with `UseSetting` (for example, `.UseSetting(WebHostDefaults.ShutdownTimeoutKey, "10")`), the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseShutdownTimeout*> extension method takes a <xref:System.TimeSpan> parameter.
 
 During the timeout period, the Web Host:
 
-* Triggers <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStopping%2A>.
+* Triggers <xref:Microsoft.AspNetCore.Hosting.IApplicationLifetime.ApplicationStopping>.
 * Attempts to stop hosted services, logging any errors for services that fail to stop.
 
 If the timeout period expires before all hosted services stop, any remaining active services stop when the app shuts down. The services stop even if they're still processing. If services require more time to stop, increase the timeout.
@@ -373,14 +372,14 @@ WebHost.CreateDefaultBuilder(args)
 
 For more information, see:
 
-* [Fundamentals: Web root](xref:fundamentals/index#web-root)
+* [Fundamentals: Web root](../index.md#web-root)
 * [Content root](#content-root)
 
 ## Override the Web Host configuration
 
-Use application [configuration in ASP.NET Core](xref:fundamentals/configuration/index) to configure the Web Host.
+Use application [configuration in ASP.NET Core](../configuration/index.md) to configure the Web Host.
 
-In the following example, host configuration is optionally specified in a _hostsettings.json_ file. Command-line arguments can override any configuration loaded from the _hostsettings.json_ file. The built configuration (in config) is used to configure the host with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> method. `IWebHostBuilder` configuration is added to the application configuration, but the converse isn't true. The `ConfigureAppConfiguration` method doesn't affect the `IWebHostBuilder` configuration.
+In the following example, host configuration is optionally specified in a _hostsettings.json_ file. Command-line arguments can override any configuration loaded from the _hostsettings.json_ file. The built configuration (in config) is used to configure the host with the <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> method. `IWebHostBuilder` configuration is added to the application configuration, but the converse isn't true. The `ConfigureAppConfiguration` method doesn't affect the `IWebHostBuilder` configuration.
 
 Overriding the configuration provided by `UseUrls` with the _hostsettings.json_ config followed by the command-line argument config:
 
@@ -421,7 +420,7 @@ The _hostsettings.json_ file contents:
 ```
 
 > [!NOTE]
-> The <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration%2A> method only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting the `reloadOnChange: true` property for JSON, INI, and XML settings files have no effect.
+> The <xref:Microsoft.AspNetCore.Hosting.HostingAbstractionsWebHostBuilderExtensions.UseConfiguration*> method only copies keys from the provided `IConfiguration` to the host builder configuration. Therefore, setting the `reloadOnChange: true` property for JSON, INI, and XML settings files have no effect.
 
 To specify the host run on a particular URL, the desired value can be passed in from a command prompt when executing [dotnet run](/dotnet/core/tools/dotnet-run). The command-line argument overrides the `urls` value from the _hostsettings.json_ file, and the server listens on port 8080:
 
@@ -473,7 +472,7 @@ using (host)
 }
 ```
 
-The app can initialize and start a new host with the preconfigured defaults of the `CreateDefaultBuilder` method by using a static convenience method. These methods start the server without console output and use the <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.WaitForShutdown%2A> method, which waits for a break (<kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows)/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM).
+The app can initialize and start a new host with the preconfigured defaults of the `CreateDefaultBuilder` method by using a static convenience method. These methods start the server without console output and use the <xref:Microsoft.AspNetCore.Hosting.WebHostExtensions.WaitForShutdown*> method, which waits for a break (<kbd>Ctrl</kbd>+<kbd>C</kbd>/SIGINT (Windows)/SIGINT (Windows), <kbd>Ctrl</kbd>+<kbd>C</kbd> (macOS), or SIGTERM).
 
 ### Start(RequestDelegate app)
 
@@ -604,7 +603,7 @@ Produces the same result as [StartWith(Action\<IApplicationBuilder> app)](#start
 
 ## Use the IWebHostEnvironment interface
 
-The `IWebHostEnvironment` interface provides information about the app's web hosting environment. Use [constructor injection](xref:fundamentals/dependency-injection) to obtain the `IWebHostEnvironment` instance, and then access its properties and extension methods:
+The `IWebHostEnvironment` interface provides information about the app's web hosting environment. Use [constructor injection](../dependency-injection.md) to obtain the `IWebHostEnvironment` instance, and then access its properties and extension methods:
 
 ```csharp
 public class CustomFileReader
@@ -624,7 +623,7 @@ public class CustomFileReader
 }
 ```
 
-A [convention-based approach](xref:fundamentals/environments#environment-based-startup-class-and-methods) can be used to configure the app at startup based on the environment. Alternatively, inject the `IWebHostEnvironment` instance into the `Startup` constructor for use in the `ConfigureServices` method:
+A [convention-based approach](../environments.md#environment-specific-startup-class) can be used to configure the app at startup based on the environment. Alternatively, inject the `IWebHostEnvironment` instance into the `Startup` constructor for use in the `ConfigureServices` method:
 
 ```csharp
 public class Startup
@@ -653,7 +652,7 @@ public class Startup
 ```
 
 > [!NOTE]
-> In addition to the `IsDevelopment` extension method, `IWebHostEnvironment` offers the `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. For more information, see <xref:fundamentals/environments>.
+> In addition to the `IsDevelopment` extension method, `IWebHostEnvironment` offers the `IsStaging`, `IsProduction`, and `IsEnvironment(string environmentName)` methods. For more information, see [ASP.NET Core runtime environments](../environments.md).
 
 The `IWebHostEnvironment` service can also be injected directly into the `Configure` method for setting up the processing pipeline:
 
@@ -675,7 +674,7 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
-`IWebHostEnvironment` can be injected into the `Invoke` method when creating custom [middleware](xref:fundamentals/middleware/write):
+`IWebHostEnvironment` can be injected into the `Invoke` method when creating custom [middleware](../middleware/write.md):
 
 ```csharp
 public async Task Invoke(HttpContext context, IWebHostEnvironment env)
@@ -758,18 +757,18 @@ public class MyClass
 
 ## Configure scope validation
 
-The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder%2A> method sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes%2A> property to `true` if the app's environment is `Development`.
+The <xref:Microsoft.AspNetCore.WebHost.CreateDefaultBuilder*> method sets the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions.ValidateScopes> property to `true` if the app's environment is `Development`.
 
 When `ValidateScopes` is set to `true`, the default service provider performs checks to verify:
 
 * Scoped services aren't directly or indirectly resolved from the root service provider.
 * Scoped services aren't directly or indirectly injected into singletons.
 
-The root service provider is created when the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider%2A> method is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
+The root service provider is created when the <xref:Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider*> method is called. The root service provider's lifetime corresponds to the app/server's lifetime when the provider starts with the app and is disposed when the app shuts down.
 
 The container that created the scoped services also disposes the services. If a scoped service is created in the root container, the service's lifetime is effectively promoted to singleton. The root container disposes the service only when the app/server is shut down. Validating service scopes catches these situations when `BuildServiceProvider` is called.
 
-To always validate scopes, including in the `Production` environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> object with the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider%2A> method on the host builder:
+To always validate scopes, including in the `Production` environment, configure the <xref:Microsoft.Extensions.DependencyInjection.ServiceProviderOptions> object with the <xref:Microsoft.AspNetCore.Hosting.WebHostBuilderExtensions.UseDefaultServiceProvider*> method on the host builder:
 
 ```csharp
 WebHost.CreateDefaultBuilder(args)
@@ -780,6 +779,6 @@ WebHost.CreateDefaultBuilder(args)
 
 ## Related content
 
-* <xref:host-and-deploy/iis/index>
-* <xref:host-and-deploy/linux-nginx>
-* <xref:host-and-deploy/windows-service>
+* [Host ASP.NET Core on Windows with IIS](../../host-and-deploy/iis/index.md)
+* [Host ASP.NET Core on Linux with Nginx](../../host-and-deploy/linux-nginx.md)
+* [Host ASP.NET Core in a Windows Service](../../host-and-deploy/windows-service.md)

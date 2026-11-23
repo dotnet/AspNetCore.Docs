@@ -3,8 +3,7 @@ title: Dynamically-rendered ASP.NET Core Razor components
 ai-usage: ai-assisted
 description: Learn how to use dynamically-rendered Razor components in Blazor apps.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 07/14/2026
-uid: blazor/components/dynamiccomponent
+ms.date: 11/13/2026
 ---
 # Dynamically-rendered ASP.NET Core Razor components
 
@@ -143,13 +142,13 @@ In the following example, a Razor component renders a component based on the use
 
 In the preceding example:
 
-* An <xref:System.Collections.Generic.Dictionary%602> is used to manage components to be displayed.
+* An <xref:System.Collections.Generic.Dictionary`2> is used to manage components to be displayed.
 * Names serve as the dictionary keys and are provided as selection options.
 * Component types are stored as dictionary values using the [`typeof` operator](/dotnet/csharp/language-reference/operators/type-testing-and-cast#typeof-operator).
 
 ## Pass parameters
 
-If dynamically-rendered components have [component parameters](xref:blazor/components/index#component-parameters), pass them into the <xref:Microsoft.AspNetCore.Components.DynamicComponent> as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
+If dynamically-rendered components have [component parameters](index.md#component-parameters), pass them into the <xref:Microsoft.AspNetCore.Components.DynamicComponent> as an `IDictionary<string, object>`. The `string` is the name of the parameter, and the `object` is the parameter's value.
 
 The following example configures a component metadata object (`ComponentMetadata`) to supply parameter values to dynamically-rendered components based on the type name. The example is just one of several approaches that you can adopt. Parameter data can also be provided from a web API, a database, or a method. The only requirement is that the approach returns an `IDictionary<string, object>`.
 
@@ -253,15 +252,6 @@ In the following example:
 :::moniker range=">= aspnetcore-11.0"
 
 Dictionary values for [C# union-typed parameters](/dotnet/csharp/language-reference/builtin-types/union) must be boxed as the union, not the raw case value, because an implicit conversion is only valid at compile-time.
-
-<!-- UPDATE 11.0 - Remove the NOTE at GA -->
-
-> [!NOTE]
-> During the preview of .NET 11, the following example requires the app's project file to specify the "`preview`" C# language version:
->
-> ```xml
-> <LangVersion>preview</LangVersion>
-> ```
 
 Consider the following C# union type, `SlotContent`, that accepts text, a <xref:Microsoft.AspNetCore.Components.MarkupString>, or a <xref:Microsoft.AspNetCore.Components.RenderFragment>:
 
@@ -482,7 +472,7 @@ In the following parent component example, the `ShowDTMessage` method assigns a 
 The parent component passes the callback method, `ShowDTMessage` in the parameter dictionary:
 
 * The `string` key is the callback method's name, `OnClickCallback`.
-* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create%2A?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# field initialization, so a C# property is used for the parameter dictionary.
+* The `object` value is created by <xref:Microsoft.AspNetCore.Components.EventCallbackFactory.Create*?displayProperty=nameWithType> for the parent callback method, `ShowDTMessage`. Note that the [`this` keyword](/dotnet/csharp/language-reference/keywords/this) isn't supported in C# field initialization, so a C# property is used for the parameter dictionary.
 
 :::moniker range=">= aspnetcore-9.0"
 
@@ -518,7 +508,7 @@ The parent component passes the callback method, `ShowDTMessage` in the paramete
 
 ## Avoid catch-all parameters
 
-Avoid the use of [catch-all parameters](xref:blazor/fundamentals/routing#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
+Avoid the use of [catch-all parameters](../fundamentals/routing.md#catch-all-route-parameters). If catch-all parameters are used, every explicit parameter on <xref:Microsoft.AspNetCore.Components.DynamicComponent> effectively is a reserved word that you can't pass to a dynamic child. Any new parameters passed to <xref:Microsoft.AspNetCore.Components.DynamicComponent> are a breaking change, as they start shadowing child component parameters that happen to have the same name. It's unlikely that the caller always knows a fixed set of parameter names to pass to all possible dynamic children.
 
 ## Access the dynamically-created component instance
 
@@ -590,7 +580,7 @@ The remaining three shared components (`VirginGalactic3`, `UnitedLaunchAlliance3
   @inject ILogger<{COMPONENT TYPE}> Logger
   ```
 
-* Each component implements a `Log` method. The log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation%2A> is called:
+* Each component implements a `Log` method. The log category written by the logger includes the fully-qualified name of the component type when <xref:Microsoft.Extensions.Logging.LoggerExtensions.LogInformation*> is called:
 
   ```razor
   @code {
@@ -654,5 +644,5 @@ Rocket Lab is a registered trademark of [Rocket Lab USA Inc.](https://www.rocket
 
 ## Related content
 
-* <xref:blazor/components/event-handling#eventcallback>
+* [ASP.NET Core Blazor event handling](event-handling.md#eventcallback)
 * <xref:Microsoft.AspNetCore.Components.DynamicComponent>

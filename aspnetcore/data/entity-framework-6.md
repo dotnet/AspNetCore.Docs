@@ -3,7 +3,6 @@ title: ASP.NET Core and Entity Framework 6
 ai-usage: ai-assisted
 description: Entity Framework 6.3 or later works with ASP.NET Core 3.1 or later.
 ms.date: 11/06/2023
-uid: data/entity-framework-6
 ---
 # ASP.NET Core and Entity Framework 6
 
@@ -53,7 +52,7 @@ The EF6 command-line tools that you'll use in the EF6 class library project requ
 
 [!code-csharp[](entity-framework-6/samples/EF6/SchoolContext.cs?name=snippet_Constructor)]
 
-Since your EF6 context doesn't have a parameterless constructor, your EF6 project has to provide an implementation of <xref:System.Data.Entity.Infrastructure.IDbContextFactory%601>. The EF6 command-line tools will find and use that implementation so they can instantiate the context. Here's an example.
+Since your EF6 context doesn't have a parameterless constructor, your EF6 project has to provide an implementation of <xref:System.Data.Entity.Infrastructure.IDbContextFactory`1>. The EF6 command-line tools will find and use that implementation so they can instantiate the context. Here's an example.
 
 [!code-csharp[](entity-framework-6/samples/EF6/SchoolContextFactory.cs?name=snippet_IDbContextFactory)]
 
