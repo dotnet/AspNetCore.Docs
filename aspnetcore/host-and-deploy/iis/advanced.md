@@ -3,7 +3,7 @@ title: Advanced configuration
 description: Advanced configuration with the ASP.NET Core Module and Internet Information Services (IIS).
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-image-nochange
-ms.date: 10/06/2026
+ms.date: 11/23/2026
 ---
 # Advanced configuration of the ASP.NET Core Module and IIS
 
@@ -31,7 +31,7 @@ Configure the managed stack size using the `stackSize` setting in hexadecimal by
 
 ## Disallow rotation on config
 
-The `disallowRotationOnConfigChange` setting is intended for blue/green scenarios where a change to global config shouldn't cause all sites to recycle. When this flag is true, only changes relevant to the site itself will cause it to recycle. For example, a site recycles if its *web.config* changes or something changes that's relevant to the site's path from IIS's perspective. But a general change to *applicationHost.config* wouldn't cause an app to recycle. The following example sets this setting to true:
+The `disallowRotationOnConfigChange` setting prevents changes to IIS configuration files (`applicationHost.config` and `web.config`) from triggering an application restart or recycle. It suppresses configuration-change restarts without affecting other shutdown triggers, such as scheduled recycling, idle timeouts, explicit pool recycling/stopping, or placing an `app_offline.htm` file in the app directory. This setting is intended for blue/green and zero-downtime deployment scenarios, where global or web configuration changes shouldn't disrupt active workloads. The following example sets this setting to `true`:
 
 ```xml
 <aspNetCore processPath="dotnet"
