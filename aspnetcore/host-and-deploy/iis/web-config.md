@@ -3,7 +3,7 @@ title: web.config file
 description: Discover what is inside of the web.config file and how to configure different ASP.NET Core Module options.
 monikerRange: '>= aspnetcore-5.0'
 ms.custom: sfi-ropc-nochange
-ms.date: 11/20/2026
+ms.date: 11/23/2026
 ---
 # `web.config` file
 
@@ -142,7 +142,7 @@ The following example sets two environment variables in `web.config`. `ASPNETCOR
 
 Handler settings configure internal behaviors of the ASP.NET Core Module. Specify handler settings with `<handlerSetting>` child elements of a `<handlerSettings>` collection element inside `<aspNetCore>`.
 
-The `disallowRotationOnConfigChange` setting prevents changes to IIS configuration files (`applicationHost.config` and `web.config`) from triggering an application restart or recycle. When set to `true`, the app only shuts down or restarts if the application pool is explicitly recycled/stopped or an `app_offline.htm` file is placed in the app directory. This setting is intended for blue/green and zero-downtime deployment scenarios, where global or web configuration changes shouldn't disrupt active workloads.
+The `disallowRotationOnConfigChange` setting prevents changes to IIS configuration files (`applicationHost.config` and `web.config`) from triggering an application restart or recycle. It suppresses configuration-change restarts without affecting other shutdown triggers, such as scheduled recycling, idle timeouts, explicit pool recycling/stopping, or placing an `app_offline.htm` file in the app directory. This setting is intended for blue/green and zero-downtime deployment scenarios, where global or web configuration changes shouldn't disrupt active workloads.
 
 ```xml
 <aspNetCore processPath="dotnet"
