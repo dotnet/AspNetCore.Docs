@@ -69,7 +69,7 @@ For more information, see [Overview for gRPC on .NET](../grpc/index.md).
 
 ## SignalR
 
-See [Update SignalR code](../migration/22-to-30.md#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](../migration/22-to-30.md#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
+See [Update SignalR code](/previous-versions/aspnet/core/migration/22-to-30#signalr) for migration instructions. SignalR now uses `System.Text.Json` to serialize/deserialize JSON messages. See [Switch to Newtonsoft.Json](/previous-versions/aspnet/core/migration/22-to-30#switch-to-newtonsoftjson) for instructions to restore the `Newtonsoft.Json`-based serializer.
 
 In the JavaScript and .NET Clients for SignalR, support was added for automatic reconnection. By default, the client tries to reconnect immediately and retry after 2, 10, and 30 seconds if necessary. If the client successfully reconnects, it receives a new connection ID. Automatic reconnect is opt-in:
 
@@ -394,7 +394,7 @@ The Razor class library (RCL) template defaults to Razor component development b
 
 ## Generic Host
 
-The ASP.NET Core 3.0 templates use [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md). Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder).
+The ASP.NET Core 3.0 templates use [.NET Generic Host in ASP.NET Core](../fundamentals/host/generic-host.md). Previous versions used <xref:Microsoft.AspNetCore.Hosting.WebHostBuilder>. Using the .NET Core Generic Host (<xref:Microsoft.Extensions.Hosting.HostBuilder>) provides better integration of ASP.NET Core apps with other server scenarios that aren't web-specific. For more information, see [HostBuilder replaces WebHostBuilder](/previous-versions/aspnet/core/migration/22-to-30#hostbuilder-replaces-webhostbuilder).
 
 ### Host configuration
 
@@ -418,7 +418,7 @@ All services can still be injected directly as arguments to the `Startup.Configu
 * Ambiguity between headers and trailers has been resolved by moving trailing headers to a new collection.
 * Synchronous I/O APIs, such as `HttpRequest.Body.Read`, are a common source of thread starvation leading to app crashes. In 3.0, `AllowSynchronousIO` is disabled by default.
 
-For more information, see [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#kestrel).
+For more information, see [Migrate from ASP.NET Core 2.2 to 3.0](/previous-versions/aspnet/core/migration/22-to-30#kestrel).
 
 ## HTTP/2 enabled by default
 
@@ -463,7 +463,7 @@ Health Checks endpoints can:
 
 For more information, see the following articles:
 
-* [Migrate from ASP.NET Core 2.2 to 3.0](../migration/22-to-30.md#health-checks)
+* [Migrate from ASP.NET Core 2.2 to 3.0](/previous-versions/aspnet/core/migration/22-to-30#health-checks)
 * [Health checks in ASP.NET Core](../host-and-deploy/health-checks.md)
 
 ## Pipes on HttpContext

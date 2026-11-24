@@ -83,5 +83,5 @@ Migrate from `WebHostBuilder` to either [`HostBuilder`](../../fundamentals/host/
 
 - [Generic Host in ASP.NET Core](../../fundamentals/host/generic-host.md)
 - [Minimal APIs with WebApplication](../../fundamentals/minimal-apis/webapplication.md)
-- [HostBuilder replaces WebHostBuilder](../../migration/22-to-30.md#hostbuilder-replaces-webhostbuilder)
-- [Introducing WebApplication](../../migration/50-to-60.md#new-hosting-model)
+- [HostBuilder replaces WebHostBuilder](/previous-versions/aspnet/core/migration/22-to-30#hostbuilder-replaces-webhostbuilder)
+- [Introducing WebApplication](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model)

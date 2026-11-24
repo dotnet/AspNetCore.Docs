@@ -119,7 +119,7 @@ Default host configuration sources from highest to lowest priority applied to ei
 
 For more information on host configuration, see the following resources:
 
-* [Generic Host](../host/generic-host.md): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](../../migration/50-to-60.md#new-hosting-model).
+* [Generic Host](../host/generic-host.md): Recommended for ASP.NET Core apps targeting .NET 6 or later that adopt the [minimal hosting model](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model).
 * [Web Host](../host/web-host.md): Required for ASP.NET Core apps that target releases prior to .NET 6 and only maintained by the framework for backward compatibility in .NET 6 or later.
 
 :::moniker-end
@@ -154,7 +154,7 @@ Other host settings are read from app configuration instead of host configuratio
 
 `URLS` is one of the many common host settings that isn't bootstrapped by host configuration. `URLS` is read later from app configuration. Host configuration is a fallback for app configuration, so host configuration can be used to set `URLS`, but the value is overridden by any configuration source that sets `URLS` in app configuration, such as app settings files (`appsettings.{ENVIRONMENT}.json`, where the `{ENVIRONMENT}` placeholder is the environment name, or `appsettings.json`).
 
-For more information, see [Change the content root, app name, and environment](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](../../migration/50-to-60-samples.md#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
+For more information, see [Change the content root, app name, and environment](/previous-versions/aspnet/core/migration/50-to-60-samples#change-the-content-root-app-name-and-environment) and [Change the content root, app name, and environment by environment variables or command line](/previous-versions/aspnet/core/migration/50-to-60-samples#change-the-content-root-app-name-and-environment-by-environment-variables-or-command-line).
 
 ## Security and user secrets
 

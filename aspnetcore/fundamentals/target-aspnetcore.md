@@ -20,7 +20,7 @@ As preview releases of ASP.NET Core are made available, breaking changes are pos
 
 ## Use the ASP.NET Core shared framework
 
-With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](../migration/22-to-30.md#remove-obsolete-package-references).
+With the release of .NET Core 3.0, many ASP.NET Core assemblies are no longer published to NuGet as packages. Instead, the assemblies are included in the `Microsoft.AspNetCore.App` shared framework, which is installed with the .NET SDK and runtime installers. For a list of packages no longer being published, see [Remove obsolete package references](/previous-versions/aspnet/core/migration/22-to-30#remove-obsolete-package-references).
 
 As of .NET Core 3.0, projects using the `Microsoft.NET.Sdk.Web` MSBuild SDK implicitly reference the shared framework. Projects using the `Microsoft.NET.Sdk` or `Microsoft.NET.Sdk.Razor` SDK must reference ASP.NET Core to use ASP.NET Core APIs in the shared framework.
 
@@ -256,7 +256,7 @@ The following multi-targeted project file supports this Tag Helper scenario:
 
 ## Use an API removed from the shared framework
 
-To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For a list of packages removed from the shared framework in ASP.NET Core 3.1, see [Remove obsolete package references](../migration/22-to-30.md#remove-obsolete-package-references).
+To use an ASP.NET Core assembly that was removed from the shared framework, add the appropriate package reference. For a list of packages removed from the shared framework in ASP.NET Core 3.1, see [Remove obsolete package references](/previous-versions/aspnet/core/migration/22-to-30#remove-obsolete-package-references).
 
 For example, to add the web API client:
 

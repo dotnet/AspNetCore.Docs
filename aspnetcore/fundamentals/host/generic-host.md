@@ -13,7 +13,7 @@ ms.date: 07/29/2026
 
 :::moniker range=">= aspnetcore-6.0"
 
-The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](../../migration/50-to-60.md#new-hosting-model).
+The ASP.NET Core templates create instances of <xref:Microsoft.AspNetCore.Builder.WebApplicationBuilder> and <xref:Microsoft.AspNetCore.Builder.WebApplication>. These objects provide a streamlined way to configure and run web applications without a `Startup` class. For more information on `WebApplicationBuilder` and `WebApplication`, see [Migrate from ASP.NET Core in .NET 5 to .NET 6](/previous-versions/aspnet/core/migration/50-to-60#new-hosting-model).
 
 :::moniker-end
 :::moniker range="< aspnetcore-6.0"

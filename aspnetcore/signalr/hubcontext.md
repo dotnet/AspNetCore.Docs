@@ -143,7 +143,7 @@ This is useful when:
 
 ## Related content
 
-* [SignalR assemblies in shared framework](../migration/22-to-30.md#signalr-assemblies-in-shared-framework)
+* [SignalR assemblies in shared framework](/previous-versions/aspnet/core/migration/22-to-30#signalr-assemblies-in-shared-framework)
 * [Get started with ASP.NET Core SignalR](../tutorials/signalr.md)
 * [Use hubs in ASP.NET Core SignalR](hubs.md)
 * [Publish an ASP.NET Core SignalR app to Azure App Service](publish-to-azure-web-app.md)

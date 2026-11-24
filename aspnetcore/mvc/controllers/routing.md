@@ -29,7 +29,7 @@ This document:
     * [Conventional routing](#cr6) typically used with controllers and views.
     * *Attribute routing* used with REST APIs. If you're primarily interested in routing for REST APIs, jump to the [Attribute routing for REST APIs](#ar6) section.
   * See [Routing](../../fundamentals/routing.md) for advanced routing details.
-* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](../../migration/22-to-30.md) for instructions.
+* Refers to the default routing system as endpoint routing. You can use controllers with the previous version of routing for compatibility purposes. See the [2.2-3.0 migration guide](/previous-versions/aspnet/core/migration/22-to-30) for instructions.
 
 <a name="cr"></a>
 <a name="cr6"></a>

@@ -227,7 +227,7 @@ HubConnection hubConnection = HubConnectionBuilder.create(
 ```
 
 <!--
-See [Update SignalR code](../migration/31-to-50.md#signalr) for migration instructions.
+See [Update SignalR code](/previous-versions/aspnet/core/migration/31-to-50#signalr) for migration instructions.
 -->
 
 ## Kestrel
