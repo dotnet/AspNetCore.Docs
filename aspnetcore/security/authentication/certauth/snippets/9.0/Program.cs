@@ -146,7 +146,8 @@ builder.Services.AddCertificateForwarding(options =>
 // <snippet_AddHttpClient>
 var clientCertificate =
     X509CertificateLoader.LoadPkcs12FromFile(
-        Path.Combine(builder.Environment.ContentRootPath, "sts_dev_cert.pfx"), password: null);
+        Path.Combine(builder.Environment.ContentRootPath, "sts_dev_cert.pfx"), 
+        password: null);
 
 builder.Services.AddHttpClient("namedClient", c =>
 {

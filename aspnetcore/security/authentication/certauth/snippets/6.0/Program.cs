@@ -11,25 +11,61 @@ using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(args);
 
-    // <snippet_AddCertificateUseAuthentication>
-    builder.Services.AddAuthentication(
-            CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate();
-    
-    // After adding certificate authentication, use the authentication middleware 
-    // in the request pipeline:
-    // app.UseAuthentication();
-    // app.UseAuthorization();
-    // </snippet_AddCertificateUseAuthentication>
+// <snippet_AddCertificateUseAuthentication>
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate();
 
-    // <snippet_AddCertificateOnCertificateValidated>
-    builder.Services.AddAuthentication(
-            CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate(options =>
+// After adding certificate authentication, use the authentication middleware 
+// in the request pipeline:
+// app.UseAuthentication();
+// app.UseAuthorization();
+// </snippet_AddCertificateUseAuthentication>
+
+// <snippet_AddCertificateOnCertificateValidated>
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate(options =>
+    {
+        options.Events = new CertificateAuthenticationEvents
         {
-            options.Events = new CertificateAuthenticationEvents
+            OnCertificateValidated = context =>
             {
-                OnCertificateValidated = context =>
+                var claims = new[]
+                {
+                    new Claim(
+                        ClaimTypes.NameIdentifier,
+                        context.ClientCertificate.Subject,
+                        ClaimValueTypes.String, context.Options.ClaimsIssuer),
+                    new Claim(
+                        ClaimTypes.Name,
+                        context.ClientCertificate.Subject,
+                        ClaimValueTypes.String, context.Options.ClaimsIssuer)
+                };
+
+                context.Principal = new ClaimsPrincipal(
+                    new ClaimsIdentity(claims, context.Scheme.Name));
+                context.Success();
+
+                return Task.CompletedTask;
+            }
+        };
+    });
+// </snippet_AddCertificateOnCertificateValidated>
+
+// <snippet_AddCertificateOnCertificateValidatedService>
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate(options =>
+    {
+        options.Events = new CertificateAuthenticationEvents
+        {
+            OnCertificateValidated = context =>
+            {
+                var validationService = context.HttpContext.RequestServices
+                    .GetRequiredService<ICertificateValidationService>();
+
+                if (validationService.ValidateCertificate(context.ClientCertificate))
                 {
                     var claims = new[]
                     {
@@ -46,128 +82,92 @@ var builder = WebApplication.CreateBuilder(args);
                     context.Principal = new ClaimsPrincipal(
                         new ClaimsIdentity(claims, context.Scheme.Name));
                     context.Success();
-
-                    return Task.CompletedTask;
-                }
-            };
-        });
-        // </snippet_AddCertificateOnCertificateValidated>
-
-    // <snippet_AddCertificateOnCertificateValidatedService>
-    builder.Services.AddAuthentication(
-            CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate(options =>
-        {
-            options.Events = new CertificateAuthenticationEvents
-            {
-                OnCertificateValidated = context =>
-                {
-                    var validationService = context.HttpContext.RequestServices
-                        .GetRequiredService<ICertificateValidationService>();
-
-                    if (validationService.ValidateCertificate(context.ClientCertificate))
-                    {
-                        var claims = new[]
-                        {
-                            new Claim(
-                                ClaimTypes.NameIdentifier,
-                                context.ClientCertificate.Subject,
-                                ClaimValueTypes.String, context.Options.ClaimsIssuer),
-                            new Claim(
-                                ClaimTypes.Name,
-                                context.ClientCertificate.Subject,
-                                ClaimValueTypes.String, context.Options.ClaimsIssuer)
-                        };
-
-                        context.Principal = new ClaimsPrincipal(
-                            new ClaimsIdentity(claims, context.Scheme.Name));
-                        context.Success();
-                    }
-
-                    return Task.CompletedTask;
-                }
-            };
-        });
-        // </snippet_AddCertificateOnCertificateValidatedService>
-
-    // <snippet_AddCertificateForwarding>
-    builder.Services.AddCertificateForwarding(options =>
-    {
-        options.CertificateHeader = "X-SSL-CERT";
-
-        options.HeaderConverter = headerValue =>
-        {
-            X509Certificate2? clientCertificate = null;
-
-            if (!string.IsNullOrWhiteSpace(headerValue))
-            {
-                clientCertificate = new X509Certificate2(StringToByteArray(headerValue));
-            }
-
-            return clientCertificate!;
-
-            static byte[] StringToByteArray(string hex)
-            {
-                var numberChars = hex.Length;
-                var bytes = new byte[numberChars / 2];
-
-                for (int i = 0; i < numberChars; i += 2)
-                {
-                    bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
                 }
 
-                return bytes;
+                return Task.CompletedTask;
             }
         };
     });
-    // </snippet_AddCertificateForwarding>
+// </snippet_AddCertificateOnCertificateValidatedService>
 
-    // <snippet_AddCertificateForwardingUrlEncoded>
-    builder.Services.AddCertificateForwarding(options =>
+// <snippet_AddCertificateForwarding>
+builder.Services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "X-SSL-CERT";
+
+    options.HeaderConverter = headerValue =>
     {
-        options.CertificateHeader = "ssl-client-cert";
+        X509Certificate2? clientCertificate = null;
 
-        options.HeaderConverter = (headerValue) =>
+        if (!string.IsNullOrWhiteSpace(headerValue))
         {
-            X509Certificate2? clientCertificate = null;
+            clientCertificate = new X509Certificate2(StringToByteArray(headerValue));
+        }
 
-            if (!string.IsNullOrWhiteSpace(headerValue))
+        return clientCertificate!;
+
+        static byte[] StringToByteArray(string hex)
+        {
+            var numberChars = hex.Length;
+            var bytes = new byte[numberChars / 2];
+
+            for (int i = 0; i < numberChars; i += 2)
             {
-                clientCertificate = X509Certificate2.CreateFromPem(
-                    WebUtility.UrlDecode(headerValue));
+                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
             }
 
-            return clientCertificate!;
-        };
-    });
-    // </snippet_AddCertificateForwardingUrlEncoded>
+            return bytes;
+        }
+    };
+});
+// </snippet_AddCertificateForwarding>
 
-    // <snippet_AddHttpClient>
-    var clientCertificate =
-        new X509Certificate2(
-            Path.Combine(builder.Environment.ContentRootPath, "sts_dev_cert.pfx"),
-            "1234");
+// <snippet_AddCertificateForwardingUrlEncoded>
+builder.Services.AddCertificateForwarding(options =>
+{
+    options.CertificateHeader = "ssl-client-cert";
 
-    builder.Services.AddHttpClient("namedClient", c =>
+    options.HeaderConverter = (headerValue) =>
     {
-    }).ConfigurePrimaryHttpMessageHandler(() =>
-    {
-        var handler = new HttpClientHandler();
-        handler.ClientCertificates.Add(clientCertificate);
-        return handler;
-    });
-    // </snippet_AddHttpClient>
+        X509Certificate2? clientCertificate = null;
 
-    // <snippet_AddCertificateCaching>
-    builder.Services.AddAuthentication(
-            CertificateAuthenticationDefaults.AuthenticationScheme)
-        .AddCertificate()
-        .AddCertificateCache(options =>
+        if (!string.IsNullOrWhiteSpace(headerValue))
         {
-            options.CacheSize = 1024;
-            options.CacheEntryExpiration = TimeSpan.FromMinutes(2);
-        });
-    // </snippet_AddCertificateCaching>
+            clientCertificate = X509Certificate2.CreateFromPem(
+                WebUtility.UrlDecode(headerValue));
+        }
+
+        return clientCertificate!;
+    };
+});
+// </snippet_AddCertificateForwardingUrlEncoded>
+
+// <snippet_AddHttpClient>
+var clientCertificate =
+    new X509Certificate2(
+        Path.Combine(builder.Environment.ContentRootPath, "sts_dev_cert.pfx"),
+        "1234");
+
+builder.Services.AddHttpClient("namedClient", c =>
+{
+}).ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler();
+    handler.ClientCertificates.Add(clientCertificate);
+    return handler;
+});
+// </snippet_AddHttpClient>
+
+// <snippet_AddCertificateCaching>
+builder.Services.AddAuthentication(
+        CertificateAuthenticationDefaults.AuthenticationScheme)
+    .AddCertificate()
+    .AddCertificateCache(options =>
+    {
+        options.CacheSize = 1024;
+        options.CacheEntryExpiration = TimeSpan.FromMinutes(2);
+    });
+// </snippet_AddCertificateCaching>
 
 var app = builder.Build();
 
