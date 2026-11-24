@@ -3,7 +3,7 @@ title: Use the generated OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 11/16/2026
+ms.date: 11/24/2026
 ---
 # Use openAPI documents
 
