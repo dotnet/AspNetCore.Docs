@@ -1,6 +1,7 @@
 using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
+using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(args);
 
