@@ -9,10 +9,12 @@ using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using Microsoft.AspNetCore.Authentication.Certificate;
 
-public static class Program
-{
-    public static void Main() {}
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+app.Run();
 
+public class Snippets
+{
     public static void AddCertificateUseAuthentication(string[] args)
     {
         // <snippet_AddCertificateUseAuthentication>
@@ -182,7 +184,7 @@ public static class Program
         // <snippet_AddHttpClient>
         var clientCertificate =
             new X509Certificate2(
-              Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
+                Path.Combine(_environment.ContentRootPath, "sts_dev_cert.pfx"), "1234");
 
         builder.Services.AddHttpClient("namedClient", c =>
         {
