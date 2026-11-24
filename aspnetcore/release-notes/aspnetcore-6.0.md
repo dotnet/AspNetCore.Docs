@@ -664,7 +664,7 @@ A community contribution from [Gabriel Lucaci](https://twitter.com/_glucaci) ena
 
 [!code-csharp[](aspnetcore-6.0/samples/WebApp1/Program.cs?name=snippet_red)]
 
-For more information, see [StackExchange.Redis Profiling](https://stackexchange.github.io/StackExchange.Redis/Profiling_v2.html).
+For more information, see [StackExchange.Redis Profiling](https://seredis.dev/Profiling_v2.html).
 
 ### Shadow copying in IIS
 
