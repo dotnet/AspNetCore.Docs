@@ -1,14 +1,16 @@
+/*
 #!/usr/bin/env -S dotnet --
 #:sdk Microsoft.NET.Sdk.Web
 #:property PublishAot=false
 #:property TargetFramework=net6.0
 #:package Microsoft.AspNetCore.Authentication.Certificate@6.0.23
+*/
 
 using System.Security.Cryptography.X509Certificates;
 
-public static class Program
-{
-    public static void Main() {}
+//public static class Program
+//{
+    //public static void Main() {}
 
     #region snippet_SampleCertificateValidationService
     public class SampleCertificateValidationService : ICertificateValidationService
@@ -29,4 +31,4 @@ public static class Program
     {
         bool ValidateCertificate(X509Certificate2 clientCertificate);
     }
-}
+//}

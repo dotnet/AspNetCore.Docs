@@ -1,8 +1,10 @@
+/*
 #!/usr/bin/env -S dotnet --
 #:sdk Microsoft.NET.Sdk.Web
 #:property PublishAot=false
 #:property TargetFramework=net6.0
 #:package Microsoft.AspNetCore.Authentication.Certificate@6.0.36
+*/
 
 using System.Net;
 using System.Security.Claims;
