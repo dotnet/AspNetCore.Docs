@@ -202,13 +202,13 @@ A separate class can be used to implement validation logic. Because the same sel
 
 :::moniker range=">= aspnetcore-9.0"
 
-:::code language="csharp" source="certauth/samples/9.0/CertAuthSampleSnippets/SampleCertificateValidationService.cs" id="snippet_AddCertificateForwarding":::
+:::code language="csharp" source="certauth/samples/9.0/CertAuthSampleSnippets/Program.cs" id="snippet_AddCertificateForwarding":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
-:::code language="csharp" source="certauth/samples/6.0/CertAuthSampleSnippets/SampleCertificateValidationService.cs" id="snippet_AddCertificateForwarding":::
+:::code language="csharp" source="certauth/samples/6.0/CertAuthSampleSnippets/Program.cs" id="snippet_AddCertificateForwarding":::
 
 :::moniker-end
 
