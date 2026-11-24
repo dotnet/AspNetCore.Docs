@@ -134,7 +134,7 @@ The following sections describe how to configure your server to require certific
 
 In the _Program.cs_ file, configure Kestrel as follows:
 
-:::code language="csharp" source="certauth/samples/CertAuthSampleMain/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
+:::code language="csharp" source="certauth/samples/6.0/CertAuthSampleMain/Program.cs" id="snippet_ConfigureKestrelServerOptions":::
 
 > [!NOTE]
 > When an endpoint is created by calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.Listen*> method **before** calling the <xref:Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerOptions.ConfigureHttpsDefaults*> method, the endpoint doesn't have the defaults applied.
