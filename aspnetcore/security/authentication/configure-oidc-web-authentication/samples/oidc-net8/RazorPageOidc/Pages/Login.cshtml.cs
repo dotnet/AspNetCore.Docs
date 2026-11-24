@@ -13,28 +13,8 @@ public class LoginModel : PageModel
 
     public async Task OnGetAsync()
     {
-        var properties = GetAuthProperties(ReturnUrl);
-        await HttpContext.ChallengeAsync(properties);
-    }
-
-    private static AuthenticationProperties GetAuthProperties(string? returnUrl)
-    {
-        const string pathBase = "/";
-
-        // Prevent open redirects.
-        if (string.IsNullOrEmpty(returnUrl))
-        {
-            returnUrl = pathBase;
-        }
-        else if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
-        {
-            returnUrl = new Uri(returnUrl, UriKind.Absolute).PathAndQuery;
-        }
-        else if (returnUrl[0] != '/')
-        {
-            returnUrl = $"{pathBase}{returnUrl}";
-        }
-
-        return new AuthenticationProperties { RedirectUri = returnUrl };
+        // ReturnUrl comes from the query string, so only redirect to local URLs to prevent open redirects.
+        var redirectUri = Url.IsLocalUrl(ReturnUrl) ? Url.Content(ReturnUrl) : Url.Content("~/");
+        await HttpContext.ChallengeAsync(new AuthenticationProperties { RedirectUri = redirectUri });
     }
 }
