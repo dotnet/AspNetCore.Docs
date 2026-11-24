@@ -217,13 +217,13 @@ If the proxy isn't base64-encoding the certificate, as is the case with Nginx, s
 
 :::moniker range=">= aspnetcore-9.0"
 
-:::code language="csharp" source="samples/9.0/WebPS/Program.cs" id="snippet_conversionlogic":::
+:::code language="csharp" source="proxy-load-balancer/samples/9.0/WebPS/Program.cs" id="snippet_conversionlogic":::
 
 :::moniker-end
 
 :::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
 
-:::code language="csharp" source="samples/6.1/WebPS/Program.cs" id="snippet_conversionlogic":::
+:::code language="csharp" source="proxy-load-balancer/samples/6.1/WebPS/Program.cs" id="snippet_conversionlogic":::
 
 :::moniker-end
 
