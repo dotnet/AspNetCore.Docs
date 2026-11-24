@@ -1,15 +1,6 @@
-/*
-#!/usr/bin/env -S dotnet --
-#:sdk Microsoft.NET.Sdk.Web
-#:property PublishAot=false
-#:property TargetFramework=net6.0
-#:package Microsoft.AspNetCore.Authentication.Certificate@6.0.36
-*/
-
 using System.Net;
 using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
-using Microsoft.AspNetCore.Authentication.Certificate;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -181,8 +172,3 @@ app.UseAuthorization();
 // </snippet_UseCertificateForwarding>
 
 app.Run();
-
-public interface ICertificateValidationService
-{
-    bool ValidateCertificate(X509Certificate2 clientCertificate);
-}
