@@ -3,7 +3,7 @@ title: Use the generated OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/28/2026
+ms.date: 11/24/2026
 ---
 # Use openAPI documents
 
@@ -33,6 +33,34 @@ To automatically launch the app at the Swagger UI URL using the `https` profile 
 "launchBrowser": true,
 "launchUrl": "swagger",
 ```
+
+## Enable authorization in interactive documentation
+
+To enable the **Authorize** button in Swagger UI or Scalar so users can enter a JWT bearer token for testing protected endpoints, register an <xref:Microsoft.OpenApi.OpenApiSecurityScheme> via a document transformer:
+
+```csharp
+using Microsoft.OpenApi;
+
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Components ??= new OpenApiComponents();
+        document.Components.SecuritySchemes ??= new Dictionary<string, IOpenApiSecurityScheme>();
+        document.Components.SecuritySchemes["Bearer"] = new OpenApiSecurityScheme
+        {
+            Type = SecuritySchemeType.Http,
+            Scheme = "bearer",
+            BearerFormat = "JWT",
+            Description = "Enter JWT Bearer token"
+        };
+
+        return Task.CompletedTask;
+    });
+});
+```
+
+Registering a security scheme displays the **Authorize** button and dialog in interactive documentation. To attach the entered token to requests when testing protected endpoints, apply a security requirement at the document level or per operation using an operation transformer. For more details on document transformers and applying security requirements per endpoint, see [Customize OpenAPI documents](customize-openapi.md#use-document-transformers).
 
 ## Use Scalar for interactive API documentation
 
