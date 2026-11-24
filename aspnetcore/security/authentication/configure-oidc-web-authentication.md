@@ -3,7 +3,7 @@ title: Configure OpenID Connect Web (UI) authentication in ASP.NET Core
 ai-usage: ai-assisted
 description: Learn how to set up OpenID Connect authentication in an ASP.NET Core app.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/18/2026
+ms.date: 11/24/2026
 ---
 # Configure OpenID Connect Web (UI) authentication in ASP.NET Core
 
@@ -224,29 +224,9 @@ public class LoginModel : PageModel
 
     public async Task OnGetAsync()
     {
-        var properties = GetAuthProperties(ReturnUrl);
-        await HttpContext.ChallengeAsync(properties);
-    }
-
-    private static AuthenticationProperties GetAuthProperties(string? returnUrl)
-    {
-        const string pathBase = "/";
-
-        // Prevent open redirects.
-        if (string.IsNullOrEmpty(returnUrl))
-        {
-            returnUrl = pathBase;
-        }
-        else if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
-        {
-            returnUrl = new Uri(returnUrl, UriKind.Absolute).PathAndQuery;
-        }
-        else if (returnUrl[0] != '/')
-        {
-            returnUrl = $"{pathBase}{returnUrl}";
-        }
-
-        return new AuthenticationProperties { RedirectUri = returnUrl };
+        // ReturnUrl comes from the query string, so only redirect to local URLs to prevent open redirects.
+        var redirectUri = Url.IsLocalUrl(ReturnUrl) ? Url.Content(ReturnUrl) : Url.Content("~/");
+        await HttpContext.ChallengeAsync(new AuthenticationProperties { RedirectUri = redirectUri });
     }
 }
 

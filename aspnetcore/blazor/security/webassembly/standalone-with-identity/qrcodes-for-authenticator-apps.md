@@ -2,7 +2,7 @@
 title: Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 description: Learn how to configure an ASP.NET Core Blazor WebAssembly app with Identity for QR code generation with TOTP authenticator apps.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 11/11/2025
+ms.date: 11/24/2026
 ---
 # Enable QR code generation for TOTP authenticator apps in ASP.NET Core Blazor WebAssembly with ASP.NET Core Identity
 
@@ -524,7 +524,15 @@ Replace the `Login` component. The following version of the `Login` component:
 
         if (formResult.Succeeded && !string.IsNullOrEmpty(ReturnUrl))
         {
-            Navigation.NavigateTo(ReturnUrl);
+            // ReturnUrl comes from the query string, which anyone can set in a link to the app.
+            // To prevent open redirects and script URLs such as "javascript:", only navigate to it if it's within the app.
+            // Appending "/" to the path also accepts the app's root URI without a trailing slash, such as "/app?page=2".
+            var baseUri = new Uri(Navigation.BaseUri);
+            if (Uri.TryCreate(baseUri, ReturnUrl, out var returnUri)
+                && (returnUri.GetLeftPart(UriPartial.Path) + "/").StartsWith(baseUri.AbsoluteUri, StringComparison.Ordinal))
+            {
+                Navigation.NavigateTo(returnUri.AbsoluteUri);
+            }
         }
     }
 
