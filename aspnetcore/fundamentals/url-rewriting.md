@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn about URL rewriting and redirecting with URL rewriting middleware in ASP.NET Core applications.
 monikerRange: '>= aspnetcore-2.1'
 ms.custom: sfi-image-nochange
-ms.date: 09/18/2026
+ms.date: 11/24/2026
 ---
 # URL rewriting middleware in ASP.NET Core
 
@@ -240,6 +240,9 @@ For the fastest response:
 ### Apache mod_rewrite
 
 Apply Apache mod_rewrite rules with <xref:Microsoft.AspNetCore.Rewrite.ApacheModRewriteOptionsExtensions.AddApacheModRewrite*>. Make sure that the rules file is deployed with the app. For more information and examples of mod_rewrite rules, see [Apache mod_rewrite](https://httpd.apache.org/docs/2.4/rewrite/).
+
+> [!WARNING]
+> `AddApacheModRewrite` ignores the `RewriteEngine` directive, including `RewriteEngine off`, and imports and runs all `RewriteRule` entries in the file. Don't rely on `RewriteEngine off` to disable rules. Remove disabled rules from the file, or guard the `AddApacheModRewrite` call in C#.
 
 A <xref:System.IO.StreamReader> is used to read the rules from the *ApacheModRewrite.txt* rules file:
 
