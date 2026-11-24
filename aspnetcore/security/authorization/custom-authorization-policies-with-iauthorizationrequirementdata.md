@@ -3,7 +3,7 @@ title: Custom authorization policies with `IAuthorizationRequirementData`
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 10/13/2026
+ms.date: 11/24/2026
 ---
 # Custom authorization policies with `IAuthorizationRequirementData`
 
@@ -13,36 +13,32 @@ This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint w
 
 :::moniker range=">= aspnetcore-11.0"
 
-You can apply <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> attributes to SignalR hubs and hub methods, MVC controllers and actions, and Blazor's [`AuthorizeView`](../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components, not just to endpoints. For apps that target releases earlier than .NET 11, these attributes are only enforced on Minimal API and routed endpoints.
+Authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. SignalR hub methods and the [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) component during interactive routing also honor these attributes. MVC apps that disable endpoint routing don't support these attributes.
 
 Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-11.0"
+:::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-<xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> isn't supported for authorization attributes applied to:
-
-* SignalR hubs and hub methods
-* MVC controllers and actions
-* Blazor's [`AuthorizeView`](../../blazor/security/index.md#authorizeview-component) and [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) components
-
-Support for the preceding is available for apps that target .NET 11 or later.
+Authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. MVC apps that disable endpoint routing don't support these attributes.
 
 :::moniker-end
 ## Sample app
 
 The Blazor Web App sample for this article is the [`AuthRequirementsDataBWA` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsDataBWA) ([how to download](../../fundamentals/index.md#how-to-download-a-sample)). The sample app implements a minimum age handler for users accessing a Minimal API endpoint at `/api/greetings/hello`, requiring a user to present a birth date claim indicating that they're at least 21 years old.
 
-## Minimum age authorize attribute
+## Minimum age attribute
 
-The `MinimumAgeAuthorizeAttribute` implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> sets an authorization age:
+The `MinimumAgeAttribute` implementation of <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> sets an authorization age:
 
-:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsDataBWA/Authorization/MinimumAgeAuthorizeAttribute.cs":::
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsDataBWA/Authorization/MinimumAgeAttribute.cs":::
+
+`MinimumAgeAttribute` only supplies requirement metadata. It doesn't select a policy on its own.
 
 ## Minimum age authorization handler
 
-The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by `MinimumAgeAuthorizeAttribute`, as specified by the generic parameter `MinimumAgeAuthorizeAttribute`.
+The `MinimumAgeAuthorizationHandler` class handles the single <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirement> provided by `MinimumAgeAttribute`, as specified by the generic parameter `MinimumAgeAttribute`.
 
 The `HandleRequirementAsync` method:
 
@@ -61,16 +57,18 @@ builder.Services.AddSingleton<IAuthorizationHandler,
     MinimumAgeAuthorizationHandler>();
 ```
 
-A [Minimal API](../../fundamentals/minimal-apis.md) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAuthorizeAttribute`:
+A [Minimal API](../../fundamentals/minimal-apis.md) endpoint is configured in the app's `Program` file with the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> extension method and the `MinimumAgeAttribute`:
 
 ```csharp
 app.MapGet("/api/greetings/hello", (HttpContext context) =>
 {
     return $"Hello {context.User.Identity?.Name}!";
-}).RequireAuthorization(new MinimumAgeAuthorizeAttribute(21));
+}).RequireAuthorization().WithMetadata(new MinimumAgeAttribute(21));
 ```
 
-The endpoint displays the user's name when they satisfy the minimum age policy, using an age of 21 years old supplied to a `MinimumAgeAuthorizeAttribute` instance.
+`MinimumAgeAttribute` only adds the age requirement, so the endpoint also calls `RequireAuthorization()` to apply the default policy, which requires an authenticated user.
+
+The endpoint displays the user's name when they satisfy the minimum age requirement, using an age of 21 years old supplied to a `MinimumAgeAttribute` instance.
 
 If the user's birth date claim indicates that they're at least 21 years old, the endpoint displays the greeting string, issuing a 200 (OK) status code. If the user is missing the birth date claim or the claim indicates that they aren't at least 21 years old, the greeting isn't displayed and a 403 (Forbidden) status code is issued.
 

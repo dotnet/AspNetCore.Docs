@@ -3,7 +3,7 @@ title: Custom authorization policies with `IAuthorizationRequirementData` in ASP
 ai-usage: ai-assisted
 description: Learn how to specify requirements associated with the authorization policy in attribute definitions with the IAuthorizationRequirementData interface in ASP.NET Core MVC.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 03/11/2026
+ms.date: 11/24/2026
 ---
 # Custom authorization policies with `IAuthorizationRequirementData` in ASP.NET Core MVC
 
@@ -12,6 +12,12 @@ This article provides a demonstration on how to use <xref:Microsoft.AspNetCore.A
 ## Sample app
 
 The MVC sample for this article is the [`AuthRequirementsData` sample app (`dotnet/AspNetCore.Docs.Samples` GitHub repository)](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/security/authorization/AuthRequirementsData) ([how to download](../../../fundamentals/index.md#how-to-download-a-sample)). The sample app implements a minimum age handler for users, requiring a user to present a birth date claim indicating that they're at least 21 years old.
+
+The controller applies `[Authorize]` and `[MinimumAge(21)]` to the action:
+
+:::code language="csharp" source="~/../AspNetCore.Docs.Samples/security/authorization/AuthRequirementsData/Controllers/GreetingsController.cs":::
+
+`[Authorize]` selects the default policy, which requires an authenticated user. `[MinimumAge(21)]` adds the minimum-age requirement.
 
 ## Demonstration
 
