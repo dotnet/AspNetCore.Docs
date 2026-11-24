@@ -13,7 +13,7 @@ This article uses a [Minimal API](../../fundamentals/minimal-apis.md) endpoint w
 
 :::moniker range=">= aspnetcore-11.0"
 
-Authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. SignalR hub methods and the [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) component during interactive routing also honor these attributes starting in ASP.NET Core 11. MVC apps that disable endpoint routing don't support these attributes.
+Authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. SignalR hub methods and the [`AuthorizeRouteView`](../../blazor/security/authentication-state.md?pivots=server#implement-a-custom-authenticationstateprovider) component during interactive routing also honor these attributes. MVC apps that disable endpoint routing don't support these attributes.
 
 Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync*> overload to combine mixed authorization metadata using the same rules as the authorization middleware.
 
@@ -21,7 +21,7 @@ Framework authors can use the <xref:Microsoft.AspNetCore.Authorization.Authoriza
 
 :::moniker range=">= aspnetcore-8.0 < aspnetcore-11.0"
 
-Since ASP.NET Core 8, authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. MVC apps that disable endpoint routing don't support these attributes.
+Authorization middleware enforces requirements from <xref:Microsoft.AspNetCore.Authorization.IAuthorizationRequirementData> on Minimal API endpoints, MVC actions, and SignalR hub connection endpoints. MVC apps that disable endpoint routing don't support these attributes.
 
 :::moniker-end
 ## Sample app
