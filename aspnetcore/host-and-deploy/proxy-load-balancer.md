@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
-ms.date: 11/10/2026
+ms.date: 11/24/2026
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 
@@ -208,7 +208,26 @@ If a proxy is used that isn't IIS or Azure App Service's Application Request Rou
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_owp&highlight=4-5,9,17,21)]
 
 If the proxy isn't base64-encoding the certificate, as is the case with Nginx, set the `HeaderConverter` option. Consider the following example:
+
 [!code-csharp[](~/host-and-deploy/proxy-load-balancer/samples/6.1/WebPS/Program.cs?name=snippet_owp2&highlight=4-13,17,25)]
+
+`ConversionLogic.CreateAnX509Certificate2`:
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.0/WebPS/Program.cs" id="snippet_conversionlogic":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
+:::code language="csharp" source="samples/6.1/WebPS/Program.cs" id="snippet_conversionlogic":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Troubleshoot
 
