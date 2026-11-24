@@ -109,7 +109,7 @@ if (RedirectHttpResult.IsLocalUrl(url))
 
 ### Validate return URLs in Blazor apps
 
-<xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> doesn't check where it navigates. During static server-side rendering (static SSR), it results in a redirect to whatever URL it's given. During interactive rendering, it also follows `javascript:` URLs. Validate return URLs from the query string or form data before navigating to them.
+<xref:Microsoft.AspNetCore.Components.NavigationManager.NavigateTo*?displayProperty=nameWithType> doesn't check where it navigates. During static server-side rendering (static SSR), it results in a redirect to whatever URL it's given. During interactive rendering, it also follows `javascript:` URLs. Validate return URLs from the query string or form data before navigating to them or rendering them as links, because Blazor doesn't block `javascript:` URLs in `href` attributes either.
 
 Blazor apps usually pass return URLs as absolute URLs, such as <xref:Microsoft.AspNetCore.Components.NavigationManager.Uri?displayProperty=nameWithType>, or as paths relative to the app's base URI. `IsLocalUrl` rejects these URLs. Instead, resolve the return URL against the app's base URI and only use the result if it stays within the app. In the following example, `Navigation` is an injected <xref:Microsoft.AspNetCore.Components.NavigationManager> and `ReturnUrl` is the return URL from the query string:
 
@@ -127,4 +127,6 @@ if (!Uri.TryCreate(baseUri, ReturnUrl, out var redirectUri)
 Navigation.NavigateTo(redirectUri.AbsoluteUri);
 ```
 
-Check the resolved URI rather than the original string, because string checks are easy to bypass. For example, `\/evil.example` resolves to `https://evil.example/`. Navigate to the validated absolute URI rather than its path, because the path of a URL such as `https://app.example//evil.example` is `//evil.example`, which browsers treat as a link to another host.
+The same check works for links. To render the return URL as a link, use `redirectUri.AbsoluteUri` as the `href` value instead of calling `NavigateTo`.
+
+Check the resolved URI rather than the original string, because string checks are easy to bypass. For example, `\/evil.example` resolves to `https://evil.example/`. Use the validated absolute URI rather than its path, because the path of a URL such as `https://app.example//evil.example` is `//evil.example`, which browsers treat as a link to another host.
