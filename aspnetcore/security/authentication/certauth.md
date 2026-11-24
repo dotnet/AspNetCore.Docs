@@ -42,7 +42,7 @@ If authentication fails, this handler returns a `403 (Forbidden)` response rathe
 
 The `UseAuthentication` method is required to set `HttpContext.User` to a `ClaimsPrincipal` value created from the certificate. For example:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-5,9":::
+:::code language="csharp" source="certauth/snippets/snippets/6.0/Program.cs" id="snippet_AddCertificateUseAuthentication" highlight="3-5,9":::
 
 The preceding example demonstrates the default way to add certificate authentication. The handler constructs a user principal by using the common certificate properties.
 
@@ -116,13 +116,13 @@ The handler has two events:
   * Determining if the certificate is known to your services.
   * Constructing your own principal, such as in the following example:
 
-    :::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidated":::
+    :::code language="csharp" source="certauth/snippets/6.0/Program.cs" id="snippet_AddCertificateOnCertificateValidated":::
 
 If the inbound certificate doesn't satisfy your extra validation, call `context.Fail("failure reason")` with a failure reason.
 
 For better functionality, call a service registered in dependency injection that connects to a database or other type of user store. Access the service by using the context passed into the delegate. Consider the following example:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateOnCertificateValidatedService" highlight="9-10,12":::
+:::code language="csharp" source="certauth/snippets/6.0/Program.cs" id="snippet_AddCertificateOnCertificateValidatedService" highlight="9-10,12":::
 
 Conceptually, the validation of the certificate is an authorization concern. For example, you can add a check on an issuer or thumbprint in an authorization policy rather than inside the `OnCertificateValidated` handler.
 
@@ -172,25 +172,53 @@ The `AddCertificateForwarding` method is used to specify:
 
 In custom web proxies, the certificate is passed as a custom request header, for example `X-SSL-CERT`. To use the certificate, configure certificate forwarding in the _Program.cs_ file:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwarding":::
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="certauth/snippets/9.0/Program.cs" id="snippet_AddCertificateForwarding":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
+:::code language="csharp" source="certauth/snippets/6.0/Program.cs" id="snippet_AddCertificateForwarding":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 If NGINX is used with the configuration `proxy_set_header ssl-client-cert $ssl_client_escaped_cert` to reverse proxy the app, or the app is deployed on Kubernetes by using NGINX Ingress, the client certificate is passed to the app in [URL-encoded form](https://developer.mozilla.org/docs/Glossary/percent-encoding). To use the certificate, decode it as follows:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateForwardingUrlEncoded":::
+:::code language="csharp" source="certauth/snippets/snippets/6.0/Program.cs" id="snippet_AddCertificateForwardingUrlEncoded":::
 
 Add the middleware in the _Program.cs_ file. The `UseCertificateForwarding` method is called before the calls to the `UseAuthentication` and `UseAuthorization` methods:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_UseCertificateForwarding" highlight="3":::
+:::code language="csharp" source="certauth/snippets/snippets/6.0/Program.cs" id="snippet_UseCertificateForwarding" highlight="3":::
 
 A separate class can be used to implement validation logic. Because the same self-signed certificate is used in this example, ensure that only your certificate can be used. Validate that the thumbprints of both the client certificate and the server certificate match. Otherwise, any certificate can be used and be sufficient for authentication. The certificate is then used inside the `AddCertificate` method. You can also validate the subject or the issuer here if you use intermediate or child certificates.
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/SampleCertificateValidationService.cs":::
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="certauth/snippets/9.0/SampleCertificateValidationService.cs" id="snippet_AddCertificateForwarding":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
+:::code language="csharp" source="certauth/snippets/6.0/SampleCertificateValidationService.cs" id="snippet_AddCertificateForwarding":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 #### Implement an HttpClient with a certificate and IHttpClientFactory
 
 In the following example, a client certificate is added to a `HttpClientHandler` by using the `ClientCertificates` property from the handler. This handler can then be used in a named instance of an `HttpClient` with the <xref:Microsoft.Extensions.DependencyInjection.HttpClientBuilderExtensions.ConfigurePrimaryHttpMessageHandler*> method. This scenario is configured in the _Program.cs_ file:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddHttpClient":::
+:::code language="csharp" source="certauth/snippets/snippets/6.0/Program.cs" id="snippet_AddHttpClient":::
 
 The `IHttpClientFactory` can then be used to get the named instance with the handler and the certificate. The `CreateClient` method with the name of the client defined in the _Program.cs_ file is used to get the instance. The HTTP request can be sent by using the client as required:
 
@@ -316,7 +344,7 @@ When you use the root, intermediate, or child certificates, the certificates can
 
 By default, certificate authentication disables caching. To enable caching, call the `AddCertificateCache` method in the _Program.cs_ file:
 
-:::code language="csharp" source="certauth/samples/CertAuthSample/Snippets/Program.cs" id="snippet_AddCertificateCaching":::
+:::code language="csharp" source="certauth/snippets/snippets/6.0/Program.cs" id="snippet_AddCertificateCaching":::
 
 When <xref:Microsoft.Extensions.DependencyInjection.CertificateAuthenticationAppBuilderExtensions.AddCertificateCache*> is enabled, the result produced by <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationEvents.OnCertificateValidated> must be a pure function of the authentication scheme and certificate. Don't base the result on request context because the cached result is reused for subsequent requests. Place request-context-dependent decisions in an authorization policy or provide a context-aware implementation of <xref:Microsoft.AspNetCore.Authentication.Certificate.ICertificateValidationCache>.
 
