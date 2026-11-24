@@ -15,6 +15,11 @@ var builder = WebApplication.CreateBuilder(args);
     builder.Services.AddAuthentication(
             CertificateAuthenticationDefaults.AuthenticationScheme)
         .AddCertificate();
+    
+    // After adding certificate authentication, use the authentication middleware 
+    // in the request pipeline:
+    // app.UseAuthentication();
+    // app.UseAuthorization();
     // </snippet_AddCertificateUseAuthentication>
 
     // <snippet_AddCertificateOnCertificateValidated>
@@ -168,10 +173,10 @@ var app = builder.Build();
 
 // <snippet_UseCertificateForwarding>
 app.UseCertificateForwarding();
-// </snippet_UseCertificateForwarding>
 
 app.UseAuthentication();
 app.UseAuthorization();
+// </snippet_UseCertificateForwarding>
 
 app.Run();
 
