@@ -737,15 +737,15 @@
         },
         {
             "source_path": "aspnetcore/aspnetcore-1.1.md",
-            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-1.1"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-1.1"
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.0.md",
-            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-2.0"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.0"
         },
         {
             "source_path": "aspnetcore/aspnetcore-2.1.md",
-            "redirect_url": "/previous-versions/aspnet/core/release-notes/aspnetcore-2.1"
+            "redirect_url": "/aspnet/core/release-notes/aspnetcore-2.1"
         },
         {
             "source_path": "aspnetcore/choose-aspnet-framework.md",
