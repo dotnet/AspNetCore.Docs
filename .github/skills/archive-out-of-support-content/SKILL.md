@@ -79,6 +79,10 @@ Use Windows paths for local filesystem operations. Link destinations and
 1. Make archived content self-contained. Copy external snippet dependencies
    when needed and adjust references to resolve in the archive. Fix relative
    links and includes affected by the new root.
+1. Ensure **every archived include file is referenced from a published Markdown
+   file in the archive repository**, directly or through an include chain. Copy
+   or update the consuming article as needed; copying an include without a
+   published consumer isn't sufficient.
 1. Pin source/download links that would otherwise point to deleted files on the
    active branch to the recorded source commit. Don't pin to a commit that lacks
    the referenced content.
@@ -127,6 +131,9 @@ Use Windows paths for local filesystem operations. Link destinations and
 * Verify that every removed file or section is present in the archive, including
   dependencies. Report actual removed-file counts separately from copied files
   and edited articles; section removals aren't file removals.
+* Trace every archived include file back to a published Markdown file in the
+  archive repository. Verify that its include chain resolves and that the
+  archived content is included in the published article.
 * Compare retained supported-version content with the pre-edit source, resolving
   includes for each retained moniker. Investigate any difference beyond the
   intended cleanup or sample migration.
