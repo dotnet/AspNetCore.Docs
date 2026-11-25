@@ -238,7 +238,7 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
 
-For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md).
+For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger).
 
 ### Install Swagger tooling
 
@@ -846,7 +846,7 @@ For more information, see the following resources:
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
 * [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md)
 * [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger)
 * [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../data/ef-rp/intro.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)

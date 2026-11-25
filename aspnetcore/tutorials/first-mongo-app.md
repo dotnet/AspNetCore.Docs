@@ -2,7 +2,7 @@
 title: Create a web API with ASP.NET Core and MongoDB
 ai-usage: ai-assisted
 description: This tutorial demonstrates how to create an ASP.NET Core web API using a MongoDB NoSQL database.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.custom: sfi-ropc-nochange
 ms.date: 05/06/2026
 ---
@@ -427,7 +427,7 @@ This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#us
 
 # [Visual Studio Code](#tab/visual-studio-code)
 
-This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](web-api-help-pages-using-swagger.md) to test the API.
+This tutorial uses the [OpenAPI specification (openapi.json) and Swagger UI](../fundamentals/openapi/using-openapi-documents.md#use-swagger-ui-for-local-ad-hoc-testing) to test the API.
 
 1. Install Swagger UI by running the following command:
 
@@ -530,13 +530,3 @@ The OpenAPI specification is a document in JSON format that describes the struct
 * [Create a minimal web API with ASP.NET Core](/training/modules/interact-api/)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app-9.md)]
-
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app8.md)]
-
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app7.md)]
-
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app6.md)]
-
-[!INCLUDE[](~/tutorials/first-mongo-app/includes/first-mongo-app3-5.md)]

@@ -95,7 +95,7 @@ To delete a to-do item, set the request's `method` option to `DELETE` and specif
 Advance to the next tutorial to learn how to generate web API help pages:
 
 > [!div class="nextstepaction"]
-> [Get started with Swashbuckle and ASP.NET Core](getting-started-with-swashbuckle.md)
+> [Get started with Swashbuckle and ASP.NET Core](/previous-versions/aspnet/core/tutorials/getting-started-with-swashbuckle)
 
 :::moniker-end
 

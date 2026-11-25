@@ -122,7 +122,7 @@ Refreshes the local version of a file that was downloaded using the latest conte
 After adding an OpenAPI reference and generating a client, see the following resources to generate code, test pages, and UIs that consume an API described by an OpenAPI document:
 
 * [Use the generated OpenAPI documents](using-openapi-documents.md)
-* [Get started with NSwag and ASP.NET Core](../../tutorials/getting-started-with-NSwag.md)
+* [Get started with NSwag and ASP.NET Core](/previous-versions/aspnet/core/tutorials/getting-started-with-nswag)
 * [Tutorial: Create a controller-based web API with ASP.NET Core](../../tutorials/first-web-api.md)
 * [Tutorial: Create a Minimal API with ASP.NET Core](../../tutorials/min-web-api.md)
 

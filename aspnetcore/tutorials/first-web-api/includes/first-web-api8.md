@@ -80,7 +80,7 @@ A NuGet package must be added to support the database used in this tutorial.
 
 ### Test the project
 
-The project template creates a `WeatherForecast` API with support for [Swagger](../../web-api-help-pages-using-swagger.md).
+The project template creates a `WeatherForecast` API with support for [Swagger](/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger).
 
 # [Visual Studio](#tab/visual-studio)
 
@@ -128,7 +128,7 @@ The Swagger page `/swagger/index.html` is displayed. Select **GET** > **Try it o
 
 If the Swagger page doesn't appear, see [this GitHub issue](https://github.com/dotnet/AspNetCore.Docs/issues/21647).
 
-Swagger is used to generate useful documentation and help pages for web APIs. This tutorial uses Swagger to test the app. For more information on Swagger, see [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md).
+Swagger is used to generate useful documentation and help pages for web APIs. This tutorial uses Swagger to test the app. For more information on Swagger, see [ASP.NET Core web API documentation with Swagger / OpenAPI](/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger).
 
 Copy and paste the **Request URL** in the browser:  `https://localhost:<port>/weatherforecast`
 
@@ -484,7 +484,7 @@ For more information, see the following resources:
 
 * [Create web APIs with ASP.NET Core](../../../web-api/index.md)
 * [Tutorial: Create a Minimal API with ASP.NET Core](../../min-web-api.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](../../web-api-help-pages-using-swagger.md)
+* [ASP.NET Core web API documentation with Swagger / OpenAPI](/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger)
 * [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../../../data/ef-rp/intro.md)
 * [Routing to controller actions in ASP.NET Core](../../../mvc/controllers/routing.md)
 * [Controller action return types in ASP.NET Core web API](../../../web-api/action-return-types.md)

@@ -1199,14 +1199,14 @@ items:
             href: fundamentals/openapi/using-openapi-documents.md
           - name: OpenAPI tools
             href: fundamentals/openapi/openapi-tools.md
-          - name: Swagger / NSwag
+          - name: Swagger / NSwag (archived)
             items:
               - name: Overview
-                href: tutorials/web-api-help-pages-using-swagger.md
+                href: /previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger
               - name: Get started with Swashbuckle
-                href: tutorials/getting-started-with-swashbuckle.md
+                href: /previous-versions/aspnet/core/tutorials/getting-started-with-swashbuckle
               - name: Get started with NSwag
-                href: tutorials/getting-started-with-NSwag.md
+                href: /previous-versions/aspnet/core/tutorials/getting-started-with-nswag
       - name: Controller-based APIs
         items:
         - name: Overview

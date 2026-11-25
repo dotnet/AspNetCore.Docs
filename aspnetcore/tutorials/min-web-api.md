@@ -3,7 +3,7 @@ title: "Tutorial: Create a Minimal API with ASP.NET Core"
 description: Create a Minimal API with ASP.NET Core using Visual Studio or Visual Studio Code. This tutorial covers GET, POST, PUT, PATCH, and DELETE endpoints for a to-do app.
 ai-usage: ai-assisted
 ms.date: 06/28/2026
-monikerRange: '>= aspnetcore-6.0'
+monikerRange: '>= aspnetcore-10.0'
 ---
 
 # Tutorial: Create a Minimal API with ASP.NET Core
@@ -822,7 +822,3 @@ If you run into a problem you can't resolve, compare your code to the completed 
 See [Minimal APIs quick reference](../fundamentals/minimal-apis.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-6-7.md)]
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-8.md)]
-[!INCLUDE[](~/tutorials/min-web-api/includes/min-web-api-9.md)]

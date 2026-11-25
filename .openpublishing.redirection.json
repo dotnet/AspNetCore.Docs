@@ -66,6 +66,21 @@
             "redirect_document_id": false
         },
         {
+            "source_path": "aspnetcore/tutorials/getting-started-with-NSwag.md",
+            "redirect_url": "/previous-versions/aspnet/core/tutorials/getting-started-with-nswag",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/getting-started-with-swashbuckle.md",
+            "redirect_url": "/previous-versions/aspnet/core/tutorials/getting-started-with-swashbuckle",
+            "redirect_document_id": false
+        },
+        {
+            "source_path": "aspnetcore/tutorials/web-api-help-pages-using-swagger.md",
+            "redirect_url": "/previous-versions/aspnet/core/tutorials/web-api-help-pages-using-swagger",
+            "redirect_document_id": false
+        },
+        {
             "source_path": "aspnetcore/web-api/microsoft.dotnet-openapi.md",
             "redirect_url": "/aspnet/core/fundamentals/openapi/openapi-tools"
         },
