@@ -4,7 +4,7 @@ ai-usage: ai-assisted
 description: Learn about configuration for apps hosted behind proxy servers and load balancers, which often obscure important request information.
 monikerRange: '>= aspnetcore-3.1'
 ms.custom: linux-related-content
-ms.date: 11/24/2026
+ms.date: 11/25/2026
 ---
 # Configure ASP.NET Core to work with proxy servers and load balancers
 

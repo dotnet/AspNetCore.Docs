@@ -1,7 +1,7 @@
 ---
 title: Key encryption at rest in Windows and Azure using ASP.NET Core
 description: Learn implementation details of ASP.NET Core Data Protection key encryption at rest.
-ms.date: 06/06/2025
+ms.date: 11/25/2026
 ---
 # Key encryption at rest in Windows and Azure using ASP.NET Core
 
@@ -51,6 +51,23 @@ services.AddDataProtection()
     .ProtectKeysWithCertificate("{CERTIFICATE THUMBPRINT}");
 ```
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+In the following example, an X.509 certificate is loaded with <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader> and passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
+
+```csharp
+var cert = X509CertificateLoader.<method>;
+
+services.AddDataProtection()
+    .ProtectKeysWithCertificate(cert);
+```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.0 < aspnetcore-9.0"
+
 In the following example, an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> is passed to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*>:
 
 ```csharp
@@ -59,6 +76,10 @@ var cert = new X509Certificate2(...);
 services.AddDataProtection()
     .ProtectKeysWithCertificate(cert);
 ```
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-2.0"
 
 To create the certificate, use one of the following approaches or any other suitable tool or online service:
 
