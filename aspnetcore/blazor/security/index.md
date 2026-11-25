@@ -586,7 +586,7 @@ The default revalidation interval is 30 minutes for either ASP.NET Core Identity
 
 To control the revalidation period and enforce a complete sign out process for users, begin by implementing a <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider> with a shorter <xref:Microsoft.AspNetCore.Components.Server.RevalidatingServerAuthenticationStateProvider.RevalidationInterval>.
 
-For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/v10.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
+For an example implementation showing the default 30-minute interval, see the [`IdentityRevalidatingAuthenticationStateProvider` class (reference source)](https://github.com/dotnet/aspnetcore/blob/v11.0.0/src/ProjectTemplates/Web.ProjectTemplates/content/BlazorWeb-CSharp/BlazorWebCSharp.1/Components/Account/IdentityRevalidatingAuthenticationStateProvider.cs) in the Blazor Web App project template.
 
 In the following example, the interval is set to five minutes:
 
