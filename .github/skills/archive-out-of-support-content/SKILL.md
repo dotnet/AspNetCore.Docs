@@ -21,11 +21,10 @@ content in the archive**, not just deleting it from this repository.
 * The previous requests target .NET 9 and earlier. Use that cutoff unless the
   current request specifies another one; don't silently expand it as time passes.
 * Select one coherent chunk of roughly **500-1,500 removed files**, unless the
-  user specifies another size or requests specific sections. Earlier requests
-  used 500-1,000 files. Prefer a self-contained topic or tutorial over unrelated
-  files selected only to reach the count.
-* The default archive content root from those requests is
-  `C:\Users\gewarren\aspnet-docs-archive-pr\aspnet-core`. Verify that it exists
+  user specifies another size or requests specific sections. Prefer a self-contained
+  topic or tutorial over unrelated files selected only to reach the count.
+* The default archive content folder from those requests is
+  `\aspnet-docs-archive-pr\aspnet-core`. Verify that it exists
   and inspect its repository instructions and worktree before changing it. If
   unavailable, obtain the destination from the user; don't delete source content
   or silently substitute another archive.
@@ -38,8 +37,6 @@ Relevant paths:
 * `aspnetcore`: active articles, includes, samples, and images.
 * `aspnetcore\toc.yml`: active navigation.
 * `.openpublishing.redirection.json`: redirects for removed or renamed articles.
-* `.github\copilot-instructions.md` and `.github\copilot-code-instructions.md`:
-  repository writing and sample conventions.
 * Archive `aspnet-core\index.yml` and `aspnet-core\toc.yml`: archive landing page
   and navigation.
 
@@ -112,8 +109,7 @@ Use Windows paths for local filesystem operations. Link destinations and
    for includes, samples, or removed sections in an article whose URL survives.
    Use the verified archive URL, normally
    `/previous-versions/aspnet/core/<article path>`, without the `.md` extension.
-   Set `redirect_document_id` to `false`, avoid duplicate `source_path` entries,
-   and keep entries alphabetically ordered. Redirects preserve old inbound URLs;
+   Don't set `redirect_document_id` (it defaults to `false`), avoid duplicate `source_path` entries, and keep entries alphabetically ordered. Redirects preserve old inbound URLs;
    they aren't a reason to retain obsolete content in active navigation.
 
 ## Update archive discovery
