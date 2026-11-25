@@ -154,12 +154,6 @@ The project includes packages and configuration to produce [OpenAPI documents](.
 
 :::moniker-end
 
-:::moniker range="< aspnetcore-9.0"
-
-Services and endpoints for [Swagger/OpenAPI](../../../../tutorials/web-api-help-pages-using-swagger.md) are included for web API documentation and development testing. For more information on NSwag, see [Get started with NSwag and ASP.NET Core](../../../../tutorials/getting-started-with-NSwag.md).
-
-:::moniker-end
-
 User role claims are sent from a [Minimal API](../../../../fundamentals/apis.md) at the `/roles` endpoint.
 
 Routes are mapped for Identity endpoints by calling `MapIdentityApi<AppUser>()`.

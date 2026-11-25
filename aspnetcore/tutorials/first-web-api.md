@@ -2,12 +2,11 @@
 title: "Tutorial: Create a controller-based web API with ASP.NET Core"
 ai-usage: ai-assisted
 description: Learn how to build a controller-based web API with ASP.NET Core.
-ms.date: 08/24/2026
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/24/2026
 ---
 
 # Tutorial: Create a controller-based web API with ASP.NET Core
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
@@ -237,8 +236,6 @@ This tutorial utilizes the .NET package [NSwag.AspNetCore](https://www.nuget.org
 * NSwag: A .NET library that integrates Swagger directly into ASP.NET Core applications, providing middleware and configuration.
 * Swagger: A set of open-source tools such as OpenAPIGenerator and SwaggerUI that generate API testing pages that follow the OpenAPI specification.
 * OpenAPI specification: A document that describes the capabilities of the API, based on the XML and attribute annotations within the controllers and models.
-
-For more information on using OpenAPI and NSwag with ASP.NET, see [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md).
 
 ### Install Swagger tooling
 
@@ -846,7 +843,6 @@ For more information, see the following resources:
 * [Create web APIs with ASP.NET Core](../web-api/index.md)
 * [Tutorial: Create a Minimal API with ASP.NET Core](min-web-api.md)
 * [Use the generated OpenAPI documents](../fundamentals/openapi/using-openapi-documents.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](web-api-help-pages-using-swagger.md)
 * [Razor Pages with Entity Framework Core in ASP.NET Core - Tutorial 1 of 8](../data/ef-rp/intro.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Controller action return types in ASP.NET Core web API](../web-api/action-return-types.md)
@@ -855,6 +851,3 @@ For more information, see the following resources:
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api7.md)]
-[!INCLUDE[](~/tutorials/first-web-api/includes/first-web-api8.md)]

@@ -304,7 +304,6 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
@@ -583,7 +582,6 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Use port tunneling Visual Studio to debug web APIs](/connectors/custom-connectors/port-tunneling)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
@@ -873,7 +871,6 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 
@@ -1109,7 +1106,6 @@ The `[Consumes]` attribute is applied to both actions. The `PostJson` action han
 * [Handle errors in ASP.NET Core APIs](../fundamentals/error-handling-api.md)
 * [Custom formatters in ASP.NET Core Web API](advanced/custom-formatters.md)
 * [Format response data in ASP.NET Core Web API](advanced/formatting.md)
-* [ASP.NET Core web API documentation with Swagger / OpenAPI](../tutorials/web-api-help-pages-using-swagger.md)
 * [Routing to controller actions in ASP.NET Core](../mvc/controllers/routing.md)
 * [Create a web API with ASP.NET Core](/training/modules/build-web-api-aspnet-core/)
 :::moniker-end

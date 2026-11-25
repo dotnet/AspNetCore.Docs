@@ -7,12 +7,6 @@ ms.date: 11/11/2026
 ---
 # ASP.NET Core Blazor WebAssembly Event Pipe diagnostics
 
-<!-- UPDATE 11.0 - Activate ...
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
--->
-
 This article describes diagnostic tools and how to use them in Blazor WebAssembly apps.
 
 ## Prerequisite for all scenarios

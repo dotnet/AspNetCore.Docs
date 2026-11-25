@@ -2,12 +2,10 @@
 title: "Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack"
 ai-usage: ai-assisted
 description: This tutorial provides a walkthrough of bundling and building an ASP.NET Core SignalR web app using TypeScript and Webpack.
-monikerRange: ">= aspnetcore-2.1"
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 02/24/2026
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -269,11 +267,3 @@ Confirm that the app works with the following steps:
 * [Use hubs in ASP.NET Core SignalR](../signalr/hubs.md)
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack8-9.md)]
-
-[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack7.md)]
-
-[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack6.md)]
-
-[!INCLUDE[](~/tutorials/signalr-typescript-webpack/includes/signalr-typescript-webpack2.1-5.md)]

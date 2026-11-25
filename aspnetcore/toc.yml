@@ -438,8 +438,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC (archived)
-            href: /previous-versions/aspnet/core/data/ef-mvc/index
       - name: Learn modules
         items:
           - name: Web apps >>
@@ -1199,14 +1197,6 @@ items:
             href: fundamentals/openapi/using-openapi-documents.md
           - name: OpenAPI tools
             href: fundamentals/openapi/openapi-tools.md
-          - name: Swagger / NSwag
-            items:
-              - name: Overview
-                href: tutorials/web-api-help-pages-using-swagger.md
-              - name: Get started with Swashbuckle
-                href: tutorials/getting-started-with-swashbuckle.md
-              - name: Get started with NSwag
-                href: tutorials/getting-started-with-NSwag.md
       - name: Controller-based APIs
         items:
         - name: Overview
@@ -1892,8 +1882,6 @@ items:
                 href: data/ef-rp/update-related-data.md
               - name: Handle concurrency conflicts
                 href: data/ef-rp/concurrency.md
-          - name: EF Core with MVC (archived)
-            href: /previous-versions/aspnet/core/data/ef-mvc/index
       - name: Scaffold a data model with dotnet scaffold in RP
         href: data/scaffold_RP.md
       - name: EF 6 with ASP.NET Core
@@ -2434,8 +2422,6 @@ items:
               - name: 2.0 to 2.1
                 displayName: migrate, migration
                 href: migration/20-to-21.md
-              - name: 1.x to 2.0 (archived)
-                href: /previous-versions/aspnet/core/migration/1x-to-2x/index
       - name: ASP.NET to ASP.NET Core
         displayName: migrate, migration
         items:

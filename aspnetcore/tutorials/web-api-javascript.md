@@ -1,9 +1,10 @@
 ---
 title: "Tutorial: Call an ASP.NET Core web API with JavaScript"
+ai-usage: ai-assisted
 description: Learn how to call an ASP.NET Core web API with JavaScript.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.custom: devx-track-js
-ms.date: 05/12/2026
+ms.date: 11/24/2026
 ---
 # Tutorial: Call an ASP.NET Core web API with JavaScript
 
@@ -92,13 +93,4 @@ To delete a to-do item, set the request's `method` option to `DELETE` and specif
 
 [!code-javascript[](~/tutorials/first-web-api/samples/6.0/TodoApi/wwwroot/js/site.js?name=snippet_DeleteItem)]
 
-Advance to the next tutorial to learn how to generate web API help pages:
-
-> [!div class="nextstepaction"]
-> [Get started with Swashbuckle and ASP.NET Core](getting-started-with-swashbuckle.md)
-
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/web-api-javascript/includes/web-api-javascript3-5.md)]
-
-[!INCLUDE[](~/tutorials/web-api-javascript/includes/web-api-javascript6-7.md)]

@@ -2,8 +2,8 @@
 title: Use the generated OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to use OpenAPI documents in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-6.0'
-ms.date: 08/28/2026
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/24/2026
 ---
 # Use openAPI documents
 
@@ -139,6 +139,3 @@ This enables scenarios such as generating client SDKs, validating API contracts 
 Support for injecting `IOpenApiDocumentProvider` was introduced in ASP.NET Core in .NET 10. For more information, see [dotnet/aspnetcore #61463](https://github.com/dotnet/aspnetcore/pull/61463).
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-6-8.md)]
-[!INCLUDE[](~/fundamentals/openapi/includes/using-openapi-documents-9.md)]

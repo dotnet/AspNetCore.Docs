@@ -2,8 +2,8 @@
 title: Generate OpenAPI documents
 ai-usage: ai-assisted
 description: Learn how to generate and customize OpenAPI documents in an ASP.NET Core app.
-monikerRange: '>= aspnetcore-6.0'
-ms.date: 10/16/2026
+monikerRange: '>= aspnetcore-10.0'
+ms.date: 11/24/2026
 ---
 # Generate OpenAPI documents
 
@@ -440,7 +440,3 @@ dotnet publish
 ```
 
 :::moniker-end
-
-[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi6-8.md)]
-
-[!INCLUDE[](~/fundamentals/openapi/includes/aspnetcore-openapi9.md)]

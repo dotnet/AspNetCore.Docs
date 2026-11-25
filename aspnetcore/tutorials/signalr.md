@@ -2,15 +2,13 @@
 title: Get started with ASP.NET Core SignalR
 ai-usage: ai-assisted
 description: In this tutorial, you create a chat app that uses ASP.NET Core SignalR.
-monikerRange: '>= aspnetcore-3.1'
+monikerRange: '>= aspnetcore-10.0'
 ms.date: 03/20/2026
 
 # Customer intent: As a developer, I want to get a quick proof-of-concept app running, so I can get a practical introduction to ASP.NET Core SignalR.
 ---
 
 # Tutorial: Get started with ASP.NET Core SignalR
-
-[!INCLUDE[](~/includes/not-latest-version.md)]
 
 :::moniker range=">= aspnetcore-10.0"
 
@@ -223,12 +221,3 @@ For information on deploying to Azure, see [Quickstart: Deploy an ASP.NET web ap
 * [View or download sample code](https://github.com/dotnet/AspNetCore.Docs/tree/main/aspnetcore/signalr/javascript-client/samples) ([how to download](../fundamentals/index.md#how-to-download-a-sample))
 
 :::moniker-end
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr8-9.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr7.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr6.md)]
-
-[!INCLUDE[](~/tutorials/signalr/includes/signalr3-5.md)]
-
