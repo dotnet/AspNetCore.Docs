@@ -7,8 +7,6 @@ ms.date: 11/24/2026
 ---
 # Controller action return types in ASP.NET Core web API
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 :::moniker range=">= aspnetcore-8.0"
 
 [View or download sample code](https://github.com/dotnet/AspNetCore.Docs.Samples/tree/main/mvc/action-return-types/) ([how to download](../fundamentals/index.md#how-to-download-a-sample))

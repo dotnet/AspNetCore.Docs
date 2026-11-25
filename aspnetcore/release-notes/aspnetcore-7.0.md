@@ -98,7 +98,7 @@ In ASP.NET 7, binding query strings to an array of primitive types, string array
 
 Binding query strings or header values to an array of complex types is supported when the type has `TryParse` implemented. For more information, see [Bind arrays and string values from headers and query strings](../fundamentals/minimal-apis.md?view=aspnetcore-7.0&preserve-view=true#bindar).
 
-For more information, see [Add endpoint summary or description](../fundamentals/openapi/aspnetcore-openapi.md?view=aspnetcore-7.0&preserve-view=true#add-endpoint-summary-or-description).
+For more information, see [Summary and description](../fundamentals/openapi/include-metadata.md#summary-and-description).
 
 ### Bind the request body as a `Stream` or `PipeReader`
 

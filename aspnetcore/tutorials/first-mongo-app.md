@@ -8,8 +8,6 @@ ms.date: 05/06/2026
 ---
 # Create a web API with ASP.NET Core and MongoDB
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Tim Deschryver](https://timdeschryver.dev)
 
 :::moniker range=">= aspnetcore-10.0"
@@ -105,7 +103,7 @@ Use the previously installed MongoDB Shell in the following steps to create a da
         ]
     }
    ```
-  
+
    > [!NOTE]
    > The `ObjectId`s shown in the preceding result won't match those shown in the command shell.
 
@@ -302,9 +300,9 @@ This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#us
 
    ```
    @BookStoreApi_HostAddress = https://localhost:{PORT}
-    
+
    GET {{BookStoreApi_HostAddress}}/books
-    
+
    ###
    ```
 
@@ -383,7 +381,7 @@ This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#us
    {
      //Book
    }
-   
+
    ###
    ```
 
@@ -399,7 +397,7 @@ This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#us
       "Category": "Computers",
       "Author": "Andy Hunt"
     }
-   
+
    ###
    ```
 
@@ -413,7 +411,7 @@ This tutorial uses [Endpoints Explorer and .http files](../test/http-files.md#us
 
    ```
    DELETE {{BookStoreApi_HostAddress}}/books/{{id}}
-    
+
    ###
    ```
 
@@ -514,8 +512,8 @@ The OpenAPI specification is a document in JSON format that describes the struct
 1. The response should have a status code of 201 (Created) and include the newly created book with its assigned ID in the response body.
 
 1. Lastly, to delete a book record, expand the **DELETE /books/{id}** endpoint, click **Try it out**, and enter one of the book IDs from the previous response in the **id** field. Click **Execute** to send the request.
- 
-1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted. 
+
+1. The response should have a status code of 204 (No Content), indicating that the book was successfully deleted.
 ---
 
 ## Add authentication support to a web API

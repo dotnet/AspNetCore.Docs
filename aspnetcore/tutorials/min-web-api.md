@@ -8,8 +8,6 @@ monikerRange: '>= aspnetcore-10.0'
 
 # Tutorial: Create a Minimal API with ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Wade Pickett](https://github.com/wadepickett) and [Tom Dykstra](https://github.com/tdykstra)
 
 :::moniker range=">= aspnetcore-10.0"

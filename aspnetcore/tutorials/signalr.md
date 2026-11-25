@@ -10,8 +10,6 @@ ms.date: 03/20/2026
 
 # Tutorial: Get started with ASP.NET Core SignalR
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 :::moniker range=">= aspnetcore-10.0"
 
 This tutorial teaches the basics of building a real-time app using SignalR. You learn how to:

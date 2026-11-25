@@ -8,8 +8,6 @@ ms.date: 11/24/2026
 
 # Tutorial: Create a controller-based web API with ASP.NET Core
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 By [Tim Deschryver](https://timdeschryver.dev/) and [Rick Anderson](https://twitter.com/RickAndMSFT)
 
 :::moniker range=">= aspnetcore-9.0"

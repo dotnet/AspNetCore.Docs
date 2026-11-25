@@ -7,8 +7,6 @@ ms.date: 02/24/2026
 ---
 # Tutorial: Get started with ASP.NET Core SignalR using TypeScript and Webpack
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
-
 :::moniker range=">= aspnetcore-10.0"
 
 This tutorial demonstrates using [Webpack](https://webpack.js.org/) in an ASP.NET Core SignalR web app to bundle and build a client written in [TypeScript](https://www.typescriptlang.org/). Webpack enables developers to bundle and build the client-side resources of a web app.

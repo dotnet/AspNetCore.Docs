@@ -9,7 +9,6 @@ ms.date: 09/01/2026
 
 <!-- UPDATE 11.0 - Activate the not-latest-version file.
 
-[!INCLUDE[](~/includes/not-latest-version.md)]
 [!INCLUDE[](~/includes/not-latest-version-without-not-supported-content.md)]
 
 -->
