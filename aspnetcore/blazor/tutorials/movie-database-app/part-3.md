@@ -3,7 +3,7 @@ title: Build a Blazor movie database app (Part 3 - Learn about Razor components)
 ai-usage: ai-assisted
 description: This part of the Blazor movie database app tutorial explains the Razor components in the project that were scaffolded into the app. Improvements are made to the display of movie data.
 monikerRange: '>= aspnetcore-8.0'
-ms.date: 09/15/2026
+ms.date: 11/25/2026
 zone_pivot_groups: tooling
 ---
 # Build a Blazor movie database app (Part 3 - Learn about Razor components)
@@ -840,14 +840,6 @@ The movie entity's <xref:Microsoft.EntityFrameworkCore.EntityState> is set to <x
 When a movie isn't found, calling <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*?displayProperty=nameWithType> renders the `NotFound` component, which produces a Not Found page in the browser with a 404 (Not Found) status code.
 
 If there's a concurrency exception and the movie entity no longer exists at the time that changes are saved, the component redirects to the Not Found page, which results in returning a 404 (Not Found) status code. If the movie exists and a concurrency exception is thrown, for example when another user has already modified the entity, the exception is rethrown by the component with the [`throw` statement (C# Language Reference)](/dotnet/csharp/language-reference/statements/exception-handling-statements#the-throw-statement). Additional guidance on handling concurrency with EF Core in Blazor apps is provided by the Blazor documentation.
-
-<!-- UPDATE 11.0 - Remove the following NOTE after the scaffolder
-                   updates go public on 
-                   https://github.com/dotnet/Scaffolding/issues/3828.
--->
-
-> [!NOTE]
-> Later, you're instructed to make a minor modification to the preceding code in the `Edit` component's `UpdateMovie` method, where a `return` statement is added after the call to <xref:Microsoft.AspNetCore.Components.NavigationManager.NotFound*>. Guidance on this change and information on why the change is required is provided in the *Concurrency exception handling* section of [Build a Blazor movie database app (Part 4 - Work with a database)](part-4.md), which is the next article in this tutorial.
 
 :::moniker-end
 
