@@ -97,6 +97,12 @@ Use Windows paths for local filesystem operations. Link destinations and
 1. In mixed-version articles, remove unsupported-only prose, tabs, includes, and
    moniker blocks. Simplify wrappers made redundant by the removal, but preserve
    distinctions between retained versions and balanced moniker/tab syntax.
+1. When changing file-level `monikerRange` metadata, remove any section-level
+   moniker wrappers that no longer restrict the versions covered by the file.
+   For example, if the metadata becomes `monikerRange: '>= aspnetcore-10.0'`,
+   remove each `:::moniker range=">= aspnetcore-10.0"` directive and its matching
+   `:::moniker-end`, retaining the enclosed content. Keep wrappers that still
+   distinguish between retained versions.
 1. Keep supported and shared guidance, snippets, images, and samples. If supported
    guidance uses a legacy sample, retain the dependency or migrate the smallest
    necessary sample to the supported version specified by the task and repository
