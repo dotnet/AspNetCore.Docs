@@ -267,12 +267,15 @@ app.MapRazorPages();
 app.Run();
 #endregion
 
+#region snippet_conversionlogic
 public static class ConversionLogic
 {
     public static System.Security.Cryptography.X509Certificates.X509Certificate2
         CreateAnX509Certificate2() => new System.Security.Cryptography
         .X509Certificates.X509Certificate2("abc");
 }
+#endregion
+
 #elif TRB
 #region snippet_trb
 using Microsoft.AspNetCore.HttpOverrides;

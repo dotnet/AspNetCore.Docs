@@ -2,7 +2,7 @@
 title: Configure ASP.NET Core Data Protection
 description: Learn how to configure Data Protection in ASP.NET Core.
 monikerRange: '>= aspnetcore-3.1'
-ms.date: 10/08/2025
+ms.date: 11/25/2026
 ---
 # Configure ASP.NET Core Data Protection
 <!-- ms.sfi.ropc: t -->
@@ -128,7 +128,21 @@ builder.Services.AddDataProtection()
 
 To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location, configure the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.PersistKeysToFileSystem*>:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToFileSystem":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToFileSystem":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!WARNING]
 > If you change the key persistence location, the system no longer automatically encrypts keys at rest, since it doesn't know whether DPAPI is an appropriate encryption mechanism.
@@ -137,11 +151,39 @@ To store keys on a UNC share instead of at the *%LOCALAPPDATA%* default location
 
 To store keys in a database using EntityFramework, configure the system with the [Microsoft.AspNetCore.DataProtection.EntityFrameworkCore](https://www.nuget.org/packages/Microsoft.AspNetCore.DataProtection.EntityFrameworkCore/) package:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToDbContext":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionPersistKeysToDbContext":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The preceding code stores the keys in the configured database. The database context being used must implement `IDataProtectionKeyContext`.  `IDataProtectionKeyContext` exposes the property `DataProtectionKeys`
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/SampleDbContext.cs" id="snippet_DataProtectionKeys":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/SampleDbContext.cs" id="snippet_DataProtectionKeys":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 This property represents the table in which the keys are stored. Create the table manually or with `DbContext` Migrations. For more information, see <xref:Microsoft.AspNetCore.DataProtection.EntityFrameworkCore.DataProtectionKey>.
 
@@ -153,13 +195,13 @@ You can configure the system to protect keys at rest by calling any of the [`Pro
 
 :::moniker range=">= aspnetcore-9.0"
 
-You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadCertificateFromFile*?displayProperty=nameWithType>:
+You can provide an <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> to <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.ProtectKeysWithCertificate*> from a file by calling <xref:System.Security.Cryptography.X509Certificates.X509CertificateLoader.LoadPkcs12FromFile*?displayProperty=nameWithType>:
 
-:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificateX509Certificate2":::
 
 The following code example demonstrates how to load a certificate using a thumbprint:
 
-:::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionProtectKeysWithCertificate":::
 
 :::moniker-end
 
@@ -183,13 +225,41 @@ For examples and discussion on the built-in key encryption mechanisms, see [Key 
 
 You can rotate certificates and decrypt keys at rest using an array of <xref:System.Security.Cryptography.X509Certificates.X509Certificate2> certificates with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UnprotectKeysWithAnyCertificate*>:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUnprotectKeysWithAnyCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUnprotectKeysWithAnyCertificate":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Set the default key lifetime (`SetDefaultKeyLifetime`)
 
 To configure the system to use a key lifetime of 14 days instead of the default 90 days, use <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetDefaultKeyLifetime*>:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetDefaultKeyLifetime":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetDefaultKeyLifetime":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Set the application name (`SetApplicationName`)
 
@@ -202,7 +272,21 @@ To share protected payloads among apps:
   * Reference the same shared framework version via the [Microsoft.AspNetCore.App metapackage](../../../fundamentals/metapackage-app.md).
   * Reference the same [Data Protection package](../introduction.md#package-layout) version.
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionSetApplicationName":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.SetApplicationName*> internally sets <xref:Microsoft.AspNetCore.DataProtection.DataProtectionOptions.ApplicationDiscriminator?displayProperty=nameWithType>. For troubleshooting purposes, the value assigned to the discriminator by the framework can be logged with the following code placed after the <xref:Microsoft.AspNetCore.Builder.WebApplication> is built in `Program.cs`:
 
@@ -242,7 +326,21 @@ For more information on how the discriminator is used, see the following section
 
 You may have a scenario where you don't want an app to automatically roll keys (create new keys) as they approach expiration. One example of this scenario might be apps set up in a primary/secondary relationship, where only the primary app is responsible for key management concerns and secondary apps simply have a read-only view of the key ring. The secondary apps can be configured to treat the key ring as read-only by configuring the system with <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.DisableAutomaticKeyGeneration*>:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionDisableAutomaticKeyGeneration":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionDisableAutomaticKeyGeneration":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 ## Per-application isolation
 
@@ -277,7 +375,21 @@ Consider the following points for app isolation:
 
 The Data Protection stack allows you to change the default algorithm used by newly generated keys. The simplest way to do this is to call <xref:Microsoft.AspNetCore.DataProtection.DataProtectionBuilderExtensions.UseCryptographicAlgorithms*> from the configuration callback:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCryptographicAlgorithms":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCryptographicAlgorithms":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 The default EncryptionAlgorithm is AES-256-CBC, and the default ValidationAlgorithm is HMACSHA256. The default policy can be set by a system administrator via a [machine-wide policy](machine-wide-policy.md), but an explicit call to `UseCryptographicAlgorithms` overrides the default policy.
 
@@ -292,7 +404,21 @@ You can manually specify an implementation via a call to <xref:Microsoft.AspNetC
 
 To specify custom managed algorithms, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.ManagedAuthenticatedEncryptorConfiguration> instance that points to the implementation types:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithms":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithms":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 Generally the \*Type properties must point to concrete, instantiable (via a public parameterless ctor) implementations of <xref:System.Security.Cryptography.SymmetricAlgorithm> and <xref:System.Security.Cryptography.KeyedHashAlgorithm>, though the system special-cases some values like `typeof(Aes)` for convenience.
 
@@ -303,14 +429,42 @@ Generally the \*Type properties must point to concrete, instantiable (via a publ
 
 To specify a custom Windows CNG algorithm using CBC-mode encryption with HMAC validation, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorConfiguration> instance that contains the algorithmic information:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngCbc":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of >= 64 bits, and it must support CBC-mode encryption with PKCS #7 padding. The hash algorithm must have a digest size of >= 128 bits and must support being opened with the BCRYPT\_ALG\_HANDLE\_HMAC\_FLAG flag. The \*Provider properties can be set to null to use the default provider for the specified algorithm. For more information, see the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation.
 
 To specify a custom Windows CNG algorithm using Galois/Counter Mode encryption with validation, create a <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngGcmAuthenticatedEncryptorConfiguration> instance that contains the algorithmic information:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/Snippets/Program.cs" id="snippet_AddDataProtectionUseCustomCryptographicAlgorithmsCngGcm":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 > [!NOTE]
 > The symmetric block cipher algorithm must have a key length of >= 128 bits, a block size of exactly 128 bits, and it must support GCM encryption. You can set the <xref:Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.CngCbcAuthenticatedEncryptorConfiguration.EncryptionAlgorithmProvider> property to null to use the default provider for the specified algorithm. For more information, see the [BCryptOpenAlgorithmProvider](/windows/win32/api/bcrypt/nf-bcrypt-bcryptopenalgorithmprovider) documentation.
@@ -334,7 +488,21 @@ Only Redis versions supporting [Redis Data Persistence](/azure/azure-cache-for-r
 
 Enable the `Information` or lower level of logging to diagnose problems. The following `appsettings.json` file enables information logging of the Data Protection API:
 
+:::moniker-end
+
+:::moniker range=">= aspnetcore-9.0"
+
+:::code language="csharp" source="samples/9.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0 < aspnetcore-9.0"
+
 :::code language="csharp" source="samples/6.x/DataProtectionConfigurationSample/appsettings.json" highlight="6":::
+
+:::moniker-end
+
+:::moniker range=">= aspnetcore-6.0"
 
 For more information on logging, see [Logging in .NET and ASP.NET Core](../../../fundamentals/logging/index.md).
 

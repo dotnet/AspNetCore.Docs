@@ -201,7 +201,8 @@ services.AddReverseProxy()
 `ConfigureHttpClient` provides a callback to customize the `SocketsHttpHandler` settings used for proxying requests. This will be called each time a cluster is added or changed. Cluster settings are applied to the handler before the callback. Custom data can be provided in the cluster metadata. This example shows adding a client certificate that will authenticate the proxy to the destination servers.
 
 ```csharp
-var clientCert = new X509Certificate2("path");
+// On .NET 8, add a reference to the Microsoft.Bcl.Cryptography NuGet package.
+var clientCert = X509CertificateLoader.LoadPkcs12FromFile("certificate.pfx", password: null);
 services.AddReverseProxy()
     .ConfigureHttpClient((context, handler) =>
     {

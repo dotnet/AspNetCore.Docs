@@ -1,7 +1,6 @@
 using System.Security.Cryptography.X509Certificates;
 
-namespace CertAuthSample.Snippets;
-
+#region snippet_SampleCertificateValidationService
 public class SampleCertificateValidationService : ICertificateValidationService
 {
     public bool ValidateCertificate(X509Certificate2 clientCertificate)
@@ -13,4 +12,10 @@ public class SampleCertificateValidationService : ICertificateValidationService
 
         return clientCertificate.Thumbprint == expectedCertificate.Thumbprint;
     }
+}
+#endregion
+
+public interface ICertificateValidationService
+{
+    bool ValidateCertificate(X509Certificate2 clientCertificate);
 }
