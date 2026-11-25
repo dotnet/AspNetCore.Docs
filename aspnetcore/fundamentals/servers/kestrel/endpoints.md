@@ -190,7 +190,7 @@ Listen on a Unix socket with <xref:Microsoft.AspNetCore.Server.Kestrel.Core.Kest
 
 When port number `0` is specified, Kestrel dynamically binds to an available port. The following example shows how to determine the ports bound by Kestrel at runtime:
 
-:::code language="csharp" source="~/fundamentals/servers/kestrel/endpoints/snippets/Program.cs" id="snippet_IServerAddressesFeature":::
+:::code language="csharp" source="endpoints/snippets/Program.cs" id="snippet_IServerAddressesFeature":::
 
 > [!NOTE]
 > Dynamic port binding isn't supported when binding to `localhost`. Bind to an explicit IP address such as `127.0.0.1:0`, `[::1]:0`, or `0.0.0.0:0`.
