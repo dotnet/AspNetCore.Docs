@@ -146,6 +146,31 @@ Always use HttpMessageInvoker rather than HttpClient, HttpClient buffers respons
 
 Re-using a client for requests to the same destination is recommended for performance reasons as it allows you to re-use pooled connections. A client may also be re-used for requests to different destinations if the configuration is the same.
 
+#### Service discovery and a custom HTTP client
+
+When an app uses [.NET service discovery](/dotnet/core/extensions/service-discovery) (for example, in an Aspire app), call `AddHttpForwarderWithServiceDiscovery` instead of `AddHttpForwarder`. The default `MapForwarder` overloads then resolve service names such as `https://api` through the service discovery HTTP client factory.
+
+A custom `HttpMessageInvoker` passed to `MapForwarder` or `SendAsync` replaces that factory, so service names aren't resolved and requests fail with a "No such host" error. To keep service discovery, wrap the inner handler with the `IServiceDiscoveryHttpMessageHandlerFactory` registered by `AddServiceDiscovery`:
+
+```csharp
+using Microsoft.Extensions.ServiceDiscovery.Http;
+
+builder.Services.AddServiceDiscovery();
+builder.Services.AddHttpForwarderWithServiceDiscovery();
+
+var app = builder.Build();
+
+var factory = app.Services.GetRequiredService<IServiceDiscoveryHttpMessageHandlerFactory>();
+var httpClient = new HttpMessageInvoker(factory.CreateHandler(new SocketsHttpHandler
+{
+    UseProxy = false,
+    AllowAutoRedirect = false,
+    ConnectTimeout = TimeSpan.FromSeconds(15),
+}));
+
+app.MapForwarder("/api/{**catch-all}", "https://api", ForwarderRequestConfig.Empty, HttpTransformer.Default, httpClient);
+```
+
 ### Transforms
 
 The request and response can be modified by providing a derived <xref:Yarp.ReverseProxy.Forwarder.HttpTransformer> as a parameter to the <xref:Yarp.ReverseProxy.Forwarder.IHttpForwarderExtensions.SendAsync*> method, as shown in the [Update `Program.cs`](#update-programcs) section's example.
