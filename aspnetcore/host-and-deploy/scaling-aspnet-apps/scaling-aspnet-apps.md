@@ -1,7 +1,8 @@
 ---
 title: Scaling ASP.NET Core Apps on Azure
 description: Learn how to horizontally scale ASP.NET Core apps on Azure and address common architectural challenges
-ms.date: 10/26/2026
+ms.date: 11/23/2026
+ai-usage: ai-assisted
 ---
 # Deploying and scaling an ASP.NET Core app on Azure Container Apps
 
@@ -135,7 +136,7 @@ It's not immediately apparent why the search requests are failing. The browser t
     > [!TIP]
     > **Alternative: Azure Container Apps built-in data protection**
     >
-    > Azure Container Apps provides a built-in feature to manage data protection keys across replicas without requiring separate Azure Blob Storage and Azure Key Vault resources. This feature requires ASP.NET Core 8.0.4 or later (apps targeting earlier versions, such as the sample in this tutorial, must first update their target framework and container base images).
+    > Azure Container Apps provides a built-in feature to manage data protection keys across replicas without requiring separate Azure Blob Storage and Azure Key Vault resources. This feature requires ASP.NET Core 8.0.4 or later. The sample in this tutorial targets .NET 10, so it supports this feature. Apps that target earlier versions must first update their target framework and container base images.
     >
     > In Azure Container Apps, navigate to the **Development Stack** section, select **.NET**, and enable **ASP.NET Core Data Protection** (or set `properties.configuration.runtime.dotnet.autoConfigureDataProtection: true` in ARM or Bicep templates). When enabled, Azure Container Apps creates a shared key volume mount and injects the `DOTNET_ReadOnlyDataProtectionKeyDirectory` environment variable pointing to the mounted key directory so replicas share encryption keys automatically.
 
